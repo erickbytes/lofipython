@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "python" | Page 3</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/python.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/python3.html">python</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Sep 14, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/making-a-python-eyedropper.html" rel="bookmark" title="Permanent Link to &quot;Making A Desktop Color Eyedropper in Python to Grab Color Values&quot;">Making A Desktop Color Eyedropper in Python to Grab Color Values</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Goal:</strong> recreate my resume in the dark Atom text editor theme (background and fonts).<br>
+<strong>Sub-goal:</strong> find a color eyedropper to grab the actual color values of the Atom layout.</p>
+<p><strong>Approach #1: find an Atom eyedropper package to grab the colors.</strong></p>
+<p>My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were <a href="https://atom.io/packages/an-color-picker">an-color-eyedropper</a> and <a href="https://atom.io/packages/color-picker">color picker</a>. The an-color-eyedropper description sounds perfect: <em>"A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." </em>Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated (<a href="https://atom.io/packages/script">script</a> is its successor). I was unable to find a repo anywhere by googling.</p>
+<p><a href="https://atom.io/packages/color-picker">Color picker</a> has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.</p>
+<p><strong>Approach #2: Use the python tkcolorpicker package to grab the colors.</strong></p>
+<p>The first thing I found on Google was <a href="https://pypi.org/project/tkcolorpicker/">tkcolorpicker</a>, a package that uses the <a href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">tkinter</a> library. I couldn't tell exactly what it was, so let's find out. First, install via <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:<br>
+<code>python -m pip install tkcolorpicker</code></p>
+<p>Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D<br>
+<img alt="color_picker_gui" class="wp-image-1462 alignright" height="315" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="padding-top:15px;" width="301"></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
+<span class="kn">from</span> <span class="nn">tkcolorpicker</span> <span class="kn">import</span> <span class="n">askcolor</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">style</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="n">style</span><span class="o">.</span><span class="n">theme_use</span><span class="p">(</span><span class="s1">&#39;clam&#39;</span><span class="p">)</span>
+<span class="n">hex_code</span><span class="p">,</span> <span class="n">RGB_code</span> <span class="o">=</span> <span class="n">askcolor</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">root</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">hex_code</span><span class="p">,</span> <span class="n">RGB_code</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</code></pre></div>
+
+<p><code>askcolor()</code> returns a tuple with both the RGB and hex codes selected by the user. Above, we are unpacking that tuple into the <code>hex_code</code> and <code>RGB_code</code> variables.</p>
+<p><strong>Approach #3: Use the Python eyedropper package to grab the colors.</strong></p>
+<p>I then found <a href="https://github.com/umluizlima/eyedropper">eyedropper</a> for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>: <code>python -m pip install eyedropper</code></p>
+<p><img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" height="140" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" width="239"></p>
+<p>Hover your mouse over the object you want to grab the color from (in my case, the Atom text editor background). Then <a href="https://github.com/umluizlima/eyedropper">following these instructions</a>:</p>
+<p>Alternatively, I was able to run eyedropper from the command line by entering: <code>py -m eyedropper</code></p>
+<p><img alt="pasted_hex2" class="alignnone size-full wp-image-1461" height="74" src="https://pythonmarketer.files.wordpress.com/2018/09/pasted_hex2.png" width="766"></p>
+<p><img alt="CCvOYFiUgAA4DJd" class="alignright" height="116" src="https://pythonmarketer.files.wordpress.com/2018/09/ccvoyfiugaa4djd.jpg" width="151"></p>
+<p><strong>Mission possible.</strong> Then I hit ctrl+v in a text file and there was the hex code for [my Atom background. Some of the colors that eyedropper grabbed were nearly identical to those in the Atom text editor dark theme. Others were not quite the same. I made slight eyeball adjustments to the colors for some of the fonts. ]{style="color:var(--color-text);"}</p>
+<p>[<strong>Here's the end result:</strong> <a href="https://www.dropbox.com/s/g5uiaqaa5nb3fgn/Developer_Resume_Invert_v2.docx?dl=0">See My Resume via Dropbox</a> :D<br>
+]{style="color:var(--color-text);"}</p>
+<h2>Why not <a href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">use Python to convert hex to RGB?</a></h2>
+<p>Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I found <a href="https://www.webpagefx.com/web-design/hex-to-rgb/">this website</a> practical and quick.</p>
+<p><strong>Alternatively, you could</strong> <strong><a href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">convert a hex code to RGB with python:</a></strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">hex_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">input</span><span class="ss">(</span><span class="s1">&#39;Enter hex: &#39;</span><span class="ss">)</span>.<span class="nv">lstrip</span><span class="ss">(</span><span class="s1">&#39;#&#39;</span><span class="ss">)</span>
+<span class="nv">RGB_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tuple</span><span class="ss">(</span><span class="nv">int</span><span class="ss">(</span><span class="nv">hex_code</span>[<span class="nv">i</span>:<span class="nv">i</span><span class="o">+</span><span class="mi">2</span>],<span class="w"> </span><span class="mi">16</span><span class="ss">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="ss">(</span><span class="mi">0</span>,<span class="w"> </span><span class="mi">2</span>,<span class="w"> </span><span class="mi">4</span><span class="ss">))</span>
+<span class="nv">print</span><span class="ss">(</span><span class="s1">&#39;RGB =&#39;</span>,<span class="w"> </span><span class="nv">RGB_code</span><span class="ss">)</span>
+</code></pre></div>
+
+<p><img alt="rgb_to_hex" class="alignnone size-full wp-image-2308" height="83" src="http://pythonmarketer.files.wordpress.com/2018/09/e084c-rgb_to_hex-e1581286493172.jpg" width="805"></p>
+<h2>What the hay, let's use <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard()</a> to get the hex codes.</h2>
+<p>Once eyedropper sends the color values to your system's clipboard, there are multiple ways to access them. This alternative uses pandas.</p>
+<p><strong>Installing pandas and <a href="https://github.com/asweigart/pyperclip">pyperclip</a> with pip:</strong></p>
+<div class="highlight"><pre><span></span><code>python -m pip install pandas
+python -m pip install pyperclip
+</code></pre></div>
+
+<p><strong>On Linux, install <a href="https://github.com/astrand/xclip">xclip</a> or <a href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a></strong>[ <code>sudo apt-get install xclip</code><strong><br>
+</strong>]{.st}</p>
+<p>[<strong>To get the clipboard contents with pandas:</strong>]{.st}</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">hex_code_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_clipboard</span><span class="p">()</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">hex_code_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>Supplementary Notes and Links</strong></p>
+<ul>
+<li>Here's a Python <a href="https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py">eyedropper script</a> featuring the <a href="https://pillow.readthedocs.io/en/5.2.x/index.html">pillow</a> and <a href="https://github.com/python-xlib/python-xlib">xlib</a> libraries that I was unable to get working.</li>
+<li>I didn't try <a href="http://colorcop.net/">ColorCop for Windows</a>, but it may be a non-Python alternative.</li>
+<li><strong>Did you know?</strong> Python 2 had a <a href="https://docs.python.org/2/library/colorpicker.html">ColorPicker</a> module that is not in Python 3.</li>
+<li><a href="https://dev.to/espoir/how-pandas-readclipboard-method-works-ake">How pandas read_clipboard method works</a></li>
+<li><a href="https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/io/clipboards.py#L10-L76">pandas to_clipboard and read_clipboard source code</a></li>
+<li>This <a href="https://github.com/Toinane/colorpicker">desktop tool</a> has great U/X and an eyedropper feature. It runs on Electron, a Javascript based framework. Coincidentally, Electron was used to build Atom.</li>
+</ul>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/making-a-python-eyedropper.html">posted at 05:45</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-colors-pandas-programming.html" rel="tag">coding, Colors, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/atom.html" class="tags">atom</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/color.html" class="tags">color</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/eyedropper.html" class="tags">eyedropper</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gui.html" class="tags">gui</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags selected">python</a>
+                </div>
+            </article>            <h4 class="date">Aug 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/gooey-gui-for-python-scripts.html" rel="bookmark" title="Permanent Link to &quot;Gooey GUI for Python Scripts&quot;">Gooey GUI for Python Scripts</a>
+                </h2>
+
+                
+                
+
+                <p>GUI stands for "Graphical User Interface", aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.</p>
+<p>There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, <a href="https://github.com/hoffstadt/DearPyGui">DearPyGui</a> and PySimpleGUI. I <a href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">explored Tkinter</a> back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.</p>
+<p>The <a href="https://github.com/chriskiehl/Gooey">Gooey Github page</a> was most useful to me and helped me to do what I needed. The script posted <a href="http://pbpython.com/pandas-gui.html">in this blog</a> helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:</p>
+<ol>
+<li>some basic widgets piggyback off the <a href="https://www.blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/">argparse</a> library</li>
+<li>another part of the library uses a function called the GooeyParser. The GooeyParser offers more advanced widgets, like a file chooser. This was exactly what I was looking to use to pull in files for my script.</li>
+</ol>
+<p><strong>Installing Gooey</strong></p>
+<p>Argparse comes stock with Python. You can install Gooey via the <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>. Open command prompt or terminal and enter:</p>
+<p><code>python -m pip install Gooey</code></p>
+<p>Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
+<span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span>
+
+<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Demonstrating python&#39;s vars built-in to store arguments in a python dict.&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;A simple argument parser&#39;</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="s1">&#39;This is where you might put example usage&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option X&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option Y&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign Number&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option Z&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign Segment&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;All&#39;</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+    <span class="n">user_inputs</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">user_inputs</span><span class="p">)</span> 
+    <span class="n">name</span> <span class="o">=</span> <span class="n">user_inputs</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+    <span class="n">campaign_number</span> <span class="o">=</span> <span class="n">user_inputs</span><span class="p">[</span><span class="s1">&#39;Campaign Number&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">get_args</span><span class="p">()</span>
+</code></pre></div>
+
+<blockquote>
+<p>Side note: Check out Python's <a href="https://docs.python.org/3/library/functions.html#vars">vars() built-in</a> function above. It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!</p>
+</blockquote>
+<p>The \@Gooey() part of the code is an advanced function known as a <a href="https://www.python.org/dev/peps/pep-0318/">decorator in Python</a>. Put simply, decorators are functions that modify the function to which they are attached.</p>
+<p>Below is my script that uses the more advanced GooeyParser for its "FileChooser" widget. Gooey allows you to group widgets together and set how many widgets per line with the gooey_options={} parameter.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
+
+<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adding two argument groups, each accepting two arguments. </span>
+<span class="sd">    Using gooey_options to set layout.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">GooeyParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Export campaign report spreadsheets and upload below.&#39;</span><span class="p">)</span>
+    <span class="n">top_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">gooey_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;show_border&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span><span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+    <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Contact List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Send List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span> 
+    <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Opens List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Opens List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span>
+    <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Unsubscribe List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Unsubscribe List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span>
+    <span class="n">bottom_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">gooey_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;show_border&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span><span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">})</span>
+    <span class="n">bottom_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign ID&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number found in the Campaign &#39;Reports&#39; tab&quot;</span><span class="p">)</span>
+    <span class="n">bottom_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign Segment&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Enter A, B, or All. All lists supplied must match segment.&#39;</span><span class="p">)</span>
+    <span class="n">user_inputs</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">())</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">user_inputs</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">get_args</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:</p>
+<p><img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" height="603" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" width="578"></p>
+<p>Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D</p>
+<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can <a href="https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/gooey-gui-for-python-scripts.html">posted at 16:32</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-product-development-programming-software.html" rel="tag">coding, data, product development, programming, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gooey.html" class="tags">gooey</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gui.html" class="tags">gui</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags selected">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software-development.html" class="tags">software development</a>
+                </div>
+            </article>            <h4 class="date">Apr 10, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/creating-isolated-python-environments-with-virtualenv.html" rel="bookmark" title="Permanent Link to &quot;Creating Isolated Python Environments with Virtualenv&quot;">Creating Isolated Python Environments with Virtualenv</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Why bother?</strong> Because with <a href="https://virtualenv.pypa.io/en/stable/">virtualenv</a>, we can create multiple Python environments on one computer that each:</p>
+<ol>
+<li><em>Are capable of running different versions of Python.</em> Right now I have both Python 2.7 and Python 3.8 installed and am able to create either environment and run code with that version's Python interpreter.</li>
+<li><em>Isolate dependencies for external libraries.</em> Once the environment is created, I do not have to worry about different versions of Python libraries conflicting with each other.</li>
+<li><em>Allow you to have a unique Python environment for different projects.</em></li>
+</ol>
+<p><strong>Potential Pitfalls to Avoid with Virtual Environments</strong></p>
+<ol>
+<li><strong>Know your OS.</strong> The virtualenv commands are slightly different from the Mac, or Linux OS to Windows.</li>
+<li><strong>Be aware of variations within Windows systems.</strong> Some Stack Overflow post commands mention a "Bin" folder, however on my particular version of Windows, the folder was named "Scripts" instead. There was no "Bin" folder that I could locate.</li>
+<li><strong>Choose the right library.</strong> Virtualenv is used commonly. Virtualenvwrapper is a handy tool to make it easier to use. I chose virtualenv as my virtual environment library because I wanted to maintain both Python 2.7 and 3.8 environments. For versions of Python 3.3 and above, check out <a href="https://docs.python.org/3/library/venv.html">venv</a>, an easy to use, stock library and virtual environment generator. I am looking forward to checking both of these out. Virtualenv can be installed with the <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>.</li>
+</ol>
+<p>Consider upgrading your Python version to the <a href="https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=python+latest+stable+release&amp;ie=utf-8&amp;oe=utf-8">latest stable release</a>. <a href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/">Follow these steps to download and install Python 3.8 in the Ubuntu terminal.</a></p>
+<p><strong>Install pip in your new Python version:<br>
+</strong></p>
+<div class="highlight"><pre><span></span><code>curl -O https://bootstrap.pypa.io/get-pip.py
+python3.8 get-pip.py
+</code></pre></div>
+
+<p><strong>Install Virtalenv on Ubuntu:</strong> <code>sudo pip3 install virtualenv</code></p>
+<p><strong>Create a virtual environment with your new Python version. Enter in terminal or command prompt:</strong> <code>virtualenv -p python3.8 38env</code></p>
+<p><strong>Activate your new virtual environment on Ubuntu:</strong></p>
+<div class="highlight"><pre><span></span><code>cd Desktop/Projects/Sandbox38/bin &amp;&amp; source activate
+</code></pre></div>
+
+<p><strong>Alternatively, activate an env on Windows:</strong></p>
+<div class="highlight"><pre><span></span><code>cd Desktop\Projects\your_env_name\scripts &amp; activate
+</code></pre></div>
+
+<p><a href="https://www.codingforentrepreneurs.com/blog/activate-reactivate-deactivate-your-virtualenv/">Activation and Deactivation for Mac vs. Windows</a></p>
+<p><strong>Now you can now install pandas 1.0 in your virtual environment.</strong></p>
+<p><code>python3.8 -m pip install pandas</code></p>
+<p><strong>Below are two screenshots of the command prompt and some links that helped me.</strong></p>
+<p>Below, I am creating a 2.7 environment, even though I have Python 3.6 as my system version. Note how many times I messed up before I got it right, thanks to a <a href="https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv">Stack Overflow post</a>. It took many previous tries but I eventually figured out how to create a Python 2.7 virtualenv, which I named py27_env. I ran the python.exe file inside of the folder where I installed Python 2.7, which I named py27.</p>
+<p>To run a program, I entered python some_program.py. I also tested by downloading modules that did not have a version compatible with Python 3.6. It worked and installed the correct Python 2 version in my py27_env environment.</p>
+<p><img alt="create_py2_env" class="alignnone size-full wp-image-1378" height="882" src="https://pythonmarketer.files.wordpress.com/2018/04/create_py2_env.jpg" width="700"></p>
+<p>Below, I am activating a previously created environment named 14pandas. Then I am installing two external Excel libraries, pandas and xlrd in my environment. The one-liner posted above is a more efficient way to activate a virtualenv.</p>
+<p><img alt="virtualenv_Activate" class="alignnone size-full wp-image-1379" height="564" src="https://pythonmarketer.files.wordpress.com/2018/04/virtualenv_activate.jpg" width="676"></p>
+<p><a href="https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe">More Reading on venv, pipenv, and virtualenv</a></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/creating-isolated-python-environments-with-virtualenv.html">posted at 00:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags selected">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/virtual-machine.html" class="tags">virtual machine</a>
+                </div>
+            </article>            <h4 class="date">Mar 30, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/cleaning-data-with-python.html" rel="bookmark" title="Permanent Link to &quot;Cleaning Data with Python and Excel: A Brief Example&quot;">Cleaning Data with Python and Excel: A Brief Example</a>
+                </h2>
+
+                
+                
+
+                <p>I want to show a simple, real world problem and solution I made today with Python.</p>
+<p><strong>Problem:</strong> My data has been corrupted (over 8,000 rows in Excel). Somewhere in my haste, I have scrambled first names and last names in the 'first name' and 'last name' field.</p>
+<p><img alt="office_scrambled" class="size-full wp-image-1351 alignnone" height="133" src="https://pythonmarketer.files.wordpress.com/2018/03/office_scrambled.png" width="314"></p>
+<p><strong>Solution:</strong> Find unique words from both fields, which leads to unique first and last names.</p>
+<p>Copy the columns from Excel into a Notepad text file. Then run the below <a href="https://www.dropbox.com/s/kxmg3ndnx8d70hv/remove_dupe_words.py?dl=0">code</a> on the text file in command prompt.</p>
+<p><img alt="run_command" class="alignnone size-full wp-image-1352" height="25" src="https://pythonmarketer.files.wordpress.com/2018/03/run_command.png" width="464"></p>
+<p>::: {.line .number1 .index0 .alt2}
+    with open('file_name.txt',"r") as f:
+        lines = f.readlines()
+        lines = [line.split() for line in lines]
+        new_line = list()
+        edited_lines = list()
+        for line in lines:
+            # keep only the first appearance of a word on each line
+            new_line = [word for word in words if word.strip() not in new_line]
+            edited_lines.append(new_line)</p>
+<div class="highlight"><pre><span></span><code><span class="nv">with</span><span class="w"> </span><span class="nv">open</span><span class="ss">(</span><span class="s2">&quot;edited_lines.txt&quot;</span>,<span class="err">&#39;w) as f:</span>
+<span class="err">    for line in edited_lines:</span>
+<span class="w">        </span><span class="nv">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; &#39;</span>.<span class="nv">join</span><span class="ss">(</span><span class="nv">line</span><span class="ss">)</span><span class="w"> </span><span class="o">+</span><span class="s1">&#39;\n&#39;</span>
+<span class="w">        </span><span class="nv">f</span>.<span class="nv">write</span><span class="ss">(</span><span class="nv">line</span><span class="ss">)</span>
+</code></pre></div>
+
+<p>:::</p>
+<div>
+
+::: {style="text-align:right;"}
+**Output**
+:::
+
+<div>
+
+![unique_words](https://pythonmarketer.files.wordpress.com/2018/03/unique_words.png){.size-full .wp-image-1353 .alignright width="224" height="137"}
+
+</div>
+
+As you can see to the right, this has done a good job of repairing the damage, but we still need to get separation of first and last names. Luckily, I had already written some very ugly code tthat I probably shoudn't share (oh well!) that tries to match first and last names to columns appropriately and insert a semi-colon as a delimiter. [Here is the code.](https://www.dropbox.com/home/Sieve?preview=name_columnizer.py)
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+![form_Text](https://pythonmarketer.files.wordpress.com/2018/03/form_text.png){.size-full .wp-image-1354 .alignright width="220" height="142"}**Note:** You may need to use Excel's "From Text" feature if pasting in data from text files does not work.
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+Once we paste the data from our program in, we can use Excel's Text to Columns feature and split on the semi-colon delimiter.
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+After running our new file through the code linked above, we arrive at an output closer to what is desired: split name columns. A bug in my name_columnizer.py program accidentally inserted an extra '&' into some records. (I'm not perfect :)) Thankfully it could be fixed by a simple find and replace in Excel.
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+![find_replace_2](https://pythonmarketer.files.wordpress.com/2018/03/find_replace_2.png){.alignnone .size-full .wp-image-1356 width="604" height="248"}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+This takes us to the below data, which is not ideal but suited my purposes for the job at hand.
+
+</div>
+
+<div>
+
+![finish](https://pythonmarketer.files.wordpress.com/2018/03/finish.png){.alignnone .size-full .wp-image-1357 width="224" height="122"}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+I enjoyed this, because it was a custom solution to a problem created by my own carelessness in Excel. But I fixed it using relatively few lines of code. I want to start sharing more actual code on this blog so here is a start. I strive to be 'Pythonic', but my code is not always the best way. Often, it's far from it. Sometimes I just write code until I find a solution. I try to solve problems and learn to the best of my ability.
+
+</div>
+
+<div>
+
+Hope you enjoyed :D
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+This solution was used before I discovered the [Pandas](https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/) library, which I highly recommend looking into for doing Excel tasks with Python.
+
+</div>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/cleaning-data-with-python.html">posted at 02:24</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-excel.html" rel="tag">coding, data, excel</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/code.html" class="tags">code</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags selected">python</a>
+                </div>
+            </article>            <h4 class="date">Mar 24, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/blog_post-listcool_python_things.html" rel="bookmark" title="Permanent Link to &quot;list(cool_python_things)&quot;">list(cool_python_things)</a>
+                </h2>
+
+                
+                
+
+                <ol>
+<li><a href="https://github.com/norvig/pytudes">pytudes</a> - "This project contains <strong>pytudes</strong>—Python programs for perfecting programming skills."</li>
+<li><a href="https://www.makeartwithpython.com/blog/video-synthesizer-in-python/?utm_source=mybridge&amp;utm_medium=blog&amp;utm_campaign=read_more">Building a video synthesizer in Python</a></li>
+<li><a href="https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/overview">Running micropython on a microcontroller</a></li>
+<li><a href="https://pandas.pydata.org/">Pandas</a> - Super awesome excel and data analysis library. The talk, "<a href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Pandas from the Ground Up</a>" by Brandon Rhodes is great!</li>
+<li><a href="http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/">Fuzzy Wuzzy</a> - Fuzzy string matching python library, written by SeatGeek</li>
+<li><a href="https://soundcloud.com/talkpython">Talk Python to Me</a> - Python podcast</li>
+<li><a href="http://www.oreilly.com/programming/free/?imm_mid=0e20a9&amp;cmp=em-prog-na-na-afterp_triggered_email_programming_resources">Free Programming Books from O'Reilly</a></li>
+</ol>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/blog_post-listcool_python_things.html">posted at 19:38</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-pandas-programming.html" rel="tag">coding, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags selected">python</a>
+                </div>
+            </article>            <h4 class="date">Jan 20, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/how-to-python-pip-install-new-libraries.html" rel="bookmark" title="Permanent Link to &quot;How to Install Libraries and Enable the pip Installer in Python&quot;">How to Install Libraries and Enable the pip Installer in Python</a>
+                </h2>
+
+                
+                
+
+                <p>Python comes with a bunch of <a href="https://docs.python.org/3/py-modindex.html">standard modules</a>. My favorites are shutil, glob, datetime, time, os (operating system), re (regular expressions) and webbrowser. The standard library is loaded.</p>
+<p>Inevitably, you'll want to install new libraries from Python's rich ecosystem of external modules. Enter pip, Python's handy package manager and people's champion.</p>
+<p>This post will teach you some Python history, show how to install pandas, and help you troubleshoot problems if it's not working. You'll find Windows and Linux commands for venv setup (recommended). With pip, you'll feel like Neo when installing new modules. Any skill is at your fingertips. It's like learning kung fu. There's probably a library for that!</p>
+<p><img alt="i know kung fu" class="alignnone size-full wp-image-1321" height="532" src="http://pythonmarketer.files.wordpress.com/2018/01/19c0c-i-know-kung-fu-e1516470914221.png" width="1277"></p>
+<h2>First, Some Python Version Caveats + History** **</h2>
+<p><strong>Python 2 reached end of life on January 1st, 2020</strong>. <a href="https://www.python.org/doc/sunset-python-2/">Python 2 has officially been sunset</a>.</p>
+<p>Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.</p>
+<p><strong>In December 2021, Python 3.6 reached <a href="https://devguide.python.org/devcycle/#end-of-life-branches">"end of life phase"</a>.</strong></p>
+<p>Python 3.6 is "now effectively frozen". Read more in <a href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
+<p><strong>TLDR:</strong> use Python 3.7 to 3.11. This blog endorses using the lightning fast Python version <a href="https://www.python.org/downloads/release/python-3110/">3.11.</a></p>
+<h2>Enter This in Your Terminal</h2>
+<p><code>python -m pip install pandas</code></p>
+<p>Pandas is a super useful library for wrangling spreadsheet data, AKA "tabular" data. If successful, you should see activity that looks similar to the below screenshot, where I am installing <a href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>, an additional Python Excel library you'll likely want. You are good to go! This is the part where you get to feel like Neo! See <a href="https://docs.python.org/3/installing/index.html">Installing Python Modules</a> in the Python Documentation for more detailed instructions.</p>
+<p><img alt="neo_pip" class="alignnone size-full wp-image-1322" height="340" src="http://pythonmarketer.files.wordpress.com/2018/01/de9d6-neo_pip-e1587604013861.png" style="color: var(--color-text);font-size: 1rem" width="650"></p>
+<p><strong>To view all your installed libraries, enter:</strong></p>
+<div class="highlight"><pre><span></span><code>pip list
+</code></pre></div>
+
+<p><strong>Write a "requirements.txt" of installed libraries:</strong></p>
+<div class="highlight"><pre><span></span><code>pip freeze &gt; requirements.txt
+</code></pre></div>
+
+<p><strong>You can list your outdated packages with the --outdated argument:</strong></p>
+<div class="highlight"><pre><span></span><code>pip list --outdated
+</code></pre></div>
+
+<p><strong>Use pip's -h help command line argument:</strong></p>
+<div class="highlight"><pre><span></span><code>pip -h
+</code></pre></div>
+
+<p><strong>Supplementary Resources</strong></p>
+<ul>
+<li>Take a look at this <a href="https://pythontips.com/2013/07/30/20-python-libraries-you-cant-live-without/">list of 20 modules</a> to get started. Here is another <a href="https://github.com/vinta/awesome-python">more comprehensive list of libraries</a> you can now install.</li>
+<li>Swing by the pip documentation <a href="https://pip.pypa.io/en/stable/quickstart/">Quickstart</a> and <a href="https://pip.pypa.io/en/stable/user_guide/">User Guide</a> to learn some helpful commands.</li>
+<li><a href="https://pypi.org/search/?q=time+travel">PyPI, the Python Package Index</a> is the official Python package repository.</li>
+<li><a href="https://snarky.ca/why-you-should-use-python-m-pip/">Why you should use 'python -m pip'</a></li>
+<li><a href="https://opensource.com/downloads/pip-cheat-sheet?utm_medium=Email&amp;utm_campaign=weekly&amp;sc_cid=7013a000002DAKPAA4">pip cheat sheet from opensource.com</a></li>
+</ul>
+<p>Congrats on figuring out how to install packages with pip, have fun!</p>
+<h2>Having issues? Try upgrading your pip version.</h2>
+<div class="highlight"><pre><span></span><code>python -m pip install --upgrade pip
+</code></pre></div>
+
+<h2>Try the ensurepip command.</h2>
+<p>This command will install and upgrade pip to the newest version. New in Python 3.4:</p>
+<p>::: {.highlight-python3 .notranslate}
+::: highlight
+::: {.highlight-python3 .notranslate}
+::: highlight
+    python -m ensurepip --upgrade
+:::
+:::
+:::
+:::</p>
+<blockquote>
+<p>"The <a class="reference internal" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip" title="ensurepip: Bootstrapping the &quot;pip&quot; installer into an existing Python installation or virtual environment."><code class="xref py py-mod docutils literal notranslate">ensurepip</code></a> package provides support for bootstrapping the <code class="docutils literal notranslate">pip</code> installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that <code class="docutils literal notranslate">pip</code> is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter."</p>
+<p>- <a href="https://docs.python.org/3/library/ensurepip.html">ensurepip Python Documentation</a></p>
+</blockquote>
+<p><strong>You should follow best practice and</strong> <a href="https://docs.python.org/3/library/venv.html">create a virtual environment</a> <strong>before installing libraries. <a href="https://docs.python.org/3/library/venv.html">venv</a> or <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a> will help you out. To create with venv:</strong></p>
+<p><code>python3 -m venv add_env_name_here</code></p>
+<p>After your environment is created, activate it with the first command below, then install a library on Ubuntu Linux:</p>
+<ol>
+<li><code>cd add_env_path_here/bin &amp; source activate</code></li>
+<li><code>python -m pip install pandas</code></li>
+</ol>
+<p>Alternatively, on Windows computers:</p>
+<ol>
+<li><code>cd add_env_path_here\scripts &amp; activate</code></li>
+<li><code>python -m pip install pandas</code></li>
+</ol>
+<p><strong>Know your OS.</strong></p>
+<p>If you're interested in installing pip on Linux, <a href="https://www.tecmint.com/install-pip-in-linux/">try here</a>. For Mac, <a href="https://www.shellhacks.com/python-install-pip-mac-ubuntu-centos/">try here</a>. Windows, Mac and Linux sometimes use different prefixes (e.g. python, py, python3) to run a python script. Which leads me to my next point...</p>
+<p><strong>Getting the prefix right can be tricky.</strong></p>
+<p>Since this was written, I moved to Python 3.8. When I first moved from Python 2 to 3 on Windows, I somehow accidentally configured the following behavior: entering <strong>python some_program.py</strong>[ ran a .py file with Python 2. Whereas, entering]{style="color: var(--color-text)"} <strong>py some_program.py</strong>[ ran a .py file with Python 3. ]{style="color: var(--color-text)"}</p>
+<p>[In the install command, the prefix is a reference to your Python executable. You may just need to alter your prefix to call it correctly. Here are some to try in place of "python". Observe what happens when you run these command variations. ]{style="color: var(--color-text)"}Good luck!</p>
+<p><code>python3 -m pip install pandas</code></p>
+<p><code>python3.11 -m pip install pandas</code></p>
+<p><code>py -m pip install pandas</code></p>
+<p><code>pip3 install pandas</code></p>
+<h2>How to Manually Enable the pip Installer</h2>
+<p><strong>The rest of this post may be useful to you if you are:<br>
+</strong></p>
+<ol>
+<li>Working on legacy Python 2 code or Python 3.3 or lower for which pip is not installed.</li>
+<li>Seeking to fix a faulty pip install that is not working properly.</li>
+<li>Curious to know how to manually set up pip.</li>
+</ol>
+<p><em>Assumes Python is already <a href="https://www.python.org/downloads/">installed</a>. If you're running Windows 10, I found it easy to install Python from the <a href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab">Windows store</a>.</em></p>
+<p><strong>Download the <a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py file</a>.</strong></p>
+<p>Go to the link, right click the page and "Save As" a .py file to download. Then place the file where you want to access it. I placed mine in C:\Python27\Lib\site-packages</p>
+<p>You could also download the file with <a href="https://curl.haxx.se/">curl</a>:</p>
+<p><code>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py</code>[ ]{style="color: var(--color-text)"}</p>
+<blockquote>
+<p>[If you are not sure where your site-packages folder is, type ]{style="color: var(--color-text)"}<strong><a href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory"><code>python -m site</code></a></strong>[ into command prompt for file pat]{style="color: var(--color-text)"}h ideas.</p>
+</blockquote>
+<p><strong>Run the get-pip.py file.</strong></p>
+<p>Using command prompt's cd command with a Windows "&amp;" operator to run the Python file in a Windows command prompt:</p>
+<p><code>cd c:\Python27\Lib\site-packages &amp; python get-pip.py</code></p>
+<p>Or Linux terminal:</p>
+<p><code>cd /Python27/Lib/site-packages &amp;&amp; python get-pip.py</code></p>
+<p>[You should see some activity in command prompt that shows installation/updating of "setup" and "wheel". When it finishes, you have installed pip.]{style="color: var(--color-text)"}</p>
+<p><strong>Type into command prompt at the same location:</strong></p>
+<p><code>python -m pip install requests</code>[  ]{style="color: var(--color-text)"}</p>
+<p>[This should install the Requests module into your Python libraries. Requests is an http module which is highly regarded almost universally by the Python community.]{style="color: var(--color-text)"}</p>
+<p><strong>Thanks for reading! Check out these other posts with pip installed library examples:</strong></p>
+<p><a href="https://pythonmarketer.com/2022/01/30/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">Fix Grammar and Spelling with language_tool_python and textblob</a></p>
+<p><a href="http://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/">gooey</a> - GUI library</p>
+<p><a href="http://pythonmarketer.wordpress.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/">tweepy</a> - Twitter library</p>
+<p><a href="https://pythonmarketer.com/2020/05/18/how-to-make-json-requests-with-python/">A Guide to Making HTTP requests</a></p>
+<p><a href="http://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">Plotting Datasets Using Jupyter, Pandas and Matplotlib</a></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/how-to-python-pip-install-new-libraries.html">posted at 17:50</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/matrix.html" class="tags">matrix</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/neo.html" class="tags">neo</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/pip.html" class="tags">pip</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags selected">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python-libraries.html" class="tags">python libraries</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software.html" class="tags">software</a>
+                </div>
+            </article>            <h4 class="date">Jan 14, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/python-file-handling-basics.html" rel="bookmark" title="Permanent Link to &quot;Python File Handling Basics&quot;">Python File Handling Basics</a>
+                </h2>
+
+                
+                
+
+                <p>The basis of many great programs revolve around a simple set of operations:</p>
+<ol>
+<li>Open a file.</li>
+<li>Do something with the file contents.</li>
+<li>Save the new file for the user.</li>
+</ol>
+<p>Python is nice and simple for this. Paste the below lines into a <a href="https://www.google.com/search?q=text+editor&amp;oq=text+edit&amp;aqs=chrome.0.0j69i57j0l4.2054j0j7&amp;sourceid=chrome&amp;ie=UTF-8">text editor</a> and save as a .py file. <a href="https://github.com/BurntSushi/nfldb/wiki/Python-&amp;-pip-Windows-installation">You need to have Python 3 installed</a>. In the same folder as your .py file, save a .txt file with some words in it. Alright, let's write some code:</p>
+<div class="highlight"><pre><span></span><code>file_name = input(&quot;Enter your file name. e.g. words.txt&quot;)
+file_handle = open(file_name, &quot;r&quot;)
+lines = file_handle.readlines()
+print (lines)
+file_handle.close()
+</code></pre></div>
+
+<p>[<strong>In line 1</strong>]{style="color:#339966;"}, we ask the user to enter their file name with Python's raw_input function. When the program runs, the user enters their text file name with extension. This line stores the name in a variable called file_name.</p>
+<p><strong>[In line 2]{style="color:#3366ff;"},</strong> we open your text file and store it in a variable I have named file_handle. Think of the file handle as a bridge between your code and the text file. Quick point about the 'r' above: that tells the program to open the file in "Read" mode. There are several different file modes in programming. Some modes are just for reading an existing file, some are just for writing a new file, and some are capable of both. <a href="https://stackoverflow.com/questions/16208206/confused-by-python-file-mode-w/16208298">This Stack Overflow post</a> is well written and details the differences between file modes. Once established, the file handle allows you to read the file's contents or write new contents to the file.</p>
+<p><strong>[In line 3]{style="color:#993366;"},</strong> we are calling the .readlines() method on our file handle. This method takes the file contents and stores them, line by line, into a list named "lines". An alternative method is .read(), which opens the file and stores its contents as one string. Try switching this out in place of  .readlines() to check out the difference.</p>
+<p><strong>[In line 4]{style="color:#ff6600;"},</strong> we are printing the stored lines to show them to the user. We now have the file contents, ready to be used however we please.</p>
+<p><strong>In line 5</strong>, we are closing the file.</p>
+<p>Below, we are going to write a new file. Let's pretend we've done something worth saving with our lines and now want to save them to a new file. We will represent this as the variable "output" in the first line below.</p>
+<div class="highlight"><pre><span></span><code>file_name = input(&quot;Enter any file name.&quot;)
+save_file = open(file_name, &quot;w&quot;)
+save_file.write(&quot;Here is some text to save in a file.&quot;)
+save_file.close()
+</code></pre></div>
+
+<p>[<strong>In line 1</strong>]{style="color:#3366ff;"}, we are using Python's input function to ask the user what to name the file and storing it in a variable named file_name.</p>
+<p>[<strong>In line 2</strong>]{style="color:#993366;"},  we are calling the open function again that we used in the first example, but this time, notice the "w". This indicates that we are opening the file in "write" mode.</p>
+<p>[<strong>In line 3</strong>]{style="color:#ff6600;"}, we are calling the .write() method on our file handle, named save_file, and passing it our text to be saved in our new file.</p>
+<p><strong>In line 4</strong>, we are closing the file, completing the creation of our new file in the same folder as our .py program file.</p>
+<p>Your program is now ready to be run. Double-click your .py file to execute it.</p>
+<p>Before learning Python, file operations were a mystery to me. It took me a while to understand this clearly, and I wanted to share. Once you master these basic file operations, programming gets to be a lot more fun. Do try it out for yourself :D</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/python-file-handling-basics.html">posted at 18:53</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags selected">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software.html" class="tags">software</a>
+                </div>
+            </article>            <h4 class="date">Jul 28, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/should-i-go-to-programming-school.html" rel="bookmark" title="Permanent Link to &quot;Should You Go To Programming School?&quot;">Should You Go To Programming School?</a>
+                </h2>
+
+                
+                
+
+                <p>There is no one-size-fits-all answer. Below are some thoughts that may help you decide.</p>
+<ol>
+<li>What are your programming goals? Get a coding job? Create an app or website? Become more productive at your current job?</li>
+<li>What is your current experience level? Are you starting fresh or do you already know a language or two?</li>
+<li>Do you have money saved up? Otherwise, you might need to take out a loan.</li>
+</ol>
+<p>A computer science degree is typically most expensive. Coding bootcamps are a lower cost option that pack a wide curriculum into a few weeks or months, but they can still be pricey. The cheapest option is to take a piecemeal approach through various online courses.</p>
+<p><strong>School Advantages</strong></p>
+<ul>
+<li>Wholistic approach. You get the ins and outs of programming from a proven curriculum.</li>
+<li>Community. You learn with other students and from experienced teachers.</li>
+<li>Job placement. Often various schools and bootcamps will connect you to a company.</li>
+<li>Credentials. You gain confidence and the backing of your skills by an established institution.</li>
+</ul>
+<p><strong>[Potential Downsides]{style="line-height:1.7;"}</strong></p>
+<ul>
+<li>[Tuition Money. A lot of ]{style="line-height:1.7;"}[what you need to know is available for free or cheap on the web.]{style="line-height:1.7;"}</li>
+<li>Skill level match. Some bootcamps are oriented for beginners, others are more advanced. If you do a bootcamp, make sure it fits your skill level.</li>
+</ul>
+<p><strong>If you want a coding job</strong>, school makes sense. The bootcamps look to be effective if you can handle the up-front investment. It's possible to land a job without schooling but much tougher. I am currently considering <a href="https://www.fullstackacademy.com/">Full Stack Academy</a>. and <a href="http://www.codingdojo.com/">Coding Dojo</a>. There are many out there. CodeAcademy is a popular route as well.</p>
+<p><strong>If you want to make an app or website</strong>, the school or the non-school route may both work. For the non-school route, the following languages are good places to start: <em>(note - not a comprehensive list, these are my picks.)</em></p>
+<ul>
+<li>Web App or Website: HTML, CSS, Python, Javascript</li>
+<li>Web App or Website Framework:  Flask, Django, py4web, Ruby on Rails, React</li>
+<li>iOS app: Swift plus Apple's Xcode environment, Beeware (python library)</li>
+<li>Android App: Java or Kotlin, Beeware</li>
+<li>General Coding: Python or Ruby</li>
+</ul>
+<p><strong>If you want to be more productive at work</strong>, I recommend learning Python. More on Python and where to start <a href="https://pythonmarketer.wordpress.com/2016/02/22/marketer-slash-programmer/">here</a>. <a href="https://automatetheboringstuff.com/">Automate the Boring Stuff With Python</a> is a great resource for boosting your productivity also.</p>
+<p>It's not easy to decide whether or not school is for you. I'm still unsure after a year and a half of programming on the side. No matter what, continue to learn multiple languages and strive for a better grasp of the ones you know. Good luck!</p>
+<p><strong>My decision: continue self-study and learning online for free.</strong></p>
+<p>As of 8 months after writing this post, I have concluded that learning for free online was the right choice for me. I've achieved many of my programming goals in the last three years, thanks to materials available from <a href="https://www.codecademy.com/learn/learn-python">Codeacademy</a>, <a href="https://www.coursera.org/learn/python">Coursera</a>, <a href="https://www.youtube.com/watch?v=u3d-n41Tobw">YouTube</a>, <a href="https://stackoverflow.com/questions/1720421/how-to-concatenate-two-lists-in-python?rq=1">Stack Overflow</a>, <a href="https://automatetheboringstuff.com/">countless helpful resources,</a><a href="https://pymotw.com/3/glob/index.html">interesting blogs</a>, and <a href="https://docs.python.org/3/library/index.html">documentation</a>. I've talked with others who need the in-person assistance that a bootcamp offers to learn. Do what works for you. Good luck with your decision.</p>
+<p><strong>Update:</strong> Several years later, I also get paid to use Python and Excel for a living! I studied for free online intermittently over 2 years to achieve it.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/should-i-go-to-programming-school.html">posted at 23:45</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/app-development.html" class="tags">app development</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computer-jobs.html" class="tags">computer jobs</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags selected">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software.html" class="tags">software</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/web-apps.html" class="tags">web apps</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/web-development.html" class="tags">web development</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/website.html" class="tags">website</a>
+                </div>
+            </article>            <h4 class="date">Mar 03, 2016</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/starting-to-almost-kinda-think-about-creating-a-web-app.html" rel="bookmark" title="Permanent Link to &quot;Starting to Almost Kinda Think About Creating a Web App&quot;">Starting to Almost Kinda Think About Creating a Web App</a>
+                </h2>
+
+                
+                
+
+                <p>One of my first goals when I started learning Python was to build a web application. Once you've gotten a basic grip on Python, you might be ready to learn about web frameworks. A web framework consists of software designed to aid in web development. They make it easier to create a website or web app - if you know how to use them. Unfortunately, there is a learning curve to using the frameworks but thankfully there is plenty o' documentation to go around to help you.</p>
+<p>Here are the two <a href="https://www.airpair.com/python/posts/django-flask-pyramid">Python Frameworks</a> I've chosen to investigate (there are many out here on the webs):</p>
+<ul>
+<li>Django - widely used, great community support, comes with just about everything built in. Can be used for smaller apps or multi-page/app websites.</li>
+<li>Flask - a "microframework" used for smaller apps. Possibly more manageable for someone beginning a smaller project (me!)</li>
+</ul>
+<p>So as a beginnerish-level coder, I've chosen to start with Flask; I also found <a href="http://opentechschool.github.io/python-flask/">this sweet guide</a> that I think will help. Maybe someday I will graduate to Django, it sounds like a great framework. I've also decided that first I need to <a href="https://www.coursera.org/specializations/web-design">brush up on my HTML</a> - And according to a lot of what I've read it doesn't hurt to know CSS/Javascript. So this whole "build a web app" idea will continue, albeit with some hurdles to clear first.</p>
+<p>Edit: I ended up choosing web2py, which I hadn't even considered when I wrote this originally! Here's a <a href="https://pythonmarketer.wordpress.com/2016/03/22/choosing-a-web-development-path/">post about why I chose it</a>.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/starting-to-almost-kinda-think-about-creating-a-web-app.html">posted at 03:56</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-programming-web-development.html" rel="tag">coding, programming, web development</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/django.html" class="tags">django</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/flask.html" class="tags">flask</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags selected">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/web-apps.html" class="tags">web apps</a>
+                </div>
+            </article>
+
+                <div class="clear"></div>
+                <div class="pages">
+
+                    <a href="https://pythonmarketer.com/tag/python2.html" class="prev_page">&larr;&nbsp;Previous</a>
+
+
+                    <span>Page 3 of 3</span>
+                </div>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

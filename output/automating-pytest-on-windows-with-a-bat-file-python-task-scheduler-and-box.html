@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-programming-software-testing-windows.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-programming-software-testing-windows.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content="coding,pytest,python,software development" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Mar 21, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html" rel="bookmark" title="Permanent Link to &quot;Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box&quot;">Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Automatic pytest Testing and Failure Alert Monitoring</strong></p>
+<p>This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.</p>
+<p><strong>Installing <a href="https://docs.pytest.org/en/latest/getting-started.html">pytest</a>, a python testing library:</strong></p>
+<p><code>python -m pip install pytest</code></p>
+<p><strong>A Few Words on pytest</strong></p>
+<p>It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.</p>
+<p>**Writing a Test **</p>
+<p>Let's use <strong>test_file_date.py</strong> as our test, which uses the <a href="https://docs.python.org/3/library/glob.html">glob</a> module and [<a href="https://docs.python.org/2/library/os.path.html#os.path.getmtime">os.getmtime</a>]{style="color:var(--color-text);"}[ ]{style="color:var(--color-text);"}[to get the csv with the most recent modification date ]{style="color:var(--color-text);"}[on my desktop. Then it tests if that date is today, in my case, for an expected daily file drop.]{style="color:var(--color-text);"}</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span> 
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+
+<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The dir_query format is for a Windows path with Unix style pattern matching.&quot;&quot;&quot;</span>
+    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">{getpass.getuser()}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
+    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+</code></pre></div>
+
+<p><strong>Here's the pytest text output when the test is passing:</strong></p>
+<div class="highlight"><pre><span></span><code>============================= test session starts =============================
+platform win32 -- Python 3.8.1, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
+rootdir: C:
+</code></pre></div>
+
+<p>collected 1 item</p>
+<div class="highlight"><pre><span></span><code><span class="cp">..\..\Users\martech\Desktop\test_file_date.py . [ 14%]</span>
+<span class="cp">                                                                   [100%]</span>
+
+============================== 1 passed in 0.28s ==============================
+</code></pre></div>
+
+<p><strong>Creating a Task with Windows Task Scheduler</strong></p>
+<p>If you haven't used python with Windows Task Scheduler before, <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">my previous post</a> on creating a task may help you. We'll create two of them for our testing system.</p>
+<p><strong>Adding Your Task Scheduler Program: a Windows .bat file</strong></p>
+<p>Add your username to the text below and adjust the paths to your system. Then save a <a href="https://en.wikipedia.org/wiki/Batch_file">Windows .bat file</a> with this text, which points to your pytest.exe file:</p>
+<div class="highlight"><pre><span></span><code>cmd /c &quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&quot; ^
+C:\Users\your_username\Desktop\test_file_date.py &gt; C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
+</code></pre></div>
+
+<p>This example is referencing an .exe within a hypothetical "VM_Jobs" <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)</p>
+<p><strong>Breaking this out, there are five .bat files parts:</strong></p>
+<blockquote>
+<p>cmd /c "C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys"</p>
+</blockquote>
+<p>Windows' <a href="https://ss64.com/nt/cmd.html">cmd command</a> takes a program, so we're passing pytest. <a href="https://docs.pytest.org/en/latest/capture.html">The --capture=sys argument</a> tells pytest to capture the test results. <strong>Note:</strong> switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.</p>
+<blockquote>
+<p>\^</p>
+</blockquote>
+<p>circumflex represents a line continuation in Windows batch files for better readability</p>
+<blockquote>
+<p>C:\Users\your_username\Desktop\test_file_date.py</p>
+</blockquote>
+<p>Next we're passing our python file as an argument to pytest, testing our file's modified date matches today's date.</p>
+<blockquote>
+<p><strong>&gt;</strong></p>
+</blockquote>
+<p>This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:</p>
+<blockquote>
+<p>C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt</p>
+</blockquote>
+<p><strong>Browse to select your .bat file for your Windows Task Scheduler task:</strong></p>
+<p><img alt="bat_task" class="alignnone size-full wp-image-2669" height="590" src="https://pythonmarketer.files.wordpress.com/2020/03/bat_task.jpg" width="1032"></p>
+<p><strong>Reading the Tests and Triggering Alerts</strong></p>
+<p>Passing tests signal your scripts are running successfully. When things don't work, email alerts of the failure help us respond quickly.</p>
+<p>Let's set another task scheduler job to run <strong>read_test_results.py,</strong> to run a few minutes after the first job each day. See this <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">example of running Python with Task Scheduler</a> if you haven't triggered a python script from Task Scheduler before.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Automate pytest with Windows Task Scheduler - Python Marketer</span>
+<span class="sd">http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</span>
+
+<span class="sd">Use Task Scheduler run a batch file. </span>
+<span class="sd">The batch file runs pytest and captures our pytest function results to sys. </span>
+<span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">user_name</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">logging</span><span class="se">\\</span><span class="s1">Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span>
+    <span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for failed tests...&quot;</span><span class="p">)</span>
+
+<span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">test_results</span><span class="se">\\</span><span class="s1">&#39;</span>
+<span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.txt&#39;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">txt_file</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">+</span> <span class="n">txt_file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s1">&#39;FAILURES&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">send_failure_alert</span><span class="se">\\</span><span class="s1">&#39;</span>
+        <span class="n">today</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+        <span class="n">out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}{</span><span class="n">txt_file</span><span class="si">}</span><span class="s1">_Failed_Results_</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s1">.txt&#39;</span>
+        <span class="n">alert_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span><span class="s2">&quot;w+&quot;</span><span class="p">)</span>
+        <span class="n">alert_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">txt_file</span><span class="p">)</span>
+        <span class="n">alert_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">alert_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No failed tests found in file:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">txt_file</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Setting up Email Alert Notifications on a Box Folder</strong></p>
+<p>The above script checks the test results and creates a file with any failed tests in a different folder. I <a href="https://support.box.com/hc/en-us/articles/360044194073-Manage-Notifications-for-Enterprise-Users">edited the folder's settings</a> to email me when a new file is added, thanks to Box notifications. We use <a href="http://www.box.com">Box</a> for secure file sharing at my day current day job.</p>
+<p>Alternatively for those without Box, you could use 'ole trusty <a href="https://docs.python.org/3/library/smtplib.html">smtplib</a> to send the failure alerts with python. I chose the easier, ready to go option. Remember, "<a href="https://zen-of-python.info/simple-is-better-than-complex.html">Simple is better than complex</a>."</p>
+<p>Or the <a href="https://github.com/mhammond/pywin32">pywin32 module</a> has an interface to Outlook that is very handy. For an example of sending a Windows Outlook email, check the very end of <a href="http://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/">this post I wrote on "Scripting Windows Like a Pro"</a>.</p>
+<p><strong>We now have an automated testing system with email monitoring alerts if our csv file date test fails, thanks to:</strong></p>
+<ul>
+<li>Windows Task Scheduler (two tasks running each day in succession)</li>
+<li>python/pytest</li>
+<li>a Windows .bat file</li>
+<li>Box (or smtplib or pywin32) email alerts</li>
+</ul>
+<p><strong>In Summation</strong></p>
+<ol>
+<li>The first task runs a .bat file to run pytest and create a text file with daily automation test results.</li>
+<li>The second task runs a python file. Setting in motion:</li>
+<li>Checking the test result text files, looking for failed tests</li>
+<li>Creating a text file with any failing tests in a Box folder, if found</li>
+<li>Then Box emails me if any test fails.</li>
+</ol>
+<p><strong>Final Thoughts on the .bat, Man</strong></p>
+<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format<strong><a href="https://www.youtube.com/watch?v=65eDsGY5MTE"><img alt="legobatman" class="wp-image-2704 alignright" height="95" src="https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg" width="95"></a></strong> the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a "glue" piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
+<p><strong>Life is in the journey.</strong></p>
+<p>What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!</p>
+<div class="highlight"><pre><span></span><code>&lt;/p&gt;
+</code></pre></div>
+
+<p><strong>See also:</strong></p>
+<p><a href="_wp_link_placeholder">pytest plugins</a></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pypi.org/project/pytest-csv/">pytest-csv</a>: write test results to a csv with this plugin</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>I wrote another post compiling peoples' thoughts on testing <a href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">here</a>.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html">posted at 01:47</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-programming-software-testing-windows.html" rel="tag">automation, programming, software testing, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/coding.html" class="tags">coding</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/pytest.html" class="tags">pytest</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software-development.html" class="tags">software development</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

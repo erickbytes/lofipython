@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles in the "coding, programming, python, Scripts" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-programming-python-scripts.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-programming-python-scripts.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/category/coding-programming-python-scripts.html">coding, programming, python, Scripts</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jan 05, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/how-to-track-python-script-completion.html" rel="bookmark" title="Permanent Link to &quot;How to Track Python Script Completion&quot;">How to Track Python Script Completion</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Did your script run to completion? Sure, you might log some tracebacks along the way or terminate the program early with <a href="https://docs.python.org/3/library/sys.html#sys.exit">sys.exit()</a>. But did your script actually run completely to the end? I have yet to use the <a href="https://docs.python.org/3/library/trace.html">Trace module</a> but it seems worth checking out also. Visualization tools like <a href="https://github.com/alexmojaki/heartrate">heartrate</a> are worth mentioning too depending on how you are running your scripts. Task runners typically have run status tracking as well. I like having a visual confirmation by logging some sort of information when a script finishes as intended. It's nice to know when your scripts finished or not. Use logging and Trace to up your reliability of your scripts.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Another anecdotal way to track this is with the logging module:</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="k">def</span> <span class="nf">improvise</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Improv Tutorial: https://www.youtube.com/watch?v=C6wY9OwqJ2A&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Boom! Detective Michael Scarn, I&#39;m with the FBI!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Error occurred during improv.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="n">FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(clientip)-15s</span><span class="s1"> </span><span class="si">%(user)-8s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;improvise.log&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">FORMAT</span><span class="p">)</span>
+<span class="n">improvise</span><span class="p">()</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Improvisation finished!&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/how-to-track-python-script-completion.html">posted at 11:49</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-programming-python-scripts.html" rel="tag">coding, programming, python, Scripts</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/logging.html" class="tags">logging</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python-scripts.html" class="tags">python scripts</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/reliability.html" class="tags">reliability</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/tracking.html" class="tags">tracking</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

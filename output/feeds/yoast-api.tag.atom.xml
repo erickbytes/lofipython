@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - Yoast API</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/yoast-api.tag.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2021-09-06T14:12:00-05:00</updated><entry><title>Yoast SEO API Python Example With requests + pandas</title><link href="https://pythonmarketer.com/yoast-api-python-example-with-requests-pandas.html" rel="alternate"></link><published>2021-09-06T14:12:00-05:00</published><updated>2021-09-06T14:12:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2021-09-06:/yoast-api-python-example-with-requests-pandas.html</id><summary type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Lately I've been checking out the &lt;a href="https://yoast.com/wordpress/plugins/seo/"&gt;Yoast SEO plug-in&lt;/a&gt; and their &lt;a href="https://developer.yoast.com/customization/apis/rest-api"&gt;REST API&lt;/a&gt;. The API returns all of the SEO metadata, meta tags, schema.org data, etc. for your Wordpress blog posts. Here's a Yoast API Python example script to fetch post metadata via requests and pandas:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp …&lt;/code&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Lately I've been checking out the &lt;a href="https://yoast.com/wordpress/plugins/seo/"&gt;Yoast SEO plug-in&lt;/a&gt; and their &lt;a href="https://developer.yoast.com/customization/apis/rest-api"&gt;REST API&lt;/a&gt;. The API returns all of the SEO metadata, meta tags, schema.org data, etc. for your Wordpress blog posts. Here's a Yoast API Python example script to fetch post metadata via requests and pandas:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:syntaxhighlighter/code --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fetch_metadata&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;post_url&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Returns the Yoast API response as pandas dataframe.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://atomic-temporary-107329037.wpcomstaging.com/wp-json/yoast/v1/get_head?url=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;post_url&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;response_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;metadata_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json_normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response_dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;metadata_df&lt;/span&gt;
+
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://github.com/erickbytes/Python-Marketer-Reader-Analytics/blob/master/dataset/2020_pythonmarketer.com_post_views.xlsx?raw=true.xlsx&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;posts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_excel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# update url domain with pandas .str accessor&lt;/span&gt;
+&lt;span class="n"&gt;posts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;posts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.wordpress&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;repl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;regex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;posts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;metadata&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;posts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fetch_metadata&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;metadata_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;posts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;span class="n"&gt;metadata_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Wordpress Blog Post Yoast API Metadata.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:syntaxhighlighter/code --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What this script is doing:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:list {"ordered":true} --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Read a list of my blog posts from Github into a &lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html"&gt;pandas dataframe&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Use &lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.apply.html"&gt;pandas .apply&lt;/a&gt; to fetch the metadata for each post url.&lt;/li&gt;
+&lt;li&gt;Deserialize + normalize the JSON response.&lt;/li&gt;
+&lt;li&gt;Convert to a pandas dataframe and store in a pandas Series named 'metadata'.&lt;/li&gt;
+&lt;li&gt;Merge the series and write the metadata to a csv file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:list --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Payoff&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;You'll end up with blobs of JSON formatted metadata to sift through or wrangle to your liking! Check out the &lt;a href="https://developer.yoast.com/"&gt;Yoast documentation&lt;/a&gt; if you're interested in finding out more about their APIs.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;New to APIs?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;It's ok if so, we all were once. Check out my &lt;a href="https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/"&gt;guide to making HTTP requests with Python&lt;/a&gt; if you want to see more API examples.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:image {"id":5922,"width":640,"height":451,"sizeSlug":"full","linkDestination":"none","className":"is-style-rounded","noBottomMargin":true,"noTopMargin":true} --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" class="wp-image-5922" height="451" src="https://pythonmarketer.files.wordpress.com/2021/10/e5f7c-image.png" title="SEO Overview" width="640"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:image --&amp;gt;&lt;/code&gt;&lt;/p&gt;</content><category term="APIs, coding, HTTP, programming, python"></category><category term="Python Wordpress Blog SEO"></category><category term="SEO"></category><category term="Yoast API"></category></entry></feed>

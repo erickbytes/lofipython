@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Python Requests SSLCertVerificationError Solution for Windows</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-http-python-windows.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-http-python-windows.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content=".PEM solution,problem solving,Windows 10" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jun 10, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/how-to-fix-your-python-certificates-on-windows.html" rel="bookmark" title="Permanent Link to &quot;Python Requests SSLCertVerificationError Solution for Windows&quot;">Python Requests SSLCertVerificationError Solution for Windows</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>I initially installed my Python version from the <a href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7">Windows Store</a> and it worked fine for almost a year on my Windows 10 computer. Then I started getting this error message when trying to use the <a href="https://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification">requests library</a> on all HTTP requests:</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>requests.exceptions.SSLError: HTTPSConnectionPool(host=&#39;api.example.com&#39;, port=443): Max retries exceeded with url: /oauth/token?grant_type=client_credentials (Caused by SSLError(SSLCertVerificationError(1, &#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)&#39;)))
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Apparently my Python certificates were not valid or up to date on my computer. These are ".PEM" or ".cert" files that certify your connection for the <a href="https://www.ssl.com/faqs/faq-what-is-ssl/">SSL protocol</a>. I googled this error until I found the <a href="https://pypi.org/project/python-certifi-win32/">python-certifi-win32</a> library. I only needed to <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip install</a> this library and it fixed the problem:</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>pip install python-certifi-win32</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Huge thank you to <a href="https://pypi.org/user/andrewleech/">the maintainer</a> of this package. It solved my issues and now I can make HTTP requests again!</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/how-to-fix-your-python-certificates-on-windows.html">posted at 11:59</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-http-python-windows.html" rel="tag">coding, HTTP, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/pem-solution.html" class="tags">.PEM solution</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/problem-solving.html" class="tags">problem solving</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/windows-10.html" class="tags">Windows 10</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

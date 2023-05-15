@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Python os, pandas and tqdm File Deletion Script</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/uncategorized.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/uncategorized.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jun 13, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/drafts/7014.html" rel="bookmark" title="Permanent Link to &quot;Python os, pandas and tqdm File Deletion Script&quot;">Python os, pandas and tqdm File Deletion Script</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Here's a deletion script that uses <a href="https://docs.python.org/3/library/os.html#os.remove">os.remove()</a> to delete files. Assuming the full path to the file is in a csv, with column named "files". It uses tqdm to display a progress bar as it is deleting the files. Short, sweet and it is surprisingly fast. I noted it averaged about 175 files deleted per second according to tqdm! At just 7 lines of code, this does the job. Give it a try!</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Install with <a href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a></strong>:</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>pip install pandas
+pip install tqdm
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pypi.org/project/pandas/">pandas pypi</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pypi.org/project/tqdm/">tqdm pypi</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="n">csv</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter csv with column name files:&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">files</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/drafts/7014.html">posted at 14:50</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/uncategorized.html" rel="tag">Uncategorized</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

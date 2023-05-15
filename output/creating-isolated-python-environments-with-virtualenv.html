@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Creating Isolated Python Environments with Virtualenv</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-programming.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-programming.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content="computers,python,virtual machine" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Apr 10, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/creating-isolated-python-environments-with-virtualenv.html" rel="bookmark" title="Permanent Link to &quot;Creating Isolated Python Environments with Virtualenv&quot;">Creating Isolated Python Environments with Virtualenv</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Why bother?</strong> Because with <a href="https://virtualenv.pypa.io/en/stable/">virtualenv</a>, we can create multiple Python environments on one computer that each:</p>
+<ol>
+<li><em>Are capable of running different versions of Python.</em> Right now I have both Python 2.7 and Python 3.8 installed and am able to create either environment and run code with that version's Python interpreter.</li>
+<li><em>Isolate dependencies for external libraries.</em> Once the environment is created, I do not have to worry about different versions of Python libraries conflicting with each other.</li>
+<li><em>Allow you to have a unique Python environment for different projects.</em></li>
+</ol>
+<p><strong>Potential Pitfalls to Avoid with Virtual Environments</strong></p>
+<ol>
+<li><strong>Know your OS.</strong> The virtualenv commands are slightly different from the Mac, or Linux OS to Windows.</li>
+<li><strong>Be aware of variations within Windows systems.</strong> Some Stack Overflow post commands mention a "Bin" folder, however on my particular version of Windows, the folder was named "Scripts" instead. There was no "Bin" folder that I could locate.</li>
+<li><strong>Choose the right library.</strong> Virtualenv is used commonly. Virtualenvwrapper is a handy tool to make it easier to use. I chose virtualenv as my virtual environment library because I wanted to maintain both Python 2.7 and 3.8 environments. For versions of Python 3.3 and above, check out <a href="https://docs.python.org/3/library/venv.html">venv</a>, an easy to use, stock library and virtual environment generator. I am looking forward to checking both of these out. Virtualenv can be installed with the <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>.</li>
+</ol>
+<p>Consider upgrading your Python version to the <a href="https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=python+latest+stable+release&amp;ie=utf-8&amp;oe=utf-8">latest stable release</a>. <a href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/">Follow these steps to download and install Python 3.8 in the Ubuntu terminal.</a></p>
+<p><strong>Install pip in your new Python version:<br>
+</strong></p>
+<div class="highlight"><pre><span></span><code>curl -O https://bootstrap.pypa.io/get-pip.py
+python3.8 get-pip.py
+</code></pre></div>
+
+<p><strong>Install Virtalenv on Ubuntu:</strong> <code>sudo pip3 install virtualenv</code></p>
+<p><strong>Create a virtual environment with your new Python version. Enter in terminal or command prompt:</strong> <code>virtualenv -p python3.8 38env</code></p>
+<p><strong>Activate your new virtual environment on Ubuntu:</strong></p>
+<div class="highlight"><pre><span></span><code>cd Desktop/Projects/Sandbox38/bin &amp;&amp; source activate
+</code></pre></div>
+
+<p><strong>Alternatively, activate an env on Windows:</strong></p>
+<div class="highlight"><pre><span></span><code>cd Desktop\Projects\your_env_name\scripts &amp; activate
+</code></pre></div>
+
+<p><a href="https://www.codingforentrepreneurs.com/blog/activate-reactivate-deactivate-your-virtualenv/">Activation and Deactivation for Mac vs. Windows</a></p>
+<p><strong>Now you can now install pandas 1.0 in your virtual environment.</strong></p>
+<p><code>python3.8 -m pip install pandas</code></p>
+<p><strong>Below are two screenshots of the command prompt and some links that helped me.</strong></p>
+<p>Below, I am creating a 2.7 environment, even though I have Python 3.6 as my system version. Note how many times I messed up before I got it right, thanks to a <a href="https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv">Stack Overflow post</a>. It took many previous tries but I eventually figured out how to create a Python 2.7 virtualenv, which I named py27_env. I ran the python.exe file inside of the folder where I installed Python 2.7, which I named py27.</p>
+<p>To run a program, I entered python some_program.py. I also tested by downloading modules that did not have a version compatible with Python 3.6. It worked and installed the correct Python 2 version in my py27_env environment.</p>
+<p><img alt="create_py2_env" class="alignnone size-full wp-image-1378" height="882" src="https://pythonmarketer.files.wordpress.com/2018/04/create_py2_env.jpg" width="700"></p>
+<p>Below, I am activating a previously created environment named 14pandas. Then I am installing two external Excel libraries, pandas and xlrd in my environment. The one-liner posted above is a more efficient way to activate a virtualenv.</p>
+<p><img alt="virtualenv_Activate" class="alignnone size-full wp-image-1379" height="564" src="https://pythonmarketer.files.wordpress.com/2018/04/virtualenv_activate.jpg" width="676"></p>
+<p><a href="https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe">More Reading on venv, pipenv, and virtualenv</a></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/creating-isolated-python-environments-with-virtualenv.html">posted at 00:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/virtual-machine.html" class="tags">virtual machine</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

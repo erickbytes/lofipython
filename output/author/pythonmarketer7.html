@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Articles by pythonmarketer</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/author/pythonmarketer7.html">pythonmarketer</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jun 27, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/choosing-database-storage-models-and-workloads-that-mesh.html" rel="bookmark" title="Permanent Link to &quot;Characterizing Database Workloads & Storage Models&quot;">Characterizing Database Workloads & Storage Models</a>
+                </h2>
+
+                
+                
+
+                <p>Thank you <a href="https://db.cs.cmu.edu/">Carnegie Mellon Database Group</a> for putting this online! These are my notes from watching on YouTube.</p>
+<blockquote>
+<p>Carnegie Mellon Databases Storage II, Lecture 4</p>
+<p>Prof. Andy Pavlo [<a href="https://www.youtube.com/watch?v=YWRYEXNy6IE&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=4">Watch on YouTube</a>]</p>
+</blockquote>
+<h2>The Problem and Solution</h2>
+<p>How should the DBMS represent the database in storage files on disk? Solve it by choosing the right <em>storage model</em> for your target <em>workload</em>. The right strategy varies if you are reading data, writing data and with how many joins you are performing.</p>
+<h2>Workload Characterization</h2>
+<p><strong>OLTP</strong> (<a href="https://en.wikipedia.org/wiki/Online_transaction_processing">Online Transaction Processing</a>): "Simple queries with lots of writes."</p>
+<p><strong>OLAP</strong> (<a href="https://en.wikipedia.org/wiki/Online_analytical_processing">Online Analytical Processing</a>): "Read only queries. Lots of joins. Doing a lot of reads, but they're more complex."</p>
+<p><strong>HTAP</strong> (<a href="https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing">Hybrid Transactional Analytical Processing</a>): "is trying to do both of them. You still want to ingest new data, but analyze it as it comes in. It's used for companies making decisions on the fly as people are browsing websites, like internet advertising companies."</p>
+<h2><img alt="Screenshot 2020-06-27 at 11.56.10 AM" class="alignnone size-full wp-image-3897" height="1080" src="https://pythonmarketer.files.wordpress.com/2020/06/screenshot-2020-06-27-at-11.56.10-am.png" width="1920"></h2>
+<h2>Storage Models</h2>
+<p><em>screenshots from the <a href="https://www.youtube.com/watch?v=YWRYEXNy6IE&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=4">lecture</a></em></p>
+<p><img alt="n-ary model" class="alignnone size-full wp-image-3918" height="360" src="https://pythonmarketer.files.wordpress.com/2020/06/n-ary-model.png" width="692"></p>
+<p>N-ary used to be the dominant model until the '80s.</p>
+<p><img alt="DSM model" class="alignnone size-full wp-image-3917" height="396" src="https://pythonmarketer.files.wordpress.com/2020/06/dsm-model-1.png" width="938"></p>
+<p><strong>Additional Reading:</strong> <a href="https://www.allthingsdistributed.com/2013/09/column-oriented-databases.html">All Things Distributed</a></p>
+<h2>Column Store Vs. Row Store RDBMS</h2>
+<p><strong><a href="https://dataschool.com/data-modeling-101/row-vs-column-oriented-databases/">Row-oriented DBMS</a> (Row Store)</strong></p>
+<ul>
+<li>PostgreSQL, MySQL</li>
+<li>Row Store = use OLTP</li>
+</ul>
+<p><strong><a href="https://en.wikipedia.org/wiki/Column-oriented_DBMS">Column-oriented DBMS</a> (Column Store)</strong></p>
+<ul>
+<li>Red Shift, BigQuery</li>
+<li>Column Store = use OLAP</li>
+</ul>
+<p>If types are consistent, you can compress data into single column store.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/choosing-database-storage-models-and-workloads-that-mesh.html">posted at 13:22</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/data-databases-education-performance.html" rel="tag">data, Databases, education, performance</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/carnegie-mellon.html" class="tags">Carnegie Mellon</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/database-storage.html" class="tags">database storage</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/lectures-notes.html" class="tags">lectures notes</a>
+                </div>
+            </article>            <h4 class="date">Jun 23, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/my-favorite-free-educational-courses-and-talks-to-absorb.html" rel="bookmark" title="Permanent Link to &quot;Free Computer Science Courses and Talks To Absorb&quot;">Free Computer Science Courses and Talks To Absorb</a>
+                </h2>
+
+                
+                
+
+                <p>Below you'll find a balanced curriculum of juicy courses and videos that are available for free on the internet. I'll definitely be diving into most of these in the 2nd half of 2020. Stay curious!</p>
+<h2>University CS Courses For Free</h2>
+<p><a class="yt-simple-endpoint style-scope yt-formatted-string" href="https://www.youtube.com/playlist?list=PLhQjrBD2T382hIW-IsOVuXP1uMzEvmcE5">CS50's Web Programming with Python and JavaScript</a> | Harvard University</p>
+<p><a href="https://archive.org/details/ucberkeley_webcast_gJJeUFyuvvg">CS 61-C Great Ideas in Computer Architecture (Machine Structures)</a>, Spring 2015 | UC Berkeley</p>
+<p>::: {#publisher-container}
+<a href="http://cs109.github.io/2015/">CS 109: Data Science</a>, 2015 | Harvard University</p>
+<p><a href="https://uppsala.instructure.com/courses/28112">Mathematical Modeling of Football</a>, Fall 2020 | Uppsala Universitet</p>
+<p><a href="https://www.youtube.com/watch?v=hry_qqXLej8&amp;list=PLN_mP1uWIrL6d_brjVN3qgDBxoYEAE-hG&amp;index=2">CS 162 - Operating Systems and Systems Programming</a>, Fall 2013 | UC Berkeley</p>
+<p><a href="https://www.youtube.com/watch?v=oeYBdghaIjc&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi">15-445/645 Intro to Database Systems</a>, Fall 2019 | Carnegie Mellon University
+:::</p>
+<div>
+
+</div>
+
+<p><a href="https://www.youtube.com/watch?v=SdW5RKUboKc&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=25&amp;t=0s">15-721 Advanced Database Systems</a>, Spring 2020 | Carnegie Mellon University</p>
+<p><a href="https://missing.csail.mit.edu/2020/">Missing Semester: Shell Tools &amp; Scripting</a>, Spring 2020 | MIT</p>
+<p><a href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB">6.824 Distributed Systems</a>, Spring 2020 | MIT</p>
+<p><a href="https://www.youtube.com/playlist?list=PLOtl7M3yp-DX32N0fVIyvn7ipWKNGmwpp">CSE 373 - Analysis of Algorithms</a>, 2016 | Stony Brook University</p>
+<p><a href="https://www.youtube.com/watch?v=9Btjg3I5-Wg">CS 4150 Algorithms</a>, Spring 2020 | University of Utah</p>
+<p>CS 241 System Programming, Spring 2020 [<a href="http://cs241.cs.illinois.edu/coursebook/index.html">course wiki</a>] | University of Illinois</p>
+<p><a href="https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/">CS 6120: Advanced Compilers: The Self-Guided Online Course</a> | Cornell University</p>
+<h2>Intriguing Coursera Classes</h2>
+<p><a href="https://www.coursera.org/learn/devops-culture-and-mindset#syllabus">DevOps Culture and Mindset</a> | UC-Davis</p>
+<p><a href="https://www.coursera.org/specializations/data-structures-algorithms">Computer Science: Algorithms, Theory, and Machines</a> | Princeton University</p>
+<p><a href="https://www.coursera.org/learn/excel-data-analysis-fundamentals?courseSlug=excel-data-analysis-fundamentals&amp;showOnboardingModal=check">Excel Fundamentals for Data Analysis</a> | Macquarie University</p>
+<p><a href="https://www.coursera.org/projects/data-science-streamlit-python">Build a Data Science Web App with Streamlit and Python</a> | Guided Project [\$10]</p>
+<h2>Programming Talks &amp; Tutorials</h2>
+<p>These programming talks piqued my interest, highly recommended.</p>
+<p><strong>David Beazley | Built in Super Heroes [<a href="https://www.youtube.com/watch?v=lyDLAutA88s&amp;index=4&amp;list=LLzDUyPGFtbvCCztZLs8-rfw">YouTube</a>]</strong></p>
+<p>Mr. Beazley shows how to use pure Python built-in functions to clean and analyze the City of Chicago's food inspection data. No pandas in this talk, behold the power of the Python standard library. Spoiler: Don't eat at O'hare airport. He also has a new course, available for free:</p>
+<p><strong>David Beazley | Practical Python Programming [<a href="https://dabeaz-course.github.io/practical-python/">Course</a>]</strong></p>
+<blockquote>
+<p>This is not a course for absolute beginners on how to program a computer. It is assumed that you already have programming experience in some other programming language or Python itself.</p>
+</blockquote>
+<p><strong>Sebastian Witowski | Modern Python Developer's Toolkit [<a href="https://www.youtube.com/watch?v=WkUBx3g2QfQ">YouTube</a>]</strong></p>
+<p>An overview covering editing tools and setup from <a href="https://www.youtube.com/channel/UCMjMBMGt0WJQLeluw6qNJuA/videos">PyCon 2020</a>. Honing your development environment is crucial to being an efficent coder. This example uses VS Code. I use Atom as my primary text editor. The most recommended linters are usually pylint, flake8 or pyflakes.</p>
+<p><strong>Jake VanderPlas | Reproducible Data Analysis in Jupyter [<a href="https://www.youtube.com/watch?v=_ZEWDGpM-vM&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=138">YouTube</a>]</strong></p>
+<p>This 10 video series is a must-watch for aspiring data scientists and analysts if you use Python. Includes a git workflow demonstration, working in Jupyter Notebooks and many other essentials.</p>
+<p><strong>Rich Hickey | Hammock Driven Development [<a href="https://www.youtube.com/watch?v=f84n5oFoZBc">YouTube</a>]</strong></p>
+<p>Sometimes, the best thing we can do is step away from the keyboard. I really enjoy this speaker's communication style.</p>
+<p><strong>Eric J. Ma | Demystifying Deep Learning for Data Scientists [<a href="https://www.youtube.com/watch?v=gGu3pPC_fBM&amp;feature=youtu.be">YouTube</a>]</strong></p>
+<p>Tutorial-style Python\machine learning walk-through from PyCon 2020.</p>
+<p><strong>Julie Michelman | Pandas, Pipelines, and Custom Transformers [<a href="https://www.youtube.com/watch?v=BFaadIqWlAg&amp;index=6&amp;list=PLGVZCDnMOq0rxoq9Nx0B4tqtr891vaCn7">YouTube</a>]</strong></p>
+<p>This video shows a deep dive into the world of sci-kit learn and machine learning. PyCon and PyData videos usually include some cutting edge tech. Machine learning moves so fast there are always new tools surfacing. But certain libraries like sci-kit learn, TensorFlow, keras and PyTorch have been constant.</p>
+<p><strong>Ville Tuuls | A Billion Rows per Second: Metaprogramming Python for Big Data [<a href="https://www.youtube.com/watch?time_continue=1745&amp;v=rXj5nayS7Yg">YouTube</a>]</strong></p>
+<p>Make your data dense by tactically re-arranging into efficient structures and compiling it down to lower-level bytes. This details a successful Python / Postgres / Numba / Multicorn big data implementation.</p>
+<h2>Video &amp; Course Grab Bag</h2>
+<p><strong>Discover the role of Python in space exploration [<a href="https://docs.microsoft.com/en-us/learn/paths/introduction-python-space-exploration-nasa/">course</a>]</strong></p>
+<p>Microsoft and NASA made a free course about Python in space! 🤓</p>
+<p><strong>Ted Nelson | Computers for Cynics [<a href="https://www.youtube.com/watch?v=hZ3gmh-d9oI&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=137&amp;t=0s">YouTube</a>]</strong></p>
+<p>I find these videos to be an entertaining, thought-provoking take on software history. Recommended from Joe Armstrong, the creator of <a href="https://en.wikipedia.org/wiki/Erlang_(programming_language)">Erlang</a>.</p>
+<p><strong>GNU Typist [<a href="https://www.gnu.org/savannah-checkouts/gnu/gtypist/gtypist.html">Tutorial</a>]</strong></p>
+<p>You may be able to teach yourself to type more efficiently with this tutorial. I definitely need to do this. It's worth mentioning, per <a href="https://www.youtube.com/watch?v=f84n5oFoZBc">Rich Hickey:</a> with a proper design phase, you'll spend less time typing in the first place!</p>
+<p>**Extra Credit: Python Wikipedia Library **</p>
+<p>import wikipedia [<a href="https://github.com/goldsmith/Wikipedia">GitHub</a>]</p>
+<h2>Supplementary Resources</h2>
+<ul>
+<li><a href="https://teachyourselfcs.com/">teachyourselfcs.com</a></li>
+<li><a href="https://github.com/chiphuyen/python-is-cool/blob/master/cool-python-tips.ipynb">Cool Python Tips Jupyter Notebook</a></li>
+<li><a href="https://github.com/google/styleguide/blob/gh-pages/pyguide.md">Google's Python Style Guide</a></li>
+<li><a href="https://github.com/gto76/python-cheatsheet">Python Cheat Sheet (Github)</a></li>
+<li><a href="https://nocomplexity.com/machine-learning-resources/">Free and Open Machine Learning</a></li>
+<li><a href="https://pages.dataiku.com/hubfs/PDF/Whitepaper/Importance_of_AutoML-for-Augmented-Analytics.pdf">AutoML and The Rise of the Citizen Data Scientist</a></li>
+<li><a href="https://docs.google.com/spreadsheets/d/1GOO4s1NcxCR8a44F0XnsErz5rYDxNbHAHznu4pJMRkw/edit#gid=0">Data Engineering Study Guide</a></li>
+<li><a href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a></li>
+<li><a href="https://github.com/ossu/computer-science#advanced-cs">Open Source University</a></li>
+<li><a href="https://drive.google.com/drive/u/0/folders/1ZS57_40tWuIB7tV4APVMmTZ-5PXDwX9w">Data Training Materials from the New York Times</a></li>
+<li><a href="https://www.freecodecamp.org/">freecodecamp.org</a></li>
+</ul>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/my-favorite-free-educational-courses-and-talks-to-absorb.html">posted at 03:35</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-databases-education-programming-python-software.html" rel="tag">coding, data, Databases, education, programming, python, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/free-education.html" class="tags">free education</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/harvard.html" class="tags">harvard</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/knowledge.html" class="tags">knowledge</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/mit.html" class="tags">MIT</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/university.html" class="tags">university</a>
+                </div>
+            </article>            <h4 class="date">May 25, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere.html" rel="bookmark" title="Permanent Link to &quot;Integrating MySQL with Flask, pandas and pythonanywhere&quot;">Integrating MySQL with Flask, pandas and pythonanywhere</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Sometimes a spark comes from seemingly nowhere. That's when you reach for your tools and create. After a series of successful experiments, I decided this stack might be my quickest, best shot to get a functional website up and running in Python. I was pleasantly surprised to make rapid progress over the span of a quarantine weekend. Here are the steps to create a <a href="https://weedfiend.pythonanywhere.com">MySQL backed website</a> with Flask.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Hosting With pythonanywhere</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://www.pythonanywhere.com/user/weedfiend/">pythonanywhere</a> is a web hosting service like GoDaddy. If you host your app with them, MySQL is the default database. Postgres integration is available at higher price tiers.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>To get your Flask app's database up and running you need to:</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:list {"ordered":true} --&gt;</code></p>
+<ol>
+<li>Create your database (see the "Databases" tab in pythonanywhere)</li>
+<li>Use the mysql terminal to create your tables</li>
+<li>Use the mysql.connector API to connect to your table and execute SQL from your Flask app.</li>
+</ol>
+<p><code>&lt;!-- /wp:list --&gt;</code></p>
+<p><code>&lt;!-- wp:heading --&gt;</code></p>
+<h2>Essential MySQL Terminal Commands</h2>
+<p><code>&lt;!-- /wp:heading --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Show MySQL Version</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>SELECT VERSION();
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>List tables in a database</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="nv">TABLES</span><span class="c1">;</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Show All MySQL Variable Values</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="nv">VARIABLES</span><span class="c1">;</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Creating a Table</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>CREATE TABLE Marijuana (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(350), date VARCHAR(350));
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong><a href="https://www.sitepoint.com/use-json-data-fields-mysql-databases/">Create a Table with a JSON column</a></strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">​Marijuana</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n n-Quoted">`id`</span><span class="w"> </span><span class="kt">mediumint</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="k">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="w"> </span><span class="k">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">  </span><span class="n n-Quoted">`store`</span><span class="w"> </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n n-Quoted">`details`</span><span class="w"> </span><span class="kt">json</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n n-Quoted">`id`</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="k">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Add New Column and specify column to insert AFTER</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>ALTER TABLE Marijuana
+ADD COLUMN date VARCHAR(100) AFTER other_column;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Alter Datatype of a Column</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>ALTER TABLE Marijuana MODIFY id INT AUTO_INCREMENT PRIMARY KEY;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Describe a Table</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>DESCRIBE Marijuana;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>View All Records in a Table</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>SELECT * from Marijuana;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://www.mysqltutorial.org/mysql-like/"><strong>Using LIKE in MySQL</strong></a></p>
+<p><strong>Select 10 Newest Records</strong></p>
+<div class="notranslate prettyprinted highlight"><pre><span></span><code>SELECT * from Marijuana ORDER BY id DESC LIMIT 10;
+</code></pre></div>
+
+<p><strong>"Explaining" A Query</strong></p>
+<div class="highlight"><pre><span></span><code>EXPLAIN SELECT * from Marijuana;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Using "ANALYZE TABLE" to <a href="https://dev.mysql.com/doc/refman/8.0/en/statement-optimization.html">optimize them</a> is periodically recommended by MySQL:</strong></p>
+<div class="highlight"><pre><span></span><code>ANALYZE TABLE Marijuana;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:image {"id":3418} --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>&lt;figure&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>&lt;/figure&gt;
+</code></pre></div>
+
+<p><img alt="" class="wp-image-3418" src="https://pythonmarketer.files.wordpress.com/2020/05/mysql_commands-1.png"></p>
+<p><code>&lt;!-- /wp:image --&gt;</code></p>
+<p><code>&lt;!-- wp:heading --&gt;</code></p>
+<h2>Installing Libraries in PythonAnywhere</h2>
+<p>You can use <a href="http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a> to install python libraries within the PythonAnywhere bash terminal. Go to the consoles tab and start a new bash terminal. Then to install a library, such as pandas:</p>
+<div class="highlight"><pre><span></span><code>python -m pip3.8 install --user pandas
+</code></pre></div>
+
+<h2>Flask app with <a href="https://dev.mysql.com/doc/connector-python/en/">mysql.connector API</a>, SQL and pandas</h2>
+<p><code>&lt;!-- /wp:heading --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>A Flask app making a mysql database connection with pandas:</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:list {"ordered":true} --&gt;</code></p>
+<ol>
+<li>Creating an error log with logging.</li>
+<li>Connecting to a mysql database hosted through <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/">Flask</a> and <a href="http://pythonanywhere.com">pythonanywhere</a></li>
+<li>Then reading a table to a pandas <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">dataframe</a></li>
+</ol>
+<p><code>&lt;!-- /wp:list --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">mysql.connector</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Flask + MySQL + pandas app from Python Marketer:</span>
+<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/ </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span> 
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call database and return data from df. Then display homepage.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span> 
+        <span class="n">email_df</span> <span class="o">=</span> <span class="n">get_database_table_as_dataframe</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">email_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> 
+        <span class="n">html_page</span> <span class="o">=</span> <span class="n">render_homepage</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">html_page</span> 
+    <span class="k">except</span><span class="p">:</span> 
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Failed to connect to database.&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">render_homepage</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Note: you should use Flask&#39;s render_template to render HTML files. </span>
+<span class="sd">    But here&#39;s a quick f-string HTML page that works:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">html_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;html&gt;&lt;head&gt;&lt;link rel=&#39;stylesheet&#39; href=&quot;/static/styles/some_file.css&quot;&gt;&lt;link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;static/favicon.ico&quot;&gt;</span>
+<span class="s2">                    &lt;Title&gt;Support BLM&lt;/Title&gt;&lt;/head&gt;</span>
+<span class="s2">                    &lt;body&gt;&lt;h2&gt;Black Lives Matter&lt;/h2&gt;</span>
+<span class="s2">                    &lt;p&gt;No to Systemic Racism!&lt;/p&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;h6&gt;&lt;b&gt;Support BLM:&lt;/b&gt;&lt;/h6&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;div class=&quot;form&quot;&gt;</span>
+<span class="s2">                    &lt;form action=&quot;/add_signup_to_db&quot; method=&quot;post&quot; style=&quot;width:420px;text-align:center;display:block;&quot; &gt;</span>
+<span class="s2">                    &lt;input type=&quot;text&quot; name=&quot;Signup Form&quot;&gt;</span>
+<span class="s2">                    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</span>
+<span class="s2">                    &lt;/form&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;p&gt;&lt;b&gt;Current Time:&lt;/b&gt;</span>
+<span class="s2">                    </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span><span class="si">}</span><span class="s2"> &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html_page</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">get_database_table_as_dataframe</span><span class="p">()</span><span class="err">:</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Connect to a table named &#39;Emails&#39;. Returns pandas dataframe.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="k">try</span><span class="err">:</span>
+<span class="w">        </span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="k">connect</span><span class="p">(</span>
+<span class="w">                            </span><span class="k">host</span><span class="o">=</span><span class="s1">&#39;username.mysql.pythonanywhere-services.com&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="n">db</span><span class="o">=</span><span class="s1">&#39;username$DatabaseName&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="n">password</span><span class="o">=</span><span class="s1">&#39;password&#39;</span>
+<span class="w">                            </span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">email_df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pd</span><span class="p">.</span><span class="n">read_sql</span><span class="p">(</span><span class="k">sql</span><span class="o">=</span><span class="ss">&quot;&quot;&quot;SELECT * FROM Emails&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">con</span><span class="o">=</span><span class="k">connection</span><span class="p">)</span>
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="n">email_df</span><span class="p">.</span><span class="n">head</span><span class="p">())</span><span class="w"> </span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">email_df</span>
+<span class="w">    </span><span class="ow">except</span><span class="err">:</span>
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="k">exception</span><span class="p">(</span><span class="s1">&#39;Failed to fetch dataframe from DB.&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ss">&quot;Oops!&quot;</span>
+
+<span class="nv">@app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="ss">&quot;/add_signup_to_db&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">methods</span><span class="o">=[</span><span class="n">&quot;GET&quot;,&quot;POST&quot;</span><span class="o">]</span><span class="p">)</span>
+<span class="n">def</span><span class="w"> </span><span class="n">add_signup_to_db</span><span class="p">(</span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="nc">date</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Pass data as SQL parameters with mysql.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="k">try</span><span class="err">:</span>
+<span class="w">        </span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="k">connect</span><span class="p">(</span>
+<span class="w">                            </span><span class="k">host</span><span class="o">=</span><span class="s1">&#39;username.mysql.pythonanywhere-services.com&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="n">db</span><span class="o">=</span><span class="s1">&#39;username$DatabaseName&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="n">password</span><span class="o">=</span><span class="s1">&#39;password&#39;</span>
+<span class="w">                            </span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="nc">cursor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">connection</span><span class="p">.</span><span class="nc">cursor</span><span class="p">()</span>
+<span class="w">        </span><span class="k">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;&quot;INSERT INTO Emails (message, date) VALUES (%s, %s) &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="n">record_tuple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="nc">date</span><span class="p">)</span>
+<span class="w">        </span><span class="nc">cursor</span><span class="p">.</span><span class="k">execute</span><span class="p">(</span><span class="k">sql</span><span class="p">,</span><span class="n">record_tuple</span><span class="p">)</span>
+<span class="w">        </span><span class="k">connection</span><span class="p">.</span><span class="k">commit</span><span class="p">()</span>
+<span class="w">    </span><span class="ow">except</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">Error</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nl">error</span><span class="p">:</span>
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Failed to insert into MySQL table {}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+<span class="w">    </span><span class="ow">except</span><span class="err">:</span>
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="k">exception</span><span class="p">(</span><span class="s1">&#39;Error inserting records to DB.&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="nl">finally</span><span class="p">:</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">connection</span><span class="p">.</span><span class="n">is_connected</span><span class="p">())</span><span class="err">:</span>
+<span class="w">            </span><span class="nc">cursor</span><span class="p">.</span><span class="k">close</span><span class="p">()</span>
+<span class="w">            </span><span class="k">connection</span><span class="p">.</span><span class="k">close</span><span class="p">()</span>
+<span class="w">        </span><span class="k">return</span><span class="p">(</span><span class="ss">&quot;MySQL connection is closed&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Iterative Development</strong></p>
+<blockquote>
+<p>Below: making <a href="https://weedfiend.pythonanywhere.com/">my website</a> look less like a "my first HTML" website, experimenting with my app's message\name and adding a sign-up form connected to the database.</p>
+</blockquote>
+<p><img alt="Screenshot_20200606-132252 (1)" class="alignnone size-full wp-image-3524" height="566" src="https://pythonmarketer.files.wordpress.com/2020/05/screenshot_20200606-132252-1-1.png" width="344"></p>
+<p><strong>Note: if you see this error when making a request in pythonanywhere:</strong></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>OSError: Tunnel connection failed: 403 Forbidden</code></p>
+<p>It's likely because you are "whitelisted" on the free plan. Upgrading to the \$5/month plan will fix it!</p>
+<p><strong>Scoping The Full Stack</strong></p>
+<p>I'm really enjoying this web development stack. Here are all of the tools and library choices for this website:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/HTML">HTML</a></li>
+<li><a href="https://www.taniarascia.com/overview-of-css-concepts/">CSS</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Web_framework">web framework</a>: Flask library</li>
+<li>email: <a href="https://pythonhosted.org/Flask-Mail/">Flask-Mail</a> library (<a href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP</a>)</li>
+<li>API calls to external websites: <a href="https://requests.readthedocs.io/en/master/">requests</a> and json libraries</li>
+<li>data handling: MySQL database, mysql.connector API, <a href="https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/">pandas</a> library</li>
+<li>file system: <a href="https://docs.python.org/3/library/logging.html">logging</a>, os and sys libraries</li>
+<li>(may add) payment processing: <a href="https://github.com/braintree/braintree_python">Braintree Library</a></li>
+<li>web hosting: pythonanywhere</li>
+</ul>
+<p><strong>Finding Your Flask Groove</strong></p>
+<p>Flask is a little scary at first, but reasonable once you get a grasp of the basic syntax. Using the logging module to establish access, error and server log feeds was a big step to finding my Python traceback fixing groove. It's a work in progress.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><strong>Recapping My Python Web Development and Database Experiences</strong></p>
+<p>I previously created a <a href="http://tameimpala.pythonanywhere.com/">website</a> with <a href="https://pythonmarketer.wordpress.com/2016/03/29/getting-started-with-web2py/">web2py</a>, another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then, I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.</p>
+<blockquote>
+<p><strong>My Python Web Development and Database Tools</strong></p>
+<p><strong>App #1</strong>                    web2py + MongoDB</p>
+<p><strong>App #2                     </strong>Flask + MySQL </p>
+<p><strong>Future App?</strong>      py4web + pyDAL + PostgreSQL</p>
+<p><strong>Future App?</strong>     tornado + streamlit (or) Flask + Dash (+ SQLite)</p>
+</blockquote>
+<p>Of these two diverse Python stacks, I favor MySQL and Flask. But I learned a lot from watching web2py's tutorial videos and it's less intimidating for beginners. And I barely scratched the surface of web2py's "pure Python" <a href="https://github.com/web2py/pydal">pyDAL (Database Abstraction Layer)</a>, which seems pretty dope.</p>
+<p>web2py's <a href="https://www.youtube.com/watch?v=hcYUgNWvPtw">creator</a> has a new framework in progress called <a href="https://github.com/web2py/py4web">py4web</a>. It has the same <a href="http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer">DAL</a> and inherits many other web2py qualities. Definitely looking forward to exploring the DAL on my first py4web website. I'll likely use it to connect to PostgreSQL or SQLite. Maybe I'll <a href="https://github.com/web2py/pydal">install pyDAL with pip</a> in the meantime.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>[Final Thoughts]{style="color:var(--color-text);"}</strong></p>
+<p>[Both of my websites are hosted with pythonanywhere, which gives you a text editor and ]{style="color:var(--color-text);"}<a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a>[ terminal to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience. 👍👍]{style="color:var(--color-text);"}</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere.html">posted at 21:48</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/data-databases-odbc-pandas-programming-sql-web-development-web2py.html" rel="tag">data, Databases, ODBC, pandas, programming, SQL, web development, web2py</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/flask.html" class="tags">flask</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/mysql.html" class="tags">mysql</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/py4web.html" class="tags">py4web</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/pydal.html" class="tags">pyDAL</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>            <h4 class="date">May 18, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/how-to-make-json-requests-with-python.html" rel="bookmark" title="Permanent Link to &quot;A Guide To Making HTTP Requests To APIs With JSON & Python&quot;">A Guide To Making HTTP Requests To APIs With JSON & Python</a>
+                </h2>
+
+                
+                
+
+                <p>This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.</p>
+<p><strong>Here's what is covered:</strong></p>
+<ol>
+<li>API &amp; HTTP Lingo You Should Know</li>
+<li>Testing and Exporting Python Request Code from Postman (Optional)</li>
+<li>Formatting Your Request</li>
+<li>Example GET and POST Requests</li>
+<li>"Gotchyas" To Avoid</li>
+<li>Sidebar: requests.Session()</li>
+<li>Dig deeper into requests by raising your HTTPConnection.debuglevel</li>
+</ol>
+<blockquote>
+<p><strong>Terminology Clarification</strong>: I will refer to "items" or "data" throughout this post. This could be substituted for contacts or whatever data you are looking for. For example, you might be fetching a page of contacts from your CRM. Or fetching your tweets from Twitter's API. Or searching the Google location API, you might look up an address and return geo-location coordinates.</p>
+</blockquote>
+<h2>API &amp; HTTP Lingo You Should Know</h2>
+<p><strong>Hypertext Transfer Protocol (HTTP)</strong></p>
+<p>Per <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Mozilla</a>,"Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical <a class="external" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>, with a client opening a connection to make a request, then waiting until it receives a response."</p>
+<blockquote>
+<p>HTTP: you = client. API = way to communicate with server</p>
+</blockquote>
+<p><strong>Application Programming Interface (API)</strong></p>
+<p><a href="https://en.wikipedia.org/wiki/Application_programming_interface">Per Wikipedia</a>, the purpose of an API is to simplify "programming by <a class="mw-redirect" href="https://en.wikipedia.org/wiki/Abstraction_(software_engineering)" title="Abstraction (software engineering)">abstracting</a> the underlying implementation and only exposing objects or actions the developer needs."</p>
+<p><strong>Representational State Transfer (REST)</strong></p>
+<p><a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> is an architectural style of web APIs. It is the dominant architecture that many APIs use. Simple Object Access Protocol (<a href="https://smartbear.com/blog/test-and-monitor/soap-vs-rest-whats-the-difference/">SOAP</a>) is another style I've heard of, but it seems less common nowadays.</p>
+<p>A REST API is built for interoperability and has properties like: "simplicity of a uniform interface" and "visibility of communication between components by service agents." [<a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Wikipedia</a>] If an API follows REST, it has many good principles baked in.</p>
+<p><strong><code>GET</code>, <code>POST</code> and <code>PATCH</code></strong></p>
+<p>These are three common types of request methods.</p>
+<ul>
+<li><code>GET</code>:  Read data returned, such as all of your tweets in <a href="https://developer.twitter.com/en/docs">the Twitter API</a>.</li>
+<li><code>POST</code>: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!</li>
+<li><code>PATCH</code>: Similar to <code>POST</code>, this is typically used for updating data.</li>
+</ul>
+<p><strong>URL or "endpoint"</strong></p>
+<p>The website location to send your request</p>
+<p><strong>URL Parameters</strong></p>
+<p>Values you pass to tell the API what you want. They are defined by the API specifications, which are usually <a href="https://developers.activecampaign.com/reference">well documented</a>. In python's <code>requests</code> library, they may be passed as <a href="https://treyhunner.com/2018/04/keyword-arguments-in-python/">keyword arguments</a>. Sometimes they are passable directly within the endpoint url string.</p>
+<p><strong>Body or "payload"</strong></p>
+<p>To make a request, you send a payload to the url. Often this is a JSON string with the API's URL parameters and values, AKA the request body. If the <a href="https://jira.readthedocs.io/">API is written specifically for Python</a>, it might accept an actual Python dictionary.</p>
+<p><strong>Javascript Object Notation (JSON)</strong></p>
+<p><a href="https://www.youtube.com/watch?v=KnAyziNnuI0">JSON</a> is the data interchange standard for all languages. Usually it is the default way to pass data into and receive data from an API. If making a  <code>POST</code>, you can check your json object is formatted correctly by using a <a href="https://jslint.com/">json linter</a>. Or try Python's <a href="https://docs.python.org/3/library/json.html#module-json.tool">json.tool</a>! You can also pretty print your JSON or python dictionary with the <a href="https://docs.python.org/3/library/pprint.html">pprint</a> module. If you're using json.dumps remember it has <a href="https://docs.python.org/3/library/json.html">pretty printing accessible by keyword arguments</a>! These features are accessible in the standard library. Isn't Python great? See also: <a href="https://www.blog.pythonlibrary.org/2020/09/15/python-101-an-intro-to-working-with-json/">Python 101 - An Intro to Working with JSON</a></p>
+<p><strong>Headers</strong></p>
+<p>These usually contain website cookies and authorization info. They also may tell the API what kind of data you want back. JSON and XML are the two most common types of data to return. You can specify the return format in the <code>content-type</code> headers.</p>
+<blockquote>
+<p>If you need to parse an XML response, check out Python's stock <a href="https://docs.python.org/3.8/library/xml.etree.elementtree.html">ElementTree API</a>. I've only seen a few APIs using XML responses, such as the <a href="https://www.usps.com/business/web-tools-apis/">USPS Address Validation API</a>.</p>
+</blockquote>
+<p><strong>Authorization</strong></p>
+<p>Authorization varies widely. This is the level of identification you need to pass to the API to make a request. Public APIs might require none. Some just need a username and password. Others use the <a href="https://en.wikipedia.org/wiki/OAuth">Oauth standard</a>, which is a system involving credentials and tokens for extra security. </p>
+<blockquote>
+<p><strong>Authorization Scheme Example [<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Mozilla</a>]</strong></p>
+<p>Authorization: \<auth-scheme> \<authorisation-parameters></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code># headers python dict example
+headers = {&quot;Authorization&quot;: f&quot;basic {token}&quot;}
+</code></pre></div>
+
+<p><strong>Pages</strong></p>
+<p>API data is commonly returned in multiple pages when there is a lot of data returned. Each page can be accessed one request at a time. Sometimes you can specify how many items you want on a page. But there is usually a maximum items per page limit like 100.</p>
+<p><strong>Status code</strong></p>
+<p>Each request usually gives you a <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">numeric code corresponding to happened</a> when the server tried to handle your request. There is also usually a message returned.</p>
+<p><strong>See also: Web Server Gateway Interface (WSGI, pronounced "Wis-Ghee")</strong></p>
+<p>"As described in <a href="https://www.python.org/dev/peps/pep-3333/">PEP3333</a>, the Python Web Server Gateway Interface (WSGI) is a way to make sure that web servers and python web applications can talk to each other."  <a href="https://docs.gunicorn.org/en/latest/install.html">Gunicorn</a> is one of <a href="https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#uwsgi">a few Python WSGI clients</a>. <a href="https://pythonmarketer.wordpress.com/2016/04/30/useful-links-for-web2py-beginners/">web2py</a> is another WSGI client and web framework I have used.</p>
+<p><strong>See also:</strong> <a href="https://en.wikipedia.org/wiki/Nginx">Nginx</a></p>
+<p><strong>See also: <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">Create, read, update and delete (CRUD)</a></strong></p>
+<h2>Creating the Request JSON</h2>
+<p>I recommend using <a href="https://www.postman.com/">Postman</a> in most cases, depending on the complexity of the API. If the JSON syntax is straightforward, you can format your data as a python dictionary, then convert it to a JSON object with <code>json.dumps</code> from the standard library's <a href="https://docs.python.org/3/library/json.html#json.dumps">json module</a>. But JSON can be tricky sometimes. You may also need to pass a dictionary of HTTP headers.</p>
+<p>Some APIs have "Postman Collections", a set of Python (or any language) script templates for the API. In those cases, it might make sense to use those resources.</p>
+<blockquote>
+<p><strong>Path One: Make HTTP request with json &amp; requests libraries</strong></p>
+<p>Format Python dict with <code>json.dumps</code> from the standard library's <a href="https://docs.python.org/3/library/json.html#json.loads">json module</a>.  Infer API requirements from documentation. Use requests for HTTP.</p>
+<p><strong>Path Two: Make HTTP request with Postman &amp; requests library</strong></p>
+<p>Use Postman to generate the JSON payload. Plug headers and payload into requests. Use requests library for HTTP.</p>
+</blockquote>
+<p>Postman has a friendly interface for plugging in all your pieces and tinkering with your request body until it works. Make it easier on yourself and use Postman, especially if there are collections. An alternative is to troubleshoot in Python if you are confident in your grasp of the API. I use both options depending on my familiarity with the API at hand.</p>
+<p>Once you have the request working, you may <a href="https://learning.postman.com/docs/postman/sending-api-requests/generate-code-snippets/">export your Postman request to almost any language</a>. For Python, you can sometimes export to the <code>requests</code>,  <code>http.client</code> or <code>urllib</code> libraries. Hit the "code" button in Postman and then copy your code.</p>
+<blockquote>
+<p>If you choose not to use Postman, you can use the json library. See the use of <code>json.dumps()</code>to convert a dictionary to a JSON object in Example #2 below</p>
+</blockquote>
+<h2>Formatting Your Request</h2>
+<ol>
+<li>Paste your Postman headers, payload and url into your existing code.</li>
+<li>You may want to use a dict or <a href="https://www.blog.pythonlibrary.org/2020/04/07/python-101-working-with-strings/">string formatting</a> to pass values to your request parameters or url.</li>
+<li>If the API uses a token or other form of authorization that needs to be refreshed intermittently, I usually have a function that returns a token. <code>token = fetch_token()</code> Then put the token in the headers dict.  <code style="white-space:pre-wrap;">{"Authorization": f"basic {token}"}</code> Finally pass your headers and payload to your  <code>requests.get</code> or <code>requests.request</code> function along with the endpoint url. You're now ready to test the request.</li>
+</ol>
+<h2>Python Installation</h2>
+<p>You can install <code>requests</code> with <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. Alternatively, <code>http.client</code> is included within the Python standard library. If you want to convert HTTP response data to a dataframe or csv, install <code>pandas.</code></p>
+<p><code>python -m pip install requests</code></p>
+<p><code>python -m pip install pandas</code></p>
+<h2>Example #1: <code>GET</code> the geolocation details of any public location with the Google API</h2>
+<p>This was modified from another example of <a href="https://www.geeksforgeeks.org/get-post-requests-using-python/">Google's Geolocation API</a>. To use this, you need to <a href="https://developers.google.com/maps/documentation/geolocation/intro">create a developer account with Google</a> and paste your API keys below.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># import pandas as pd</span>
+
+<span class="sd">&quot;&quot;&quot;Find the best double-cheeseburger + fries $7 can buy.&quot;&quot;&quot;</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;Redhot Ranch&quot;</span><span class="p">}</span>
+<span class="c1"># optional: set a 5 second timeout for the http request</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span><span class="p">,</span> 
+                 <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+                 <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="c1"># extracting latitude, longitude and formatted address of the first matching location</span>
+<span class="n">latitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+<span class="n">longitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lng&#39;</span><span class="p">]</span>
+<span class="n">formatted_address</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;formatted_address&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">longitude</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">formatted_address</span><span class="p">)</span>
+
+<span class="c1"># optional: convert response into a dataframe with pandas </span>
+<span class="c1"># location_df = pd.json_normalize(data[&#39;results&#39;])</span>
+<span class="c1"># location_df.to_csv(&#39;Locations.csv&#39;)</span>
+</code></pre></div>
+
+<p><strong>Above you can see:</strong></p>
+<ul>
+<li><code>requests</code> makes it easy to see the server's text response also with <code>response.text</code></li>
+<li><code>requests</code> also makes JSON encoding easy with <code>response.json()</code></li>
+<li>I like to use <code>pd.json_normalize()</code> to convert the response object to a dataframe.</li>
+</ul>
+<h2>Example #2: Encode a Python dictionary to json string and <code>POST</code> to a hypothetical API</h2>
+<ol>
+<li>Create a simple dictionary with request body data and pretty inspect it with pprint.</li>
+<li>Convert it to encoded json string with <code>json.dumps</code> from the standard library's <a href="https://docs.python.org/3/library/json.html#json.loads">json module</a>.</li>
+<li><code>POST</code> the encoded JSON to the endpoint url with requests.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="o">--&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">convert_dict_to_json_object</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span><span class="p">:</span><span class="s2">&quot;P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span><span class="p">:</span><span class="s2">&quot;Sherman&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;42 Wallaby Way&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address_2&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;city&quot;</span><span class="p">:</span><span class="s2">&quot;Sydney&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;NSW&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;country&quot;</span><span class="p">:</span><span class="s2">&quot;AU&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;zip&quot;</span><span class="p">:</span><span class="s2">&quot;2000&quot;</span>
+        <span class="p">}</span>
+    <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+    <span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># encode json str to utf-8</span>
+    <span class="k">return</span> <span class="n">json_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_new_contact</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a fictional API request. </span>
+<span class="sd">    Passing a json object to requests.</span>
+<span class="sd">    Decoding server response with response.json(), </span>
+<span class="sd">    Returning a contact id by calling the data&#39;s keys.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cache-control&quot;</span><span class="p">:</span> <span class="s2">&quot;no-cache&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Postman-Token&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">postman_token</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">}</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> 
+                         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://SomeSoftwareAPI.com/contacts/&quot;</span><span class="p">,</span> 
+                         <span class="n">data</span><span class="o">=</span><span class="n">json_str</span><span class="p">,</span> 
+                         <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">contact_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;contact_id&#39;</span><span class="p">]</span> <span class="c1"># call dict keys to get their values</span>
+    <span class="k">return</span> <span class="n">contact_id</span>
+
+<span class="n">json_str</span> <span class="o">=</span> <span class="n">convert_dict_to_json_object</span><span class="p">()</span>
+<span class="n">contact_id</span> <span class="o">=</span> <span class="n">create_new_contact</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+</code></pre></div>
+
+<blockquote>
+<p><strong>requests.request keyword argument alternatives for passing data</strong></p>
+<p><strong>params</strong> – (optional) Dictionary, list of tuples or bytes to send in the query string for the <a class="reference internal" href="https://2.python-requests.org/en/master/api/#requests.Request" title="requests.Request"><code class="xref py py-class docutils literal notranslate">Request</code></a>.</p>
+<p><strong>data</strong> – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the <a class="reference internal" href="https://2.python-requests.org/en/master/api/#requests.Request" title="requests.Request"><code class="xref py py-class docutils literal notranslate">Request</code></a>.</p>
+<p><strong>json</strong> – (optional) A JSON serializable Python object to send in the body of the <a class="reference internal" href="https://2.python-requests.org/en/master/api/#requests.Request" title="requests.Request"><code class="xref py py-class docutils literal notranslate">Request</code></a>.</p>
+<p><strong>[<a href="https://2.python-requests.org/en/master/api/">requests API documentation</a>]</strong></p>
+</blockquote>
+<p><strong>"Gotchyas" To Avoid</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status codes</a> are your friend. They offer a hint at why your request is not working. If you see 200 or 201, that's a good sign. They're usually helpful, but sometimes they can be misleading.</li>
+<li>Ensure you are defining the correct content-type. I had an experience where Postman defined two conflicting <code>content-type</code> headers and it <a href="https://github.com/postmanlabs/postman-code-generators/issues/215">caused my request to fail</a>. The server's error message indicated the problem was in my JSON, so it took me a while to figure out the headers were the problem.</li>
+<li>Sometimes it makes a difference if your url has <code>http://</code> vs. <code>https://</code> in it. Usually <code>https://</code> is preferred.** **</li>
+</ul>
+<p><strong>Sidebar: <a href="https://requests.readthedocs.io/en/master/user/advanced/">requests.Session()</a></strong></p>
+<p>You might be able to improve performance by using a requests <a href="https://requests.readthedocs.io/en/master/user/advanced/">"session" object</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">a session adds a &quot;keep-alive&quot; header to your HTTP connection.</span>
+<span class="sd">It can be used to store cookies across requests.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://SomeSoftwareAPI.com/contacts/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Dig deeper into requests by raising your HTTPConnection.debuglevel</strong></p>
+<p><strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <a class="reference internal" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel" title="http.client.HTTPResponse.debuglevel"><code class="xref py py-attr docutils literal notranslate">debuglevel</code></a> is greater than zero, messages will be printed to stdout as the response is read and parsed. <strong>- <a href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">http.client</span> <span class="kn">import</span> <span class="n">HTTPConnection</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">HTTPConnection</span><span class="o">.</span><span class="n">debuglevel</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;90 Miles&quot;</span><span class="p">}</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Conclusion</strong></p>
+<p>I remember APIs seemed mysterious and daunting before I had used them. But like all things, they can be conquered with knowledge, understanding and tenacity to keep trying until you figure it out. Good luck!</p>
+<p><strong>Requests Documentation</strong></p>
+<p><a href="https://requests.readthedocs.io/en/master/api/">requests.request() API documentation</a></p>
+<p><a href="https://2.python-requests.org/en/master/api/#requests.get">requests.get() API documentation</a></p>
+<p><a href="https://2.python-requests.org/en/master/api/#requests.post">requests.post() API documentation</a></p>
+<p><strong>Supplementary Reading</strong></p>
+<p><a href="https://developers.google.com/web/tools/chrome-devtools/network/reference#timing-explanation">Google's HTTP Timing Explanation</a></p>
+<p><a href="https://github.com/Rolstenhouse/unofficial-apis">List of Interesting "Unofficial" APIs</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Proxy_server">Proxy servers</a></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pawelmhm.github.io/asyncio/python/aiohttp/2016/04/22/asyncio-aiohttp.html">Making 1 million requests with python-aiohttp</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/how-to-make-json-requests-with-python.html">posted at 05:41</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/chicago-coding-http-json-pandas-programming.html" rel="tag">Chicago, coding, HTTP, json, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/api.html" class="tags">api</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/requests.html" class="tags">requests</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/sandwiches.html" class="tags">sandwiches</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/web.html" class="tags">web</a>
+                </div>
+            </article>            <h4 class="date">May 09, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html" rel="bookmark" title="Permanent Link to &quot;Assessing The Marketing Effects of Randomization Failure&quot;">Assessing The Marketing Effects of Randomization Failure</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Preface</strong></p>
+<p>I always enjoy reading when technical people share their stories of the times things went a little haywire. Times when, despite their best intentions, a solution didn't work as planned and it ends in unpleasant or catastrophic failure. I had an experience like this recently, so here's my "oops" story. Fortunately, I think this falls closer to the unpleasant end of the spectrum.</p>
+<p><strong>Finding A Solution</strong></p>
+<p>My employer needed a way to create postcard contact lists to mail 500,000 people each month. About 2 years in with the company, the old postcard system was breaking down and no one knew how to fix it. The guy who built it left the company. I never knew him and he didn't leave behind much help for anyone to fix his creation.</p>
+<p>For my team, it was easier to create the contacts lists by drawing contact data out of our CRM with <a href="https://requests.readthedocs.io/en/master/">requests</a> and formatting the data with <a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html">pandas</a>. So that's what I did to help us deliver the postcards. (Let's set aside the debate on the strategic value of postcards.)</p>
+<p>Things were going smooth for a few months. The new system was creating the lists and nothing appeared to change. The system is still in use today we are more reliable than the old system in its partially degraded state. But there were some growing pains.</p>
+<p><strong>The Moment of</strong> <strong><a href="https://twitter.com/jamesorharry/status/1100717726547562503">Ely</a></strong></p>
+<blockquote>
+<p>ELY (n.) The first, tiniest inkling you get that something, somewhere, has gone terribly wrong. [Douglas Adams, The Meaning of Liff]</p>
+</blockquote>
+<p>We began to hear murmurs of the same contacts getting mailed each month from our senders. The script was supposed to draw a certain allocation of contacts at random for each sender. I knew I used <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html"><code>df.sample(n=1)</code></a> from pandas to randomize the contact pool. The contacts were definitely getting randomized.</p>
+<p>Then one day while making a change requested by our stakeholders, I noticed some code I had written that looked sort of like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">remove_duplicates</span><span class="ss">(</span><span class="nv">df</span><span class="ss">)</span>:
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="nv">original</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">df</span>.<span class="nv">copy</span><span class="ss">(</span><span class="nv">deep</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span>
+<span class="w">    </span><span class="nv">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">format_for_duplicate_removal</span><span class="ss">(</span><span class="nv">df</span><span class="ss">)</span>
+<span class="w">    </span><span class="nv">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">df</span>.<span class="nv">drop_duplicates</span><span class="ss">()</span>.<span class="nv">sample</span><span class="ss">(</span><span class="nv">n</span><span class="o">=</span><span class="mi">1</span><span class="ss">)</span>
+<span class="w">    </span><span class="nv">deduped_contacts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">original</span>[<span class="nv">original</span>.<span class="nv">index</span>.<span class="nv">isin</span><span class="ss">(</span><span class="nv">df</span>.<span class="nv">index</span><span class="ss">)</span>]
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">deduped_contacts</span>
+</code></pre></div>
+
+<p><strong>The idea of this function was to:</strong></p>
+<ul>
+<li>create a throwaway copy of the original dataframe with <code>df.copy()</code></li>
+<li>format the throwaway for better duplicate removal</li>
+<li><code>drop_duplicates()</code> and randomize the dataframe's order of the rows with <code>df.sample(n=1)</code></li>
+<li>return those rows from the original dataframe, preserving original data but in randomized order</li>
+</ul>
+<p><strong>Discovering The Error</strong></p>
+<p>Looks great, right? Can you spot my error? Here's where I went wrong: I needed to randomize the data that gets returned. But instead, I randomized the throwaway dataframe. I never once altered the order of the original table. I did remove the duplicates, but the row order of the original dataframe never changed.</p>
+<p><strong>Assessing the Damage</strong></p>
+<p>It took me a few months after I wrote the code to realize. That was enough time for a small fraction of our customers to get postcard bombed.</p>
+<p>Suppose you have two postcard campaigns every month. Both campaigns are drawing from the same contact source data. Both lists are created by the same script with nearly the same logic. That's ok if you randomize the contact order or the list is static. But if you don't randomize them and it's supposed to be a "random" draw campaign, that means you'll likely end up sending to the same people in both campaigns. That's exactly what happened. I accidentally postcard bombed 'em.</p>
+<p>Thankfully, only a small percent of our "senders" were opted into both campaigns. What does that mean for those senders? Their contacts got <a href="https://www.youtube.com/watch?v=SSPewc--3yY">NFL blitzed</a> for 3 months straight. Instead of getting 1 or maybe 2 postcards a month if they're really lucky, they received 2 a month, each month until I caught the error. We bombarded about 3,000 lucky potential customers each month during that time. Some of them let us know they thought it was excessive.</p>
+<blockquote>
+<p>The opposite of love is not hate, it's indifference. - Elie Wiesel</p>
+</blockquote>
+<p><strong>Sidebar On Analog Marketing</strong></p>
+<p>I think postcards are still relevant as a Marketing tool in 2020. From an environmental perspective, I prefer going digital. Some people let us know when we mail them that they feel the same way and then we stop mailing them. But I think there's something tangible about real things you can hold in your hands. Postcards also tend to get a reaction, even if it's not a good one. Sometimes that reaction is an email stating, "DON'T EVER MAIL ME AGAIN!!!" 😆</p>
+<p><strong>For the record, I changed my mistake to this:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">remove_duplicates</span><span class="ss">(</span><span class="nv">df</span><span class="ss">)</span>:
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="nv">original</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">df</span>.<span class="nv">copy</span><span class="ss">(</span><span class="nv">deep</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span>
+<span class="w">    </span><span class="nv">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">format_for_duplicate_removal</span><span class="ss">(</span><span class="nv">df</span><span class="ss">)</span>
+<span class="w">    </span><span class="nv">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">df</span>.<span class="nv">drop_duplicates</span><span class="ss">()</span>
+<span class="w">    </span><span class="nv">deduped_contacts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">original</span>[<span class="nv">original</span>.<span class="nv">index</span>.<span class="nv">isin</span><span class="ss">(</span><span class="nv">df</span>.<span class="nv">index</span><span class="ss">)</span>]
+<span class="w">    </span><span class="nv">randomized_contacts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">deduped_contacts</span>.<span class="nv">sample</span><span class="ss">(</span><span class="nv">n</span><span class="o">=</span><span class="mi">1</span><span class="ss">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">randomized_contacts</span>
+</code></pre></div>
+
+<p><strong>Or maybe something like this would be better, for clearer separation of actions:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">remove_duplicates</span><span class="ss">(</span><span class="nv">df</span><span class="ss">)</span>:
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Remove duplicates while preserving original data.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="nv">original</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">df</span>.<span class="nv">copy</span><span class="ss">(</span><span class="nv">deep</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span>
+<span class="w">    </span><span class="nv">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">format_for_duplicate_removal</span><span class="ss">(</span><span class="nv">df</span><span class="ss">)</span>
+<span class="w">    </span><span class="nv">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">df</span>.<span class="nv">drop_duplicates</span><span class="ss">()</span>
+<span class="w">    </span><span class="nv">deduped_contacts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">original</span>[<span class="nv">original</span>.<span class="nv">index</span>.<span class="nv">isin</span><span class="ss">(</span><span class="nv">df</span>.<span class="nv">index</span><span class="ss">)</span>]
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">deduped_contacts</span>
+
+<span class="nv">def</span><span class="w"> </span><span class="nv">randomize_contacts</span><span class="ss">(</span><span class="nv">df</span><span class="ss">)</span>:
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Randomize the order of the rows.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="nv">randomized_contacts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">df</span>.<span class="nv">sample</span><span class="ss">(</span><span class="nv">n</span><span class="o">=</span><span class="mi">1</span><span class="ss">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">randomized_contacts</span>
+</code></pre></div>
+
+<p><strong>In Conclusion: Mistakes Happen.</strong></p>
+<p>Sometimes they have interesting consequences when you make them at a certain scale. Maybe I could have written some tests to prevent this. Maybe I should have reviewed my code a couple more times. Sometimes, we're asked to do work that stretches our mental capacity and time to the limit.</p>
+<p>Additionally, it's almost always a better choice to use an existing system, rather than writing your own. But in this case, my team was put in a situation where we needed to deliver because some else's software wasn't doing the job. I did my best to fill that need. And we're still using this way to send postcards today.</p>
+<p>I wish this failure didn't happen for the sake of everyone involved, but <a href="https://en.wikipedia.org/wiki/An_Essay_on_Criticism">to err is human</a>, right? Live and learn.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html">posted at 04:06</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-marketing-pandas-programming-python-work.html" rel="tag">coding, Marketing, pandas, programming, python, work</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/business.html" class="tags">business</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/mistakes.html" class="tags">mistakes</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/random.html" class="tags">random</a>
+                </div>
+            </article>            <h4 class="date">May 06, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html" rel="bookmark" title="Permanent Link to &quot;Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32&quot;">Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32</a>
+                </h2>
+
+                
+                
+
+                <p>Here are a few useful corners of the vast array of Windows scripting tools.</p>
+<h2>Helpful Windows Command Line Documentation</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key">Windows command line Documentation Syntax</a></li>
+<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490890%28v%3dtechnet.10%29">Command-line reference A-Z</a></li>
+<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490954%28v%3dtechnet.10%29">Command shell overview</a></li>
+<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490982%28v%3dtechnet.10%29">Using command redirection operators</a></li>
+<li><a href="https://docs.microsoft.com/en-us/windows/win32/winrm/about-windows-remote-management">About Windows Remote Management</a></li>
+</ul>
+<h2>A Few General Windows Commands</h2>
+<p><strong>Use <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a> to look in a text file to count the lines matching a string:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">find</span><span class="w"> </span><span class="o">/</span><span class="nv">C</span><span class="w"> </span><span class="s2">&quot;FAIL&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s2">&quot;Test_Results.txt&quot;</span>
+#<span class="w"> </span><span class="nv">returns</span>:<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">no</span><span class="w"> </span><span class="nv">match</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span>#<span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">lines</span><span class="w"> </span><span class="nv">found</span>,<span class="w"> </span><span class="nv">e</span>.<span class="nv">g</span>.<span class="w"> </span><span class="mi">2</span>,<span class="mi">50</span>,<span class="mi">100</span>
+</code></pre></div>
+
+<p>I wrote a post on <a href="https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/">findstr</a>, which offers similar functionality.</p>
+<p><strong>clip:</strong> pipe commands <a href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</p>
+<p><strong>If:</strong> <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</p>
+<p><strong>List ip address-related info:</strong></p>
+<div class="highlight"><pre><span></span><code>ipconfig
+</code></pre></div>
+
+<p><strong>Check system bit (usually 64-bit or 32-bit):</strong></p>
+<div class="highlight"><pre><span></span><code>wmic os getosarchitecture
+</code></pre></div>
+
+<h2>Automate Windows Scripts with Batch Files</h2>
+<p>Batch files can be run from command prompt or by double-clicking them. Here's an example of text in a batch file that activates a python virtual environment. Swap in your username and environment if you've created it.</p>
+<div class="highlight"><pre><span></span><code>cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd .. &amp; dir&quot;
+</code></pre></div>
+
+<ol>
+<li>Save above as a .bat file.</li>
+<li>This uses <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29">cmd</a> to [open a new command prompt in a Windows batch file.]{style="color:var(--color-text);"}</li>
+<li>[<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a> into my python virtual env then activate it by running a batch file.]{style="color:var(--color-text);"}</li>
+<li>[Then call dir to print directory contents.]{style="color:var(--color-text);"}</li>
+</ol>
+<p><strong><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a> a custom system 'last_name' variable to be recalled later.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">set</span><span class="w"> </span><span class="o">/</span><span class="nv">p</span><span class="w"> </span><span class="nv">last_name</span><span class="o">=</span><span class="nv">Enter</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">last</span><span class="w"> </span><span class="nv">name</span>:
+<span class="nv">echo</span><span class="w"> </span><span class="o">%</span><span class="nv">last_name</span><span class="o">%</span>
+<span class="k">pause</span>
+</code></pre></div>
+
+<p>Here we print it out with <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490897(v=technet.10)">echo</a>. Then <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490965(v=technet.10)">pause</a>.</p>
+<p><strong>Line continuation in batch files:</strong> Use \^ to continue your batch file scripts on a new line.</p>
+<h2>System Assessment Tools: powercfg and sfc</h2>
+<p><strong>Display system stats:</strong></p>
+<div class="highlight"><pre><span></span><code>systeminfo
+</code></pre></div>
+
+<p><strong>Use powercfg to assess power, sleep and system states</strong></p>
+<div class="highlight"><pre><span></span><code>powercfg /SLEEPSTUDY
+</code></pre></div>
+
+<p>Use sfc to perform a system file check:</p>
+<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">scan</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">repair</span>
+<span class="nv">sfc</span><span class="w"> </span><span class="o">/</span><span class="nv">SCANNOW</span>
+#<span class="w"> </span><span class="nv">scan</span>,<span class="w"> </span><span class="nv">but</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">repair</span>:
+<span class="nv">sfc</span><span class="w"> </span><span class="o">/</span><span class="nv">VERIFYONLY</span>
+</code></pre></div>
+
+<h2>Accessing a Remote Computer From the Command Line</h2>
+<p>You may want to <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ping">ping</a> a remote computer to see if it's running. Add your ip address instead of the below 1s and 0s:</p>
+<div class="highlight"><pre><span></span><code>ping 01.10.10.01
+</code></pre></div>
+
+<p><strong>Log into your Remote Desktop with <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a>:</strong></p>
+<ol>
+<li>Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.</li>
+<li>You may need to <a href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on">adjust your credentials on your local machine.</a></li>
+<li>Finally, trigger login to an active window from command prompt:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="o">--&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>mstsc RDP_File_Name.rdp
+</code></pre></div>
+
+<p><strong><a href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a> and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</strong></p>
+<div class="highlight"><pre><span></span><code>winrm quickconfig
+</code></pre></div>
+
+<p><strong>Log into a remote computer with <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs">winrs</a> and run ipconfig:</strong></p>
+<div class="highlight"><pre><span></span><code>winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
+</code></pre></div>
+
+<h2>Check Out Python's <a href="https://github.com/mhammond/pywin32">pywin32</a> Module</h2>
+<p>This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook and <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">Task Scheduler</a>. Install with <a href="http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
+<div class="highlight"><pre><span></span><code>python -m pip install pywin32
+</code></pre></div>
+
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Here's an example to send an Outlook email:</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">win32com.client</span>
+
+<span class="n">outlook</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">&#39;outlook.application&#39;</span><span class="p">)</span>
+<span class="n">mail</span> <span class="o">=</span> <span class="n">outlook</span><span class="o">.</span><span class="n">CreateItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">To</span> <span class="o">=</span> <span class="s1">&#39;someone@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">CC</span> <span class="o">=</span> <span class="s1">&#39;name@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="s1">&#39;Moneyball Review&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            Moneyball is an inspiring movie, based on real events.</span>
+<span class="s2">            Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.</span>
+<span class="s2">            The trade deadline scene is delightful. Wow.</span>
+<span class="s2">            Chris Pratt as Hatteberg too. What a solid film.</span>
+<span class="s2">            Money isn&#39;t everything. Playing ball is.</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Attachments</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Baseball_Analysis.csv&#39;</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Send</span><span class="p">()</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html">posted at 14:11</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-command-prompt-scripts-windows.html" rel="tag">automation, command prompt, Scripts, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/remote-computer.html" class="tags">remote computer</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/scripting.html" class="tags">scripting</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/shell.html" class="tags">shell</a>
+                </div>
+            </article>            <h4 class="date">Apr 11, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/reflections-on-5-years-of-solving-problems-with-python.html" rel="bookmark" title="Permanent Link to &quot;Reflections on 5 Years of Solving Problems with Python&quot;">Reflections on 5 Years of Solving Problems with Python</a>
+                </h2>
+
+                
+                
+
+                <p>Prior to learning Python, I had no programming experience. I worked in marketing for a book publisher and did not perform well at my job. It was not a good fit. They eventually fired me. As my previous job unraveled, I discovered Python and the Coursera course, <a href="https://www.coursera.org/learn/python?utm_medium=email&amp;utm_source=other&amp;utm_campaign=opencourse.course_complete.python.%7Eopencourse.course_complete.7A1yFTaREeWWBQrVFXqd1w.">Programming for Everybody (Getting Started with Python)</a>. Fortunately, that course jump-started me onto a path of learning and reading each day. My aim was to make my own website, a <a href="https://pythonmarketer.wordpress.com/2016/05/25/askkevinparker-com-my-first-web-app-other-notes/">goal that I accomplished</a>. I needed to know how the sausage was made.</p>
+<p>Looking back from 2020, I can safely say Python changed my life. Because of it, I now have a fulfilling marketing\data-oriented career. I'm also grateful for the financial stability that came with it. I love to learn about the language and continue to improve my abilities to solve problems with new tools, not only Python.</p>
+<p>Below are pieces of wisdom picked up from my experiences. They are the result of many hours of study, reading, mistakes, luck, toil and eventual glory.</p>
+<p><strong>These are thought-provoking adages and guidelines, not absolute truths in all cases.</strong></p>
+<ol>
+<li>Developing a habit of learning pays off over time, no matter what the subject is. It is an investment in yourself that compounds.</li>
+<li>Follow your own curiosity. It's less important to compare what you know to others. Compare what you know today to what you knew yesterday. Don't worry about <a href="https://nedbatchelder.com/blog/202003/how_long_did_it_take_you_to_learn_python.html">how long it takes to learn</a>.</li>
+<li>Watch educational or technical conference talks on sites like <a href="https://www.youtube.com/channel/UCMjMBMGt0WJQLeluw6qNJuA/videos">YouTube</a> or InfoQ. <a href="https://www.infoq.com/presentations/Simple-Made-Easy/">Rich Hickey,</a> <a href="https://rhodesmill.org/brandon/talks/#selenium-at-scale">Brandon Rhodes</a> and <a href="https://www.youtube.com/watch?v=lyDLAutA88s">David Beazley</a> are some of my favorite speakers. Watch talks from all languages, not just Python. Often the concepts apply to any programming language.</li>
+<li>Use an RSS reader. Anytime you find a good blog, subscribe by RSS or email to get new posts. I use the <a href="https://chrome.google.com/webstore/detail/rss-feed-reader/pnjaodmkngahhkoihejjehlcdlnohgmp?hl=en">Feeder Chrome extension</a>\Android app.</li>
+<li>The <a href="https://www.python.org/dev/peps/pep-0020/">Zen of Python</a> contains a lot of wisdom. I like the concept of <code>Explicit is better than implicit.</code> This implies declaring your actions in written or oral fashion, providing additional context. Consider favoring easier to read solutions over clever one-liners. For example:<ul>
+<li><a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">List comprehensions</a> are useful and "pythonic", use them! But sometimes it's easier to use a for loop to hash out an idea. (Contrarily, avoiding the <a href="https://www.youtube.com/watch?v=W-lZttZhsUY">Initialize Then Modify</a> pattern benefits those comfortable with comprehensions.)</li>
+<li>Explicitly using <a href="https://treyhunner.com/2018/04/keyword-arguments-in-python/">keyword arguments</a> versus positional arguments is another way to make your code easier to understand.</li>
+</ul>
+</li>
+<li>Can you explain the solution simply? If not, try to clarify your understanding or maybe there's a simpler way. In Python, there are often several ways to accomplish the same goal. But keep in mind the Zen of Python: <code>There should be one-- and preferably only one --obvious way to do it. Although that way may not be obvious at first unless you're Dutch.</code> Look for the obvious way. An example of this is <a href="https://www.blog.pythonlibrary.org/2020/04/07/python-101-working-with-strings/">string formatting.</a> I've heard f-strings are the hot new way to do this now.</li>
+<li>Don't be afraid to change course if things don't feel right. Ask yourself while coding, "Does this feel efficient?" Recently I was trying to format a json string so I approached it like I had in the past, by <a href="https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/">exporting the request from Postman and formatting the json string</a> with python's <a href="https://docs.python.org/3/library/functions.html?highlight=format#format">format() built-in</a>. But this time, the curly braces were confusing me, I was struggling and it wasn't working. I googled and around and saw python's <a href="https://docs.python.org/3/library/json.html?highlight=json#module-json">json module</a> and <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html">df.to_json()</a> in pandas. They were a much easier and better-looking solution. But it still wasn't working. Finally, i used the Postman approach and f-strings to format a successful payload. The third try worked! F-strings are super nice and clean.</li>
+<li>If you're stuck, there's probably a free online course or blog post that explains whatever is confusing you. Use the Googles. When in doubt, Google the error message.</li>
+<li>Begin your project by writing a list of requirements. This often leads to good questions and cases that may need to be addressed. The book <a href="https://www.amazon.com/gp/product/0735619670/">Code Complete 2</a> covers establishing project requirements in great detail, along with the other stages in the life-cycle of a software project. I'm really enjoying this book and highly recommend it.</li>
+<li>Names are really important. Take time to think about a good name for your variables and functions. Also, name your scripts well. I name my scripts using <a href="https://examples.yourdictionary.com/action-verb-examples.html">action verbs</a>. For example, my script that organizes accumulated files on my desktop into folders is named <code>clean_desktop_files.py</code>. When I see this script months later, its name reminds me the action the script is performing. I believe it's better to err on the side of longer, more descriptive names for variables and functions. It makes code easier to understand. But there is a trade-off with length to keep in check.</li>
+<li>Moving a block of code into a function can abstract away repetitive code and increase its readability.</li>
+<li>Each function should do one thing only. Follow the <a href="https://en.wikipedia.org/wiki/Single-responsibility_principle">single-responsibility principle</a>.</li>
+<li>Train yourself to think in <a href="https://docs.python.org/3/tutorial/datastructures.html">data structure</a> conversions. The Python dictionary is very useful and can be converted to and from lists, tuples, sets, etc. I often find it more efficient to convert to a different structure to efficiently organize it. Usually I am googling things like "convert class object to python dictionary" because dictionaries are easy to work with or convert to other structures. The <code>vars()</code> built-in is great for converting objects to a dictionary. For example, once you have a dictionary, you might be able to solve your problem by <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.from_dict.html">converting it to a dataframe</a>.</li>
+<li>Use only the data you need. Reading in just the essential data helps avoid memory issues and hanging programs. In <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">pandas</a>, the <code>usecols</code> argument in <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pd.read_csv()</a> is great for this. This creates a dataframe with 2 columns:</li>
+</ol>
+<p><code>df = pd.read_csv('emails.csv', usecols=['name','email'])</code></p>
+<ol>
+<li>
+<p>Assume that if something is broken, it's because of something you've done. Start from the assumption that your code contains the bug and work outward by eliminating possibilities. Avoid jumping to quick conclusions. Instead, carefully consider possible reasons for why something is happening. Many times, I find my 2nd or 3rd hypothesis is actually true.</p>
+</li>
+<li>
+<p>There will be times when you'll look at someone else's choices and wonder why they did things a certain way. Consider the possibility that they know more than you in this domain.</p>
+</li>
+<li>
+<p>Beware of sequencing errors. Are your tasks, scripts or functions executing in an efficient order to reach your end goal? Look to unblock bottlenecks and correct chronological mistakes in your processes.</p>
+</li>
+<li>
+<p>Before you send that email asking for help, go back and take another look. There's also no shame in asking for help. Be sure you proofread your email before sending.</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status code 200</a> does not guarantee your API request was successful. You may want to write a test to confirm success that doesn't rely on response status codes.</p>
+<p>[caption id="attachment_3108" align="alignnone" width="941"]<img alt="pytest_test_results" class="alignnone size-full wp-image-3108" height="540" src="https://pythonmarketer.files.wordpress.com/2020/04/pytest_test_results.png" width="941"> pytest deprecation warnings for unescaped pipes or slashes in docstrings? ¯\_(ツ)_/¯[/caption]</p>
+</li>
+<li>
+<p>Unfortunately, <a href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">testing</a> gets shunned sometimes. Make it a priority. I enjoy writing <a href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a> more than most other code. Why? Because tests confirm my scripts are working to some degree, detect bugs and provide a refactoring safety net.</p>
+</li>
+<li>
+<p>Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.</p>
+</li>
+<li>
+<p>Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a <a href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10">Windows batch file</a> to instantly activate my Python <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>. It took me a few years of tediously pasting the <code>cd</code> and <code>activate</code> commands into command prompt every day to realize. Now it's a snap.</p>
+</li>
+<li>
+<p>Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...</p>
+</li>
+<li>
+<p>Read the documentation! An updated or more elegant solution might be there. I recently found <code>os.makedirs(path, exist_ok=True)</code> in the <a href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <code>exist_ok</code> argument. I was creating folders with a more complicated alternative from <a href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <a href="https://docs.python.org/3.8/library/getpass.html"><code>getpass.getuser()</code></a> is preferred over <code>os.getlogin()</code>.</p>
+</li>
+<li>
+<p>Write documentation explaining how to use your projects. Even if you can only muster a quick <a href="https://en.wikipedia.org/wiki/README">README</a> text file, that's better than nothing. Within your code, <a href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> are a nice addition. I have yet to use <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, but it is a popular choice for generating documentation.</p>
+</li>
+<li>
+<p>Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...</p>
+</li>
+<li>
+<p>Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.</p>
+</li>
+<li>
+<p>When editing your writing, continually ask yourself, "Do I need this word or phrase?" for every word you write.</p>
+</li>
+</ol>
+<blockquote>
+<p>"Brevity is the soul of wit." - William Shakespeare (Hamlet)</p>
+</blockquote>
+<ol>
+<li>Draw inspiration from culture, nature and professional disciplines outside of your own. <a href="https://pythonmarketer.wordpress.com/2020/01/28/lessons-learned-from-lost-in-space-on-netflix/">Insights can be mined from anything</a>. Don't dismiss a situation as mundane without first scanning for knowledge nuggets and gems.</li>
+<li>Better solutions often come to me after gaining time and experience with a problem. Building software is an iterative cycle of adjustment towards consistently fulfilling the needs of those it serves in 100% of cases. In a perfect world, you'd never have bugs. But edge cases tend to pop up in ways you didn't think of when you first wrote a solution. There will also be projects where requirements or business rules change. Consider that possibility when you are designing your solution.</li>
+<li>It's possible to find a job that you're excited about and genuinely enjoy the work.</li>
+<li>Respect your craft, whether it's coding or another profession. A skilled carpenter needs precision, practice and focus to make something beautiful. Approach your craft with the same mindset and pride in making your best art.</li>
+<li>We all have holes in our knowledge. Be receptive to other ways of thinking. The best way to learn is from other humans. Everyone has different backgrounds and experiences. I have never used object oriented programming, classes or certain command line tools like <a href="https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/">ssh</a>. I have a loose understanding of these things but have not yet applied them to my projects. Working with paths (os and pathlib) still gives me fits sometimes. These are knowledge gaps that I want to fill in. Additionally, we don't know what we don't know. Try to illuminate the fog of your unknown.</li>
+<li>Choosing to dedicate to learning Python is among the best decisions I've made.</li>
+<li>Attitude is more important than intelligence. Anyone can learn to program, play guitar or fly an airplane. You can become an adept problem solver. Acquire an attitude to support your determination and persistence.</li>
+</ol>
+<p>[caption id="attachment_2981" align="alignnone" width="959"]<a href="https://www.youtube.com/watch?v=I56oFTm9UlE"><img alt="brandonrhodes" class="alignnone size-full wp-image-2981" height="541" src="https://pythonmarketer.files.wordpress.com/2020/04/brandonrhodes.png" width="959"></a> Brandon Rhodes: Stopping to Sharpen Your Tools - PyWaw Summit 2015[/caption]</p>
+<p><strong>I'll leave you with the 4 P's and 4 C's from my</strong> <strong><a href="https://www.youtube.com/watch?v=SfQYA0JQWkA">Programming for Everybody Coursera course graduation ceremony</a>. Cultivating these principles will guide you to growing your education and finding a positive course in life:</strong></p>
+<blockquote>
+<p><strong>4 P’s:</strong> Passion, Purpose, Persistence, Playfulness</p>
+<p><strong>4 C’s:</strong> Choice, Commitment, Connection, Completion</p>
+</blockquote>
+<p>Thank you for reading and I hope this post helps you on your own educational journey.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/reflections-on-5-years-of-solving-problems-with-python.html">posted at 17:15</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-education-marketing-programming-python-wisdom.html" rel="tag">coding, education, Marketing, programming, python, wisdom</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/advice.html" class="tags">advice</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/problem-solving.html" class="tags">problem solving</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/writing.html" class="tags">writing</a>
+                </div>
+            </article>            <h4 class="date">Mar 22, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/easy-wins-for-your-windows-computer.html" rel="bookmark" title="Permanent Link to &quot;Easy Tune-ups For Your Windows Computer&quot;">Easy Tune-ups For Your Windows Computer</a>
+                </h2>
+
+                
+                
+
+                <h3>This post covers 6 handy Windows tools:</h3>
+<ol>
+<li>Windows Experience Index</li>
+<li>Disk Cleanup</li>
+<li>Windows Update Troubleshooter</li>
+<li>Windows Update</li>
+<li>Microsoft Support and Recovery Assistant</li>
+<li>Disk Defragmenter</li>
+</ol>
+<h3><strong>First, get your baseline Windows Experience Index score.</strong></h3>
+<p>These metrics are a way to monitor your system's performance over time.</p>
+<ol>
+<li>Go to "Control Panel\System and Security\System"</li>
+<li>Select "Your Windows Experience Index needs to be refreshed."</li>
+<li>Note the metrics you see and the last updated date. If you've never refreshed them, these are likely your computer's factory scores.</li>
+<li>Then click "Refresh Now" and note the results. These are your computer's current scores.</li>
+</ol>
+<p><img alt="check_Windows_Experience_Index" class="alignnone size-full wp-image-2780" height="501" src="http://pythonmarketer.files.wordpress.com/2020/03/f6e0a-check_windows_experience_index-e1584936945758.jpg" width="729"></p>
+<hr>
+<h3><strong>Run Disk Cleanup</strong></h3>
+<p>[The name says it all. Go to the Start menu and search 'Disk Cleanup'. Running this freed up 40 GB of C: drive space for me.]{style="color:var(--color-text);"}</p>
+<p>[<img alt="disk_cleanup" class="alignnone size-full wp-image-2794" height="167" src="https://pythonmarketer.files.wordpress.com/2020/03/disk_cleanup.jpg" style="color:var(--color-text);" width="364">]{style="color:var(--color-text);"}</p>
+<hr>
+<h3><strong>[Install OS patches and software updates with ]{style="color:var(--color-text);"}[Windows Update.]{style="color:var(--color-text);"}</strong></h3>
+<p><strong>First, troubleshoot Windows Update to fix any errors.</strong></p>
+<p><img alt="tdhotingtrpot2" class="wp-image-2790 alignright" height="274" src="http://pythonmarketer.files.wordpress.com/2020/03/83836-tdhotingtrpot2-e1584941263675.jpg" style="color:var(--color-text);" width="357"></p>
+<p>The <a href="https://support.microsoft.com/en-us/help/4027322/windows-update-troubleshooter">Windows Update Troubleshooter</a>[ is supp]{style="color:var(--color-text);"}[orted by Windows and may help]{style="color:var(--color-text);"}[ with updates that fail. I downloaded the troubleshooter for ]{style="color:var(--color-text);"}[Windows Update and BITS, Windows' ]{style="color:var(--color-text);"}<a href="https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal">Background Intelligence Transfer System.</a></p>
+<p>[The troubleshooter analyzes Windows Update and tries to fix the errors it finds. After running, it provides a status update on the issues it finds.]{style="color:var(--color-text);"}</p>
+<p><strong>Run Windows Update to upgrade your software.</strong></p>
+<p>[Windows Update usually updates your software reliably. Howev]{style="color:var(--color-text);"}[er, some updates may fail or are not triggered automatically. Installing updates, especially security patches for your operating system is typically a good idea. ]{style="color:var(--color-text);"}[In my case, several Windows 7 OS security patches had not auto-updated, some from 6 months ago.]{style="color:var(--color-text);"}</p>
+<p>[<img alt="check_updates" class="alignnone wp-image-2742" height="241" src="http://pythonmarketer.files.wordpress.com/2020/03/4c81a-check_updates-e1584948533963.jpg" width="518">]{style="color:var(--color-text);"}</p>
+<ul>
+<li>[Go to your start menu and search for 'Windows Update'. ]{style="color:var(--color-text);"}</li>
+<li>[I clicked 'Check online for updates from Windows Update' also. ]{style="color:var(--color-text);"}</li>
+<li>[When you restart your computer, use a power cord for your laptop.]{style="color:var(--color-text);"}</li>
+<li>[I found more new updates twice after installing new updates and restarting my system.  Some updates are required before another update may be installed.]{style="color:var(--color-text);"}</li>
+</ul>
+<p>[<img alt="windowsuptodate" class="wp-image-2846 alignleft" height="78" src="https://pythonmarketer.files.wordpress.com/2020/03/windowsuptodate.jpg" width="439">]{style="color:var(--color-text);"}</p>
+<hr>
+<h3>Microsoft Support and Recovery Assistant</h3>
+<p><strong>Got Microsoft Errors?</strong> Check out the <a href="https://support.office.com/en-us/article/about-the-microsoft-support-and-recovery-assistant-e90bb691-c2a7-4697-a94f-88836856c72f">Microsoft Support and Recovery Assistant</a>. It may help you if you're having trouble with Microsoft Office, Skype or any other Windows [tools.]{style="color:var(--color-text);"}</p>
+<p><img alt="options_recovery" class="wp-image-3225 alignnone" height="350" src="http://pythonmarketer.files.wordpress.com/2020/03/1ea73-options_recovery-e1587747001750.jpg" width="465"></p>
+<hr>
+<h3><strong>Finally, defragment your C: drive.</strong></h3>
+<p>Defragmentation is like spring cleaning for your computer's hard disk. It optimizes your drive's data for more efficient computing and frees up space for other activities.</p>
+<ol>
+<li>[Go to your start menu and search for 'Disk Defragmenter'.]{style="color:var(--color-text);"}</li>
+<li>Click 'Analyze disk' to check your C: Drive's fragmented rate.</li>
+<li>If the fragmented rate is above 10%, <a href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Windows recommends</a> to defragment your C: Drive. As you can see below, mine had a whopping 48% fragmentation rate. 😨 My poor computer had never been defragged in 2.5 years of use.</li>
+</ol>
+<p><img alt="defragment_results" class="alignnone size-full wp-image-2740" height="529" src="http://pythonmarketer.files.wordpress.com/2020/03/699fd-defragment_results-e1585007505765.jpg" width="658"></p>
+<p><strong>46% Less Fragmented Disk Space After Two Defrags</strong></p>
+<p>Running the defragmenter once reduced my drive's fragmentation from 48% to 32%. Re-running the defragmenter dropped my C: drive to a 2% fragmented rate. That's more like it. 🤓</p>
+<blockquote>
+<p>::: ng-scope
+Fragmentation makes your hard disk do extra work that can slow down your computer. Removable storage devices such as USB flash drives can also become fragmented. Disk Defragmenter in Windows rearranges fragmented data so your disks and drives can work more efficiently.
+:::</p>
+<div>
+<p>Source: <a href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Ways to Improve Your Computer's Performance</a></p>
+</div>
+</blockquote>
+<hr>
+<h3><strong>My Windows 7 System Improvement Results</strong></h3>
+<ul>
+<li>Raised Windows Experience Index base sub-score from 4.9 to 5.0/7.9.</li>
+<li>Added 40 GB of hard drive space thanks to Disk Cleanup.</li>
+<li>Patched operating system security vulnerabilities and all software is up to date.</li>
+<li>Fixed any misbehaving Windows products.</li>
+<li>Decreased fragmented drive space from 48% to 2%. Windows recommends keeping it under 10%.</li>
+</ul>
+<p>On paper, that looks great. Hopefully it means less spinning lag wheels and programs not responding when you really shoulda saved that document...  <a href="https://www.youtube.com/watch?v=e2cjVhUrmII">We'll see</a>.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/easy-wins-for-your-windows-computer.html">posted at 22:59</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/performance-windows.html" rel="tag">performance, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/maintenance.html" class="tags">maintenance</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/operating-system.html" class="tags">operating system</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/windows-update.html" class="tags">windows update</a>
+                </div>
+            </article>            <h4 class="date">Mar 21, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html" rel="bookmark" title="Permanent Link to &quot;Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box&quot;">Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Automatic pytest Testing and Failure Alert Monitoring</strong></p>
+<p>This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.</p>
+<p><strong>Installing <a href="https://docs.pytest.org/en/latest/getting-started.html">pytest</a>, a python testing library:</strong></p>
+<p><code>python -m pip install pytest</code></p>
+<p><strong>A Few Words on pytest</strong></p>
+<p>It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.</p>
+<p>**Writing a Test **</p>
+<p>Let's use <strong>test_file_date.py</strong> as our test, which uses the <a href="https://docs.python.org/3/library/glob.html">glob</a> module and [<a href="https://docs.python.org/2/library/os.path.html#os.path.getmtime">os.getmtime</a>]{style="color:var(--color-text);"}[ ]{style="color:var(--color-text);"}[to get the csv with the most recent modification date ]{style="color:var(--color-text);"}[on my desktop. Then it tests if that date is today, in my case, for an expected daily file drop.]{style="color:var(--color-text);"}</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span> 
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+
+<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The dir_query format is for a Windows path with Unix style pattern matching.&quot;&quot;&quot;</span>
+    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">{getpass.getuser()}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
+    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+</code></pre></div>
+
+<p><strong>Here's the pytest text output when the test is passing:</strong></p>
+<div class="highlight"><pre><span></span><code>============================= test session starts =============================
+platform win32 -- Python 3.8.1, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
+rootdir: C:
+</code></pre></div>
+
+<p>collected 1 item</p>
+<div class="highlight"><pre><span></span><code><span class="cp">..\..\Users\martech\Desktop\test_file_date.py . [ 14%]</span>
+<span class="cp">                                                                   [100%]</span>
+
+============================== 1 passed in 0.28s ==============================
+</code></pre></div>
+
+<p><strong>Creating a Task with Windows Task Scheduler</strong></p>
+<p>If you haven't used python with Windows Task Scheduler before, <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">my previous post</a> on creating a task may help you. We'll create two of them for our testing system.</p>
+<p><strong>Adding Your Task Scheduler Program: a Windows .bat file</strong></p>
+<p>Add your username to the text below and adjust the paths to your system. Then save a <a href="https://en.wikipedia.org/wiki/Batch_file">Windows .bat file</a> with this text, which points to your pytest.exe file:</p>
+<div class="highlight"><pre><span></span><code>cmd /c &quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&quot; ^
+C:\Users\your_username\Desktop\test_file_date.py &gt; C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
+</code></pre></div>
+
+<p>This example is referencing an .exe within a hypothetical "VM_Jobs" <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)</p>
+<p><strong>Breaking this out, there are five .bat files parts:</strong></p>
+<blockquote>
+<p>cmd /c "C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys"</p>
+</blockquote>
+<p>Windows' <a href="https://ss64.com/nt/cmd.html">cmd command</a> takes a program, so we're passing pytest. <a href="https://docs.pytest.org/en/latest/capture.html">The --capture=sys argument</a> tells pytest to capture the test results. <strong>Note:</strong> switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.</p>
+<blockquote>
+<p>\^</p>
+</blockquote>
+<p>circumflex represents a line continuation in Windows batch files for better readability</p>
+<blockquote>
+<p>C:\Users\your_username\Desktop\test_file_date.py</p>
+</blockquote>
+<p>Next we're passing our python file as an argument to pytest, testing our file's modified date matches today's date.</p>
+<blockquote>
+<p><strong>&gt;</strong></p>
+</blockquote>
+<p>This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:</p>
+<blockquote>
+<p>C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt</p>
+</blockquote>
+<p><strong>Browse to select your .bat file for your Windows Task Scheduler task:</strong></p>
+<p><img alt="bat_task" class="alignnone size-full wp-image-2669" height="590" src="https://pythonmarketer.files.wordpress.com/2020/03/bat_task.jpg" width="1032"></p>
+<p><strong>Reading the Tests and Triggering Alerts</strong></p>
+<p>Passing tests signal your scripts are running successfully. When things don't work, email alerts of the failure help us respond quickly.</p>
+<p>Let's set another task scheduler job to run <strong>read_test_results.py,</strong> to run a few minutes after the first job each day. See this <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">example of running Python with Task Scheduler</a> if you haven't triggered a python script from Task Scheduler before.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Automate pytest with Windows Task Scheduler - Python Marketer</span>
+<span class="sd">http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</span>
+
+<span class="sd">Use Task Scheduler run a batch file. </span>
+<span class="sd">The batch file runs pytest and captures our pytest function results to sys. </span>
+<span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">user_name</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">logging</span><span class="se">\\</span><span class="s1">Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span>
+    <span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for failed tests...&quot;</span><span class="p">)</span>
+
+<span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">test_results</span><span class="se">\\</span><span class="s1">&#39;</span>
+<span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.txt&#39;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">txt_file</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">+</span> <span class="n">txt_file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s1">&#39;FAILURES&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">send_failure_alert</span><span class="se">\\</span><span class="s1">&#39;</span>
+        <span class="n">today</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+        <span class="n">out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}{</span><span class="n">txt_file</span><span class="si">}</span><span class="s1">_Failed_Results_</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s1">.txt&#39;</span>
+        <span class="n">alert_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span><span class="s2">&quot;w+&quot;</span><span class="p">)</span>
+        <span class="n">alert_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">txt_file</span><span class="p">)</span>
+        <span class="n">alert_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">alert_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No failed tests found in file:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">txt_file</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Setting up Email Alert Notifications on a Box Folder</strong></p>
+<p>The above script checks the test results and creates a file with any failed tests in a different folder. I <a href="https://support.box.com/hc/en-us/articles/360044194073-Manage-Notifications-for-Enterprise-Users">edited the folder's settings</a> to email me when a new file is added, thanks to Box notifications. We use <a href="http://www.box.com">Box</a> for secure file sharing at my day current day job.</p>
+<p>Alternatively for those without Box, you could use 'ole trusty <a href="https://docs.python.org/3/library/smtplib.html">smtplib</a> to send the failure alerts with python. I chose the easier, ready to go option. Remember, "<a href="https://zen-of-python.info/simple-is-better-than-complex.html">Simple is better than complex</a>."</p>
+<p>Or the <a href="https://github.com/mhammond/pywin32">pywin32 module</a> has an interface to Outlook that is very handy. For an example of sending a Windows Outlook email, check the very end of <a href="http://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/">this post I wrote on "Scripting Windows Like a Pro"</a>.</p>
+<p><strong>We now have an automated testing system with email monitoring alerts if our csv file date test fails, thanks to:</strong></p>
+<ul>
+<li>Windows Task Scheduler (two tasks running each day in succession)</li>
+<li>python/pytest</li>
+<li>a Windows .bat file</li>
+<li>Box (or smtplib or pywin32) email alerts</li>
+</ul>
+<p><strong>In Summation</strong></p>
+<ol>
+<li>The first task runs a .bat file to run pytest and create a text file with daily automation test results.</li>
+<li>The second task runs a python file. Setting in motion:</li>
+<li>Checking the test result text files, looking for failed tests</li>
+<li>Creating a text file with any failing tests in a Box folder, if found</li>
+<li>Then Box emails me if any test fails.</li>
+</ol>
+<p><strong>Final Thoughts on the .bat, Man</strong></p>
+<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format<strong><a href="https://www.youtube.com/watch?v=65eDsGY5MTE"><img alt="legobatman" class="wp-image-2704 alignright" height="95" src="https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg" width="95"></a></strong> the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a "glue" piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
+<p><strong>Life is in the journey.</strong></p>
+<p>What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!</p>
+<div class="highlight"><pre><span></span><code>&lt;/p&gt;
+</code></pre></div>
+
+<p><strong>See also:</strong></p>
+<p><a href="_wp_link_placeholder">pytest plugins</a></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pypi.org/project/pytest-csv/">pytest-csv</a>: write test results to a csv with this plugin</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>I wrote another post compiling peoples' thoughts on testing <a href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">here</a>.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html">posted at 01:47</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-programming-software-testing-windows.html" rel="tag">automation, programming, software testing, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/coding.html" class="tags">coding</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/pytest.html" class="tags">pytest</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software-development.html" class="tags">software development</a>
+                </div>
+            </article>            <h4 class="date">Jan 28, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/lessons-learned-from-lost-in-space-on-netflix.html" rel="bookmark" title="Permanent Link to &quot;Lessons Learned from "Lost in Space" on Netflix&quot;">Lessons Learned from "Lost in Space" on Netflix</a>
+                </h2>
+
+                
+                
+
+                <p>Being a developer has similarities to the life of a family surviving in space. Sure, the stakes are lower when writing code versus being chased by alien life forms, but the core idea is the same. One is faced with a problem and it must be solved, with varying degrees of consequences for failure.</p>
+<p>I enjoyed watching the Robinsons solve problem after problem to stay alive in alien worlds and the vacuum of space. I believe you can learn from anything. <strong>So in that spirit, here are some lessons from the show for us problem solving humans:</strong></p>
+<ol>
+<li><img alt="tayrob" class="size-full wp-image-2271 alignright" height="168" src="https://pythonmarketer.files.wordpress.com/2020/01/tayrob.jpeg" width="300">Don't panic when you're in trouble. A cool head is vitally important to your survival chances when you're in a bind. Judy demonstrates this quality in evading the raptor-like creatures chasing her.</li>
+<li>Problems solved often lead to more problems to solve. We would be wise to anticipate what might happen if we do succeed.</li>
+<li>Be cautious when venturing into unfamiliar territories. You never know what could be there to trip you up. Which leads me to my next point...</li>
+<li>Respect nature's ability to f*ck you up. The environment you're in, other organisms, and bacteria can wreak havoc. Despite our perceived self-importance, nature is our god. We are but specks in its creation. Cases in point: the metal-dissolving virus that destroys Judy's chariot and the poisonous algae Don accidentally discovers that immobilizes him.</li>
+<li>Know when to go for broke, or when to re-group and wait to make your next move. The Robinsons spent 7 months stocking up at their new beach home. Until they suffered a setback...<img alt="beach" class="alignnone size-full wp-image-2279" height="1181" src="https://pythonmarketer.files.wordpress.com/2020/01/beach.jpg" width="2155"></li>
+<li>Adapt your plan when new information becomes available or unexpected events happen. They will happen.</li>
+<li>Think of unconventional ways to use the resources you do have to fix the problem at hand. Who would have thought a spaceship could be retrofitted into a boat?</li>
+<li>Things often work 83% of the way you expect them to work. Sometimes that's enough to move on. Or maybe it buys you enough time to figure out your next move. The electrical field stalled the fleet of robots long enough for the Robinsons to realize the children should "<a href="https://en.wikipedia.org/wiki/Lord_of_the_Flies">Lord of the Flies</a>" their way to Alpha Centauri.</li>
+<li>Question your own motivations, and be open to changing course if you are wrong. Adler realized he should help Will save Scarecrow's life after first trying to stop him. Scarecrow then exhibits this same quality when he turns against his robot comrades to save the children.</li>
+<li>Ethics and morals may conflict with each other. Was Maureen Robinson wrong for fraudulently saving her son Will? Ethically, yes. But morally, as a mother saving her son? No.</li>
+<li>Make time for your family and friends. Maureen was so busy saving the family that she didn't read Penny's book. Stop and smell the roses every once in a while. Or read your daughter's damn book.</li>
+<li>Humans are capable of both great compassion and horrible cruelty. We're running from alien robots, but sometimes we're the monsters? Cough cough Smith and Hastings... cough. Excuse me. (smh 🤦)</li>
+<li><img alt="robot" class="wp-image-2282 alignright" height="179" src="https://pythonmarketer.files.wordpress.com/2020/01/robot-1.jpeg" width="358">I'll spare you any parallels about modern artificial intelligence. The best, most grounded definition I've heard of modern AI is "<a href="https://twitter.com/fchollet/status/1214392496375025664?lang=en">automated cognition</a>".</li>
+<li>Self-sacrifice is an honorable death to save the lives of others, but can be frustrating to watch on TV. "Did you really have to kill yourself there?" - me, several times during the show 😆</li>
+</ol>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/lessons-learned-from-lost-in-space-on-netflix.html">posted at 06:39</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/entertainment-life-space.html" rel="tag">entertainment, life, space</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/lost-in-space.html" class="tags">Lost in Space</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/netflix.html" class="tags">Netflix</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/problem-solving.html" class="tags">problem solving</a>
+                </div>
+            </article>
+
+                <div class="clear"></div>
+                <div class="pages">
+
+                    <a href="https://pythonmarketer.com/author/pythonmarketer6.html" class="prev_page">&larr;&nbsp;Previous</a>
+
+                    <a href="https://pythonmarketer.com/author/pythonmarketer8.html" class="next_page">Next&nbsp;&rarr;</a>
+
+                    <span>Page 7 of 12</span>
+                </div>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

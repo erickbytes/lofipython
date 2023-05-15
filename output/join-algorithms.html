@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Pondering Join Algorithms</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-data-databases-programming.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-data-databases-programming.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content="algorithms,computer science,joins,learning,study,technology" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Aug 09, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/join-algorithms.html" rel="bookmark" title="Permanent Link to &quot;Pondering Join Algorithms&quot;">Pondering Join Algorithms</a>
+                </h2>
+
+                
+                
+
+                <p>Truly enjoying this <a class="reference external" href="https://www.youtube.com/playlist?list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi">Intro to Database Systems course</a> from Carnegie Mellon University. Some really great breakdowns of common join algorithms in this lecture. Here are my notes.</p>
+<blockquote>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=nUwT7PEQ49o&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=11">Lecture 11- Join Algorithms</a><strong>(CMU Databases Systems / Fall 2019)</strong></p>
+<p>Prof. Andy Pavlo, Carnegie Mellon Database Group</p>
+</blockquote>
+<img alt="Join Algorithms" class="alignnone size-full wp-image-4118" src="https://pythonmarketer.files.wordpress.com/2020/08/join-algorithms.png" style="width: 747px; height: 404px;" />
+<p><em>screenshot from lecture</em></p>
+<p><strong>Table Positioning for a Join</strong></p>
+<p>&quot;In general, your smaller table should be the &quot;left&quot; table when joining two tables.&quot;... Professor demonstrates better performance by making the smaller table the &quot;outer&quot; table in a join.</p>
+<p><strong>Block Nested Loop Join [</strong><a class="reference external" href="https://dev.mysql.com/doc/refman/5.7/en/nested-loop-joins.html#:~:text=A%20Block%20Nested%2DLoop%20(BNL,inner%20loops%20must%20be%20read.&amp;text=The%20join_buffer_size%20system%20variable%20determines,used%20to%20process%20a%20query.">mysql example</a><strong>]</strong></p>
+<ul class="simple">
+<li>&quot;The brute force approach&quot;</li>
+<li>If you have enough memory to hold a large table, a good option for joining.</li>
+<li>Always pick the smaller table as the outer table.</li>
+<li>Buffer as much of your outer table in memory as possible to reduce redundant I/O.</li>
+<li>Loop over the inner table or use an index.</li>
+</ul>
+<p><strong>Index Nested Loop Join [</strong><a class="reference external" href="https://www.cs.carleton.edu/faculty/dmusicant/cs347f03/proj3/">CS Course definition</a><strong>]</strong></p>
+<p>If indexes are available, or you could create an index to use for a join.</p>
+<p><strong>Sort-Merge Join [</strong><a class="reference external" href="https://en.wikipedia.org/wiki/Sort-merge_join">wikipedia</a><strong>]</strong></p>
+<p>Useful if one or both tables are sorted on a join key. Maximize sequential I/O.</p>
+<img alt="Sort - Merge Join" class="alignnone size-full wp-image-4121" src="https://pythonmarketer.files.wordpress.com/2020/08/sort-merge-join-1.png" style="width: 1731px; height: 855px;" />
+<p><em>screenshot from lecture</em></p>
+<p><strong>Hash Join [</strong><a class="reference external" href="https://mysqlserverteam.com/hash-join-in-mysql-8/#:~:text=Hash%20join%20is%20a%20way,inputs%20can%20fit%20in%20memory.">mysql blog example</a><strong>]</strong></p>
+<p>Best performance. For large datasets.</p>
+<ol class="arabic simple">
+<li>Phase #1 Build (Hash Table)</li>
+<li>Phase #2 Probe</li>
+</ol>
+<p><strong>Use</strong><a class="reference external" href="https://en.wikipedia.org/wiki/Bloom_filter">Bloom Filter</a><strong>set operations for probe phase optimization</strong></p>
+<ol class="arabic simple">
+<li>insert a key</li>
+<li>lookup a key</li>
+</ol>
+<!--  -->
+<blockquote>
+<p><strong>Additional Reading on Bloom Filters</strong></p>
+<p><a class="reference external" href="https://onatm.dev/2020/08/10/let-s-implement-a-bloom-filter/">Let's implement a Bloom Filter</a></p>
+<p><a class="reference external" href="https://gopiandcode.uk/logs/log-bloomfilters-debunked.html">Bloom Filters Debunked</a></p>
+</blockquote>
+<p><strong>Grace Hash Join</strong> [<a class="reference external" href="https://en.wikipedia.org/wiki/Hash_join#Grace_hash_join">wikipedia</a>]</p>
+<ul class="simple">
+<li>&quot;Do hash joins when things don't fit in memory.&quot;</li>
+<li>Use a hash table for each table. Break the tables into buckets then do a nested loop join on each bucket. If the buckets do not fit in memory, use <a class="reference external" href="https://en.wikipedia.org/wiki/Recursive_partitioning#:~:text=Recursive%20partitioning%20is%20a%20statistical,on%20several%20dichotomous%20independent%20variables.">recursive partitioning</a>. Then everything fits in memory for the join.</li>
+</ul>
+<!--  -->
+<blockquote>
+<p>&quot;Split outer relation into partitions based on the hash key.&quot;</p>
+<p>Prof. Andy Pavlo on Hash Join algorithm</p>
+</blockquote>
+<ul class="simple">
+<li>Hashing is almost always better than sorting for operator execution.</li>
+</ul>
+<!--  -->
+<blockquote>
+<p>&quot;No join algorithm works well in all scenarios.&quot;</p>
+<p>-Prof. Andy Pavlo</p>
+</blockquote>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/join-algorithms.html">posted at 18:24</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-databases-programming.html" rel="tag">coding, data, Databases, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/algorithms.html" class="tags">algorithms</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computer-science.html" class="tags">computer science</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/joins.html" class="tags">joins</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/study.html" class="tags">study</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/technology.html" class="tags">technology</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

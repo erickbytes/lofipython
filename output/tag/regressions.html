@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "regressions"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/regressions.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/regressions.html">regressions</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Oct 19, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/wtf-is-a-regression.html" rel="bookmark" title="Permanent Link to &quot;WTF is a Regression&quot;">WTF is a Regression</a>
+                </h2>
+
+                
+                
+
+                <p><strong>re·gres·sion</strong></p>
+<p>[caption id="attachment_1500" align="alignright" width="467"]<img alt="mitnewslol.png" class="alignnone wp-image-1500" height="273" src="http://pythonmarketer.files.wordpress.com/2018/10/9ed88-mitnewslol-e1539920605255.png" width="467"> wtf is a regression? - MIT News and I[/caption]</p>
+<p>/rəˈɡreSH(ə)n<br>
+<em>noun</em><br>
+1. a return to a former or less developed state.<br>
+2. <em>STATISTICS</em> a measure of the relation between the mean value of one variable (e.g., output) and corresponding values of other variables (e.g., time and cost).</p>
+<p>Regression analysis is commonly cited in the data science community (and science in general), a building block of statistics, and routinely referenced within the rapidly growing <a href="https://en.wikipedia.org/wiki/Machine_learning">machine learning</a> movement. So what is this mysterious math sorcery? Did Isaac Newton use regression analysis? These magical regressions seem important. We shall dig deeper. Here's what I've found, thanks to <a href="http://news.mit.edu/2010/explained-reg-analysis-0316">MIT News</a>, circa 2010:</p>
+<blockquote>
+<p>To grasp the basic concept, take the simplest form of a regression: a linear, bivariate regression, which describes an unchanging relationship between two (and not more) phenomena. Now suppose you are wondering if there is a connection between the time high school students spend doing French homework, and the grades they receive. These types of data can be plotted as points on a graph, where the x-axis is the average number of hours per week a student studies, and the y-axis represents exam scores out of 100. Together, the data points will typically scatter a bit on the graph. The regression analysis creates the single line that best summarizes the distribution of points.</p>
+</blockquote>
+<p>Ok, so it's correlationary tool. Sounds useful. Additionally, consider the mathematical  equation representation of regressions:</p>
+<blockquote>
+<p>Mathematically, the line representing a simple linear regression is expressed through a basic equation: Y = a~0~ + a~1~ X. Here X is hours spent studying per week, the “independent variable.” Y is the exam scores, the “dependent variable,” since — we believe — those scores depend on time spent studying. Additionally, a~0~ is the y-intercept (the value of Y when X is zero) and a~1~ is the slope of the line, characterizing the relationship between the two variables. (<strong><em>source: <a href="http://news.mit.edu/2010/explained-reg-analysis-0316">MIT News)</a></em></strong></p>
+</blockquote>
+<p>Geesh, that's kinda dense. But can we do it with Python? Ah, yes we can. Below is the amassed code from <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"><em>Towards Data Science</em></a> to run a basic regression that generates predictions from a Boston house values dataset within <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">sci-kit learn.</a></p>
+<p><strong><a href="https://scikit-learn.org/stable/install.html">pip install sklearn</a> and pandas first, by entering in the terminal:</strong></p>
+<ol>
+<li>
+<p>pip install -U scikit-learn</p>
+</li>
+<li>
+<p>python -m  pip install pandas</p>
+</li>
+</ol>
+<p><strong>Now run copy this code, save as a .py file  and run from your terminal or command prompt:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span> <span class="c1">## imports datasets from scikit-learn</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">()</span> <span class="c1">## loads Boston dataset from datasets library</span>
+
+<span class="c1"># define the data/predictors as the pre-set feature names</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+
+<span class="c1"># Put the target (housing value -- MEDV) in another DataFrame</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MEDV&quot;</span><span class="p">])</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;MEDV&quot;</span><span class="p">]</span>
+
+<span class="n">lm</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span> <span class="c1"># print the first 5 predictions for y</span>
+
+<span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="c1"># This is the R² score of our model. As you probably remember, this the percentage of explained variance of the predictions.</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">coef_</span> <span class="c1"># check coefficients</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">intercept_</span>
+<span class="c1"># More info: https://towardsdatascience.com/simple-and-multiple-linear-regression-in-python-c928425168f9</span>
+</code></pre></div>
+
+<p><em>source: <a href="https://towardsdatascience.com/simple-and-multiple-linear-regression-in-python-c928425168f9">Towards Data Science</a></em></p>
+<p>The above example is one of many predictive models. <a href="https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8">Logistic regressions</a> and random forests are examples of other models. <a href="https://books.google.com/books/about/Learning_Predictive_Analytics_with_Pytho.html?id=Ia5KDAAAQBAJ&amp;printsec=frontcover&amp;source=kp_read_button#v=onepage&amp;q&amp;f=false">This book</a> dives deeper into them.</p>
+<p>So there you have it: regressions... part correlation measurement tool between two variables, part fancy mathematical formula, part prediction generator that sci-kit learn graciously affords us to make predictions of future data. Alright regressions, you can stay. :)</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/wtf-is-a-regression.html">posted at 03:15</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/data-analysis-math-python-statistics.html" rel="tag">data analysis, math, python, statistics</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data-science.html" class="tags">data science</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/mathematics.html" class="tags">mathematics</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/regressions.html" class="tags selected">regressions</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/sci-kit-learn.html" class="tags">sci-kit learn</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

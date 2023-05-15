@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "gmail"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/gmail.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/gmail.html">gmail</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Feb 07, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/using-gmails-search-operators-to-organize-your-emails-in-bulk.html" rel="bookmark" title="Permanent Link to &quot;Organize Your Emails in Bulk With Gmail Search Operators + Python Libraries&quot;">Organize Your Emails in Bulk With Gmail Search Operators + Python Libraries</a>
+                </h2>
+
+                
+                
+
+                <p>After 12 years with Gmail as my primary email inbox, I wanted to clear out old &quot;Promotions&quot; emails. This can be done with some clever use of Gmail's search syntax shown below.</p>
+<p>I wanted to preserve my &quot;Starred&quot; emails, but delete old emails to free up space. I was able to delete 58,000 &quot;Promotions&quot; emails! I wrote this post because I feel it might save you a little time figuring it out yourself. I also included brief details on possible Python tools for Gmail and IMAP below if you are considering scripting your contact management.</p>
+<p>I didn't need Python in the end after reading some <a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">Gmail search operator examples</a>. For example, adding a hypen before a search in Gmail acts similar to a <a class="reference external" href="https://en.wikipedia.org/wiki/Bitwise_operation#NOT">&quot;bitwise&quot; or unary operator (~)</a> in Python. It excludes or inverses the criteria in a search rather than including it. I was able to use this to exclude my starred emails. You can also add a filter for &quot;has attachment&quot;. I used that to star any emails with attachments, then delete the rest and excluded &quot;starred&quot; emails.</p>
+<p><strong>Gmail search syntax to get &quot;Promotions&quot; minus &quot;Starred&quot; emails and filter on a date range</strong>:</p>
+<p><tt class="docutils literal">category:promotions <span class="pre">-is:starred</span> after:2019/12/31 before:2021/1/1</tt></p>
+<p><strong>Selecting &quot;all&quot; emails in your search</strong></p>
+<div class="wp-image-5251 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/02/select-all-in-search.jpg?w=588" />
+</div>
+<p><strong>Once, you've selected &quot;All&quot; from the checkbox dropdown, click &quot;Select all conversations that match this search&quot;.</strong> Now you can apply actions such as &quot;add a star&quot; or &quot;delete&quot; them by clicking the (⋮) vertical ellipses menu:</p>
+<div class="wp-image-5258 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/02/gmail-filter-steps.jpg?w=1024" />
+</div>
+<p><strong>To Python or not?</strong></p>
+<p>I also considered Python tools for interfacing with gmail to accomplish this. There doesn't seem to be an easy way to group emails by &quot;Category&quot; in the <a class="reference external" href="https://developers.google.com/gmail/api/quickstart/python">Gmail API</a> or IMAP. IMAP is shorthand for <a class="reference external" href="https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol">Internet Message Access Protocol</a>.</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/imaplib.html">imaplib</a> is an &quot;IMAP4 protocol client&quot; in the Python standard library. Usually python's <a class="reference external" href="https://docs.python.org/3/library/smtplib.html">smtplib</a> is the first library that comes up for email. Don't forget about imaplib! It might be more suitable for searching based on text in your emails or <a class="reference external" href="https://superuser.com/questions/719677/how-to-use-gmail-tabs-with-imap">creating labeled segments yourself, then applying actions to them</a>.</p>
+<p><strong>Additional Gmail + Python Resources</strong></p>
+<p><a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">G</a><a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">mail search operators</a></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/imaplib.html">imaplib</a> - python standard library interface to email accounts [<a class="reference external" href="https://stackoverflow.com/questions/3180891/imap-how-to-delete-messages">Stack Overflow example</a>]</p>
+<p><a class="reference external" href="https://support.google.com/mail/answer/7126229?hl=en">enabling IMAP in your gmail</a></p>
+<p><a class="reference external" href="https://developers.google.com/gmail/api/quickstart/python">Gmail API Python Quickstart</a></p>
+<p><a class="reference external" href="https://github.com/charlierguo/gmail">Gmail python library</a> - There are also pythonic wrappers to the Gmail API like this one.</p>
+<p><a class="reference external" href="https://pymotw.com/2/imaplib/">imaplib - Python Module of the Week</a></p>
+<p><a class="reference external" href="https://markodenic.com/use-google-like-a-pro/">Use Google Like a Pro</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/using-gmails-search-operators-to-organize-your-emails-in-bulk.html">posted at 11:17</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/productivity-python.html" rel="tag">productivity, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/email.html" class="tags">email</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gmail.html" class="tags selected">gmail</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/imap.html" class="tags">IMAP</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/smtp.html" class="tags">smtp</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles in the "automation, coding, Colors, programming, software" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-coding-colors-programming-software.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-coding-colors-programming-software.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/category/automation-coding-colors-programming-software.html">automation, coding, Colors, programming, software</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Feb 02, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/the-joy-of-logging-with-python.html" rel="bookmark" title="Permanent Link to &quot;The Joy of Logging With Python&quot;">The Joy of Logging With Python</a>
+                </h2>
+
+                
+                
+
+                <p>**In painting and coding, there are no mistakes, only happy accidents. **</p>
+<p>Fortunately when errors happen, Python affords us its stock '<a href="https://docs.python.org/3/howto/logging.html">logging</a>' module, which sometimes catches flak in the community for its syntax and documentation. After poking around this module, I've found it quite suitable to my needs. Thanks to the logging module, I'm catching my happy coding accidents and fixing them like a pro.</p>
+<p><strong>Below is my simple logging setup, which I am using to monitor <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automated Python scripts</a>.</strong> <strong>This script is a "painting" program created to demonstrate logging. </strong>Passing the below to the basicConfig() format argument logs a timestamp, effective for tracking the time of errors. This example logs the error and the traceback to a .log file.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;your_log.log&#39;</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Running painter...&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="n">painter</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">painter</span> <span class="o">==</span> <span class="s1">&#39;Bob Ross&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Choose colors, Pfthalo Blue.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Apply liquid white to canvas.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Clean brush in odorless paint thinner, and juuust beat the devil out of it.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Paint happy little trees. There’s nothing wrong with having a tree as a friend.&#39;</span><span class="p">)</span>
+        <span class="n">painting</span> <span class="o">=</span> <span class="s1">&#39;https://www.youtube.com/watch?v=5U3G61r35Mc&#39;</span>
+        <span class="n">painting_complete</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">wisdom</span> <span class="o">=</span> <span class="s1">&#39;Remember this is your world. You get to decide what&#39;</span><span class="n">s</span> <span class="ow">in</span> <span class="n">it</span><span class="o">.</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="n">painting</span><span class="p">,</span> <span class="n">wisdom</span><span class="p">,</span> <span class="n">painting_complete</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">painter</span> <span class="o">=</span> <span class="s1">&#39;Bob Ross&#39;</span> <span class="c1"># comment this line out to produce error for log</span>
+    <span class="n">painting</span><span class="p">,</span> <span class="n">wisdom</span><span class="p">,</span> <span class="n">painting_complete</span> <span class="o">=</span> <span class="n">paint</span><span class="p">(</span><span class="n">painter</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">painting</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Got exception on main handler&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Below is an example of logging only the error, without a traceback. </strong>I am still learning when each is appropriate, but I've found this exception handling variation useful when logging lots of errors that are acceptable and expected in my try/except loops. Note also that in this variation, I have changed the level argument to logging.DEBUG. This mode offers more program execution details to help debug an error when needed.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;your_log.log&#39;</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running painter...&quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">painter</span> <span class="o">=</span> <span class="s2">&quot;Bob Ross&quot;</span>
+    <span class="n">painting</span> <span class="o">=</span> <span class="n">paint</span><span class="p">(</span><span class="n">painter</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">painting</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Result: writing errors to a .log file.</strong><br>
+You should see that Python has created a fresh .log file with your happy little errors. Below is an example log from a tabular data cleaning program I wrote. The single line errors were produced using the second "Exception as e" method. At the bottom, we can see the full traceback, produced by the first, "logging.exception" method. This .log file resulted from passing the level=logging.INFO argument.</p>
+<p><strong>Example .log output file:</strong></p>
+<p><img alt="logex.png" class="alignnone size-full wp-image-1637" height="648" src="http://pythonmarketer.files.wordpress.com/2019/02/006e2-logex-e1549135549973.png" width="960"></p>
+<p><strong>What's the difference between a .log file and a .txt file?</strong></p>
+<blockquote>
+<p>The difference between the two file types is that <a href="https://pc.net/extensions/file/log">.LOG</a> files are typically generated automatically, while <a href="https://pc.net/extensions/file/txt">.TXT</a> files are created by the user.  <strong>- pc.net</strong></p>
+</blockquote>
+<p><strong>Final Thoughts</strong></p>
+<p>I will continue to explore logging methods but this seems to sufficiently log my program activity and errors. Now, my favorite part of work is peeking in on the logs to see how my happy little Python programs are running.</p>
+<p><a href="https://www.youtube.com/watch?v=5U3G61r35Mc"><img alt="The_Joy_of_Painting_title_screen" class="wp-image-1638 alignright" height="229" hspace="100" src="https://pythonmarketer.files.wordpress.com/2019/02/the_joy_of_painting_title_screen.jpg" width="312"></a></p>
+<p>It's worth mentioning there are alternative, external logging libraries to Python's default logging library. <em>Do whatever makes you happy</em>, just make sure you are logging somehow, especially if you have <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automated your Python programs</a> and want to monitor them. This method has worked for me as someone who previously had no experience whatsoever at logging program error activity. Thank you for reading and enjoying the joy of logging. :)</p>
+<blockquote>
+<p><em>Do whatever makes you happy, because ~~painting~~ coding is individual and you should ~~paint~~ code what you want. </em>- adapted from Bob Ross</p>
+</blockquote>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/the-joy-of-logging-with-python.html">posted at 20:23</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-coding-colors-programming-software.html" rel="tag">automation, coding, Colors, programming, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/bob-ross.html" class="tags">Bob Ross</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

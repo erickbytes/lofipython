@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - Windows 10</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/windows-10.tag.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2021-06-10T11:59:00-05:00</updated><entry><title>Python Requests SSLCertVerificationError Solution for Windows</title><link href="https://pythonmarketer.com/how-to-fix-your-python-certificates-on-windows.html" rel="alternate"></link><published>2021-06-10T11:59:00-05:00</published><updated>2021-06-10T11:59:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2021-06-10:/how-to-fix-your-python-certificates-on-windows.html</id><summary type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I initially installed my Python version from the &lt;a href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7"&gt;Windows Store&lt;/a&gt; and it worked fine for almost a year on my Windows 10 computer. Then I started getting this error message when trying to use the &lt;a href="https://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification"&gt;requests library&lt;/a&gt; on all HTTP requests:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:preformatted --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;requests.exceptions.SSLError …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I initially installed my Python version from the &lt;a href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7"&gt;Windows Store&lt;/a&gt; and it worked fine for almost a year on my Windows 10 computer. Then I started getting this error message when trying to use the &lt;a href="https://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification"&gt;requests library&lt;/a&gt; on all HTTP requests:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:preformatted --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;requests.exceptions.SSLError: HTTPSConnectionPool(host=&amp;#39;api.example.com&amp;#39;, port=443): Max retries exceeded with url: /oauth/token?grant_type=client_credentials (Caused by SSLError(SSLCertVerificationError(1, &amp;#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)&amp;#39;)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:preformatted --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Apparently my Python certificates were not valid or up to date on my computer. These are ".PEM" or ".cert" files that certify your connection for the &lt;a href="https://www.ssl.com/faqs/faq-what-is-ssl/"&gt;SSL protocol&lt;/a&gt;. I googled this error until I found the &lt;a href="https://pypi.org/project/python-certifi-win32/"&gt;python-certifi-win32&lt;/a&gt; library. I only needed to &lt;a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip install&lt;/a&gt; this library and it fixed the problem:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pip install python-certifi-win32&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Huge thank you to &lt;a href="https://pypi.org/user/andrewleech/"&gt;the maintainer&lt;/a&gt; of this package. It solved my issues and now I can make HTTP requests again!&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;</content><category term="coding, HTTP, python, Windows"></category><category term=".PEM solution"></category><category term="problem solving"></category><category term="Windows 10"></category></entry></feed>

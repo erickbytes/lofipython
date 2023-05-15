@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "Python data structure conversion"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/python-data-structure-conversion.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/python-data-structure-conversion.html">Python data structure conversion</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Feb 09, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html" rel="bookmark" title="Permanent Link to &quot;How to Convert a Python Dictionary to and from a pandas DataFrame&quot;">How to Convert a Python Dictionary to and from a pandas DataFrame</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>This is an example of how to cast a Python dict into a dataframe and vice versa. I picked up the df to dict part from this <a href="https://cmdlinetips.com/2021/04/convert-two-column-values-from-pandas-dataframe-to-a-dictionary/#:~:text=Another%20approach%20to%20convert%20two,all%20columns%20in%20the%20dataframe.">Python and R tips post</a> and the dict to df part from a <a href="https://stackoverflow.com/questions/18837262/convert-python-dict-into-a-dataframe">Stack Overflow post</a>. The below adaptation begins by converting an "NFL quarterbacks" Python dictionary into a dataframe and then back into a dict.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Sometimes a dictionary is adequate to solve a problem with handy methods like get() and <a href="https://docs.python.org/3/tutorial/datastructures.html#looping-techniques">items()</a>. You can also do a ton with a <a href="https://www.python.org/dev/peps/pep-0274/">dict comprehension</a>. When more complex tabular data operations are needed, the pandas pd.DataFrame class is well equipped for the job. Dictionaries and dataframes are delightfully interoperable, like Tom Brady and any football team on the planet.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code {"language":"python"} --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">qbs_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Matthew Stafford&quot;</span><span class="p">:</span><span class="s2">&quot;Los Angeles Rams&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Joe Burrow&quot;</span><span class="p">:</span><span class="s2">&quot;Cincinnati Bengals&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tom Brady&quot;</span><span class="p">:</span><span class="s2">&quot;Tampa Bay Buccaneers&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pat Mahomes&quot;</span><span class="p">:</span><span class="s2">&quot;Kansas City Chiefs&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tony Romo&quot;</span><span class="p">:</span><span class="s2">&quot;Dallas Cowboys&quot;</span>
+<span class="p">}</span>
+<span class="n">qbs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;team&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="n">qbs_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Tom Brady&quot;</span><span class="p">,</span> <span class="s2">&quot;Name not found.&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Terminal Output</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype 
+---  ------  --------------  ----- 
+ 0   name    5 non-null      object
+ 1   team    5 non-null      object
+dtypes: object(2)
+memory usage: 208.0+ bytes
+None
+
+{&#39;Joe Burrow&#39;: &#39;Cincinnati Bengals&#39;,
+ &#39;Matthew Stafford&#39;: &#39;Los Angeles Rams&#39;,
+ &#39;Pat Mahomes&#39;: &#39;Kansas City Chiefs&#39;,
+ &#39;Tom Brady&#39;: &#39;Tampa Bay Buccaneers&#39;,
+ &#39;Tony Romo&#39;: &#39;Dallas Cowboys&#39;}
+
+Tampa Bay Buccaneers
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Did you notice that pprint sorts dicts by default?</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Here the printed dict is reordered alphabetically on the QB's names. Per the pprint docs, you can alter this behavior if desired via a keyword argument new in Python version 3.8:</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code {"language":"python"} --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>pprint.pprint(qbs_dict, sort_dicts=False)
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>pandas</strong> <strong>Documentation</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pandas.pydata.org/docs/getting_started/install.html">pandas installation documentation</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas.DataFrame</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">pandas.Series</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_dict.html">pandas.DataFrame.to_dict</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html">pandas.DataFrame.info</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Python Standard Library Documentation</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://docs.python.org/3/library/pprint.html#pprint.pprint">pprint.pprint</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://docs.python.org/3/library/stdtypes.html?highlight=dict#mapping-types-dict">dict</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://docs.python.org/3/library/stdtypes.html#dict.get">dict.get</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html">posted at 23:16</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-pandas-programming-python.html" rel="tag">coding, pandas, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/pandas-df-to-python-dict.html" class="tags">pandas df to Python dict</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python-data-structure-conversion.html" class="tags selected">Python data structure conversion</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python-dict-to-pandas-df.html" class="tags">Python dict to pandas df</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

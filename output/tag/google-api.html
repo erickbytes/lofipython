@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "google api"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/google-api.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/google-api.html">google api</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Dec 21, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/copying-a-csv-file-to-google-sheets-with-pygsheets.html" rel="bookmark" title="Permanent Link to &quot;Copying a pandas Dataframe to Google Sheets with pygsheets&quot;">Copying a pandas Dataframe to Google Sheets with pygsheets</a>
+                </h2>
+
+                
+                
+
+                <blockquote>
+<p><strong>Disclaimer</strong>: This endeavor was before I discovered <a href="https://developers.google.com/apps-script">AppScript</a>, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by automating Google Sheet operations.</p>
+</blockquote>
+<p><strong>This was done on the Windows 7 OS.</strong> <strong>First, <a href="https://docs.python.org/3/installing/index.html">install libraries with pip</a>. Enter in command prompt or terminal:</strong></p>
+<ol>
+<li><code>python -m pip install pandas</code></li>
+<li><code>python -m pip install numpy</code></li>
+<li><code>python -m pip install pygsheets</code></li>
+</ol>
+<p><strong>Then, following the</strong> <strong><a href="https://pygsheets.readthedocs.io/en/stable/authorization.html">steps documented by pygsheets:</a></strong></p>
+<ol>
+<li>Create a Google Developer Account at <a href="http://console.developers.google.com">console.developers.google.com</a></li>
+<li><a href="https://pygsheets.readthedocs.io/en/stable/authorization.html">Enable Sheets API</a> to account</li>
+<li>Enable Drive API to account. Same as last step, but search for Drive.</li>
+<li>Create a Client Secret json file. Select "Credentials" tab, and "Create Credentials". Select Client Secret from options. Export from console and place in same directory as your .py file.</li>
+<li>Create a Service Account json file by selecting it instead of "Client Secret".</li>
+<li>Authorize pygsheets with your json files. (See below.)</li>
+<li>Copy spreadsheet to Google Sheet with pandas and pygsheets. (See below.)</li>
+</ol>
+<p><strong>After completing the first 5 steps, import pygsheets and authorize your account with the client secret json file:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygsheets</span>
+<span class="n">gc</span> <span class="o">=</span> <span class="n">pygsheets</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">client_secret</span><span class="o">=</span><span class="s1">&#39;path/to/client_secret[...].json&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>You will be prompted by the terminal to go to a hyperlink in a browser, get your authorization code, and enter that authorization code into the terminal.</p>
+<p><strong>Now, import both libraries needed and switch to authorize with your service json file. Then, load the csv to a dataframe with pandas. Finally, copy it to an existing Google Sheet with pygsheets:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygsheets</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="sd">&quot;&quot;&quot;Select worksheets by id, index, or title.&quot;&quot;&quot;</span>
+<span class="n">gc</span> <span class="o">=</span> <span class="n">pygsheets</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s1">&#39;path/to/service_account_credentials.json&#39;</span><span class="p">)</span> 
+<span class="n">sh</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;add_google_sheet_name_here&#39;</span><span class="p">)</span>
+<span class="n">wks</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="n">worksheet_by_title</span><span class="p">(</span><span class="s1">&#39;add_sheet_tab_name_here&#39;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;Set a pandas dataframe to google sheet, starting at 1st row, 1st column&quot;&quot;&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Example_Data.csv&#39;</span><span class="p">)</span> 
+<span class="n">wks</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>[Example] Split and upload a sheet with 40 columns</strong></p>
+<p>Google Sheets limits importing to 26 columns and 1,000 rows at a time. So you'll have to load the sheets in chunks if you have more than that. This approach uses numpy's <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_split.html">array_split</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygsheets</span> 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">gc</span> <span class="o">=</span> <span class="n">pygsheets</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">client_secret</span><span class="o">=</span><span class="s1">&#39;path/to/client_secret[...].json&#39;</span><span class="p">)</span>
+<span class="n">sh</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;add_google_sheet_name_here&#39;</span><span class="p">)</span> 
+<span class="n">wks</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="n">worksheet_by_title</span><span class="p">(</span><span class="s1">&#39;add_sheet_tab_name_here&#39;</span><span class="p">)</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Data_to_GSheets.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># split columns into two dataframes with numpy and pandas</span>
+<span class="n">first_half_cols</span><span class="p">,</span> <span class="n">second_half_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array_split</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">first_half</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">first_half_cols</span><span class="p">]</span>
+<span class="n">second_half</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">second_half_cols</span><span class="p">]</span>
+
+<span class="c1"># set both dataframes side-by-side in Google sheet</span>
+<span class="n">wks</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">first_half</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">start_column</span> <span class="o">=</span> <span class="n">first_half</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">wks</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">second_half</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span> <span class="n">start_column</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Conclusion</strong></p>
+<p>I found the terminal error messages from pygsheets to be very helpful while debugging the above. This module offers many other nifty spreadsheet operations. Solid library. You can now create and edit Google Sheets with Python.</p>
+<p>AppsScript should probably be the default tool when working with Google Sheets because it is built in, but Python does have tools available to work with Google Sheets.</p>
+<p><strong>Resources</strong></p>
+<p><a href="https://github.com/nithinmurali/pygsheets">pygsheets Github</a></p>
+<p><a href="https://pygsheets.readthedocs.io/en/stable/authorization.html">pygsheets Documentation</a></p>
+<p><a href="https://developers.google.com/sheets/api/guides/concepts">Google Sheets Documentation</a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pandas Documentation</a></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/copying-a-csv-file-to-google-sheets-with-pygsheets.html">posted at 18:58</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-coding-excel-google-pandas.html" rel="tag">automation, coding, excel, Google, pandas</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/api.html" class="tags">api</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/google-api.html" class="tags selected">google api</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/google-sheets.html" class="tags">google sheets</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/json.html" class="tags">json</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/spreadsheets.html" class="tags">spreadsheets</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

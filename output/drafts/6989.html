@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Crawling the Subfolders and Files of a Folder 3 Levels Deep with List Comprehensions</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-performance-programming-scripts.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-performance-programming-scripts.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content="file system,list comprehensions,python" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jun 11, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/drafts/6989.html" rel="bookmark" title="Permanent Link to &quot;Crawling the Subfolders and Files of a Folder 3 Levels Deep with List Comprehensions&quot;">Crawling the Subfolders and Files of a Folder 3 Levels Deep with List Comprehensions</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Traversing a tree of folders can be done many ways in Python. Here is one approach that worked for me using pathlib, list comprehensions and <a href="https://docs.python.org/3/library/os.html#os.scandir">os.scandir()</a>. I was able to use pathlib and the os module to get a list of all files and subfolders up to two levels below a top level folder.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>The inspiration to use os.scandir() came from <a href="https://stackoverflow.com/questions/973473/getting-a-list-of-all-subdirectories-in-the-current-directory">this Stack Overflow post</a>. It is well documented as the most performant way to get a list of items in a folder. List comprehensions are also often acknowledged as a faster way to loop through iterators. Note how we can use pathlib's is_file() and is_dir() finctions within the list comprehensions to find either the subfolders or subfiles.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>I'm satisfied with this code because I've tried to do this before but failed to get other strategies to work. It gets the job done and uses some clever, Pythonic pieces: pathlib, os.scandir() and two list comprehensions. There may be a better way, but I'm happy with this one for now!</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code {"language":"python"} --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+
+<span class="k">def</span> <span class="nf">crawl_folder</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a list of sub-folders and sub-files from top level folder.</span>
+<span class="sd">    Accepts: pathlib path object</span>
+<span class="sd">    Returns: subfolders and file names as 2 lists</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">subfolders</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">scandir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()]</span>
+    <span class="n">file_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">subfolder</span> <span class="ow">in</span> <span class="n">subfolders</span><span class="p">:</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">scandir</span><span class="p">(</span><span class="n">subfolder</span><span class="p">)]</span>
+        <span class="n">file_names</span> <span class="o">+=</span> <span class="n">files</span>
+        <span class="n">sub_sub_folders</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">scandir</span><span class="p">(</span><span class="n">subfolder</span><span class="p">)</span> <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()]</span>
+        <span class="k">for</span> <span class="n">subfolder</span> <span class="ow">in</span> <span class="n">sub_sub_folders</span><span class="p">:</span>
+            <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">scandir</span><span class="p">(</span><span class="n">subfolder</span><span class="p">)]</span>
+            <span class="n">file_names</span> <span class="o">+=</span> <span class="n">files</span>
+    <span class="n">subfolders</span> <span class="o">+=</span> <span class="n">sub_sub_folders</span>
+    <span class="k">return</span> <span class="n">subfolders</span><span class="p">,</span> <span class="n">file_names</span>
+
+
+<span class="c1"># specify full path if folder not in the same folder as script</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;Folder_Name&quot;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+<span class="n">subfolders</span><span class="p">,</span> <span class="n">file_names</span> <span class="o">=</span> <span class="n">crawl_folder</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;Crawled_Files.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">file_names</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+<p><code>&lt;!-- wp:quote --&gt;</code></p>
+<blockquote>
+<p>The <a href="https://docs.python.org/3/library/os.html#os.scandir"><code>scandir()</code></a> function returns directory entries along with file attribute information, giving better performance for many common use cases.</p>
+<p><code>&lt;cite&gt;</code>https://docs.python.org/3/library/os.html#os.listdir<code>&lt;/cite&gt;</code></p>
+</blockquote>
+<p><code>&lt;!-- /wp:quote --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>See also: <a href="https://peps.python.org/pep-0471/">PEP 471 – os.scandir() function – a better and faster directory iterator</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/drafts/6989.html">posted at 15:47</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-performance-programming-scripts.html" rel="tag">coding, performance, programming, Scripts</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/file-system.html" class="tags">file system</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/list-comprehensions.html" class="tags">list comprehensions</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

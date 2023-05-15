@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "SQLite"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/sqlite.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/sqlite.html">SQLite</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Sep 20, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/getting-the-lay-of-the-land-in-sqlite-and-connecting-to-a-db-with-pythons-sqlite3-library.html" rel="bookmark" title="Permanent Link to &quot;SQLite3: Pythonic First Impressions & Lay of the Land&quot;">SQLite3: Pythonic First Impressions & Lay of the Land</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>introduction</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>SQLite is one of the heavy hitters in the database space, up there with other popular choices like MySQL, Postgres, Microsoft SQLServer, Cassandra and MariaDB. There is no shortage of <a href="https://dbdb.io/">database technologies</a> but SQLite is certainly one that is commonly used. It also has a positive reputation. Its terminal interface reminds me of <a href="https://pythonmarketer.wordpress.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/">MySQL</a>. The syntax of both seem similarly "SQL-like" and easy to pick up.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>I finally got around to test-driving a <a href="https://en.wikipedia.org/wiki/SQLite">SQLite</a> database this week. In this post, I've listed my impressions of some practical SQLite commands. The "dot" syntax is helpful to do a lot things as you'll see below. I'll conclude by briefly exploring the sqlite3 python library in the python interpreter.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>getting started</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>I <a href="https://linuxhint.com/install_sqlite_browser_ubuntu_1804/">installed SQLite from the terminal</a> with apt on Ubuntu Linux.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>There are also downloads for Windows. A popular GUI is <a href="https://sqlitestudio.pl/">SQLite Studio</a>.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>create a new database</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>sqlite3 PythonMarketer.db</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>create a new db + new table and import a csv file to the table, "Readers"</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">sqlite3</span> <span class="n">PythonMarketer</span><span class="o">.</span><span class="n">db</span>
+<span class="o">.</span><span class="n">mode</span> <span class="n">csv</span> <span class="n">Readers</span>
+<span class="o">.</span><span class="kn">import</span> <span class="nn">PythonMarketerReaders2015</span><span class="o">-</span><span class="mf">2020.</span><span class="n">csv</span> <span class="n">Readers</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>[<a href="https://tableplus.com/blog/2018/07/sqlite-how-to-import-csv-file-into-sqlite-table.html">source</a>]</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>create a table</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>CREATE TABLE</code>Readers<code>(Country TEXT,Visits INTEGER);</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>add new column with a default value</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>ALTER TABLE Readers ADD  TEXT DEFAULT '0';</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>show all help (and . syntax) options</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>.help</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>show all tables</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>.tables</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>show table creation statement (table schema)</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>.schema Readers</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>exit sqlite terminal</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>.exit</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>show databases</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>.databases</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>show all indexes</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>.indexes</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>"show" various DB settings</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>.show</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:image {"align":"left","id":4412,"sizeSlug":"large"} --&gt;</code></p>
+<p>::: wp-block-image
+<img alt="" class="wp-image-4412" src="https://pythonmarketer.files.wordpress.com/2020/09/show-explain-sqlite3.jpg?w=904">
+:::</p>
+<p><code>&lt;!-- /wp:image --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><em>Pictured: "showing" DB settings and "<a href="https://sqlite.org/lang_explain.html">EXPLAIN-ing</a>" a query</em></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Exploring sqlite operators:</strong> the <strong><a href="https://www.sqlitetutorial.net/sqlite-glob/">GLOB operator</a></strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:heading --&gt;</code></p>
+<h2>Exploring my new table with the <a href="https://docs.python.org/3/library/sqlite3.html">Python sqlite3 library</a> in the Python interpreter</h2>
+<p><code>&lt;!-- /wp:heading --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> is in the python standard library, always a nice convenience to simply import it! Here we are connecting to an existing .db with <code>sqlite3.connect()</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:image {"align":"left","id":4416,"sizeSlug":"large"} --&gt;</code></p>
+<p>::: wp-block-image
+<img alt="" class="wp-image-4416" src="https://pythonmarketer.files.wordpress.com/2020/09/python-interpreter-python-sqlite.jpeg?w=717">
+:::</p>
+<p><code>&lt;!-- /wp:image --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Below, getting a cursor object that holds our S<code>ELECT</code> query results. Then iterating through each row of the cursor object with a for loop, as demonstrated in the documentation.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:image {"align":"left","id":4417,"sizeSlug":"large"} --&gt;</code></p>
+<p>::: wp-block-image
+<img alt="**Shown above:** printing the rows within the cursor object returned from executing a SELECT SQL statement.  
+" class="wp-image-4417" src="https://pythonmarketer.files.wordpress.com/2020/09/pythonsqlitedbreaders.jpeg?w=820">
+:::</p>
+<p><code>&lt;!-- /wp:image --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Comparable Cursors and PEP 249</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>The cursor object has a variety of methods you can call on it for database operations and to execute SQL. You can read more about them in the <a href="https://docs.python.org/3/library/sqlite3.html">sqlite3 module documentation</a>. This library also follows <a href="https://www.python.org/dev/peps/pep-0249/">PEP 249 - Python Database API Specification</a> for recommended Database API interfaces. I've noticed that in <a href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/">pyodbc</a>, for example, the cursor object looks and feels the same as the cursor object in sqlite3. This is because they are both likely following PEP 249. Very cool!</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:heading --&gt;</code></p>
+<h2>Before You Go, Check Out Python Marketer's <a href="https://github.com/erickbytes/Python-Marketer-Reader-Analytics">Open Data Github Repository</a></h2>
+<p><code>&lt;!-- /wp:heading --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>The data shown in this post is published on <a href="https://github.com/erickbytes/Python-Marketer-Reader-Analytics">Github</a>. There you'll find you this blog's reader by country data, with analysis in a Jupyter Notebook. <a href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">This post I wrote</a> shows more info about using Jupyter and matplotlib for data analysis if you're curious about it.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>In 2020, <strong>105 countries or 53%</strong> of the world's countries have read about Python on this blog. 🤯👏👏👏 Amazing.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>I think this data offers a hint of perspective into the question, "Where in the world are people learning about Python?" The short answer is all around the world! That's pretty rad. Thanks for reading and stay curious.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/getting-the-lay-of-the-land-in-sqlite-and-connecting-to-a-db-with-pythons-sqlite3-library.html">posted at 00:09</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/data-databases-python-sql.html" rel="tag">data, Databases, python, SQL</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/open-data.html" class="tags">open data</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/sqlite.html" class="tags selected">SQLite</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/sqlite-commands.html" class="tags">SQLite commands</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/sqlite3.html" class="tags">sqlite3</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

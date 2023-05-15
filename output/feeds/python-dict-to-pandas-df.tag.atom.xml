@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - Python dict to pandas df</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/python-dict-to-pandas-df.tag.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2022-02-09T23:16:00-06:00</updated><entry><title>How to Convert a Python Dictionary to and from a pandas DataFrame</title><link href="https://pythonmarketer.com/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html" rel="alternate"></link><published>2022-02-09T23:16:00-06:00</published><updated>2022-02-09T23:16:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2022-02-09:/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html</id><summary type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This is an example of how to cast a Python dict into a dataframe and vice versa. I picked up the df to dict part from this &lt;a href="https://cmdlinetips.com/2021/04/convert-two-column-values-from-pandas-dataframe-to-a-dictionary/#:~:text=Another%20approach%20to%20convert%20two,all%20columns%20in%20the%20dataframe."&gt;Python and R tips post&lt;/a&gt; and the dict to df part from a &lt;a href="https://stackoverflow.com/questions/18837262/convert-python-dict-into-a-dataframe"&gt;Stack Overflow post&lt;/a&gt;. The below adaptation begins by …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This is an example of how to cast a Python dict into a dataframe and vice versa. I picked up the df to dict part from this &lt;a href="https://cmdlinetips.com/2021/04/convert-two-column-values-from-pandas-dataframe-to-a-dictionary/#:~:text=Another%20approach%20to%20convert%20two,all%20columns%20in%20the%20dataframe."&gt;Python and R tips post&lt;/a&gt; and the dict to df part from a &lt;a href="https://stackoverflow.com/questions/18837262/convert-python-dict-into-a-dataframe"&gt;Stack Overflow post&lt;/a&gt;. The below adaptation begins by converting an "NFL quarterbacks" Python dictionary into a dataframe and then back into a dict.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Sometimes a dictionary is adequate to solve a problem with handy methods like get() and &lt;a href="https://docs.python.org/3/tutorial/datastructures.html#looping-techniques"&gt;items()&lt;/a&gt;. You can also do a ton with a &lt;a href="https://www.python.org/dev/peps/pep-0274/"&gt;dict comprehension&lt;/a&gt;. When more complex tabular data operations are needed, the pandas pd.DataFrame class is well equipped for the job. Dictionaries and dataframes are delightfully interoperable, like Tom Brady and any football team on the planet.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:syntaxhighlighter/code {"language":"python"} --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+
+&lt;span class="n"&gt;qbs_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;Matthew Stafford&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Los Angeles Rams&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;Joe Burrow&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Cincinnati Bengals&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;Tom Brady&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tampa Bay Buccaneers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;Pat Mahomes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Kansas City Chiefs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;Tony Romo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Dallas Cowboys&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;qbs_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;qbs_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;team&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;qbs_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="n"&gt;qbs_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Series&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;qbs_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;team&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;qbs_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_dict&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;qbs_dict&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sort_dicts&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;qbs_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tom Brady&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Name not found.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:syntaxhighlighter/code --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Terminal Output&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:syntaxhighlighter/code --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype 
+---  ------  --------------  ----- 
+ 0   name    5 non-null      object
+ 1   team    5 non-null      object
+dtypes: object(2)
+memory usage: 208.0+ bytes
+None
+
+{&amp;#39;Joe Burrow&amp;#39;: &amp;#39;Cincinnati Bengals&amp;#39;,
+ &amp;#39;Matthew Stafford&amp;#39;: &amp;#39;Los Angeles Rams&amp;#39;,
+ &amp;#39;Pat Mahomes&amp;#39;: &amp;#39;Kansas City Chiefs&amp;#39;,
+ &amp;#39;Tom Brady&amp;#39;: &amp;#39;Tampa Bay Buccaneers&amp;#39;,
+ &amp;#39;Tony Romo&amp;#39;: &amp;#39;Dallas Cowboys&amp;#39;}
+
+Tampa Bay Buccaneers
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:syntaxhighlighter/code --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Did you notice that pprint sorts dicts by default?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Here the printed dict is reordered alphabetically on the QB's names. Per the pprint docs, you can alter this behavior if desired via a keyword argument new in Python version 3.8:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:syntaxhighlighter/code {"language":"python"} --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pprint.pprint(qbs_dict, sort_dicts=False)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:syntaxhighlighter/code --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pandas&lt;/strong&gt; &lt;strong&gt;Documentation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/docs/getting_started/install.html"&gt;pandas installation documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html"&gt;pandas.DataFrame&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html"&gt;pandas.Series&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_dict.html"&gt;pandas.DataFrame.to_dict&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html"&gt;pandas.DataFrame.info&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python Standard Library Documentation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.python.org/3/library/pprint.html#pprint.pprint"&gt;pprint.pprint&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.python.org/3/library/stdtypes.html?highlight=dict#mapping-types-dict"&gt;dict&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.python.org/3/library/stdtypes.html#dict.get"&gt;dict.get&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;</content><category term="coding, pandas, programming, python"></category><category term="pandas df to Python dict"></category><category term="Python data structure conversion"></category><category term="Python dict to pandas df"></category></entry></feed>

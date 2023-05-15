@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - automation, programming, software testing, Windows</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/automation-programming-software-testing-windows.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2020-03-21T01:47:00-05:00</updated><entry><title>Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box</title><link href="https://pythonmarketer.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html" rel="alternate"></link><published>2020-03-21T01:47:00-05:00</published><updated>2020-03-21T01:47:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2020-03-21:/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installing &lt;a href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt;, a python testing library …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installing &lt;a href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt;, a python testing library:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python -m pip install pytest&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A Few Words on pytest&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.&lt;/p&gt;
+&lt;p&gt;**Writing a Test **&lt;/p&gt;
+&lt;p&gt;Let's use &lt;strong&gt;test_file_date.py&lt;/strong&gt; as our test, which uses the &lt;a href="https://docs.python.org/3/library/glob.html"&gt;glob&lt;/a&gt; module and [&lt;a href="https://docs.python.org/2/library/os.path.html#os.path.getmtime"&gt;os.getmtime&lt;/a&gt;]{style="color:var(--color-text);"}[ ]{style="color:var(--color-text);"}[to get the csv with the most recent modification date ]{style="color:var(--color-text);"}[on my desktop. Then it tests if that date is today, in my case, for an expected daily file drop.]{style="color:var(--color-text);"}&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt; 
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;glob&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getpass&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_csv_date_equals_today&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;The dir_query format is for a Windows path with Unix style pattern matching.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;dir_query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;{getpass.getuser()}&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Desktop&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;*.csv&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# specify csv extension and folder&lt;/span&gt;
+    &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iglob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dir_query&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# get most recent file&lt;/span&gt;
+    &lt;span class="n"&gt;file_timestamp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;file_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromtimestamp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_timestamp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;file_date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Here's the pytest text output when the test is passing:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;============================= test session starts =============================
+platform win32 -- Python 3.8.1, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
+rootdir: C:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;collected 1 item&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;..\..\Users\martech\Desktop\test_file_date.py . [ 14%]&lt;/span&gt;
+&lt;span class="cp"&gt;                                                                   [100%]&lt;/span&gt;
+
+============================== 1 passed in 0.28s ==============================
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Creating a Task with Windows Task Scheduler&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you haven't used python with Windows Task Scheduler before, &lt;a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/"&gt;my previous post&lt;/a&gt; on creating a task may help you. We'll create two of them for our testing system.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Adding Your Task Scheduler Program: a Windows .bat file&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Add your username to the text below and adjust the paths to your system. Then save a &lt;a href="https://en.wikipedia.org/wiki/Batch_file"&gt;Windows .bat file&lt;/a&gt; with this text, which points to your pytest.exe file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cmd /c &amp;quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&amp;quot; ^
+C:\Users\your_username\Desktop\test_file_date.py &amp;gt; C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This example is referencing an .exe within a hypothetical "VM_Jobs" &lt;a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtual environment&lt;/a&gt;, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Breaking this out, there are five .bat files parts:&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cmd /c "C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Windows' &lt;a href="https://ss64.com/nt/cmd.html"&gt;cmd command&lt;/a&gt; takes a program, so we're passing pytest. &lt;a href="https://docs.pytest.org/en/latest/capture.html"&gt;The --capture=sys argument&lt;/a&gt; tells pytest to capture the test results. &lt;strong&gt;Note:&lt;/strong&gt; switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;\^&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;circumflex represents a line continuation in Windows batch files for better readability&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C:\Users\your_username\Desktop\test_file_date.py&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Next we're passing our python file as an argument to pytest, testing our file's modified date matches today's date.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Browse to select your .bat file for your Windows Task Scheduler task:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="bat_task" class="alignnone size-full wp-image-2669" height="590" src="https://pythonmarketer.files.wordpress.com/2020/03/bat_task.jpg" width="1032"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reading the Tests and Triggering Alerts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Passing tests signal your scripts are running successfully. When things don't work, email alerts of the failure help us respond quickly.&lt;/p&gt;
+&lt;p&gt;Let's set another task scheduler job to run &lt;strong&gt;read_test_results.py,&lt;/strong&gt; to run a few minutes after the first job each day. See this &lt;a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/"&gt;example of running Python with Task Scheduler&lt;/a&gt; if you haven't triggered a python script from Task Scheduler before.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getpass&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;Automate pytest with Windows Task Scheduler - Python Marketer&lt;/span&gt;
+&lt;span class="sd"&gt;http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/&lt;/span&gt;
+
+&lt;span class="sd"&gt;Use Task Scheduler run a batch file. &lt;/span&gt;
+&lt;span class="sd"&gt;The batch file runs pytest and captures our pytest function results to sys. &lt;/span&gt;
+&lt;span class="sd"&gt;If a text file contains a failure or error, write the test contents into a folder.&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;user_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getpass&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getuser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;basicConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;user_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;logging&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Automated_Testing_Alerts.log&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%(asctime)s&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%(message)s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;datefmt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;-%b-%y %H:%M:%S&amp;#39;&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Checking for failed tests...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;user_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Desktop&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;VM_Jobs&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;test_results&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;test_results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fname&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;fname&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.txt&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;txt_file&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;test_results&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;txt_file&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;FAILURES&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;user_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Desktop&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;VM_Jobs&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;send_failure_alert&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+        &lt;span class="n"&gt;today&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+        &lt;span class="n"&gt;out_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;txt_file&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;_Failed_Results_&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;.txt&amp;#39;&lt;/span&gt;
+        &lt;span class="n"&gt;alert_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;out_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;w+&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;alert_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;alert_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;alert_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;No failed tests found in file:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Setting up Email Alert Notifications on a Box Folder&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The above script checks the test results and creates a file with any failed tests in a different folder. I &lt;a href="https://support.box.com/hc/en-us/articles/360044194073-Manage-Notifications-for-Enterprise-Users"&gt;edited the folder's settings&lt;/a&gt; to email me when a new file is added, thanks to Box notifications. We use &lt;a href="http://www.box.com"&gt;Box&lt;/a&gt; for secure file sharing at my day current day job.&lt;/p&gt;
+&lt;p&gt;Alternatively for those without Box, you could use 'ole trusty &lt;a href="https://docs.python.org/3/library/smtplib.html"&gt;smtplib&lt;/a&gt; to send the failure alerts with python. I chose the easier, ready to go option. Remember, "&lt;a href="https://zen-of-python.info/simple-is-better-than-complex.html"&gt;Simple is better than complex&lt;/a&gt;."&lt;/p&gt;
+&lt;p&gt;Or the &lt;a href="https://github.com/mhammond/pywin32"&gt;pywin32 module&lt;/a&gt; has an interface to Outlook that is very handy. For an example of sending a Windows Outlook email, check the very end of &lt;a href="http://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/"&gt;this post I wrote on "Scripting Windows Like a Pro"&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;We now have an automated testing system with email monitoring alerts if our csv file date test fails, thanks to:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows Task Scheduler (two tasks running each day in succession)&lt;/li&gt;
+&lt;li&gt;python/pytest&lt;/li&gt;
+&lt;li&gt;a Windows .bat file&lt;/li&gt;
+&lt;li&gt;Box (or smtplib or pywin32) email alerts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;In Summation&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The first task runs a .bat file to run pytest and create a text file with daily automation test results.&lt;/li&gt;
+&lt;li&gt;The second task runs a python file. Setting in motion:&lt;/li&gt;
+&lt;li&gt;Checking the test result text files, looking for failed tests&lt;/li&gt;
+&lt;li&gt;Creating a text file with any failing tests in a Box folder, if found&lt;/li&gt;
+&lt;li&gt;Then Box emails me if any test fails.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Final Thoughts on the .bat, Man&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format&lt;strong&gt;&lt;a href="https://www.youtube.com/watch?v=65eDsGY5MTE"&gt;&lt;img alt="legobatman" class="wp-image-2704 alignright" height="95" src="https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg" width="95"&gt;&lt;/a&gt;&lt;/strong&gt; the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a "glue" piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Life is in the journey.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="_wp_link_placeholder"&gt;pytest plugins&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pypi.org/project/pytest-csv/"&gt;pytest-csv&lt;/a&gt;: write test results to a csv with this plugin&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I wrote another post compiling peoples' thoughts on testing &lt;a href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;</content><category term="automation, programming, software testing, Windows"></category><category term="coding"></category><category term="pytest"></category><category term="python"></category><category term="software development"></category></entry></feed>

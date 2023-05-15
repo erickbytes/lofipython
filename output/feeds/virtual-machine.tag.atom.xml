@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - virtual machine</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/virtual-machine.tag.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2018-04-10T00:44:00-05:00</updated><entry><title>Creating Isolated Python Environments with Virtualenv</title><link href="https://pythonmarketer.com/creating-isolated-python-environments-with-virtualenv.html" rel="alternate"></link><published>2018-04-10T00:44:00-05:00</published><updated>2018-04-10T00:44:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2018-04-10:/creating-isolated-python-environments-with-virtualenv.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Why bother?&lt;/strong&gt; Because with &lt;a href="https://virtualenv.pypa.io/en/stable/"&gt;virtualenv&lt;/a&gt;, we can create multiple Python environments on one computer that each:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Are capable of running different versions of Python.&lt;/em&gt; Right now I have both Python 2.7 and Python 3.8 installed and am able to create either environment and run code with that version's …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Why bother?&lt;/strong&gt; Because with &lt;a href="https://virtualenv.pypa.io/en/stable/"&gt;virtualenv&lt;/a&gt;, we can create multiple Python environments on one computer that each:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Are capable of running different versions of Python.&lt;/em&gt; Right now I have both Python 2.7 and Python 3.8 installed and am able to create either environment and run code with that version's Python interpreter.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Isolate dependencies for external libraries.&lt;/em&gt; Once the environment is created, I do not have to worry about different versions of Python libraries conflicting with each other.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Allow you to have a unique Python environment for different projects.&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Potential Pitfalls to Avoid with Virtual Environments&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Know your OS.&lt;/strong&gt; The virtualenv commands are slightly different from the Mac, or Linux OS to Windows.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Be aware of variations within Windows systems.&lt;/strong&gt; Some Stack Overflow post commands mention a "Bin" folder, however on my particular version of Windows, the folder was named "Scripts" instead. There was no "Bin" folder that I could locate.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Choose the right library.&lt;/strong&gt; Virtualenv is used commonly. Virtualenvwrapper is a handy tool to make it easier to use. I chose virtualenv as my virtual environment library because I wanted to maintain both Python 2.7 and 3.8 environments. For versions of Python 3.3 and above, check out &lt;a href="https://docs.python.org/3/library/venv.html"&gt;venv&lt;/a&gt;, an easy to use, stock library and virtual environment generator. I am looking forward to checking both of these out. Virtualenv can be installed with the &lt;a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip installer&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Consider upgrading your Python version to the &lt;a href="https://www.google.com/search?client=ubuntu&amp;amp;channel=fs&amp;amp;q=python+latest+stable+release&amp;amp;ie=utf-8&amp;amp;oe=utf-8"&gt;latest stable release&lt;/a&gt;. &lt;a href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/"&gt;Follow these steps to download and install Python 3.8 in the Ubuntu terminal.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Install pip in your new Python version:&lt;br&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl -O https://bootstrap.pypa.io/get-pip.py
+python3.8 get-pip.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Virtalenv on Ubuntu:&lt;/strong&gt; &lt;code&gt;sudo pip3 install virtualenv&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Create a virtual environment with your new Python version. Enter in terminal or command prompt:&lt;/strong&gt; &lt;code&gt;virtualenv -p python3.8 38env&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Activate your new virtual environment on Ubuntu:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cd Desktop/Projects/Sandbox38/bin &amp;amp;&amp;amp; source activate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Alternatively, activate an env on Windows:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cd Desktop\Projects\your_env_name\scripts &amp;amp; activate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://www.codingforentrepreneurs.com/blog/activate-reactivate-deactivate-your-virtualenv/"&gt;Activation and Deactivation for Mac vs. Windows&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Now you can now install pandas 1.0 in your virtual environment.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python3.8 -m pip install pandas&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Below are two screenshots of the command prompt and some links that helped me.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Below, I am creating a 2.7 environment, even though I have Python 3.6 as my system version. Note how many times I messed up before I got it right, thanks to a &lt;a href="https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv"&gt;Stack Overflow post&lt;/a&gt;. It took many previous tries but I eventually figured out how to create a Python 2.7 virtualenv, which I named py27_env. I ran the python.exe file inside of the folder where I installed Python 2.7, which I named py27.&lt;/p&gt;
+&lt;p&gt;To run a program, I entered python some_program.py. I also tested by downloading modules that did not have a version compatible with Python 3.6. It worked and installed the correct Python 2 version in my py27_env environment.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="create_py2_env" class="alignnone size-full wp-image-1378" height="882" src="https://pythonmarketer.files.wordpress.com/2018/04/create_py2_env.jpg" width="700"&gt;&lt;/p&gt;
+&lt;p&gt;Below, I am activating a previously created environment named 14pandas. Then I am installing two external Excel libraries, pandas and xlrd in my environment. The one-liner posted above is a more efficient way to activate a virtualenv.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="virtualenv_Activate" class="alignnone size-full wp-image-1379" height="564" src="https://pythonmarketer.files.wordpress.com/2018/04/virtualenv_activate.jpg" width="676"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe"&gt;More Reading on venv, pipenv, and virtualenv&lt;/a&gt;&lt;/p&gt;</content><category term="coding, programming"></category><category term="computers"></category><category term="python"></category><category term="virtual machine"></category></entry></feed>

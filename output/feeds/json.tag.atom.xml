@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - json</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/json.tag.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2022-01-10T23:15:00-06:00</updated><entry><title>Analyzing Messi vs. Ronaldo with the FIFA API + jq + curl</title><link href="https://pythonmarketer.com/pretty-print-the-ea-sports-fifa-ultimate-team-json-with-jq-curl.html" rel="alternate"></link><published>2022-01-10T23:15:00-06:00</published><updated>2022-01-10T23:15:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2022-01-10:/pretty-print-the-ea-sports-fifa-ultimate-team-json-with-jq-curl.html</id><summary type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Who is the world's greatest footballer, Messi or Ronaldo? EA Sports surely has calculated the answer to this question in their player ratings. They rate peak Crisitiano Ronaldo, Lionel Messi and Luka Modrić at 99 overall, with Neymar and Lewandowski at 98. Anecdotally, Messi has won 7 &lt;a href="https://www.topendsports.com/sport/soccer/list-player-of-the-year-ballondor.htm"&gt;Ballon …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Who is the world's greatest footballer, Messi or Ronaldo? EA Sports surely has calculated the answer to this question in their player ratings. They rate peak Crisitiano Ronaldo, Lionel Messi and Luka Modrić at 99 overall, with Neymar and Lewandowski at 98. Anecdotally, Messi has won 7 &lt;a href="https://www.topendsports.com/sport/soccer/list-player-of-the-year-ballondor.htm"&gt;Ballon d'Or&lt;/a&gt;, the highest individual football honor one can achieve each year. Ronaldo has won 5 B'allon d'Or. Modrić has won 1 Ballon d'Or. Lewandowski was runner up this year, but has never won the honor. Neymar has never won a Ballon d'Or.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;In &lt;a href="https://www.ea.com/games/fifa/fifa-22"&gt;FIFA&lt;/a&gt;, a player's video game representation is modeled intricately in a series of traits and specialties characterizing each player. The &lt;a href="https://www.easports.com/fifa/ultimate-team/api/fut/item"&gt;"Ultimate Team" EA Sports API&lt;/a&gt; is viewable as a plain json page or more cheekily with one line of &lt;a href="https://curl.se/"&gt;curl&lt;/a&gt; and &lt;a href="https://github.com/stedolan/jq"&gt;jq, a "command line json processor"&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:preformatted --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl &amp;#39;https://www.easports.com/fifa/ultimate-team/api/fut/item&amp;#39; | jq &amp;#39;.&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:preformatted --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Enter this in a &lt;a href="https://missing.csail.mit.edu/2020/shell-tools/"&gt;shell&lt;/a&gt; or &lt;a href="https://github.com/jlevy/the-art-of-command-line"&gt;command line&lt;/a&gt;. The result is beautiful, readable, pretty printed json!&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:heading {"level":3} --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="messi-left-vs-ronaldo-right-fifa-player-ratings"&gt;Messi (Left) Vs. Ronaldo (Right) FIFA Player Ratings&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:heading --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:jetpack/tiled-gallery {"columnWidths":[["53.33045","46.66955"]],"ids":[6511,6514]} --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;::: {.wp-block-jetpack-tiled-gallery .aligncenter .is-style-rectangular}
+::: tiled-gallery__gallery
+::: tiled-gallery__row
+::: {.tiled-gallery__col style="flex-basis:53.33045%;"}
+&lt;img alt="" amp-layout="responsive" data-height="923" data-id="6511" data-link="https://pythonmarketer.com/messi-fifa-attributes-cropped/" data-width="433" src="https://pythonmarketer.files.wordpress.com/2022/01/messi-fifa-attributes-cropped.png" url="https://pythonmarketer.files.wordpress.com/2022/01/messi-fifa-attributes-cropped.png?w=433"&gt;
+:::&lt;/p&gt;
+&lt;p&gt;::: {.tiled-gallery__col style="flex-basis:46.66955%;"}
+&lt;img alt="" amp-layout="responsive" data-height="955" data-id="6514" data-link="https://pythonmarketer.com/ronaldo-attributes-fifa/" data-width="392" src="https://pythonmarketer.files.wordpress.com/2022/01/ronaldo-attributes-fifa.png" url="https://pythonmarketer.files.wordpress.com/2022/01/ronaldo-attributes-fifa.png?w=392"&gt;
+:::
+:::
+:::
+:::&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:jetpack/tiled-gallery --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;These ratings represent the players at their peak of their careers. Messi is a better dribbler, while Ronaldo has more power and strength. Messi has the edge in free kicks, curve in his shot and "longshots" 99 to 98 over Cristiano. They are tied at "finishing", each with 99. Ronaldo has the "Power Free-Kick" trait, whereas Messi has "Chip Shot", "Finesse Shot" and "Playmaker" traits giving him an edge.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an "Aerial Threat" specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2" (187 cm) vs. Messi's 5' 7" (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is quite darty.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:embed {"url":"https://www.instagram.com/p/Cc59jtvjk_0/","type":"rich","providerNameSlug":"instagram","responsive":true} --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;figure class=&amp;quot;wp-block-embed is-type-rich is-provider-instagram wp-block-embed-instagram&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;::: wp-block-embed__wrapper
+https://www.instagram.com/p/Cc59jtvjk_0/
+:::&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;figcaption&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Messi has incredible accuracy from distance.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;/figcaption&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;/figure&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:embed --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Messi is a better passer all around and has perfect "vision", great qualities for winning football games. Only in crossing does he have a lower passing rating. Ronaldo is also 10 points better at "penalties" or penalty kicks. The closer he gets to the goal, the more dangerous he is. Messi is more dangerous with the ball while dribbling, passing or shooting except when taking a PK.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Advantages can be gained in many different aspects of soccer. EA has developed a fun dataset to model these all time greats across several football skill dimensions. In &lt;a href="https://www.ea.com/en-gb/games/fifa/fifa-22/ratings/ratings-database"&gt;2022's version of the game&lt;/a&gt;, Messi is rated a 93, with Cristiano 91. Clearly these two are worthy of top honors. Don't forget Robert Lewandowski, with a 92 rating, who consistently lights up the Champions League and Bundesliga.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;jq ftw&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I had never used jq before this. Really enjoyed the quick, stylish and practical view of some json. This cool terminal display and syntax highlighting was on my Chromebook shell. It's neat how easily you can pretty print json with jq. I rate it a 99 for json pretty printing on the FIFA scale. Read more in the &lt;a href="https://stedolan.github.io/jq/tutorial/"&gt;jq documentation&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;</content><category term="command prompt, productivity"></category><category term="command line"></category><category term="data"></category><category term="fifa"></category><category term="football"></category><category term="jq"></category><category term="json"></category></entry><entry><title>Copying a pandas Dataframe to Google Sheets with pygsheets</title><link href="https://pythonmarketer.com/copying-a-csv-file-to-google-sheets-with-pygsheets.html" rel="alternate"></link><published>2019-12-21T18:58:00-06:00</published><updated>2019-12-21T18:58:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2019-12-21:/copying-a-csv-file-to-google-sheets-with-pygsheets.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;: This endeavor was before I discovered &lt;a href="https://developers.google.com/apps-script"&gt;AppScript&lt;/a&gt;, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;: This endeavor was before I discovered &lt;a href="https://developers.google.com/apps-script"&gt;AppScript&lt;/a&gt;, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by automating Google Sheet operations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;This was done on the Windows 7 OS.&lt;/strong&gt; &lt;strong&gt;First, &lt;a href="https://docs.python.org/3/installing/index.html"&gt;install libraries with pip&lt;/a&gt;. Enter in command prompt or terminal:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;python -m pip install pandas&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;python -m pip install numpy&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;python -m pip install pygsheets&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Then, following the&lt;/strong&gt; &lt;strong&gt;&lt;a href="https://pygsheets.readthedocs.io/en/stable/authorization.html"&gt;steps documented by pygsheets:&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a Google Developer Account at &lt;a href="http://console.developers.google.com"&gt;console.developers.google.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pygsheets.readthedocs.io/en/stable/authorization.html"&gt;Enable Sheets API&lt;/a&gt; to account&lt;/li&gt;
+&lt;li&gt;Enable Drive API to account. Same as last step, but search for Drive.&lt;/li&gt;
+&lt;li&gt;Create a Client Secret json file. Select "Credentials" tab, and "Create Credentials". Select Client Secret from options. Export from console and place in same directory as your .py file.&lt;/li&gt;
+&lt;li&gt;Create a Service Account json file by selecting it instead of "Client Secret".&lt;/li&gt;
+&lt;li&gt;Authorize pygsheets with your json files. (See below.)&lt;/li&gt;
+&lt;li&gt;Copy spreadsheet to Google Sheet with pandas and pygsheets. (See below.)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;After completing the first 5 steps, import pygsheets and authorize your account with the client secret json file:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pygsheets&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygsheets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;authorize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client_secret&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/to/client_secret[...].json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You will be prompted by the terminal to go to a hyperlink in a browser, get your authorization code, and enter that authorization code into the terminal.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Now, import both libraries needed and switch to authorize with your service json file. Then, load the csv to a dataframe with pandas. Finally, copy it to an existing Google Sheet with pygsheets:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pygsheets&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Select worksheets by id, index, or title.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygsheets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;authorize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;service_file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/to/service_account_credentials.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;add_google_sheet_name_here&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;wks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;worksheet_by_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;add_sheet_tab_name_here&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Set a pandas dataframe to google sheet, starting at 1st row, 1st column&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Example_Data.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;wks&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_dataframe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;[Example] Split and upload a sheet with 40 columns&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Google Sheets limits importing to 26 columns and 1,000 rows at a time. So you'll have to load the sheets in chunks if you have more than that. This approach uses numpy's &lt;a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_split.html"&gt;array_split&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pygsheets&lt;/span&gt; 
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+
+&lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygsheets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;authorize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client_secret&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/to/client_secret[...].json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;add_google_sheet_name_here&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;wks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;worksheet_by_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;add_sheet_tab_name_here&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Data_to_GSheets.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# split columns into two dataframes with numpy and pandas&lt;/span&gt;
+&lt;span class="n"&gt;first_half_cols&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;second_half_cols&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="kp"&gt;array_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;first_half&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;first_half_cols&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;second_half&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;second_half_cols&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# set both dataframes side-by-side in Google sheet&lt;/span&gt;
+&lt;span class="n"&gt;wks&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_dataframe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;first_half&lt;/span&gt;&lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;start_column&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;first_half&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="kp"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;wks&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_dataframe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;second_half&lt;/span&gt;&lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;start_column&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I found the terminal error messages from pygsheets to be very helpful while debugging the above. This module offers many other nifty spreadsheet operations. Solid library. You can now create and edit Google Sheets with Python.&lt;/p&gt;
+&lt;p&gt;AppsScript should probably be the default tool when working with Google Sheets because it is built in, but Python does have tools available to work with Google Sheets.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/nithinmurali/pygsheets"&gt;pygsheets Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pygsheets.readthedocs.io/en/stable/authorization.html"&gt;pygsheets Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://developers.google.com/sheets/api/guides/concepts"&gt;Google Sheets Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html"&gt;pandas Documentation&lt;/a&gt;&lt;/p&gt;</content><category term="automation, coding, excel, Google, pandas"></category><category term="api"></category><category term="google api"></category><category term="google sheets"></category><category term="json"></category><category term="python"></category><category term="spreadsheets"></category></entry></feed>

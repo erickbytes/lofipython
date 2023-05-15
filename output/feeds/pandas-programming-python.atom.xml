@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - pandas, programming, python</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/pandas-programming-python.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2022-01-07T13:12:00-06:00</updated><entry><title>Create a Column of Values in Pandas with df.assign()</title><link href="https://pythonmarketer.com/create-a-column-of-values-in-pandas-with-df-assign.html" rel="alternate"></link><published>2022-01-07T13:12:00-06:00</published><updated>2022-01-07T13:12:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2022-01-07:/create-a-column-of-values-in-pandas-with-df-assign.html</id><summary type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/docs/"&gt;Pandas&lt;/a&gt; is amazing, what else is there to say? Learning the nuances of its API have yielded tons of times where it helped me get stuff done.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I recently picked up the &lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html"&gt;pandas dataframe's "assign" function&lt;/a&gt; for creating a new column of values. This …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/docs/"&gt;Pandas&lt;/a&gt; is amazing, what else is there to say? Learning the nuances of its API have yielded tons of times where it helped me get stuff done.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I recently picked up the &lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html"&gt;pandas dataframe's "assign" function&lt;/a&gt; for creating a new column of values. This is an elegant way to set a column of values in tabular data with the pandas library. Below you'll see two ways to set a column of values in pandas. In the first way, I am chaining two assign functions together to create 2 new columns, "sound" and "type". I prefer using assign because it looks better and it does not result in any warnings from pandas. Highly recommend getting familiar with pandas functions like assign and API nuances like &lt;a href="https://pandas.pydata.org/docs/reference/series.html?highlight=str%20accessors#accessors"&gt;Series accessors&lt;/a&gt; to up your tabular data game.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:preformatted --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="n"&gt;cats&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Garfield&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Meowth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tom&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;cats&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;cats&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="c1"&gt;# best way&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assign&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sound&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Meow&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assign&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Cartoon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+&lt;span class="c1"&gt;# alternative way that also works, but with warnings from pandas&lt;/span&gt;
+&lt;span class="c1"&gt;# df[&amp;quot;sound&amp;quot;] = &amp;quot;Meow&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:preformatted --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:quote --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;DataFrame.assign : Can evaluate an expression or function to create new&lt;br&gt;
+values for a column.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;code&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;- &lt;a href="https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487"&gt;pandas source code&lt;/a&gt;&lt;code&gt;&amp;lt;/cite&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:quote --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;</content><category term="pandas, programming, python"></category><category term="cats"></category><category term="data"></category></entry></feed>

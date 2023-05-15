@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles in the "automation, data, Databases, excel, ODBC, pandas, python, Windows" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-data-databases-excel-odbc-pandas-python-windows.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-data-databases-excel-odbc-pandas-python-windows.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/category/automation-data-databases-excel-odbc-pandas-python-windows.html">automation, data, Databases, excel, ODBC, pandas, python, Windows</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Nov 30, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/inserting-new-records-into-a-microsoft-access-database-with-python.html" rel="bookmark" title="Permanent Link to &quot;Inserting New Rows Into A Microsoft Access Database With Python and pyodbc&quot;">Inserting New Rows Into A Microsoft Access Database With Python and pyodbc</a>
+                </h2>
+
+                
+                
+
+                <p>I recently automated the loading of data into a Microsoft Access database with <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc</a>, a Python library for connecting to databases. ODBC stands for <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Open Database Connectivity</a>. It can be used for a variety of Database Management Systems outside of Access also.</p>
+<p><strong>First,</strong> <a class="reference external" href="https://docs.python.org/3/installing/index.html">install libraries with pip</a><strong>. Enter in terminal or command prompt:</strong></p>
+<ol class="arabic simple">
+<li><ol class="first arabic">
+<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pyodbc</tt></li>
+<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
+</ol>
+</li>
+</ol>
+<p><strong>Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:</strong></p>
+<pre class="literal-block">
+python
+&gt;&gt;&gt; import pyodbc
+&gt;&gt;&gt; [x for x in pyodbc.drivers() if x.startswith('Microsoft Access Driver')]
+</pre>
+<p><strong>Drivers for</strong> <strong>Access &amp; Many Other Data Sources</strong></p>
+<p>The driver is the engine that allows you to connect to a specific type of database. The drivers available vary depending on your machine.</p>
+<p>The two most common drivers for Access are Microsoft Access Driver (<em>.mdb) and Microsoft Access Driver (</em>.mdb, *.accdb). My computer only had *.mdb, which has been deprecated. My Access database was a .mdb file, so I was able to use this driver as shown below. Read more on Access drivers <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-Microsoft-Access">here</a>.</p>
+<blockquote>
+&quot;Drivers exist for all major DBMSs, many other data sources like address book systems and Microsoft Excel, and even for text or comma-separated values (CSV) files.&quot;&nbsp; - <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Wikipedia</a></blockquote>
+<p><strong>Database Data Types</strong></p>
+<p>I set all of the field data types to &quot;Short Text&quot; because I'm passing strings as SQL parameters below. Uploading as other data types may require additional formatting. To edit the data types of your table, open the table and select &quot;Design View&quot; under the &quot;Home&quot; tab. It got the job done for me!</p>
+<p><strong>Inserting new rows into a Microsoft Access Database:</strong></p>
+<pre class="literal-block">
+import pandas as pd
+import pyodbc
+
+
+def df_to_row_tuples(df):
+    &quot;&quot;&quot;
+    use list comprehension to format df rows as a list of tuples:
+    rows = [('Garfield','Orange','Eat'),('Meowth','White','Scratch')]
+    &quot;&quot;&quot;
+    df = df.fillna('')
+    rows = [tuple(cell) for cell in df.values]
+    return rows
+
+&quot;&quot;&quot;
+Rows are not added to DB until they are committed.
+Pass each row tuple as a SQL parameter (?,?,?).
+cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm
+&quot;&quot;&quot;
+conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\Add_Path\To_DB\Here\Your_DB.mdb;')
+cursor = conn.cursor()
+sql = ''' INSERT INTO Cats (Name, Color, Move)
+          VALUES(?,?,?) '''
+df = pd.read_csv('Cat Data.csv')
+rows = df_to_row_tuples(df)
+for row in rows:
+    cursor.execute(sql, row)
+conn.commit()
+</pre>
+<p><strong>Conclusion</strong></p>
+<p>Running the above in command prompt uses pyodbc and SQL to add dataframe rows to a Microsoft Access DB table named &quot;Cats&quot;. Passing each row as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/#paramstyle">SQL parameter</a> has two benefits:</p>
+<ol class="arabic simple">
+<li>It handles strings with single quotes (') and loads them to the DB.</li>
+<li>It protects against <a class="reference external" href="https://www.acunetix.com/websitesecurity/sql-injection/">SQL injection</a> attacks.</li>
+</ol>
+<p><strong>Access Limitation Disclaimer</strong></p>
+<p>Access topped out just shy of 10 million rows in my use case, when records stopped getting added to my database. So keep that in mind if you're thinking about using Access to store your data.</p>
+<p><strong>Supplementary Resources</strong></p>
+<p><a class="reference external" href="https://datatofish.com/insert-ms-access-python/">Insert Values into MS Access Table using Python</a></p>
+<p><a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc documentation</a></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15">Microsoft Documentation pyodbc example</a></p>
+<p><a class="reference external" href="https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor.htm">The Python Cursor Class</a></p>
+<p><a class="reference external" href="https://www.psycopg.org/docs/cursor.html">Psycopg Cursor Class Documentation</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/inserting-new-records-into-a-microsoft-access-database-with-python.html">posted at 00:28</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-data-databases-excel-odbc-pandas-python-windows.html" rel="tag">automation, data, Databases, excel, ODBC, pandas, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/access.html" class="tags">Access</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/microsoft.html" class="tags">Microsoft</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/productivity.html" class="tags">productivity</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

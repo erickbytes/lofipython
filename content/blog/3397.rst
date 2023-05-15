@@ -1,0 +1,92 @@
+Modern Cannabis: Creating a Recreational Dope Watcher and Automatically Scheduling A Marijuana Pick-up Appointment
+##################################################################################################################
+:date: 2020-05-24 17:37
+:author: intellectualpositivity
+:category: automation, flask, HTTP, web development
+:tags: dope, email, marijuana
+:slug: 3397
+:status: draft
+
+This can only be useful if you are in Chicago and looking to score some dope. But you can still learn about browser developer tools and making API requests by replicating this no matter where you are.
+
+`Modern Cannabis <https://moderncann.com/>`__ (MOCA) is the website, they have great products and easy appointment pick-up for your recreational and medical marijuana needs!
+
+**Creating Your Own WeedFiender**
+
+#. Go to https://orders.moderncann.com/
+#. Select menu > login to create an account with Modern Cannabis
+#. In Firefox or Chrome, select "⋮" > More Tools > Developer Tools
+#. Select the "Network" tab within Developer Tools.
+#. Add an item to cart by clicking the green "+" sign. You'll see something that looks like this:
+
+.. container::
+
+.. image:: https://pythonmarketer.files.wordpress.com/2020/05/chrome-network-tools-xhr.png
+   :alt: Chrome Network Tools - XHR
+   :class: alignnone size-full wp-image-3400
+   :width: 1128px
+   :height: 932px
+
+6. Copy down your personal authorization bearer token and the add to cart request URL. You'll also want to copy all of the info under the "Request Headers" section.
+7. Create an account with a domain hoster like pythonanywhere.
+8. Create a Flask App that looks like this:
+
+::
+
+   from flask import Flask
+   import requests
+   import logging
+   import sys
+   from datetime import datetime
+
+   app = Flask(__name__)
+   logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
+
+   @app.route('/')
+   def hello_world():
+       token = "add_your_personal_token_here"
+       url = 'https://api.dispensefirst.com/CartAddProduct/'
+       headers = {
+           "Host": "api.dispensefirst.com",
+           "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:72.0) Gecko/20100101 Firefox/72.0",
+           "Accept": "application/json, text/plain, */*",
+           "Accept-Language": "en-US,en;q=0.5",
+           "Accept-Encoding": "gzip, deflate, br",
+           "Authorization": f"Bearer {token}",
+           "Content-Type": "application/json",
+           "Content-Length": "277",
+           "Origin": "https://orders.moderncann.com",
+           "Connection": "keep-alive",
+           "Referer": "https://orders.moderncann.com/",
+           "Pragma": "no-cache",
+           "Cache-Control": "no-cache",
+           "DNT": "1",
+           "Sec-Fetch-Dest": "empty",
+           "Sec-Fetch-Mode": "cors",
+           "Sec-Fetch-Site": "cross-site"
+           }
+
+       data = "{\"dfVend\":\"Web\",\"dfCust\":\"101001\",\"dfStore\":\"10001\",\"CartIdNo\":\"0\",\"CustIdNo\":\"7704\",\"CareIdNo\":\"0\",\"FlightIdNo\":\"0\",\"FlightItemIdNo\":\"0\",\"FlightDesc\":\"\",\"ProductIdNo\":5001,\"ProductDesc\":\"BLUEBERRY HEADBAND\",\"Unit_Meas_Qty_Cannabis\":3.5,\"Quantity\":1,\"UnitCost\":73,\"SubTot\":73,\"PriceOrig\":73}"
+       r = requests.request('POST', url, data=data, headers=headers)
+       html_page = """
+
+WeedFiender
+-----------
+
+**Current Availability**
+
+``{status}``
+
+**Last Updated**
+
+``{timestamp}``
+
+::
+
+   """.format(status=r.text, timestamp=str(datetime.now())) return html_page
+
+9.  Set up email alerts to get notified when marijuana is available.
+10. Enable automatic pick-up appointment scheduling. Takes first available appointment and adds appointment to Google calendar.
+11. If you want to put this on the web, you can host your WeedFiender at pythonanywhere.com. Paid accounts start at $5/month and they have an easy set up for Flask. A free account will not work with this script. Alternatively, a hosting site like godaddy is an option to host.
+
+ 

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles in the "APIs, coding, Google, programming" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/apis-coding-google-programming.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/apis-coding-google-programming.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/category/apis-coding-google-programming.html">APIs, coding, Google, programming</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jul 06, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/the-things-they-dont-tell-you-about-ampersands-and-xml.html" rel="bookmark" title="Permanent Link to &quot;The Things They Don't Tell You About Ampersands and XML&quot;">The Things They Don't Tell You About Ampersands and XML</a>
+                </h2>
+
+                
+                
+
+                <p><strong>In an XML document, you need to escape any ampersands in your text as</strong> <tt class="docutils literal">&amp;amp;</tt></p>
+<p>I began a new coding project. Sure, there's documentation for the API that solves my problem. I find out it uses XML. <a class="reference external" href="https://en.wikipedia.org/wiki/XML">Extensible Markup Language</a>, a classic API format. Cool. I craft a beautiful script that works at first. Hallelujah!</p>
+<p>Later on, I realize it doesn't work as well as I believed. It turns out, if I want a server to accept my XML document, <a class="reference external" href="https://www.ibm.com/docs/en/was-liberty/base?topic=manually-xml-escape-characters">escaping certain characters</a> might be required. The documentation didn't mention this. It was my first time using XML, how would I know?</p>
+<p>I noticed a script only worked for a handful of requests. It failed for most, returning a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400 status code</a>. Suspecting the issue was likely in my payload, I studied the data of the request bodies that failed compared to the others that succeeded. All of the payload bodies that failed contained text with an ampersand.</p>
+<p>Suspecting it might be an XML + ampersand related issue, I google <a class="reference external" href="https://stackoverflow.com/questions/1328538/how-do-i-escape-ampersands-in-xml-so-they-are-rendered-as-entities-in-html">this Stack Overflow post</a> which explains the ampersand escaping situation. There are a handful of characters that must be escaped. Otherwise, you might not be able to connect to the server.</p>
+<p>These are the things they often don't tell you. Those little details you must sometimes realize for yourself, unless someone bothers to mention it or write it down. Now you know something that cost me an hour or two of tinkering to realize!</p>
+<div class="wp-image-7060 figure">
+<img alt="`Image Source &lt;https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml&gt;`__" src="https://pythonmarketer.files.wordpress.com/2022/07/xml-example-2.png?w=453" style="width: 453px; height: 521px;" />
+<p class="caption"><a class="reference external" href="https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml">Image Source</a></p>
+</div>
+<p>Wanna read more on HTTP? Check out my guide on <a class="reference external" href="https://pythonmarketer.com/2020/05/18/how-to-make-json-requests-with-python/">making HTTP requests with Python</a> to read more about HTTP requests.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/the-things-they-dont-tell-you-about-ampersands-and-xml.html">posted at 12:49</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/apis-coding-google-programming.html" rel="tag">APIs, coding, Google, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/problem-solving.html" class="tags">problem solving</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/xml.html" class="tags">XML</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

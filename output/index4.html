@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Page 4</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Aug 09, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/join-algorithms.html" rel="bookmark" title="Permanent Link to &quot;Pondering Join Algorithms&quot;">Pondering Join Algorithms</a>
+                </h2>
+
+                
+                
+
+                <p>Truly enjoying this <a class="reference external" href="https://www.youtube.com/playlist?list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi">Intro to Database Systems course</a> from Carnegie Mellon University. Some really great breakdowns of common join algorithms in this lecture. Here are my notes.</p>
+<blockquote>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=nUwT7PEQ49o&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=11">Lecture 11- Join Algorithms</a><strong>(CMU Databases Systems / Fall 2019)</strong></p>
+<p>Prof. Andy Pavlo, Carnegie Mellon Database Group</p>
+</blockquote>
+<img alt="Join Algorithms" class="alignnone size-full wp-image-4118" src="https://pythonmarketer.files.wordpress.com/2020/08/join-algorithms.png" style="width: 747px; height: 404px;" />
+<p><em>screenshot from lecture</em></p>
+<p><strong>Table Positioning for a Join</strong></p>
+<p>&quot;In general, your smaller table should be the &quot;left&quot; table when joining two tables.&quot;... Professor demonstrates better performance by making the smaller table the &quot;outer&quot; table in a join.</p>
+<p><strong>Block Nested Loop Join [</strong><a class="reference external" href="https://dev.mysql.com/doc/refman/5.7/en/nested-loop-joins.html#:~:text=A%20Block%20Nested%2DLoop%20(BNL,inner%20loops%20must%20be%20read.&amp;text=The%20join_buffer_size%20system%20variable%20determines,used%20to%20process%20a%20query.">mysql example</a><strong>]</strong></p>
+<ul class="simple">
+<li>&quot;The brute force approach&quot;</li>
+<li>If you have enough memory to hold a large table, a good option for joining.</li>
+<li>Always pick the smaller table as the outer table.</li>
+<li>Buffer as much of your outer table in memory as possible to reduce redundant I/O.</li>
+<li>Loop over the inner table or use an index.</li>
+</ul>
+<p><strong>Index Nested Loop Join [</strong><a class="reference external" href="https://www.cs.carleton.edu/faculty/dmusicant/cs347f03/proj3/">CS Course definition</a><strong>]</strong></p>
+<p>If indexes are available, or you could create an index to use for a join.</p>
+<p><strong>Sort-Merge Join [</strong><a class="reference external" href="https://en.wikipedia.org/wiki/Sort-merge_join">wikipedia</a><strong>]</strong></p>
+<p>Useful if one or both tables are sorted on a join key. Maximize sequential I/O.</p>
+<img alt="Sort - Merge Join" class="alignnone size-full wp-image-4121" src="https://pythonmarketer.files.wordpress.com/2020/08/sort-merge-join-1.png" style="width: 1731px; height: 855px;" />
+<p><em>screenshot from lecture</em></p>
+<p><strong>Hash Join [</strong><a class="reference external" href="https://mysqlserverteam.com/hash-join-in-mysql-8/#:~:text=Hash%20join%20is%20a%20way,inputs%20can%20fit%20in%20memory.">mysql blog example</a><strong>]</strong></p>
+<p>Best performance. For large datasets.</p>
+<ol class="arabic simple">
+<li>Phase #1 Build (Hash Table)</li>
+<li>Phase #2 Probe</li>
+</ol>
+<p><strong>Use</strong><a class="reference external" href="https://en.wikipedia.org/wiki/Bloom_filter">Bloom Filter</a><strong>set operations for probe phase optimization</strong></p>
+<ol class="arabic simple">
+<li>insert a key</li>
+<li>lookup a key</li>
+</ol>
+<!--  -->
+<blockquote>
+<p><strong>Additional Reading on Bloom Filters</strong></p>
+<p><a class="reference external" href="https://onatm.dev/2020/08/10/let-s-implement-a-bloom-filter/">Let's implement a Bloom Filter</a></p>
+<p><a class="reference external" href="https://gopiandcode.uk/logs/log-bloomfilters-debunked.html">Bloom Filters Debunked</a></p>
+</blockquote>
+<p><strong>Grace Hash Join</strong> [<a class="reference external" href="https://en.wikipedia.org/wiki/Hash_join#Grace_hash_join">wikipedia</a>]</p>
+<ul class="simple">
+<li>&quot;Do hash joins when things don't fit in memory.&quot;</li>
+<li>Use a hash table for each table. Break the tables into buckets then do a nested loop join on each bucket. If the buckets do not fit in memory, use <a class="reference external" href="https://en.wikipedia.org/wiki/Recursive_partitioning#:~:text=Recursive%20partitioning%20is%20a%20statistical,on%20several%20dichotomous%20independent%20variables.">recursive partitioning</a>. Then everything fits in memory for the join.</li>
+</ul>
+<!--  -->
+<blockquote>
+<p>&quot;Split outer relation into partitions based on the hash key.&quot;</p>
+<p>Prof. Andy Pavlo on Hash Join algorithm</p>
+</blockquote>
+<ul class="simple">
+<li>Hashing is almost always better than sorting for operator execution.</li>
+</ul>
+<!--  -->
+<blockquote>
+<p>&quot;No join algorithm works well in all scenarios.&quot;</p>
+<p>-Prof. Andy Pavlo</p>
+</blockquote>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/join-algorithms.html">posted at 18:24</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-databases-programming.html" rel="tag">coding, data, Databases, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/algorithms.html" class="tags">algorithms</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computer-science.html" class="tags">computer science</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/joins.html" class="tags">joins</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/study.html" class="tags">study</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/technology.html" class="tags">technology</a>
+                </div>
+            </article>            <h4 class="date">Jun 28, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/bc2cedf98f1081feefb0c80e2d2d4e2c.html" rel="bookmark" title="Permanent Link to &quot;Alijan - 2020-06-28 07:58:20&quot;">Alijan - 2020-06-28 07:58:20</a>
+                </h2>
+
+                
+                
+
+                <div class="line-block">
+<div class="line">Hi Erick,</div>
+<div class="line">Regarding AUTOMATING PYTEST ON WINDOWS WITH A .BAT FILE, PYTHON, TASK SCHEDULER (<a class="reference external" href="https://pythonmarketer.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">https://pythonmarketer.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</a>)</div>
+<div class="line">I created a bat-file and scheduled execution according to your instructions. bat-file is triggered and command prompt is appeared for a fraction of a second and then disappeared. 'Test_Results.txt' is created but is empty.</div>
+<div class="line">What possible problems could be?</div>
+<div class="line">Thanks in advance</div>
+<div class="line">Alijan</div>
+<div class="line"><br /></div>
+<div class="line">AUTHOR: Alijan</div>
+<div class="line">AUTHOR EMAIL: <a class="reference external" href="mailto:semc07&#64;gmail.com">semc07&#64;gmail.com</a></div>
+<div class="line">AUTHOR URL:</div>
+<div class="line">SUBJECT: [Python Marketer] Contact</div>
+<div class="line">IP: 188.150.72.128</div>
+<div class="line">Array</div>
+<div class="line">(</div>
+<div class="line">[1_Name] =&gt; Alijan</div>
+<div class="line">[2_Email] =&gt; <a class="reference external" href="mailto:semc07&#64;gmail.com">semc07&#64;gmail.com</a></div>
+<div class="line">[3_Website] =&gt;</div>
+<div class="line">[4_Comment] =&gt; Hi Erick,</div>
+<div class="line">Regarding AUTOMATING PYTEST ON WINDOWS WITH A .BAT FILE, PYTHON, TASK SCHEDULER (<a class="reference external" href="https://pythonmarketer.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">https://pythonmarketer.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</a>)</div>
+<div class="line">I created a bat-file and scheduled execution according to your instructions. bat-file is triggered and command prompt is appeared for a fraction of a second and then disappeared. 'Test_Results.txt' is created but is empty.</div>
+<div class="line">What possible problems could be?</div>
+<div class="line">Thanks in advance</div>
+<div class="line">Alijan</div>
+</div>
+<div class="line-block">
+<div class="line">[entry_title] =&gt; Contact</div>
+<div class="line">[entry_permalink] =&gt; <a class="reference external" href="https://pythonmarketer.com/contact/">https://pythonmarketer.com/contact/</a></div>
+<div class="line">[feedback_id] =&gt; bc2cedf98f1081feefb0c80e2d2d4e2c</div>
+<div class="line">)</div>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/bc2cedf98f1081feefb0c80e2d2d4e2c.html">posted at 07:58</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/blog.html" rel="tag">blog</a>
+                </div>
+            </article>            <h4 class="date">Jun 27, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/choosing-database-storage-models-and-workloads-that-mesh.html" rel="bookmark" title="Permanent Link to &quot;Characterizing Database Workloads & Storage Models&quot;">Characterizing Database Workloads &amp; Storage Models</a>
+                </h2>
+
+                
+                
+
+                <p>Thank you <a class="reference external" href="https://db.cs.cmu.edu/">Carnegie Mellon Database Group</a> for putting this online! These are my notes from watching on YouTube.</p>
+<blockquote>
+<p>Carnegie Mellon Databases Storage II, Lecture 4</p>
+<p>Prof. Andy Pavlo [<a class="reference external" href="https://www.youtube.com/watch?v=YWRYEXNy6IE&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=4">Watch on YouTube</a>]</p>
+</blockquote>
+<div class="section" id="the-problem-and-solution">
+<h2>The Problem and Solution</h2>
+<p>How should the DBMS represent the database in storage files on disk? Solve it by choosing the right <em>storage model</em> for your target <em>workload</em>. The right strategy varies if you are reading data, writing data and with how many joins you are performing.</p>
+</div>
+<div class="section" id="workload-characterization">
+<h2>Workload Characterization</h2>
+<p><strong>OLTP</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Online_transaction_processing">Online Transaction Processing</a>): &quot;Simple queries with lots of writes.&quot;</p>
+<p><strong>OLAP</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Online_analytical_processing">Online Analytical Processing</a>): &quot;Read only queries. Lots of joins. Doing a lot of reads, but they're more complex.&quot;</p>
+<p><strong>HTAP</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing">Hybrid Transactional Analytical Processing</a>): &quot;is trying to do both of them. You still want to ingest new data, but analyze it as it comes in. It's used for companies making decisions on the fly as people are browsing websites, like internet advertising companies.&quot;</p>
+</div>
+<div class="section" id="screenshot-2020-06-27-at-11-56-10-am">
+<h2><img alt="Screenshot 2020-06-27 at 11.56.10 AM" class="alignnone size-full wp-image-3897" src="https://pythonmarketer.files.wordpress.com/2020/06/screenshot-2020-06-27-at-11.56.10-am.png" style="width: 1920px; height: 1080px;" /></h2>
+</div>
+<div class="section" id="storage-models">
+<h2>Storage Models</h2>
+<p><em>screenshots from the</em><a class="reference external" href="https://www.youtube.com/watch?v=YWRYEXNy6IE&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=4">lecture</a></p>
+<img alt="n-ary model" class="alignnone size-full wp-image-3918" src="https://pythonmarketer.files.wordpress.com/2020/06/n-ary-model.png" style="width: 692px; height: 360px;" />
+<p>N-ary used to be the dominant model until the '80s.</p>
+<img alt="DSM model" class="alignnone size-full wp-image-3917" src="https://pythonmarketer.files.wordpress.com/2020/06/dsm-model-1.png" style="width: 938px; height: 396px;" />
+<p><strong>Additional Reading:</strong> <a class="reference external" href="https://www.allthingsdistributed.com/2013/09/column-oriented-databases.html">All Things Distributed</a></p>
+</div>
+<div class="section" id="column-store-vs-row-store-rdbms">
+<h2>Column Store Vs. Row Store RDBMS</h2>
+<p><a class="reference external" href="https://dataschool.com/data-modeling-101/row-vs-column-oriented-databases/">Row-oriented DBMS</a><strong>(Row Store)</strong></p>
+<ul class="simple">
+<li>PostgreSQL, MySQL</li>
+<li>Row Store = use OLTP</li>
+</ul>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Column-oriented_DBMS">Column-oriented DBMS</a><strong>(Column Store)</strong></p>
+<ul class="simple">
+<li>Red Shift, BigQuery</li>
+<li>Column Store = use OLAP</li>
+</ul>
+<p>If types are consistent, you can compress data into single column store.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/choosing-database-storage-models-and-workloads-that-mesh.html">posted at 13:22</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/data-databases-education-performance.html" rel="tag">data, Databases, education, performance</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/carnegie-mellon.html" class="tags">Carnegie Mellon</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/database-storage.html" class="tags">database storage</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/lectures-notes.html" class="tags">lectures notes</a>
+                </div>
+            </article>            <h4 class="date">May 18, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/how-to-make-json-requests-with-python.html" rel="bookmark" title="Permanent Link to &quot;A Guide To Making HTTP Requests To APIs With JSON & Python&quot;">A Guide To Making HTTP Requests To APIs With JSON &amp; Python</a>
+                </h2>
+
+                
+                
+
+                <p>This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.</p>
+<p><strong>Here's what is covered:</strong></p>
+<ol class="arabic simple">
+<li>API &amp; HTTP Lingo You Should Know</li>
+<li>Testing and Exporting Python Request Code from Postman (Optional)</li>
+<li>Formatting Your Request</li>
+<li>Example GET and POST Requests</li>
+<li>&quot;Gotchyas&quot; To Avoid</li>
+<li>Sidebar: requests.Session()</li>
+<li>Dig deeper into requests by raising your HTTPConnection.debuglevel</li>
+</ol>
+<!--  -->
+<blockquote>
+<strong>Terminology Clarification</strong>: I will refer to &quot;items&quot; or &quot;data&quot; throughout this post. This could be substituted for contacts or whatever data you are looking for. For example, you might be fetching a page of contacts from your CRM. Or fetching your tweets from Twitter's API. Or searching the Google location API, you might look up an address and return geo-location coordinates.</blockquote>
+<div class="section" id="api-http-lingo-you-should-know">
+<h2>API &amp; HTTP Lingo You Should Know</h2>
+<p><strong>Hypertext Transfer Protocol (HTTP)</strong></p>
+<p>Per <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Mozilla</a>,&quot;Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical&nbsp;<a class="reference external" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>, with a client opening a connection to make a request, then waiting until it receives a response.&quot;</p>
+<blockquote>
+HTTP: you = client. API = way to communicate with server</blockquote>
+<p><strong>Application Programming Interface (API)</strong></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Application_programming_interface">Per Wikipedia</a>, the purpose of an API is to simplify &quot;programming by <a class="reference external" href="https://en.wikipedia.org/wiki/Abstraction_(software_engineering)">abstracting</a> the underlying implementation and only exposing objects or actions the developer needs.&quot;</p>
+<p><strong>Representational State Transfer (REST)</strong></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> is an architectural style of web APIs. It is the dominant architecture that many APIs use. Simple Object Access Protocol (<a class="reference external" href="https://smartbear.com/blog/test-and-monitor/soap-vs-rest-whats-the-difference/">SOAP</a>) is another style I've heard of, but it seems less common nowadays.</p>
+<p>A REST API is built for interoperability and has properties like: &quot;simplicity of a uniform interface&quot; and &quot;visibility of communication between components by service agents.&quot; [<a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">Wikipedia</a>] If an API follows REST, it has many good principles baked in.</p>
+<p><strong>``GET``, ``POST`` and ``PATCH``</strong></p>
+<p>These are three common types of request methods.</p>
+<ul class="simple">
+<li><tt class="docutils literal">GET</tt>: &nbsp;Read data returned, such as all of your tweets in <a class="reference external" href="https://developer.twitter.com/en/docs">the Twitter API</a>.</li>
+<li><tt class="docutils literal">POST</tt>: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!</li>
+<li><tt class="docutils literal">PATCH</tt>: Similar to <tt class="docutils literal">POST</tt>, this is typically used for updating data.</li>
+</ul>
+<p><strong>URL or &quot;endpoint&quot;</strong></p>
+<p>The website location to send your request</p>
+<p><strong>URL Parameters</strong></p>
+<p>Values you pass to tell the API what you want. They are defined by the API specifications, which are usually <a class="reference external" href="https://developers.activecampaign.com/reference">well documented</a>. In python's <tt class="docutils literal">requests</tt> library, they may be passed as <a class="reference external" href="https://treyhunner.com/2018/04/keyword-arguments-in-python/">keyword arguments</a>. Sometimes they are passable directly within the endpoint url string.</p>
+<p><strong>Body or &quot;payload&quot;</strong></p>
+<p>To make a request, you send a payload to the url. Often this is a JSON string with the API's URL parameters and values, AKA the request body. If the <a class="reference external" href="https://jira.readthedocs.io/">API is written specifically for Python</a>, it might accept an actual Python dictionary.</p>
+<p><strong>Javascript Object Notation (JSON)</strong></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=KnAyziNnuI0">JSON</a> is the data interchange standard for all languages. Usually it is the default way to pass data into and receive data from an API. If making a&nbsp; <tt class="docutils literal">POST</tt>, you can check your json object is formatted correctly by using a <a class="reference external" href="https://jslint.com/">json linter</a>. Or try Python's <a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool">json.tool</a>! You can also pretty print your JSON or python dictionary with the <a class="reference external" href="https://docs.python.org/3/library/pprint.html">pprint</a> module. If you're using json.dumps remember it has <a class="reference external" href="https://docs.python.org/3/library/json.html">pretty printing accessible by keyword arguments</a>! These features are accessible in the standard library. Isn't Python great? See also: <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/09/15/python-101-an-intro-to-working-with-json/">Python 101 - An Intro to Working with JSON</a></p>
+<p><strong>Headers</strong></p>
+<p>These usually contain website cookies and authorization info. They also may tell the API what kind of data you want back. JSON and XML are the two most common types of data to return. You can specify the return format in the <tt class="docutils literal"><span class="pre">content-type</span></tt> headers.</p>
+<blockquote>
+If you need to parse an XML response, check out Python's stock <a class="reference external" href="https://docs.python.org/3.8/library/xml.etree.elementtree.html">ElementTree API</a>. I've only seen a few APIs using XML responses, such as the <a class="reference external" href="https://www.usps.com/business/web-tools-apis/">USPS Address Validation API</a>.</blockquote>
+<p><strong>Authorization</strong></p>
+<p>Authorization varies widely. This is the level of identification you need to pass to the API to make a request. Public APIs might require none. Some just need a username and password. Others use the <a class="reference external" href="https://en.wikipedia.org/wiki/OAuth">Oauth standard</a>, which is a system involving credentials and tokens for extra security.</p>
+<blockquote>
+<p><strong>Authorization Scheme Example [</strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Mozilla</a><strong>]</strong></p>
+<p>Authorization: &lt;auth-scheme&gt; &lt;authorisation-parameters&gt;</p>
+</blockquote>
+<pre class="literal-block">
+# headers python dict example
+headers = {&quot;Authorization&quot;: f&quot;basic {token}&quot;}
+</pre>
+<p><strong>Pages</strong></p>
+<p>API data is commonly returned in multiple pages when there is a lot of data returned. Each page can be accessed one request at a time. Sometimes you can specify how many items you want on a page. But there is usually a maximum items per page limit like 100.</p>
+<p><strong>Status code</strong></p>
+<p>Each request usually gives you a <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">numeric code corresponding to happened</a> when the server tried to handle your request. There is also usually a message returned.</p>
+<p><strong>See also: Web Server Gateway Interface (WSGI, pronounced &quot;Wis-Ghee&quot;)</strong></p>
+<p>&quot;As described in <a class="reference external" href="https://www.python.org/dev/peps/pep-3333/">PEP3333</a>, the Python Web Server Gateway Interface (WSGI) is a way to make sure that web servers and python web applications can talk to each other.&quot;&nbsp; <a class="reference external" href="https://docs.gunicorn.org/en/latest/install.html">Gunicorn</a> is one of <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#uwsgi">a few Python WSGI clients</a>. <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/04/30/useful-links-for-web2py-beginners/">web2py</a> is another WSGI client and web framework I have used.</p>
+<p><strong>See also:</strong> <a class="reference external" href="https://en.wikipedia.org/wiki/Nginx">Nginx</a></p>
+<p><strong>See also:</strong><a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">Create, read, update and delete (CRUD)</a></p>
+</div>
+<div class="section" id="creating-the-request-json">
+<h2>Creating the Request JSON</h2>
+<p>I recommend using <a class="reference external" href="https://www.postman.com/">Postman</a> in most cases, depending on the complexity of the API. If the JSON syntax is straightforward, you can format your data as a python dictionary, then convert it to a JSON object with <tt class="docutils literal">json.dumps</tt> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.dumps">json module</a>. But JSON can be tricky sometimes. You may also need to pass a dictionary of HTTP headers.</p>
+<p>Some APIs have &quot;Postman Collections&quot;, a set of Python (or any language) script templates for the API. In those cases, it might make sense to use those resources.</p>
+<blockquote>
+<p><strong>Path One: Make HTTP request with json &amp; requests libraries</strong></p>
+<p>Format Python dict with <tt class="docutils literal">json.dumps</tt> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.loads">json module</a>.&nbsp; Infer API requirements from documentation. Use requests for HTTP.</p>
+<p><strong>Path Two: Make HTTP request with Postman &amp; requests library</strong></p>
+<p>Use Postman to generate the JSON payload. Plug headers and payload into requests. Use requests library for HTTP.</p>
+</blockquote>
+<p>Postman has a friendly interface for plugging in all your pieces and tinkering with your request body until it works. Make it easier on yourself and use Postman, especially if there are collections. An alternative is to troubleshoot in Python if you are confident in your grasp of the API. I use both options depending on my familiarity with the API at hand.</p>
+<p>Once you have the request working, you may <a class="reference external" href="https://learning.postman.com/docs/postman/sending-api-requests/generate-code-snippets/">export your Postman request to almost any language</a>. For Python, you can sometimes export to the <tt class="docutils literal">requests</tt>,&nbsp; <tt class="docutils literal">http.client</tt> or <tt class="docutils literal">urllib</tt> libraries. Hit the &quot;code&quot; button in Postman and then copy your code.</p>
+<blockquote>
+If you choose not to use Postman, you can use the json library. See the use of <tt class="docutils literal">json.dumps()</tt>to convert a dictionary to a JSON object in Example #2 below</blockquote>
+</div>
+<div class="section" id="formatting-your-request">
+<h2>Formatting Your Request</h2>
+<ol class="arabic simple">
+<li>Paste your Postman headers, payload and url into your existing code.</li>
+<li>You may want to use a dict or <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/04/07/python-101-working-with-strings/">string formatting</a> to pass values to your request parameters or url.</li>
+<li>If the API uses a token or other form of authorization that needs to be refreshed intermittently, I usually have a function that returns a token. <tt class="docutils literal">token = fetch_token()</tt> Then put the token in the headers dict.&nbsp; <tt class="docutils literal">{&quot;Authorization&quot;: f&quot;basic <span class="pre">{token}&quot;}</span></tt> Finally pass your headers and payload to your&nbsp; <tt class="docutils literal">requests.get</tt> or <tt class="docutils literal">requests.request</tt> function along with the endpoint url. You're now ready to test the request.</li>
+</ol>
+</div>
+<div class="section" id="python-installation">
+<h2>Python Installation</h2>
+<p>You can install <tt class="docutils literal">requests</tt> with <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. Alternatively, <tt class="docutils literal">http.client</tt> is included within the Python standard library. If you want to convert HTTP response data to a dataframe or csv, install <tt class="docutils literal">pandas.</tt></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install requests</tt></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></p>
+</div>
+<div class="section" id="example-1-get-the-geolocation-details-of-any-public-location-with-the-google-api">
+<h2>Example #1: <tt class="docutils literal">GET</tt> the geolocation details of any public location with the Google API</h2>
+<p>This was modified from another example of <a class="reference external" href="https://www.geeksforgeeks.org/get-post-requests-using-python/">Google's Geolocation API</a>. To use this, you need to <a class="reference external" href="https://developers.google.com/maps/documentation/geolocation/intro">create a developer account with Google</a> and paste your API keys below.</p>
+<pre class="literal-block">
+import requests
+# import pandas as pd
+
+&quot;&quot;&quot;Find the best double-cheeseburger + fries $7 can buy.&quot;&quot;&quot;
+payload = {&quot;key&quot;:&quot;Add_Google_API_Key_Here&quot;, &quot;address&quot;:&quot;Redhot Ranch&quot;}
+# optional: set a 5 second timeout for the http request
+r = requests.get(url=&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;,
+                 params=payload,
+                 timeout=5)
+print(r.text)
+print(r.status_code)
+data = r.json()
+
+# extracting latitude, longitude and formatted address of the first matching location
+latitude = data['results'][0]['geometry']['location']['lat']
+longitude = data['results'][0]['geometry']['location']['lng']
+formatted_address = data['results'][0]['formatted_address']
+print(longitude)
+print(latitude)
+print(formatted_address)
+
+# optional: convert response into a dataframe with pandas
+# location_df = pd.json_normalize(data['results'])
+# location_df.to_csv('Locations.csv')
+</pre>
+<p><strong>Above you can see:</strong></p>
+<ul class="simple">
+<li><tt class="docutils literal">requests</tt> makes it easy to see the server's text response also with <tt class="docutils literal">response.text</tt></li>
+<li><tt class="docutils literal">requests</tt> also makes JSON encoding easy with <tt class="docutils literal">response.json()</tt></li>
+<li>I like to use <tt class="docutils literal">pd.json_normalize()</tt> to convert the response object to a dataframe.</li>
+</ul>
+</div>
+<div class="section" id="example-2-encode-a-python-dictionary-to-json-string-and-post-to-a-hypothetical-api">
+<h2>Example #2: Encode a Python dictionary to json string and <tt class="docutils literal">POST</tt> to a hypothetical API</h2>
+<ol class="arabic simple">
+<li>Create a simple dictionary with request body data and pretty inspect it with pprint.</li>
+<li>Convert it to encoded json string with <tt class="docutils literal">json.dumps</tt> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.loads">json module</a>.</li>
+<li><tt class="docutils literal">POST</tt> the encoded JSON to the endpoint url with requests.</li>
+</ol>
+<pre class="literal-block">
+import pprint
+import json
+import requests
+
+def convert_dict_to_json_object():
+    &quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;
+    payload = {
+        &quot;first_name&quot;:&quot;P&quot;,
+        &quot;last_name&quot;:&quot;Sherman&quot;,
+        &quot;address&quot;:&quot;42 Wallaby Way&quot;,
+        &quot;address_2&quot;:&quot;&quot;,
+        &quot;city&quot;:&quot;Sydney&quot;,
+        &quot;state&quot;:&quot;NSW&quot;,
+        &quot;country&quot;:&quot;AU&quot;,
+        &quot;zip&quot;:&quot;2000&quot;
+        }
+    pprint.pprint(payload)
+    json_str = json.dumps(payload, ensure_ascii=True)
+    # encode json str to utf-8
+    return json_str.encode(&quot;utf-8&quot;)
+
+def create_new_contact(json_str):
+    &quot;&quot;&quot;
+    This is a fictional API request.
+    Passing a json object to requests.
+    Decoding server response with response.json(),
+    Returning a contact id by calling the data's keys.
+    &quot;&quot;&quot;
+    headers = {
+        &quot;Authorization&quot;: f&quot;Bearer {token}&quot;,
+        &quot;Content-Type&quot;: &quot;application/json&quot;,
+        &quot;cache-control&quot;: &quot;no-cache&quot;,
+        &quot;Postman-Token&quot;: f&quot;{postman_token}&quot;
+        }
+    r = requests.request(method=&quot;POST&quot;,
+                         url=&quot;https://SomeSoftwareAPI.com/contacts/&quot;,
+                         data=json_str,
+                         headers=headers)
+    data = r.json()
+    print(data.keys())
+    contact_id = data['contact_id'] # call dict keys to get their values
+    return contact_id
+
+json_str = convert_dict_to_json_object()
+contact_id = create_new_contact(json_str)
+</pre>
+<!--  -->
+<blockquote>
+<p><strong>requests.request keyword argument alternatives for passing data</strong></p>
+<p><strong>params</strong>&nbsp;– (optional) Dictionary, list of tuples or bytes to send in the query string for the&nbsp;<tt class="docutils literal">`Request</tt> &lt;<a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request">https://2.python-requests.org/en/master/api/#requests.Request</a>&gt;`__.</p>
+<p><strong>data</strong>&nbsp;– (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the&nbsp;<tt class="docutils literal">`Request</tt> &lt;<a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request">https://2.python-requests.org/en/master/api/#requests.Request</a>&gt;`__.</p>
+<p><strong>json</strong>&nbsp;– (optional) A JSON serializable Python object to send in the body of the&nbsp;<tt class="docutils literal">`Request</tt> &lt;<a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request">https://2.python-requests.org/en/master/api/#requests.Request</a>&gt;`__.</p>
+<p><strong>[</strong><a class="reference external" href="https://2.python-requests.org/en/master/api/">requests API documentation</a><strong>]</strong></p>
+</blockquote>
+<p><strong>&quot;Gotchyas&quot; To Avoid</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status codes</a> are your friend. They offer a hint at why your request is not working. If you see 200 or 201, that's a good sign. They're usually helpful, but sometimes they can be misleading.</li>
+<li>Ensure you are defining the correct content-type. I had an experience where Postman defined two conflicting <tt class="docutils literal"><span class="pre">content-type</span></tt> headers and it <a class="reference external" href="https://github.com/postmanlabs/postman-code-generators/issues/215">caused my request to fail</a>. The server's error message indicated the problem was in my JSON, so it took me a while to figure out the headers were the problem.</li>
+<li>Sometimes it makes a difference if your url has <tt class="docutils literal"><span class="pre">http://</span></tt> vs. <tt class="docutils literal"><span class="pre">https://</span></tt> in it. Usually <tt class="docutils literal"><span class="pre">https://</span></tt> is preferred.**&nbsp;**</li>
+</ul>
+<p><strong>Sidebar:</strong><a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">requests.Session()</a></p>
+<p>You might be able to improve performance by using a requests <a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">&quot;session&quot; object</a>.</p>
+<pre class="literal-block">
+&quot;&quot;&quot;
+a session adds a &quot;keep-alive&quot; header to your HTTP connection.
+It can be used to store cookies across requests.
+&quot;&quot;&quot;
+import requests
+s = requests.Session()
+for page in range(0, 2):
+    url = f&quot;https://SomeSoftwareAPI.com/contacts/{str(page)}&quot;
+    r = s.get(url)
+    print(r.text)
+</pre>
+<p><strong>Dig deeper into requests by raising your HTTPConnection.debuglevel</strong></p>
+<p><strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <tt class="docutils literal">`debuglevel</tt> &lt;<a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel</a>&gt;`__ is greater than zero, messages will be printed to stdout as the response is read and parsed. <strong>-</strong><a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></p>
+<pre class="literal-block">
+from http.client import HTTPConnection
+import requests
+HTTPConnection.debuglevel = 1
+payload = {&quot;key&quot;:&quot;Add_Google_API_Key_Here&quot;, &quot;address&quot;:&quot;90 Miles&quot;}
+url = &quot;https://maps.googleapis.com/maps/api/geocode/json&quot;
+r = requests.get(url=url, params=payload, timeout=5)
+print(r.text)
+</pre>
+<p><strong>Conclusion</strong></p>
+<p>I remember APIs seemed mysterious and daunting before I had used them. But like all things, they can be conquered with knowledge, understanding and tenacity to keep trying until you figure it out. Good luck!</p>
+<p><strong>Requests Documentation</strong></p>
+<p><a class="reference external" href="https://requests.readthedocs.io/en/master/api/">requests.request() API documentation</a></p>
+<p><a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.get">requests.get() API documentation</a></p>
+<p><a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.post">requests.post() API documentation</a></p>
+<p><strong>Supplementary Reading</strong></p>
+<p><a class="reference external" href="https://developers.google.com/web/tools/chrome-devtools/network/reference#timing-explanation">Google's HTTP Timing Explanation</a></p>
+<p><a class="reference external" href="https://github.com/Rolstenhouse/unofficial-apis">List of Interesting &quot;Unofficial&quot; APIs</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Proxy_server">Proxy servers</a></p>
+<p><a class="reference external" href="https://pawelmhm.github.io/asyncio/python/aiohttp/2016/04/22/asyncio-aiohttp.html">Making 1 million requests with python-aiohttp</a></p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/how-to-make-json-requests-with-python.html">posted at 05:41</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/chicago-coding-http-json-pandas-programming.html" rel="tag">Chicago, coding, HTTP, json, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/api.html" class="tags">api</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/requests.html" class="tags">requests</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/sandwiches.html" class="tags">sandwiches</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/web.html" class="tags">web</a>
+                </div>
+            </article>            <h4 class="date">May 09, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html" rel="bookmark" title="Permanent Link to &quot;Assessing The Marketing Effects of Randomization Failure&quot;">Assessing The Marketing Effects of Randomization Failure</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Preface</strong></p>
+<p>I always enjoy reading when technical people share their stories of the times things went a little haywire. Times when, despite their best intentions, a solution didn't work as planned and it ends in unpleasant or catastrophic failure. I had an experience like this recently, so here's my &quot;oops&quot; story. Fortunately, I think this falls closer to the unpleasant end of the spectrum.</p>
+<p><strong>Finding A Solution</strong></p>
+<p>My employer needed a way to create postcard contact lists to mail 500,000 people each month. About 2 years in with the company, the old postcard system was breaking down and no one knew how to fix it. The guy who built it left the company. I never knew him and he didn't leave behind much help for anyone to fix his creation.</p>
+<p>For my team, it was easier to create the contacts lists by drawing contact data out of our CRM with <a class="reference external" href="https://requests.readthedocs.io/en/master/">requests</a> and formatting the data with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html">pandas</a>. So that's what I did to help us deliver the postcards. (Let's set aside the debate on the strategic value of postcards.)</p>
+<p>Things were going smooth for a few months. The new system was creating the lists and nothing appeared to change. The system is still in use today we are more reliable than the old system in its partially degraded state. But there were some growing pains.</p>
+<p><strong>The Moment of</strong> <a class="reference external" href="https://twitter.com/jamesorharry/status/1100717726547562503">Ely</a></p>
+<blockquote>
+ELY (n.) The first, tiniest inkling you get that something, somewhere, has gone terribly wrong. [Douglas Adams, The Meaning of Liff]</blockquote>
+<p>We began to hear murmurs of the same contacts getting mailed each month from our senders. The script was supposed to draw a certain allocation of contacts at random for each sender. I knew I used <tt class="docutils literal">`df.sample(n=1)</tt> &lt;<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html</a>&gt;`__ from pandas to randomize the contact pool. The contacts were definitely getting randomized.</p>
+<p>Then one day while making a change requested by our stakeholders, I noticed some code I had written that looked sort of like this:</p>
+<pre class="literal-block">
+def remove_duplicates(df):
+    &quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;
+    original = df.copy(deep=True)
+    df = format_for_duplicate_removal(df)
+    df = df.drop_duplicates().sample(n=1)
+    deduped_contacts = original[original.index.isin(df.index)]
+    return deduped_contacts
+</pre>
+<p><strong>The idea of this function was to:</strong></p>
+<ul class="simple">
+<li>create a throwaway copy of the original dataframe with <tt class="docutils literal">df.copy()</tt></li>
+<li>format the throwaway for better duplicate removal</li>
+<li><tt class="docutils literal">drop_duplicates()</tt> and randomize the dataframe's order of the rows with <tt class="docutils literal">df.sample(n=1)</tt></li>
+<li>return those rows from the original dataframe, preserving original data but in randomized order</li>
+</ul>
+<p><strong>Discovering The Error</strong></p>
+<p>Looks great, right? Can you spot my error? Here's where I went wrong: I needed to randomize the data that gets returned. But instead, I randomized the throwaway dataframe. I never once altered the order of the original table. I did remove the duplicates, but the row order of the original dataframe never changed.</p>
+<p><strong>Assessing the Damage</strong></p>
+<p>It took me a few months after I wrote the code to realize. That was enough time for a small fraction of our customers to get postcard bombed.</p>
+<p>Suppose you have two postcard campaigns every month. Both campaigns are drawing from the same contact source data. Both lists are created by the same script with nearly the same logic. That's ok if you randomize the contact order or the list is static. But if you don't randomize them and it's supposed to be a &quot;random&quot; draw campaign, that means you'll likely end up sending to the same people in both campaigns. That's exactly what happened. I accidentally postcard bombed 'em.</p>
+<p>Thankfully, only a small percent of our &quot;senders&quot; were opted into both campaigns. What does that mean for those senders? Their contacts got <a class="reference external" href="https://www.youtube.com/watch?v=SSPewc--3yY">NFL blitzed</a> for 3 months straight. Instead of getting 1 or maybe 2 postcards a month if they're really lucky, they received 2 a month, each month until I caught the error. We bombarded about 3,000 lucky potential customers each month during that time. Some of them let us know they thought it was excessive.</p>
+<blockquote>
+The opposite of love is not hate, it's indifference. - Elie Wiesel</blockquote>
+<p><strong>Sidebar On Analog Marketing</strong></p>
+<p>I think postcards are still relevant as a Marketing tool in 2020. From an environmental perspective, I prefer going digital. Some people let us know when we mail them that they feel the same way and then we stop mailing them. But I think there's something tangible about real things you can hold in your hands. Postcards also tend to get a reaction, even if it's not a good one. Sometimes that reaction is an email stating, &quot;DON'T EVER MAIL ME AGAIN!!!&quot; 😆</p>
+<p><strong>For the record, I changed my mistake to this:</strong></p>
+<pre class="literal-block">
+def remove_duplicates(df):
+    &quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;
+    original = df.copy(deep=True)
+    df = format_for_duplicate_removal(df)
+    df = df.drop_duplicates()
+    deduped_contacts = original[original.index.isin(df.index)]
+    randomized_contacts = deduped_contacts.sample(n=1)
+    return randomized_contacts
+</pre>
+<p><strong>Or maybe something like this would be better, for clearer separation of actions:</strong></p>
+<pre class="literal-block">
+def remove_duplicates(df):
+    &quot;&quot;&quot;Remove duplicates while preserving original data.&quot;&quot;&quot;
+    original = df.copy(deep=True)
+    df = format_for_duplicate_removal(df)
+    df = df.drop_duplicates()
+    deduped_contacts = original[original.index.isin(df.index)]
+    return deduped_contacts
+
+def randomize_contacts(df):
+    &quot;&quot;&quot;Randomize the order of the rows.&quot;&quot;&quot;
+    randomized_contacts = df.sample(n=1)
+    return randomized_contacts
+</pre>
+<p><strong>In Conclusion: Mistakes Happen.</strong></p>
+<p>Sometimes they have interesting consequences when you make them at a certain scale. Maybe I could have written some tests to prevent this. Maybe I should have reviewed my code a couple more times. Sometimes, we're asked to do work that stretches our mental capacity and time to the limit.</p>
+<p>Additionally, it's almost always a better choice to use an existing system, rather than writing your own. But in this case, my team was put in a situation where we needed to deliver because some else's software wasn't doing the job. I did my best to fill that need. And we're still using this way to send postcards today.</p>
+<p>I wish this failure didn't happen for the sake of everyone involved, but <a class="reference external" href="https://en.wikipedia.org/wiki/An_Essay_on_Criticism">to err is human</a>, right? Live and learn.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html">posted at 04:06</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-marketing-pandas-programming-python-work.html" rel="tag">coding, Marketing, pandas, programming, python, work</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/business.html" class="tags">business</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/mistakes.html" class="tags">mistakes</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/random.html" class="tags">random</a>
+                </div>
+            </article>            <h4 class="date">Apr 11, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/reflections-on-5-years-of-solving-problems-with-python.html" rel="bookmark" title="Permanent Link to &quot;Reflections on 5 Years of Solving Problems with Python&quot;">Reflections on 5 Years of Solving Problems with Python</a>
+                </h2>
+
+                
+                
+
+                <p>Prior to learning Python, I had no programming experience. I worked in marketing for a book publisher and did not perform well at my job. It was not a good fit. They eventually fired me. As my previous job unraveled, I discovered Python and the Coursera course, <a class="reference external" href="https://www.coursera.org/learn/python?utm_medium=email&amp;utm_source=other&amp;utm_campaign=opencourse.course_complete.python.%7Eopencourse.course_complete.7A1yFTaREeWWBQrVFXqd1w.">Programming for Everybody (Getting Started with Python)</a>. Fortunately, that course jump-started me onto a path of learning and reading each day. My aim was to make my own website, a <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/05/25/askkevinparker-com-my-first-web-app-other-notes/">goal that I accomplished</a>. I needed to know how the sausage was made.</p>
+<p>Looking back from 2020, I can safely say Python changed my life. Because of it, I now have a fulfilling marketingdata-oriented career. I'm also grateful for the financial stability that came with it. I love to learn about the language and continue to improve my abilities to solve problems with new tools, not only Python.</p>
+<p>Below are pieces of wisdom picked up from my experiences. They are the result of many hours of study, reading, mistakes, luck, toil and eventual glory.</p>
+<p><strong>These are thought-provoking adages and guidelines, not absolute truths in all cases.</strong></p>
+<ol class="arabic simple">
+<li>Developing a habit of learning pays off over time, no matter what the subject is. It is an investment in yourself that compounds.</li>
+<li>Follow your own curiosity. It's less important to compare what you know to others. Compare what you know today to what you knew yesterday. Don't worry about <a class="reference external" href="https://nedbatchelder.com/blog/202003/how_long_did_it_take_you_to_learn_python.html">how long it takes to learn</a>.</li>
+<li>Watch educational or technical conference talks on sites like <a class="reference external" href="https://www.youtube.com/channel/UCMjMBMGt0WJQLeluw6qNJuA/videos">YouTube</a> or InfoQ. <a class="reference external" href="https://www.infoq.com/presentations/Simple-Made-Easy/">Rich Hickey,</a> <a class="reference external" href="https://rhodesmill.org/brandon/talks/#selenium-at-scale">Brandon Rhodes</a> and <a class="reference external" href="https://www.youtube.com/watch?v=lyDLAutA88s">David Beazley</a> are some of my favorite speakers. Watch talks from all languages, not just Python. Often the concepts apply to any programming language.</li>
+<li>Use an RSS reader. Anytime you find a good blog, subscribe by RSS or email to get new posts. I use the <a class="reference external" href="https://chrome.google.com/webstore/detail/rss-feed-reader/pnjaodmkngahhkoihejjehlcdlnohgmp?hl=en">Feeder Chrome extension</a>\Android app.</li>
+<li>The <a class="reference external" href="https://www.python.org/dev/peps/pep-0020/">Zen of Python</a> contains a lot of wisdom. I like the concept of <tt class="docutils literal">Explicit is better than implicit.</tt> This implies declaring your actions in written or oral fashion, providing additional context. Consider favoring easier to read solutions over clever one-liners. For example:<ul>
+<li><a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">List comprehensions</a> are useful and &quot;pythonic&quot;, use them! But sometimes it's easier to use a for loop to hash out an idea. (Contrarily, avoiding the <a class="reference external" href="https://www.youtube.com/watch?v=W-lZttZhsUY">Initialize Then Modify</a> pattern benefits those comfortable with comprehensions.)</li>
+<li>Explicitly using <a class="reference external" href="https://treyhunner.com/2018/04/keyword-arguments-in-python/">keyword arguments</a> versus positional arguments is another way to make your code easier to understand.</li>
+</ul>
+</li>
+<li>Can you explain the solution simply? If not, try to clarify your understanding or maybe there's a simpler way. In Python, there are often several ways to accomplish the same goal. But keep in mind the Zen of Python: <tt class="docutils literal">There should be <span class="pre">one--</span> and preferably only one <span class="pre">--obvious</span> way to do it. Although that way may not be obvious at first unless you're Dutch.</tt> Look for the obvious way. An example of this is <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/04/07/python-101-working-with-strings/">string formatting.</a> I've heard f-strings are the hot new way to do this now.</li>
+<li>Don't be afraid to change course if things don't feel right. Ask yourself while coding, &quot;Does this feel efficient?&quot; Recently I was trying to format a json string so I approached it like I had in the past, by <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/">exporting the request from Postman and formatting the json string</a> with python's <a class="reference external" href="https://docs.python.org/3/library/functions.html?highlight=format#format">format() built-in</a>. But this time, the curly braces were confusing me, I was struggling and it wasn't working. I googled and around and saw python's <a class="reference external" href="https://docs.python.org/3/library/json.html?highlight=json#module-json">json module</a> and <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html">df.to_json()</a> in pandas. They were a much easier and better-looking solution. But it still wasn't working. Finally, i used the Postman approach and f-strings to format a successful payload. The third try worked! F-strings are super nice and clean.</li>
+<li>If you're stuck, there's probably a free online course or blog post that explains whatever is confusing you. Use the Googles. When in doubt, Google the error message.</li>
+<li>Begin your project by writing a list of requirements. This often leads to good questions and cases that may need to be addressed. The book <a class="reference external" href="https://www.amazon.com/gp/product/0735619670/">Code Complete 2</a> covers establishing project requirements in great detail, along with the other stages in the life-cycle of a software project. I'm really enjoying this book and highly recommend it.</li>
+<li>Names are really important. Take time to think about a good name for your variables and functions. Also, name your scripts well. I name my scripts using <a class="reference external" href="https://examples.yourdictionary.com/action-verb-examples.html">action verbs</a>. For example, my script that organizes accumulated files on my desktop into folders is named <tt class="docutils literal">clean_desktop_files.py</tt>. When I see this script months later, its name reminds me the action the script is performing. I believe it's better to err on the side of longer, more descriptive names for variables and functions. It makes code easier to understand. But there is a trade-off with length to keep in check.</li>
+<li>Moving a block of code into a function can abstract away repetitive code and increase its readability.</li>
+<li>Each function should do one thing only. Follow the <a class="reference external" href="https://en.wikipedia.org/wiki/Single-responsibility_principle">single-responsibility principle</a>.</li>
+<li>Train yourself to think in <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">data structure</a>&nbsp;conversions. The Python dictionary is very useful and can be converted to and from lists, tuples, sets, etc. I often find it more efficient to convert to a different structure to efficiently organize it. Usually I am googling things like &quot;convert class object to python dictionary&quot; because dictionaries are easy to work with or convert to other structures. The <tt class="docutils literal">vars()</tt> built-in is great for converting objects to a dictionary. For example, once you have a dictionary, you might be able to solve your problem by <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.from_dict.html">converting it to a dataframe</a>.</li>
+<li>Use only the data you need. Reading in just the essential data helps avoid memory issues and hanging programs. In <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">pandas</a>, the <tt class="docutils literal">usecols</tt> argument in <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pd.read_csv()</a> is great for this. This creates a dataframe with 2 columns:</li>
+</ol>
+<p><tt class="docutils literal">df = <span class="pre">pd.read_csv('emails.csv',</span> <span class="pre">usecols=['name','email'])</span></tt></p>
+<ol class="arabic" start="15">
+<li><p class="first">Assume that if something is broken, it's because of something you've done. Start from the assumption that your code contains the bug and work outward by eliminating possibilities. Avoid jumping to quick conclusions. Instead, carefully consider possible reasons for why something is happening. Many times, I find my 2nd or 3rd hypothesis is actually true.</p>
+</li>
+<li><p class="first">There will be times when you'll look at someone else's choices and wonder why they did things a certain way. Consider the possibility that they know more than you in this domain.</p>
+</li>
+<li><p class="first">Beware of sequencing errors. Are your tasks, scripts or functions executing in an efficient order to reach your end goal? Look to unblock bottlenecks and correct chronological mistakes in your processes.</p>
+</li>
+<li><p class="first">Before you send that email asking for help, go back and take another look. There's also no shame in asking for help. Be sure you proofread your email before sending.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status code 200</a> does not guarantee your API request was successful. You may want to write a test to confirm success that doesn't rely on response status codes.</p>
+<p>[caption id=&quot;attachment_3108&quot; align=&quot;alignnone&quot; width=&quot;941&quot;]<img alt="pytest_test_results" class="alignnone size-full wp-image-3108" src="https://pythonmarketer.files.wordpress.com/2020/04/pytest_test_results.png" style="width: 941px; height: 540px;" /> pytest deprecation warnings for unescaped pipes or slashes in docstrings? ¯_(ツ)_/¯[/caption]</p>
+</li>
+<li><p class="first">Unfortunately, <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">testing</a> gets shunned sometimes. Make it a priority. I enjoy writing <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a> more than most other code. Why? Because tests confirm my scripts are working to some degree, detect bugs and provide a refactoring safety net.</p>
+</li>
+<li><p class="first">Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.</p>
+</li>
+<li><p class="first">Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a <a class="reference external" href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10">Windows batch file</a> to instantly activate my Python <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>. It took me a few years of tediously pasting the <tt class="docutils literal">cd</tt> and <tt class="docutils literal">activate</tt> commands into command prompt every day to realize. Now it's a snap.</p>
+</li>
+<li><p class="first">Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...</p>
+</li>
+<li><p class="first">Read the documentation! An updated or more elegant solution might be there. I recently found <tt class="docutils literal">os.makedirs(path, exist_ok=True)</tt> in the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <tt class="docutils literal">exist_ok</tt> argument. I was creating folders with a more complicated alternative from <a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <tt class="docutils literal">`getpass.getuser()</tt> &lt;<a class="reference external" href="https://docs.python.org/3.8/library/getpass.html">https://docs.python.org/3.8/library/getpass.html</a>&gt;`__ is preferred over <tt class="docutils literal">os.getlogin()</tt>.</p>
+</li>
+<li><p class="first">Write documentation explaining how to use your projects. Even if you can only muster a quick <a class="reference external" href="https://en.wikipedia.org/wiki/README">README</a> text file, that's better than nothing. Within your code, <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> are a nice addition. I have yet to use <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, but it is a popular choice for generating documentation.</p>
+</li>
+<li><p class="first">Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...</p>
+</li>
+<li><p class="first">Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.</p>
+</li>
+<li><p class="first">When editing your writing, continually ask yourself, &quot;Do I need this word or phrase?&quot; for every word you write.</p>
+</li>
+</ol>
+<!--  -->
+<blockquote>
+&quot;Brevity is the soul of wit.&quot; - William Shakespeare (Hamlet)</blockquote>
+<ol class="arabic simple" start="29">
+<li>Draw inspiration from culture, nature and professional disciplines outside of your own. <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/01/28/lessons-learned-from-lost-in-space-on-netflix/">Insights can be mined from anything</a>. Don't dismiss a situation as mundane without first scanning for knowledge nuggets and gems.</li>
+<li>Better solutions often come to me after gaining time and experience with a problem. Building software is an iterative cycle of adjustment towards consistently fulfilling the needs of those it serves in 100% of cases. In a perfect world, you'd never have bugs. But edge cases tend to pop up in ways you didn't think of when you first wrote a solution. There will also be projects where requirements or business rules change. Consider that possibility when you are designing your solution.</li>
+<li>It's possible to find a job that you're excited about and genuinely enjoy the work.</li>
+<li>Respect your craft, whether it's coding or another profession. A skilled carpenter needs precision, practice and focus to make something beautiful. Approach your craft with the same mindset and pride in making your best art.</li>
+<li>We all have holes in our knowledge. Be receptive to other ways of thinking. The best way to learn is from other humans. Everyone has different backgrounds and experiences. I have never used object oriented programming, classes or certain command line tools like <a class="reference external" href="https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/">ssh</a>. I have a loose understanding of these things but have not yet applied them to my projects. Working with paths (os and pathlib) still gives me fits sometimes. These are knowledge gaps that I want to fill in. Additionally, we don't know what we don't know. Try to illuminate the fog of your unknown.</li>
+<li>Choosing to dedicate to learning Python is among the best decisions I've made.</li>
+<li>Attitude is more important than intelligence. Anyone can learn to program, play guitar or fly an airplane. You can become an adept problem solver. Acquire an attitude to support your determination and persistence.</li>
+</ol>
+<p>[caption id=&quot;attachment_2981&quot; align=&quot;alignnone&quot; width=&quot;959&quot;]<a class="reference external image-reference" href="https://www.youtube.com/watch?v=I56oFTm9UlE"><img alt="brandonrhodes" class="alignnone size-full wp-image-2981" src="https://pythonmarketer.files.wordpress.com/2020/04/brandonrhodes.png" style="width: 959px; height: 541px;" /></a> Brandon Rhodes: Stopping to Sharpen Your Tools - PyWaw Summit 2015[/caption]</p>
+<p><strong>I'll leave you with the 4 P's and 4 C's from my</strong> <a class="reference external" href="https://www.youtube.com/watch?v=SfQYA0JQWkA">Programming for Everybody Coursera course graduation ceremony</a><strong>. Cultivating these principles will guide you to growing your education and finding a positive course in life:</strong></p>
+<blockquote>
+<p><strong>4 P’s:</strong> Passion, Purpose, Persistence, Playfulness</p>
+<p><strong>4 C’s:</strong> Choice, Commitment, Connection, Completion</p>
+</blockquote>
+<p>Thank you for reading and I hope this post helps you on your own educational journey.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/reflections-on-5-years-of-solving-problems-with-python.html">posted at 17:15</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-education-marketing-programming-python-wisdom.html" rel="tag">coding, education, Marketing, programming, python, wisdom</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/advice.html" class="tags">advice</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/problem-solving.html" class="tags">problem solving</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/writing.html" class="tags">writing</a>
+                </div>
+            </article>            <h4 class="date">Mar 22, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/easy-wins-for-your-windows-computer.html" rel="bookmark" title="Permanent Link to &quot;Easy Tune-ups For Your Windows Computer&quot;">Easy Tune-ups For Your Windows Computer</a>
+                </h2>
+
+                
+                
+
+                <div class="section" id="this-post-covers-6-handy-windows-tools">
+<h2>This post covers 6 handy Windows tools:</h2>
+<ol class="arabic simple">
+<li>Windows Experience Index</li>
+<li>Disk Cleanup</li>
+<li>Windows Update Troubleshooter</li>
+<li>Windows Update</li>
+<li>Microsoft Support and Recovery Assistant</li>
+<li>Disk Defragmenter</li>
+</ol>
+</div>
+<div class="section" id="first-get-your-baseline-windows-experience-index-score">
+<h2><strong>First, get your baseline Windows Experience Index score.</strong></h2>
+<p>These metrics are a way to monitor your system's performance over time.</p>
+<ol class="arabic simple">
+<li>Go to &quot;Control PanelSystem and SecuritySystem&quot;</li>
+<li>Select &quot;Your Windows Experience Index needs to be refreshed.&quot;</li>
+<li>Note the metrics you see and the last updated date. If you've never refreshed them, these are likely your computer's factory scores.</li>
+<li>Then click &quot;Refresh Now&quot; and note the results. These are your computer's current scores.</li>
+</ol>
+<img alt="check_Windows_Experience_Index" class="alignnone size-full wp-image-2780" src="http://pythonmarketer.files.wordpress.com/2020/03/f6e0a-check_windows_experience_index-e1584936945758.jpg" style="width: 729px; height: 501px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="run-disk-cleanup">
+<h2><strong>Run Disk Cleanup</strong></h2>
+<p>The name says it all. Go to the Start menu and search 'Disk Cleanup'. Running this freed up 40 GB of C: drive space for me.</p>
+<p>disk_cleanup</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="install-os-patches-and-software-updates-withwindows-update">
+<h2><strong>Install OS patches and software updates withWindows Update.</strong></h2>
+<p><strong>First, troubleshoot Windows Update to fix any errors.</strong></p>
+<img alt="tdhotingtrpot2" class="wp-image-2790 alignright" src="http://pythonmarketer.files.wordpress.com/2020/03/83836-tdhotingtrpot2-e1584941263675.jpg" style="width: 357px; height: 274px;" />
+<p>The <a class="reference external" href="https://support.microsoft.com/en-us/help/4027322/windows-update-troubleshooter">Windows Update Troubleshooter</a>is supported by Windows and may help&nbsp;with updates that fail. I downloaded the troubleshooter forWindows Update and BITS, Windows'<a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal">Background Intelligence Transfer System.</a></p>
+<p>The troubleshooter analyzes Windows Update and tries to fix the errors it finds. After running, it provides a status update on the issues it finds.</p>
+<p><strong>Run Windows Update to upgrade your software.</strong></p>
+<p>Windows Update usually updates your software reliably. However, some updates may fail or are not triggered automatically. Installing updates, especially security patches for your operating system is typically a good idea.In my case, several Windows 7 OS security patches had not auto-updated, some from 6 months ago.</p>
+<p>check_updates</p>
+<ul class="simple">
+<li>Go to your start menu and search for 'Windows Update'.</li>
+<li>I clicked 'Check online for updates from Windows Update' also.</li>
+<li>When you restart your computer, use a power cord for your laptop.</li>
+<li>I found more new updates twice after installing new updates and restarting my system.&nbsp; Some updates are required before another update may be installed.</li>
+</ul>
+<p>windowsuptodate</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="microsoft-support-and-recovery-assistant">
+<h2>Microsoft Support and Recovery Assistant</h2>
+<p><strong>Got Microsoft Errors?</strong> Check out the <a class="reference external" href="https://support.office.com/en-us/article/about-the-microsoft-support-and-recovery-assistant-e90bb691-c2a7-4697-a94f-88836856c72f">Microsoft Support and Recovery Assistant</a>. It may help you if you're having trouble with Microsoft Office, Skype or any other Windows&nbsp;tools.</p>
+<img alt="options_recovery" class="wp-image-3225 alignnone" src="http://pythonmarketer.files.wordpress.com/2020/03/1ea73-options_recovery-e1587747001750.jpg" style="width: 465px; height: 350px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="finally-defragment-your-c-drive">
+<h2><strong>Finally, defragment your C: drive.</strong></h2>
+<p>Defragmentation is like spring cleaning for your computer's hard disk. It optimizes your drive's data for more efficient computing and frees up space for other activities.</p>
+<ol class="arabic simple">
+<li>Go to your start menu and search for 'Disk Defragmenter'.</li>
+<li>Click 'Analyze disk' to check your C: Drive's fragmented rate.</li>
+<li>If the fragmented rate is above 10%, <a class="reference external" href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Windows recommends</a> to defragment your C: Drive. As you can see below, mine had a whopping 48% fragmentation rate. 😨 My poor computer had never been defragged in 2.5 years of use.</li>
+</ol>
+<img alt="defragment_results" class="alignnone size-full wp-image-2740" src="http://pythonmarketer.files.wordpress.com/2020/03/699fd-defragment_results-e1585007505765.jpg" style="width: 658px; height: 529px;" />
+<p><strong>46% Less Fragmented Disk Space After Two Defrags</strong></p>
+<p>Running the defragmenter once reduced my drive's fragmentation from 48% to 32%. Re-running the defragmenter dropped my C: drive to a 2% fragmented rate. That's more like it. 🤓</p>
+<blockquote>
+<div class="ng-scope docutils container">
+Fragmentation makes your hard disk do extra work that can slow down your computer. Removable storage devices such as USB flash drives can also become fragmented. Disk Defragmenter in Windows rearranges fragmented data so your disks and drives can work more efficiently.</div>
+<div class="docutils container">
+Source: <a class="reference external" href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Ways to Improve Your Computer's Performance</a></div>
+</blockquote>
+</div>
+<hr class="docutils" />
+<div class="section" id="my-windows-7-system-improvement-results">
+<h2><strong>My Windows 7 System Improvement Results</strong></h2>
+<ul class="simple">
+<li>Raised Windows Experience Index base sub-score from 4.9 to 5.0/7.9.</li>
+<li>Added 40 GB of hard drive space thanks to Disk Cleanup.</li>
+<li>Patched operating system security vulnerabilities and all software is up to date.</li>
+<li>Fixed any misbehaving Windows products.</li>
+<li>Decreased fragmented drive space from 48% to 2%. Windows recommends keeping it under 10%.</li>
+</ul>
+<p>On paper, that looks great. Hopefully it means less spinning lag wheels and programs not responding when you really shoulda saved that document...&nbsp; <a class="reference external" href="https://www.youtube.com/watch?v=e2cjVhUrmII">We'll see</a>.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/easy-wins-for-your-windows-computer.html">posted at 22:59</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/performance-windows.html" rel="tag">performance, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/maintenance.html" class="tags">maintenance</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/operating-system.html" class="tags">operating system</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/windows-update.html" class="tags">windows update</a>
+                </div>
+            </article>            <h4 class="date">Jan 28, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/lessons-learned-from-lost-in-space-on-netflix.html" rel="bookmark" title="Permanent Link to &quot;Lessons Learned from "Lost in Space" on Netflix&quot;">Lessons Learned from &quot;Lost in Space&quot; on Netflix</a>
+                </h2>
+
+                
+                
+
+                <p>Being a developer has similarities to the life of a family surviving in space. Sure, the stakes are lower when writing code versus being chased by alien life forms, but the core idea is the same. One is faced with a problem and it must be solved, with varying degrees of consequences for failure.</p>
+<p>I enjoyed watching the Robinsons solve problem after problem to stay alive in alien worlds and the vacuum of space. I believe you can learn from anything. <strong>So in that spirit, here are some lessons from the show for us problem solving humans:</strong></p>
+<ol class="arabic simple">
+<li><img alt="tayrob" class="size-full wp-image-2271 alignright" src="https://pythonmarketer.files.wordpress.com/2020/01/tayrob.jpeg" style="width: 300px; height: 168px;" />Don't panic when you're in trouble. A cool head is vitally important to your survival chances when you're in a bind. Judy demonstrates this quality in evading the&nbsp;raptor-like creatures chasing her.</li>
+<li>Problems solved often lead to more problems to solve. We would be wise to anticipate what might happen if we do succeed.</li>
+<li>Be cautious when venturing into unfamiliar territories. You never know what could be there to trip you up. Which leads me to my next point...</li>
+<li>Respect nature's ability to f*ck you up. The environment you're in, other organisms, and bacteria can wreak havoc. Despite our perceived self-importance, nature is our god. We are but specks in its creation. Cases in point: the metal-dissolving virus that destroys Judy's chariot and the poisonous algae Don accidentally discovers that immobilizes him.</li>
+<li>Know when to go for broke, or when to re-group and wait to make your next move. The Robinsons spent 7 months stocking up at their new beach home. Until they suffered a setback...<img alt="beach" class="alignnone size-full wp-image-2279" src="https://pythonmarketer.files.wordpress.com/2020/01/beach.jpg" style="width: 2155px; height: 1181px;" /></li>
+<li>Adapt your plan when new information becomes available or unexpected events happen. They will happen.</li>
+<li>Think of unconventional ways to use the resources you do have to fix the problem at hand. Who would have thought a spaceship could be retrofitted into a boat?</li>
+<li>Things often work 83% of the way you expect them to work. Sometimes that's enough to move on. Or maybe it buys you enough time to figure out your next move. The electrical field stalled the fleet of robots long enough for the Robinsons to realize the children should &quot;<a class="reference external" href="https://en.wikipedia.org/wiki/Lord_of_the_Flies">Lord of the Flies</a>&quot; their way to Alpha Centauri.</li>
+<li>Question your own motivations, and be open to changing course if you are wrong. Adler realized he should help Will save Scarecrow's life after first trying to stop him. Scarecrow then exhibits this same quality when he turns against his robot comrades to save the children.</li>
+<li>Ethics and morals may conflict with each other. Was Maureen Robinson wrong for fraudulently saving her son Will? Ethically, yes. But morally, as a mother saving her son? No.</li>
+<li>Make time for your family and friends. Maureen was so busy saving the family that she didn't read Penny's book. Stop and smell the roses every once in a while. Or read your daughter's damn book.</li>
+<li>Humans are capable of both great compassion and horrible cruelty. We're running from alien robots, but sometimes we're the monsters? Cough cough Smith and Hastings... cough. Excuse me. (smh 🤦)</li>
+<li><img alt="robot" class="wp-image-2282 alignright" src="https://pythonmarketer.files.wordpress.com/2020/01/robot-1.jpeg" style="width: 358px; height: 179px;" />I'll spare you any parallels about modern artificial intelligence. The best, most grounded definition I've heard of modern AI is &quot;<a class="reference external" href="https://twitter.com/fchollet/status/1214392496375025664?lang=en">automated cognition</a>&quot;.</li>
+<li>Self-sacrifice is an honorable death to save the lives of others, but can be frustrating to watch on TV. &quot;Did you really have to kill yourself there?&quot; - me, several times during the show 😆</li>
+</ol>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/lessons-learned-from-lost-in-space-on-netflix.html">posted at 06:39</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/entertainment-life-space.html" rel="tag">entertainment, life, space</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/lost-in-space.html" class="tags">Lost in Space</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/netflix.html" class="tags">Netflix</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/problem-solving.html" class="tags">problem solving</a>
+                </div>
+            </article>            <h4 class="date">Jan 25, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/git-the-basics-a-git-version-control-cheat-sheet.html" rel="bookmark" title="Permanent Link to &quot;"Git" The Basics: A Version Control Cheat Sheet&quot;">&quot;Git&quot; The Basics: A Version Control Cheat Sheet</a>
+                </h2>
+
+                
+                
+
+                <p><em>I am finally starting to understand</em><a class="reference external" href="https://en.wikipedia.org/wiki/Git">git version control</a><em>! It makes developing a project on different computers easy. Some of these notes were picked up from the super informative</em><a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a><em>by Jake VanderPlas, author of the</em><a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a><em>.</em></p>
+<p><em>First,</em><a class="reference external" href="https://git-scm.com/downloads">go here</a><em>, download and install git if you haven't yet. Alright, here are my go-to steps and commands for git:</em></p>
+<p><strong>Beginning a New Project With Git</strong></p>
+<ol class="arabic simple">
+<li>Create new repository on GitHub</li>
+<li>Add a README</li>
+<li>Add a Python gitignore</li>
+<li>Add a license (Jake V. used an MIT license)</li>
+</ol>
+<p><strong>Clone Any Repository from GitHub</strong></p>
+<ol class="arabic simple">
+<li>Visit your new project, or any GitHub project, click the green &quot;Clone or download&quot; button and copy the link.</li>
+<li>In your terminal or command prompt, navigate to the directory where you want to clone your project.</li>
+<li>In terminal, enter: <tt class="docutils literal">git clone PASTE_URL_HERE</tt></li>
+<li>Now cd into your project folder.</li>
+</ol>
+<p><strong>Push Your Local Computer Changes to the Master Repository</strong></p>
+<p>Let's say you did some work on your computer and want to push the changes to GitHub. Enter these commands in terminal:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">git add .</tt></li>
+<li><tt class="docutils literal">git commit <span class="pre">-m</span> &quot;Add your commit note here&quot;</tt></li>
+<li><tt class="docutils literal">git push origin master</tt></li>
+</ol>
+<p>*Above: <tt class="docutils literal">git add .</tt> = stage all files in project directory for master</p>
+<p>**Substitute <tt class="docutils literal">git add path\to\file\here</tt> to stage only a single file to add to your master repository.</p>
+<p><strong>Fetch Changes From Master Branch to Your Local Computer</strong></p>
+<p>I like to update my local computer with any master branch changes before beginning work on it. Enter these commands in terminal:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">git fetch</tt></li>
+<li><tt class="docutils literal">git pull origin master</tt></li>
+</ol>
+<p><strong>Review Merge Conflicts</strong></p>
+<p>Sometimes, your code may conflict with changes in the master branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use &quot;git status&quot; to locate the files with the conflicts. Enter in your terminal:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">git status</tt></li>
+<li>Then <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line">follow these instructions</a> to review the merge conflicts.</li>
+</ol>
+<p>See also: <a class="reference external" href="https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/conflicts.html">Resolving Conflicts - Virtualenv Documentation</a></p>
+<p><strong>Or maybe you want to discard any local changes, then merge:</strong></p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">git fetch</tt></li>
+<li><tt class="docutils literal">git checkout .</tt></li>
+<li><tt class="docutils literal">git pull origin master</tt></li>
+</ol>
+<p><strong>Recovering from a Corrupted Repository</strong></p>
+<p><tt class="docutils literal">git fsck <span class="pre">--full</span> <span class="pre">--no-dangling</span></tt></p>
+<p><a class="reference external" href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html#recovering-from-repository-corruption">Additional Reading</a></p>
+<p><strong>Supplementary Reading</strong></p>
+<p><a class="reference external" href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a></p>
+<p><a class="reference external" href="https://lanraccoon.com/2018/8-git-commands-i-use-everyday/">8 Git Commands I Use Every Day</a></p>
+<p><a class="reference external" href="http://who-t.blogspot.com/2009/12/on-commit-messages.html">On Commit Messages</a></p>
+<p><a class="reference external" href="https://github.com/pandas-dev/pandas/wiki/Git-Workflows">Pandas Library Git Workflows</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/git-the-basics-a-git-version-control-cheat-sheet.html">posted at 05:06</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-command-prompt-data-analysis-git-programming-software.html" rel="tag">coding, command prompt, data analysis, git, programming, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/github.html" class="tags">github</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/terminal.html" class="tags">terminal</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/version-control.html" class="tags">version control</a>
+                </div>
+            </article>            <h4 class="date">Dec 26, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code.html" rel="bookmark" title="Permanent Link to &quot;Comparing Text Editors on Ubuntu: Atom, Emacs, Sublime, Vim & VS Code&quot;">Comparing Text Editors on Ubuntu: Atom, Emacs, Sublime, Vim &amp; VS Code</a>
+                </h2>
+
+                
+                
+
+                <p>The text editor is a core tool for writing software. I've always used Atom. Lately, I've noticed my Atom text editor was bogging down on my Chromebook running Ubuntu 16.04. Keystrokes and mouse movements were lagging and slowing my coding down. I'm also getting low on disk space, which may be a related issue.</p>
+<p>You'll want to choose a text editor based on how it suits your own needs. In this case, I want a light-weight, responsive editor with no lag. Bells and whistles are less important. I'm also looking to minimize disk space required.</p>
+<p>I decided to compare the <a class="reference external" href="https://codeburst.io/a-beginners-guide-to-using-apt-get-commands-in-linux-ubuntu-d5f102a56fc4">apt installed</a> package size of some popular editors.&nbsp;First, I installed Atom, Emacs, Sublime, VS Code and Vim using the Ubuntu 16.04 terminal. You&nbsp;could also consider using <a class="reference external" href="https://docs.python.org/3/library/idle.html">IDLE, python's built-in text editor</a> as an alternative that requires no additional software.</p>
+<p><strong>Then I</strong> <a class="reference external" href="https://unix.stackexchange.com/questions/40442/which-installed-software-packages-use-the-most-disk-space-on-debian">found the below command</a> <strong>to list all installed apt packages by package size on Ubuntu:</strong></p>
+<pre class="literal-block">
+dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+</pre>
+<p><strong>Here's the terminal output with relevant packages in Megabytes (including Firefox for comparative size):</strong></p>
+<pre class="literal-block">
+136    emacsen-common
+366 vim-common
+1071    vim-tiny
+2400    vim
+21648   emacs26
+26870   vim-runtime
+34033   sublime-text
+70307   emacs26-common
+193694  firefox
+236965  code
+607932  atom
+</pre>
+<p>Atom is by far the largest package I downloaded. It is nearly three times the size of VS Code, my second largest package. The next largest was my web browser, Firefox. Most of the other packages I downloaded were considerably smaller.</p>
+<blockquote>
+Side note: I also found out Ubuntu 16.04 ships with a stripped down version of Vim called <a class="reference external" href="https://askubuntu.com/questions/104138/what-features-does-vim-tiny-have">vim-tiny</a>.</blockquote>
+<p><strong>Total Installed Package Sizes in Megabytes (Smallest to Largest)</strong></p>
+<p>Some of these editors have multiple packages they are dependent on.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="36%" />
+<col width="48%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>Text Editor</td>
+<td>Total Installed Packages Size</td>
+<td><strong>Packages Installed</strong></td>
+</tr>
+<tr><td>Vim</td>
+<td>29,636 MB</td>
+<td>vim, vim-common, vim-runtime</td>
+</tr>
+<tr><td>Sublime</td>
+<td>34,033 MB</td>
+<td>sublime-text</td>
+</tr>
+<tr><td>Emacs</td>
+<td>91,955 MB</td>
+<td>emacs26-common, emacs26, emacsen-common</td>
+</tr>
+<tr><td>VS Code</td>
+<td>236,965 MB</td>
+<td>code</td>
+</tr>
+<tr><td>Atom</td>
+<td>607,932 MB</td>
+<td>atom</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Results: Vim and Sublime win for smallest installed package size.</strong></p>
+<ul class="simple">
+<li>Vim is the lightest-weight package of these 5 popular text editors, with Sublime not far behind. Emacs is comparable to them for usability and relatively small.</li>
+<li>Atom is nearly 3x the size of VS Code and 20x the size of Vim. Atom and VS Code are larger than the Firefox browser package, the third largest of any downloaded package on my system.</li>
+<li>I tested out all of the editors by opening the same Python file and making some edits. I found Vim, Emacs and Sublime were much more responsive than Atom and VS Code.</li>
+</ul>
+<p><strong>Conclusion: All Editors Are Not Created Equal</strong></p>
+<p>These are fine editors when paired with the right machine and developer needs. In my case, a Chromebook running Linux installed with <a class="reference external" href="https://github.com/dnschneid/crouton">Crouton</a>, a few editors are performing faster and taking up less space. I've chosen Sublime or Emacs as my editor for this computer. One slightly annoying feature of Sublime is being prompted to buy the paid version from the trial version. Atom, Emacs, Vim and VS Code are free. Vim might be a good option if I ever decide to conquer its <a class="reference external" href="https://stackoverflow.com/questions/11828270/how-do-i-exit-the-vim-editor">notoriously high learning curve</a>.</p>
+<p><strong>[Bonus] Find the size of all packages matching with &quot;vim&quot; in their name:</strong></p>
+<pre class="literal-block">
+dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | grep vim
+</pre>
+<p><strong>Terminal output from above command:</strong></p>
+<pre class="literal-block">
+366 vim-common
+1071 vim-tiny
+2400 vim
+26870 vim-runtime
+</pre>
+<p><strong>Additional Reading</strong></p>
+<p><a class="reference external" href="https://www.quora.com/What-is-the-best-lightweight-text-editor">What is the best lightweight text editor?</a></p>
+<p><a class="reference external" href="https://github.com/atom/atom/issues/9755">Atom as an Editor is Too Big</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code.html">posted at 01:25</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-linux-scripts-software-ubuntu.html" rel="tag">coding, Linux, Scripts, software, Ubuntu</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/atom.html" class="tags">atom</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/emacs.html" class="tags">emacs</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/sublime.html" class="tags">sublime</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/text-editors.html" class="tags">text editors</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/vim.html" class="tags">vim</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/vs-code.html" class="tags">vs code</a>
+                </div>
+            </article>
+
+                <div class="clear"></div>
+                <div class="pages">
+
+                    <a href="https://pythonmarketer.com/index3.html" class="prev_page">&larr;&nbsp;Previous</a>
+
+                    <a href="https://pythonmarketer.com/index5.html" class="next_page">Next&nbsp;&rarr;</a>
+
+                    <span>Page 4 of 7</span>
+                </div>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

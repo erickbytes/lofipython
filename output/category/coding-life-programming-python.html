@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles in the "coding, life, programming, python" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-life-programming-python.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-life-programming-python.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/category/coding-life-programming-python.html">coding, life, programming, python</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">May 14, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/stay-hungry-stay-humble.html" rel="bookmark" title="Permanent Link to &quot;How to Check if a Python Variable is a Tuple&quot;">How to Check if a Python Variable is a Tuple</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Tonight I Googled "how to check if a variable is a tuple", expecting to find a Stack Overflow <a href="https://docs.python.org/3/library/functions.html#isinstance">isinstance()</a> snippet. Instead, I found that i could use Python's type built-in to check if my variable is a tuple:</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">Wrong</span>
+<span class="nv">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">(</span><span class="mi">3</span>,<span class="mi">3</span><span class="ss">)</span>
+<span class="k">if</span><span class="w"> </span><span class="nv">type</span><span class="ss">(</span><span class="nv">A</span><span class="ss">)</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">tuple</span>:
+<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s1">&#39;Found a tuple.&#39;</span><span class="ss">)</span>
+#<span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="nv">Found</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">tuple</span>.
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>I thought that looked like a good solution until I found a section in <a href="https://www.python.org/dev/peps/pep-0008/">PEP 8, Python's official style guide</a>, that said that is not the best way to do this.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">Correct</span>
+<span class="nv">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">(</span><span class="mi">3</span>,<span class="mi">3</span><span class="ss">)</span>
+<span class="nv">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hello world&#39;</span>
+<span class="k">if</span><span class="w"> </span><span class="nv">isinstance</span><span class="ss">(</span><span class="nv">A</span>,<span class="w"> </span><span class="nv">tuple</span><span class="ss">)</span>:
+<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s1">&#39;Found a tuple.&#39;</span><span class="ss">)</span>
+<span class="k">if</span><span class="w"> </span><span class="nv">isinstance</span><span class="ss">(</span><span class="nv">B</span>,<span class="w"> </span><span class="nv">tuple</span><span class="ss">)</span>:
+<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s1">&#39;Found a tuple.&#39;</span><span class="ss">)</span>
+<span class="k">else</span>:
+<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s1">&#39;Not a tuple.&#39;</span><span class="ss">)</span>
+#<span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="nv">Found</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">tuple</span>.
+#<span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="nv">Not</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">tuple</span>.
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Never let yourself believe that you know all you need to know already. There's always something new to rediscover. And (sometimes) only one best way.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="nv">There</span><span class="w"> </span><span class="nv">should</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">one</span><span class="o">--</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">preferably</span><span class="w"> </span><span class="nv">only</span><span class="w"> </span><span class="nv">one</span><span class="w"> </span><span class="o">--</span><span class="nv">obvious</span><span class="w"> </span><span class="nv">way</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">it</span>.
+<span class="o">-</span><span class="w"> </span><span class="nv">Zen</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">Python</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/stay-hungry-stay-humble.html">posted at 00:00</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-life-programming-python.html" rel="tag">coding, life, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/coursera.html" class="tags">coursera</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/google.html" class="tags">Google</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/humility.html" class="tags">humility</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

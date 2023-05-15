@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "version control"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/version-control.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/version-control.html">version control</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jan 25, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/git-the-basics-a-git-version-control-cheat-sheet.html" rel="bookmark" title="Permanent Link to &quot;"Git" The Basics: A Version Control Cheat Sheet&quot;">&quot;Git&quot; The Basics: A Version Control Cheat Sheet</a>
+                </h2>
+
+                
+                
+
+                <p><em>I am finally starting to understand</em><a class="reference external" href="https://en.wikipedia.org/wiki/Git">git version control</a><em>! It makes developing a project on different computers easy. Some of these notes were picked up from the super informative</em><a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a><em>by Jake VanderPlas, author of the</em><a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a><em>.</em></p>
+<p><em>First,</em><a class="reference external" href="https://git-scm.com/downloads">go here</a><em>, download and install git if you haven't yet. Alright, here are my go-to steps and commands for git:</em></p>
+<p><strong>Beginning a New Project With Git</strong></p>
+<ol class="arabic simple">
+<li>Create new repository on GitHub</li>
+<li>Add a README</li>
+<li>Add a Python gitignore</li>
+<li>Add a license (Jake V. used an MIT license)</li>
+</ol>
+<p><strong>Clone Any Repository from GitHub</strong></p>
+<ol class="arabic simple">
+<li>Visit your new project, or any GitHub project, click the green &quot;Clone or download&quot; button and copy the link.</li>
+<li>In your terminal or command prompt, navigate to the directory where you want to clone your project.</li>
+<li>In terminal, enter: <tt class="docutils literal">git clone PASTE_URL_HERE</tt></li>
+<li>Now cd into your project folder.</li>
+</ol>
+<p><strong>Push Your Local Computer Changes to the Master Repository</strong></p>
+<p>Let's say you did some work on your computer and want to push the changes to GitHub. Enter these commands in terminal:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">git add .</tt></li>
+<li><tt class="docutils literal">git commit <span class="pre">-m</span> &quot;Add your commit note here&quot;</tt></li>
+<li><tt class="docutils literal">git push origin master</tt></li>
+</ol>
+<p>*Above: <tt class="docutils literal">git add .</tt> = stage all files in project directory for master</p>
+<p>**Substitute <tt class="docutils literal">git add path\to\file\here</tt> to stage only a single file to add to your master repository.</p>
+<p><strong>Fetch Changes From Master Branch to Your Local Computer</strong></p>
+<p>I like to update my local computer with any master branch changes before beginning work on it. Enter these commands in terminal:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">git fetch</tt></li>
+<li><tt class="docutils literal">git pull origin master</tt></li>
+</ol>
+<p><strong>Review Merge Conflicts</strong></p>
+<p>Sometimes, your code may conflict with changes in the master branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use &quot;git status&quot; to locate the files with the conflicts. Enter in your terminal:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">git status</tt></li>
+<li>Then <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line">follow these instructions</a> to review the merge conflicts.</li>
+</ol>
+<p>See also: <a class="reference external" href="https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/conflicts.html">Resolving Conflicts - Virtualenv Documentation</a></p>
+<p><strong>Or maybe you want to discard any local changes, then merge:</strong></p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">git fetch</tt></li>
+<li><tt class="docutils literal">git checkout .</tt></li>
+<li><tt class="docutils literal">git pull origin master</tt></li>
+</ol>
+<p><strong>Recovering from a Corrupted Repository</strong></p>
+<p><tt class="docutils literal">git fsck <span class="pre">--full</span> <span class="pre">--no-dangling</span></tt></p>
+<p><a class="reference external" href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html#recovering-from-repository-corruption">Additional Reading</a></p>
+<p><strong>Supplementary Reading</strong></p>
+<p><a class="reference external" href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a></p>
+<p><a class="reference external" href="https://lanraccoon.com/2018/8-git-commands-i-use-everyday/">8 Git Commands I Use Every Day</a></p>
+<p><a class="reference external" href="http://who-t.blogspot.com/2009/12/on-commit-messages.html">On Commit Messages</a></p>
+<p><a class="reference external" href="https://github.com/pandas-dev/pandas/wiki/Git-Workflows">Pandas Library Git Workflows</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/git-the-basics-a-git-version-control-cheat-sheet.html">posted at 05:06</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-command-prompt-data-analysis-git-programming-software.html" rel="tag">coding, command prompt, data analysis, git, programming, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/github.html" class="tags">github</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/terminal.html" class="tags">terminal</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/version-control.html" class="tags selected">version control</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

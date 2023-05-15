@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-command-prompt-scripts-windows.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-command-prompt-scripts-windows.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content="command line,remote computer,scripting,shell" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">May 06, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html" rel="bookmark" title="Permanent Link to &quot;Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32&quot;">Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32</a>
+                </h2>
+
+                
+                
+
+                <p>Here are a few useful corners of the vast array of Windows scripting tools.</p>
+<h2>Helpful Windows Command Line Documentation</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key">Windows command line Documentation Syntax</a></li>
+<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490890%28v%3dtechnet.10%29">Command-line reference A-Z</a></li>
+<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490954%28v%3dtechnet.10%29">Command shell overview</a></li>
+<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490982%28v%3dtechnet.10%29">Using command redirection operators</a></li>
+<li><a href="https://docs.microsoft.com/en-us/windows/win32/winrm/about-windows-remote-management">About Windows Remote Management</a></li>
+</ul>
+<h2>A Few General Windows Commands</h2>
+<p><strong>Use <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a> to look in a text file to count the lines matching a string:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">find</span><span class="w"> </span><span class="o">/</span><span class="nv">C</span><span class="w"> </span><span class="s2">&quot;FAIL&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s2">&quot;Test_Results.txt&quot;</span>
+#<span class="w"> </span><span class="nv">returns</span>:<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">no</span><span class="w"> </span><span class="nv">match</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span>#<span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">lines</span><span class="w"> </span><span class="nv">found</span>,<span class="w"> </span><span class="nv">e</span>.<span class="nv">g</span>.<span class="w"> </span><span class="mi">2</span>,<span class="mi">50</span>,<span class="mi">100</span>
+</code></pre></div>
+
+<p>I wrote a post on <a href="https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/">findstr</a>, which offers similar functionality.</p>
+<p><strong>clip:</strong> pipe commands <a href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</p>
+<p><strong>If:</strong> <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</p>
+<p><strong>List ip address-related info:</strong></p>
+<div class="highlight"><pre><span></span><code>ipconfig
+</code></pre></div>
+
+<p><strong>Check system bit (usually 64-bit or 32-bit):</strong></p>
+<div class="highlight"><pre><span></span><code>wmic os getosarchitecture
+</code></pre></div>
+
+<h2>Automate Windows Scripts with Batch Files</h2>
+<p>Batch files can be run from command prompt or by double-clicking them. Here's an example of text in a batch file that activates a python virtual environment. Swap in your username and environment if you've created it.</p>
+<div class="highlight"><pre><span></span><code>cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd .. &amp; dir&quot;
+</code></pre></div>
+
+<ol>
+<li>Save above as a .bat file.</li>
+<li>This uses <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29">cmd</a> to [open a new command prompt in a Windows batch file.]{style="color:var(--color-text);"}</li>
+<li>[<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a> into my python virtual env then activate it by running a batch file.]{style="color:var(--color-text);"}</li>
+<li>[Then call dir to print directory contents.]{style="color:var(--color-text);"}</li>
+</ol>
+<p><strong><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a> a custom system 'last_name' variable to be recalled later.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">set</span><span class="w"> </span><span class="o">/</span><span class="nv">p</span><span class="w"> </span><span class="nv">last_name</span><span class="o">=</span><span class="nv">Enter</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">last</span><span class="w"> </span><span class="nv">name</span>:
+<span class="nv">echo</span><span class="w"> </span><span class="o">%</span><span class="nv">last_name</span><span class="o">%</span>
+<span class="k">pause</span>
+</code></pre></div>
+
+<p>Here we print it out with <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490897(v=technet.10)">echo</a>. Then <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490965(v=technet.10)">pause</a>.</p>
+<p><strong>Line continuation in batch files:</strong> Use \^ to continue your batch file scripts on a new line.</p>
+<h2>System Assessment Tools: powercfg and sfc</h2>
+<p><strong>Display system stats:</strong></p>
+<div class="highlight"><pre><span></span><code>systeminfo
+</code></pre></div>
+
+<p><strong>Use powercfg to assess power, sleep and system states</strong></p>
+<div class="highlight"><pre><span></span><code>powercfg /SLEEPSTUDY
+</code></pre></div>
+
+<p>Use sfc to perform a system file check:</p>
+<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">scan</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">repair</span>
+<span class="nv">sfc</span><span class="w"> </span><span class="o">/</span><span class="nv">SCANNOW</span>
+#<span class="w"> </span><span class="nv">scan</span>,<span class="w"> </span><span class="nv">but</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">repair</span>:
+<span class="nv">sfc</span><span class="w"> </span><span class="o">/</span><span class="nv">VERIFYONLY</span>
+</code></pre></div>
+
+<h2>Accessing a Remote Computer From the Command Line</h2>
+<p>You may want to <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ping">ping</a> a remote computer to see if it's running. Add your ip address instead of the below 1s and 0s:</p>
+<div class="highlight"><pre><span></span><code>ping 01.10.10.01
+</code></pre></div>
+
+<p><strong>Log into your Remote Desktop with <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a>:</strong></p>
+<ol>
+<li>Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.</li>
+<li>You may need to <a href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on">adjust your credentials on your local machine.</a></li>
+<li>Finally, trigger login to an active window from command prompt:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="o">--&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>mstsc RDP_File_Name.rdp
+</code></pre></div>
+
+<p><strong><a href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a> and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</strong></p>
+<div class="highlight"><pre><span></span><code>winrm quickconfig
+</code></pre></div>
+
+<p><strong>Log into a remote computer with <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs">winrs</a> and run ipconfig:</strong></p>
+<div class="highlight"><pre><span></span><code>winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
+</code></pre></div>
+
+<h2>Check Out Python's <a href="https://github.com/mhammond/pywin32">pywin32</a> Module</h2>
+<p>This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook and <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">Task Scheduler</a>. Install with <a href="http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
+<div class="highlight"><pre><span></span><code>python -m pip install pywin32
+</code></pre></div>
+
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Here's an example to send an Outlook email:</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">win32com.client</span>
+
+<span class="n">outlook</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">&#39;outlook.application&#39;</span><span class="p">)</span>
+<span class="n">mail</span> <span class="o">=</span> <span class="n">outlook</span><span class="o">.</span><span class="n">CreateItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">To</span> <span class="o">=</span> <span class="s1">&#39;someone@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">CC</span> <span class="o">=</span> <span class="s1">&#39;name@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="s1">&#39;Moneyball Review&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            Moneyball is an inspiring movie, based on real events.</span>
+<span class="s2">            Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.</span>
+<span class="s2">            The trade deadline scene is delightful. Wow.</span>
+<span class="s2">            Chris Pratt as Hatteberg too. What a solid film.</span>
+<span class="s2">            Money isn&#39;t everything. Playing ball is.</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Attachments</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Baseball_Analysis.csv&#39;</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Send</span><span class="p">()</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html">posted at 14:11</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-command-prompt-scripts-windows.html" rel="tag">automation, command prompt, Scripts, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/remote-computer.html" class="tags">remote computer</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/scripting.html" class="tags">scripting</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/shell.html" class="tags">shell</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

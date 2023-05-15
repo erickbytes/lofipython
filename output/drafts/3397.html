@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Modern Cannabis: Creating a Recreational Dope Watcher and Automatically Scheduling A Marijuana Pick-up Appointment</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-flask-http-web-development.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-flask-http-web-development.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content="dope,email,marijuana" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">May 24, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/drafts/3397.html" rel="bookmark" title="Permanent Link to &quot;Modern Cannabis: Creating a Recreational Dope Watcher and Automatically Scheduling A Marijuana Pick-up Appointment&quot;">Modern Cannabis: Creating a Recreational Dope Watcher and Automatically Scheduling A Marijuana Pick-up Appointment</a>
+                </h2>
+
+                
+                
+
+                <p>This can only be useful if you are in Chicago and looking to score some dope. But you can still learn about browser developer tools and making API requests by replicating this no matter where you are.</p>
+<p><a href="https://moderncann.com/">Modern Cannabis</a> (MOCA) is the website, they have great products and easy appointment pick-up for your recreational and medical marijuana needs!</p>
+<p><strong>Creating Your Own WeedFiender</strong></p>
+<ol>
+<li>Go to <a href="https://orders.moderncann.com/">https://orders.moderncann.com/</a></li>
+<li>Select menu &gt; login to create an account with Modern Cannabis</li>
+<li>In Firefox or Chrome, select "⋮" &gt; More Tools &gt; Developer Tools</li>
+<li>Select the "Network" tab within Developer Tools.</li>
+<li>Add an item to cart by clicking the green "+" sign. You'll see something that looks like this:</li>
+</ol>
+<p>::: container
+:::</p>
+<p><img alt="Chrome Network Tools - XHR" class="alignnone size-full wp-image-3400" height="932" src="https://pythonmarketer.files.wordpress.com/2020/05/chrome-network-tools-xhr.png" width="1128"></p>
+<ol>
+<li>Copy down your personal authorization bearer token and the add to cart request URL. You'll also want to copy all of the info under the "Request Headers" section.</li>
+<li>Create an account with a domain hoster like pythonanywhere.</li>
+<li>Create a Flask App that looks like this:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="o">--&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;add_your_personal_token_here&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://api.dispensefirst.com/CartAddProduct/&#39;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Host&quot;</span><span class="p">:</span> <span class="s2">&quot;api.dispensefirst.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:72.0) Gecko/20100101 Firefox/72.0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json, text/plain, */*&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Accept-Language&quot;</span><span class="p">:</span> <span class="s2">&quot;en-US,en;q=0.5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Accept-Encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;gzip, deflate, br&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Content-Length&quot;</span><span class="p">:</span> <span class="s2">&quot;277&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Origin&quot;</span><span class="p">:</span> <span class="s2">&quot;https://orders.moderncann.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Connection&quot;</span><span class="p">:</span> <span class="s2">&quot;keep-alive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Referer&quot;</span><span class="p">:</span> <span class="s2">&quot;https://orders.moderncann.com/&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Pragma&quot;</span><span class="p">:</span> <span class="s2">&quot;no-cache&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Cache-Control&quot;</span><span class="p">:</span> <span class="s2">&quot;no-cache&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DNT&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Sec-Fetch-Dest&quot;</span><span class="p">:</span> <span class="s2">&quot;empty&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Sec-Fetch-Mode&quot;</span><span class="p">:</span> <span class="s2">&quot;cors&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Sec-Fetch-Site&quot;</span><span class="p">:</span> <span class="s2">&quot;cross-site&quot;</span>
+        <span class="p">}</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">dfVend</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">Web</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">dfCust</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">101001</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">dfStore</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">10001</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">CartIdNo</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">0</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">CustIdNo</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">7704</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">CareIdNo</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">0</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">FlightIdNo</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">0</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">FlightItemIdNo</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">0</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">FlightDesc</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">ProductIdNo</span><span class="se">\&quot;</span><span class="s2">:5001,</span><span class="se">\&quot;</span><span class="s2">ProductDesc</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">BLUEBERRY HEADBAND</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">Unit_Meas_Qty_Cannabis</span><span class="se">\&quot;</span><span class="s2">:3.5,</span><span class="se">\&quot;</span><span class="s2">Quantity</span><span class="se">\&quot;</span><span class="s2">:1,</span><span class="se">\&quot;</span><span class="s2">UnitCost</span><span class="se">\&quot;</span><span class="s2">:73,</span><span class="se">\&quot;</span><span class="s2">SubTot</span><span class="se">\&quot;</span><span class="s2">:73,</span><span class="se">\&quot;</span><span class="s2">PriceOrig</span><span class="se">\&quot;</span><span class="s2">:73}&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">html_page</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<h2 id="weedfiender" style="color:green;">WeedFiender</h2>
+<p><strong>Current Availability</strong></p>
+<p><code>{status}</code></p>
+<p><strong>Last Updated</strong></p>
+<p><code>{timestamp}</code></p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;&quot;</span><span class="err">&quot;.format(status=r.text, timestamp=str(datetime.now())) return html_page</span>
+</code></pre></div>
+
+<ol>
+<li>Set up email alerts to get notified when marijuana is available.</li>
+<li>Enable automatic pick-up appointment scheduling. Takes first available appointment and adds appointment to Google calendar.</li>
+<li>If you want to put this on the web, you can host your WeedFiender at pythonanywhere.com. Paid accounts start at \$5/month and they have an easy set up for Flask. A free account will not work with this script. Alternatively, a hosting site like godaddy is an option to host.</li>
+</ol>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/drafts/3397.html">posted at 17:37</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-flask-http-web-development.html" rel="tag">automation, flask, HTTP, web development</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/dope.html" class="tags">dope</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/email.html" class="tags">email</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/marijuana.html" class="tags">marijuana</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "jupyter"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/jupyter.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/jupyter.html">jupyter</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Apr 12, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/datasets-plotting-using-jupyter-pandas-and-matplotlib.html" rel="bookmark" title="Permanent Link to &quot;Plotting Datasets Using Jupyter, Pandas and Matplotlib&quot;">Plotting Datasets Using Jupyter, Pandas and Matplotlib</a>
+                </h2>
+
+                
+                
+
+                <p>I'm new to exploring datasets, but I've already found some great public data online. First, can I say that <a href="https://toolbox.google.com/datasetsearch">Google Dataset Search</a> is great? I have been enjoying many of the datasets I've found there. Additionally, organizations with public data like the <a href="https://data.cityofchicago.org/">Chicago Data Portal</a> are interesting to check out. I'm happy to live in a city that provides a lot of its data online for free. Do you know if your city has public data available? I discovered some of this data via sites like <a href="http://data.world">data.world</a> as well. With playful curiosity and the tools in this article, you will be well equipped to mine insights from any data.<a href="https://toolbox.google.com/datasetsearch"><img alt="screencapture-toolbox-google-datasetsearch-2019-04-11-07_47_50" class="alignleft size-full wp-image-1736" height="295" src="http://pythonmarketer.files.wordpress.com/2019/04/de1c3-screencapture-toolbox-google-datasetsearch-2019-04-11-07_47_50-e1555047601227.png" width="917"></a></p>
+<p><strong>Below, I will highlight three datasets that I recently stumbled into.</strong></p>
+<ol>
+<li>Chicago Red Light Camera Violation Data</li>
+<li>USDA Nutritional Data (2015)</li>
+<li>Job Computerisation Forecast Data</li>
+</ol>
+<h2>Installation and Startup</h2>
+<p>**New to Jupyter, pandas or pip? **</p>
+<p>Welcome to the club. If you need a run-down on using pip, I wrote <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">this post</a> to help sort it out. If you want a superb, gentle and funny introduction to pandas, Jupyter, and data analysis, <a href="https://www.youtube.com/watch?v=5JnMutdy6Fw">this PyCon session</a> is the best tutorial I have found, by far.</p>
+<p><strong>To run the scripts shown in this post, you must:</strong> (1) install the three libraries below to run in a Jupyter notebook (recommended) <strong>OR</strong> (2) run these plots from the command line and view them as a saved image. To do that, just install pandas and matplotlib.</p>
+<p><strong>First, <a href="https://docs.python.org/3/installing/index.html">install libraries with pip</a>. Enter in command prompt or terminal:</strong></p>
+<ol>
+<li>
+<p>python -m pip install pandas</p>
+</li>
+<li>
+<p>python -m pip install matplotlib</p>
+</li>
+<li>
+<p>python3 -m pip install jupyter</p>
+</li>
+</ol>
+<p><strong>Then, run Jupyter Notebook</strong></p>
+<div class="highlight"><pre><span></span><code>jupyter notebook
+</code></pre></div>
+
+<h2>1. <a href="https://data.cityofchicago.org/Transportation/Red-Light-Camera-Violations/spqx-js37">Chicago Red Light Camera Violations (2014 - 2019)</a></h2>
+<p><em>Note the spikes in tickets per day in 2016 and 2017, and the amount of tickets issued in 2016.  Less tickets were issued in 2017 and 2018, after more allegations surfaced about this troublesome red light camera program. Jupyter Notebook with code for both these charts can be found <a href="https://github.com/erickbytes/Dataset-Analysis-Notebooks/blob/master/Chicago%20Red%20Light%20Camera%20Tickets%20(2014-2019)/Chicago%20Red%20Light%20Violations.ipynb">here</a>.</em></p>
+<p><img alt="Chicago Traffic Violations Per Day" class="wp-image-1751 alignleft" height="306" src="https://pythonmarketer.files.wordpress.com/2019/04/chicago-traffic-violations-per-day-1.png" width="322"></p>
+<p><img alt="Chicago Red Light Violations By Year" class="wp-image-1745 alignright" height="207" src="https://pythonmarketer.files.wordpress.com/2019/04/chicago-red-light-violations-by-year.png" style="padding-bottom:20px;" width="323"></p>
+<p><strong>Chicago's Shady Red Light Camera Program</strong></p>
+<p>[2,573,339 violations occurred from July 2014 - March 2019. Personally, I was issued 3 red light camera tickets over the last 5 years. I charted out the tickets by year, month and day.  ]{style="color:var(--color-neutral-600);"}[The below code was used for the left image above, in which I plotted each day of red light camera violations in Chicago over the past 5 years.]{style="color:var(--color-neutral-600);"}</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">plotting red light tickets with matplotlib - Python Marketer</span>
+<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/</span>
+<span class="sd">matplotlib.plot_date docs: https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.plot_date.html </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Red_Light_Camera_Violations.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;VIOLATION DATE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;VIOLATION DATE&#39;</span><span class="p">])</span>
+
+<span class="sd">&quot;&quot;&quot;Applying Plot Formatting&quot;&quot;&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">YearLocator</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
+<span class="n">red_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkRed&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Each Dot is 1 Day&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">red_patch</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;xx-small&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+
+<span class="sd">&quot;&quot;&quot;Pass pandas columns to plt.plot_date to create and save plot.&quot;&quot;&quot;</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;VIOLATIONS&#39;</span><span class="p">]</span> 
+<span class="n">dates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;VIOLATION DATE&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> 
+              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkRed&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Chicago Red Light Ticket Violations - Past 5 Years&#39;</span><span class="p">,</span> 
+          <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Chicago traffic Violations By Year.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Analysis:</strong> We can see 2016 is the leader for the past 5 years in amount of violations that occurred. The city of Chicago has drawn criticism for unethical practices in its camera program to reap more revenue. In 2017, the city approved a settlement of "nearly \$40 million after a previous class-action lawsuit alleged that the program had violated 1.2 million motorists’ due process rights." (<a href="https://www.illinoispolicy.org/lawsuit-claims-chicago-red-light-cameras-violate-state-law/">Source</a>)</p>
+<blockquote>
+<p>"A Tribune analysis of more than 4 million tickets issued since 2007 and a deeper probe of individual cases reveal clear evidence that a series of sudden, unexplainable spikes in Chicago's network of 380 cameras were caused by faulty equipment, human tinkering or both. Chicago transportation officials say they had no knowledge of the wild swings in ticketing until they were told by the Tribune — even though City Hall legally required the camera vendor to watch for the slightest anomaly in ticketing patterns every day. Many of the spikes lasted weeks." (<a href="http://graphics.chicagotribune.com/news/local/red-light-timeline/">Source</a>)</p>
+</blockquote>
+<p><a href="https://github.com/erickbytes/Dataset-Analysis-Notebooks/blob/master/Chicago%20Red%20Light%20Camera%20Tickets%20(2014-2019)/Chicago%20Red%20Light%20Violations.ipynb">See Full Jupyter Notebook</a></p>
+<h2><a href="https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/">2. USDA Nutritional Data (2015)</a></h2>
+<p>This USDA data was updated in 2015. It provides many common foods and their nutrient levels, such as carbohydrates and iron, for breads, fruits, vegetables, beverages and most foods you can find in a grocery store. I decided to see which foods contained the most: Sugar, Catbohydrates and Iron. The pandas <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.nlargest.html">nlargest</a> method made this a breeze.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;ABBREV.xlsx&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sugar_Tot_(g)&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Shrt_Desc</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s1">&#39;CEREALS,&#39;</span><span class="p">,</span> 
+                                  <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                  <span class="n">case</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Sugar_Tot_(g)&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Shrt_Desc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Sugar_Tot_(g)&#39;</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkBlue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Grams of Sugar&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Foods&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Most Sugar, Cereals - USDA&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+</code></pre></div>
+
+<blockquote>
+<p>*<em>"Research suggests that as many as 80 percent of people in the world don't have enough iron in their bodies." </em>-World Health Organization ***</p>
+</blockquote>
+<p><img alt="Foods with The Most Iron - USDA" class="alignnone size-full wp-image-1754" height="279" src="https://pythonmarketer.files.wordpress.com/2019/04/foods-with-the-most-iron-usda.png" width="718"><strong>Analysis:</strong> Instant oatmeal and cereals are the highest in sugar co[ntent. Stay away from them if possible.  If you need to boost your iron levels, beef and pork are good options. If you don't eat meat, certain spices and wheat bran/flakes contain high levels of iron. Seaweed is also a good, iron rich snack. Ultimately, there are lots of ways to get iron in your diet besides meat.]{style="color:var(--color-neutral-600);"}</p>
+<p><a href="https://github.com/erickbytes/Dataset-Analysis-Notebooks/blob/master/USDA%20Nutritional%20Data%20(2015)/USDA%20Food%20Nutrition.ipynb">See Full Jupyter Notebook</a></p>
+<h2>3. <a href="https://data.world/quanticdata/occupation-and-salary-by-state-and-likelihood-of-automation/workspace/query?queryid=51754b08-7414-4f76-8a31-8b5c75166146">Job Computerisation Forecast Data</a></h2>
+<p>This data orignates from a 2013 University of Oxford study and the United States Bureau of Labor Statistics. It provides two key values: probability (%) that a job will be computerised within 1-2 decades, and the number of jobs that currently exist for that profession in each state.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">plotting occupational automation risk - Python Marketer</span>
+<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/</span>
+
+<span class="sd">Find most common Illinois jobs affected and at highest risk of automation.</span>
+<span class="sd">Source Data: https://data.world/quanticdata/occupation-and-salary-by-state-and-likelihood-of-automation/workspace/query?queryid=51754b08-7414-4f76-8a31-8b5c75166146</span>
+
+<span class="sd">plt.text matplotlib docs: https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.text.html </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;high-risk-in-your-st-occupation-and-salary-by-state-and-likelihood-of-automation-QueryResult.csv&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;Illinois&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.95</span><span class="p">]</span> <span class="c1"># gets  &quot;highest risk&quot; subset</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;occupation&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Illinois&#39;</span><span class="p">,</span> 
+             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkBlue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># add corresponding percent over each bar</span>
+<span class="n">probs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">])</span> 
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">probs</span><span class="p">):</span>
+    <span class="n">percent</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;0.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> 
+             <span class="n">y</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">.25</span><span class="p">,</span> 
+             <span class="n">s</span><span class="o">=</span><span class="n">percent</span><span class="p">,</span> 
+             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> 
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> 
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+
+<span class="n">white_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> 
+                             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Est. % Probability of Computerisation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">white_patch</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;xx-large&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Est. Number of Jobs At Risk in Illinois&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupation&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Most Common Illinois Jobs at &quot;Highest Risk&quot; of Being Computerised Within 15 Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Source: Carl Benedikt Frey and Michael A. Osborne (2013 University of Oxford Study)&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Source: data.world/quanticdata &amp; Bureau of Labor Statistics&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Most Common Jobs at &quot;High Risk&quot; of Being Computerised.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="job_computerisation" class="alignnone size-full wp-image-1734" height="672" src="https://pythonmarketer.files.wordpress.com/2019/04/job_computerisation.png" width="1614"></p>
+<p><strong>Analysis:</strong> It's strange to think that these common jobs, which currently make up a large portion of our economy, will likely be computerised some day. They all seem to be entry-level manual tasks. The promise of automation is that it frees humans up to focus on more meaningful or complex problems. How will the 125,000 cashiers in Illinois adapt when that is no longer a way to earn money?</p>
+<p><a href="https://github.com/erickbytes/Dataset-Analysis-Notebooks/blob/master/Illinois%20Job%20Computerisation%20Forecast/Job%20Automation%20Forecast%20-%20Illinois.ipynb">See Full Jupyter Notebook</a></p>
+<p><strong>The Plot Thickens...</strong></p>
+<p>I've barely scratched the surface in my experience with datasets, but already found some very interesting data to inspect and play with. These data visualization skills are adaptable to many situations. All you need is good data to bring to life. Stay curious, my friends.</p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Additional reading</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://uppsala.instructure.com/courses/28112/files?preview=1042670">Matplotlib: Beyond the Default</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/datasets-plotting-using-jupyter-pandas-and-matplotlib.html">posted at 05:59</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-chicago-coding-data-pandas-plots-programming.html" rel="tag">automation, Chicago, coding, data, pandas, plots, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data-analysis.html" class="tags">data analysis</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/datasets.html" class="tags">datasets</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/jupyter.html" class="tags selected">jupyter</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/matplotlib.html" class="tags">matplotlib</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

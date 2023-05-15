@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - coding, data, excel, pandas, python</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/coding-data-excel-pandas-python.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2018-05-12T03:39:00-05:00</updated><entry><title>A Stroll Through Pandas 1.0, Python’s Tabular Data Powerhouse</title><link href="https://pythonmarketer.com/pandas-pythons-excel-powerhouse.html" rel="alternate"></link><published>2018-05-12T03:39:00-05:00</published><updated>2018-05-12T03:39:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2018-05-12:/pandas-pythons-excel-powerhouse.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/"&gt;&lt;img alt="pandas" class="wp-image-2594 alignright" height="122" src="https://pythonmarketer.files.wordpress.com/2018/05/pandas.png" width="301"&gt;&lt;/a&gt;Thanks to pandas, I have automated some data cleaning a[nd file reading processes at my job. ]{style="color:var(--color-text);"}[Here are some terms and code that have been useful or interesting to me after 2 years of exploration. I also checked out "]{style="color:var(--color-text);"}&lt;a href="https://github.com/wesm/pydata-book"&gt;Python …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/"&gt;&lt;img alt="pandas" class="wp-image-2594 alignright" height="122" src="https://pythonmarketer.files.wordpress.com/2018/05/pandas.png" width="301"&gt;&lt;/a&gt;Thanks to pandas, I have automated some data cleaning a[nd file reading processes at my job. ]{style="color:var(--color-text);"}[Here are some terms and code that have been useful or interesting to me after 2 years of exploration. I also checked out "]{style="color:var(--color-text);"}&lt;a href="https://github.com/wesm/pydata-book"&gt;Python for Data Analysis&lt;/a&gt;[" from the ]{style="color:var(--color-text);"}&lt;a href="https://www.chipublib.org/"&gt;Chicago Public Library&lt;/a&gt;[.]{style="color:var(--color-text);"}&lt;/p&gt;
+&lt;p&gt;If I could suggest anything to be successful with pandas, it is repetition. I use it nearly every day at work. Dive into its &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html"&gt;API documentation.&lt;/a&gt; There are tons of useful tools there, laid out with meticulous detail and examples. I began learning pandas with this PyCon 2015 &lt;a href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;tutorial from Brandon Rhodes&lt;/a&gt;, it's informative and entertaining! (It's a little dated now but I still recommend it.) The &lt;em&gt;&lt;a href="https://www.youtube.com/watch?v=_ZEWDGpM-vM"&gt;Reproducible Data Analysis in Jupyter video series&lt;/a&gt;&lt;/em&gt; by Jake VanderPlas is also a great example of pandas-related workflows.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Python\pandas Installation and Version Compatibility&lt;/li&gt;
+&lt;li&gt;ACHIEVEMENT UNLOCKED: Welcome to pandas 1.0&lt;/li&gt;
+&lt;li&gt;Data Wrangling, Exploration and Broadcasting&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Series.str&lt;/code&gt; &amp;amp; &lt;code&gt;Series.dt&lt;/code&gt; accessors&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;apply&lt;/code&gt;, &lt;code&gt;applymap&lt;/code&gt;, &lt;code&gt;lambda&lt;/code&gt; and &lt;code&gt;map&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;featuring &lt;code&gt;pandas.to_markdown()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;SQL operations with &lt;code&gt;df.merge()&lt;/code&gt; and &lt;code&gt;pandas.read_sql()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pandas.read_clipboard()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;converting between Series and DataFrame&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Turning json API responses into a dataframe with &lt;code&gt;pandas.json_normalize()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Plotting Visualizations with matplotlib&lt;/li&gt;
+&lt;li&gt;Supplementary Resources and Links&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;(1) [Python\pandas Installation and Version Compatibility]{style="color:var(--color-text);"}&lt;/h3&gt;
+&lt;p&gt;Python 3.6 and higher can &lt;a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html"&gt;install pandas 1.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installing Python 3.8 on Windows&lt;br&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For Windows installation, see the python docs for an installer, "&lt;a href="https://docs.python.org/3/using/windows.html"&gt;Using Python on Windows"&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installing Python 3.8 on Ubuntu&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/"&gt;Follow these steps to download and install Python 3.8 in the Ubuntu terminal.&lt;/a&gt; To upgrade to pandas 1.0, I installed Python 3.8, the &lt;a href="https://www.google.com/search?client=ubuntu&amp;amp;channel=fs&amp;amp;q=python+latest+stable+release&amp;amp;ie=utf-8&amp;amp;oe=utf-8"&gt;latest stable release&lt;/a&gt;, "&lt;a href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/"&gt;from source&lt;/a&gt;" on Ubuntu 16.04.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;If you intend to use &lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html"&gt;pandas.to_markdown()&lt;/a&gt; on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.&lt;br&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal: &lt;code&gt;sudo apt-get install libbz2-dev&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I also saw this message when completing install:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The necessary bits to build these optional modules were not found. To find the necessary bits, look in setup.py in detect-modules() for the module's name.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;If you need to re-build Python on Ubuntu, enter:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;erick&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;3.8&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;enable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;loadable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sqlite&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I installed missing  _bz2 and _sqllite3 modules then re-built with these commands.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installing Older pandas Versions on Ubuntu&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The version downloaded with this command is about 6 months behind the current version. For me, this installed pandas 0.17 on Ubuntu:&lt;/p&gt;
+&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;sudo apt-get install python3-pandas&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;As of February 2020, this command &lt;a href="https://docs.python.org/3/installing/index.html"&gt;installs pandas version 0.24 with pip&lt;/a&gt; when used with Python 3.5 on Linux Ubuntu 16.04:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python3.5 -m pip install pandas&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="successful_python_install" class="alignnone wp-image-2420" height="186" src="https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg" style="color:var(--color-text);" width="676"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;If pandas is already installed, you can upgrade with &lt;a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[caption id="attachment_2572" align="alignright" width="179"]&lt;img alt="pip_list" class="alignnone wp-image-2572" height="230" src="http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg" width="179"&gt; Enter pip list to see installed libraries.[/caption]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python -m pip install --upgrade pandas&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To check if pip is installed: &lt;code&gt;python -m pip list&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Consider following best practice and create a &lt;a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtual environment&lt;/a&gt; with your new Python version. &lt;a href="https://docs.python.org/3/library/venv.html"&gt;venv&lt;/a&gt; wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python -m pip --user install virtualenv&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Let's create a new virtual environment. Enter in terminal or command prompt:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;virtualenv -p python3.8 add_env_name_here&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Now, activate your new virtual environment on Linux:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cd add_env_name_here/bin &amp;amp;&amp;amp; source activate&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Or activate environment on Windows:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cd add_env_name_here\scripts &amp;amp; activate&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;"ImportError: Missing optional dependency 'tabulate'. Use pip or conda to install tabulate:" To use pd.to_markdown(), install Tabulate:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python -m pip install tabulate&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To use pd.read_clipboard() on Linux, install &lt;a href="https://github.com/astrand/xclip"&gt;xclip&lt;/a&gt; or &lt;a href="https://askubuntu.com/questions/705620/xclip-vs-xsel"&gt;xsel:&lt;/a&gt;&lt;/strong&gt;[ ]{.st}&lt;/p&gt;
+&lt;p&gt;[&lt;code&gt;sudo apt-get install xclip&lt;/code&gt;&lt;strong&gt;&lt;br&gt;
+&lt;/strong&gt;]{.st}&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I also saw a prompt to install pyperclip:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python -m pip install pyperclip&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Now install pandas 1.0 and &lt;a href="https://matplotlib.org/users/installing.html"&gt;matplotlib&lt;/a&gt; in your virtual environment.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python3.8 -m pip install pandas
+python -m pip install -U matplotlib
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;(2) Welcome to pandas 1.0&lt;/h3&gt;
+&lt;p&gt;You did it! Welcome to the good life. The basis of pandas is the "&lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html"&gt;dataframe&lt;/a&gt;", commonly abbreviated as df, which is similar to a spreadsheet. Another core pandas object is the &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html"&gt;pandas.Series&lt;/a&gt; object, which is similar to a Python list or &lt;a href="http://cs231n.github.io/python-numpy-tutorial/"&gt;numpy&lt;/a&gt; array. When imported, pandas is aliased as "pd". The pd object allows you to access many useful pandas functions. I'll use it interchangeably with pandas in this post.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The library’s name derives from &lt;strong&gt;pan&lt;/strong&gt;el &lt;strong&gt;da&lt;/strong&gt;ta, a common term for multidimensional data sets encountered in statistics and econometrics.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.dlr.de/sc/Portaldata/15/Resources/dokumente/pyhpc2011/submissions/pyhpc2011_submission_9.pdf"&gt;pandas: a Foundational Python Library for Data Analysis and Statistics&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;- Wes McKinney&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;(3) &lt;a href="https://en.wikipedia.org/wiki/Data_wrangling"&gt;Data Wrangling&lt;/a&gt;, Exploration and Broadcasting&lt;/h3&gt;
+&lt;p&gt;**Data is commonly read in from file with &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html"&gt;pd.read_csv()&lt;/a&gt;. **&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="n"&gt;file_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;my_bank_statement.csv&amp;#39;&lt;/span&gt;
+&lt;span class="c1"&gt;# you may sometimes need to specify an alternate encoding: encoding = &amp;quot;ISO-8859-1&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# returns a tuple: (# of rows, # of columns)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Create a dataframe from a list of Python lists, named movies below, with &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html"&gt;pd.DataFrame&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+
+&lt;span class="n"&gt;column_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Release Date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Character&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Actor&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Movie Budget&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Worldwide Gross&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;movies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Ocean&amp;#39;s 11&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;12/7/2001&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Danny Ocean&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;George Clooney&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$85,000,000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; $450,728,529&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Ocean&amp;#39;s 11&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;12/7/2001&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Tess Ocean&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Julia Roberts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$85,000,000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; $450,728,529&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Runaway Bride&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;6/30/1999&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Ike Graham&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Richard Gere&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$70,000,000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$309,457,509&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Runaway Bride&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;6/30/1999&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Maggy Carpenter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Julia Roberts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$70,000,000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$309,457,509&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bonnie and Clyde&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;9/1/1967&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Clyde Barrow&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Warren Beaty&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$2,500,000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$70,000,000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bonnie and Clyde&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;9/1/1967&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Bonnie Parker&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Faye Dunaway&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$2,500,000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$70,000,000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;movies&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;column_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Character&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Actor&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Movie Budget&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Worldwide Gross&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_markdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;showindex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tablefmt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;simple&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Let's print the table to our terminal with &lt;a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html"&gt;pd.to_markdown()&lt;/a&gt;, which is[ &lt;a href="https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html"&gt;new in pandas version 1.0.0&lt;/a&gt;:]{.versionmodified .added}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="simple_layout_markdown" class="alignnone size-full wp-image-2538" height="189" src="https://pythonmarketer.files.wordpress.com/2018/05/simple_layout_markdown.jpg" width="847"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Slicing and sorting a dataframe, removing duplicates, and working with datetime objects&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Let's create a new dataframe slice with only two columns&lt;/li&gt;
+&lt;li&gt;Drop duplicate movies&lt;/li&gt;
+&lt;li&gt;Convert the dates to datetime objects&lt;/li&gt;
+&lt;li&gt;Get the year from an array of datetime objects&lt;/li&gt;
+&lt;li&gt;Set the year as the dataframe index&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;lt;!--&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;df = pd.DataFrame(movies, columns=column_names)
+date_df = df[[&amp;#39;Title&amp;#39;, &amp;#39;Release Date&amp;#39;]].drop_duplicates(subset=[&amp;#39;Title&amp;#39;])
+date_df[&amp;#39;Release Date&amp;#39;] = pd.to_datetime(date_df[&amp;#39;Release Date&amp;#39;])
+# create year column using the pd.Series.dt datetime accessor:
+date_df[&amp;#39;Release Year&amp;#39;] = df[&amp;#39;Release Date&amp;#39;].dt.year
+date_df = date_df.sort_values(by=[&amp;#39;Release Date&amp;#39;])
+date_df = date_df.set_index(&amp;#39;Release Year&amp;#39;)
+print(date_df.to_markdown(showindex=False, tablefmt=&amp;#39;simple&amp;#39;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;&lt;img alt="dates_of_movies" class="alignnone wp-image-2537" height="148" src="https://pythonmarketer.files.wordpress.com/2018/05/dates_of_movies.jpg" width="662"&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Applying Broadcasting in pandas&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Broadcasting means to map a function or an arithmetic calculation over an over an array (using apply or map) or dataframe (applymap).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Summing up, apply works on a row/column basis of a DataFrame, applymap works element-wise on a DataFrame, and map works element-wise on a Series."&lt;/p&gt;
+&lt;p&gt;- Stack Overflow [&lt;a href="https://stackoverflow.com/questions/19798153/difference-between-map-applymap-and-apply-methods-in-pandas"&gt;Source&lt;/a&gt;]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Applying a function to a pandas column&lt;br&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Convert columns to int and calculate the difference between two columns.&lt;/li&gt;
+&lt;li&gt;Let's format those integers back to dollars with python's lambda and pandas' applymap for extra jazz.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;lt;!--&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;format_dollars_as_int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dollars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;&amp;quot;&amp;quot;Accepts a dollar formatted string, returns an int.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dollars&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;movies&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;column_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop_duplicates&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;subset&lt;/span&gt;&lt;span class="o"&gt;=[&lt;/span&gt;&lt;span class="n"&gt;&amp;#39;Title&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;[&amp;#39;Movie Budget&amp;#39;,&amp;#39;Worldwide Gross&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;[&amp;#39;Movie Budget&amp;#39;,&amp;#39;Worldwide Gross&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;]&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;str&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;applymap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;format_dollars_as_int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;&amp;#39;Movie Net Income&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;&amp;#39;Worldwide Gross&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;&amp;#39;Movie Budget&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;money_columns&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;&amp;#39;Movie Budget&amp;#39;, &amp;#39;Worldwide Gross&amp;#39;,&amp;#39;Movie Net Income&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;money_columns&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;money_columns&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;applymap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;${:,}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Creating a new column and writing to a .csv file&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Then add the IMDB ratings of our three films in a new column.&lt;/li&gt;
+&lt;li&gt;Finally, write the result to markdown and a csv file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;lt;!--&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# create a new column with the three movies&amp;#39; IMDB ratings 
+df[&amp;#39;IMDB Rating&amp;#39;] = list([7.8,5.5,7.8]) 
+print(df.to_markdown(showindex=False, tablefmt=&amp;#39;simple&amp;#39;))
+df.to_csv(&amp;#39;Movies.csv&amp;#39;, index=False)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="IMDB_movies" class="alignnone size-full wp-image-2540" height="117" src="https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg" width="870"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;print(df.Actor.value_counts().to_markdown(tablefmt="github"))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;[caption id="attachment_2539" align="alignright" width="189"]&lt;img alt="actor" class="alignnone wp-image-2539" height="111" src="https://pythonmarketer.files.wordpress.com/2018/05/actor.jpg" width="189"&gt; Count the Actors with df.Actor.value_counts()[/caption]&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;I also must mention &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html"&gt;pandas.Series.value_counts()&lt;/a&gt;, because it's so darn handy :D&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Notice for column names without spaces, you can use dot notation instead of brackets:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;df.Actor&lt;/code&gt; &lt;em&gt;vs.&lt;/em&gt; &lt;code&gt;df['Actor']&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lowercase column names Python's map function:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;`df.columns = map(str.lower, df.columns)```&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Strip whitespace from a column of strings with the &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html"&gt;pandas.Series.str&lt;/a&gt; accessor:&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;df['Character'] = df['Character'].astype(str).str.strip()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fix pesky leading zero zip codes with &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html"&gt;str.zfill()&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;log_df['zip'] = log_df['zip'].astype(str).str.zfill(5)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Get a row by index number us &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html"&gt;pandas.DataFrame.loc[]&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;first_row = df.loc[0, df.columns]
+third_row = df.loc[2, df.columns]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Filter the df to get rows where the actor is 'Julia Roberts'.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;julia_roberts_movies = df[df.Actor==&amp;#39;Julia Roberts&amp;#39;].reset_index(drop=True) 
+print(julia_roberts_movies.head())
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;"Get" an item from a column of lists with &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html"&gt;str.get()&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# returns first item in each cell&amp;#39;s list into new column
+df[&amp;#39;first_item&amp;#39;] = df[&amp;#39;items&amp;#39;].str.get(0)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Execute SQL-like operations between dataframes with &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html"&gt;df.merge()&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;First, use &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html"&gt;df.copy()&lt;/a&gt; to create a new dataframe copy of our actors table above.  By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;actors = df.copy(deep=True)
+# slice only the columns we want to merge:
+date_df = date_df[[&amp;#39;Title&amp;#39;,&amp;#39;Release Year&amp;#39;]] 
+joined_df = actors.merge(date_df, on=&amp;#39;Title&amp;#39;, how=&amp;#39;inner&amp;#39;)
+# You can pass the number of rows to see to head. It defaults to 5.
+print(joined_df.head(10))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Execute database queries with &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html"&gt;pd.read_sql()&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like &lt;a href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/"&gt;pyodbc&lt;/a&gt; or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;uses &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html"&gt;pd.Series.isin()&lt;/a&gt; to check if each email is in the DB.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pyodbc&lt;/span&gt;
+
+&lt;span class="n"&gt;emails&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;email@email.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;notanemail@example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;gmail@gmail.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;connection_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;&amp;#39;&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;connection_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;conn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pyodbc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;connection_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;    SELECT *&lt;/span&gt;
+&lt;span class="s2"&gt;    FROM   ADD_TABLE_NAME&lt;/span&gt;
+&lt;span class="s2"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;dfs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;db_chunk&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_sql&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;chunksize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;500000&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+    &lt;span class="n"&gt;emails_in_db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;db_chunk&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;db_chunk&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;EmailAddress&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;emails&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+    &lt;span class="n"&gt;dfs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;emails_in_db&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;emails_in_db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dfs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;emails_in_db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DB_Email_Query_Results.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;In case you are wondering, enumerate is a &lt;a href="https://docs.python.org/3/library/functions.html"&gt;python built-in&lt;/a&gt; for enumerating, or counting an iterable, e.g. list or generator, as you iterate through it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Using &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html"&gt;pd.read_clipboard():&lt;/a&gt;&lt;br&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="n"&gt;clipboard_contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_clipboard&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clipboard_contents&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Use &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html"&gt;pd.to_clipboard()&lt;/a&gt; to store a dataframe as clipboard text:&lt;br&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="n"&gt;truths&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pandas is great&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;I love pandas&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pandas changed my life&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;truths&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Truths&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_clipboard&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sep&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;|&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;clipboard_contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Press ctrl-v &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clipboard_contents&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Convert the clipboard contents to df with &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html"&gt;pd.DataFrame()&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt; 
+&lt;span class="n"&gt;clipboard_contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Press ctrl-v &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;clipboard_contents&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;If the clipboard dataframe has one column, you could &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze"&gt;squeeze&lt;/a&gt; the clipboard contents into a &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html"&gt;pd.Series&lt;/a&gt; object:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt; 
+&lt;span class="n"&gt;clipboard_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_clipboard&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;span class="n"&gt;clipboard_contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clipboard_text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;clipboard_contents&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Clipboard Data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;clipboard_series&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;squeeze&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;columns&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clipboard_series&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Inversely, consider using &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame"&gt;pandas.Series.to_frame()&lt;/a&gt; to convert a Series to a dataframe:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt; 
+&lt;span class="n"&gt;clipboard_contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Series&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Press ctrl-v &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;clipboard_contents&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_frame&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;(4) Turning json API responses into a dataframe with pd.json_normalize()&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;For &lt;a href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html"&gt;older pandas versions&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pandas.io.json&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;json_normalize&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pseudo_API.com/endpoint/&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;page_size&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;api_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;contact_sync&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;parameters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# decode response into json&lt;/span&gt;
+&lt;span class="c1"&gt;# turn subset of json into df&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;json_normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;any_key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Update: beginning in pandas 1.0, &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html"&gt;json_normalize&lt;/a&gt; became a top-level pandas namespace.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt; 
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pseudo_API.com/endpoint/&amp;#39;&lt;/span&gt; 
+&lt;span class="n"&gt;parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;page_size&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;api_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;contact_sync&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;parameters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# decode response into json &lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json_normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;any_key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;pandas.json_normalize() is now exposed in the top-level namespace. Usage of json_normalize as pandas.io.json.json_normalize is now deprecated and it is recommended to use json_normalize as pandas.json_normalize() instead (GH27586).&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pandas.pydata.org/pandas-docs/stable/whatsnew/v1.0.0.html"&gt;What's new in pandas 1.0.0&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;(5) Plotting Visualizations with matplotlib&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Make a bar plot of the movie release year counts using pandas and matplotlib formatting.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.ticker&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MaxNLocator&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.ticker&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;ticker&lt;/span&gt;
+
+&lt;span class="n"&gt;column_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Release Date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Character&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Actor&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;rows&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Ocean&amp;#39;s 11&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;12/7/2001&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Danny Ocean&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;George Clooney&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Ocean&amp;#39;s 11&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;12/7/2001&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Tess Ocean&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Julia Roberts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Runaway Bride&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;6/30/1999&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Ike Graham&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Richard Gere&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Runaway Bride&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;6/30/1999&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Maggy Carpenter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Julia Roberts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bonnie and Clyde&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;9/1/1967&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Clyde Barrow&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Richard Gere&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bonnie and Clyde&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;9/1/1967&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Bonnie Parker&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Julia Roberts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rows&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;column_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Year&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ylim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Release Year of Movies&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rot&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;yaxis&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_major_locator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MaxNLocator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;integer&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_figure&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tight_layout&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;savefig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;images/Movie_Plot.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about &lt;a href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/"&gt;plotting with Jupyter/pandas/Python here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;**Plot George Clooney's movies over time in a line graph. [&lt;a href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;Source&lt;/a&gt;] **&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Actor&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;George Clooney&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Year&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ylim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_figure&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;savefig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/path/to/figure.pdf&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;(7) Supplementary Resources and Guides&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Popular Supporting Libraries and Tools&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.numpy.org/"&gt;NumPy (Arrays and math)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://matplotlib.org/#"&gt;Matplotlib (Visualization)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://seaborn.pydata.org/"&gt;Seaborn (Visualization)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bokeh.pydata.org/en/latest/docs/installation.html"&gt;Bokeh (Visualization)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jupyter.org/"&gt;Jupyter Notebook (Reproducible Sharing and Viz)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Supplementary Resources:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;pandas from the Ground Up (Video)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://colab.research.google.com/drive/1a4sbKG7jOJGn4oeonQPA8XjJm7OYgcdX"&gt;Google's Intro to pandas Jupyter Notebook&lt;/a&gt; (Tutorial)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pandas.pydata.org/pandas-docs/stable/10min.html"&gt;10 Minutes to pandas (Documentation)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html"&gt;Numpy's&lt;/a&gt; &lt;a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html"&gt;r and c_ stacking helpers to concatenate arrays&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://rhodesmill.org/brandon/2014/pandas-payroll/"&gt;Calculating Taxes with pandas&lt;/a&gt; (Blog)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="coding, data, excel, pandas, python"></category><category term="data analysis"></category><category term="programming"></category><category term="software"></category></entry></feed>

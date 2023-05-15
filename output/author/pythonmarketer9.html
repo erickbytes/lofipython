@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Articles by pythonmarketer</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/author/pythonmarketer9.html">pythonmarketer</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Nov 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/automated-python-with-windows-task-scheduler.html" rel="bookmark" title="Permanent Link to &quot;Automated Python With Windows Task Scheduler&quot;">Automated Python With Windows Task Scheduler</a>
+                </h2>
+
+                
+                
+
+                <p><strong>So you want to run your Python scripts automatically, but how?</strong></p>
+<p>I had heard of several popular scheduling libraries in Python like <a href="http://www.celeryproject.org/">celery</a>, <a href="https://www.pyinvoke.org/">Invoke</a>, and <a href="https://github.com/dbader/schedule">schedule</a>. One of my requirements is to run the python file "in the background", not in command prompt or an open window.</p>
+<p>Enter Windows Task Scheduler, the de facto scheduler on Windows 7 computers. I have  scheduled a few scripts and it is working like a charm. In this post, I will schedule an example script to clean up my desktop at the beginning of each day. I have a habit of accumulating many Excel files there throughout the workday. This example automatically moves them into a folder.</p>
+<p>Other Windows scheduling alternatives worth mentioning include <a href="http://thepythoncorner.com/dev/how-to-create-a-windows-service-in-python/">creating a Windows service</a>, or using <a href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks">schtasks</a> if you prefer the command line.</p>
+<p><strong>Here's how to schedule a Python script to run:</strong></p>
+<p>1. Search for Windows Task Scheduler in the start menu. Then select "Task Scheduler Library" to see all of the tasks Windows is running automatically.</p>
+<p>2. In the right toolbar, select "Create Basic Task" and give it a name and description. Note: I selected "Configure for: Windows 7, Windows Server 2008 R2".</p>
+<p><img alt="general" class="wp-image-1577 alignright" height="361" src="https://pythonmarketer.files.wordpress.com/2018/11/general.png" width="481"></p>
+<p>3. Set the time and frequency that the program will run in the "Triggers" tab.</p>
+<p>4. Under the "Actions" tab, select "Start a Program" from the dropdown. Under "Program/Script", enter the path to your Python.exe file. I set mine to a Python executable located within my <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, but yours might be found wherever you have Python installed.</p>
+<div class="highlight"><pre><span></span><code>C:\Users\your_username\Desktop\36env\Scripts\python.exe
+</code></pre></div>
+
+<p>5. Under "Add arguments (optional)", add the path to your .py script, within quotes:</p>
+<div class="highlight"><pre><span></span><code>&quot;C:\Users\your_username\Desktop\36env\clean_desktop_excels.py&quot;
+</code></pre></div>
+
+<p><img alt="actions" class="alignnone size-full wp-image-1578" height="236" src="http://pythonmarketer.files.wordpress.com/2018/11/bd0a9-actions-e1543177551739.png" width="448"></p>
+<p>6. Select additional conditions and settings as desired, such as "Wake the computer to run this task" and "Run with highest privileges".</p>
+<p>I am enjoying this simple, easy and convenient scheduling manager for Windows. I figured most of this out thanks to <a href="https://www.esri.com/arcgis-blog/products/product/analytics/scheduling-a-python-script-or-model-to-run-at-a-prescribed-time/?rmedium=redirect&amp;rsource=/esri/arcgis/2013/07/30/scheduling-a-scrip">this blog</a>. Below is my script to clean my desktop each morning by moving my Excel files into a folder, using Python's stock <a href="https://docs.python.org/3/library/shutil.html">shutil</a> and os libraries. Set it and forget it, ya know what i mean? :D</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shutil</span> <span class="kn">import</span> <span class="n">move</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Desktop Spreadsheet File Cleaner - Python Marketer</span>
+<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2018/11/25/automated-python-with-windows-task-scheduler/</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Get all Desktop files and folders</span>
+<span class="n">src_directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop&#39;</span>
+<span class="n">dir_items</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">src_directory</span><span class="p">)</span>
+<span class="n">excel_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dir_items</span>   
+               <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">or</span> <span class="s1">&#39;.xls&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
+
+<span class="n">dst</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">Current_Month_Excels&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">xl</span> <span class="ow">in</span> <span class="n">excel_files</span><span class="p">:</span> 
+    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">src_directory</span> <span class="o">+</span> <span class="n">xl</span>
+    <span class="n">move</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Additional Reading</strong></p>
+<p><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc721846(v=ws.11)?redirectedfrom=MSDN">Troubleshooting Windows Task Scheduler</a> - Windows Documentation</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/automated-python-with-windows-task-scheduler.html">posted at 19:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-productivity-programming-python-windows.html" rel="tag">automation, productivity, programming, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/coding.html" class="tags">coding</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/organization.html" class="tags">organization</a>
+                </div>
+            </article>            <h4 class="date">Nov 20, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/packaging-python-as-a-windows-app.html" rel="bookmark" title="Permanent Link to &quot;Packaging Python as a Windows App via Pyinstaller&quot;">Packaging Python as a Windows App via Pyinstaller</a>
+                </h2>
+
+                
+                
+
+                <p>My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller. It worked on my Windows 7 PC. My program used a <a href="https://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/">Gooey GUI</a>, but many of the popular Python GUI libraries work as well.</p>
+<p><strong>Installation:</strong></p>
+<p>To install, enter this into command your command prompt or terminal:<br>
+<code>python -m pip install pyinstaller</code>  </p>
+<p><em>At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5. <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">Go here</a> for a refresher on setting up pip if you need it.</em></p>
+<p><strong>Using the build.spec file and starting Pyinstaller:</strong></p>
+<p>Most examples I found used a build.spec file. Think of this as the blueprint by which your app will be constructed. It provides the compiling settings, images and any other data necessary for assembling your app.  The format for passing the .spec file to Pyinstaller in pseudo-code:</p>
+<blockquote>
+<p>pyinstaller (run mode options) (.spec file)</p>
+</blockquote>
+<p><strong>Basic start compiler command to build.spec:</strong><br>
+<code>pyinstaller build.spec</code>  </p>
+<p><strong>Establishing a debugging loop with Pyinstaller:</strong></p>
+<p>Debug mode can be set from the command line:<br>
+<code>pyinstaller -debug build.spec</code>  </p>
+<p><strong>OR</strong> by passing debug=True to the EXE() function of the build.spec.<em> I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.</em></p>
+<p><em>To see your app's error message, run the resulting your_app.exe from the command line. </em>You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.</p>
+<p><strong>Flushing sys.stdout/Python printing for Windows:</strong></p>
+<p>Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen(). This was contrary to <a href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey's instructions</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">nonbuffered_stdout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fdopen</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">nonbuffered_stdout</span>
+</code></pre></div>
+
+<p><strong>Fetching the local user's system information:</strong></p>
+<p>In order to run on any user's system, we need to grab their local file paths. I accomplished this by referencing the sys._MEIPASS via the below code I found from a Stack Overflow post.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">resource_path</span><span class="ss">(</span><span class="nv">relative_path</span><span class="ss">)</span>:
+<span class="w">    </span><span class="s2">&quot;&quot;&quot; Get absolute path to resource, works for dev and for PyInstaller&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="nv">base_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">getattr</span><span class="ss">(</span><span class="nv">sys</span>,<span class="w"> </span><span class="s1">&#39;_MEIPASS&#39;</span>,<span class="w"> </span><span class="nv">os</span>.<span class="nv">path</span>.<span class="k">dirname</span><span class="ss">(</span><span class="nv">os</span>.<span class="nv">path</span>.<span class="nv">abspath</span><span class="ss">(</span><span class="nv">__file__</span><span class="ss">)))</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">os</span>.<span class="nv">path</span>.<span class="nv">join</span><span class="ss">(</span><span class="nv">base_path</span>,<span class="w"> </span><span class="nv">relative_path</span><span class="ss">)</span>
+
+<span class="nv">temp_folder_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">getattr</span><span class="ss">(</span><span class="nv">sys</span>,<span class="w"> </span><span class="s1">&#39;_MEIPASS&#39;</span>,<span class="w"> </span><span class="nv">os</span>.<span class="nv">getcwd</span><span class="ss">())</span>
+<span class="nv">relative_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">resource_path</span><span class="ss">(</span><span class="nv">temp_folder_path</span><span class="ss">)</span>
+</code></pre></div>
+
+<p><strong>Adding library-specific patches:</strong></p>
+<p>1. Below is the <a href="https://github.com/pyinstaller/pyinstaller/issues/3422">fix</a> I found for the Pandas library, which I added to my build.spec:</p>
+<div class="highlight"><pre><span></span><code>hiddenimports=[&#39;pandas._libs.tslibs.timedeltas&#39;,&#39;pandas._libs.tslibs.nattype&#39;,
+&#39;pandas._libs.tslibs.np_datetime&#39;,&#39;pandas._libs.skiplist&#39;]
+</code></pre></div>
+
+<p>2. The Gooey library needs some special code added to the build.spec for its images and languages data. More details are found in this <a href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">blog post</a>, written by the author of the Gooey library.</p>
+<p><img alt="Will Ferrell Old School" class="wp-image-1535 alignright" height="216" src="https://pythonmarketer.files.wordpress.com/2018/11/will_ferrell_composure.jpg" style="margin-top:75px;" width="293"></p>
+<p><strong>Last, but not least: don't panic.</strong></p>
+<p>Compiling Python to Windows binary code sounds like a daunting [task, but it wasn't nearly as complex as I feared. The folks behind Pyinstaller have done a great job of making it possible and, dare I say, simple. Stay calm, drink some coffee, dig in and welcome the challenge with a trial and error mentality. I was able to figure it out over the span of one Saturday. Good luck.]{style="line-height:inherit;"}</p>
+<p><strong>[ Useful Resources:]{style="line-height:inherit;"}</strong></p>
+<ol>
+<li>Pyinstaller Github - <a href="https://github.com/pyinstaller/pyinstaller/wiki/If-Things-Go-Wrong">If Things Go Wrong</a></li>
+<li>Pyinstaller Documentation: <a href="https://pyinstaller.readthedocs.io/en/stable/usage.html">Using Pyinstaller/Useful Arguments</a></li>
+<li><a href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey Pyinstaller Instructions</a></li>
+<li><a href="https://github.com/pyinstaller/pyinstaller/issues/3422">Pandas hiddenimports Discussion</a></li>
+</ol>
+<p><strong>Caveats:</strong></p>
+<ol>
+<li>You should compile the program on the operating system it will be run on. There are options for creating a multi-os compatible package, but I did not attempt them.</li>
+<li>Windows 7 is proven to work with Pyinstaller, per the documentation. It's also what I am running on. Other Windows systems older than Windows 10 may be less reliable.</li>
+<li>I experienced trouble when passing arguments from the command line to pyinstaller and have so far been unable to get the console window to hide. Neither the -w, --windowed, --noconsole arguments seemed to work. I will update if I am able to find a solution.</li>
+<li>Now that I am testing my compiled app, I am seeing 10x performance slowdowns when running as the final .exe vs. the original .py file. But at least the program runs correctly and still does so relatively quickly.</li>
+<li>I also received the error: "Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform." I fixed this by upgrading to the latest version of Pyinstaller: <code>pip3 install --upgrade pyinstaller</code></li>
+</ol>
+<p><strong>My full build.spec file, modified from <a href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">here</a>:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -*- mode: python -*-</span>
+<span class="kn">import</span> <span class="nn">gooey</span>
+<span class="n">gooey_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">gooey</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="n">gooey_languages</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gooey_root</span><span class="p">,</span> <span class="s1">&#39;languages&#39;</span><span class="p">),</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;gooey/languages&#39;</span><span class="p">)</span>
+<span class="n">gooey_images</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gooey_root</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">),</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;gooey/images&#39;</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">([</span><span class="s1">&#39;your_program.py&#39;</span><span class="p">],</span>
+             <span class="n">pathex</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Python36</span><span class="se">\\</span><span class="s1">Lib</span><span class="se">\\</span><span class="s1">site-packages</span><span class="se">\\</span><span class="s1">your_appdir&#39;</span><span class="p">],</span>
+             <span class="n">hiddenimports</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pandas._libs.tslibs.timedeltas&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas._libs.tslibs.np_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas._libs.tslibs.nattype&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas._libs.skiplist&#39;</span><span class="p">],</span>
+             <span class="n">hookspath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">runtime_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="p">)</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;OPTION&#39;</span><span class="p">)]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">datas</span> <span class="o">+=</span> <span class="p">[(</span><span class="s1">&#39;program_icon.ico&#39;</span><span class="p">,</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Python36</span><span class="se">\\</span><span class="s1">Lib</span><span class="se">\\</span><span class="s1">site-packages</span><span class="se">\\</span><span class="s1">your_appdir</span><span class="se">\\</span><span class="s1">program_icon.ico&#39;</span><span class="p">,</span>  <span class="s1">&#39;DATA&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;config_icon.png&#39;</span><span class="p">,</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Python36</span><span class="se">\\</span><span class="s1">Lib</span><span class="se">\\</span><span class="s1">site-packages</span><span class="se">\\</span><span class="s1">your_appdir</span><span class="se">\\</span><span class="s1">config_icon.png&#39;</span><span class="p">,</span><span class="s1">&#39;DATA&#39;</span><span class="p">)]</span>
+
+<span class="n">pyz</span> <span class="o">=</span> <span class="n">PYZ</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">pure</span><span class="p">)</span> 
+<span class="n">exe</span> <span class="o">=</span> <span class="n">EXE</span><span class="p">(</span><span class="n">pyz</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">scripts</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">binaries</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">zipfiles</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">datas</span><span class="p">,</span>
+          <span class="n">options</span><span class="p">,</span>
+          <span class="n">gooey_languages</span><span class="p">,</span>
+          <span class="n">gooey_images</span><span class="p">,</span>
+          <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ADD YOUR APP NAME HERE&#39;</span><span class="p">,</span>
+          <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">strip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+          <span class="n">upx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">console</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">icon</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;program_icon.ico&#39;</span><span class="p">))</span>
+</code></pre></div>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/packaging-python-as-a-windows-app.html">posted at 02:59</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-pandas-python-software.html" rel="tag">coding, pandas, python, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/app-development.html" class="tags">app development</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/windows.html" class="tags">Windows</a>
+                </div>
+            </article>            <h4 class="date">Oct 19, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/wtf-is-a-regression.html" rel="bookmark" title="Permanent Link to &quot;WTF is a Regression&quot;">WTF is a Regression</a>
+                </h2>
+
+                
+                
+
+                <p><strong>re·gres·sion</strong></p>
+<p>[caption id="attachment_1500" align="alignright" width="467"]<img alt="mitnewslol.png" class="alignnone wp-image-1500" height="273" src="http://pythonmarketer.files.wordpress.com/2018/10/9ed88-mitnewslol-e1539920605255.png" width="467"> wtf is a regression? - MIT News and I[/caption]</p>
+<p>/rəˈɡreSH(ə)n<br>
+<em>noun</em><br>
+1. a return to a former or less developed state.<br>
+2. <em>STATISTICS</em> a measure of the relation between the mean value of one variable (e.g., output) and corresponding values of other variables (e.g., time and cost).</p>
+<p>Regression analysis is commonly cited in the data science community (and science in general), a building block of statistics, and routinely referenced within the rapidly growing <a href="https://en.wikipedia.org/wiki/Machine_learning">machine learning</a> movement. So what is this mysterious math sorcery? Did Isaac Newton use regression analysis? These magical regressions seem important. We shall dig deeper. Here's what I've found, thanks to <a href="http://news.mit.edu/2010/explained-reg-analysis-0316">MIT News</a>, circa 2010:</p>
+<blockquote>
+<p>To grasp the basic concept, take the simplest form of a regression: a linear, bivariate regression, which describes an unchanging relationship between two (and not more) phenomena. Now suppose you are wondering if there is a connection between the time high school students spend doing French homework, and the grades they receive. These types of data can be plotted as points on a graph, where the x-axis is the average number of hours per week a student studies, and the y-axis represents exam scores out of 100. Together, the data points will typically scatter a bit on the graph. The regression analysis creates the single line that best summarizes the distribution of points.</p>
+</blockquote>
+<p>Ok, so it's correlationary tool. Sounds useful. Additionally, consider the mathematical  equation representation of regressions:</p>
+<blockquote>
+<p>Mathematically, the line representing a simple linear regression is expressed through a basic equation: Y = a~0~ + a~1~ X. Here X is hours spent studying per week, the “independent variable.” Y is the exam scores, the “dependent variable,” since — we believe — those scores depend on time spent studying. Additionally, a~0~ is the y-intercept (the value of Y when X is zero) and a~1~ is the slope of the line, characterizing the relationship between the two variables. (<strong><em>source: <a href="http://news.mit.edu/2010/explained-reg-analysis-0316">MIT News)</a></em></strong></p>
+</blockquote>
+<p>Geesh, that's kinda dense. But can we do it with Python? Ah, yes we can. Below is the amassed code from <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"><em>Towards Data Science</em></a> to run a basic regression that generates predictions from a Boston house values dataset within <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">sci-kit learn.</a></p>
+<p><strong><a href="https://scikit-learn.org/stable/install.html">pip install sklearn</a> and pandas first, by entering in the terminal:</strong></p>
+<ol>
+<li>
+<p>pip install -U scikit-learn</p>
+</li>
+<li>
+<p>python -m  pip install pandas</p>
+</li>
+</ol>
+<p><strong>Now run copy this code, save as a .py file  and run from your terminal or command prompt:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span> <span class="c1">## imports datasets from scikit-learn</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">()</span> <span class="c1">## loads Boston dataset from datasets library</span>
+
+<span class="c1"># define the data/predictors as the pre-set feature names</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+
+<span class="c1"># Put the target (housing value -- MEDV) in another DataFrame</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MEDV&quot;</span><span class="p">])</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;MEDV&quot;</span><span class="p">]</span>
+
+<span class="n">lm</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span> <span class="c1"># print the first 5 predictions for y</span>
+
+<span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="c1"># This is the R² score of our model. As you probably remember, this the percentage of explained variance of the predictions.</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">coef_</span> <span class="c1"># check coefficients</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">intercept_</span>
+<span class="c1"># More info: https://towardsdatascience.com/simple-and-multiple-linear-regression-in-python-c928425168f9</span>
+</code></pre></div>
+
+<p><em>source: <a href="https://towardsdatascience.com/simple-and-multiple-linear-regression-in-python-c928425168f9">Towards Data Science</a></em></p>
+<p>The above example is one of many predictive models. <a href="https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8">Logistic regressions</a> and random forests are examples of other models. <a href="https://books.google.com/books/about/Learning_Predictive_Analytics_with_Pytho.html?id=Ia5KDAAAQBAJ&amp;printsec=frontcover&amp;source=kp_read_button#v=onepage&amp;q&amp;f=false">This book</a> dives deeper into them.</p>
+<p>So there you have it: regressions... part correlation measurement tool between two variables, part fancy mathematical formula, part prediction generator that sci-kit learn graciously affords us to make predictions of future data. Alright regressions, you can stay. :)</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/wtf-is-a-regression.html">posted at 03:15</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/data-analysis-math-python-statistics.html" rel="tag">data analysis, math, python, statistics</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data-science.html" class="tags">data science</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/mathematics.html" class="tags">mathematics</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/regressions.html" class="tags">regressions</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/sci-kit-learn.html" class="tags">sci-kit learn</a>
+                </div>
+            </article>            <h4 class="date">Sep 14, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/making-a-python-eyedropper.html" rel="bookmark" title="Permanent Link to &quot;Making A Desktop Color Eyedropper in Python to Grab Color Values&quot;">Making A Desktop Color Eyedropper in Python to Grab Color Values</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Goal:</strong> recreate my resume in the dark Atom text editor theme (background and fonts).<br>
+<strong>Sub-goal:</strong> find a color eyedropper to grab the actual color values of the Atom layout.</p>
+<p><strong>Approach #1: find an Atom eyedropper package to grab the colors.</strong></p>
+<p>My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were <a href="https://atom.io/packages/an-color-picker">an-color-eyedropper</a> and <a href="https://atom.io/packages/color-picker">color picker</a>. The an-color-eyedropper description sounds perfect: <em>"A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." </em>Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated (<a href="https://atom.io/packages/script">script</a> is its successor). I was unable to find a repo anywhere by googling.</p>
+<p><a href="https://atom.io/packages/color-picker">Color picker</a> has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.</p>
+<p><strong>Approach #2: Use the python tkcolorpicker package to grab the colors.</strong></p>
+<p>The first thing I found on Google was <a href="https://pypi.org/project/tkcolorpicker/">tkcolorpicker</a>, a package that uses the <a href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">tkinter</a> library. I couldn't tell exactly what it was, so let's find out. First, install via <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:<br>
+<code>python -m pip install tkcolorpicker</code></p>
+<p>Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D<br>
+<img alt="color_picker_gui" class="wp-image-1462 alignright" height="315" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="padding-top:15px;" width="301"></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
+<span class="kn">from</span> <span class="nn">tkcolorpicker</span> <span class="kn">import</span> <span class="n">askcolor</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">style</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="n">style</span><span class="o">.</span><span class="n">theme_use</span><span class="p">(</span><span class="s1">&#39;clam&#39;</span><span class="p">)</span>
+<span class="n">hex_code</span><span class="p">,</span> <span class="n">RGB_code</span> <span class="o">=</span> <span class="n">askcolor</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">root</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">hex_code</span><span class="p">,</span> <span class="n">RGB_code</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</code></pre></div>
+
+<p><code>askcolor()</code> returns a tuple with both the RGB and hex codes selected by the user. Above, we are unpacking that tuple into the <code>hex_code</code> and <code>RGB_code</code> variables.</p>
+<p><strong>Approach #3: Use the Python eyedropper package to grab the colors.</strong></p>
+<p>I then found <a href="https://github.com/umluizlima/eyedropper">eyedropper</a> for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>: <code>python -m pip install eyedropper</code></p>
+<p><img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" height="140" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" width="239"></p>
+<p>Hover your mouse over the object you want to grab the color from (in my case, the Atom text editor background). Then <a href="https://github.com/umluizlima/eyedropper">following these instructions</a>:</p>
+<p>Alternatively, I was able to run eyedropper from the command line by entering: <code>py -m eyedropper</code></p>
+<p><img alt="pasted_hex2" class="alignnone size-full wp-image-1461" height="74" src="https://pythonmarketer.files.wordpress.com/2018/09/pasted_hex2.png" width="766"></p>
+<p><img alt="CCvOYFiUgAA4DJd" class="alignright" height="116" src="https://pythonmarketer.files.wordpress.com/2018/09/ccvoyfiugaa4djd.jpg" width="151"></p>
+<p><strong>Mission possible.</strong> Then I hit ctrl+v in a text file and there was the hex code for [my Atom background. Some of the colors that eyedropper grabbed were nearly identical to those in the Atom text editor dark theme. Others were not quite the same. I made slight eyeball adjustments to the colors for some of the fonts. ]{style="color:var(--color-text);"}</p>
+<p>[<strong>Here's the end result:</strong> <a href="https://www.dropbox.com/s/g5uiaqaa5nb3fgn/Developer_Resume_Invert_v2.docx?dl=0">See My Resume via Dropbox</a> :D<br>
+]{style="color:var(--color-text);"}</p>
+<h2>Why not <a href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">use Python to convert hex to RGB?</a></h2>
+<p>Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I found <a href="https://www.webpagefx.com/web-design/hex-to-rgb/">this website</a> practical and quick.</p>
+<p><strong>Alternatively, you could</strong> <strong><a href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">convert a hex code to RGB with python:</a></strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">hex_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">input</span><span class="ss">(</span><span class="s1">&#39;Enter hex: &#39;</span><span class="ss">)</span>.<span class="nv">lstrip</span><span class="ss">(</span><span class="s1">&#39;#&#39;</span><span class="ss">)</span>
+<span class="nv">RGB_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tuple</span><span class="ss">(</span><span class="nv">int</span><span class="ss">(</span><span class="nv">hex_code</span>[<span class="nv">i</span>:<span class="nv">i</span><span class="o">+</span><span class="mi">2</span>],<span class="w"> </span><span class="mi">16</span><span class="ss">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="ss">(</span><span class="mi">0</span>,<span class="w"> </span><span class="mi">2</span>,<span class="w"> </span><span class="mi">4</span><span class="ss">))</span>
+<span class="nv">print</span><span class="ss">(</span><span class="s1">&#39;RGB =&#39;</span>,<span class="w"> </span><span class="nv">RGB_code</span><span class="ss">)</span>
+</code></pre></div>
+
+<p><img alt="rgb_to_hex" class="alignnone size-full wp-image-2308" height="83" src="http://pythonmarketer.files.wordpress.com/2018/09/e084c-rgb_to_hex-e1581286493172.jpg" width="805"></p>
+<h2>What the hay, let's use <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard()</a> to get the hex codes.</h2>
+<p>Once eyedropper sends the color values to your system's clipboard, there are multiple ways to access them. This alternative uses pandas.</p>
+<p><strong>Installing pandas and <a href="https://github.com/asweigart/pyperclip">pyperclip</a> with pip:</strong></p>
+<div class="highlight"><pre><span></span><code>python -m pip install pandas
+python -m pip install pyperclip
+</code></pre></div>
+
+<p><strong>On Linux, install <a href="https://github.com/astrand/xclip">xclip</a> or <a href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a></strong>[ <code>sudo apt-get install xclip</code><strong><br>
+</strong>]{.st}</p>
+<p>[<strong>To get the clipboard contents with pandas:</strong>]{.st}</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">hex_code_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_clipboard</span><span class="p">()</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">hex_code_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>Supplementary Notes and Links</strong></p>
+<ul>
+<li>Here's a Python <a href="https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py">eyedropper script</a> featuring the <a href="https://pillow.readthedocs.io/en/5.2.x/index.html">pillow</a> and <a href="https://github.com/python-xlib/python-xlib">xlib</a> libraries that I was unable to get working.</li>
+<li>I didn't try <a href="http://colorcop.net/">ColorCop for Windows</a>, but it may be a non-Python alternative.</li>
+<li><strong>Did you know?</strong> Python 2 had a <a href="https://docs.python.org/2/library/colorpicker.html">ColorPicker</a> module that is not in Python 3.</li>
+<li><a href="https://dev.to/espoir/how-pandas-readclipboard-method-works-ake">How pandas read_clipboard method works</a></li>
+<li><a href="https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/io/clipboards.py#L10-L76">pandas to_clipboard and read_clipboard source code</a></li>
+<li>This <a href="https://github.com/Toinane/colorpicker">desktop tool</a> has great U/X and an eyedropper feature. It runs on Electron, a Javascript based framework. Coincidentally, Electron was used to build Atom.</li>
+</ul>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/making-a-python-eyedropper.html">posted at 05:45</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-colors-pandas-programming.html" rel="tag">coding, Colors, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/atom.html" class="tags">atom</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/color.html" class="tags">color</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/eyedropper.html" class="tags">eyedropper</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gui.html" class="tags">gui</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>            <h4 class="date">Aug 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/gooey-gui-for-python-scripts.html" rel="bookmark" title="Permanent Link to &quot;Gooey GUI for Python Scripts&quot;">Gooey GUI for Python Scripts</a>
+                </h2>
+
+                
+                
+
+                <p>GUI stands for "Graphical User Interface", aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.</p>
+<p>There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, <a href="https://github.com/hoffstadt/DearPyGui">DearPyGui</a> and PySimpleGUI. I <a href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">explored Tkinter</a> back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.</p>
+<p>The <a href="https://github.com/chriskiehl/Gooey">Gooey Github page</a> was most useful to me and helped me to do what I needed. The script posted <a href="http://pbpython.com/pandas-gui.html">in this blog</a> helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:</p>
+<ol>
+<li>some basic widgets piggyback off the <a href="https://www.blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/">argparse</a> library</li>
+<li>another part of the library uses a function called the GooeyParser. The GooeyParser offers more advanced widgets, like a file chooser. This was exactly what I was looking to use to pull in files for my script.</li>
+</ol>
+<p><strong>Installing Gooey</strong></p>
+<p>Argparse comes stock with Python. You can install Gooey via the <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>. Open command prompt or terminal and enter:</p>
+<p><code>python -m pip install Gooey</code></p>
+<p>Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
+<span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span>
+
+<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Demonstrating python&#39;s vars built-in to store arguments in a python dict.&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;A simple argument parser&#39;</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="s1">&#39;This is where you might put example usage&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option X&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option Y&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign Number&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option Z&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign Segment&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;All&#39;</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+    <span class="n">user_inputs</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">user_inputs</span><span class="p">)</span> 
+    <span class="n">name</span> <span class="o">=</span> <span class="n">user_inputs</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+    <span class="n">campaign_number</span> <span class="o">=</span> <span class="n">user_inputs</span><span class="p">[</span><span class="s1">&#39;Campaign Number&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">get_args</span><span class="p">()</span>
+</code></pre></div>
+
+<blockquote>
+<p>Side note: Check out Python's <a href="https://docs.python.org/3/library/functions.html#vars">vars() built-in</a> function above. It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!</p>
+</blockquote>
+<p>The \@Gooey() part of the code is an advanced function known as a <a href="https://www.python.org/dev/peps/pep-0318/">decorator in Python</a>. Put simply, decorators are functions that modify the function to which they are attached.</p>
+<p>Below is my script that uses the more advanced GooeyParser for its "FileChooser" widget. Gooey allows you to group widgets together and set how many widgets per line with the gooey_options={} parameter.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
+
+<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adding two argument groups, each accepting two arguments. </span>
+<span class="sd">    Using gooey_options to set layout.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">GooeyParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Export campaign report spreadsheets and upload below.&#39;</span><span class="p">)</span>
+    <span class="n">top_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">gooey_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;show_border&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span><span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+    <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Contact List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Send List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span> 
+    <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Opens List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Opens List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span>
+    <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Unsubscribe List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Unsubscribe List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span>
+    <span class="n">bottom_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">gooey_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;show_border&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span><span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">})</span>
+    <span class="n">bottom_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign ID&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number found in the Campaign &#39;Reports&#39; tab&quot;</span><span class="p">)</span>
+    <span class="n">bottom_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign Segment&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Enter A, B, or All. All lists supplied must match segment.&#39;</span><span class="p">)</span>
+    <span class="n">user_inputs</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">())</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">user_inputs</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">get_args</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:</p>
+<p><img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" height="603" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" width="578"></p>
+<p>Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D</p>
+<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can <a href="https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/gooey-gui-for-python-scripts.html">posted at 16:32</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-product-development-programming-software.html" rel="tag">coding, data, product development, programming, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gooey.html" class="tags">gooey</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gui.html" class="tags">gui</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software-development.html" class="tags">software development</a>
+                </div>
+            </article>            <h4 class="date">Jul 15, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/findstr-aka-grep-for-windows.html" rel="bookmark" title="Permanent Link to &quot;Findstr, RegEx File Searches for Windows&quot;">Findstr, RegEx File Searches for Windows</a>
+                </h2>
+
+                
+                
+
+                <p>Findstr is the Windows alternative to GREP, which runs on the <a href="https://www.howtogeek.com/182649/htg-explains-what-is-unix/">Unix operating system</a>. Findstr searches files with <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> and seems useful for string matching within files and directories.  It is one of over <a href="https://www.lifewire.com/list-of-command-prompt-commands-4092302">280 command prompt commands</a>. Here's the official <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">Windows Documentation</a> and some <a href="https://www.mkyong.com/linux/grep-for-windows-findstr-example/">Linux vs. Windows Examples.</a></p>
+<p><strong>Update:</strong> Windows announced that <a href="https://hackaday.com/2019/06/10/windows-10-goes-to-shell/">Grep and several other Unix command line tools will be added to Windows 10</a>. This is a new alternative to findstr.</p>
+<p><strong>This findstr command returns all lines containing an '@' in a text file.</strong></p>
+<div class="highlight"><pre><span></span><code>findstr @ test.txt
+</code></pre></div>
+
+<p><img alt="findstr Emails" class="alignnone size-full wp-image-1406" height="48" src="https://pythonmarketer.files.wordpress.com/2018/07/findstr-emails.png" width="602"></p>
+<p><strong>I was happy to see Findstr's convenient help menu:</strong></p>
+<div class="highlight"><pre><span></span><code>findstr -?
+</code></pre></div>
+
+<p><img alt="findstr_help" class="alignnone size-full wp-image-1408" height="603" src="https://pythonmarketer.files.wordpress.com/2018/07/findstr_help.png" width="657"></p>
+<p>Regular expressions are so powerful. It's nice to have this utility within the command prompt. I am hoping to get to know some of the other 280 command prompt commands.</p>
+<p><strong>I've previously explored regex with Python. This Python regex example finds all words in a text file containing '@' symbols:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+
+
+<span class="c1"># read the file to string + regex email search</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">fhand</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c1"># this regex returns a python list of emails:</span>
+    <span class="n">emails</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;(\S*@\S+)&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="n">emails</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="findall_python" class="alignnone size-full wp-image-1405" height="173" src="https://pythonmarketer.files.wordpress.com/2018/07/findall_python.png" width="633"></p>
+<p>For more command prompt nuggets, check out my more recent post: <a href="https://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/">Exploring Windows Command Line Tools, Batch Files and Remote Desktop Connection</a>.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/findstr-aka-grep-for-windows.html">posted at 19:52</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/command-prompt-data-python-windows.html" rel="tag">command prompt, data, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/regex.html" class="tags">regex</a>
+                </div>
+            </article>            <h4 class="date">May 12, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/pandas-pythons-excel-powerhouse.html" rel="bookmark" title="Permanent Link to &quot;A Stroll Through Pandas 1.0, Python’s Tabular Data Powerhouse&quot;">A Stroll Through Pandas 1.0, Python’s Tabular Data Powerhouse</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Introduction</strong></p>
+<p><a href="https://pandas.pydata.org/"><img alt="pandas" class="wp-image-2594 alignright" height="122" src="https://pythonmarketer.files.wordpress.com/2018/05/pandas.png" width="301"></a>Thanks to pandas, I have automated some data cleaning a[nd file reading processes at my job. ]{style="color:var(--color-text);"}[Here are some terms and code that have been useful or interesting to me after 2 years of exploration. I also checked out "]{style="color:var(--color-text);"}<a href="https://github.com/wesm/pydata-book">Python for Data Analysis</a>[" from the ]{style="color:var(--color-text);"}<a href="https://www.chipublib.org/">Chicago Public Library</a>[.]{style="color:var(--color-text);"}</p>
+<p>If I could suggest anything to be successful with pandas, it is repetition. I use it nearly every day at work. Dive into its <a href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html">API documentation.</a> There are tons of useful tools there, laid out with meticulous detail and examples. I began learning pandas with this PyCon 2015 <a href="https://www.youtube.com/watch?v=5JnMutdy6Fw">tutorial from Brandon Rhodes</a>, it's informative and entertaining! (It's a little dated now but I still recommend it.) The <em><a href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a></em> by Jake VanderPlas is also a great example of pandas-related workflows.</p>
+<p><strong>Table of Contents</strong></p>
+<ol>
+<li>Python\pandas Installation and Version Compatibility</li>
+<li>ACHIEVEMENT UNLOCKED: Welcome to pandas 1.0</li>
+<li>Data Wrangling, Exploration and Broadcasting<ul>
+<li><code>Series.str</code> &amp; <code>Series.dt</code> accessors</li>
+<li><code>apply</code>, <code>applymap</code>, <code>lambda</code> and <code>map</code></li>
+<li>featuring <code>pandas.to_markdown()</code></li>
+<li>SQL operations with <code>df.merge()</code> and <code>pandas.read_sql()</code></li>
+<li><code>pandas.read_clipboard()</code></li>
+<li>converting between Series and DataFrame</li>
+</ul>
+</li>
+<li>Turning json API responses into a dataframe with <code>pandas.json_normalize()</code></li>
+<li>Plotting Visualizations with matplotlib</li>
+<li>Supplementary Resources and Links</li>
+</ol>
+<h3>(1) [Python\pandas Installation and Version Compatibility]{style="color:var(--color-text);"}</h3>
+<p>Python 3.6 and higher can <a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html">install pandas 1.0</a>.</p>
+<p><strong>Installing Python 3.8 on Windows<br>
+</strong></p>
+<p>For Windows installation, see the python docs for an installer, "<a href="https://docs.python.org/3/using/windows.html">Using Python on Windows"</a>.</p>
+<p><strong>Installing Python 3.8 on Ubuntu</strong></p>
+<p><a href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/">Follow these steps to download and install Python 3.8 in the Ubuntu terminal.</a> To upgrade to pandas 1.0, I installed Python 3.8, the <a href="https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=python+latest+stable+release&amp;ie=utf-8&amp;oe=utf-8">latest stable release</a>, "<a href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/">from source</a>" on Ubuntu 16.04.</p>
+<p><strong>If you intend to use <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html">pandas.to_markdown()</a> on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.<br>
+</strong></p>
+<p>On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal: <code>sudo apt-get install libbz2-dev</code></p>
+<p>I also saw this message when completing install:</p>
+<blockquote>
+<p>The necessary bits to build these optional modules were not found. To find the necessary bits, look in setup.py in detect-modules() for the module's name.</p>
+</blockquote>
+<p><strong>If you need to re-build Python on Ubuntu, enter:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">erick</span><span class="o">/</span><span class="n">Python</span><span class="o">-</span><span class="mf">3.8</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span>
+<span class="o">./</span><span class="n">configure</span><span class="w"> </span><span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">loadable</span><span class="o">-</span><span class="n">sqlite</span><span class="o">-</span><span class="n">extensions</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">install</span>
+</code></pre></div>
+
+<p>I installed missing  _bz2 and _sqllite3 modules then re-built with these commands.</p>
+<p><strong>Installing Older pandas Versions on Ubuntu</strong></p>
+<p>The version downloaded with this command is about 6 months behind the current version. For me, this installed pandas 0.17 on Ubuntu:</p>
+<p><code class="docutils literal notranslate">sudo apt-get install python3-pandas</code></p>
+<p>As of February 2020, this command <a href="https://docs.python.org/3/installing/index.html">installs pandas version 0.24 with pip</a> when used with Python 3.5 on Linux Ubuntu 16.04:</p>
+<p><code>python3.5 -m pip install pandas</code></p>
+<p><img alt="successful_python_install" class="alignnone wp-image-2420" height="186" src="https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg" style="color:var(--color-text);" width="676"></p>
+<p><strong>If pandas is already installed, you can upgrade with <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</strong></p>
+<p>[caption id="attachment_2572" align="alignright" width="179"]<img alt="pip_list" class="alignnone wp-image-2572" height="230" src="http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg" width="179"> Enter pip list to see installed libraries.[/caption]</p>
+<p><code>python -m pip install --upgrade pandas</code></p>
+<p>To check if pip is installed: <code>python -m pip list</code></p>
+<p><strong>Consider following best practice and create a <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a> with your new Python version. <a href="https://docs.python.org/3/library/venv.html">venv</a> wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:</strong></p>
+<p><code>python -m pip --user install virtualenv</code></p>
+<p><strong>Let's create a new virtual environment. Enter in terminal or command prompt:</strong></p>
+<p><code>virtualenv -p python3.8 add_env_name_here</code></p>
+<p><strong>Now, activate your new virtual environment on Linux:</strong></p>
+<p><code>cd add_env_name_here/bin &amp;&amp; source activate</code></p>
+<p><strong>Or activate environment on Windows:</strong></p>
+<p><code>cd add_env_name_here\scripts &amp; activate</code></p>
+<p><strong>"ImportError: Missing optional dependency 'tabulate'. Use pip or conda to install tabulate:" To use pd.to_markdown(), install Tabulate:</strong></p>
+<p><code>python -m pip install tabulate</code></p>
+<p><strong>To use pd.read_clipboard() on Linux, install <a href="https://github.com/astrand/xclip">xclip</a> or <a href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a></strong>[ ]{.st}</p>
+<p>[<code>sudo apt-get install xclip</code><strong><br>
+</strong>]{.st}</p>
+<p><strong>I also saw a prompt to install pyperclip:</strong></p>
+<p><code>python -m pip install pyperclip</code></p>
+<p><strong>Now install pandas 1.0 and <a href="https://matplotlib.org/users/installing.html">matplotlib</a> in your virtual environment.</strong></p>
+<div class="highlight"><pre><span></span><code>python3.8 -m pip install pandas
+python -m pip install -U matplotlib
+</code></pre></div>
+
+<h3>(2) Welcome to pandas 1.0</h3>
+<p>You did it! Welcome to the good life. The basis of pandas is the "<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">dataframe</a>", commonly abbreviated as df, which is similar to a spreadsheet. Another core pandas object is the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html">pandas.Series</a> object, which is similar to a Python list or <a href="http://cs231n.github.io/python-numpy-tutorial/">numpy</a> array. When imported, pandas is aliased as "pd". The pd object allows you to access many useful pandas functions. I'll use it interchangeably with pandas in this post.</p>
+<blockquote>
+<p>The library’s name derives from <strong>pan</strong>el <strong>da</strong>ta, a common term for multidimensional data sets encountered in statistics and econometrics.</p>
+<p><a href="https://www.dlr.de/sc/Portaldata/15/Resources/dokumente/pyhpc2011/submissions/pyhpc2011_submission_9.pdf">pandas: a Foundational Python Library for Data Analysis and Statistics</a></p>
+<p>- Wes McKinney</p>
+</blockquote>
+<h3>(3) <a href="https://en.wikipedia.org/wiki/Data_wrangling">Data Wrangling</a>, Exploration and Broadcasting</h3>
+<p>**Data is commonly read in from file with <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pd.read_csv()</a>. **</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;my_bank_statement.csv&#39;</span>
+<span class="c1"># you may sometimes need to specify an alternate encoding: encoding = &quot;ISO-8859-1&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># returns a tuple: (# of rows, # of columns)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>Create a dataframe from a list of Python lists, named movies below, with <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pd.DataFrame</a>:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Title&quot;</span><span class="p">,</span> <span class="s2">&quot;Release Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Character&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span><span class="p">,</span> <span class="s2">&quot;Movie Budget&quot;</span><span class="p">,</span> <span class="s2">&quot;Worldwide Gross&quot;</span><span class="p">]</span>
+<span class="n">movies</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Ocean&#39;s 11&quot;</span><span class="p">,</span> <span class="s2">&quot;12/7/2001&quot;</span><span class="p">,</span> <span class="s2">&quot;Danny Ocean&quot;</span><span class="p">,</span> <span class="s2">&quot;George Clooney&quot;</span><span class="p">,</span><span class="s2">&quot;$85,000,000&quot;</span><span class="p">,</span><span class="s2">&quot; $450,728,529&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Ocean&#39;s 11&quot;</span><span class="p">,</span> <span class="s2">&quot;12/7/2001&quot;</span><span class="p">,</span> <span class="s2">&quot;Tess Ocean&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">,</span><span class="s2">&quot;$85,000,000&quot;</span><span class="p">,</span><span class="s2">&quot; $450,728,529&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Runaway Bride&quot;</span><span class="p">,</span> <span class="s2">&quot;6/30/1999&quot;</span><span class="p">,</span> <span class="s2">&quot;Ike Graham&quot;</span><span class="p">,</span> <span class="s2">&quot;Richard Gere&quot;</span><span class="p">,</span><span class="s2">&quot;$70,000,000&quot;</span><span class="p">,</span><span class="s2">&quot;$309,457,509&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Runaway Bride&quot;</span><span class="p">,</span> <span class="s2">&quot;6/30/1999&quot;</span><span class="p">,</span> <span class="s2">&quot;Maggy Carpenter&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">,</span><span class="s2">&quot;$70,000,000&quot;</span><span class="p">,</span><span class="s2">&quot;$309,457,509&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Bonnie and Clyde&quot;</span><span class="p">,</span> <span class="s2">&quot;9/1/1967&quot;</span><span class="p">,</span> <span class="s2">&quot;Clyde Barrow&quot;</span><span class="p">,</span> <span class="s2">&quot;Warren Beaty&quot;</span><span class="p">,</span><span class="s2">&quot;$2,500,000&quot;</span><span class="p">,</span> <span class="s2">&quot;$70,000,000&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Bonnie and Clyde&quot;</span><span class="p">,</span> <span class="s2">&quot;9/1/1967&quot;</span><span class="p">,</span> <span class="s2">&quot;Bonnie Parker&quot;</span><span class="p">,</span> <span class="s2">&quot;Faye Dunaway&quot;</span><span class="p">,</span><span class="s2">&quot;$2,500,000&quot;</span><span class="p">,</span> <span class="s2">&quot;$70,000,000&quot;</span><span class="p">]]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Title&quot;</span><span class="p">,</span><span class="s2">&quot;Character&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span><span class="p">,</span> <span class="s2">&quot;Movie Budget&quot;</span><span class="p">,</span> <span class="s2">&quot;Worldwide Gross&quot;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;simple&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Let's print the table to our terminal with <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html">pd.to_markdown()</a>, which is[ <a href="https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html">new in pandas version 1.0.0</a>:]{.versionmodified .added}</strong></p>
+<p><img alt="simple_layout_markdown" class="alignnone size-full wp-image-2538" height="189" src="https://pythonmarketer.files.wordpress.com/2018/05/simple_layout_markdown.jpg" width="847"></p>
+<p><strong>Slicing and sorting a dataframe, removing duplicates, and working with datetime objects</strong></p>
+<ol>
+<li>Let's create a new dataframe slice with only two columns</li>
+<li>Drop duplicate movies</li>
+<li>Convert the dates to datetime objects</li>
+<li>Get the year from an array of datetime objects</li>
+<li>Set the year as the dataframe index</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="o">--&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>df = pd.DataFrame(movies, columns=column_names)
+date_df = df[[&#39;Title&#39;, &#39;Release Date&#39;]].drop_duplicates(subset=[&#39;Title&#39;])
+date_df[&#39;Release Date&#39;] = pd.to_datetime(date_df[&#39;Release Date&#39;])
+# create year column using the pd.Series.dt datetime accessor:
+date_df[&#39;Release Year&#39;] = df[&#39;Release Date&#39;].dt.year
+date_df = date_df.sort_values(by=[&#39;Release Date&#39;])
+date_df = date_df.set_index(&#39;Release Year&#39;)
+print(date_df.to_markdown(showindex=False, tablefmt=&#39;simple&#39;))
+</code></pre></div>
+
+<h2><img alt="dates_of_movies" class="alignnone wp-image-2537" height="148" src="https://pythonmarketer.files.wordpress.com/2018/05/dates_of_movies.jpg" width="662"></h2>
+<p><strong>Applying Broadcasting in pandas</strong></p>
+<p>Broadcasting means to map a function or an arithmetic calculation over an over an array (using apply or map) or dataframe (applymap).</p>
+<blockquote>
+<p>"Summing up, apply works on a row/column basis of a DataFrame, applymap works element-wise on a DataFrame, and map works element-wise on a Series."</p>
+<p>- Stack Overflow [<a href="https://stackoverflow.com/questions/19798153/difference-between-map-applymap-and-apply-methods-in-pandas">Source</a>]</p>
+</blockquote>
+<p><strong>Applying a function to a pandas column<br>
+</strong></p>
+<ul>
+<li>Convert columns to int and calculate the difference between two columns.</li>
+<li>Let's format those integers back to dollars with python's lambda and pandas' applymap for extra jazz.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="o">--&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">format_dollars_as_int</span><span class="p">(</span><span class="n">dollars</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Accepts a dollar formatted string, returns an int.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dollars</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nc">int</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+
+<span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=[</span><span class="n">&#39;Title&#39;</span><span class="o">]</span><span class="p">)</span>
+<span class="n">df</span><span class="o">[</span><span class="n">[&#39;Movie Budget&#39;,&#39;Worldwide Gross&#39;</span><span class="o">]</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">[</span><span class="n">[&#39;Movie Budget&#39;,&#39;Worldwide Gross&#39;</span><span class="o">]</span><span class="err">]</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="nf">str</span><span class="p">).</span><span class="n">applymap</span><span class="p">(</span><span class="n">format_dollars_as_int</span><span class="p">)</span>
+<span class="n">df</span><span class="o">[</span><span class="n">&#39;Movie Net Income&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">[</span><span class="n">&#39;Worldwide Gross&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">df</span><span class="o">[</span><span class="n">&#39;Movie Budget&#39;</span><span class="o">]</span>
+<span class="n">money_columns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&#39;Movie Budget&#39;, &#39;Worldwide Gross&#39;,&#39;Movie Net Income&#39;</span><span class="o">]</span>
+<span class="n">df</span><span class="o">[</span><span class="n">money_columns</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">[</span><span class="n">money_columns</span><span class="o">]</span><span class="p">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">lambda</span><span class="w"> </span><span class="nl">x</span><span class="p">:</span><span class="s1">&#39;${:,}&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Creating a new column and writing to a .csv file</strong></p>
+<ul>
+<li>Then add the IMDB ratings of our three films in a new column.</li>
+<li>Finally, write the result to markdown and a csv file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="o">--&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code># create a new column with the three movies&#39; IMDB ratings 
+df[&#39;IMDB Rating&#39;] = list([7.8,5.5,7.8]) 
+print(df.to_markdown(showindex=False, tablefmt=&#39;simple&#39;))
+df.to_csv(&#39;Movies.csv&#39;, index=False)
+</code></pre></div>
+
+<p><img alt="IMDB_movies" class="alignnone size-full wp-image-2540" height="117" src="https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg" width="870"></p>
+<p><code>print(df.Actor.value_counts().to_markdown(tablefmt="github"))</code></p>
+<p>[caption id="attachment_2539" align="alignright" width="189"]<img alt="actor" class="alignnone wp-image-2539" height="111" src="https://pythonmarketer.files.wordpress.com/2018/05/actor.jpg" width="189"> Count the Actors with df.Actor.value_counts()[/caption]</p>
+<hr>
+<blockquote>
+<p><strong>I also must mention <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html">pandas.Series.value_counts()</a>, because it's so darn handy :D</strong></p>
+</blockquote>
+<hr>
+<p><strong>Notice for column names without spaces, you can use dot notation instead of brackets:</strong></p>
+<p><code>df.Actor</code> <em>vs.</em> <code>df['Actor']</code></p>
+<p><strong>Lowercase column names Python's map function:</strong></p>
+<p>`df.columns = map(str.lower, df.columns)```</p>
+<p><strong>Strip whitespace from a column of strings with the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html">pandas.Series.str</a> accessor:</strong><br>
+<code>df['Character'] = df['Character'].astype(str).str.strip()</code></p>
+<p><strong>Fix pesky leading zero zip codes with <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html">str.zfill()</a>:</strong></p>
+<p><code>log_df['zip'] = log_df['zip'].astype(str).str.zfill(5)</code></p>
+<p><strong>Get a row by index number us <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">pandas.DataFrame.loc[]</a>:</strong></p>
+<div class="highlight"><pre><span></span><code>first_row = df.loc[0, df.columns]
+third_row = df.loc[2, df.columns]
+</code></pre></div>
+
+<p><strong>Filter the df to get rows where the actor is 'Julia Roberts'.</strong></p>
+<div class="highlight"><pre><span></span><code>julia_roberts_movies = df[df.Actor==&#39;Julia Roberts&#39;].reset_index(drop=True) 
+print(julia_roberts_movies.head())
+</code></pre></div>
+
+<p><strong>"Get" an item from a column of lists with <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html">str.get()</a>.</strong></p>
+<div class="highlight"><pre><span></span><code># returns first item in each cell&#39;s list into new column
+df[&#39;first_item&#39;] = df[&#39;items&#39;].str.get(0)
+</code></pre></div>
+
+<p><strong>Execute SQL-like operations between dataframes with <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html">df.merge()</a>.</strong></p>
+<p>First, use <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html">df.copy()</a> to create a new dataframe copy of our actors table above.  By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':</p>
+<div class="highlight"><pre><span></span><code>actors = df.copy(deep=True)
+# slice only the columns we want to merge:
+date_df = date_df[[&#39;Title&#39;,&#39;Release Year&#39;]] 
+joined_df = actors.merge(date_df, on=&#39;Title&#39;, how=&#39;inner&#39;)
+# You can pass the number of rows to see to head. It defaults to 5.
+print(joined_df.head(10))
+</code></pre></div>
+
+<p><strong>Execute database queries with <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html">pd.read_sql()</a>.</strong></p>
+<p>When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like <a href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/">pyodbc</a> or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.</p>
+<blockquote>
+<p>uses <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html">pd.Series.isin()</a> to check if each email is in the DB.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyodbc</span>
+
+<span class="n">emails</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;email@email.com&#39;</span><span class="p">,</span> <span class="s1">&#39;notanemail@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;gmail@gmail.com&#39;</span><span class="p">]</span>
+<span class="n">connection_string</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">connection_string</span><span class="p">)</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">connection_string</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT *</span>
+<span class="s2">    FROM   ADD_TABLE_NAME</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">db_chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">500000</span><span class="p">)):</span>
+    <span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">db_chunk</span><span class="p">[</span><span class="n">db_chunk</span><span class="p">[</span><span class="s1">&#39;EmailAddress&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">emails</span><span class="p">)]</span>
+    <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">emails_in_db</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
+<span class="n">emails_in_db</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;DB_Email_Query_Results.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<blockquote>
+<p>In case you are wondering, enumerate is a <a href="https://docs.python.org/3/library/functions.html">python built-in</a> for enumerating, or counting an iterable, e.g. list or generator, as you iterate through it.</p>
+</blockquote>
+<p><strong>Using <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard():</a><br>
+</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">clipboard_contents</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_clipboard</span><span class="p">()</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">clipboard_contents</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Use <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html">pd.to_clipboard()</a> to store a dataframe as clipboard text:<br>
+</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">truths</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pandas is great&#39;</span><span class="p">,</span><span class="s1">&#39;I love pandas&#39;</span><span class="p">,</span><span class="s1">&#39;pandas changed my life&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">truths</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Truths&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_clipboard</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+<span class="n">clipboard_contents</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Press ctrl-v &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clipboard_contents</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Convert the clipboard contents to df with <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pd.DataFrame()</a>:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">clipboard_contents</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Press ctrl-v &#39;</span><span class="p">))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">clipboard_contents</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>If the clipboard dataframe has one column, you could <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze">squeeze</a> the clipboard contents into a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html">pd.Series</a> object:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">clipboard_text</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_clipboard</span><span class="p">()</span> 
+<span class="n">clipboard_contents</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">clipboard_text</span><span class="p">)</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">clipboard_contents</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Clipboard Data&#39;</span><span class="p">])</span>
+<span class="n">clipboard_series</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">clipboard_series</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Inversely, consider using <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame">pandas.Series.to_frame()</a> to convert a Series to a dataframe:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">clipboard_contents</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Press ctrl-v &#39;</span><span class="p">))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">clipboard_contents</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div>
+
+<h3>(4) Turning json API responses into a dataframe with pd.json_normalize()</h3>
+<p><strong>For <a href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html">older pandas versions</a>:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pandas.io.json</span> <span class="kn">import</span> <span class="n">json_normalize</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;pseudo_API.com/endpoint/&#39;</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;page_size&#39;</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">api_type</span><span class="o">=</span><span class="s1">&#39;contact_sync&#39;</span> <span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="c1"># decode response into json</span>
+<span class="c1"># turn subset of json into df</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;any_key&#39;</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Update: beginning in pandas 1.0, <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html">json_normalize</a> became a top-level pandas namespace.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;pseudo_API.com/endpoint/&#39;</span> 
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;page_size&#39;</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">api_type</span><span class="o">=</span><span class="s1">&#39;contact_sync&#39;</span> <span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="c1"># decode response into json </span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;any_key&#39;</span><span class="p">])</span>
+</code></pre></div>
+
+<blockquote>
+<p>pandas.json_normalize() is now exposed in the top-level namespace. Usage of json_normalize as pandas.io.json.json_normalize is now deprecated and it is recommended to use json_normalize as pandas.json_normalize() instead (GH27586).</p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/whatsnew/v1.0.0.html">What's new in pandas 1.0.0</a></p>
+</blockquote>
+<h3>(5) Plotting Visualizations with matplotlib</h3>
+<p><strong>Make a bar plot of the movie release year counts using pandas and matplotlib formatting.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MaxNLocator</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
+
+<span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Title&quot;</span><span class="p">,</span> <span class="s2">&quot;Release Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Character&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span><span class="p">]</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Ocean&#39;s 11&quot;</span><span class="p">,</span> <span class="s2">&quot;12/7/2001&quot;</span><span class="p">,</span> <span class="s2">&quot;Danny Ocean&quot;</span><span class="p">,</span> <span class="s2">&quot;George Clooney&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Ocean&#39;s 11&quot;</span><span class="p">,</span> <span class="s2">&quot;12/7/2001&quot;</span><span class="p">,</span> <span class="s2">&quot;Tess Ocean&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Runaway Bride&quot;</span><span class="p">,</span> <span class="s2">&quot;6/30/1999&quot;</span><span class="p">,</span> <span class="s2">&quot;Ike Graham&quot;</span><span class="p">,</span> <span class="s2">&quot;Richard Gere&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Runaway Bride&quot;</span><span class="p">,</span> <span class="s2">&quot;6/30/1999&quot;</span><span class="p">,</span> <span class="s2">&quot;Maggy Carpenter&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Bonnie and Clyde&quot;</span><span class="p">,</span> <span class="s2">&quot;9/1/1967&quot;</span><span class="p">,</span> <span class="s2">&quot;Clyde Barrow&quot;</span><span class="p">,</span> <span class="s2">&quot;Richard Gere&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Bonnie and Clyde&quot;</span><span class="p">,</span> <span class="s2">&quot;9/1/1967&quot;</span><span class="p">,</span> <span class="s2">&quot;Bonnie Parker&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">]]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Year</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Release Year of Movies&#39;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span> 
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;images/Movie_Plot.png&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about <a href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">plotting with Jupyter/pandas/Python here</a>.</p>
+<p>**Plot George Clooney's movies over time in a line graph. [<a href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Source</a>] **</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Actor</span><span class="o">==</span><span class="s1">&#39;George Clooney&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;/path/to/figure.pdf&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>(7) Supplementary Resources and Guides</h3>
+<p><strong>Popular Supporting Libraries and Tools</strong></p>
+<ul>
+<li><a href="https://www.numpy.org/">NumPy (Arrays and math)</a></li>
+<li><a href="https://matplotlib.org/#">Matplotlib (Visualization)</a></li>
+<li><a href="https://seaborn.pydata.org/">Seaborn (Visualization)</a></li>
+<li><a href="https://bokeh.pydata.org/en/latest/docs/installation.html">Bokeh (Visualization)</a></li>
+<li><a href="https://jupyter.org/">Jupyter Notebook (Reproducible Sharing and Viz)</a></li>
+</ul>
+<p><strong>Supplementary Resources:</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=5JnMutdy6Fw">pandas from the Ground Up (Video)</a></li>
+<li><a href="https://colab.research.google.com/drive/1a4sbKG7jOJGn4oeonQPA8XjJm7OYgcdX">Google's Intro to pandas Jupyter Notebook</a> (Tutorial)</li>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/10min.html">10 Minutes to pandas (Documentation)</a></li>
+<li><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html">Numpy's</a> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html">r and c_ stacking helpers to concatenate arrays</a></li>
+<li><a href="http://rhodesmill.org/brandon/2014/pandas-payroll/">Calculating Taxes with pandas</a> (Blog)</li>
+</ul>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/pandas-pythons-excel-powerhouse.html">posted at 03:39</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-excel-pandas-python.html" rel="tag">coding, data, excel, pandas, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data-analysis.html" class="tags">data analysis</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software.html" class="tags">software</a>
+                </div>
+            </article>            <h4 class="date">Apr 10, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/creating-isolated-python-environments-with-virtualenv.html" rel="bookmark" title="Permanent Link to &quot;Creating Isolated Python Environments with Virtualenv&quot;">Creating Isolated Python Environments with Virtualenv</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Why bother?</strong> Because with <a href="https://virtualenv.pypa.io/en/stable/">virtualenv</a>, we can create multiple Python environments on one computer that each:</p>
+<ol>
+<li><em>Are capable of running different versions of Python.</em> Right now I have both Python 2.7 and Python 3.8 installed and am able to create either environment and run code with that version's Python interpreter.</li>
+<li><em>Isolate dependencies for external libraries.</em> Once the environment is created, I do not have to worry about different versions of Python libraries conflicting with each other.</li>
+<li><em>Allow you to have a unique Python environment for different projects.</em></li>
+</ol>
+<p><strong>Potential Pitfalls to Avoid with Virtual Environments</strong></p>
+<ol>
+<li><strong>Know your OS.</strong> The virtualenv commands are slightly different from the Mac, or Linux OS to Windows.</li>
+<li><strong>Be aware of variations within Windows systems.</strong> Some Stack Overflow post commands mention a "Bin" folder, however on my particular version of Windows, the folder was named "Scripts" instead. There was no "Bin" folder that I could locate.</li>
+<li><strong>Choose the right library.</strong> Virtualenv is used commonly. Virtualenvwrapper is a handy tool to make it easier to use. I chose virtualenv as my virtual environment library because I wanted to maintain both Python 2.7 and 3.8 environments. For versions of Python 3.3 and above, check out <a href="https://docs.python.org/3/library/venv.html">venv</a>, an easy to use, stock library and virtual environment generator. I am looking forward to checking both of these out. Virtualenv can be installed with the <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>.</li>
+</ol>
+<p>Consider upgrading your Python version to the <a href="https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=python+latest+stable+release&amp;ie=utf-8&amp;oe=utf-8">latest stable release</a>. <a href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/">Follow these steps to download and install Python 3.8 in the Ubuntu terminal.</a></p>
+<p><strong>Install pip in your new Python version:<br>
+</strong></p>
+<div class="highlight"><pre><span></span><code>curl -O https://bootstrap.pypa.io/get-pip.py
+python3.8 get-pip.py
+</code></pre></div>
+
+<p><strong>Install Virtalenv on Ubuntu:</strong> <code>sudo pip3 install virtualenv</code></p>
+<p><strong>Create a virtual environment with your new Python version. Enter in terminal or command prompt:</strong> <code>virtualenv -p python3.8 38env</code></p>
+<p><strong>Activate your new virtual environment on Ubuntu:</strong></p>
+<div class="highlight"><pre><span></span><code>cd Desktop/Projects/Sandbox38/bin &amp;&amp; source activate
+</code></pre></div>
+
+<p><strong>Alternatively, activate an env on Windows:</strong></p>
+<div class="highlight"><pre><span></span><code>cd Desktop\Projects\your_env_name\scripts &amp; activate
+</code></pre></div>
+
+<p><a href="https://www.codingforentrepreneurs.com/blog/activate-reactivate-deactivate-your-virtualenv/">Activation and Deactivation for Mac vs. Windows</a></p>
+<p><strong>Now you can now install pandas 1.0 in your virtual environment.</strong></p>
+<p><code>python3.8 -m pip install pandas</code></p>
+<p><strong>Below are two screenshots of the command prompt and some links that helped me.</strong></p>
+<p>Below, I am creating a 2.7 environment, even though I have Python 3.6 as my system version. Note how many times I messed up before I got it right, thanks to a <a href="https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv">Stack Overflow post</a>. It took many previous tries but I eventually figured out how to create a Python 2.7 virtualenv, which I named py27_env. I ran the python.exe file inside of the folder where I installed Python 2.7, which I named py27.</p>
+<p>To run a program, I entered python some_program.py. I also tested by downloading modules that did not have a version compatible with Python 3.6. It worked and installed the correct Python 2 version in my py27_env environment.</p>
+<p><img alt="create_py2_env" class="alignnone size-full wp-image-1378" height="882" src="https://pythonmarketer.files.wordpress.com/2018/04/create_py2_env.jpg" width="700"></p>
+<p>Below, I am activating a previously created environment named 14pandas. Then I am installing two external Excel libraries, pandas and xlrd in my environment. The one-liner posted above is a more efficient way to activate a virtualenv.</p>
+<p><img alt="virtualenv_Activate" class="alignnone size-full wp-image-1379" height="564" src="https://pythonmarketer.files.wordpress.com/2018/04/virtualenv_activate.jpg" width="676"></p>
+<p><a href="https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe">More Reading on venv, pipenv, and virtualenv</a></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/creating-isolated-python-environments-with-virtualenv.html">posted at 00:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/virtual-machine.html" class="tags">virtual machine</a>
+                </div>
+            </article>            <h4 class="date">Mar 30, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/cleaning-data-with-python.html" rel="bookmark" title="Permanent Link to &quot;Cleaning Data with Python and Excel: A Brief Example&quot;">Cleaning Data with Python and Excel: A Brief Example</a>
+                </h2>
+
+                
+                
+
+                <p>I want to show a simple, real world problem and solution I made today with Python.</p>
+<p><strong>Problem:</strong> My data has been corrupted (over 8,000 rows in Excel). Somewhere in my haste, I have scrambled first names and last names in the 'first name' and 'last name' field.</p>
+<p><img alt="office_scrambled" class="size-full wp-image-1351 alignnone" height="133" src="https://pythonmarketer.files.wordpress.com/2018/03/office_scrambled.png" width="314"></p>
+<p><strong>Solution:</strong> Find unique words from both fields, which leads to unique first and last names.</p>
+<p>Copy the columns from Excel into a Notepad text file. Then run the below <a href="https://www.dropbox.com/s/kxmg3ndnx8d70hv/remove_dupe_words.py?dl=0">code</a> on the text file in command prompt.</p>
+<p><img alt="run_command" class="alignnone size-full wp-image-1352" height="25" src="https://pythonmarketer.files.wordpress.com/2018/03/run_command.png" width="464"></p>
+<p>::: {.line .number1 .index0 .alt2}
+    with open('file_name.txt',"r") as f:
+        lines = f.readlines()
+        lines = [line.split() for line in lines]
+        new_line = list()
+        edited_lines = list()
+        for line in lines:
+            # keep only the first appearance of a word on each line
+            new_line = [word for word in words if word.strip() not in new_line]
+            edited_lines.append(new_line)</p>
+<div class="highlight"><pre><span></span><code><span class="nv">with</span><span class="w"> </span><span class="nv">open</span><span class="ss">(</span><span class="s2">&quot;edited_lines.txt&quot;</span>,<span class="err">&#39;w) as f:</span>
+<span class="err">    for line in edited_lines:</span>
+<span class="w">        </span><span class="nv">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; &#39;</span>.<span class="nv">join</span><span class="ss">(</span><span class="nv">line</span><span class="ss">)</span><span class="w"> </span><span class="o">+</span><span class="s1">&#39;\n&#39;</span>
+<span class="w">        </span><span class="nv">f</span>.<span class="nv">write</span><span class="ss">(</span><span class="nv">line</span><span class="ss">)</span>
+</code></pre></div>
+
+<p>:::</p>
+<div>
+
+::: {style="text-align:right;"}
+**Output**
+:::
+
+<div>
+
+![unique_words](https://pythonmarketer.files.wordpress.com/2018/03/unique_words.png){.size-full .wp-image-1353 .alignright width="224" height="137"}
+
+</div>
+
+As you can see to the right, this has done a good job of repairing the damage, but we still need to get separation of first and last names. Luckily, I had already written some very ugly code tthat I probably shoudn't share (oh well!) that tries to match first and last names to columns appropriately and insert a semi-colon as a delimiter. [Here is the code.](https://www.dropbox.com/home/Sieve?preview=name_columnizer.py)
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+![form_Text](https://pythonmarketer.files.wordpress.com/2018/03/form_text.png){.size-full .wp-image-1354 .alignright width="220" height="142"}**Note:** You may need to use Excel's "From Text" feature if pasting in data from text files does not work.
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+Once we paste the data from our program in, we can use Excel's Text to Columns feature and split on the semi-colon delimiter.
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+After running our new file through the code linked above, we arrive at an output closer to what is desired: split name columns. A bug in my name_columnizer.py program accidentally inserted an extra '&' into some records. (I'm not perfect :)) Thankfully it could be fixed by a simple find and replace in Excel.
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+![find_replace_2](https://pythonmarketer.files.wordpress.com/2018/03/find_replace_2.png){.alignnone .size-full .wp-image-1356 width="604" height="248"}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+This takes us to the below data, which is not ideal but suited my purposes for the job at hand.
+
+</div>
+
+<div>
+
+![finish](https://pythonmarketer.files.wordpress.com/2018/03/finish.png){.alignnone .size-full .wp-image-1357 width="224" height="122"}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+I enjoyed this, because it was a custom solution to a problem created by my own carelessness in Excel. But I fixed it using relatively few lines of code. I want to start sharing more actual code on this blog so here is a start. I strive to be 'Pythonic', but my code is not always the best way. Often, it's far from it. Sometimes I just write code until I find a solution. I try to solve problems and learn to the best of my ability.
+
+</div>
+
+<div>
+
+Hope you enjoyed :D
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+This solution was used before I discovered the [Pandas](https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/) library, which I highly recommend looking into for doing Excel tasks with Python.
+
+</div>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/cleaning-data-with-python.html">posted at 02:24</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-excel.html" rel="tag">coding, data, excel</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/code.html" class="tags">code</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>            <h4 class="date">Mar 24, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/blog_post-listcool_python_things.html" rel="bookmark" title="Permanent Link to &quot;list(cool_python_things)&quot;">list(cool_python_things)</a>
+                </h2>
+
+                
+                
+
+                <ol>
+<li><a href="https://github.com/norvig/pytudes">pytudes</a> - "This project contains <strong>pytudes</strong>—Python programs for perfecting programming skills."</li>
+<li><a href="https://www.makeartwithpython.com/blog/video-synthesizer-in-python/?utm_source=mybridge&amp;utm_medium=blog&amp;utm_campaign=read_more">Building a video synthesizer in Python</a></li>
+<li><a href="https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/overview">Running micropython on a microcontroller</a></li>
+<li><a href="https://pandas.pydata.org/">Pandas</a> - Super awesome excel and data analysis library. The talk, "<a href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Pandas from the Ground Up</a>" by Brandon Rhodes is great!</li>
+<li><a href="http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/">Fuzzy Wuzzy</a> - Fuzzy string matching python library, written by SeatGeek</li>
+<li><a href="https://soundcloud.com/talkpython">Talk Python to Me</a> - Python podcast</li>
+<li><a href="http://www.oreilly.com/programming/free/?imm_mid=0e20a9&amp;cmp=em-prog-na-na-afterp_triggered_email_programming_resources">Free Programming Books from O'Reilly</a></li>
+</ol>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/blog_post-listcool_python_things.html">posted at 19:38</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-pandas-programming.html" rel="tag">coding, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>
+
+                <div class="clear"></div>
+                <div class="pages">
+
+                    <a href="https://pythonmarketer.com/author/pythonmarketer8.html" class="prev_page">&larr;&nbsp;Previous</a>
+
+                    <a href="https://pythonmarketer.com/author/pythonmarketer10.html" class="next_page">Next&nbsp;&rarr;</a>
+
+                    <span>Page 9 of 12</span>
+                </div>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

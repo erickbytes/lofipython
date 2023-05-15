@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "color"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/color.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/color.html">color</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Sep 14, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/making-a-python-eyedropper.html" rel="bookmark" title="Permanent Link to &quot;Making A Desktop Color Eyedropper in Python to Grab Color Values&quot;">Making A Desktop Color Eyedropper in Python to Grab Color Values</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Goal:</strong> recreate my resume in the dark Atom text editor theme (background and fonts).<br>
+<strong>Sub-goal:</strong> find a color eyedropper to grab the actual color values of the Atom layout.</p>
+<p><strong>Approach #1: find an Atom eyedropper package to grab the colors.</strong></p>
+<p>My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were <a href="https://atom.io/packages/an-color-picker">an-color-eyedropper</a> and <a href="https://atom.io/packages/color-picker">color picker</a>. The an-color-eyedropper description sounds perfect: <em>"A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." </em>Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated (<a href="https://atom.io/packages/script">script</a> is its successor). I was unable to find a repo anywhere by googling.</p>
+<p><a href="https://atom.io/packages/color-picker">Color picker</a> has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.</p>
+<p><strong>Approach #2: Use the python tkcolorpicker package to grab the colors.</strong></p>
+<p>The first thing I found on Google was <a href="https://pypi.org/project/tkcolorpicker/">tkcolorpicker</a>, a package that uses the <a href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">tkinter</a> library. I couldn't tell exactly what it was, so let's find out. First, install via <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:<br>
+<code>python -m pip install tkcolorpicker</code></p>
+<p>Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D<br>
+<img alt="color_picker_gui" class="wp-image-1462 alignright" height="315" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="padding-top:15px;" width="301"></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
+<span class="kn">from</span> <span class="nn">tkcolorpicker</span> <span class="kn">import</span> <span class="n">askcolor</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">style</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="n">style</span><span class="o">.</span><span class="n">theme_use</span><span class="p">(</span><span class="s1">&#39;clam&#39;</span><span class="p">)</span>
+<span class="n">hex_code</span><span class="p">,</span> <span class="n">RGB_code</span> <span class="o">=</span> <span class="n">askcolor</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">root</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">hex_code</span><span class="p">,</span> <span class="n">RGB_code</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</code></pre></div>
+
+<p><code>askcolor()</code> returns a tuple with both the RGB and hex codes selected by the user. Above, we are unpacking that tuple into the <code>hex_code</code> and <code>RGB_code</code> variables.</p>
+<p><strong>Approach #3: Use the Python eyedropper package to grab the colors.</strong></p>
+<p>I then found <a href="https://github.com/umluizlima/eyedropper">eyedropper</a> for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>: <code>python -m pip install eyedropper</code></p>
+<p><img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" height="140" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" width="239"></p>
+<p>Hover your mouse over the object you want to grab the color from (in my case, the Atom text editor background). Then <a href="https://github.com/umluizlima/eyedropper">following these instructions</a>:</p>
+<p>Alternatively, I was able to run eyedropper from the command line by entering: <code>py -m eyedropper</code></p>
+<p><img alt="pasted_hex2" class="alignnone size-full wp-image-1461" height="74" src="https://pythonmarketer.files.wordpress.com/2018/09/pasted_hex2.png" width="766"></p>
+<p><img alt="CCvOYFiUgAA4DJd" class="alignright" height="116" src="https://pythonmarketer.files.wordpress.com/2018/09/ccvoyfiugaa4djd.jpg" width="151"></p>
+<p><strong>Mission possible.</strong> Then I hit ctrl+v in a text file and there was the hex code for [my Atom background. Some of the colors that eyedropper grabbed were nearly identical to those in the Atom text editor dark theme. Others were not quite the same. I made slight eyeball adjustments to the colors for some of the fonts. ]{style="color:var(--color-text);"}</p>
+<p>[<strong>Here's the end result:</strong> <a href="https://www.dropbox.com/s/g5uiaqaa5nb3fgn/Developer_Resume_Invert_v2.docx?dl=0">See My Resume via Dropbox</a> :D<br>
+]{style="color:var(--color-text);"}</p>
+<h2>Why not <a href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">use Python to convert hex to RGB?</a></h2>
+<p>Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I found <a href="https://www.webpagefx.com/web-design/hex-to-rgb/">this website</a> practical and quick.</p>
+<p><strong>Alternatively, you could</strong> <strong><a href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">convert a hex code to RGB with python:</a></strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">hex_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">input</span><span class="ss">(</span><span class="s1">&#39;Enter hex: &#39;</span><span class="ss">)</span>.<span class="nv">lstrip</span><span class="ss">(</span><span class="s1">&#39;#&#39;</span><span class="ss">)</span>
+<span class="nv">RGB_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tuple</span><span class="ss">(</span><span class="nv">int</span><span class="ss">(</span><span class="nv">hex_code</span>[<span class="nv">i</span>:<span class="nv">i</span><span class="o">+</span><span class="mi">2</span>],<span class="w"> </span><span class="mi">16</span><span class="ss">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="ss">(</span><span class="mi">0</span>,<span class="w"> </span><span class="mi">2</span>,<span class="w"> </span><span class="mi">4</span><span class="ss">))</span>
+<span class="nv">print</span><span class="ss">(</span><span class="s1">&#39;RGB =&#39;</span>,<span class="w"> </span><span class="nv">RGB_code</span><span class="ss">)</span>
+</code></pre></div>
+
+<p><img alt="rgb_to_hex" class="alignnone size-full wp-image-2308" height="83" src="http://pythonmarketer.files.wordpress.com/2018/09/e084c-rgb_to_hex-e1581286493172.jpg" width="805"></p>
+<h2>What the hay, let's use <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard()</a> to get the hex codes.</h2>
+<p>Once eyedropper sends the color values to your system's clipboard, there are multiple ways to access them. This alternative uses pandas.</p>
+<p><strong>Installing pandas and <a href="https://github.com/asweigart/pyperclip">pyperclip</a> with pip:</strong></p>
+<div class="highlight"><pre><span></span><code>python -m pip install pandas
+python -m pip install pyperclip
+</code></pre></div>
+
+<p><strong>On Linux, install <a href="https://github.com/astrand/xclip">xclip</a> or <a href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a></strong>[ <code>sudo apt-get install xclip</code><strong><br>
+</strong>]{.st}</p>
+<p>[<strong>To get the clipboard contents with pandas:</strong>]{.st}</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">hex_code_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_clipboard</span><span class="p">()</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">hex_code_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>Supplementary Notes and Links</strong></p>
+<ul>
+<li>Here's a Python <a href="https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py">eyedropper script</a> featuring the <a href="https://pillow.readthedocs.io/en/5.2.x/index.html">pillow</a> and <a href="https://github.com/python-xlib/python-xlib">xlib</a> libraries that I was unable to get working.</li>
+<li>I didn't try <a href="http://colorcop.net/">ColorCop for Windows</a>, but it may be a non-Python alternative.</li>
+<li><strong>Did you know?</strong> Python 2 had a <a href="https://docs.python.org/2/library/colorpicker.html">ColorPicker</a> module that is not in Python 3.</li>
+<li><a href="https://dev.to/espoir/how-pandas-readclipboard-method-works-ake">How pandas read_clipboard method works</a></li>
+<li><a href="https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/io/clipboards.py#L10-L76">pandas to_clipboard and read_clipboard source code</a></li>
+<li>This <a href="https://github.com/Toinane/colorpicker">desktop tool</a> has great U/X and an eyedropper feature. It runs on Electron, a Javascript based framework. Coincidentally, Electron was used to build Atom.</li>
+</ul>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/making-a-python-eyedropper.html">posted at 05:45</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-colors-pandas-programming.html" rel="tag">coding, Colors, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/atom.html" class="tags">atom</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/color.html" class="tags selected">color</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/eyedropper.html" class="tags">eyedropper</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gui.html" class="tags">gui</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

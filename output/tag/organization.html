@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "organization"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/organization.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/organization.html">organization</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Nov 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/automated-python-with-windows-task-scheduler.html" rel="bookmark" title="Permanent Link to &quot;Automated Python With Windows Task Scheduler&quot;">Automated Python With Windows Task Scheduler</a>
+                </h2>
+
+                
+                
+
+                <p><strong>So you want to run your Python scripts automatically, but how?</strong></p>
+<p>I had heard of several popular scheduling libraries in Python like <a class="reference external" href="http://www.celeryproject.org/">celery</a>, <a class="reference external" href="https://www.pyinvoke.org/">Invoke</a>, and&nbsp;<a class="reference external" href="https://github.com/dbader/schedule">schedule</a>. One of my requirements is to run the python file &quot;in the background&quot;, not in command prompt or an open window.</p>
+<p>Enter Windows Task Scheduler, the de facto scheduler on Windows 7 computers. I have&nbsp; scheduled a few scripts and it is working like a charm. In this post, I will schedule an example script to clean up my desktop at the beginning of each day. I have a habit of accumulating many Excel files there throughout the workday. This example automatically moves them into a folder.</p>
+<p>Other Windows scheduling alternatives worth mentioning include <a class="reference external" href="http://thepythoncorner.com/dev/how-to-create-a-windows-service-in-python/">creating a Windows service</a>, or using <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks">schtasks</a> if you prefer the command line.</p>
+<p><strong>Here's how to schedule a Python script to run:</strong></p>
+<ol class="arabic simple">
+<li>Search for Windows Task Scheduler in the start menu. Then select &quot;Task Scheduler Library&quot; to see all of the tasks Windows is running automatically.</li>
+<li>In the right toolbar, select &quot;Create Basic Task&quot; and give it a name and description. Note: I selected &quot;Configure for: Windows 7, Windows Server 2008 R2&quot;.</li>
+</ol>
+<img alt="general" class="wp-image-1577 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/general.png" style="width: 481px; height: 361px;" />
+<ol class="arabic simple" start="3">
+<li>Set the time and frequency that the program will run in the &quot;Triggers&quot; tab.</li>
+<li>Under the &quot;Actions&quot; tab, select &quot;Start a Program&quot; from the dropdown. Under &quot;Program/Script&quot;, enter the path to your Python.exe file. I set mine to a Python executable located within my <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, but yours might be found wherever you have Python installed.</li>
+</ol>
+<pre class="literal-block">
+C:\Users\your_username\Desktop\36env\Scripts\python.exe
+</pre>
+<ol class="arabic simple" start="5">
+<li>Under &quot;Add arguments (optional)&quot;, add the path to your .py script, within quotes:</li>
+</ol>
+<pre class="literal-block">
+&quot;C:\Users\your_username\Desktop\36env\clean_desktop_excels.py&quot;
+</pre>
+<img alt="actions" class="alignnone size-full wp-image-1578" src="http://pythonmarketer.files.wordpress.com/2018/11/bd0a9-actions-e1543177551739.png" style="width: 448px; height: 236px;" />
+<ol class="arabic simple" start="6">
+<li>Select additional conditions and settings as desired, such as &quot;Wake the computer to run this task&quot; and &quot;Run with highest privileges&quot;.</li>
+</ol>
+<p>I am enjoying this simple, easy and convenient scheduling manager for Windows. I figured most of this out thanks to <a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/analytics/scheduling-a-python-script-or-model-to-run-at-a-prescribed-time/?rmedium=redirect&amp;rsource=/esri/arcgis/2013/07/30/scheduling-a-scrip">this blog</a>. Below is my script to clean my desktop each morning by moving my Excel files into a folder, using Python's stock <a class="reference external" href="https://docs.python.org/3/library/shutil.html">shutil</a> and os libraries. Set it and forget it, ya know what i mean? :D</p>
+<pre class="literal-block">
+from shutil import move
+import getpass
+import os
+
+&quot;&quot;&quot;
+Desktop Spreadsheet File Cleaner - Python Marketer
+https://atomic-temporary-107329037.wpcomstaging.com/2018/11/25/automated-python-with-windows-task-scheduler/
+&quot;&quot;&quot;
+# Get all Desktop files and folders
+src_directory = f'C:\\Users\\{getpass.getuser()}\\Desktop'
+dir_items = os.listdir(src_directory)
+excel_files = [item for item in dir_items \
+                if '.csv' in item or '.xls' in item]
+
+dst = f'C:\\Users\\{getpass.getuser()}\\Desktop\\Current_Month_Excels'
+os.makedirs(dst, exist_ok=True)
+for xl in excel_files:
+    path_to_file = src_directory + xl
+    move(path_to_file, dst)
+</pre>
+<p><strong>Additional Reading</strong></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc721846(v=ws.11)?redirectedfrom=MSDN">Troubleshooting Windows Task Scheduler</a> - Windows Documentation</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/automated-python-with-windows-task-scheduler.html">posted at 19:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-productivity-programming-python-windows.html" rel="tag">automation, productivity, programming, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/coding.html" class="tags">coding</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/organization.html" class="tags selected">organization</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

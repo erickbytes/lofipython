@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "gui"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/gui.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/gui.html">gui</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Aug 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/gooey-gui-for-python-scripts.html" rel="bookmark" title="Permanent Link to &quot;Gooey GUI for Python Scripts&quot;">Gooey GUI for Python Scripts</a>
+                </h2>
+
+                
+                
+
+                <p>GUI stands for &quot;Graphical User Interface&quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.</p>
+<p>There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, <a class="reference external" href="https://github.com/hoffstadt/DearPyGui">DearPyGui</a> and PySimpleGUI. I <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">explored Tkinter</a> back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.</p>
+<p>The <a class="reference external" href="https://github.com/chriskiehl/Gooey">Gooey Github page</a> was most useful to me and helped me to do what I needed. The script posted <a class="reference external" href="http://pbpython.com/pandas-gui.html">in this blog</a> helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:</p>
+<ol class="arabic simple">
+<li>some basic widgets piggyback off the <a class="reference external" href="https://www.blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/">argparse</a> library</li>
+<li>another part of the library uses a function called the GooeyParser. The GooeyParser offers more advanced widgets, like a file chooser. This was exactly what I was looking to use to pull in files for my script.</li>
+</ol>
+<p><strong>Installing Gooey</strong></p>
+<p>Argparse comes stock with Python. You can install Gooey via the <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>. Open command prompt or terminal and enter:</p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install Gooey</tt></p>
+<p>Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).</p>
+<pre class="literal-block">
+from argparse import ArgumentParser
+from gooey import Gooey
+
+&#64;Gooey(program_name='Email Campaign Reporting Generator', default_size=(575, 600))
+def get_args():
+    &quot;&quot;&quot;Demonstrating python's vars built-in to store arguments in a python dict.&quot;&quot;&quot;
+    parser = ArgumentParser(description='A simple argument parser', epilog='This is where you might put example usage')
+    parser.add_argument('Name', action='store', required=True, help='Help text for option X')
+    parser.add_argument('Email', help='Help text for option Y', default=False)
+    parser.add_argument('Campaign Number', help='Help text for option Z', type=int)
+    parser.add_argument('Campaign Segment', choices=['A', 'B','All'], default='a', nargs='?')
+    user_inputs = vars(parser.parse_args())
+    print(user_inputs)
+    name = user_inputs['Name']
+    campaign_number = user_inputs['Campaign Number']
+    return parser.parse_args()
+
+if __name__ == '__main__':
+    get_args()
+</pre>
+<!--  -->
+<blockquote>
+Side note: Check out Python's <a class="reference external" href="https://docs.python.org/3/library/functions.html#vars">vars() built-in</a> function above. It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!</blockquote>
+<p>The &#64;Gooey() part of the code is an advanced function known as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0318/">decorator in Python</a>. Put simply, decorators are functions that modify the function to which they are attached.</p>
+<p>Below is my script that uses the more advanced GooeyParser for its &quot;FileChooser&quot; widget. Gooey allows you to group widgets together and set how many widgets per line with the gooey_options={} parameter.</p>
+<pre class="literal-block">
+from gooey import Gooey, GooeyParser
+
+&#64;Gooey(program_name='Email Campaign Reporting Generator', default_size=(575, 600))
+def get_args():
+    &quot;&quot;&quot;
+    Adding two argument groups, each accepting two arguments.
+    Using gooey_options to set layout.
+    &quot;&quot;&quot;
+    parser = GooeyParser(description='Export campaign report spreadsheets and upload below.')
+    top_group = parser.add_argument_group(gooey_options={'show_border': False,'columns': 1})
+    top_group.add_argument('Contact List', help='Upload Send List (.xlsx)', widget='FileChooser')
+    top_group.add_argument('Opens List', help='Upload Opens List (.xlsx)', widget='FileChooser')
+    top_group.add_argument('Unsubscribe List', help='Upload Unsubscribe List (.xlsx)', widget='FileChooser')
+    bottom_group = parser.add_argument_group(gooey_options={'show_border': False,'columns': 1, 'required':False})
+    bottom_group.add_argument('Campaign ID', action='store', help=&quot;Number found in the Campaign 'Reports' tab&quot;)
+    bottom_group.add_argument('Campaign Segment', action='store', help='Enter A, B, or All. All lists supplied must match segment.')
+    user_inputs = vars(parser.parse_args())
+    name = user_inputs['Name']
+    return parser.parse_args()
+
+if __name__ == '__main__':
+    get_args()
+</pre>
+<p>Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:</p>
+<img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" />
+<p>Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D</p>
+<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&nbsp;<a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/gooey-gui-for-python-scripts.html">posted at 16:32</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-product-development-programming-software.html" rel="tag">coding, data, product development, programming, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gooey.html" class="tags">gooey</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gui.html" class="tags selected">gui</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software-development.html" class="tags">software development</a>
+                </div>
+            </article>            <h4 class="date">Feb 29, 2016</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/tkinter-and-python-libraries.html" rel="bookmark" title="Permanent Link to &quot;Tkinter and Python Libraries&quot;">Tkinter and Python Libraries</a>
+                </h2>
+
+                
+                
+
+                <p>Python's set of libraries are&nbsp;fun to explore. They allow Python to work with many types of other coding languages, allow you to do cool stuff, and seem&nbsp;to require&nbsp;a minimal knowledge of the actual code. You can read the complete list of standard libraries <a class="reference external" href="https://docs.python.org/2/library/">here</a>. There are also others available that you can download and install for unique challenges or software such as <a class="reference external" href="https://wiki.python.org/moin/Android">Android</a>.</p>
+<p>Currently, my favorite library is <a class="reference external" href="http://thinkingtkinter.sourceforge.net/">Tkinter</a>. Tkinter is a module that replicates <a class="reference external" href="https://en.wikipedia.org/wiki/Tcl">Tk/TCL</a>&nbsp;within Python and&nbsp;allows you to create a quick Graphical User Interface (GUI) for your programs - great for trying to put together a prototype program with&nbsp;basic aesthetic design control&nbsp;for&nbsp;things like buttons, entry boxes, text and other visual elements that make up the front end of a computer program.</p>
+<p>+Pro Tip: When you're trying to use a new module, you can read how to use it in the module's documentation. <a class="reference external" href="https://docs.python.org/3.8/library/tkinter.html">Here's Tkinter's documentation</a>.</p>
+<p>++ Today's find: Free guide called &quot;<a class="reference external" href="https://automatetheboringstuff.com/">Automate the Boring stuff with Python</a>&quot;</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/tkinter-and-python-libraries.html">posted at 01:11</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-python-software.html" rel="tag">coding, python, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gui.html" class="tags selected">gui</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

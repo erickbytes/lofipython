@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles in the "automation, coding, gui, programming, python" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-coding-gui-programming-python.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/automation-coding-gui-programming-python.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/category/automation-coding-gui-programming-python.html">automation, coding, gui, programming, python</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Aug 15, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/how-to-open-firefox-with-webbrowser-on-ubuntu-linux.html" rel="bookmark" title="Permanent Link to &quot;Opening Firefox Via the webbrowser Module + RPA Tools&quot;">Opening Firefox Via the webbrowser Module + RPA Tools</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>webbrowser is a convenient Python standard library module. It opened my Firefox browser on my Ubuntu Linux operating system running on a Chromebook. This code is adapted from a <a href="https://pythonexamples.org/python-open-url-in-firefox-browser/">Python Examples blog post</a>. Below is a list of other browsers you can open with webbrowser. At the bottom of this post, you'll find more tools to interact with browsers and GUIs programmatically.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">webbrowser</span>
+<span class="n">firefox_sh</span> <span class="o">=</span> <span class="s1">&#39;/usr/lib/firefox/firefox.sh&#39;</span>
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;firefox&#39;</span><span class="p">,</span>
+    <span class="kc">None</span><span class="p">,</span>
+    <span class="n">webbrowser</span><span class="o">.</span><span class="n">BackgroundBrowser</span><span class="p">(</span><span class="n">firefox_sh</span><span class="p">))</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://atomic-temporary-107329037.wpcomstaging.com&#39;</span>
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;firefox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open_new_tab</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">webbrowser</span><span class="o">.</span><span class="n">_browsers</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+<p><code>&lt;!-- wp:table {"className":"is-style-regular"} --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">figure</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;wp-block-table is-style-regular&quot;</span><span class="o">&gt;</span>
+</code></pre></div>
+
+<p>Type Name              Class Name</p>
+<hr>
+<p><code>'mozilla'</code>            <code>Mozilla('mozilla')</code>
+  <code>'firefox'</code>            <code>Mozilla('mozilla')</code>
+  <code>'netscape'</code>           <code>Mozilla('netscape')</code>
+  <code>'galeon'</code>             <code>Galeon('galeon')</code>
+  <code>'epiphany'</code>           <code>Galeon('epiphany')</code>
+  <code>'skipstone'</code>          <code>BackgroundBrowser('skipstone')</code>
+  <code>'kfmclient'</code>          <code>Konqueror()</code>
+  <code>'konqueror'</code>          <code>Konqueror()</code>
+  <code>'kfm'</code>                <code>Konqueror()</code>
+  <code>'mosaic'</code>             <code>BackgroundBrowser('mosaic')</code>
+  <code>'opera'</code>              <code>Opera()</code>
+  <code>'grail'</code>              <code>Grail()</code>
+  <code>'links'</code>              <code>GenericBrowser('links')</code>
+  <code>'elinks'</code>             <code>Elinks('elinks')</code>
+  <code>'lynx'</code>               <code>GenericBrowser('lynx')</code>
+  <code>'w3m'</code>                <code>GenericBrowser('w3m')</code>
+  <code>'windows-default'</code>    <code>WindowsDefault</code>
+  <code>'macosx'</code>             <code>MacOSX('default')</code>
+  <code>'safari'</code>             <code>MacOSX('safari')</code>
+  <code>'google-chrome'</code>      <code>Chrome('google-chrome')</code>
+  <code>'chrome'</code>             <code>Chrome('chrome')</code>
+  <code>'chromium'</code>           <code>Chromium('chromium')</code>
+  <code>'chromium-browser'</code>   <code>Chromium('chromium-browser')</code></p>
+<div class="highlight"><pre><span></span><code>&lt;figcaption&gt;
+</code></pre></div>
+
+<p><a href="https://docs.python.org/3/library/webbrowser.html#webbrowser.get">webbrowser docs</a></p>
+<div class="highlight"><pre><span></span><code>&lt;/figcaption&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>&lt;/figure&gt;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:table --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Check out these other browser\gui automation tools:</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:list --&gt;</code></p>
+<ul>
+<li><a href="https://pyautogui.readthedocs.io/en/latest/">pyautogui</a></li>
+<li><a href="https://www.selenium.dev/selenium/docs/api/py/">Selenium</a></li>
+<li><a href="https://github.com/tebelorg/RPA-Python">RPA for Python</a></li>
+<li><a href="https://github.com/robotframework/robotframework">robotframework</a></li>
+<li><a href="https://github.com/kelaberetiv/TagUI">TagUI</a></li>
+<li><a href="https://github.com/RaiMan/SikuliX1">Sikuli</a></li>
+<li><a href="https://github.com/open-rpa/openrpa">Open RPA</a></li>
+<li><a href="https://flow.microsoft.com/en-us/blog/automate-tasks-with-power-automate-desktop-for-windows-10-no-additional-cost/">Power Automate</a></li>
+<li><a href="https://www.casperjs.org/">CasperJS</a></li>
+<li><a href="https://github.com/ariya/phantomjs">PhantomJS</a></li>
+<li><a href="https://slimerjs.org/">SlimerJS</a></li>
+</ul>
+<p><code>&lt;!-- /wp:list --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><em>see</em> <em>also:</em> <a href="https://en.wikipedia.org/wiki/Robotic_process_automation">Robot Process Automation</a>, <a href="https://github.com/luruke/browser-2020">Things You Can Do With a Browser in 2020</a></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/how-to-open-firefox-with-webbrowser-on-ubuntu-linux.html">posted at 23:13</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-coding-gui-programming-python.html" rel="tag">automation, coding, gui, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/firefox.html" class="tags">Firefox</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/rpa.html" class="tags">RPA</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Yoast SEO API Python Example With requests + pandas</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/apis-coding-http-programming-python.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/apis-coding-http-programming-python.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content="Python Wordpress Blog SEO,SEO,Yoast API" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Sep 06, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/yoast-api-python-example-with-requests-pandas.html" rel="bookmark" title="Permanent Link to &quot;Yoast SEO API Python Example With requests + pandas&quot;">Yoast SEO API Python Example With requests + pandas</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Lately I've been checking out the <a href="https://yoast.com/wordpress/plugins/seo/">Yoast SEO plug-in</a> and their <a href="https://developer.yoast.com/customization/apis/rest-api">REST API</a>. The API returns all of the SEO metadata, meta tags, schema.org data, etc. for your Wordpress blog posts. Here's a Yoast API Python example script to fetch post metadata via requests and pandas:</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">fetch_metadata</span><span class="p">(</span><span class="n">post_url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the Yoast API response as pandas dataframe.&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://atomic-temporary-107329037.wpcomstaging.com/wp-json/yoast/v1/get_head?url=</span><span class="si">{</span><span class="n">post_url</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+    <span class="n">response_dict</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">metadata_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">response_dict</span><span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">metadata_df</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/erickbytes/Python-Marketer-Reader-Analytics/blob/master/dataset/2020_pythonmarketer.com_post_views.xlsx?raw=true.xlsx&#39;</span>
+<span class="n">posts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="c1"># update url domain with pandas .str accessor</span>
+<span class="n">posts</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s1">&#39;.wordpress&#39;</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">posts</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fetch_metadata</span><span class="p">)</span>
+<span class="n">metadata_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">posts</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]))</span>
+<span class="n">metadata_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Wordpress Blog Post Yoast API Metadata.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>What this script is doing:</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:list {"ordered":true} --&gt;</code></p>
+<ol>
+<li>Read a list of my blog posts from Github into a <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas dataframe</a>.</li>
+<li>Use <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.apply.html">pandas .apply</a> to fetch the metadata for each post url.</li>
+<li>Deserialize + normalize the JSON response.</li>
+<li>Convert to a pandas dataframe and store in a pandas Series named 'metadata'.</li>
+<li>Merge the series and write the metadata to a csv file.</li>
+</ol>
+<p><code>&lt;!-- /wp:list --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>The Payoff</strong>:</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>You'll end up with blobs of JSON formatted metadata to sift through or wrangle to your liking! Check out the <a href="https://developer.yoast.com/">Yoast documentation</a> if you're interested in finding out more about their APIs.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>New to APIs?</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>It's ok if so, we all were once. Check out my <a href="https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/">guide to making HTTP requests with Python</a> if you want to see more API examples.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:image {"id":5922,"width":640,"height":451,"sizeSlug":"full","linkDestination":"none","className":"is-style-rounded","noBottomMargin":true,"noTopMargin":true} --&gt;</code></p>
+<p><img alt="" class="wp-image-5922" height="451" src="https://pythonmarketer.files.wordpress.com/2021/10/e5f7c-image.png" title="SEO Overview" width="640"></p>
+<p><code>&lt;!-- /wp:image --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/yoast-api-python-example-with-requests-pandas.html">posted at 14:12</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/apis-coding-http-programming-python.html" rel="tag">APIs, coding, HTTP, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python-wordpress-blog-seo.html" class="tags">Python Wordpress Blog SEO</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/seo.html" class="tags">SEO</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/yoast-api.html" class="tags">Yoast API</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

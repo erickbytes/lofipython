@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - api</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/api.tag.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2020-05-18T05:41:00-05:00</updated><entry><title>A Guide To Making HTTP Requests To APIs With JSON &amp; Python</title><link href="https://pythonmarketer.com/how-to-make-json-requests-with-python.html" rel="alternate"></link><published>2020-05-18T05:41:00-05:00</published><updated>2020-05-18T05:41:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2020-05-18:/how-to-make-json-requests-with-python.html</id><summary type="html">&lt;p&gt;This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Here's what is covered:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;API &amp;amp; HTTP Lingo You …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Here's what is covered:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;API &amp;amp; HTTP Lingo You Should Know&lt;/li&gt;
+&lt;li&gt;Testing and Exporting Python Request Code from Postman (Optional)&lt;/li&gt;
+&lt;li&gt;Formatting Your Request&lt;/li&gt;
+&lt;li&gt;Example GET and POST Requests&lt;/li&gt;
+&lt;li&gt;&amp;quot;Gotchyas&amp;quot; To Avoid&lt;/li&gt;
+&lt;li&gt;Sidebar: requests.Session()&lt;/li&gt;
+&lt;li&gt;Dig deeper into requests by raising your HTTPConnection.debuglevel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;!--  --&gt;
+&lt;blockquote&gt;
+&lt;strong&gt;Terminology Clarification&lt;/strong&gt;: I will refer to &amp;quot;items&amp;quot; or &amp;quot;data&amp;quot; throughout this post. This could be substituted for contacts or whatever data you are looking for. For example, you might be fetching a page of contacts from your CRM. Or fetching your tweets from Twitter's API. Or searching the Google location API, you might look up an address and return geo-location coordinates.&lt;/blockquote&gt;
+&lt;div class="section" id="api-http-lingo-you-should-know"&gt;
+&lt;h2&gt;API &amp;amp; HTTP Lingo You Should Know&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Hypertext Transfer Protocol (HTTP)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Per &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP"&gt;Mozilla&lt;/a&gt;,&amp;quot;Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical&amp;nbsp;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model"&gt;client-server model&lt;/a&gt;, with a client opening a connection to make a request, then waiting until it receives a response.&amp;quot;&lt;/p&gt;
+&lt;blockquote&gt;
+HTTP: you = client. API = way to communicate with server&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Application Programming Interface (API)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Application_programming_interface"&gt;Per Wikipedia&lt;/a&gt;, the purpose of an API is to simplify &amp;quot;programming by &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Abstraction_(software_engineering)"&gt;abstracting&lt;/a&gt; the underlying implementation and only exposing objects or actions the developer needs.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Representational State Transfer (REST)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer"&gt;REST&lt;/a&gt; is an architectural style of web APIs. It is the dominant architecture that many APIs use. Simple Object Access Protocol (&lt;a class="reference external" href="https://smartbear.com/blog/test-and-monitor/soap-vs-rest-whats-the-difference/"&gt;SOAP&lt;/a&gt;) is another style I've heard of, but it seems less common nowadays.&lt;/p&gt;
+&lt;p&gt;A REST API is built for interoperability and has properties like: &amp;quot;simplicity of a uniform interface&amp;quot; and &amp;quot;visibility of communication between components by service agents.&amp;quot; [&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer"&gt;Wikipedia&lt;/a&gt;] If an API follows REST, it has many good principles baked in.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;``GET``, ``POST`` and ``PATCH``&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;These are three common types of request methods.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;GET&lt;/tt&gt;: &amp;nbsp;Read data returned, such as all of your tweets in &lt;a class="reference external" href="https://developer.twitter.com/en/docs"&gt;the Twitter API&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;POST&lt;/tt&gt;: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;PATCH&lt;/tt&gt;: Similar to &lt;tt class="docutils literal"&gt;POST&lt;/tt&gt;, this is typically used for updating data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;URL or &amp;quot;endpoint&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The website location to send your request&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;URL Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Values you pass to tell the API what you want. They are defined by the API specifications, which are usually &lt;a class="reference external" href="https://developers.activecampaign.com/reference"&gt;well documented&lt;/a&gt;. In python's &lt;tt class="docutils literal"&gt;requests&lt;/tt&gt; library, they may be passed as &lt;a class="reference external" href="https://treyhunner.com/2018/04/keyword-arguments-in-python/"&gt;keyword arguments&lt;/a&gt;. Sometimes they are passable directly within the endpoint url string.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Body or &amp;quot;payload&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;To make a request, you send a payload to the url. Often this is a JSON string with the API's URL parameters and values, AKA the request body. If the &lt;a class="reference external" href="https://jira.readthedocs.io/"&gt;API is written specifically for Python&lt;/a&gt;, it might accept an actual Python dictionary.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Javascript Object Notation (JSON)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.youtube.com/watch?v=KnAyziNnuI0"&gt;JSON&lt;/a&gt; is the data interchange standard for all languages. Usually it is the default way to pass data into and receive data from an API. If making a&amp;nbsp; &lt;tt class="docutils literal"&gt;POST&lt;/tt&gt;, you can check your json object is formatted correctly by using a &lt;a class="reference external" href="https://jslint.com/"&gt;json linter&lt;/a&gt;. Or try Python's &lt;a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool"&gt;json.tool&lt;/a&gt;! You can also pretty print your JSON or python dictionary with the &lt;a class="reference external" href="https://docs.python.org/3/library/pprint.html"&gt;pprint&lt;/a&gt; module. If you're using json.dumps remember it has &lt;a class="reference external" href="https://docs.python.org/3/library/json.html"&gt;pretty printing accessible by keyword arguments&lt;/a&gt;! These features are accessible in the standard library. Isn't Python great? See also: &lt;a class="reference external" href="https://www.blog.pythonlibrary.org/2020/09/15/python-101-an-intro-to-working-with-json/"&gt;Python 101 - An Intro to Working with JSON&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Headers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;These usually contain website cookies and authorization info. They also may tell the API what kind of data you want back. JSON and XML are the two most common types of data to return. You can specify the return format in the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;content-type&lt;/span&gt;&lt;/tt&gt; headers.&lt;/p&gt;
+&lt;blockquote&gt;
+If you need to parse an XML response, check out Python's stock &lt;a class="reference external" href="https://docs.python.org/3.8/library/xml.etree.elementtree.html"&gt;ElementTree API&lt;/a&gt;. I've only seen a few APIs using XML responses, such as the &lt;a class="reference external" href="https://www.usps.com/business/web-tools-apis/"&gt;USPS Address Validation API&lt;/a&gt;.&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Authorization&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Authorization varies widely. This is the level of identification you need to pass to the API to make a request. Public APIs might require none. Some just need a username and password. Others use the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/OAuth"&gt;Oauth standard&lt;/a&gt;, which is a system involving credentials and tokens for extra security.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Authorization Scheme Example [&lt;/strong&gt;&lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization"&gt;Mozilla&lt;/a&gt;&lt;strong&gt;]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Authorization: &amp;lt;auth-scheme&amp;gt; &amp;lt;authorisation-parameters&amp;gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+# headers python dict example
+headers = {&amp;quot;Authorization&amp;quot;: f&amp;quot;basic {token}&amp;quot;}
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Pages&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;API data is commonly returned in multiple pages when there is a lot of data returned. Each page can be accessed one request at a time. Sometimes you can specify how many items you want on a page. But there is usually a maximum items per page limit like 100.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Status code&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Each request usually gives you a &lt;a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"&gt;numeric code corresponding to happened&lt;/a&gt; when the server tried to handle your request. There is also usually a message returned.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;See also: Web Server Gateway Interface (WSGI, pronounced &amp;quot;Wis-Ghee&amp;quot;)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;quot;As described in &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-3333/"&gt;PEP3333&lt;/a&gt;, the Python Web Server Gateway Interface (WSGI) is a way to make sure that web servers and python web applications can talk to each other.&amp;quot;&amp;nbsp; &lt;a class="reference external" href="https://docs.gunicorn.org/en/latest/install.html"&gt;Gunicorn&lt;/a&gt; is one of &lt;a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#uwsgi"&gt;a few Python WSGI clients&lt;/a&gt;. &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2016/04/30/useful-links-for-web2py-beginners/"&gt;web2py&lt;/a&gt; is another WSGI client and web framework I have used.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt; &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Nginx"&gt;Nginx&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete"&gt;Create, read, update and delete (CRUD)&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="creating-the-request-json"&gt;
+&lt;h2&gt;Creating the Request JSON&lt;/h2&gt;
+&lt;p&gt;I recommend using &lt;a class="reference external" href="https://www.postman.com/"&gt;Postman&lt;/a&gt; in most cases, depending on the complexity of the API. If the JSON syntax is straightforward, you can format your data as a python dictionary, then convert it to a JSON object with &lt;tt class="docutils literal"&gt;json.dumps&lt;/tt&gt; from the standard library's &lt;a class="reference external" href="https://docs.python.org/3/library/json.html#json.dumps"&gt;json module&lt;/a&gt;. But JSON can be tricky sometimes. You may also need to pass a dictionary of HTTP headers.&lt;/p&gt;
+&lt;p&gt;Some APIs have &amp;quot;Postman Collections&amp;quot;, a set of Python (or any language) script templates for the API. In those cases, it might make sense to use those resources.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Path One: Make HTTP request with json &amp;amp; requests libraries&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Format Python dict with &lt;tt class="docutils literal"&gt;json.dumps&lt;/tt&gt; from the standard library's &lt;a class="reference external" href="https://docs.python.org/3/library/json.html#json.loads"&gt;json module&lt;/a&gt;.&amp;nbsp; Infer API requirements from documentation. Use requests for HTTP.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Path Two: Make HTTP request with Postman &amp;amp; requests library&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Use Postman to generate the JSON payload. Plug headers and payload into requests. Use requests library for HTTP.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Postman has a friendly interface for plugging in all your pieces and tinkering with your request body until it works. Make it easier on yourself and use Postman, especially if there are collections. An alternative is to troubleshoot in Python if you are confident in your grasp of the API. I use both options depending on my familiarity with the API at hand.&lt;/p&gt;
+&lt;p&gt;Once you have the request working, you may &lt;a class="reference external" href="https://learning.postman.com/docs/postman/sending-api-requests/generate-code-snippets/"&gt;export your Postman request to almost any language&lt;/a&gt;. For Python, you can sometimes export to the &lt;tt class="docutils literal"&gt;requests&lt;/tt&gt;,&amp;nbsp; &lt;tt class="docutils literal"&gt;http.client&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;urllib&lt;/tt&gt; libraries. Hit the &amp;quot;code&amp;quot; button in Postman and then copy your code.&lt;/p&gt;
+&lt;blockquote&gt;
+If you choose not to use Postman, you can use the json library. See the use of &lt;tt class="docutils literal"&gt;json.dumps()&lt;/tt&gt;to convert a dictionary to a JSON object in Example #2 below&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="formatting-your-request"&gt;
+&lt;h2&gt;Formatting Your Request&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Paste your Postman headers, payload and url into your existing code.&lt;/li&gt;
+&lt;li&gt;You may want to use a dict or &lt;a class="reference external" href="https://www.blog.pythonlibrary.org/2020/04/07/python-101-working-with-strings/"&gt;string formatting&lt;/a&gt; to pass values to your request parameters or url.&lt;/li&gt;
+&lt;li&gt;If the API uses a token or other form of authorization that needs to be refreshed intermittently, I usually have a function that returns a token. &lt;tt class="docutils literal"&gt;token = fetch_token()&lt;/tt&gt; Then put the token in the headers dict.&amp;nbsp; &lt;tt class="docutils literal"&gt;{&amp;quot;Authorization&amp;quot;: f&amp;quot;basic &lt;span class="pre"&gt;{token}&amp;quot;}&lt;/span&gt;&lt;/tt&gt; Finally pass your headers and payload to your&amp;nbsp; &lt;tt class="docutils literal"&gt;requests.get&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;requests.request&lt;/tt&gt; function along with the endpoint url. You're now ready to test the request.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-installation"&gt;
+&lt;h2&gt;Python Installation&lt;/h2&gt;
+&lt;p&gt;You can install &lt;tt class="docutils literal"&gt;requests&lt;/tt&gt; with &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;. Alternatively, &lt;tt class="docutils literal"&gt;http.client&lt;/tt&gt; is included within the Python standard library. If you want to convert HTTP response data to a dataframe or csv, install &lt;tt class="docutils literal"&gt;pandas.&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install requests&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="example-1-get-the-geolocation-details-of-any-public-location-with-the-google-api"&gt;
+&lt;h2&gt;Example #1: &lt;tt class="docutils literal"&gt;GET&lt;/tt&gt; the geolocation details of any public location with the Google API&lt;/h2&gt;
+&lt;p&gt;This was modified from another example of &lt;a class="reference external" href="https://www.geeksforgeeks.org/get-post-requests-using-python/"&gt;Google's Geolocation API&lt;/a&gt;. To use this, you need to &lt;a class="reference external" href="https://developers.google.com/maps/documentation/geolocation/intro"&gt;create a developer account with Google&lt;/a&gt; and paste your API keys below.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import requests
+# import pandas as pd
+
+&amp;quot;&amp;quot;&amp;quot;Find the best double-cheeseburger + fries $7 can buy.&amp;quot;&amp;quot;&amp;quot;
+payload = {&amp;quot;key&amp;quot;:&amp;quot;Add_Google_API_Key_Here&amp;quot;, &amp;quot;address&amp;quot;:&amp;quot;Redhot Ranch&amp;quot;}
+# optional: set a 5 second timeout for the http request
+r = requests.get(url=&amp;quot;https://maps.googleapis.com/maps/api/geocode/json&amp;quot;,
+                 params=payload,
+                 timeout=5)
+print(r.text)
+print(r.status_code)
+data = r.json()
+
+# extracting latitude, longitude and formatted address of the first matching location
+latitude = data['results'][0]['geometry']['location']['lat']
+longitude = data['results'][0]['geometry']['location']['lng']
+formatted_address = data['results'][0]['formatted_address']
+print(longitude)
+print(latitude)
+print(formatted_address)
+
+# optional: convert response into a dataframe with pandas
+# location_df = pd.json_normalize(data['results'])
+# location_df.to_csv('Locations.csv')
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Above you can see:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;requests&lt;/tt&gt; makes it easy to see the server's text response also with &lt;tt class="docutils literal"&gt;response.text&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;requests&lt;/tt&gt; also makes JSON encoding easy with &lt;tt class="docutils literal"&gt;response.json()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;I like to use &lt;tt class="docutils literal"&gt;pd.json_normalize()&lt;/tt&gt; to convert the response object to a dataframe.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="example-2-encode-a-python-dictionary-to-json-string-and-post-to-a-hypothetical-api"&gt;
+&lt;h2&gt;Example #2: Encode a Python dictionary to json string and &lt;tt class="docutils literal"&gt;POST&lt;/tt&gt; to a hypothetical API&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Create a simple dictionary with request body data and pretty inspect it with pprint.&lt;/li&gt;
+&lt;li&gt;Convert it to encoded json string with &lt;tt class="docutils literal"&gt;json.dumps&lt;/tt&gt; from the standard library's &lt;a class="reference external" href="https://docs.python.org/3/library/json.html#json.loads"&gt;json module&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;POST&lt;/tt&gt; the encoded JSON to the endpoint url with requests.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
+import pprint
+import json
+import requests
+
+def convert_dict_to_json_object():
+    &amp;quot;&amp;quot;&amp;quot;Create request body with fictional contact details.&amp;quot;&amp;quot;&amp;quot;
+    payload = {
+        &amp;quot;first_name&amp;quot;:&amp;quot;P&amp;quot;,
+        &amp;quot;last_name&amp;quot;:&amp;quot;Sherman&amp;quot;,
+        &amp;quot;address&amp;quot;:&amp;quot;42 Wallaby Way&amp;quot;,
+        &amp;quot;address_2&amp;quot;:&amp;quot;&amp;quot;,
+        &amp;quot;city&amp;quot;:&amp;quot;Sydney&amp;quot;,
+        &amp;quot;state&amp;quot;:&amp;quot;NSW&amp;quot;,
+        &amp;quot;country&amp;quot;:&amp;quot;AU&amp;quot;,
+        &amp;quot;zip&amp;quot;:&amp;quot;2000&amp;quot;
+        }
+    pprint.pprint(payload)
+    json_str = json.dumps(payload, ensure_ascii=True)
+    # encode json str to utf-8
+    return json_str.encode(&amp;quot;utf-8&amp;quot;)
+
+def create_new_contact(json_str):
+    &amp;quot;&amp;quot;&amp;quot;
+    This is a fictional API request.
+    Passing a json object to requests.
+    Decoding server response with response.json(),
+    Returning a contact id by calling the data's keys.
+    &amp;quot;&amp;quot;&amp;quot;
+    headers = {
+        &amp;quot;Authorization&amp;quot;: f&amp;quot;Bearer {token}&amp;quot;,
+        &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;,
+        &amp;quot;cache-control&amp;quot;: &amp;quot;no-cache&amp;quot;,
+        &amp;quot;Postman-Token&amp;quot;: f&amp;quot;{postman_token}&amp;quot;
+        }
+    r = requests.request(method=&amp;quot;POST&amp;quot;,
+                         url=&amp;quot;https://SomeSoftwareAPI.com/contacts/&amp;quot;,
+                         data=json_str,
+                         headers=headers)
+    data = r.json()
+    print(data.keys())
+    contact_id = data['contact_id'] # call dict keys to get their values
+    return contact_id
+
+json_str = convert_dict_to_json_object()
+contact_id = create_new_contact(json_str)
+&lt;/pre&gt;
+&lt;!--  --&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;requests.request keyword argument alternatives for passing data&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;params&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples or bytes to send in the query string for the&amp;nbsp;&lt;tt class="docutils literal"&gt;`Request&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request"&gt;https://2.python-requests.org/en/master/api/#requests.Request&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;data&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the&amp;nbsp;&lt;tt class="docutils literal"&gt;`Request&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request"&gt;https://2.python-requests.org/en/master/api/#requests.Request&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;json&lt;/strong&gt;&amp;nbsp;– (optional) A JSON serializable Python object to send in the body of the&amp;nbsp;&lt;tt class="docutils literal"&gt;`Request&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request"&gt;https://2.python-requests.org/en/master/api/#requests.Request&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[&lt;/strong&gt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/"&gt;requests API documentation&lt;/a&gt;&lt;strong&gt;]&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;Gotchyas&amp;quot; To Avoid&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"&gt;Status codes&lt;/a&gt; are your friend. They offer a hint at why your request is not working. If you see 200 or 201, that's a good sign. They're usually helpful, but sometimes they can be misleading.&lt;/li&gt;
+&lt;li&gt;Ensure you are defining the correct content-type. I had an experience where Postman defined two conflicting &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;content-type&lt;/span&gt;&lt;/tt&gt; headers and it &lt;a class="reference external" href="https://github.com/postmanlabs/postman-code-generators/issues/215"&gt;caused my request to fail&lt;/a&gt;. The server's error message indicated the problem was in my JSON, so it took me a while to figure out the headers were the problem.&lt;/li&gt;
+&lt;li&gt;Sometimes it makes a difference if your url has &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;http://&lt;/span&gt;&lt;/tt&gt; vs. &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;https://&lt;/span&gt;&lt;/tt&gt; in it. Usually &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;https://&lt;/span&gt;&lt;/tt&gt; is preferred.**&amp;nbsp;**&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Sidebar:&lt;/strong&gt;&lt;a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/"&gt;requests.Session()&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You might be able to improve performance by using a requests &lt;a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/"&gt;&amp;quot;session&amp;quot; object&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;quot;&amp;quot;&amp;quot;
+a session adds a &amp;quot;keep-alive&amp;quot; header to your HTTP connection.
+It can be used to store cookies across requests.
+&amp;quot;&amp;quot;&amp;quot;
+import requests
+s = requests.Session()
+for page in range(0, 2):
+    url = f&amp;quot;https://SomeSoftwareAPI.com/contacts/{str(page)}&amp;quot;
+    r = s.get(url)
+    print(r.text)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Dig deeper into requests by raising your HTTPConnection.debuglevel&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HTTPResponse.debuglevel:&lt;/strong&gt; A debugging hook. If &lt;tt class="docutils literal"&gt;`debuglevel&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel"&gt;https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel&lt;/a&gt;&amp;gt;`__ is greater than zero, messages will be printed to stdout as the response is read and parsed. &lt;strong&gt;-&lt;/strong&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel"&gt;http.client Python Docs&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from http.client import HTTPConnection
+import requests
+HTTPConnection.debuglevel = 1
+payload = {&amp;quot;key&amp;quot;:&amp;quot;Add_Google_API_Key_Here&amp;quot;, &amp;quot;address&amp;quot;:&amp;quot;90 Miles&amp;quot;}
+url = &amp;quot;https://maps.googleapis.com/maps/api/geocode/json&amp;quot;
+r = requests.get(url=url, params=payload, timeout=5)
+print(r.text)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I remember APIs seemed mysterious and daunting before I had used them. But like all things, they can be conquered with knowledge, understanding and tenacity to keep trying until you figure it out. Good luck!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Requests Documentation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://requests.readthedocs.io/en/master/api/"&gt;requests.request() API documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.get"&gt;requests.get() API documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.post"&gt;requests.post() API documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Supplementary Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://developers.google.com/web/tools/chrome-devtools/network/reference#timing-explanation"&gt;Google's HTTP Timing Explanation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/Rolstenhouse/unofficial-apis"&gt;List of Interesting &amp;quot;Unofficial&amp;quot; APIs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Proxy_server"&gt;Proxy servers&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://pawelmhm.github.io/asyncio/python/aiohttp/2016/04/22/asyncio-aiohttp.html"&gt;Making 1 million requests with python-aiohttp&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Chicago, coding, HTTP, json, pandas, programming"></category><category term="api"></category><category term="data"></category><category term="python"></category><category term="requests"></category><category term="sandwiches"></category><category term="web"></category></entry></feed>

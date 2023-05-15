@@ -1,0 +1,18 @@
+Encountering a Recursion Error in the Wild and Diagnosing its Cause
+###################################################################
+:date: 2021-10-31 17:50
+:author: intellectualpositivity
+:category: Uncategorized
+:slug: 6207
+:status: draft
+
+In my attempts to make an HTTP request and handle expired authentication token, I created a recursive loop. After setting my program to process a batch of updates, I was greeted with this error:
+
+.. code:: wp-block-syntaxhighlighter-code
+
+   def update_contact(json_str):
+       update_contact.token = fetch_token()
+       r = requests.post(url, headers, data=json_str)
+       if r.status_code == 401:
+           update_contact.token = fetch_token()
+           update_contact(json_str)

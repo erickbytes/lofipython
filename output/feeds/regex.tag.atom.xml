@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - regex</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/regex.tag.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2018-07-15T19:52:00-05:00</updated><entry><title>Findstr, RegEx File Searches for Windows</title><link href="https://pythonmarketer.com/findstr-aka-grep-for-windows.html" rel="alternate"></link><published>2018-07-15T19:52:00-05:00</published><updated>2018-07-15T19:52:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2018-07-15:/findstr-aka-grep-for-windows.html</id><summary type="html">&lt;p&gt;Findstr is the Windows alternative to GREP, which runs on the &lt;a class="reference external" href="https://www.howtogeek.com/182649/htg-explains-what-is-unix/"&gt;Unix operating system&lt;/a&gt;. Findstr searches files with &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression"&gt;regular expressions&lt;/a&gt; and seems useful for string matching within files and directories.&amp;nbsp; It is one of over &lt;a class="reference external" href="https://www.lifewire.com/list-of-command-prompt-commands-4092302"&gt;280 command prompt commands&lt;/a&gt;. Here's the official&amp;nbsp;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr"&gt;Windows Documentation&lt;/a&gt;&amp;nbsp;and some&amp;nbsp;&lt;a class="reference external" href="https://www.mkyong.com/linux/grep-for-windows-findstr-example/"&gt;Linux vs. Windows Examples …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Findstr is the Windows alternative to GREP, which runs on the &lt;a class="reference external" href="https://www.howtogeek.com/182649/htg-explains-what-is-unix/"&gt;Unix operating system&lt;/a&gt;. Findstr searches files with &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression"&gt;regular expressions&lt;/a&gt; and seems useful for string matching within files and directories.&amp;nbsp; It is one of over &lt;a class="reference external" href="https://www.lifewire.com/list-of-command-prompt-commands-4092302"&gt;280 command prompt commands&lt;/a&gt;. Here's the official&amp;nbsp;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr"&gt;Windows Documentation&lt;/a&gt;&amp;nbsp;and some&amp;nbsp;&lt;a class="reference external" href="https://www.mkyong.com/linux/grep-for-windows-findstr-example/"&gt;Linux vs. Windows Examples.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; Windows announced that &lt;a class="reference external" href="https://hackaday.com/2019/06/10/windows-10-goes-to-shell/"&gt;Grep and several other Unix command line tools will be added to Windows 10&lt;/a&gt;. This is a new alternative to findstr.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This findstr command returns all lines containing an '&amp;#64;' in a text file.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+findstr &amp;#64; test.txt
+&lt;/pre&gt;
+&lt;img alt="findstr Emails" class="alignnone size-full wp-image-1406" src="https://pythonmarketer.files.wordpress.com/2018/07/findstr-emails.png" style="width: 602px; height: 48px;" /&gt;
+&lt;p&gt;&lt;strong&gt;I was happy to see Findstr's convenient help menu:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+findstr -?
+&lt;/pre&gt;
+&lt;img alt="findstr_help" class="alignnone size-full wp-image-1408" src="https://pythonmarketer.files.wordpress.com/2018/07/findstr_help.png" style="width: 657px; height: 603px;" /&gt;
+&lt;p&gt;Regular expressions are so powerful. It's nice to have this utility within the command prompt. I am hoping to get to know some of the other 280 command prompt commands.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I've previously explored regex with Python. This Python regex example finds all words in a text file containing '&amp;#64;' symbols:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import re
+
+
+# read the file to string + regex email search
+with open('test.txt', 'r') as fhand:
+    string = fhand.read()
+    # this regex returns a python list of emails:
+    emails = re.findall('(\S*&amp;#64;\S+)', string)
+    print(emails)
+&lt;/pre&gt;
+&lt;img alt="findall_python" class="alignnone size-full wp-image-1405" src="https://pythonmarketer.files.wordpress.com/2018/07/findall_python.png" style="width: 633px; height: 173px;" /&gt;
+&lt;p&gt;For more command prompt nuggets, check out my more recent post: &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/"&gt;Exploring Windows Command Line Tools, Batch Files and Remote Desktop Connection&lt;/a&gt;.&lt;/p&gt;
+</content><category term="command prompt, data, python, Windows"></category><category term="programming"></category><category term="regex"></category></entry></feed>

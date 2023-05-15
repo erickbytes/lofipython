@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - coding, excel, HTTP</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/coding-excel-http.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2023-01-08T19:52:00-06:00</updated><entry><title>pymarketer: an HTTP + Spreadsheet Wrangling Python package</title><link href="https://pythonmarketer.com/pymarketer-http-spreadsheet-operations-python-package.html" rel="alternate"></link><published>2023-01-08T19:52:00-06:00</published><updated>2023-01-08T19:52:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2023-01-08:/pymarketer-http-spreadsheet-operations-python-package.html</id><summary type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Typically, this blog reviews the other Python libraries in its vast ecosystem. This time, it's my own package I made for fun, pymarketer. This was created in a single day and can be installed from the &lt;a href="https://github.com/erickbytes/pymarketer"&gt;Github repo&lt;/a&gt;. Have a go at &lt;a href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;my most read post&lt;/a&gt; if you …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Typically, this blog reviews the other Python libraries in its vast ecosystem. This time, it's my own package I made for fun, pymarketer. This was created in a single day and can be installed from the &lt;a href="https://github.com/erickbytes/pymarketer"&gt;Github repo&lt;/a&gt;. Have a go at &lt;a href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;my most read post&lt;/a&gt; if you need help with pip.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Install with pip from source &lt;a href="https://github.com/erickbytes/pymarketer"&gt;Github repo&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:code --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python -m pip install git+https://github.com/erickbytes/pymarketer.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:code --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The pymarketer package helps you do things like:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:list --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;merging all the tabs of an Excel file into one CSV&lt;/li&gt;
+&lt;li&gt;generate HTTP code&lt;/li&gt;
+&lt;li&gt;make a word cloud image&lt;/li&gt;
+&lt;li&gt;splitting a CSV&lt;/li&gt;
+&lt;li&gt;merging CSVs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:list --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Generating a Word Cloud with the pymarketer Package (via &lt;a href="http://amueller.github.io/word_cloud/index.html"&gt;wordcloud&lt;/a&gt;)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:syntaxhighlighter/code {"language":"python"} --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pymarketer&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pm&lt;/span&gt;
+
+&lt;span class="n"&gt;xl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Chicago Breweries.xlsx&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_excel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;xl&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Make a wordcloud from a pandas dataframe.&lt;/span&gt;
+&lt;span class="n"&gt;wordcloud&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;word_cloud&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;wordcloud&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Text Word Cloud Visualization.jpg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:syntaxhighlighter/code --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:image {"id":7362,"width":400,"height":200,"sizeSlug":"large","linkDestination":"none"} --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" class="wp-image-7362" height="200" src="https://pythonmarketer.files.wordpress.com/2023/01/text-word-cloud-visualization.jpg?w=400" width="400"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:image --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This package relied on several Python libraries to complete:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:list --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;chardet&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pandas.pydata.org/"&gt;pandas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://numpy.org/doc/stable/reference/generated/numpy.array_split.html"&gt;numpy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;wordcloud&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ftfy.readthedocs.io/en/latest/"&gt;ftfy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:list --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I'll likely expand on this in the future. Anyone who wrangles data might be able to apply this package to good profit. At minimum, you might find it interesting to take a look at the project's &lt;a href="https://github.com/erickbytes/pymarketer/blob/main/pymarketer/__init__.py"&gt;__init__.py&lt;/a&gt; to see how some of the functions are implemented.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Additional Resources&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:paragraph --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- wp:list --&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://changhsinlee.com/python-package/"&gt;How to Make an Internal Python Package&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/erickbytes/pymarketer/blob/main/pymarketer_examples.py"&gt;pymarketer Github Examples&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!-- /wp:list --&amp;gt;&lt;/code&gt;&lt;/p&gt;</content><category term="coding, excel, HTTP"></category><category term="problem solving"></category><category term="programming"></category><category term="python"></category><category term="software"></category></entry></feed>

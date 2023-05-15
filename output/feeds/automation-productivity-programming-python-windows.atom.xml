@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - automation, productivity, programming, python, Windows</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/automation-productivity-programming-python-windows.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2018-11-25T19:44:00-06:00</updated><entry><title>Automated Python With Windows Task Scheduler</title><link href="https://pythonmarketer.com/automated-python-with-windows-task-scheduler.html" rel="alternate"></link><published>2018-11-25T19:44:00-06:00</published><updated>2018-11-25T19:44:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2018-11-25:/automated-python-with-windows-task-scheduler.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;So you want to run your Python scripts automatically, but how?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I had heard of several popular scheduling libraries in Python like &lt;a class="reference external" href="http://www.celeryproject.org/"&gt;celery&lt;/a&gt;, &lt;a class="reference external" href="https://www.pyinvoke.org/"&gt;Invoke&lt;/a&gt;, and&amp;nbsp;&lt;a class="reference external" href="https://github.com/dbader/schedule"&gt;schedule&lt;/a&gt;. One of my requirements is to run the python file &amp;quot;in the background&amp;quot;, not in command prompt or an open window.&lt;/p&gt;
+&lt;p&gt;Enter Windows Task …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;So you want to run your Python scripts automatically, but how?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I had heard of several popular scheduling libraries in Python like &lt;a class="reference external" href="http://www.celeryproject.org/"&gt;celery&lt;/a&gt;, &lt;a class="reference external" href="https://www.pyinvoke.org/"&gt;Invoke&lt;/a&gt;, and&amp;nbsp;&lt;a class="reference external" href="https://github.com/dbader/schedule"&gt;schedule&lt;/a&gt;. One of my requirements is to run the python file &amp;quot;in the background&amp;quot;, not in command prompt or an open window.&lt;/p&gt;
+&lt;p&gt;Enter Windows Task Scheduler, the de facto scheduler on Windows 7 computers. I have&amp;nbsp; scheduled a few scripts and it is working like a charm. In this post, I will schedule an example script to clean up my desktop at the beginning of each day. I have a habit of accumulating many Excel files there throughout the workday. This example automatically moves them into a folder.&lt;/p&gt;
+&lt;p&gt;Other Windows scheduling alternatives worth mentioning include &lt;a class="reference external" href="http://thepythoncorner.com/dev/how-to-create-a-windows-service-in-python/"&gt;creating a Windows service&lt;/a&gt;, or using &lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks"&gt;schtasks&lt;/a&gt; if you prefer the command line.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Here's how to schedule a Python script to run:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Search for Windows Task Scheduler in the start menu. Then select &amp;quot;Task Scheduler Library&amp;quot; to see all of the tasks Windows is running automatically.&lt;/li&gt;
+&lt;li&gt;In the right toolbar, select &amp;quot;Create Basic Task&amp;quot; and give it a name and description. Note: I selected &amp;quot;Configure for: Windows 7, Windows Server 2008 R2&amp;quot;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img alt="general" class="wp-image-1577 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/general.png" style="width: 481px; height: 361px;" /&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;Set the time and frequency that the program will run in the &amp;quot;Triggers&amp;quot; tab.&lt;/li&gt;
+&lt;li&gt;Under the &amp;quot;Actions&amp;quot; tab, select &amp;quot;Start a Program&amp;quot; from the dropdown. Under &amp;quot;Program/Script&amp;quot;, enter the path to your Python.exe file. I set mine to a Python executable located within my &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtual environment&lt;/a&gt;, but yours might be found wherever you have Python installed.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
+C:\Users\your_username\Desktop\36env\Scripts\python.exe
+&lt;/pre&gt;
+&lt;ol class="arabic simple" start="5"&gt;
+&lt;li&gt;Under &amp;quot;Add arguments (optional)&amp;quot;, add the path to your .py script, within quotes:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
+&amp;quot;C:\Users\your_username\Desktop\36env\clean_desktop_excels.py&amp;quot;
+&lt;/pre&gt;
+&lt;img alt="actions" class="alignnone size-full wp-image-1578" src="http://pythonmarketer.files.wordpress.com/2018/11/bd0a9-actions-e1543177551739.png" style="width: 448px; height: 236px;" /&gt;
+&lt;ol class="arabic simple" start="6"&gt;
+&lt;li&gt;Select additional conditions and settings as desired, such as &amp;quot;Wake the computer to run this task&amp;quot; and &amp;quot;Run with highest privileges&amp;quot;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I am enjoying this simple, easy and convenient scheduling manager for Windows. I figured most of this out thanks to &lt;a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/analytics/scheduling-a-python-script-or-model-to-run-at-a-prescribed-time/?rmedium=redirect&amp;amp;rsource=/esri/arcgis/2013/07/30/scheduling-a-scrip"&gt;this blog&lt;/a&gt;. Below is my script to clean my desktop each morning by moving my Excel files into a folder, using Python's stock &lt;a class="reference external" href="https://docs.python.org/3/library/shutil.html"&gt;shutil&lt;/a&gt; and os libraries. Set it and forget it, ya know what i mean? :D&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from shutil import move
+import getpass
+import os
+
+&amp;quot;&amp;quot;&amp;quot;
+Desktop Spreadsheet File Cleaner - Python Marketer
+https://atomic-temporary-107329037.wpcomstaging.com/2018/11/25/automated-python-with-windows-task-scheduler/
+&amp;quot;&amp;quot;&amp;quot;
+# Get all Desktop files and folders
+src_directory = f'C:\\Users\\{getpass.getuser()}\\Desktop'
+dir_items = os.listdir(src_directory)
+excel_files = [item for item in dir_items \
+                if '.csv' in item or '.xls' in item]
+
+dst = f'C:\\Users\\{getpass.getuser()}\\Desktop\\Current_Month_Excels'
+os.makedirs(dst, exist_ok=True)
+for xl in excel_files:
+    path_to_file = src_directory + xl
+    move(path_to_file, dst)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Additional Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc721846(v=ws.11)?redirectedfrom=MSDN"&gt;Troubleshooting Windows Task Scheduler&lt;/a&gt; - Windows Documentation&lt;/p&gt;
+</content><category term="automation, productivity, programming, python, Windows"></category><category term="coding"></category><category term="organization"></category></entry></feed>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "pyDAL"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/pydal.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/pydal.html">pyDAL</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">May 25, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere.html" rel="bookmark" title="Permanent Link to &quot;Integrating MySQL with Flask, pandas and pythonanywhere&quot;">Integrating MySQL with Flask, pandas and pythonanywhere</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>Sometimes a spark comes from seemingly nowhere. That's when you reach for your tools and create. After a series of successful experiments, I decided this stack might be my quickest, best shot to get a functional website up and running in Python. I was pleasantly surprised to make rapid progress over the span of a quarantine weekend. Here are the steps to create a <a href="https://weedfiend.pythonanywhere.com">MySQL backed website</a> with Flask.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Hosting With pythonanywhere</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://www.pythonanywhere.com/user/weedfiend/">pythonanywhere</a> is a web hosting service like GoDaddy. If you host your app with them, MySQL is the default database. Postgres integration is available at higher price tiers.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>To get your Flask app's database up and running you need to:</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:list {"ordered":true} --&gt;</code></p>
+<ol>
+<li>Create your database (see the "Databases" tab in pythonanywhere)</li>
+<li>Use the mysql terminal to create your tables</li>
+<li>Use the mysql.connector API to connect to your table and execute SQL from your Flask app.</li>
+</ol>
+<p><code>&lt;!-- /wp:list --&gt;</code></p>
+<p><code>&lt;!-- wp:heading --&gt;</code></p>
+<h2>Essential MySQL Terminal Commands</h2>
+<p><code>&lt;!-- /wp:heading --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Show MySQL Version</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>SELECT VERSION();
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>List tables in a database</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="nv">TABLES</span><span class="c1">;</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Show All MySQL Variable Values</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="nv">VARIABLES</span><span class="c1">;</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Creating a Table</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>CREATE TABLE Marijuana (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(350), date VARCHAR(350));
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong><a href="https://www.sitepoint.com/use-json-data-fields-mysql-databases/">Create a Table with a JSON column</a></strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">​Marijuana</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n n-Quoted">`id`</span><span class="w"> </span><span class="kt">mediumint</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="k">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="w"> </span><span class="k">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">  </span><span class="n n-Quoted">`store`</span><span class="w"> </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n n-Quoted">`details`</span><span class="w"> </span><span class="kt">json</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n n-Quoted">`id`</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="k">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Add New Column and specify column to insert AFTER</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>ALTER TABLE Marijuana
+ADD COLUMN date VARCHAR(100) AFTER other_column;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Alter Datatype of a Column</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>ALTER TABLE Marijuana MODIFY id INT AUTO_INCREMENT PRIMARY KEY;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Describe a Table</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>DESCRIBE Marijuana;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>View All Records in a Table</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>SELECT * from Marijuana;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://www.mysqltutorial.org/mysql-like/"><strong>Using LIKE in MySQL</strong></a></p>
+<p><strong>Select 10 Newest Records</strong></p>
+<div class="notranslate prettyprinted highlight"><pre><span></span><code>SELECT * from Marijuana ORDER BY id DESC LIMIT 10;
+</code></pre></div>
+
+<p><strong>"Explaining" A Query</strong></p>
+<div class="highlight"><pre><span></span><code>EXPLAIN SELECT * from Marijuana;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>Using "ANALYZE TABLE" to <a href="https://dev.mysql.com/doc/refman/8.0/en/statement-optimization.html">optimize them</a> is periodically recommended by MySQL:</strong></p>
+<div class="highlight"><pre><span></span><code>ANALYZE TABLE Marijuana;
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:image {"id":3418} --&gt;</code></p>
+<div class="highlight"><pre><span></span><code>&lt;figure&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>&lt;/figure&gt;
+</code></pre></div>
+
+<p><img alt="" class="wp-image-3418" src="https://pythonmarketer.files.wordpress.com/2020/05/mysql_commands-1.png"></p>
+<p><code>&lt;!-- /wp:image --&gt;</code></p>
+<p><code>&lt;!-- wp:heading --&gt;</code></p>
+<h2>Installing Libraries in PythonAnywhere</h2>
+<p>You can use <a href="http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a> to install python libraries within the PythonAnywhere bash terminal. Go to the consoles tab and start a new bash terminal. Then to install a library, such as pandas:</p>
+<div class="highlight"><pre><span></span><code>python -m pip3.8 install --user pandas
+</code></pre></div>
+
+<h2>Flask app with <a href="https://dev.mysql.com/doc/connector-python/en/">mysql.connector API</a>, SQL and pandas</h2>
+<p><code>&lt;!-- /wp:heading --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>A Flask app making a mysql database connection with pandas:</strong></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:list {"ordered":true} --&gt;</code></p>
+<ol>
+<li>Creating an error log with logging.</li>
+<li>Connecting to a mysql database hosted through <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/">Flask</a> and <a href="http://pythonanywhere.com">pythonanywhere</a></li>
+<li>Then reading a table to a pandas <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">dataframe</a></li>
+</ol>
+<p><code>&lt;!-- /wp:list --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">mysql.connector</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Flask + MySQL + pandas app from Python Marketer:</span>
+<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/ </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span> 
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call database and return data from df. Then display homepage.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span> 
+        <span class="n">email_df</span> <span class="o">=</span> <span class="n">get_database_table_as_dataframe</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">email_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> 
+        <span class="n">html_page</span> <span class="o">=</span> <span class="n">render_homepage</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">html_page</span> 
+    <span class="k">except</span><span class="p">:</span> 
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Failed to connect to database.&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">render_homepage</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Note: you should use Flask&#39;s render_template to render HTML files. </span>
+<span class="sd">    But here&#39;s a quick f-string HTML page that works:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">html_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;html&gt;&lt;head&gt;&lt;link rel=&#39;stylesheet&#39; href=&quot;/static/styles/some_file.css&quot;&gt;&lt;link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;static/favicon.ico&quot;&gt;</span>
+<span class="s2">                    &lt;Title&gt;Support BLM&lt;/Title&gt;&lt;/head&gt;</span>
+<span class="s2">                    &lt;body&gt;&lt;h2&gt;Black Lives Matter&lt;/h2&gt;</span>
+<span class="s2">                    &lt;p&gt;No to Systemic Racism!&lt;/p&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;h6&gt;&lt;b&gt;Support BLM:&lt;/b&gt;&lt;/h6&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;div class=&quot;form&quot;&gt;</span>
+<span class="s2">                    &lt;form action=&quot;/add_signup_to_db&quot; method=&quot;post&quot; style=&quot;width:420px;text-align:center;display:block;&quot; &gt;</span>
+<span class="s2">                    &lt;input type=&quot;text&quot; name=&quot;Signup Form&quot;&gt;</span>
+<span class="s2">                    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</span>
+<span class="s2">                    &lt;/form&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;p&gt;&lt;b&gt;Current Time:&lt;/b&gt;</span>
+<span class="s2">                    </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span><span class="si">}</span><span class="s2"> &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html_page</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">get_database_table_as_dataframe</span><span class="p">()</span><span class="err">:</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Connect to a table named &#39;Emails&#39;. Returns pandas dataframe.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="k">try</span><span class="err">:</span>
+<span class="w">        </span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="k">connect</span><span class="p">(</span>
+<span class="w">                            </span><span class="k">host</span><span class="o">=</span><span class="s1">&#39;username.mysql.pythonanywhere-services.com&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="n">db</span><span class="o">=</span><span class="s1">&#39;username$DatabaseName&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="n">password</span><span class="o">=</span><span class="s1">&#39;password&#39;</span>
+<span class="w">                            </span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">email_df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pd</span><span class="p">.</span><span class="n">read_sql</span><span class="p">(</span><span class="k">sql</span><span class="o">=</span><span class="ss">&quot;&quot;&quot;SELECT * FROM Emails&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">con</span><span class="o">=</span><span class="k">connection</span><span class="p">)</span>
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="n">email_df</span><span class="p">.</span><span class="n">head</span><span class="p">())</span><span class="w"> </span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">email_df</span>
+<span class="w">    </span><span class="ow">except</span><span class="err">:</span>
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="k">exception</span><span class="p">(</span><span class="s1">&#39;Failed to fetch dataframe from DB.&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ss">&quot;Oops!&quot;</span>
+
+<span class="nv">@app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="ss">&quot;/add_signup_to_db&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">methods</span><span class="o">=[</span><span class="n">&quot;GET&quot;,&quot;POST&quot;</span><span class="o">]</span><span class="p">)</span>
+<span class="n">def</span><span class="w"> </span><span class="n">add_signup_to_db</span><span class="p">(</span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="nc">date</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Pass data as SQL parameters with mysql.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="k">try</span><span class="err">:</span>
+<span class="w">        </span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="k">connect</span><span class="p">(</span>
+<span class="w">                            </span><span class="k">host</span><span class="o">=</span><span class="s1">&#39;username.mysql.pythonanywhere-services.com&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="n">db</span><span class="o">=</span><span class="s1">&#39;username$DatabaseName&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="n">password</span><span class="o">=</span><span class="s1">&#39;password&#39;</span>
+<span class="w">                            </span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="nc">cursor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">connection</span><span class="p">.</span><span class="nc">cursor</span><span class="p">()</span>
+<span class="w">        </span><span class="k">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;&quot;INSERT INTO Emails (message, date) VALUES (%s, %s) &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="n">record_tuple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="nc">date</span><span class="p">)</span>
+<span class="w">        </span><span class="nc">cursor</span><span class="p">.</span><span class="k">execute</span><span class="p">(</span><span class="k">sql</span><span class="p">,</span><span class="n">record_tuple</span><span class="p">)</span>
+<span class="w">        </span><span class="k">connection</span><span class="p">.</span><span class="k">commit</span><span class="p">()</span>
+<span class="w">    </span><span class="ow">except</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">Error</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nl">error</span><span class="p">:</span>
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Failed to insert into MySQL table {}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+<span class="w">    </span><span class="ow">except</span><span class="err">:</span>
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="k">exception</span><span class="p">(</span><span class="s1">&#39;Error inserting records to DB.&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="nl">finally</span><span class="p">:</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">connection</span><span class="p">.</span><span class="n">is_connected</span><span class="p">())</span><span class="err">:</span>
+<span class="w">            </span><span class="nc">cursor</span><span class="p">.</span><span class="k">close</span><span class="p">()</span>
+<span class="w">            </span><span class="k">connection</span><span class="p">.</span><span class="k">close</span><span class="p">()</span>
+<span class="w">        </span><span class="k">return</span><span class="p">(</span><span class="ss">&quot;MySQL connection is closed&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Iterative Development</strong></p>
+<blockquote>
+<p>Below: making <a href="https://weedfiend.pythonanywhere.com/">my website</a> look less like a "my first HTML" website, experimenting with my app's message\name and adding a sign-up form connected to the database.</p>
+</blockquote>
+<p><img alt="Screenshot_20200606-132252 (1)" class="alignnone size-full wp-image-3524" height="566" src="https://pythonmarketer.files.wordpress.com/2020/05/screenshot_20200606-132252-1-1.png" width="344"></p>
+<p><strong>Note: if you see this error when making a request in pythonanywhere:</strong></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>OSError: Tunnel connection failed: 403 Forbidden</code></p>
+<p>It's likely because you are "whitelisted" on the free plan. Upgrading to the \$5/month plan will fix it!</p>
+<p><strong>Scoping The Full Stack</strong></p>
+<p>I'm really enjoying this web development stack. Here are all of the tools and library choices for this website:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/HTML">HTML</a></li>
+<li><a href="https://www.taniarascia.com/overview-of-css-concepts/">CSS</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Web_framework">web framework</a>: Flask library</li>
+<li>email: <a href="https://pythonhosted.org/Flask-Mail/">Flask-Mail</a> library (<a href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP</a>)</li>
+<li>API calls to external websites: <a href="https://requests.readthedocs.io/en/master/">requests</a> and json libraries</li>
+<li>data handling: MySQL database, mysql.connector API, <a href="https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/">pandas</a> library</li>
+<li>file system: <a href="https://docs.python.org/3/library/logging.html">logging</a>, os and sys libraries</li>
+<li>(may add) payment processing: <a href="https://github.com/braintree/braintree_python">Braintree Library</a></li>
+<li>web hosting: pythonanywhere</li>
+</ul>
+<p><strong>Finding Your Flask Groove</strong></p>
+<p>Flask is a little scary at first, but reasonable once you get a grasp of the basic syntax. Using the logging module to establish access, error and server log feeds was a big step to finding my Python traceback fixing groove. It's a work in progress.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><strong>Recapping My Python Web Development and Database Experiences</strong></p>
+<p>I previously created a <a href="http://tameimpala.pythonanywhere.com/">website</a> with <a href="https://pythonmarketer.wordpress.com/2016/03/29/getting-started-with-web2py/">web2py</a>, another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then, I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.</p>
+<blockquote>
+<p><strong>My Python Web Development and Database Tools</strong></p>
+<p><strong>App #1</strong>                    web2py + MongoDB</p>
+<p><strong>App #2                     </strong>Flask + MySQL </p>
+<p><strong>Future App?</strong>      py4web + pyDAL + PostgreSQL</p>
+<p><strong>Future App?</strong>     tornado + streamlit (or) Flask + Dash (+ SQLite)</p>
+</blockquote>
+<p>Of these two diverse Python stacks, I favor MySQL and Flask. But I learned a lot from watching web2py's tutorial videos and it's less intimidating for beginners. And I barely scratched the surface of web2py's "pure Python" <a href="https://github.com/web2py/pydal">pyDAL (Database Abstraction Layer)</a>, which seems pretty dope.</p>
+<p>web2py's <a href="https://www.youtube.com/watch?v=hcYUgNWvPtw">creator</a> has a new framework in progress called <a href="https://github.com/web2py/py4web">py4web</a>. It has the same <a href="http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer">DAL</a> and inherits many other web2py qualities. Definitely looking forward to exploring the DAL on my first py4web website. I'll likely use it to connect to PostgreSQL or SQLite. Maybe I'll <a href="https://github.com/web2py/pydal">install pyDAL with pip</a> in the meantime.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><strong>[Final Thoughts]{style="color:var(--color-text);"}</strong></p>
+<p>[Both of my websites are hosted with pythonanywhere, which gives you a text editor and ]{style="color:var(--color-text);"}<a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a>[ terminal to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience. 👍👍]{style="color:var(--color-text);"}</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere.html">posted at 21:48</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/data-databases-odbc-pandas-programming-sql-web-development-web2py.html" rel="tag">data, Databases, ODBC, pandas, programming, SQL, web development, web2py</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/flask.html" class="tags">flask</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/mysql.html" class="tags">mysql</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/py4web.html" class="tags">py4web</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/pydal.html" class="tags selected">pyDAL</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

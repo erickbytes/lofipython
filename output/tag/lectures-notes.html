@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "lectures notes"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/lectures-notes.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/lectures-notes.html">lectures notes</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jun 27, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/choosing-database-storage-models-and-workloads-that-mesh.html" rel="bookmark" title="Permanent Link to &quot;Characterizing Database Workloads & Storage Models&quot;">Characterizing Database Workloads &amp; Storage Models</a>
+                </h2>
+
+                
+                
+
+                <p>Thank you <a class="reference external" href="https://db.cs.cmu.edu/">Carnegie Mellon Database Group</a> for putting this online! These are my notes from watching on YouTube.</p>
+<blockquote>
+<p>Carnegie Mellon Databases Storage II, Lecture 4</p>
+<p>Prof. Andy Pavlo [<a class="reference external" href="https://www.youtube.com/watch?v=YWRYEXNy6IE&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=4">Watch on YouTube</a>]</p>
+</blockquote>
+<div class="section" id="the-problem-and-solution">
+<h2>The Problem and Solution</h2>
+<p>How should the DBMS represent the database in storage files on disk? Solve it by choosing the right <em>storage model</em> for your target <em>workload</em>. The right strategy varies if you are reading data, writing data and with how many joins you are performing.</p>
+</div>
+<div class="section" id="workload-characterization">
+<h2>Workload Characterization</h2>
+<p><strong>OLTP</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Online_transaction_processing">Online Transaction Processing</a>): &quot;Simple queries with lots of writes.&quot;</p>
+<p><strong>OLAP</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Online_analytical_processing">Online Analytical Processing</a>): &quot;Read only queries. Lots of joins. Doing a lot of reads, but they're more complex.&quot;</p>
+<p><strong>HTAP</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing">Hybrid Transactional Analytical Processing</a>): &quot;is trying to do both of them. You still want to ingest new data, but analyze it as it comes in. It's used for companies making decisions on the fly as people are browsing websites, like internet advertising companies.&quot;</p>
+</div>
+<div class="section" id="screenshot-2020-06-27-at-11-56-10-am">
+<h2><img alt="Screenshot 2020-06-27 at 11.56.10 AM" class="alignnone size-full wp-image-3897" src="https://pythonmarketer.files.wordpress.com/2020/06/screenshot-2020-06-27-at-11.56.10-am.png" style="width: 1920px; height: 1080px;" /></h2>
+</div>
+<div class="section" id="storage-models">
+<h2>Storage Models</h2>
+<p><em>screenshots from the</em><a class="reference external" href="https://www.youtube.com/watch?v=YWRYEXNy6IE&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=4">lecture</a></p>
+<img alt="n-ary model" class="alignnone size-full wp-image-3918" src="https://pythonmarketer.files.wordpress.com/2020/06/n-ary-model.png" style="width: 692px; height: 360px;" />
+<p>N-ary used to be the dominant model until the '80s.</p>
+<img alt="DSM model" class="alignnone size-full wp-image-3917" src="https://pythonmarketer.files.wordpress.com/2020/06/dsm-model-1.png" style="width: 938px; height: 396px;" />
+<p><strong>Additional Reading:</strong> <a class="reference external" href="https://www.allthingsdistributed.com/2013/09/column-oriented-databases.html">All Things Distributed</a></p>
+</div>
+<div class="section" id="column-store-vs-row-store-rdbms">
+<h2>Column Store Vs. Row Store RDBMS</h2>
+<p><a class="reference external" href="https://dataschool.com/data-modeling-101/row-vs-column-oriented-databases/">Row-oriented DBMS</a><strong>(Row Store)</strong></p>
+<ul class="simple">
+<li>PostgreSQL, MySQL</li>
+<li>Row Store = use OLTP</li>
+</ul>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Column-oriented_DBMS">Column-oriented DBMS</a><strong>(Column Store)</strong></p>
+<ul class="simple">
+<li>Red Shift, BigQuery</li>
+<li>Column Store = use OLAP</li>
+</ul>
+<p>If types are consistent, you can compress data into single column store.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/choosing-database-storage-models-and-workloads-that-mesh.html">posted at 13:22</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/data-databases-education-performance.html" rel="tag">data, Databases, education, performance</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/carnegie-mellon.html" class="tags">Carnegie Mellon</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/database-storage.html" class="tags">database storage</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/lectures-notes.html" class="tags selected">lectures notes</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

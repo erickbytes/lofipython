@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - automation, data, Databases, excel, ODBC, pandas, python, Windows</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/automation-data-databases-excel-odbc-pandas-python-windows.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2019-11-30T00:28:00-06:00</updated><entry><title>Inserting New Rows Into A Microsoft Access Database With Python and pyodbc</title><link href="https://pythonmarketer.com/inserting-new-records-into-a-microsoft-access-database-with-python.html" rel="alternate"></link><published>2019-11-30T00:28:00-06:00</published><updated>2019-11-30T00:28:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2019-11-30:/inserting-new-records-into-a-microsoft-access-database-with-python.html</id><summary type="html">&lt;p&gt;I recently automated the loading of data into a Microsoft Access database with &lt;a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki"&gt;pyodbc&lt;/a&gt;, a Python library for connecting to databases. ODBC stands for &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity"&gt;Open Database Connectivity&lt;/a&gt;. It can be used for a variety of Database Management Systems outside of Access also.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;First,&lt;/strong&gt; &lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;install libraries with pip&lt;/a&gt;&lt;strong&gt;. Enter in terminal …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;I recently automated the loading of data into a Microsoft Access database with &lt;a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki"&gt;pyodbc&lt;/a&gt;, a Python library for connecting to databases. ODBC stands for &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity"&gt;Open Database Connectivity&lt;/a&gt;. It can be used for a variety of Database Management Systems outside of Access also.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;First,&lt;/strong&gt; &lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;install libraries with pip&lt;/a&gt;&lt;strong&gt;. Enter in terminal or command prompt:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;ol class="first arabic"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pyodbc&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python
+&amp;gt;&amp;gt;&amp;gt; import pyodbc
+&amp;gt;&amp;gt;&amp;gt; [x for x in pyodbc.drivers() if x.startswith('Microsoft Access Driver')]
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Drivers for&lt;/strong&gt; &lt;strong&gt;Access &amp;amp; Many Other Data Sources&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The driver is the engine that allows you to connect to a specific type of database. The drivers available vary depending on your machine.&lt;/p&gt;
+&lt;p&gt;The two most common drivers for Access are Microsoft Access Driver (&lt;em&gt;.mdb) and Microsoft Access Driver (&lt;/em&gt;.mdb, *.accdb). My computer only had *.mdb, which has been deprecated. My Access database was a .mdb file, so I was able to use this driver as shown below. Read more on Access drivers &lt;a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-Microsoft-Access"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;quot;Drivers exist for all major DBMSs, many other data sources like address book systems and Microsoft Excel, and even for text or comma-separated values (CSV) files.&amp;quot;&amp;nbsp; - &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity"&gt;Wikipedia&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Database Data Types&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I set all of the field data types to &amp;quot;Short Text&amp;quot; because I'm passing strings as SQL parameters below. Uploading as other data types may require additional formatting. To edit the data types of your table, open the table and select &amp;quot;Design View&amp;quot; under the &amp;quot;Home&amp;quot; tab. It got the job done for me!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Inserting new rows into a Microsoft Access Database:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+import pyodbc
+
+
+def df_to_row_tuples(df):
+    &amp;quot;&amp;quot;&amp;quot;
+    use list comprehension to format df rows as a list of tuples:
+    rows = [('Garfield','Orange','Eat'),('Meowth','White','Scratch')]
+    &amp;quot;&amp;quot;&amp;quot;
+    df = df.fillna('')
+    rows = [tuple(cell) for cell in df.values]
+    return rows
+
+&amp;quot;&amp;quot;&amp;quot;
+Rows are not added to DB until they are committed.
+Pass each row tuple as a SQL parameter (?,?,?).
+cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm
+&amp;quot;&amp;quot;&amp;quot;
+conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\Add_Path\To_DB\Here\Your_DB.mdb;')
+cursor = conn.cursor()
+sql = ''' INSERT INTO Cats (Name, Color, Move)
+          VALUES(?,?,?) '''
+df = pd.read_csv('Cat Data.csv')
+rows = df_to_row_tuples(df)
+for row in rows:
+    cursor.execute(sql, row)
+conn.commit()
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Running the above in command prompt uses pyodbc and SQL to add dataframe rows to a Microsoft Access DB table named &amp;quot;Cats&amp;quot;. Passing each row as a &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0249/#paramstyle"&gt;SQL parameter&lt;/a&gt; has two benefits:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;It handles strings with single quotes (') and loads them to the DB.&lt;/li&gt;
+&lt;li&gt;It protects against &lt;a class="reference external" href="https://www.acunetix.com/websitesecurity/sql-injection/"&gt;SQL injection&lt;/a&gt; attacks.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Access Limitation Disclaimer&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Access topped out just shy of 10 million rows in my use case, when records stopped getting added to my database. So keep that in mind if you're thinking about using Access to store your data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Supplementary Resources&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://datatofish.com/insert-ms-access-python/"&gt;Insert Values into MS Access Table using Python&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki"&gt;pyodbc documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15"&gt;Microsoft Documentation pyodbc example&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor.htm"&gt;The Python Cursor Class&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.psycopg.org/docs/cursor.html"&gt;Psycopg Cursor Class Documentation&lt;/a&gt;&lt;/p&gt;
+</content><category term="automation, data, Databases, excel, ODBC, pandas, python, Windows"></category><category term="Access"></category><category term="Microsoft"></category><category term="productivity"></category><category term="programming"></category></entry></feed>

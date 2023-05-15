@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - mathematics</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/mathematics.tag.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2018-10-19T03:15:00-05:00</updated><entry><title>WTF is a Regression</title><link href="https://pythonmarketer.com/wtf-is-a-regression.html" rel="alternate"></link><published>2018-10-19T03:15:00-05:00</published><updated>2018-10-19T03:15:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2018-10-19:/wtf-is-a-regression.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;re·gres·sion&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[caption id="attachment_1500" align="alignright" width="467"]&lt;img alt="mitnewslol.png" class="alignnone wp-image-1500" height="273" src="http://pythonmarketer.files.wordpress.com/2018/10/9ed88-mitnewslol-e1539920605255.png" width="467"&gt; wtf is a regression? - MIT News and I[/caption]&lt;/p&gt;
+&lt;p&gt;/rəˈɡreSH(ə)n&lt;br&gt;
+&lt;em&gt;noun&lt;/em&gt;&lt;br&gt;
+1. a return to a former or less developed state.&lt;br&gt;
+2. &lt;em&gt;STATISTICS&lt;/em&gt; a measure of the relation between the mean value of one variable (e.g., output …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;re·gres·sion&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[caption id="attachment_1500" align="alignright" width="467"]&lt;img alt="mitnewslol.png" class="alignnone wp-image-1500" height="273" src="http://pythonmarketer.files.wordpress.com/2018/10/9ed88-mitnewslol-e1539920605255.png" width="467"&gt; wtf is a regression? - MIT News and I[/caption]&lt;/p&gt;
+&lt;p&gt;/rəˈɡreSH(ə)n&lt;br&gt;
+&lt;em&gt;noun&lt;/em&gt;&lt;br&gt;
+1. a return to a former or less developed state.&lt;br&gt;
+2. &lt;em&gt;STATISTICS&lt;/em&gt; a measure of the relation between the mean value of one variable (e.g., output) and corresponding values of other variables (e.g., time and cost).&lt;/p&gt;
+&lt;p&gt;Regression analysis is commonly cited in the data science community (and science in general), a building block of statistics, and routinely referenced within the rapidly growing &lt;a href="https://en.wikipedia.org/wiki/Machine_learning"&gt;machine learning&lt;/a&gt; movement. So what is this mysterious math sorcery? Did Isaac Newton use regression analysis? These magical regressions seem important. We shall dig deeper. Here's what I've found, thanks to &lt;a href="http://news.mit.edu/2010/explained-reg-analysis-0316"&gt;MIT News&lt;/a&gt;, circa 2010:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To grasp the basic concept, take the simplest form of a regression: a linear, bivariate regression, which describes an unchanging relationship between two (and not more) phenomena. Now suppose you are wondering if there is a connection between the time high school students spend doing French homework, and the grades they receive. These types of data can be plotted as points on a graph, where the x-axis is the average number of hours per week a student studies, and the y-axis represents exam scores out of 100. Together, the data points will typically scatter a bit on the graph. The regression analysis creates the single line that best summarizes the distribution of points.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ok, so it's correlationary tool. Sounds useful. Additionally, consider the mathematical  equation representation of regressions:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Mathematically, the line representing a simple linear regression is expressed through a basic equation: Y = a~0~ + a~1~ X. Here X is hours spent studying per week, the “independent variable.” Y is the exam scores, the “dependent variable,” since — we believe — those scores depend on time spent studying. Additionally, a~0~ is the y-intercept (the value of Y when X is zero) and a~1~ is the slope of the line, characterizing the relationship between the two variables. (&lt;strong&gt;&lt;em&gt;source: &lt;a href="http://news.mit.edu/2010/explained-reg-analysis-0316"&gt;MIT News)&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Geesh, that's kinda dense. But can we do it with Python? Ah, yes we can. Below is the amassed code from &lt;a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"&gt;&lt;em&gt;Towards Data Science&lt;/em&gt;&lt;/a&gt; to run a basic regression that generates predictions from a Boston house values dataset within &lt;a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"&gt;sci-kit learn.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://scikit-learn.org/stable/install.html"&gt;pip install sklearn&lt;/a&gt; and pandas first, by entering in the terminal:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;pip install -U scikit-learn&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;python -m  pip install pandas&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Now run copy this code, save as a .py file  and run from your terminal or command prompt:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;linear_model&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datasets&lt;/span&gt; &lt;span class="c1"&gt;## imports datasets from scikit-learn&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datasets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_boston&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;## loads Boston dataset from datasets library&lt;/span&gt;
+
+&lt;span class="c1"&gt;# define the data/predictors as the pre-set feature names&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;feature_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Put the target (housing value -- MEDV) in another DataFrame&lt;/span&gt;
+&lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;MEDV&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;
+&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;MEDV&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;lm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;linear_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;LinearRegression&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;lm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;predictions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;lm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;predictions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="c1"&gt;# print the first 5 predictions for y&lt;/span&gt;
+
+&lt;span class="n"&gt;lm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# This is the R² score of our model. As you probably remember, this the percentage of explained variance of the predictions.&lt;/span&gt;
+&lt;span class="n"&gt;lm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coef_&lt;/span&gt; &lt;span class="c1"&gt;# check coefficients&lt;/span&gt;
+&lt;span class="n"&gt;lm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intercept_&lt;/span&gt;
+&lt;span class="c1"&gt;# More info: https://towardsdatascience.com/simple-and-multiple-linear-regression-in-python-c928425168f9&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;source: &lt;a href="https://towardsdatascience.com/simple-and-multiple-linear-regression-in-python-c928425168f9"&gt;Towards Data Science&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The above example is one of many predictive models. &lt;a href="https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8"&gt;Logistic regressions&lt;/a&gt; and random forests are examples of other models. &lt;a href="https://books.google.com/books/about/Learning_Predictive_Analytics_with_Pytho.html?id=Ia5KDAAAQBAJ&amp;amp;printsec=frontcover&amp;amp;source=kp_read_button#v=onepage&amp;amp;q&amp;amp;f=false"&gt;This book&lt;/a&gt; dives deeper into them.&lt;/p&gt;
+&lt;p&gt;So there you have it: regressions... part correlation measurement tool between two variables, part fancy mathematical formula, part prediction generator that sci-kit learn graciously affords us to make predictions of future data. Alright regressions, you can stay. :)&lt;/p&gt;</content><category term="data analysis, math, python, statistics"></category><category term="data science"></category><category term="mathematics"></category><category term="regressions"></category><category term="sci-kit learn"></category></entry></feed>

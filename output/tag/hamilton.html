@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles tagged "hamilton"</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/hamilton.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/tag/hamilton.html">hamilton</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Feb 12, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/lightning-scripts-%e2%9a%a1.html" rel="bookmark" title="Permanent Link to &quot;Lightning Scripts ⚡&quot;">Lightning Scripts ⚡</a>
+                </h2>
+
+                
+                
+
+                <p>You may or may not be familiar with <a href="https://www.youtube.com/channel/UCsX05-2sVSH7Nx3zuk3NYuQ">PyCon</a>'s <a href="https://pyvideo.org/pycon-us-2010/pycon-2010--plenary--saturday-evening-lightning-t.html">Lightning Talks</a>, a session of quick hitter talks given each year on a variety of topics. These "Lightning Scripts" are ten of my favorite Python scripts that have served me well as of late to perform a variety of tasks.</p>
+<p>Highlights include the glob, os, calendar, webbrowser and pandas modules. Plus, how to convert a dataframe into a pdf and how to take a snapshot of a website with pdfkit. The webpage pdf was not the greatest snapshot in some cases, but did capture text and many of a live website's visual elements.</p>
+<p>If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.</p>
+<h2>The first 5 scripts use modules that ship with Python.</h2>
+<p><strong>1 ⚡ Uppercase all of the file names in the current working directory.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+</code></pre></div>
+
+<p>os module <a href="https://docs.python.org/3/library/os.html#os.rename">documentation</a></p>
+<p><strong>2 ⚡ Get all filenames in the current directory and write to a text file.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">folder_contents</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;list_of_dir_files.txt&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
+    <span class="p">[</span><span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;f</span><span class="si">{item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">folder_contents</span><span class="p">]</span>
+</code></pre></div>
+
+<p><strong>3 ⚡ Check what day of the week is today.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">calendar</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> 
+<span class="k">if</span> <span class="n">calendar</span><span class="o">.</span><span class="n">day_name</span><span class="p">[</span><span class="n">today</span><span class="o">.</span><span class="n">weekday</span><span class="p">()]</span> <span class="o">==</span> <span class="s1">&#39;Friday&#39;</span><span class="p">:</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is Friday.&quot;</span><span class="p">)</span> 
+<span class="k">else</span><span class="p">:</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is not Friday.&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a href="https://docs.python.org/3/library/calendar.html">calendar documentation</a></p>
+<p><strong>4 ⚡ Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">* means all, if need specific format then *.csv</span>
+<span class="sd">getctime == by created date, getmtime == by date modified</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">list_of_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># get all files, regardless of extension </span>
+<span class="n">newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">second_newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">newest_file</span><span class="p">,</span> <span class="n">second_newest_file</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a href="https://docs.python.org/3/library/glob.html#glob.iglob">glob module documentation</a></p>
+<p><strong>5  ⚡ Auto-Hamilton Ticket Lottery</strong></p>
+<div>
+
+    import webbrowser
+    webbrowser.open('https://www.luckyseat.com/hamilton-chi/', new=0)
+
+</div>
+
+<p><a href="https://pymotw.com/3/webbrowser/">webbrowser PMOTW</a></p>
+<h2>To Run The Next 3 Scripts, install pandas:</h2>
+<p>I installed pandas and pdfkit with pip. <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">Psst... new to pip</a>?</p>
+<div class="highlight"><pre><span></span><code>python -m pip install pandas
+</code></pre></div>
+
+<p>**1 ⚡ Split a csv file into smaller excel files. **</p>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">import</span> <span class="s s-Atom">pandas</span> <span class="s s-Atom">as</span> <span class="s s-Atom">pd</span>
+<span class="s s-Atom">file_name</span> <span class="o">=</span> <span class="s s-Atom">&#39;big_file.csv&#39;</span>
+<span class="s s-Atom">src_file_minus_ext</span> <span class="o">=</span> <span class="s s-Atom">file_name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s s-Atom">&#39;.&#39;</span><span class="p">)[</span><span class="o">:-</span><span class="mi">1</span><span class="p">]</span> <span class="s s-Atom">#</span> <span class="s s-Atom">slice</span> <span class="s s-Atom">off</span> <span class="s s-Atom">extension</span>
+<span class="s s-Atom">for</span> <span class="s s-Atom">i</span><span class="p">,</span> <span class="s s-Atom">df</span> <span class="s s-Atom">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="s s-Atom">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="s s-Atom">file_name</span><span class="p">,</span> <span class="s s-Atom">chunksize</span><span class="o">=</span><span class="mi">250000</span><span class="p">))</span><span class="o">:</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">alt</span><span class="p">.</span> <span class="s s-Atom">encoding</span> <span class="o">=</span> <span class="s2">&quot;ISO-8859-1&quot;</span>
+    <span class="s s-Atom">out_file</span> <span class="o">=</span> <span class="s s-Atom">f&#39;{src_file_minus_ext}{str(i)}.csv&#39;</span>
+    <span class="s s-Atom">df</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="s s-Atom">out_file</span><span class="p">,</span> <span class="s s-Atom">index</span><span class="o">=</span><span class="nv">False</span><span class="p">,</span> <span class="s s-Atom">header</span><span class="o">=</span><span class="s s-Atom">df</span><span class="p">.</span><span class="s s-Atom">columns</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a href="https://www.youtube.com/watch?v=5JnMutdy6Fw">pandas beginner tutorial</a></p>
+<p><strong>2 ⚡ Convert a .xlsx to .csv</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>3 ⚡ Convert a .xlsx to .html</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;data.xlsx&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="s2">&quot;data.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>To Run The Last Two Scripts, install pdfkit:</h2>
+<p>pdfkit relies on another library, wkhtmltopdf, which adds an extra wrinkle to setting it up for Windows users. I've laid out the differences between using pdfkit for Windows vs. Ubuntu below.</p>
+<div class="highlight"><pre><span></span><code>python -m pip install pdfkit
+</code></pre></div>
+
+<p><strong>installing wkhtmltopdf on Windows</strong></p>
+<p>To use pdfkit on Windows, go to the link, choose your version to download. This installs a Windows executable that pdfkit needs to find to work.</p>
+<div class="highlight"><pre><span></span><code><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">wkhtmltopdf</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">downloads</span><span class="o">.</span><span class="n">html</span>
+</code></pre></div>
+
+<p><strong>installing wkhtmltopdf on Ubuntu</strong></p>
+<div class="highlight"><pre><span></span><code>sudo apt-get install wkhtmltopdf
+</code></pre></div>
+
+<div>
+
+**For Windows, [download wkhtmltopdf](https://wkhtmltopdf.org/downloads.html) and add this config patch for pdfkit:**
+
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">pdfkit</span><span class="o">.</span><span class="n">configuration</span><span class="p">(</span><span class="n">wkhtmltopdf</span><span class="o">=</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Program Files</span><span class="se">\\</span><span class="s1">wkhtmltopdf</span><span class="se">\\</span><span class="s1">bin</span><span class="se">\\</span><span class="s1">wkhtmltopdf.exe&#39;</span><span class="p">)</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;webpage.pdf&#39;</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>4 ⚡ Convert a .html file to .pdf. (Add config patch above for Windows.)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data.html&#39;</span><span class="p">,</span> <span class="s1">&#39;report.pdf&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>5 ⚡ Create a pdf snapshot of a webpage on Ubuntu below. (Add config patch above for Windows.)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;alicia_keys.pdf&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<div>
+
+</div>
+
+<div>
+
+[pdfkit documentation](https://pypi.org/project/pdfkit/)  
+
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<p>⚡ <strong>Final Thoughts</strong></p>
+<p>I am very pleased with pdfkit. I am also toying around with Python's <a href="https://pyfpdf.readthedocs.io/en/latest/index.html">PyFPDF</a> and <a href="https://pythonhosted.org/PyPDF2/">PyPDF2</a> libraries. Together, these three offer some unique abilities for creating and manipulating pdf files. And the pandas library is amazing for reading and writing tabular data sheets, can't say enough great things about pandas. Worth the time. Hope you enjoyed these Lightning Scripts :) **⚡ **</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/lightning-scripts-%e2%9a%a1.html">posted at 06:27</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-coding-pandas-productivity-programming-scripts.html" rel="tag">automation, coding, pandas, productivity, programming, Scripts</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/alicia-keys.html" class="tags">alicia keys</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/code.html" class="tags">code</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/hamilton.html" class="tags selected">hamilton</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/lightning-scripts.html" class="tags">lightning scripts</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

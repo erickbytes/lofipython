@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Page 5</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Dec 05, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/a-collection-of-software-testing-opinions-for-python-and-beyond.html" rel="bookmark" title="Permanent Link to &quot;A Collection of Software Testing Opinions for Python and Beyond&quot;">A Collection of Software Testing Opinions for Python and Beyond</a>
+                </h2>
+
+                
+                
+
+                <div class="section" id="i-am-a-beginner-to-testing-my-code-i-wanted-to-write-about-testing-to-better-understand-it-while-shaping-this-link-fest-masquerading-as-an-essay-i-collected-great-ideas-from-people-who-are-way-more-experienced-than-me-you-ll-find-a-few-of-my-thoughts-a-pytest-example-i-use-to-monitor-files-ideas-for-unit-testing-property-testing-test-driven-development-and-many-other-commonly-used-software-tests">
+<h2>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</h2>
+<p><strong>An Introductory Rant on Testing</strong></p>
+<p>Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?</p>
+<blockquote>
+<p>Yeah. And the worst thing that happens is that you get people that just stop&nbsp;<em>thinking</em>&nbsp;about what they’re doing. “This is the principle, to always write unit tests, so I’m always going to write unit tests,” and then they’re just not thinking about how they’re spending their time, and they wind up wasting a lot of it.</p>
+<p>Joel Spolsky, <a class="reference external" href="https://www.joelonsoftware.com/2009/01/">Stack Overflow Podcast #38</a></p>
+</blockquote>
+<p>Implementing software tests is a best practice for maintaining code, but seems ambiguous to someone who has not tested any code before. I guess the best way is to <a class="reference external" href="https://github.com/iodide-project/pyodide/tree/master/test">read open source projects with test suites</a>, but those can be tough to find. How do you know <a class="reference external" href="https://docs.python-guide.org/writing/reading/">a good test suite</a> when you see it? Maybe the maintainers went rogue and off the deep end with tests. Online, everybody says you should test your code, <a class="reference external" href="https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes">is the emperor wearing any clothes?</a></p>
+<p>As a beginner stumbling across articles on testing, these questions were tough to answer. As with most things in programming, figuring out the right question to ask is a challenge in itself. <a class="reference external" href="https://www.codecademy.com/learn/learn-python-3">Codeacademy</a> and <a class="reference external" href="https://www.coursera.org/specializations/python">Coursera</a> never mentioned anything about writing tests. On the other hand, <a class="reference external" href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django</a> includes testing in its tutorial and documentation. Also, most languages come with built-in testing tools. Python has the <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> library.</p>
+<p><strong>Why test at all? First, some solid benefits of software testing:</strong></p>
+<ul class="simple">
+<li>With tests on your code in place, you can implement changes and have confidence the code still works if the tests pass. This gives developers more confidence to iterate and improve an application.</li>
+<li>Detect problems faster. Passing tests are a good indicator that your programs are actually doing what they're supposed to do. If they don't pass, you likely found a bug you might have missed otherwise.</li>
+<li>When you find a bug, you either need to amend your code, or your tests. write a test for that bug and then fix it. Either that, or you need to be amend your tests. You've just improved the quality of your test suite.</li>
+<li><a class="reference external" href="https://daedtech.com/dont-learn-to-code-learn-to-automate/">Automation</a>. If you are writing tests, those tests can be automated. If you are manually checking the results of your program, you're missing a chance to automate those checks away. I haven't applied it yet, but have heard the <a class="reference external" href="https://tox.readthedocs.io/en/latest/">Tox library</a> may be useful to automate tests related to Python packaging. For more on automating tests, see this PyCon talk, <a class="reference external" href="https://www.youtube.com/watch?v=-BHverY7IwU">Three Excellent Python Tools to Automate Repetitive Tasks</a>.</li>
+<li>Test Driven Development can decrease the time spent debugging code. This claim sometimes lacks empirical evidence, supporting evidence tends to be anecdotal.</li>
+</ul>
+<!--  -->
+<blockquote>
+<p>A good unit test, therefore, is one that helps enforce the contract to which the function is committed.</p>
+<p>If a good unit test breaks, the contract is violated and should be either explicitly amended (by changing the documentation and tests), or fixed (by fixing the code and leaving the tests as is).</p>
+<p>A good unit test is also&nbsp;<em>strict</em>. It does its best to ensure the output is valid. This helps it catch more bugs.</p>
+<ul class="simple">
+<li>Moshe Zadka, <a class="reference external" href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></li>
+</ul>
+</blockquote>
+<p><strong>Pytest and Unit Testing in Python</strong></p>
+<p>This is where the Python hits the pavement. Unit tests are generally liked, although some prefer property tests or integration tests because they think the scope of unit tests is too narrow. The <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> library is Python's default testing framework. However nowadays, <a class="reference external" href="https://docs.pytest.org/en/latest/contents.html">pytest</a> seems to be the preferred unit testing framework for Python. <a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">Hypothesis</a> is another popular framework I've read about.</p>
+<p><strong>Pytest Testing</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://realpython.com/interview-brian-okken/">Interview with the author of Pytest</a></li>
+<li><a class="reference external" href="https://docs.pytest.org/en/latest/">Pytest Documentation</a></li>
+<li><a class="reference external" href="https://martinheinz.dev/blog/7">Pytest Features That You Need In Your Life</a></li>
+<li><a class="reference external" href="http://love-python.blogspot.com/2017/10/table-driven-unit-test-in-python.html">Table Driven Unit Testing With pytest</a></li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=Pf1ADyUKOrE">Reproducible Data Analysis in Jupyter, Part 6/10: Unit Testing with PyTest</a> [YouTube]</li>
+</ul>
+<!--  -->
+<blockquote>
+Tests start to lose signal when <a class="reference external" href="https://docs.python.org/3/library/unittest.mock.html">Mock</a> becomes routine instead of a reluctant workaround. - Brandon Rhodes, <a class="reference external" href="http://S0No2zSJmks">When Python Practices Go Wrong</a></blockquote>
+<p><strong>Testing in Python \ General Unit Testing Ideas</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/pandas-dev/pandas/wiki/Testing">Testing Conventions for the Pandas Library</a></li>
+<li><a class="reference external" href="https://kanoki.org/2019/11/18/how-to-create-dataframe-for-testing/">How to Create a Dataframe for Testing</a></li>
+<li><a class="reference external" href="https://jeffknupp.com/blog/2013/12/09/improve-your-python-understanding-unit-testing//">Improve Your Python: Understanding Unit Testing</a></li>
+<li><a class="reference external" href="http://kbroman.org/blog/2015/12/07/write-unit-tests/">Write Unit Tests</a></li>
+<li><a class="reference external" href="https://henrikwarne.com/2013/12/08/tdd-unit-tests-and-the-passage-of-time/">Writing Unit Tests for Time</a></li>
+<li><a class="reference external" href="https://henrikwarne.com/2014/02/19/5-unit-testing-mistakes/">5 Unit Testing Mistakes</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/unit-tests-are-not-tests/">Unit Tests Are Not Tests</a></li>
+<li><a class="reference external" href="https://hakibenita.com/the-best-new-feature-in-unittest-you-didnt-know-you-need">The Best New Feature in unittest You Didn't Know You Need</a></li>
+<li><a class="reference external" href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></li>
+<li><a class="reference external" href="https://michaelfeathers.typepad.com/michael_feathers_blog/2008/06/the-flawed-theo.html">The Flawed Theory Behind Unit Testing</a></li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django Introduction to Automated Testing</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/python-doctests/">Python Doc Tests</a> Turn docstrings into tests, unique to Python.</li>
+</ul>
+<!--  -->
+<blockquote>
+<p>I think&nbsp;<a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">hypothesis</a>&nbsp;is probably underrated—some libraries are hesitant to incorporate it into their testing frameworks, but I think the property-based testing has real potential to catch scenarios humans would have a hard time anticipating, or at least that would take a long time to properly plan for. I find that hypothesis almost always adds a few useful test cases I hadn’t thought of that will require special error handling, for example.</p>
+<p><a class="reference external" href="http://www.blog.pythonlibrary.org/2020/01/13/pydev-of-the-week-tyler-reddy/">Tyler Reddy</a>, SciPy Release Manager</p>
+</blockquote>
+<p><strong>Integration \ Property Tests</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://blog.juliobiason.me/books/things-i-learnt/integration-tests/">Unit Tests Are Good, Integration Tests Are Gooder</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/pbt-contracts/">PROPERTY TESTS + CONTRACTS = INTEGRATION TESTS</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/contract-examples/">Finding Property Tests</a></li>
+<li><a class="reference external" href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-Based Testing</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/contracts/">Contracts</a></li>
+</ul>
+<!--  -->
+<blockquote>
+<p>Traditional, or example-based, testing specifies the behavior of your software by writing examples of it—each test sets up a single concrete scenario and asserts how the software should behave in that scenario. Property-based tests take these concrete scenarios and generalize them by focusing on which features of the scenario are essential and which are allowed to vary. This results in cleaner tests that better specify the software’s behavior—and that better uncover bugs missed by traditional&nbsp;testing.</p>
+<ul class="simple">
+<li>David Maciver, <a class="reference external" href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-based Testing</a></li>
+</ul>
+</blockquote>
+<p><strong>Assertions</strong></p>
+<p>Assertions are generally accepted as welcome additions to your code.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://blog.regehr.org/archives/1091">Use of Assertions</a></li>
+<li><a class="reference external" href="http://www.squarefree.com/2014/02/03/fuzzers-love-assertions/">Fuzzers Love Assertions</a></li>
+<li><a class="reference external" href="http://pgbovine.net/code-carabiners.htm">Code Carabiners</a></li>
+<li><a class="reference external" href="https://docs.pytest.org/en/latest/assert.html#assert">pytest Assertions</a></li>
+</ul>
+<!--  -->
+<blockquote>
+<p>In reality, the safety and restraints that these code carabiners provide actually give you <strong>more freedom</strong> to take risks in your coding. If you want to try out some risky feature, refactoring, or external library, you know something is wrong as soon as one of your assertions or tests fail and can undo back to an earlier working state.</p>
+<p>Phillip J. Guo, <a class="reference external" href="http://pgbovine.net/code-carabiners.htm">Code Carabiners</a></p>
+</blockquote>
+<p><strong>Test Driven Development</strong></p>
+<p>Eventually, you'll discover the evangelists preaching Test Driven Development. There are certain discussions which polarize us in the software development world, such as the appropriate scenarios to deploy this system of development.</p>
+<p>Opinions vary widely on the merits and appropriate application of TDD. I'm admittedly skeptical but do see the merits of TDD. But which flavor? Where do unit tests and integration tests fit in? How many tests should I write? What exactly should I be testing? <a class="reference external" href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">This essay</a> claims anyone pair programming software with an expected life of 3 or more years should use Test Driven Development.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://henrikwarne.com/2019/09/29/when-tdd-is-not-a-good-fit/">When TDD is Not a Good Fit</a></li>
+<li><a class="reference external" href="http://neverworkintheory.org/2016/10/05/test-driven-development.html">Test Driven Development vs. Test Last Development</a> [Study]</li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=DQBf6li1hww">Why TDD Is Crap</a> [YouTube]</li>
+<li><a class="reference external" href="https://hillelwayne.com/post/why-tdd-isnt-crap/">Why TDD Isn't Crap</a> [Response Blog to Video]</li>
+<li><a class="reference external" href="https://www.arp242.net/testing.html">Testing Isn't Everything</a></li>
+<li><a class="reference external" href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">Is Pair Programming + TDD worth it?</a></li>
+</ul>
+<!--  -->
+<blockquote>
+<p>&quot;Test Driven Development is a tool for continuously evaluating hypotheses.&quot;</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?time_continue=170&amp;v=UOOuW5tqT8M&amp;feature=emb_logo">James Shore, Assert(JS) Con 2019</a></li>
+</ul>
+</blockquote>
+<p><strong>General Testing Ideas and Principles</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.python-guide.org/writing/tests/">Testing Your Code</a>, The Hitchhiker's Guide to Python</li>
+<li><a class="reference external" href="https://blog.liw.fi/posts/2019/06/29/dijkstra_was_only_partially_correct_about_testing/">The Point of Software Testing</a></li>
+<li><a class="reference external" href="https://rachelbythebay.com/w/2013/01/30/test/">Connecting Bug Fixing to Automated Testing</a></li>
+<li><a class="reference external" href="https://www.jamesshore.com/In-the-News/Thinking-In-Tests.html">Thinking in Tests</a> [YouTube]</li>
+<li><a class="reference external" href="https://www.drmaciver.com/2015/04/some-empirically-derived-testing-principles/">Some empirically derived testing principles</a></li>
+<li><a class="reference external" href="https://danluu.com/tests-v-reason/">Testing Vs. Informal Reasoning</a></li>
+<li><a class="reference external" href="https://blog.nelhage.com/2016/12/how-i-test/">How I Write Tests</a></li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=Xu5EhKVZdV8">Stop Mocking, Start Testing</a> [YouTube]</li>
+<li>&quot;<a class="reference external" href="https://python-guide-es.readthedocs.io/es/latest/writing/reading.html">Each one of these projects is a paragon of Python coding.</a>&quot;</li>
+<li><a class="reference external" href="https://increment.com/development/what-its-like-to-be-a-developer-at/">What it's Like to Be a Developer at...</a>&nbsp;[Testing Practices Described]</li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">Hammock Driven Development</a> [YouTube] Not so much testing focused, but including because I really enjoyed this talk.</li>
+</ul>
+<p><strong>Other common tests types:</strong></p>
+<blockquote>
+<p>Unit test: when it fails, it tells you what piece of your code needs to be fixed.</p>
+<p>Integration test: when it fails, it tells you that the pieces of your application are not working together as expected.</p>
+<p>Acceptance test: when it fails, it tells you that the application is not doing what the customer expects it to do.</p>
+<p>Regression test: when it fails, it tells you that the application no longer behaves the way it used to.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://stackoverflow.com/questions/7672511/unit-test-integration-test-regression-test-acceptance-test">Mathias, Stack Overflow Answer</a></li>
+</ul>
+</blockquote>
+<p><strong>Testing maturity level progression:</strong></p>
+<ol class="arabic simple">
+<li>No tests</li>
+<li>Occasional, slow, unreliable tests</li>
+<li>Semi-comprehensive integration tests</li>
+<li>Fast, comprehensive unit tests comprise the bulk of testing<ul>
+<li>Dependency injection</li>
+<li>Composable subsystem design</li>
+</ul>
+</li>
+<li>Real-time test feedback (ideally integrated into the editor)</li>
+<li>Tests are extremely reliable or&nbsp;<a class="reference external" href="http://andyfriesen.com/2015/06/17/testable-io-in-haskell.html">guaranteed reliable by the type system</a><ul>
+<li>With tooling that tracks the reliability of tests and provides that feedback to authors.</li>
+</ul>
+</li>
+<li>Fuzzing, statistically automated microbenchmarking, rich testing frameworks for every language and every platform, and a company culture of writing the appropriate number of unit tests and high-value integration tests.</li>
+</ol>
+<ul class="simple">
+<li><a class="reference external" href="https://chadaustin.me/2019/11/two-years-at-dropbox/">ChadAustin.me</a></li>
+</ul>
+<p><strong>I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:</strong></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pytest</tt></p>
+<p><strong>test_file_date.py</strong></p>
+<pre class="literal-block">
+import glob
+import os
+from datetime import datetime, date
+
+# The dir_query format is for a Windows path with Unix style pattern matching.
+def test_csv_date_equals_today():
+    dir_query = 'C:\\Users\\your_username\\Desktop\\*.csv' # specify csv extension and folder
+    file_path = sorted(glob.iglob(dir_query), key=os.path.getmtime)[-1] # get most recent file
+    file_timestamp = os.path.getmtime(file_path)
+    file_date = datetime.fromtimestamp(file_timestamp)
+    print(file_date.day)
+    print(date.today().day)
+    assert file_date.day == date.today().day
+</pre>
+<div class="line-block">
+<div class="line"><strong>Run the test with pytest by entering:</strong></div>
+<div class="line"><tt class="docutils literal">pytest test_file_date.py</tt></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Conclusion</strong></div>
+<div class="line">I write programs for personal productivity and to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automate processes</a> at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.</div>
+</div>
+<p>It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/a-collection-of-software-testing-opinions-for-python-and-beyond.html">posted at 03:06</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-productivity-programming-python-software-testing.html" rel="tag">coding, productivity, programming, python, software testing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/pytest.html" class="tags">pytest</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software-development.html" class="tags">software development</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/test-driven-development.html" class="tags">test driven development</a>
+                </div>
+            </article>            <h4 class="date">Nov 30, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/inserting-new-records-into-a-microsoft-access-database-with-python.html" rel="bookmark" title="Permanent Link to &quot;Inserting New Rows Into A Microsoft Access Database With Python and pyodbc&quot;">Inserting New Rows Into A Microsoft Access Database With Python and pyodbc</a>
+                </h2>
+
+                
+                
+
+                <p>I recently automated the loading of data into a Microsoft Access database with <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc</a>, a Python library for connecting to databases. ODBC stands for <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Open Database Connectivity</a>. It can be used for a variety of Database Management Systems outside of Access also.</p>
+<p><strong>First,</strong> <a class="reference external" href="https://docs.python.org/3/installing/index.html">install libraries with pip</a><strong>. Enter in terminal or command prompt:</strong></p>
+<ol class="arabic simple">
+<li><ol class="first arabic">
+<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pyodbc</tt></li>
+<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
+</ol>
+</li>
+</ol>
+<p><strong>Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:</strong></p>
+<pre class="literal-block">
+python
+&gt;&gt;&gt; import pyodbc
+&gt;&gt;&gt; [x for x in pyodbc.drivers() if x.startswith('Microsoft Access Driver')]
+</pre>
+<p><strong>Drivers for</strong> <strong>Access &amp; Many Other Data Sources</strong></p>
+<p>The driver is the engine that allows you to connect to a specific type of database. The drivers available vary depending on your machine.</p>
+<p>The two most common drivers for Access are Microsoft Access Driver (<em>.mdb) and Microsoft Access Driver (</em>.mdb, *.accdb). My computer only had *.mdb, which has been deprecated. My Access database was a .mdb file, so I was able to use this driver as shown below. Read more on Access drivers <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-Microsoft-Access">here</a>.</p>
+<blockquote>
+&quot;Drivers exist for all major DBMSs, many other data sources like address book systems and Microsoft Excel, and even for text or comma-separated values (CSV) files.&quot;&nbsp; - <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Wikipedia</a></blockquote>
+<p><strong>Database Data Types</strong></p>
+<p>I set all of the field data types to &quot;Short Text&quot; because I'm passing strings as SQL parameters below. Uploading as other data types may require additional formatting. To edit the data types of your table, open the table and select &quot;Design View&quot; under the &quot;Home&quot; tab. It got the job done for me!</p>
+<p><strong>Inserting new rows into a Microsoft Access Database:</strong></p>
+<pre class="literal-block">
+import pandas as pd
+import pyodbc
+
+
+def df_to_row_tuples(df):
+    &quot;&quot;&quot;
+    use list comprehension to format df rows as a list of tuples:
+    rows = [('Garfield','Orange','Eat'),('Meowth','White','Scratch')]
+    &quot;&quot;&quot;
+    df = df.fillna('')
+    rows = [tuple(cell) for cell in df.values]
+    return rows
+
+&quot;&quot;&quot;
+Rows are not added to DB until they are committed.
+Pass each row tuple as a SQL parameter (?,?,?).
+cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm
+&quot;&quot;&quot;
+conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\Add_Path\To_DB\Here\Your_DB.mdb;')
+cursor = conn.cursor()
+sql = ''' INSERT INTO Cats (Name, Color, Move)
+          VALUES(?,?,?) '''
+df = pd.read_csv('Cat Data.csv')
+rows = df_to_row_tuples(df)
+for row in rows:
+    cursor.execute(sql, row)
+conn.commit()
+</pre>
+<p><strong>Conclusion</strong></p>
+<p>Running the above in command prompt uses pyodbc and SQL to add dataframe rows to a Microsoft Access DB table named &quot;Cats&quot;. Passing each row as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/#paramstyle">SQL parameter</a> has two benefits:</p>
+<ol class="arabic simple">
+<li>It handles strings with single quotes (') and loads them to the DB.</li>
+<li>It protects against <a class="reference external" href="https://www.acunetix.com/websitesecurity/sql-injection/">SQL injection</a> attacks.</li>
+</ol>
+<p><strong>Access Limitation Disclaimer</strong></p>
+<p>Access topped out just shy of 10 million rows in my use case, when records stopped getting added to my database. So keep that in mind if you're thinking about using Access to store your data.</p>
+<p><strong>Supplementary Resources</strong></p>
+<p><a class="reference external" href="https://datatofish.com/insert-ms-access-python/">Insert Values into MS Access Table using Python</a></p>
+<p><a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc documentation</a></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15">Microsoft Documentation pyodbc example</a></p>
+<p><a class="reference external" href="https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor.htm">The Python Cursor Class</a></p>
+<p><a class="reference external" href="https://www.psycopg.org/docs/cursor.html">Psycopg Cursor Class Documentation</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/inserting-new-records-into-a-microsoft-access-database-with-python.html">posted at 00:28</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-data-databases-excel-odbc-pandas-python-windows.html" rel="tag">automation, data, Databases, excel, ODBC, pandas, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/access.html" class="tags">Access</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/microsoft.html" class="tags">Microsoft</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/productivity.html" class="tags">productivity</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                </div>
+            </article>            <h4 class="date">Nov 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/automated-python-with-windows-task-scheduler.html" rel="bookmark" title="Permanent Link to &quot;Automated Python With Windows Task Scheduler&quot;">Automated Python With Windows Task Scheduler</a>
+                </h2>
+
+                
+                
+
+                <p><strong>So you want to run your Python scripts automatically, but how?</strong></p>
+<p>I had heard of several popular scheduling libraries in Python like <a class="reference external" href="http://www.celeryproject.org/">celery</a>, <a class="reference external" href="https://www.pyinvoke.org/">Invoke</a>, and&nbsp;<a class="reference external" href="https://github.com/dbader/schedule">schedule</a>. One of my requirements is to run the python file &quot;in the background&quot;, not in command prompt or an open window.</p>
+<p>Enter Windows Task Scheduler, the de facto scheduler on Windows 7 computers. I have&nbsp; scheduled a few scripts and it is working like a charm. In this post, I will schedule an example script to clean up my desktop at the beginning of each day. I have a habit of accumulating many Excel files there throughout the workday. This example automatically moves them into a folder.</p>
+<p>Other Windows scheduling alternatives worth mentioning include <a class="reference external" href="http://thepythoncorner.com/dev/how-to-create-a-windows-service-in-python/">creating a Windows service</a>, or using <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks">schtasks</a> if you prefer the command line.</p>
+<p><strong>Here's how to schedule a Python script to run:</strong></p>
+<ol class="arabic simple">
+<li>Search for Windows Task Scheduler in the start menu. Then select &quot;Task Scheduler Library&quot; to see all of the tasks Windows is running automatically.</li>
+<li>In the right toolbar, select &quot;Create Basic Task&quot; and give it a name and description. Note: I selected &quot;Configure for: Windows 7, Windows Server 2008 R2&quot;.</li>
+</ol>
+<img alt="general" class="wp-image-1577 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/general.png" style="width: 481px; height: 361px;" />
+<ol class="arabic simple" start="3">
+<li>Set the time and frequency that the program will run in the &quot;Triggers&quot; tab.</li>
+<li>Under the &quot;Actions&quot; tab, select &quot;Start a Program&quot; from the dropdown. Under &quot;Program/Script&quot;, enter the path to your Python.exe file. I set mine to a Python executable located within my <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, but yours might be found wherever you have Python installed.</li>
+</ol>
+<pre class="literal-block">
+C:\Users\your_username\Desktop\36env\Scripts\python.exe
+</pre>
+<ol class="arabic simple" start="5">
+<li>Under &quot;Add arguments (optional)&quot;, add the path to your .py script, within quotes:</li>
+</ol>
+<pre class="literal-block">
+&quot;C:\Users\your_username\Desktop\36env\clean_desktop_excels.py&quot;
+</pre>
+<img alt="actions" class="alignnone size-full wp-image-1578" src="http://pythonmarketer.files.wordpress.com/2018/11/bd0a9-actions-e1543177551739.png" style="width: 448px; height: 236px;" />
+<ol class="arabic simple" start="6">
+<li>Select additional conditions and settings as desired, such as &quot;Wake the computer to run this task&quot; and &quot;Run with highest privileges&quot;.</li>
+</ol>
+<p>I am enjoying this simple, easy and convenient scheduling manager for Windows. I figured most of this out thanks to <a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/analytics/scheduling-a-python-script-or-model-to-run-at-a-prescribed-time/?rmedium=redirect&amp;rsource=/esri/arcgis/2013/07/30/scheduling-a-scrip">this blog</a>. Below is my script to clean my desktop each morning by moving my Excel files into a folder, using Python's stock <a class="reference external" href="https://docs.python.org/3/library/shutil.html">shutil</a> and os libraries. Set it and forget it, ya know what i mean? :D</p>
+<pre class="literal-block">
+from shutil import move
+import getpass
+import os
+
+&quot;&quot;&quot;
+Desktop Spreadsheet File Cleaner - Python Marketer
+https://atomic-temporary-107329037.wpcomstaging.com/2018/11/25/automated-python-with-windows-task-scheduler/
+&quot;&quot;&quot;
+# Get all Desktop files and folders
+src_directory = f'C:\\Users\\{getpass.getuser()}\\Desktop'
+dir_items = os.listdir(src_directory)
+excel_files = [item for item in dir_items \
+                if '.csv' in item or '.xls' in item]
+
+dst = f'C:\\Users\\{getpass.getuser()}\\Desktop\\Current_Month_Excels'
+os.makedirs(dst, exist_ok=True)
+for xl in excel_files:
+    path_to_file = src_directory + xl
+    move(path_to_file, dst)
+</pre>
+<p><strong>Additional Reading</strong></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc721846(v=ws.11)?redirectedfrom=MSDN">Troubleshooting Windows Task Scheduler</a> - Windows Documentation</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/automated-python-with-windows-task-scheduler.html">posted at 19:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/automation-productivity-programming-python-windows.html" rel="tag">automation, productivity, programming, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/coding.html" class="tags">coding</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/organization.html" class="tags">organization</a>
+                </div>
+            </article>            <h4 class="date">Aug 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/gooey-gui-for-python-scripts.html" rel="bookmark" title="Permanent Link to &quot;Gooey GUI for Python Scripts&quot;">Gooey GUI for Python Scripts</a>
+                </h2>
+
+                
+                
+
+                <p>GUI stands for &quot;Graphical User Interface&quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.</p>
+<p>There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, <a class="reference external" href="https://github.com/hoffstadt/DearPyGui">DearPyGui</a> and PySimpleGUI. I <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">explored Tkinter</a> back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.</p>
+<p>The <a class="reference external" href="https://github.com/chriskiehl/Gooey">Gooey Github page</a> was most useful to me and helped me to do what I needed. The script posted <a class="reference external" href="http://pbpython.com/pandas-gui.html">in this blog</a> helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:</p>
+<ol class="arabic simple">
+<li>some basic widgets piggyback off the <a class="reference external" href="https://www.blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/">argparse</a> library</li>
+<li>another part of the library uses a function called the GooeyParser. The GooeyParser offers more advanced widgets, like a file chooser. This was exactly what I was looking to use to pull in files for my script.</li>
+</ol>
+<p><strong>Installing Gooey</strong></p>
+<p>Argparse comes stock with Python. You can install Gooey via the <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>. Open command prompt or terminal and enter:</p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install Gooey</tt></p>
+<p>Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).</p>
+<pre class="literal-block">
+from argparse import ArgumentParser
+from gooey import Gooey
+
+&#64;Gooey(program_name='Email Campaign Reporting Generator', default_size=(575, 600))
+def get_args():
+    &quot;&quot;&quot;Demonstrating python's vars built-in to store arguments in a python dict.&quot;&quot;&quot;
+    parser = ArgumentParser(description='A simple argument parser', epilog='This is where you might put example usage')
+    parser.add_argument('Name', action='store', required=True, help='Help text for option X')
+    parser.add_argument('Email', help='Help text for option Y', default=False)
+    parser.add_argument('Campaign Number', help='Help text for option Z', type=int)
+    parser.add_argument('Campaign Segment', choices=['A', 'B','All'], default='a', nargs='?')
+    user_inputs = vars(parser.parse_args())
+    print(user_inputs)
+    name = user_inputs['Name']
+    campaign_number = user_inputs['Campaign Number']
+    return parser.parse_args()
+
+if __name__ == '__main__':
+    get_args()
+</pre>
+<!--  -->
+<blockquote>
+Side note: Check out Python's <a class="reference external" href="https://docs.python.org/3/library/functions.html#vars">vars() built-in</a> function above. It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!</blockquote>
+<p>The &#64;Gooey() part of the code is an advanced function known as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0318/">decorator in Python</a>. Put simply, decorators are functions that modify the function to which they are attached.</p>
+<p>Below is my script that uses the more advanced GooeyParser for its &quot;FileChooser&quot; widget. Gooey allows you to group widgets together and set how many widgets per line with the gooey_options={} parameter.</p>
+<pre class="literal-block">
+from gooey import Gooey, GooeyParser
+
+&#64;Gooey(program_name='Email Campaign Reporting Generator', default_size=(575, 600))
+def get_args():
+    &quot;&quot;&quot;
+    Adding two argument groups, each accepting two arguments.
+    Using gooey_options to set layout.
+    &quot;&quot;&quot;
+    parser = GooeyParser(description='Export campaign report spreadsheets and upload below.')
+    top_group = parser.add_argument_group(gooey_options={'show_border': False,'columns': 1})
+    top_group.add_argument('Contact List', help='Upload Send List (.xlsx)', widget='FileChooser')
+    top_group.add_argument('Opens List', help='Upload Opens List (.xlsx)', widget='FileChooser')
+    top_group.add_argument('Unsubscribe List', help='Upload Unsubscribe List (.xlsx)', widget='FileChooser')
+    bottom_group = parser.add_argument_group(gooey_options={'show_border': False,'columns': 1, 'required':False})
+    bottom_group.add_argument('Campaign ID', action='store', help=&quot;Number found in the Campaign 'Reports' tab&quot;)
+    bottom_group.add_argument('Campaign Segment', action='store', help='Enter A, B, or All. All lists supplied must match segment.')
+    user_inputs = vars(parser.parse_args())
+    name = user_inputs['Name']
+    return parser.parse_args()
+
+if __name__ == '__main__':
+    get_args()
+</pre>
+<p>Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:</p>
+<img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" />
+<p>Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D</p>
+<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&nbsp;<a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/gooey-gui-for-python-scripts.html">posted at 16:32</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-product-development-programming-software.html" rel="tag">coding, data, product development, programming, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gooey.html" class="tags">gooey</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/gui.html" class="tags">gui</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software-development.html" class="tags">software development</a>
+                </div>
+            </article>            <h4 class="date">Jul 15, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/findstr-aka-grep-for-windows.html" rel="bookmark" title="Permanent Link to &quot;Findstr, RegEx File Searches for Windows&quot;">Findstr, RegEx File Searches for Windows</a>
+                </h2>
+
+                
+                
+
+                <p>Findstr is the Windows alternative to GREP, which runs on the <a class="reference external" href="https://www.howtogeek.com/182649/htg-explains-what-is-unix/">Unix operating system</a>. Findstr searches files with <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> and seems useful for string matching within files and directories.&nbsp; It is one of over <a class="reference external" href="https://www.lifewire.com/list-of-command-prompt-commands-4092302">280 command prompt commands</a>. Here's the official&nbsp;<a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">Windows Documentation</a>&nbsp;and some&nbsp;<a class="reference external" href="https://www.mkyong.com/linux/grep-for-windows-findstr-example/">Linux vs. Windows Examples.</a></p>
+<p><strong>Update:</strong> Windows announced that <a class="reference external" href="https://hackaday.com/2019/06/10/windows-10-goes-to-shell/">Grep and several other Unix command line tools will be added to Windows 10</a>. This is a new alternative to findstr.</p>
+<p><strong>This findstr command returns all lines containing an '&#64;' in a text file.</strong></p>
+<pre class="literal-block">
+findstr &#64; test.txt
+</pre>
+<img alt="findstr Emails" class="alignnone size-full wp-image-1406" src="https://pythonmarketer.files.wordpress.com/2018/07/findstr-emails.png" style="width: 602px; height: 48px;" />
+<p><strong>I was happy to see Findstr's convenient help menu:</strong></p>
+<pre class="literal-block">
+findstr -?
+</pre>
+<img alt="findstr_help" class="alignnone size-full wp-image-1408" src="https://pythonmarketer.files.wordpress.com/2018/07/findstr_help.png" style="width: 657px; height: 603px;" />
+<p>Regular expressions are so powerful. It's nice to have this utility within the command prompt. I am hoping to get to know some of the other 280 command prompt commands.</p>
+<p><strong>I've previously explored regex with Python. This Python regex example finds all words in a text file containing '&#64;' symbols:</strong></p>
+<pre class="literal-block">
+import re
+
+
+# read the file to string + regex email search
+with open('test.txt', 'r') as fhand:
+    string = fhand.read()
+    # this regex returns a python list of emails:
+    emails = re.findall('(\S*&#64;\S+)', string)
+    print(emails)
+</pre>
+<img alt="findall_python" class="alignnone size-full wp-image-1405" src="https://pythonmarketer.files.wordpress.com/2018/07/findall_python.png" style="width: 633px; height: 173px;" />
+<p>For more command prompt nuggets, check out my more recent post: <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/">Exploring Windows Command Line Tools, Batch Files and Remote Desktop Connection</a>.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/findstr-aka-grep-for-windows.html">posted at 19:52</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/command-prompt-data-python-windows.html" rel="tag">command prompt, data, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/regex.html" class="tags">regex</a>
+                </div>
+            </article>            <h4 class="date">Mar 24, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/blog_post-listcool_python_things.html" rel="bookmark" title="Permanent Link to &quot;list(cool_python_things)&quot;">list(cool_python_things)</a>
+                </h2>
+
+                
+                
+
+                <ol class="arabic simple">
+<li><a class="reference external" href="https://github.com/norvig/pytudes">pytudes</a> - &quot;This project contains&nbsp;<strong>pytudes</strong>—Python programs for perfecting programming skills.&quot;</li>
+<li><a class="reference external" href="https://www.makeartwithpython.com/blog/video-synthesizer-in-python/?utm_source=mybridge&amp;utm_medium=blog&amp;utm_campaign=read_more">Building a video synthesizer in Python</a></li>
+<li><a class="reference external" href="https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/overview">Running micropython on a microcontroller</a></li>
+<li><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> - Super awesome excel and data analysis library. The talk, &quot;<a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Pandas from the Ground Up</a>&quot; by Brandon Rhodes is great!</li>
+<li><a class="reference external" href="http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/">Fuzzy Wuzzy</a> - Fuzzy string matching python library, written by SeatGeek</li>
+<li><a class="reference external" href="https://soundcloud.com/talkpython">Talk Python to Me</a> - Python podcast</li>
+<li><a class="reference external" href="http://www.oreilly.com/programming/free/?imm_mid=0e20a9&amp;cmp=em-prog-na-na-afterp_triggered_email_programming_resources">Free Programming Books from O'Reilly</a></li>
+</ol>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/blog_post-listcool_python_things.html">posted at 19:38</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-pandas-programming.html" rel="tag">coding, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>            <h4 class="date">Jan 14, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/python-file-handling-basics.html" rel="bookmark" title="Permanent Link to &quot;Python File Handling Basics&quot;">Python File Handling Basics</a>
+                </h2>
+
+                
+                
+
+                <p>The basis of many great programs revolve around a simple set of operations:</p>
+<ol class="arabic simple">
+<li>Open a file.</li>
+<li>Do something with the file contents.</li>
+<li>Save the new file for the user.</li>
+</ol>
+<p>Python is nice and simple for this.&nbsp;Paste the below lines into a <a class="reference external" href="https://www.google.com/search?q=text+editor&amp;oq=text+edit&amp;aqs=chrome.0.0j69i57j0l4.2054j0j7&amp;sourceid=chrome&amp;ie=UTF-8">text editor</a> and save as a .py file. <a class="reference external" href="https://github.com/BurntSushi/nfldb/wiki/Python-&amp;-pip-Windows-installation">You need to have Python 3 installed</a>. In the same folder as your .py file, save a .txt file with some words in it. Alright, let's write some code:</p>
+<pre class="literal-block">
+file_name = input(&quot;Enter your file name. e.g. words.txt&quot;)
+file_handle = open(file_name, &quot;r&quot;)
+lines = file_handle.readlines()
+print (lines)
+file_handle.close()
+</pre>
+<p>In line 1, we ask the user to enter their file name with Python's raw_input function. When the program runs, the user enters their text file name with extension. This line stores the name in a variable called file_name.</p>
+<p><strong>In line 2,</strong> we open your text file and store it in a variable I have named file_handle. Think of the file handle as a bridge between your code and the text file. Quick point about the 'r' above: that tells the program to open the file in &quot;Read&quot; mode. There are several different file modes in programming. Some modes are just for reading an existing file, some are just for writing a new file, and some are capable of both. <a class="reference external" href="https://stackoverflow.com/questions/16208206/confused-by-python-file-mode-w/16208298">This Stack Overflow post</a> is well written and details the differences between file modes. Once established, the file handle allows you to read the file's contents or write new contents to the file.</p>
+<p><strong>In line 3,</strong>&nbsp;we are calling the .readlines() method on our file handle. This method takes the file contents and stores them, line by line, into a list named &quot;lines&quot;. An alternative method is .read(), which opens the file and stores its contents as one string. Try switching this out in place of&nbsp; .readlines() to check out the difference.</p>
+<p><strong>In line 4,</strong> we are printing the stored lines to show them to the user. We now have the file contents, ready to be used however we please.</p>
+<p><strong>In line 5</strong>, we are closing the file.</p>
+<p>Below, we are going to write a new file. Let's pretend we've done something worth saving with our lines and now want to save them to a new file. We will represent this as the variable &quot;output&quot; in the first line below.</p>
+<pre class="literal-block">
+file_name = input(&quot;Enter any file name.&quot;)
+save_file = open(file_name, &quot;w&quot;)
+save_file.write(&quot;Here is some text to save in a file.&quot;)
+save_file.close()
+</pre>
+<p>In line 1, we are using Python's input function to ask the user what to name the file and storing it in a variable named file_name.</p>
+<p>In line 2,&nbsp; we are calling the open function again that we used in the first example, but this time, notice the &quot;w&quot;. This indicates that we are opening the file in &quot;write&quot; mode.</p>
+<p>In line 3, we are calling the .write() method on our file handle, named save_file, and passing it our text to be saved in our new file.</p>
+<p><strong>In line 4</strong>, we are closing the file, completing the creation of our new file in the same folder as our .py program file.</p>
+<p>Your program is now ready to be run. Double-click your .py file to execute it.</p>
+<p>Before learning Python, file operations were a mystery to me. It took me a while to understand this clearly, and I wanted to share. Once you master these basic file operations, programming gets to be a lot more fun. Do try it out for yourself :D</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/python-file-handling-basics.html">posted at 18:53</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software.html" class="tags">software</a>
+                </div>
+            </article>            <h4 class="date">Aug 09, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html" rel="bookmark" title="Permanent Link to &quot;Creating A Simple Website and Server Environment with Node.js and Express.js&quot;">Creating A Simple Website and Server Environment with Node.js and Express.js</a>
+                </h2>
+
+                
+                
+
+                <p>Here is what I have deduced is the fastest way to get an app up and running with Node.js. This requires some familiarity with using the command line.&nbsp;I completed the Codeacademy course &quot;<a class="reference external" href="https://www.codecademy.com/learn/learn-the-command-line">Learn The Command Line</a>&quot; before beginning with Node.js. I think it helped me better understand what the commands are and what they do.</p>
+<ol class="arabic simple">
+<li>Download and install&nbsp;<a class="reference external" href="https://nodejs.org/en/">Node.JS</a></li>
+<li>Open the node command prompt. (This was on a windows machine.)</li>
+<li><tt class="docutils literal">mkdir node_apps</tt><ul>
+<li>creates a folder for your app(s)</li>
+</ul>
+</li>
+<li><tt class="docutils literal">cd \app_name</tt><ul>
+<li>changes command prompt directory to your app's folder</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm &nbsp;init</tt><ul>
+<li>Creates json file for your app</li>
+<li>fill out applicable info or just hit enter until the file is created</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm install express</tt><ul>
+<li>installs express.js module in node.js</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm install <span class="pre">express-generator</span> <span class="pre">-g</span></tt><ul>
+<li>installs express-generator module in node.js</li>
+<li>this module creates the web app's structure once the command in the next step is entered</li>
+</ul>
+</li>
+<li><tt class="docutils literal">express app_name</tt><ul>
+<li>creates the structure for your app and all necessary folders. (views, css, Javascript, routing, etc.)</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm install</tt><ul>
+<li>ensures all app module dependencies are installed</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm start</tt><ul>
+<li>starts your server and web app</li>
+</ul>
+</li>
+<li>Go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> in a browser. Port 3000 is the default port of Express.<ul>
+<li>Your app is live.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>I learned most of this from <a class="reference external" href="https://codeforgeek.com/2014/10/express-complete-tutorial-part-1/">this great blog post</a>.</li>
+<li>The above does not include a database integration. I integrated with a MongoDB database by <a class="reference external" href="https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-for-front-end-developers-to-getting-up-and-running-with-nodejs-express-and-mongodb">following the instructions in this post</a>.</li>
+<li>This <a class="reference external" href="https://www.youtube.com/watch?v=1uFY60CESlM">YouTube video</a> was also very helpful to me for figuring out MongoDB and Node.js integration.</li>
+<li>An HTML shorthand language called jade (aka pug) comes stock within Express.js.&nbsp; <a class="reference external" href="https://webapplog.com/jade/">Here's further reading</a> on the pros and cons.</li>
+<li>All of the above has been from my own studies. I do not claim anything listed as the most efficient or best way to use Node.js. This is what has worked for me over the past two days.</li>
+<li>It feels good to whip up a nimble app environment that is capable of producing and supporting world changing software; Node.js is used by Netflix, PayPal, Microsoft and Uber.</li>
+</ul>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html">posted at 21:16</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-javascript-programming-web-development.html" rel="tag">coding, javascript, programming, web development</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/creating-websites.html" class="tags">creating websites</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/expressjs.html" class="tags">express.js</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/mongodb.html" class="tags">mongodb</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/nodejs.html" class="tags">Node.js</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/web-dev.html" class="tags">web dev</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/website.html" class="tags">website</a>
+                </div>
+            </article>            <h4 class="date">Aug 05, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/oversimplified-javascript-terms.html" rel="bookmark" title="Permanent Link to &quot;Oversimplified Javascript Terms&quot;">Oversimplified Javascript Terms</a>
+                </h2>
+
+                
+                
+
+                <p>I'm finally coming around in my understanding of Javascript. Here are a few quick explanations to help you if you are new to it.</p>
+<p><strong>Javascript</strong> = The language of the web. Most commonly used as a complement to HTML and CSS to create an interactive website.</p>
+<p><strong>JQuery</strong> = A popular Javascript library with many powerful commands that are quick and easy to call.</p>
+<p><strong>Node.JS</strong> = Software that allows you to run Javascript from the command line without being connected to the internet.</p>
+<p><strong>Express.JS</strong> = A popular Node.JS framework.</p>
+<p><strong>Angular</strong> = A popular front-end Javascript web framework. There are many out there but this seems to be the one I've heard of the most.</p>
+<div class="line-block">
+<div class="line"><strong>I've begun to see a pattern with programming languages:</strong></div>
+<div class="line">1) Learn to execute the core building blocks. (using variables, loops, functions, etc.)</div>
+<div class="line">2) Learn more advanced libraries, documentation and uses.</div>
+<div class="line">3) Consider using and learning web frameworks depending on what you're trying to do with the language.</div>
+<div class="line">4) Practice to hone your knowledge. Build things you like.</div>
+</div>
+<p>I've also noticed that Javascript has been easier to learn than Python was for me, because it's not my first programming language. The concepts are the same. The syntax can trip me up at times, but I'm currently flying through <a class="reference external" href="https://www.codecademy.com/learn/learn-javascript">Codeacademy's Javascript courses</a>. Sometimes it even seems fun!</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/oversimplified-javascript-terms.html">posted at 18:37</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-javascript-programming.html" rel="tag">coding, javascript, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/angular.html" class="tags">angular</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/expressjs.html" class="tags">express.js</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/javascript-terms.html" class="tags">javascript terms</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/jquery.html" class="tags">JQuery</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/nodejs.html" class="tags">Node.js</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/software.html" class="tags">software</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/understanding-javascript.html" class="tags">understanding javascript</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/web-frameworks.html" class="tags">web frameworks.</a>
+                </div>
+            </article>            <h4 class="date">Jul 30, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/how-to-create-things-people-care-about.html" rel="bookmark" title="Permanent Link to &quot;Tips For Creating Useful Ideas&quot;">Tips For Creating Useful Ideas</a>
+                </h2>
+
+                
+                
+
+                <p>11 Ideas from people who have created great products, businesses, or ideas:</p>
+<ol class="arabic simple">
+<li>Expertise in a field or product is one of the best assets. Nike's founders started out by making their prototype shoe designs themselves with a waffle iron. //&nbsp;<a class="reference external" href="https://www.amazon.com/Shoe-Dog-Phil-Knight/dp/1508211809">Shoe Dog</a></li>
+<li>Scratch your own itch. Create the product that you wish existed in the world. Write the book you want to read. // <a class="reference external" href="https://austinkleon.com/steal/">Austin Kleon</a> //&nbsp;<a class="reference external" href="https://www.indiehackers.com/">Indie Hackers</a></li>
+<li>Observe a problem or inconvenience that exists in the world and create a better solution. // Product Development Class</li>
+<li>Find a niche and create something useful for that segment of people. //&nbsp;<a class="reference external" href="http://sethgodin.typepad.com/">Seth Godin</a></li>
+<li>For every attribute, there is an opposite, effective attribute.&nbsp;//&nbsp;<a class="reference external" href="https://blog.kowalczyk.info/articles/22-marketing-laws.html">Law 14, The 22 Immutable Laws of Marketing</a></li>
+<li>Launch quickly, show to people, get feedback, and iterate your idea. //&nbsp;<a class="reference external" href="https://37signals.com/rework">Rework</a></li>
+<li>Use combinatory play. Take ideas from different disciplines and combine them to bring about new ideas. //&nbsp;<a class="reference external" href="https://www.brainpickings.org/2013/08/14/how-einstein-thought-combinatorial-creativity/">Brain Pickings</a></li>
+<li>Invest in improving your product versus marketing. A great product is obvious to a potential customer.&nbsp;//&nbsp;<a class="reference external" href="http://sethgodin.typepad.com/">Seth Godin</a></li>
+<li>People remember how you or your product made them feel versus cost, etc.</li>
+<li>An idea doesn't have to be revolutionary. Many new businesses or products take an existing product and make a slight modification or add a new twist.</li>
+<li>Many of the successful people during the gold rush sold pick-axes to the miners.</li>
+</ol>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/how-to-create-things-people-care-about.html">posted at 19:10</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/business-entrepreneurship-marketing-product-development.html" rel="tag">business, entrepreneurship, Marketing, product development</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/app-development.html" class="tags">app development</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/rework.html" class="tags">rework</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/seth-godin.html" class="tags">seth godin</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/shoe-dog.html" class="tags">shoe dog</a>
+                </div>
+            </article>
+
+                <div class="clear"></div>
+                <div class="pages">
+
+                    <a href="https://pythonmarketer.com/index4.html" class="prev_page">&larr;&nbsp;Previous</a>
+
+                    <a href="https://pythonmarketer.com/index6.html" class="next_page">Next&nbsp;&rarr;</a>
+
+                    <span>Page 5 of 7</span>
+                </div>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

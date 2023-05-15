@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | articles in the "coding, data, excel" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-data-excel.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/coding-data-excel.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://pythonmarketer.com/category/coding-data-excel.html">coding, data, excel</a></li>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Mar 30, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/cleaning-data-with-python.html" rel="bookmark" title="Permanent Link to &quot;Cleaning Data with Python and Excel: A Brief Example&quot;">Cleaning Data with Python and Excel: A Brief Example</a>
+                </h2>
+
+                
+                
+
+                <p>I want to show a simple, real world problem and solution I made today with Python.</p>
+<p><strong>Problem:</strong> My data has been corrupted (over 8,000 rows in Excel). Somewhere in my haste, I have scrambled first names and last names in the 'first name' and 'last name' field.</p>
+<p><img alt="office_scrambled" class="size-full wp-image-1351 alignnone" height="133" src="https://pythonmarketer.files.wordpress.com/2018/03/office_scrambled.png" width="314"></p>
+<p><strong>Solution:</strong> Find unique words from both fields, which leads to unique first and last names.</p>
+<p>Copy the columns from Excel into a Notepad text file. Then run the below <a href="https://www.dropbox.com/s/kxmg3ndnx8d70hv/remove_dupe_words.py?dl=0">code</a> on the text file in command prompt.</p>
+<p><img alt="run_command" class="alignnone size-full wp-image-1352" height="25" src="https://pythonmarketer.files.wordpress.com/2018/03/run_command.png" width="464"></p>
+<p>::: {.line .number1 .index0 .alt2}
+    with open('file_name.txt',"r") as f:
+        lines = f.readlines()
+        lines = [line.split() for line in lines]
+        new_line = list()
+        edited_lines = list()
+        for line in lines:
+            # keep only the first appearance of a word on each line
+            new_line = [word for word in words if word.strip() not in new_line]
+            edited_lines.append(new_line)</p>
+<div class="highlight"><pre><span></span><code><span class="nv">with</span><span class="w"> </span><span class="nv">open</span><span class="ss">(</span><span class="s2">&quot;edited_lines.txt&quot;</span>,<span class="err">&#39;w) as f:</span>
+<span class="err">    for line in edited_lines:</span>
+<span class="w">        </span><span class="nv">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; &#39;</span>.<span class="nv">join</span><span class="ss">(</span><span class="nv">line</span><span class="ss">)</span><span class="w"> </span><span class="o">+</span><span class="s1">&#39;\n&#39;</span>
+<span class="w">        </span><span class="nv">f</span>.<span class="nv">write</span><span class="ss">(</span><span class="nv">line</span><span class="ss">)</span>
+</code></pre></div>
+
+<p>:::</p>
+<div>
+
+::: {style="text-align:right;"}
+**Output**
+:::
+
+<div>
+
+![unique_words](https://pythonmarketer.files.wordpress.com/2018/03/unique_words.png){.size-full .wp-image-1353 .alignright width="224" height="137"}
+
+</div>
+
+As you can see to the right, this has done a good job of repairing the damage, but we still need to get separation of first and last names. Luckily, I had already written some very ugly code tthat I probably shoudn't share (oh well!) that tries to match first and last names to columns appropriately and insert a semi-colon as a delimiter. [Here is the code.](https://www.dropbox.com/home/Sieve?preview=name_columnizer.py)
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+![form_Text](https://pythonmarketer.files.wordpress.com/2018/03/form_text.png){.size-full .wp-image-1354 .alignright width="220" height="142"}**Note:** You may need to use Excel's "From Text" feature if pasting in data from text files does not work.
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+Once we paste the data from our program in, we can use Excel's Text to Columns feature and split on the semi-colon delimiter.
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+After running our new file through the code linked above, we arrive at an output closer to what is desired: split name columns. A bug in my name_columnizer.py program accidentally inserted an extra '&' into some records. (I'm not perfect :)) Thankfully it could be fixed by a simple find and replace in Excel.
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+![find_replace_2](https://pythonmarketer.files.wordpress.com/2018/03/find_replace_2.png){.alignnone .size-full .wp-image-1356 width="604" height="248"}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+This takes us to the below data, which is not ideal but suited my purposes for the job at hand.
+
+</div>
+
+<div>
+
+![finish](https://pythonmarketer.files.wordpress.com/2018/03/finish.png){.alignnone .size-full .wp-image-1357 width="224" height="122"}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+I enjoyed this, because it was a custom solution to a problem created by my own carelessness in Excel. But I fixed it using relatively few lines of code. I want to start sharing more actual code on this blog so here is a start. I strive to be 'Pythonic', but my code is not always the best way. Often, it's far from it. Sometimes I just write code until I find a solution. I try to solve problems and learn to the best of my ability.
+
+</div>
+
+<div>
+
+Hope you enjoyed :D
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+This solution was used before I discovered the [Pandas](https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/) library, which I highly recommend looking into for doing Excel tasks with Python.
+
+</div>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/cleaning-data-with-python.html">posted at 02:24</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/coding-data-excel.html" rel="tag">coding, data, excel</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/code.html" class="tags">code</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

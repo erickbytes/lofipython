@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Marketer | Create a Column of Values in Pandas with df.assign()</title>
+    <link rel="shortcut icon" type="image/png" href="https://pythonmarketer.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pythonmarketer.com/favicon.ico">
+    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
+    <link href="https://pythonmarketer.com/feeds/pandas-programming-python.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
+    <link href="https://pythonmarketer.com/feeds/pandas-programming-python.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://pythonmarketer.com/theme/css/pygments.css" type="text/css" />
+    <style> 
+    @media (prefers-color-scheme: light) {
+        :root {
+            --main-bg-color: #FFFFFF;
+            --accent-color: #FFFFFF;
+            --tab-bg-hover: #d3d3d3;
+            --info-bg-color: #CCC;
+        }
+    }
+    </style>
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content="cats,data" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://pythonmarketer.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://pythonmarketer.com/">
+            <image src='python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jan 07, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://pythonmarketer.com/create-a-column-of-values-in-pandas-with-df-assign.html" rel="bookmark" title="Permanent Link to &quot;Create a Column of Values in Pandas with df.assign()&quot;">Create a Column of Values in Pandas with df.assign()</a>
+                </h2>
+
+                
+                
+
+                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><a href="https://pandas.pydata.org/docs/">Pandas</a> is amazing, what else is there to say? Learning the nuances of its API have yielded tons of times where it helped me get stuff done.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>I recently picked up the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html">pandas dataframe's "assign" function</a> for creating a new column of values. This is an elegant way to set a column of values in tabular data with the pandas library. Below you'll see two ways to set a column of values in pandas. In the first way, I am chaining two assign functions together to create 2 new columns, "sound" and "type". I prefer using assign because it looks better and it does not result in any warnings from pandas. Highly recommend getting familiar with pandas functions like assign and API nuances like <a href="https://pandas.pydata.org/docs/reference/series.html?highlight=str%20accessors#accessors">Series accessors</a> to up your tabular data game.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Garfield&quot;</span><span class="p">,</span><span class="s2">&quot;Meowth&quot;</span><span class="p">,</span><span class="s2">&quot;Tom&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">cats</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cats&quot;</span><span class="p">])</span>
+<span class="c1"># best way</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sound</span><span class="o">=</span><span class="s2">&quot;Meow&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;Cartoon&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># alternative way that also works, but with warnings from pandas</span>
+<span class="c1"># df[&quot;sound&quot;] = &quot;Meow&quot;</span>
+</code></pre></div>
+
+<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
+<p><code>&lt;!-- wp:quote --&gt;</code></p>
+<blockquote>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p>DataFrame.assign : Can evaluate an expression or function to create new<br>
+values for a column.</p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code><code>&lt;cite&gt;</code>- <a href="https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487">pandas source code</a><code>&lt;/cite&gt;</code></p>
+</blockquote>
+<p><code>&lt;!-- /wp:quote --&gt;</code></p>
+<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://pythonmarketer.com/create-a-column-of-values-in-pandas-with-df-assign.html">posted at 13:12</a>
+                    &nbsp;&middot;&nbsp;<a href="https://pythonmarketer.com/category/pandas-programming-python.html" rel="tag">pandas, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://pythonmarketer.com/tag/cats.html" class="tags">cats</a>
+                    &nbsp;<a href="https://pythonmarketer.com/tag/data.html" class="tags">data</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://pythonmarketer.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

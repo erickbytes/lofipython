@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Marketer - coding, Marketing, pandas, programming, python, work</title><link href="https://pythonmarketer.com/" rel="alternate"></link><link href="https://pythonmarketer.com/feeds/coding-marketing-pandas-programming-python-work.atom.xml" rel="self"></link><id>https://pythonmarketer.com/</id><updated>2020-05-09T04:06:00-05:00</updated><entry><title>Assessing The Marketing Effects of Randomization Failure</title><link href="https://pythonmarketer.com/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html" rel="alternate"></link><published>2020-05-09T04:06:00-05:00</published><updated>2020-05-09T04:06:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:pythonmarketer.com,2020-05-09:/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Preface&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I always enjoy reading when technical people share their stories of the times things went a little haywire. Times when, despite their best intentions, a solution didn't work as planned and it ends in unpleasant or catastrophic failure. I had an experience like this recently, so here's my &amp;quot;oops …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Preface&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I always enjoy reading when technical people share their stories of the times things went a little haywire. Times when, despite their best intentions, a solution didn't work as planned and it ends in unpleasant or catastrophic failure. I had an experience like this recently, so here's my &amp;quot;oops&amp;quot; story. Fortunately, I think this falls closer to the unpleasant end of the spectrum.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Finding A Solution&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;My employer needed a way to create postcard contact lists to mail 500,000 people each month. About 2 years in with the company, the old postcard system was breaking down and no one knew how to fix it. The guy who built it left the company. I never knew him and he didn't leave behind much help for anyone to fix his creation.&lt;/p&gt;
+&lt;p&gt;For my team, it was easier to create the contacts lists by drawing contact data out of our CRM with &lt;a class="reference external" href="https://requests.readthedocs.io/en/master/"&gt;requests&lt;/a&gt; and formatting the data with &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html"&gt;pandas&lt;/a&gt;. So that's what I did to help us deliver the postcards. (Let's set aside the debate on the strategic value of postcards.)&lt;/p&gt;
+&lt;p&gt;Things were going smooth for a few months. The new system was creating the lists and nothing appeared to change. The system is still in use today we are more reliable than the old system in its partially degraded state. But there were some growing pains.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Moment of&lt;/strong&gt; &lt;a class="reference external" href="https://twitter.com/jamesorharry/status/1100717726547562503"&gt;Ely&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+ELY (n.) The first, tiniest inkling you get that something, somewhere, has gone terribly wrong. [Douglas Adams, The Meaning of Liff]&lt;/blockquote&gt;
+&lt;p&gt;We began to hear murmurs of the same contacts getting mailed each month from our senders. The script was supposed to draw a certain allocation of contacts at random for each sender. I knew I used &lt;tt class="docutils literal"&gt;`df.sample(n=1)&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html"&gt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html&lt;/a&gt;&amp;gt;`__ from pandas to randomize the contact pool. The contacts were definitely getting randomized.&lt;/p&gt;
+&lt;p&gt;Then one day while making a change requested by our stakeholders, I noticed some code I had written that looked sort of like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def remove_duplicates(df):
+    &amp;quot;&amp;quot;&amp;quot;Remove duplicates and randomize the order of the rows.&amp;quot;&amp;quot;&amp;quot;
+    original = df.copy(deep=True)
+    df = format_for_duplicate_removal(df)
+    df = df.drop_duplicates().sample(n=1)
+    deduped_contacts = original[original.index.isin(df.index)]
+    return deduped_contacts
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;The idea of this function was to:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;create a throwaway copy of the original dataframe with &lt;tt class="docutils literal"&gt;df.copy()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;format the throwaway for better duplicate removal&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;drop_duplicates()&lt;/tt&gt; and randomize the dataframe's order of the rows with &lt;tt class="docutils literal"&gt;df.sample(n=1)&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;return those rows from the original dataframe, preserving original data but in randomized order&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Discovering The Error&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Looks great, right? Can you spot my error? Here's where I went wrong: I needed to randomize the data that gets returned. But instead, I randomized the throwaway dataframe. I never once altered the order of the original table. I did remove the duplicates, but the row order of the original dataframe never changed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Assessing the Damage&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It took me a few months after I wrote the code to realize. That was enough time for a small fraction of our customers to get postcard bombed.&lt;/p&gt;
+&lt;p&gt;Suppose you have two postcard campaigns every month. Both campaigns are drawing from the same contact source data. Both lists are created by the same script with nearly the same logic. That's ok if you randomize the contact order or the list is static. But if you don't randomize them and it's supposed to be a &amp;quot;random&amp;quot; draw campaign, that means you'll likely end up sending to the same people in both campaigns. That's exactly what happened. I accidentally postcard bombed 'em.&lt;/p&gt;
+&lt;p&gt;Thankfully, only a small percent of our &amp;quot;senders&amp;quot; were opted into both campaigns. What does that mean for those senders? Their contacts got &lt;a class="reference external" href="https://www.youtube.com/watch?v=SSPewc--3yY"&gt;NFL blitzed&lt;/a&gt; for 3 months straight. Instead of getting 1 or maybe 2 postcards a month if they're really lucky, they received 2 a month, each month until I caught the error. We bombarded about 3,000 lucky potential customers each month during that time. Some of them let us know they thought it was excessive.&lt;/p&gt;
+&lt;blockquote&gt;
+The opposite of love is not hate, it's indifference. - Elie Wiesel&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Sidebar On Analog Marketing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I think postcards are still relevant as a Marketing tool in 2020. From an environmental perspective, I prefer going digital. Some people let us know when we mail them that they feel the same way and then we stop mailing them. But I think there's something tangible about real things you can hold in your hands. Postcards also tend to get a reaction, even if it's not a good one. Sometimes that reaction is an email stating, &amp;quot;DON'T EVER MAIL ME AGAIN!!!&amp;quot; 😆&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For the record, I changed my mistake to this:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def remove_duplicates(df):
+    &amp;quot;&amp;quot;&amp;quot;Remove duplicates and randomize the order of the rows.&amp;quot;&amp;quot;&amp;quot;
+    original = df.copy(deep=True)
+    df = format_for_duplicate_removal(df)
+    df = df.drop_duplicates()
+    deduped_contacts = original[original.index.isin(df.index)]
+    randomized_contacts = deduped_contacts.sample(n=1)
+    return randomized_contacts
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Or maybe something like this would be better, for clearer separation of actions:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def remove_duplicates(df):
+    &amp;quot;&amp;quot;&amp;quot;Remove duplicates while preserving original data.&amp;quot;&amp;quot;&amp;quot;
+    original = df.copy(deep=True)
+    df = format_for_duplicate_removal(df)
+    df = df.drop_duplicates()
+    deduped_contacts = original[original.index.isin(df.index)]
+    return deduped_contacts
+
+def randomize_contacts(df):
+    &amp;quot;&amp;quot;&amp;quot;Randomize the order of the rows.&amp;quot;&amp;quot;&amp;quot;
+    randomized_contacts = df.sample(n=1)
+    return randomized_contacts
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;In Conclusion: Mistakes Happen.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sometimes they have interesting consequences when you make them at a certain scale. Maybe I could have written some tests to prevent this. Maybe I should have reviewed my code a couple more times. Sometimes, we're asked to do work that stretches our mental capacity and time to the limit.&lt;/p&gt;
+&lt;p&gt;Additionally, it's almost always a better choice to use an existing system, rather than writing your own. But in this case, my team was put in a situation where we needed to deliver because some else's software wasn't doing the job. I did my best to fill that need. And we're still using this way to send postcards today.&lt;/p&gt;
+&lt;p&gt;I wish this failure didn't happen for the sake of everyone involved, but &lt;a class="reference external" href="https://en.wikipedia.org/wiki/An_Essay_on_Criticism"&gt;to err is human&lt;/a&gt;, right? Live and learn.&lt;/p&gt;
+</content><category term="coding, Marketing, pandas, programming, python, work"></category><category term="business"></category><category term="mistakes"></category><category term="random"></category></entry></feed>
