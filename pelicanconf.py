@@ -22,7 +22,7 @@ CATEGORY_FEED_RSS = "feeds/{slug}.rss.xml"
 MENUITEMS = [
     ["RSS", "feeds/all.rss.xml"],
     ["Atom", "feeds/all.atom.xml"],
-    ["Github", "https://github.com/erickbytes/divbull"],
+    ["Github", "https://github.com/erickbytes/lofipython"],
 ]
 
 DEFAULT_PAGINATION = 10
