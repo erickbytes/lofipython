@@ -1,15 +1,11 @@
 AUTHOR = "@erickbytes"
 SITENAME = "Lo-fi Python"
 SITEURL = "https://lofipython.com"
-
 PATH = "content"
-
 TIMEZONE = "America/Chicago"
-
 DEFAULT_LANG = "en"
 # Site Logo
 SITELOGO = "images/python-powered-h-140x182.png"
-
 # Feed generation is usually not desired when developing
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
@@ -24,9 +20,7 @@ MENUITEMS = [
     ["Atom", "feeds/all.atom.xml"],
     ["Github", "https://github.com/erickbytes/lofipython"],
 ]
-
 DEFAULT_PAGINATION = 10
-
 THEME = "blue-penguin-dark"
 GITHUB_URL = "https://github.com/erickbytes/pythonmarketer.com"
 STATIC_PATHS = ["images", "blog", "theme", "static"]
@@ -35,10 +29,10 @@ EXTRA_PATH_METADATA = {
     "extra/robots.txt": {"path": "robots.txt"},
     "extra/favicon.ico": {"path": "favicon.ico"},
 }
+PYGMENTS_RST_OPTIONS = {"linenos": "table"}
 # DARK_LIGHT_SWITCHING_OFF = False
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
-PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 # HTML metadata
 # SITEDESCRIPTION = ""
-LOAD_CONTENT_CACHE = False
+# LOAD_CONTENT_CACHE = False
