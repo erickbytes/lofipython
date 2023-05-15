@@ -1,5 +1,5 @@
 AUTHOR = "@erickbytes"
-SITENAME = "Lo-fi Python"
+SITENAME = "Lo-Fi Python"
 SITEURL = "https://lofipython.com"
 PATH = "content"
 TIMEZONE = "America/Chicago"
@@ -22,7 +22,7 @@ MENUITEMS = [
 ]
 DEFAULT_PAGINATION = 10
 THEME = "blue-penguin-dark"
-GITHUB_URL = "https://github.com/erickbytes/pythonmarketer.com"
+GITHUB_URL = "https://github.com/erickbytes/lofipython.com"
 STATIC_PATHS = ["images", "blog", "theme", "static"]
 ARTICLE_PATHS = ["images", "blog", "theme", "static"]
 EXTRA_PATH_METADATA = {
