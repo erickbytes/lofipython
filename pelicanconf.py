@@ -37,7 +37,7 @@ EXTRA_PATH_METADATA = {
 }
 # DARK_LIGHT_SWITCHING_OFF = False
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+# RELATIVE_URLS = True
 PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 # HTML metadata
 # SITEDESCRIPTION = ""
