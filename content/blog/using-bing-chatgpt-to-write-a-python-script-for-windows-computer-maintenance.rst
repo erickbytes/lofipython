@@ -91,7 +91,7 @@ SFC requires an administrator command prompt. You can start an admin command pro
 
 If your text is using a non-English character encoding, I found you may need to pass a different encoding besides the default utf-8. For example, I found this to work if your command prompt characters are in Spanish:
 
-.. code:: wp-block-preformatted
+.. code-block:: python
 
    # en español
    print(sfc_output.stdout.decode(encoding="latin-1"))

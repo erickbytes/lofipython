@@ -29,16 +29,16 @@ DEFAULT_PAGINATION = 10
 
 THEME = "blue-penguin-dark"
 GITHUB_URL = "https://github.com/erickbytes/pythonmarketer.com"
-STATIC_PATHS = ["images", "blog", "themes", "static"]
-ARTICLE_PATHS = ["images", "blog", "themes", "static"]
+STATIC_PATHS = ["images", "blog", "theme", "static"]
+ARTICLE_PATHS = ["images", "blog", "theme", "static"]
 EXTRA_PATH_METADATA = {
     "extra/robots.txt": {"path": "robots.txt"},
     "extra/favicon.ico": {"path": "favicon.ico"},
 }
 # DARK_LIGHT_SWITCHING_OFF = False
 # Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
-# PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
+RELATIVE_URLS = True
+PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 # HTML metadata
 # SITEDESCRIPTION = ""
 LOAD_CONTENT_CACHE = False
