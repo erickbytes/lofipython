@@ -11,7 +11,7 @@ Every Python programmer has undoubtedly come across some crazy characters. The `
 
 `Install with pip <https://pypi.org/project/ftfy/>`__:
 
-.. code:: wp-block-preformatted
+.. code:: python
 
    pip install ftfy
 

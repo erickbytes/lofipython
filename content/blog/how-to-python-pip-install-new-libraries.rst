@@ -48,25 +48,25 @@ Pandas is a super useful library for wrangling spreadsheet data, AKA "tabular" d
 
 **To view all your installed libraries, enter:**
 
-::
+.. code:: python
 
    pip list
 
 **Write a "requirements.txt" of installed libraries:**
 
-::
+.. code:: python
 
    pip freeze > requirements.txt
 
 **You can list your outdated packages with the --outdated argument:**
 
-::
+.. code:: python
 
    pip list --outdated
 
 **Use pip's -h help command line argument:**
 
-::
+.. code:: python
 
    pip -h
 
@@ -83,7 +83,7 @@ Congrats on figuring out how to install packages with pip, have fun!
 Having issues? Try upgrading your pip version.
 ----------------------------------------------
 
-::
+.. code:: python
 
    python -m pip install --upgrade pip
 

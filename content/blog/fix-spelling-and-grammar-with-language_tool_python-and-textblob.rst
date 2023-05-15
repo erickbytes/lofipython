@@ -13,16 +13,16 @@ I found 2 errors when I piped the text of this post into the below code: the pro
 
 `Install textblob <https://textblob.readthedocs.io/en/dev/install.html>`__\ **and**\ `language_tool_python <https://pypi.org/project/language-tool-python/>`__\ **with these**\ `pip <https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__\ **commands:**
 
-.. code:: wp-block-preformatted
+.. code:: python
 
    pip install language-tool-python
 
-.. code:: wp-block-preformatted
+.. code:: python
 
    pip install -U textblob
    python -m textblob.download_corpora
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code:: python
 
    import language_tool_python
    from textblob import TextBlob

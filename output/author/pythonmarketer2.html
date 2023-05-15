@@ -33,7 +33,42 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">May 09, 2022</h4>
+        <div id="content">            <h4 class="date">Jun 11, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/a-quick-windows-command-line-tab-key-shortcut.html" rel="bookmark" title="Permanent Link to &quot;A Quick Windows Command Line Tab Key Shortcut&quot;">A Quick Windows Command Line Tab Key Shortcut</a>
+                </h2>
+
+                
+                
+
+                <p>You might know you can use the tab key to view the files in a folder one at a time on the command line. However, I recently stumbled into another way to help navigate folders with a lot of files in the command line. Let's say you're looking for a file named &quot;stuff.txt&quot;.</p>
+<ol class="arabic simple">
+<li>Type &quot;s&quot;.</li>
+<li>Hit the tab key.</li>
+</ol>
+<p>You just jumped right to the files that start with &quot;s&quot;. If there are not many files, you might go straight to &quot;stuff.txt&quot;. The point is that you can jump straight to the letter of your file rather than scrolling through a mountain of files by hitting the tab key 50 times. Once you get to the relative place in the alphabet of your target file, you can scroll forward in the file list with the <strong>tab key</strong> or move backward by pressing <strong>shift + tab</strong>.</p>
+<blockquote>
+<p><strong>Multi-Letter Example</strong></p>
+<p>Type &quot;st&quot; + tab to target more precise multi-letter sequences.</p>
+</blockquote>
+<p>I felt a productive zen when I accidentally realized this little command line quirk can save a lot of time. Especially when you have a folder with 50 or hundreds of files. Of course, you can always type in the file name directly. Using the tab key is very handy to browse if you don't know the exact file name. This is a nice little trick to add to your bag of Windows command line skills!</p>
+<div class="wp-image-7002 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/06/commandprompt.webp?w=1024" />
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/a-quick-windows-command-line-tab-key-shortcut.html">posted at 12:58</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-command-prompt-productivity-windows.html" rel="tag">coding, command prompt, productivity, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/file-system.html" class="tags">file system</a>
+                    &nbsp;<a href="https://lofipython.com/tag/shortcuts.html" class="tags">shortcuts</a>
+                </div>
+            </article>            <h4 class="date">May 09, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -112,6 +147,141 @@
                     &nbsp;<a href="https://lofipython.com/tag/pep-8.html" class="tags">PEP 8</a>
                     &nbsp;<a href="https://lofipython.com/tag/wsgi.html" class="tags">WSGI</a>
                 </div>
+            </article>            <h4 class="date">Feb 09, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html" rel="bookmark" title="Permanent Link to &quot;How to Convert a Python Dictionary to and from a pandas DataFrame&quot;">How to Convert a Python Dictionary to and from a pandas DataFrame</a>
+                </h2>
+
+                
+                
+
+                <p>This is an example of how to cast a Python dict into a dataframe and vice versa. I picked up the df to dict part from this <a class="reference external" href="https://cmdlinetips.com/2021/04/convert-two-column-values-from-pandas-dataframe-to-a-dictionary/#:~:text=Another%20approach%20to%20convert%20two,all%20columns%20in%20the%20dataframe.">Python and R tips post</a> and the dict to df part from a <a class="reference external" href="https://stackoverflow.com/questions/18837262/convert-python-dict-into-a-dataframe">Stack Overflow post</a>. The below adaptation begins by converting an &quot;NFL quarterbacks&quot; Python dictionary into a dataframe and then back into a dict.</p>
+<p>Sometimes a dictionary is adequate to solve a problem with handy methods like get() and <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#looping-techniques">items()</a>. You can also do a ton with a <a class="reference external" href="https://www.python.org/dev/peps/pep-0274/">dict comprehension</a>. When more complex tabular data operations are needed, the pandas pd.DataFrame class is well equipped for the job. Dictionaries and dataframes are delightfully interoperable, like Tom Brady and any football team on the planet.</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">pprint</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span><span class="w">
+
+</span><span class="n">qbs_dict</span> <span class="o">=</span> <span class="p">{</span><span class="w">
+</span>    <span class="s2">&quot;Matthew Stafford&quot;</span><span class="p">:</span><span class="s2">&quot;Los Angeles Rams&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;Joe Burrow&quot;</span><span class="p">:</span><span class="s2">&quot;Cincinnati Bengals&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;Tom Brady&quot;</span><span class="p">:</span><span class="s2">&quot;Tampa Bay Buccaneers&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;Pat Mahomes&quot;</span><span class="p">:</span><span class="s2">&quot;Kansas City Chiefs&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="s2">&quot;Tony Romo&quot;</span><span class="p">:</span><span class="s2">&quot;Dallas Cowboys&quot;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="n">qbs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;team&quot;</span><span class="p">])</span><span class="w">
+</span><span class="nb">print</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span><span class="w">
+</span><span class="n">qbs_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="w">
+</span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
+</span><span class="nb">print</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Tom Brady&quot;</span><span class="p">,</span> <span class="s2">&quot;Name not found.&quot;</span><span class="p">))</span>
+</pre>
+<p><strong>Terminal Output</strong></p>
+<pre class="code python literal-block">
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="s1">'&gt;</span><span class="w">
+</span><span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">5</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">4</span><span class="w">
+</span><span class="n">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">):</span><span class="w">
+</span> <span class="c1">#   Column  Non-Null Count  Dtype</span><span class="w">
+</span><span class="o">---</span>  <span class="o">------</span>  <span class="o">--------------</span>  <span class="o">-----</span><span class="w">
+</span> <span class="mi">0</span>   <span class="n">name</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span><span class="w">
+</span> <span class="mi">1</span>   <span class="n">team</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span><span class="w">
+</span><span class="n">dtypes</span><span class="p">:</span> <span class="nb">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">208.0</span><span class="o">+</span> <span class="nb">bytes</span><span class="w">
+</span><span class="kc">None</span><span class="w">
+
+</span><span class="p">{</span><span class="s1">'Joe Burrow'</span><span class="p">:</span> <span class="s1">'Cincinnati Bengals'</span><span class="p">,</span><span class="w">
+</span> <span class="s1">'Matthew Stafford'</span><span class="p">:</span> <span class="s1">'Los Angeles Rams'</span><span class="p">,</span><span class="w">
+</span> <span class="s1">'Pat Mahomes'</span><span class="p">:</span> <span class="s1">'Kansas City Chiefs'</span><span class="p">,</span><span class="w">
+</span> <span class="s1">'Tom Brady'</span><span class="p">:</span> <span class="s1">'Tampa Bay Buccaneers'</span><span class="p">,</span><span class="w">
+</span> <span class="s1">'Tony Romo'</span><span class="p">:</span> <span class="s1">'Dallas Cowboys'</span><span class="p">}</span><span class="w">
+
+</span><span class="n">Tampa</span> <span class="n">Bay</span> <span class="n">Buccaneers</span>
+</pre>
+<p><strong>Did you notice that pprint sorts dicts by default?</strong></p>
+<p>Here the printed dict is reordered alphabetically on the QB's names. Per the pprint docs, you can alter this behavior if desired via a keyword argument new in Python version 3.8:</p>
+<pre class="code python literal-block">
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre>
+<p><strong>pandas</strong> <strong>Documentation</strong></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/getting_started/install.html">pandas installation documentation</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas.DataFrame</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">pandas.Series</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_dict.html">pandas.DataFrame.to_dict</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html">pandas.DataFrame.info</a></p>
+<p><strong>Python Standard Library Documentation</strong></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/pprint.html#pprint.pprint">pprint.pprint</a></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html?highlight=dict#mapping-types-dict">dict</a></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict.get">dict.get</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html">posted at 23:16</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-programming-python.html" rel="tag">coding, pandas, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/pandas-df-to-python-dict.html" class="tags">pandas df to Python dict</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-data-structure-conversion.html" class="tags">Python data structure conversion</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-dict-to-pandas-df.html" class="tags">Python dict to pandas df</a>
+                </div>
+            </article>            <h4 class="date">Jan 30, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob.html" rel="bookmark" title="Permanent Link to &quot;Fix Spelling and Grammar with language_tool_python and textblob&quot;">Fix Spelling and Grammar with language_tool_python&nbsp;and textblob</a>
+                </h2>
+
+                
+                
+
+                <p>Below are two practical Python libraries for text processing. This function uses <a class="reference external" href="https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=correct#textblob.blob.TextBlob.correct">textblob's spelling correction</a> along with <a class="reference external" href="https://pypi.org/project/language-tool-python/">language_tool_python</a>, which applies grammatical corrections via the <a class="reference external" href="https://languagetool.org/http-api/swagger-ui/#!/default/post_check">Language Tool API</a>. I added these text processing transformations into my <a class="reference external" href="https://www.positivipy.com/">concept text generation app</a>. These are free, public APIs up to around 20 requests per second. You can send both text and receive back an improved version of your text, ideally altering and improving your writing.</p>
+<p>I found 2 errors when I piped the text of this post into the below code: the proper noun &quot;textblob&quot; corrected to &quot;text blow's&quot; and the word &quot;app&quot; corrected to &quot;pp&quot;. Be sure to proof your results. Regardless, I like having these two Python tools in my bag!</p>
+<p><a class="reference external" href="https://textblob.readthedocs.io/en/dev/install.html">Install textblob</a><strong>and</strong><a class="reference external" href="https://pypi.org/project/language-tool-python/">language_tool_python</a><strong>with these</strong><a class="reference external" href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a><strong>commands:</strong></p>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="n">install</span> <span class="n">language</span><span class="o">-</span><span class="n">tool</span><span class="o">-</span><span class="n">python</span>
+</pre>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">textblob</span><span class="w">
+</span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">textblob</span><span class="o">.</span><span class="n">download_corpora</span>
+</pre>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">language_tool_python</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">TextBlob</span><span class="w">
+
+</span><span class="k">def</span> <span class="nf">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">):</span><span class="w">
+    </span><span class="sd">&quot;&quot;&quot; returns str: text transformed by language tool and text blob
+    1) Apply language tool API correction
+    Language Tool Public API: https://dev.languagetool.org/public-http-api
+    https://languagetool.org/http-api/swagger-ui/#!/default/post_check
+    python library: https://pypi.org/project/language-tool-python/
+
+    2) Apply textblob's spell check to the text&quot;&quot;&quot;</span><span class="w">
+</span>    <span class="k">try</span><span class="p">:</span><span class="w">
+</span>        <span class="c1"># use the public API, language English</span><span class="w">
+</span>        <span class="n">tool</span> <span class="o">=</span> <span class="n">language_tool_python</span><span class="o">.</span><span class="n">LanguageToolPublicAPI</span><span class="p">(</span><span class="s1">'en-US'</span><span class="p">)</span><span class="w">
+</span>        <span class="n">text</span> <span class="o">=</span>  <span class="n">tool</span><span class="o">.</span><span class="n">correct</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="w">
+</span>        <span class="n">b</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="w">
+</span>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">correct</span><span class="p">())</span><span class="w">
+</span>    <span class="k">except</span><span class="p">:</span><span class="w">
+</span>        <span class="k">return</span> <span class="n">text</span><span class="w">
+
+</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Language is incredble. Fascinatng how hoomans have so many.&quot;</span><span class="w">
+</span><span class="n">transformed_text</span> <span class="o">=</span> <span class="n">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="w">
+</span><span class="nb">print</span><span class="p">(</span><span class="n">transformed_text</span><span class="p">)</span><span class="w">
+</span><span class="c1"># &gt;&gt;&gt; Language is incredible. Fascinating how humans have so many.</span>
+</pre>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob.html">posted at 16:28</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-data-programming-writing.html" rel="tag">APIs, data, programming, writing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/language.html" class="tags">language</a>
+                    &nbsp;<a href="https://lofipython.com/tag/language-tool.html" class="tags">language tool</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/text.html" class="tags">text</a>
+                    &nbsp;<a href="https://lofipython.com/tag/textblob.html" class="tags">textblob</a>
+                </div>
             </article>            <h4 class="date">Jan 08, 2022</h4>
 
             <article class="post">
@@ -137,6 +307,37 @@
                     &nbsp;<a href="https://lofipython.com/tag/flow-state.html" class="tags">flow state</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/skills.html" class="tags">skills</a>
+                </div>
+            </article>            <h4 class="date">Jan 06, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/ftfy-the-wonky-text-fixing-python-library.html" rel="bookmark" title="Permanent Link to &quot;ftfy, The Wonky Text Fixing Python Library&quot;">ftfy, The Wonky Text Fixing Python Library</a>
+                </h2>
+
+                
+                
+
+                <p>Every Python programmer has undoubtedly come across some crazy characters. The <a class="reference external" href="https://ftfy.readthedocs.io/en/latest/">ftfy library &quot;Fixes Text For You&quot;</a> and acts like a swiss army knife when you've got questionable characters breaking your script. In my case, an HTTP request was failing because of weird cryptic letters hiding in the data when it was only supposed to be an apostrophe. This library fixed my text and made it appear flawless. I really like ftfy because it solves a common problem, fixing &quot;<a class="reference external" href="https://en.wikipedia.org/wiki/Mojibake#:~:text=Mojibake%20(%E6%96%87%E5%AD%97%E5%8C%96%E3%81%91%3B%20IPA%3A,from%20a%20different%20writing%20system.">mojibake</a>&quot; or mangled characters. It's a good tool to have when you see these types of issues!</p>
+<p><a class="reference external" href="https://pypi.org/project/ftfy/">Install with pip</a>:</p>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="n">install</span> <span class="n">ftfy</span>
+</pre>
+<div class="wp-image-6448 figure">
+<img alt="source: `ftfy documentation &lt;https://ftfy.readthedocs.io/en/latest/avoid.html&gt;`__" src="https://pythonmarketer.files.wordpress.com/2022/01/ftfy-example-1.png?w=819" />
+<p class="caption">source: <a class="reference external" href="https://ftfy.readthedocs.io/en/latest/avoid.html">ftfy documentation</a></p>
+</div>
+<p>See also: <a class="reference external" href="https://docs.python.org/3/howto/unicode.html">Python Unicode How To</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/ftfy-the-wonky-text-fixing-python-library.html">posted at 11:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/ftfy.html" class="tags">ftfy</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/text-cleaning.html" class="tags">text cleaning</a>
                 </div>
             </article>            <h4 class="date">Dec 19, 2021</h4>
 
@@ -239,101 +440,6 @@
                     &nbsp;<a href="https://lofipython.com/tag/research.html" class="tags">research</a>
                     &nbsp;<a href="https://lofipython.com/tag/tools.html" class="tags">tools</a>
                 </div>
-            </article>            <h4 class="date">Nov 28, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/wp-global-styles-pub%2fescutcheon.html" rel="bookmark" title="Permanent Link to &quot;Custom Styles&quot;">Custom Styles</a>
-                </h2>
-
-                
-                
-
-                <p>{&quot;version&quot;:2,&quot;isGlobalStylesUserThemeJSON&quot;:true}</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/wp-global-styles-pub%2fescutcheon.html">posted at 22:54</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/blog.html" rel="tag">blog</a>
-                </div>
-            </article>            <h4 class="date">Nov 06, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/what-is-your-circle-of-the-internet.html" rel="bookmark" title="Permanent Link to &quot;What is Your Circle of the Internet?&quot;">What is Your Circle of the Internet?</a>
-                </h2>
-
-                
-                
-
-                <p>This morning I'm meditating on my usual apps or websites I visit through the course of a typical day. I wonder how limited or expansive it could be in the span of all that's waiting to be consumed on the internet. I like reading online or physical books too and writing. Consider your own circle of the internet. What sites do you frequent? What do you consume? This is more rhetorical. It's good to pose the question and consider what you might be missing. I recently downloaded a bunch of nature and hiking apps. Maybe that means I want more of that in my life. <a class="reference external" href="https://www.youtube.com/watch?v=hgw_yprN_-w&amp;ab_channel=LiliDVLima">Happy trails</a>.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/what-is-your-circle-of-the-internet.html">posted at 11:29</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apps-internet-life.html" rel="tag">apps, internet, life</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/introspection.html" class="tags">introspection</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web-browsing.html" class="tags">web browsing</a>
-                </div>
-            </article>            <h4 class="date">Oct 30, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/meta-blog-mediocre-september-ad-campaign-results.html" rel="bookmark" title="Permanent Link to &quot;WordPress Ad Campaign Results from a Typical Blog&quot;">WordPress Ad Campaign Results from a Typical Blog</a>
-                </h2>
-
-                
-                
-
-                <p>In September 2021, I tested out the recommended ads runner, <a class="reference external" href="https://wordads.co/">WordAds</a>, on this WordPress blog. 6,182 ads were served over the course of a month, earning $0.86 from impressions and clicks. My average CPM or cost per thousand impressions was $0.14. My blog averages about 1,600 views a month at the moment, mostly fueled by various search engines. Here's an example of one ad that ran:</p>
-<div class="wp-image-6185 figure">
-<img alt="**Example Ad Run on This Site Shown Above**" src="https://pythonmarketer.files.wordpress.com/2021/10/wordads-ad-1.png?w=877" />
-<p class="caption"><strong>Example Ad Run on This Site Shown Above</strong></p>
-</div>
-<p>In my WordPress account, I upgraded to the business plan. This gave me access to WordPress plug-ins. I enabled the <a class="reference external" href="https://yoast.com/wordpress/plugins/seo/">Yoast SEO plug-in</a> and activated its site optimization. I also enabled the maximum ads possible in my settings. In spite of these efforts, the results were sparse. Maybe there's more that I could have done. But this blog is passive and more like a hobby at the moment. I'm ok with a blog that makes $0.86 per month. Maybe someday it will be worth more. But I enjoy writing so it's all good. My skills grow and maybe I share something with someone across the world. That's what keeps me coming back.</p>
-<p>I concluded I will not be running ads anytime soon. I wanted to get a baseline of what I was leaving on the table by not running ads. Now I can project when I might tap into the blog's potential traffic revenue, if ever. It seems I would need much higher views per month before ads makes sense with my level of traffic, 65 blog followers and minor social media clout.</p>
-<p>There's also the added benefit of not serving up people's data to ad companies. Ads seem to be a generally accepted way to earn from your internet labors. But right now, they're not for this blog. Good luck monetizing your blog. Or just writing for the hell of it!</p>
-<div class="wp-image-6182 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/10/sept-2021-ad-campaign-results.png?w=1024" />
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/meta-blog-mediocre-september-ad-campaign-results.html">posted at 19:32</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/marketing-meta-writing.html" rel="tag">Marketing, meta, writing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/ad-campaign.html" class="tags">ad campaign</a>
-                    &nbsp;<a href="https://lofipython.com/tag/seo.html" class="tags">SEO</a>
-                </div>
-            </article>            <h4 class="date">Sep 23, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/a-learning-use-case-for-black-python-code-formatter.html" rel="bookmark" title="Permanent Link to &quot;What I Learned from Black, Python's "Uncompromising" Code Formatter&quot;">What I Learned from Black, Python's &quot;Uncompromising&quot; Code Formatter</a>
-                </h2>
-
-                
-                
-
-                <p>Black is a code formatting tool that I have been testing out recently to see what the hype is about. It is the defacto &quot;uncompromising code formatter in Python&quot;. I normally do not use any code formatters since I'm not required to use them. This short post aims to convince you that Black is an insightful way to see the parts of your code that are dangerously unreadable.</p>
-<p>I have found it interesting to see what black does with my gnarliest code. It has taught me what is considered &quot;good formatting&quot; by some Pythonistas. The areas where I see the most improvement is how it enforces <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP-8</a>'s characters per line limit. Often before, I didn't know how to break my code into several lines. My scripts tended to have one-liners trailing off the edge of my text editor. Black teaches you new ways to organize your code and makes it easier to understand. Now I write my code like Black the first time instead of letting it trail off the screen.</p>
-<p>Initially I was hesitant to try Black because I didn't want to sabotage my own code style. But since running Black on a few of my scripts, it has taught me new ways to write code. Give Black a chance and you will learn how to write more readable Python.</p>
-<p>Here's the project on GitHub: <a class="reference external" href="https://github.com/psf/black">https://github.com/psf/black</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/a-learning-use-case-for-black-python-code-formatter.html">posted at 10:12</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/black-python.html" class="tags">Black Python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pep-8.html" class="tags">PEP-8</a>
-                    &nbsp;<a href="https://lofipython.com/tag/writing-code.html" class="tags">writing code</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -343,7 +449,7 @@
 
                     <a href="https://lofipython.com/author/pythonmarketer3.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 2 of 6</span>
+                    <span>Page 2 of 7</span>
                 </div>
 
             <div class="clear"></div>

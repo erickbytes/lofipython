@@ -16,18 +16,18 @@ I drafted the code below after noticing the `repo.stargazer_count <https://pygit
 #. You'll need to create a personal access token for your Github account. See the Github docs, `"Creating a personal access token". <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token>`__
 #. `Install PyGithub <https://pypi.org/project/PyGithub/>`__ and `pandas <https://pandas.pydata.org/docs/getting_started/index.html>`__:
 
-.. code:: wp-block-code
+.. code:: python
 
    pip install PyGithub
    pip install pandas
 
 3. Run the below code as a Python script.
 
-.. code:: wp-block-code
+.. code:: python
 
    python github_stars.py
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code:: python
 
    import pandas as pd
    from github import Github

@@ -148,6 +148,34 @@
                     &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags selected">problem solving</a>
                     &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
                 </div>
+            </article>            <h4 class="date">Jun 10, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-fix-your-python-certificates-on-windows.html" rel="bookmark" title="Permanent Link to &quot;Python Requests SSLCertVerificationError Solution for Windows&quot;">Python Requests SSLCertVerificationError Solution for Windows</a>
+                </h2>
+
+                
+                
+
+                <p>I initially installed my Python version from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7">Windows Store</a> and it worked fine for almost a year on my Windows 10 computer. Then I started getting this error message when trying to use the <a class="reference external" href="https://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification">requests library</a> on all HTTP requests:</p>
+<pre class="code python literal-block">
+<span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">SSLError</span><span class="p">:</span> <span class="n">HTTPSConnectionPool</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'api.example.com'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">):</span> <span class="n">Max</span> <span class="n">retries</span> <span class="n">exceeded</span> <span class="k">with</span> <span class="n">url</span><span class="p">:</span> <span class="o">/</span><span class="n">oauth</span><span class="o">/</span><span class="n">token</span><span class="err">?</span><span class="n">grant_type</span><span class="o">=</span><span class="n">client_credentials</span> <span class="p">(</span><span class="n">Caused</span> <span class="n">by</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">SSLCertVerificationError</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)'</span><span class="p">)))</span>
+</pre>
+<p>Apparently my Python certificates were not valid or up to date on my computer. These are &quot;.PEM&quot; or &quot;.cert&quot; files that certify your connection for the <a class="reference external" href="https://www.ssl.com/faqs/faq-what-is-ssl/">SSL protocol</a>. I googled this error until I found the <a class="reference external" href="https://pypi.org/project/python-certifi-win32/">python-certifi-win32</a> library. I only needed to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip install</a> this library and it fixed the problem:</p>
+<p><tt class="docutils literal">pip install <span class="pre">python-certifi-win32</span></tt></p>
+<p>Huge thank you to <a class="reference external" href="https://pypi.org/user/andrewleech/">the maintainer</a> of this package. It solved my issues and now I can make HTTP requests again!</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-fix-your-python-certificates-on-windows.html">posted at 11:59</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-http-python-windows.html" rel="tag">coding, HTTP, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/pem-solution.html" class="tags">.PEM solution</a>
+                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags selected">problem solving</a>
+                    &nbsp;<a href="https://lofipython.com/tag/windows-10.html" class="tags">Windows 10</a>
+                </div>
             </article>            <h4 class="date">Apr 11, 2020</h4>
 
             <article class="post">

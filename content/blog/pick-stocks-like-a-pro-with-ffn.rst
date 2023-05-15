@@ -23,7 +23,7 @@ Recommended Reading: `A Brief Introduction - ffn documentation <https://pmorisse
 
 Here's the code to get stock data with `ffn <https://pmorissette.github.io/ffn/quick.html>`__:
 
-.. code:: wp-block-code
+.. code:: python
 
    import ffn
 
