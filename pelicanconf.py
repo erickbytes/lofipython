@@ -1,6 +1,6 @@
 AUTHOR = "@erickbytes"
-SITENAME = "Python Marketer"
-SITEURL = "https://pythonmarketer.com"
+SITENAME = "Lo-fi Python"
+SITEURL = "https://lofipython.com"
 
 PATH = "content"
 
