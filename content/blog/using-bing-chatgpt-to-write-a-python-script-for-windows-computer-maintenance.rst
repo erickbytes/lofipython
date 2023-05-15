@@ -63,7 +63,7 @@ Then it asks if I want the Python code explained. I'm so chuffed at this point. 
 
 SFC requires an administrator command prompt. You can start an admin command prompt from the start menu. I ran "python run_sfc.py" containing the below script on version Python 3.11. The command finished running approximately 20 minutes later. Additionally, if you get the error 'utf-8' bytes can't be decoded, you'll need to pass an encoding argument to decode(). Ok, here's **the Python script**:
 
-.. code:: wp-block-preformatted
+.. code:: python
 
    # Import the subprocess module
    import subprocess
