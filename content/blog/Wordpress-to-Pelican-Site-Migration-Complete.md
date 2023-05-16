@@ -1,10 +1,8 @@
-Title: Wordpress to Pelican Blog Migration In Progress 
+Title: Wordpress to Pelican Blog Migration Complete
 Date: 2023-05-15 17:45
 Category: Meta
 
-This blog is formerly known as "Python Marketer" from 2016 to 2023. In May 2023, I've begun the migration from Wordpress's "Personal" plan to a free Pelican static site. Currently, about half of the posts are now hosted exclusively on lofipython.com. 
-
-I'm moving the rest of the posts over one at a time because the Wordpress syntax highlighter HTML could not be read by Pelican's importer for code samples. I saw the error "invalid Pygments lexer class" for some parts of Wordpress's HTML when converting to RST. More posts will be ported over soon. I will be posting my projects, Python explorations and tech musings here going forward.
+This blog is formerly known as "Python Marketer" from 2016 to 2023. In May 2023, I've begun the migration from Wordpress's "Personal" plan to a free Pelican static site via the Pelican Python library. 100 posts are now hosted here exclusively on lofipython.com. I will be posting my projects, Python explorations and tech musings here going forward. Thank you for reading and I hope you enjoy these Python musings.
 
 **The Next Chapter: Lo-Fi Python**
 

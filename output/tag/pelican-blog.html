@@ -104,19 +104,19 @@ ssh-keygen -t ed25519 -C &quot;youname&#64;example.com&quot;
 
 
 <span class="k">def</span> <span class="nf">post_name</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Ask for the new post&#39;s name.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ask for the new post&#39;s name.&quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the new post&#39;s title:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">name</span>
 
 
 <span class="k">def</span> <span class="nf">post_template</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return str, post draft&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return str, post draft&quot;&quot;&quot;</span>
     <span class="n">post</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Title: </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">Date: </span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="si">}</span><span class="s2"> 4:20 </span><span class="se">\n</span><span class="s2">Category: Essay&quot;</span>
     <span class="k">return</span> <span class="n">post</span>
 
 
 <span class="k">def</span> <span class="nf">save_draft</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">post</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Save new post draft to content folder.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save new post draft to content folder.&quot;&quot;&quot;</span>
     <span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;/home/erickbytes/divbull/divbull.com/content&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
     <span class="n">md</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.md&quot;</span>

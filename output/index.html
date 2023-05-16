@@ -35,14 +35,13 @@
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://lofipython.com/wordpress-to-pelican-blog-migration-in-progress.html" rel="bookmark" title="Permanent Link to &quot;Wordpress to Pelican Blog Migration In Progress&quot;">Wordpress to Pelican Blog Migration In Progress</a>
+                    <a href="https://lofipython.com/wordpress-to-pelican-blog-migration-complete.html" rel="bookmark" title="Permanent Link to &quot;Wordpress to Pelican Blog Migration Complete&quot;">Wordpress to Pelican Blog Migration Complete</a>
                 </h2>
 
                 
                 
 
-                <p>This blog is formerly known as "Python Marketer" from 2016 to 2023. In May 2023, I've begun the migration from Wordpress's "Personal" plan to a free Pelican static site. Currently, about half of the posts are now hosted exclusively on lofipython.com. </p>
-<p>I'm moving the rest of the posts over one at a time because the Wordpress syntax highlighter HTML could not be read by Pelican's importer for code samples. I saw the error "invalid Pygments lexer class" for some parts of Wordpress's HTML when converting to RST. More posts will be ported over soon. I will be posting my projects, Python explorations and tech musings here going forward.</p>
+                <p>This blog is formerly known as "Python Marketer" from 2016 to 2023. In May 2023, I've begun the migration from Wordpress's "Personal" plan to a free Pelican static site via the Pelican Python library. 100 posts are now hosted here exclusively on lofipython.com. I will be posting my projects, Python explorations and tech musings here going forward. Thank you for reading and I hope you enjoy these Python musings.</p>
 <p><strong>The Next Chapter: Lo-Fi Python</strong></p>
 <p>A Python static site blog generated with the Pelican Python library and hosted with Cloudflare Pages.</p>
 <blockquote>
@@ -56,7 +55,7 @@ Embrace helping others by helping yourself. This is the way.</p>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="https://lofipython.com/wordpress-to-pelican-blog-migration-in-progress.html">posted at 17:45</a>
+                    <a href="https://lofipython.com/wordpress-to-pelican-blog-migration-complete.html">posted at 17:45</a>
                     &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/meta.html" rel="tag">Meta</a>
                 </div>
             </article>            <h4 class="date">Feb 26, 2023</h4>
@@ -535,19 +534,19 @@ ssh-keygen -t ed25519 -C &quot;youname&#64;example.com&quot;
 
 
 <span class="k">def</span> <span class="nf">post_name</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Ask for the new post&#39;s name.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ask for the new post&#39;s name.&quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the new post&#39;s title:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">name</span>
 
 
 <span class="k">def</span> <span class="nf">post_template</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return str, post draft&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return str, post draft&quot;&quot;&quot;</span>
     <span class="n">post</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Title: </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">Date: </span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="si">}</span><span class="s2"> 4:20 </span><span class="se">\n</span><span class="s2">Category: Essay&quot;</span>
     <span class="k">return</span> <span class="n">post</span>
 
 
 <span class="k">def</span> <span class="nf">save_draft</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">post</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Save new post draft to content folder.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save new post draft to content folder.&quot;&quot;&quot;</span>
     <span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;/home/erickbytes/divbull/divbull.com/content&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
     <span class="n">md</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.md&quot;</span>

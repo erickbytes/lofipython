@@ -234,7 +234,7 @@ python -m pip3.8 install --user pandas
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Call database and return data from df. Then display homepage.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call database and return data from df. Then display homepage.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">email_df</span> <span class="o">=</span> <span class="n">get_database_table_as_dataframe</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">email_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -244,7 +244,7 @@ python -m pip3.8 install --user pandas
         <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Failed to connect to database.&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">render_homepage</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Note: you should use Flask&#39;s render_template to render HTML files.</span>
 <span class="sd">    But here&#39;s a quick f-string HTML page that works:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -264,7 +264,7 @@ python -m pip3.8 install --user pandas
 
 
 <span class="k">def</span> <span class="nf">get_database_table_as_dataframe</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Connect to a table named &#39;Emails&#39;. Returns pandas dataframe.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Connect to a table named &#39;Emails&#39;. Returns pandas dataframe.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
                             <span class="n">host</span><span class="o">=</span><span class="s1">&#39;username.mysql.pythonanywhere-services.com&#39;</span><span class="p">,</span>
@@ -283,7 +283,7 @@ python -m pip3.8 install --user pandas
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/add_signup_to_db&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">add_signup_to_db</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Pass data as SQL parameters with mysql.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pass data as SQL parameters with mysql.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
                             <span class="n">host</span><span class="o">=</span><span class="s1">&#39;username.mysql.pythonanywhere-services.com&#39;</span><span class="p">,</span>

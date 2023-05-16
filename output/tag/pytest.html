@@ -70,7 +70,7 @@
 <span class="kn">import</span> <span class="nn">getpass</span>
 
 <span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;The dir_query format is for a Windows path with Unix style pattern matching.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The dir_query format is for a Windows path with Unix style pattern matching.&quot;&quot;&quot;</span>
     <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">{getpass.getuser()}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
     <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
     <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>

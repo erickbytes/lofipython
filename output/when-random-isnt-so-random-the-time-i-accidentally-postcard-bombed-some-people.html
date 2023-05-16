@@ -57,13 +57,13 @@ ELY (n.) The first, tiniest inkling you get that something, somewhere, has gone 
 <p>We began to hear murmurs of the same contacts getting mailed each month from our senders. The script was supposed to draw a certain allocation of contacts at random for each sender. I knew I used <tt class="docutils literal">`df.sample(n=1)</tt> &lt;<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html</a>&gt;`__ from pandas to randomize the contact pool. The contacts were definitely getting randomized.</p>
 <p>Then one day while making a change requested by our stakeholders, I noticed some code I had written that looked sort of like this:</p>
 <pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span>
-    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
-    <span class="k">return</span> <span class="n">deduped_contacts</span>
+<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
+    </span><span class="sd">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span><span class="w">
+</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
+</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span>    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span><span class="w">
+</span>    <span class="k">return</span> <span class="n">deduped_contacts</span>
 </pre>
 <p><strong>The idea of this function was to:</strong></p>
 <ul class="simple">
@@ -84,29 +84,29 @@ The opposite of love is not hate, it's indifference. - Elie Wiesel</blockquote>
 <p>I think postcards are still relevant as a Marketing tool in 2020. From an environmental perspective, I prefer going digital. Some people let us know when we mail them that they feel the same way and then we stop mailing them. But I think there's something tangible about real things you can hold in your hands. Postcards also tend to get a reaction, even if it's not a good one. Sometimes that reaction is an email stating, &quot;DON'T EVER MAIL ME AGAIN!!!&quot; 😆</p>
 <p><strong>For the record, I changed my mistake to this:</strong></p>
 <pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span>
-    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
-    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
-    <span class="n">randomized_contacts</span> <span class="o">=</span> <span class="n">deduped_contacts</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">randomized_contacts</span>
+<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
+    </span><span class="sd">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span><span class="w">
+</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
+</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="w">
+</span>    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span><span class="w">
+</span>    <span class="n">randomized_contacts</span> <span class="o">=</span> <span class="n">deduped_contacts</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span>    <span class="k">return</span> <span class="n">randomized_contacts</span>
 </pre>
 <p><strong>Or maybe something like this would be better, for clearer separation of actions:</strong></p>
 <pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Remove duplicates while preserving original data.&quot;&quot;&quot;</span>
-    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
-    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
-    <span class="k">return</span> <span class="n">deduped_contacts</span>
+<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
+    </span><span class="sd">&quot;&quot;&quot;Remove duplicates while preserving original data.&quot;&quot;&quot;</span><span class="w">
+</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
+</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="w">
+</span>    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span><span class="w">
+</span>    <span class="k">return</span> <span class="n">deduped_contacts</span><span class="w">
 
-<span class="k">def</span> <span class="nf">randomize_contacts</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Randomize the order of the rows.&quot;&quot;&quot;</span>
-    <span class="n">randomized_contacts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">randomized_contacts</span>
+</span><span class="k">def</span> <span class="nf">randomize_contacts</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
+    </span><span class="sd">&quot;&quot;&quot;Randomize the order of the rows.&quot;&quot;&quot;</span><span class="w">
+</span>    <span class="n">randomized_contacts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span>    <span class="k">return</span> <span class="n">randomized_contacts</span>
 </pre>
 <p><strong>In Conclusion: Mistakes Happen.</strong></p>
 <p>Sometimes they have interesting consequences when you make them at a certain scale. Maybe I could have written some tests to prevent this. Maybe I should have reviewed my code a couple more times. Sometimes, we're asked to do work that stretches our mental capacity and time to the limit.</p>
