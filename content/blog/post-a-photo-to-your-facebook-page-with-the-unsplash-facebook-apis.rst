@@ -24,13 +24,13 @@ Setting Up The Facebook API
 
 **Optional: fetch long lived access token with curl**
 
-.. code:: wp-block-preformatted
+.. code:: python
 
    curl -i -X GET "https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token& client_id={app-id}& client_secret={app-secret}& fb_exchange_token={short-lived-user-access-token}"
 
 **Fetch your Facebook page's access token**
 
-.. code:: wp-block-preformatted
+.. code:: python
 
    curl -i -X GET "https://graph.facebook.com/{your-user-id}/accounts?access_token={user-access-token}
 
@@ -40,13 +40,13 @@ Setting up Unsplash
 #. Sign up for an `Unsplash developer account <https://unsplash.com/documentation>`__
 #. Install the python-unsplash library. In the terminal enter:
 
-.. code:: wp-block-code
+.. code:: python
 
    python -m pip install python-unsplash
 
 3. Decide what photo you want to post. This example fetches a random photo from my `Unsplash collection <https://unsplash.com/collections/66610223/positive-thoughts-daily>`__. You can also fetch any photo at random, or pass in a query to get a certain type of photo.
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    from unsplash.api import Api
    from unsplash.auth import Auth
@@ -77,7 +77,7 @@ Setting up Unsplash
 Posting the Unsplash Image to Facebook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    """Use download link and post to page with Facebook API."""
    page_id = "add_page_id_from_about_section"

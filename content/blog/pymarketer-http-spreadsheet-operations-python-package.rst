@@ -11,7 +11,7 @@ Typically, this blog reviews the other Python libraries in its vast ecosystem. T
 
 **Install with pip from source**\ `Github repo <https://github.com/erickbytes/pymarketer>`__\ **:**
 
-.. code:: wp-block-code
+.. code:: python
 
    python -m pip install git+https://github.com/erickbytes/pymarketer.git
 
@@ -25,7 +25,7 @@ The pymarketer package helps you do things like:
 
 **Generating a Word Cloud with the pymarketer Package (via**\ `wordcloud <http://amueller.github.io/word_cloud/index.html>`__\ **)**
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import pandas as pd
    import pymarketer as pm

@@ -35,8 +35,7 @@ If I could suggest anything to be successful with pandas, it is repetition. I us
 
 Python 3.6 and higher can `install pandas 1.0 <https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html>`__.
 
-**Installing Python 3.8 on Windows
-**
+**Installing Python 3.8 on Windows**
 
 For Windows installation, see the python docs for an installer, "`Using Python on Windows" <https://docs.python.org/3/using/windows.html>`__.
 
@@ -45,7 +44,7 @@ For Windows installation, see the python docs for an installer, "`Using Python o
 `Follow these steps to download and install Python 3.8 in the Ubuntu terminal. <https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/>`__ To upgrade to pandas 1.0, I installed Python 3.8, the `latest stable release <https://www.google.com/search?client=ubuntu&channel=fs&q=python+latest+stable+release&ie=utf-8&oe=utf-8>`__, "`from source <https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/>`__" on Ubuntu 16.04.
 
 **If you intend to use**\ `pandas.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__\ **on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.
-**
+
 
 On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal: ``sudo apt-get install libbz2-dev``
 
@@ -55,7 +54,7 @@ I also saw this message when completing install:
 
 **If you need to re-build Python on Ubuntu, enter:**
 
-::
+.. code-block:: python
 
    cd /home/erick/Python-3.8.0/
    ./configure --enable-loadable-sqlite-extensions && make && sudo make install
@@ -117,7 +116,7 @@ To check if pip is installed: ``python -m pip list``
 
 **Now install pandas 1.0 and**\ `matplotlib <https://matplotlib.org/users/installing.html>`__\ **in your virtual environment.**
 
-::
+.. code-block:: python
 
    python3.8 -m pip install pandas
    python -m pip install -U matplotlib
@@ -138,7 +137,7 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
 
 **Data is commonly read in from file with**\ `pd.read_csv() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html>`__\ **. **
 
-::
+.. code-block:: python
 
    import pandas as pd
    file_name = 'my_bank_statement.csv'
@@ -151,7 +150,7 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
 
 **Create a dataframe from a list of Python lists, named movies below, with**\ `pd.DataFrame <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__\ **:**
 
-::
+.. code-block:: python
 
    import pandas as pd
 
@@ -183,7 +182,7 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
 #. Get the year from an array of datetime objects
 #. Set the year as the dataframe index
 
-::
+.. code-block:: python
 
    df = pd.DataFrame(movies, columns=column_names)
    date_df = df[['Title', 'Release Date']].drop_duplicates(subset=['Title'])
@@ -205,13 +204,12 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 
    - Stack Overflow [`Source <https://stackoverflow.com/questions/19798153/difference-between-map-applymap-and-apply-methods-in-pandas>`__]
 
-**Applying a function to a pandas column
-**
+**Applying a function to a pandas column**
 
 -  Convert columns to int and calculate the difference between two columns.
 -  Let's format those integers back to dollars with python's lambda and pandas' applymap for extra jazz.
 
-::
+.. code-block:: python
 
    def format_dollars_as_int(dollars):
        """Accepts a dollar formatted string, returns an int."""
@@ -230,7 +228,7 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 -  Then add the IMDB ratings of our three films in a new column.
 -  Finally, write the result to markdown and a csv file.
 
-::
+.. code-block:: python
 
    # create a new column with the three movies' IMDB ratings 
    df['IMDB Rating'] = list([7.8,5.5,7.8]) 
@@ -270,21 +268,21 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 
 **Get a row by index number us**\ `pandas.DataFrame.loc[] <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html>`__\ **:**
 
-::
+.. code-block:: python
 
    first_row = df.loc[0, df.columns]
    third_row = df.loc[2, df.columns]
 
 **Filter the df to get rows where the actor is 'Julia Roberts'.**
 
-::
+.. code-block:: python
 
    julia_roberts_movies = df[df.Actor=='Julia Roberts'].reset_index(drop=True) 
    print(julia_roberts_movies.head())
 
 **"Get" an item from a column of lists with**\ `str.get() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html>`__\ **.**
 
-::
+.. code-block:: python
 
    # returns first item in each cell's list into new column
    df['first_item'] = df['items'].str.get(0)
@@ -293,7 +291,7 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 
 First, use `df.copy() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html>`__ to create a new dataframe copy of our actors table above.  By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':
 
-::
+.. code-block:: python
 
    actors = df.copy(deep=True)
    # slice only the columns we want to merge:
@@ -308,7 +306,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
    uses `pd.Series.isin() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html>`__ to check if each email is in the DB.
 
-::
+.. code-block:: python
 
    import pandas as pd
    import pyodbc
@@ -336,7 +334,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 **Using**\ `pd.read_clipboard(): <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html>`__\ **
 **
 
-::
+.. code-block:: python
 
    import pandas as pd
    clipboard_contents = pd.read_clipboard() 
@@ -345,7 +343,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 **Use**\ `pd.to_clipboard() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html>`__\ **to store a dataframe as clipboard text:
 **
 
-::
+.. code-block:: python
 
    import pandas as pd
    truths = ['pandas is great','I love pandas','pandas changed my life']
@@ -356,7 +354,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **Convert the clipboard contents to df with**\ `pd.DataFrame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__\ **:**
 
-::
+.. code-block:: python
 
    import pandas as pd 
    clipboard_contents = list(input('Press ctrl-v '))
@@ -365,7 +363,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **If the clipboard dataframe has one column, you could**\ `squeeze <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze>`__\ **the clipboard contents into a**\ `pd.Series <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html>`__\ **object:**
 
-::
+.. code-block:: python
 
    import pandas as pd 
    clipboard_text = pd.read_clipboard() 
@@ -376,7 +374,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **Inversely, consider using**\ `pandas.Series.to_frame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame>`__\ **to convert a Series to a dataframe:**
 
-::
+.. code-block:: python
 
    import pandas as pd 
    clipboard_contents = pd.Series(input('Press ctrl-v '))
@@ -388,7 +386,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **For**\ `older pandas versions <https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html>`__\ **:**
 
-::
+.. code-block:: python
 
    from pandas.io.json import json_normalize
    import requests
@@ -401,7 +399,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **Update: beginning in pandas 1.0,**\ `json_normalize <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html>`__\ **became a top-level pandas namespace.**
 
-::
+.. code-block:: python
 
    import pandas as pd
    import requests 
@@ -422,7 +420,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **Make a bar plot of the movie release year counts using pandas and matplotlib formatting.**
 
-::
+.. code-block:: python
 
    import pandas as pd
    import matplotlib.pyplot as plt
@@ -447,7 +445,7 @@ Use Jupyter Notebook to show plot, and/or download plot from command line. Read 
 
 **Plot George Clooney's movies over time in a line graph. [**\ `Source <https://www.youtube.com/watch?v=5JnMutdy6Fw>`__\ **] **
 
-::
+.. code-block:: python
 
    import matplotlib.pyplot as plt
    df = df[df.Actor=='George Clooney']

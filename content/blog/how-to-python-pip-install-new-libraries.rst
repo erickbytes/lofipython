@@ -145,8 +145,7 @@ In the install command, the prefix is a reference to your Python executable. You
 How to Manually Enable the pip Installer
 ----------------------------------------
 
-**The rest of this post may be useful to you if you are:
-**
+**The rest of this post may be useful to you if you are:**
 
 #. Working on legacy Python 2 code or Python 3.3 or lower for which pip is not installed.
 #. Seeking to fix a faulty pip install that is not working properly.

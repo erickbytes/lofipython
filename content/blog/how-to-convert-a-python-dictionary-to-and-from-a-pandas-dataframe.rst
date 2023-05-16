@@ -11,7 +11,7 @@ This is an example of how to cast a Python dict into a dataframe and vice versa.
 
 Sometimes a dictionary is adequate to solve a problem with handy methods like get() and `items() <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`__. You can also do a ton with a `dict comprehension <https://www.python.org/dev/peps/pep-0274/>`__. When more complex tabular data operations are needed, the pandas pd.DataFrame class is well equipped for the job. Dictionaries and dataframes are delightfully interoperable, like Tom Brady and any football team on the planet.
 
-.. code:: python
+.. code-block:: python
 
    import pprint
    import pandas as pd
@@ -31,7 +31,7 @@ Sometimes a dictionary is adequate to solve a problem with handy methods like ge
 
 **Terminal Output**
 
-.. code:: python
+.. code-block:: python
 
    <class 'pandas.core.frame.DataFrame'>
    RangeIndex: 5 entries, 0 to 4
@@ -56,7 +56,7 @@ Sometimes a dictionary is adequate to solve a problem with handy methods like ge
 
 Here the printed dict is reordered alphabetically on the QB's names. Per the pprint docs, you can alter this behavior if desired via a keyword argument new in Python version 3.8:
 
-.. code:: python
+.. code-block:: python
 
    pprint.pprint(qbs_dict, sort_dicts=False)
 

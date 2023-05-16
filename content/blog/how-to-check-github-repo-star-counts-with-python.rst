@@ -16,18 +16,18 @@ I drafted the code below after noticing the `repo.stargazer_count <https://pygit
 #. You'll need to create a personal access token for your Github account. See the Github docs, `"Creating a personal access token". <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token>`__
 #. `Install PyGithub <https://pypi.org/project/PyGithub/>`__ and `pandas <https://pandas.pydata.org/docs/getting_started/index.html>`__:
 
-.. code:: python
+.. code-block:: python
 
    pip install PyGithub
    pip install pandas
 
 3. Run the below code as a Python script.
 
-.. code:: python
+.. code-block:: python
 
    python github_stars.py
 
-.. code:: python
+.. code-block:: python
 
    import pandas as pd
    from github import Github

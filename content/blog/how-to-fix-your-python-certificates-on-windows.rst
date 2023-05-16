@@ -9,7 +9,7 @@ Python Requests SSLCertVerificationError Solution for Windows
 
 I initially installed my Python version from the `Windows Store <https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7>`__ and it worked fine for almost a year on my Windows 10 computer. Then I started getting this error message when trying to use the `requests library <https://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification>`__ on all HTTP requests:
 
-.. code:: python
+.. code-block:: python
 
    requests.exceptions.SSLError: HTTPSConnectionPool(host='api.example.com', port=443): Max retries exceeded with url: /oauth/token?grant_type=client_credentials (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)')))
 

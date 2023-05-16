@@ -31,7 +31,76 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jan 16, 2021</h4>
+        <div id="content">            <h4 class="date">Apr 15, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/did-you-read-the-whole-error.html" rel="bookmark" title="Permanent Link to &quot;Did You Read the Whole Error?&quot;">Did You Read the Whole Error?</a>
+                </h2>
+
+                
+                
+
+                <p>You read the whole thing front to back? Every word? Stop and think about it. What is the computer trying to tell you?</p>
+<p>Sometimes something is obvious but needs to be reminded. I found myself thinking this yet again today. Often there are times where I would have saved some time and grief by carefully reading the error.</p>
+<p>Carefully read the error when you see a traceback. Then once you've taken it all in, consider what to do next. If you're stumped, googling it might yield a solution. But make sure you actually read the error first.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/did-you-read-the-whole-error.html">posted at 15:34</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/errors.html" class="tags">errors</a>
+                    &nbsp;<a href="https://lofipython.com/tag/solutions.html" class="tags">solutions</a>
+                </div>
+            </article>            <h4 class="date">Feb 07, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/using-gmails-search-operators-to-organize-your-emails-in-bulk.html" rel="bookmark" title="Permanent Link to &quot;Organize Your Emails in Bulk With Gmail Search Operators + Python Libraries&quot;">Organize Your Emails in Bulk With Gmail Search Operators + Python Libraries</a>
+                </h2>
+
+                
+                
+
+                <p>After 12 years with Gmail as my primary email inbox, I wanted to clear out old &quot;Promotions&quot; emails. This can be done with some clever use of Gmail's search syntax shown below.</p>
+<p>I wanted to preserve my &quot;Starred&quot; emails, but delete old emails to free up space. I was able to delete 58,000 &quot;Promotions&quot; emails! I wrote this post because I feel it might save you a little time figuring it out yourself. I also included brief details on possible Python tools for Gmail and IMAP below if you are considering scripting your contact management.</p>
+<p>I didn't need Python in the end after reading some <a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">Gmail search operator examples</a>. For example, adding a hypen before a search in Gmail acts similar to a <a class="reference external" href="https://en.wikipedia.org/wiki/Bitwise_operation#NOT">&quot;bitwise&quot; or unary operator (~)</a> in Python. It excludes or inverses the criteria in a search rather than including it. I was able to use this to exclude my starred emails. You can also add a filter for &quot;has attachment&quot;. I used that to star any emails with attachments, then delete the rest and excluded &quot;starred&quot; emails.</p>
+<p><strong>Gmail search syntax to get &quot;Promotions&quot; minus &quot;Starred&quot; emails and filter on a date range</strong>:</p>
+<p><tt class="docutils literal">category:promotions <span class="pre">-is:starred</span> after:2019/12/31 before:2021/1/1</tt></p>
+<p><strong>Selecting &quot;all&quot; emails in your search</strong></p>
+<div class="wp-image-5251 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/02/select-all-in-search.jpg?w=588" />
+</div>
+<p><strong>Once, you've selected &quot;All&quot; from the checkbox dropdown, click &quot;Select all conversations that match this search&quot;.</strong> Now you can apply actions such as &quot;add a star&quot; or &quot;delete&quot; them by clicking the (⋮) vertical ellipses menu:</p>
+<div class="wp-image-5258 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/02/gmail-filter-steps.jpg?w=1024" />
+</div>
+<p><strong>To Python or not?</strong></p>
+<p>I also considered Python tools for interfacing with gmail to accomplish this. There doesn't seem to be an easy way to group emails by &quot;Category&quot; in the <a class="reference external" href="https://developers.google.com/gmail/api/quickstart/python">Gmail API</a> or IMAP. IMAP is shorthand for <a class="reference external" href="https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol">Internet Message Access Protocol</a>.</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/imaplib.html">imaplib</a> is an &quot;IMAP4 protocol client&quot; in the Python standard library. Usually python's <a class="reference external" href="https://docs.python.org/3/library/smtplib.html">smtplib</a> is the first library that comes up for email. Don't forget about imaplib! It might be more suitable for searching based on text in your emails or <a class="reference external" href="https://superuser.com/questions/719677/how-to-use-gmail-tabs-with-imap">creating labeled segments yourself, then applying actions to them</a>.</p>
+<p><strong>Additional Gmail + Python Resources</strong></p>
+<p><a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">G</a><a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">mail search operators</a></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/imaplib.html">imaplib</a> - python standard library interface to email accounts [<a class="reference external" href="https://stackoverflow.com/questions/3180891/imap-how-to-delete-messages">Stack Overflow example</a>]</p>
+<p><a class="reference external" href="https://support.google.com/mail/answer/7126229?hl=en">enabling IMAP in your gmail</a></p>
+<p><a class="reference external" href="https://developers.google.com/gmail/api/quickstart/python">Gmail API Python Quickstart</a></p>
+<p><a class="reference external" href="https://github.com/charlierguo/gmail">Gmail python library</a> - There are also pythonic wrappers to the Gmail API like this one.</p>
+<p><a class="reference external" href="https://pymotw.com/2/imaplib/">imaplib - Python Module of the Week</a></p>
+<p><a class="reference external" href="https://markodenic.com/use-google-like-a-pro/">Use Google Like a Pro</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/using-gmails-search-operators-to-organize-your-emails-in-bulk.html">posted at 11:17</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/productivity-python.html" rel="tag">productivity, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/email.html" class="tags">email</a>
+                    &nbsp;<a href="https://lofipython.com/tag/gmail.html" class="tags">gmail</a>
+                    &nbsp;<a href="https://lofipython.com/tag/imap.html" class="tags">IMAP</a>
+                    &nbsp;<a href="https://lofipython.com/tag/smtp.html" class="tags">smtp</a>
+                </div>
+            </article>            <h4 class="date">Jan 16, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -49,19 +118,28 @@
 <p><strong>Install ffn with pip:</strong></p>
 <p><tt class="docutils literal">python <span class="pre">-m</span> pip install ffn</tt></p>
 <p>Here's the code to get stock data with <a class="reference external" href="https://pmorissette.github.io/ffn/quick.html">ffn</a>:</p>
-<pre class="code python literal-block">
-<span class="kn">import</span> <span class="nn">ffn</span><span class="w">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">ffn</span>
 
-</span><span class="c1"># ffn.get returns a pandas dataframe of market data.</span><span class="w">
-</span><span class="n">data</span> <span class="o">=</span> <span class="n">ffn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="w">
-</span>    <span class="s1">'tsla,spot,nflx,nke,addyy'</span><span class="p">,</span><span class="w">
-</span>    <span class="n">start</span><span class="o">=</span><span class="s1">'2019-01-01'</span><span class="p">,</span><span class="w">
-</span>    <span class="n">end</span><span class="o">=</span><span class="s1">'2020-12-31'</span><span class="w">
-</span><span class="p">)</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span><span class="w">
-</span><span class="n">stats</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">calc_stats</span><span class="p">()</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">display</span><span class="p">())</span>
-</pre>
+<span class="c1"># ffn.get returns a pandas dataframe of market data.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ffn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s1">&#39;tsla,spot,nflx,nke,addyy&#39;</span><span class="p">,</span>
+    <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2019-01-01&#39;</span><span class="p">,</span>
+    <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2020-12-31&#39;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">calc_stats</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">display</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
 <div class="wp-image-5165 figure">
 <img alt="" src="https://pythonmarketer.files.wordpress.com/2021/01/2019-2020-top-stock.jpg?w=794" />
 </div>
@@ -159,6 +237,140 @@ caching is a common technique to store data so that it can be quickly fetched la
                     &nbsp;<a href="https://lofipython.com/tag/articles.html" class="tags">articles</a>
                     &nbsp;<a href="https://lofipython.com/tag/computer-science.html" class="tags">computer science</a>
                     &nbsp;<a href="https://lofipython.com/tag/wikipedia.html" class="tags">Wikipedia</a>
+                </div>
+            </article>            <h4 class="date">Oct 04, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/post-a-photo-to-your-facebook-page-with-the-unsplash-facebook-apis.html" rel="bookmark" title="Permanent Link to &quot;Post an Unsplash Photo to Facebook Pages with Python&quot;">Post an Unsplash Photo to Facebook Pages with Python</a>
+                </h2>
+
+                
+                
+
+                <p>My goal was to automate posting positive photos and quotes to my Facebook page, &quot;<a class="reference external" href="https://www.facebook.com/positivedailythought">Positive Thoughts Daily</a>&quot;, with the Unsplash and Facebook APIs. Here's how I did it!</p>
+<p>This implementation relies on <a class="reference external" href="https://unsplash.com/&#64;erickbytes/likes">my own collection of photos on Unsplash</a>. I will manually select which photos I like to get added to my collection. Then my app will take the new photos and post one a day for me.</p>
+<blockquote>
+Side note: the free version of the Unsplash API is capped at 50 requests per week, which was enough for me.</blockquote>
+<div class="section" id="setting-up-the-facebook-api">
+<h2>Setting Up The Facebook API</h2>
+<ol class="arabic simple">
+<li>Sign up for a Facebook <a class="reference external" href="https://developers.facebook.com/">developer account</a></li>
+<li>Create a new Facebook app</li>
+<li>Add &quot;page_manage_posts&quot; and &quot;pages_read_user_content&quot; permissions to your app in the <a class="reference external" href="https://developers.facebook.com/tools/explorer">Graph API Explorer</a></li>
+<li>Get a &quot;short lived&quot; user access token from the Graph API explorer (optional: fetch a &quot;long lived&quot; user access token, which lasts up to 60 days)</li>
+<li>Use your user access token to a fetch your page's access token</li>
+</ol>
+<p><strong>Optional: fetch long lived access token with curl</strong></p>
+<pre class="code python literal-block">
+<span class="n">curl</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s2">&quot;https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&amp; client_id={app-id}&amp; client_secret={app-secret}&amp; fb_exchange_token={short-lived-user-access-token}&quot;</span>
+</pre>
+<p><strong>Fetch your Facebook page's access token</strong></p>
+<pre class="code python literal-block">
+<span class="n">curl</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s2">&quot;https://graph.facebook.com/{your-user-id}/accounts?access_token={user-access-token}</span>
+</pre>
+</div>
+<div class="section" id="setting-up-unsplash">
+<h2>Setting up Unsplash</h2>
+<ol class="arabic simple">
+<li>Sign up for an <a class="reference external" href="https://unsplash.com/documentation">Unsplash developer account</a></li>
+<li>Install the python-unsplash library. In the terminal enter:</li>
+</ol>
+<pre class="code python literal-block">
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">unsplash</span>
+</pre>
+<ol class="arabic simple" start="3">
+<li>Decide what photo you want to post. This example fetches a random photo from my <a class="reference external" href="https://unsplash.com/collections/66610223/positive-thoughts-daily">Unsplash collection</a>. You can also fetch any photo at random, or pass in a query to get a certain type of photo.</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">unsplash.api</span> <span class="kn">import</span> <span class="n">Api</span>
+<span class="kn">from</span> <span class="nn">unsplash.auth</span> <span class="kn">import</span> <span class="n">Auth</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Python-Unsplash library Github:</span>
+<span class="sd">https://github.com/yakupadakli/python-unsplash</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;add_your_client_id&quot;</span>
+<span class="n">client_secret</span> <span class="o">=</span> <span class="s2">&quot;add_your_client_secret&quot;</span>
+<span class="n">redirect_uri</span> <span class="o">=</span> <span class="s2">&quot;add_your_redirect_uri&quot;</span>
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">Auth</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_secret</span><span class="p">,</span> <span class="n">redirect_uri</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">code</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span>
+<span class="c1"># returns a python list containing a class</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">collections</span><span class="o">=</span><span class="mi">66610223</span><span class="p">)</span> <span class="c1"># my collection id</span>
+<span class="n">image_id</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Use image_id to get random photo&#39;s</span>
+<span class="sd">download link from a collection.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://api.unsplash.com/photos/</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">/download?client_id=</span><span class="si">{</span><span class="n">client_id</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">download_link</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+</pre></div></td></tr></table></div>
+</div>
+<div class="section" id="posting-the-unsplash-image-to-facebook">
+<h2>Posting the Unsplash Image to Facebook</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="sd">&quot;&quot;&quot;Use download link and post to page with Facebook API.&quot;&quot;&quot;</span>
+<span class="n">page_id</span> <span class="o">=</span> <span class="s2">&quot;add_page_id_from_about_section&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://graph.facebook.com/</span><span class="si">{</span><span class="n">page_id</span><span class="si">}</span><span class="s2">/photos?access_token=</span><span class="si">{</span><span class="n">page_access_token</span><span class="si">}</span><span class="s2">&amp;url=</span><span class="si">{</span><span class="n">download_link</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">post_ids</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">post_ids</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Post Project Reflections</strong></p>
+<p>This was my first time working with the Facebook API. Honestly, it's a little crazy trying to balance all the token types in your head. There are about 5 different types of tokens that are used for different things! Ultimately I was able to figure out how to to post a photo. So there is a bit of a learning curve. It's a good challenge to build your API skills. The Unsplash API requires no <a class="reference external" href="https://en.wikipedia.org/wiki/OAuth">Oauth</a> tokens and is easier to pick up.</p>
+<p>My Facebook page posts are now triggered by page loads on this <a class="reference external" href="https://positivethoughts.pythonanywhere.com/">website</a>! I am using a <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/">MySQL database</a> to track which images I post to make sure I don't duplicate any posts and to make sure I only post once every 24 hours. Ah, I love the smell of fresh automation in the morning. 😀</p>
+<p><strong>Supplementary Links</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://developers.facebook.com/docs/pages/getting-started">FB API &quot;Getting Started&quot;</a></li>
+<li><a class="reference external" href="https://developers.facebook.com/tools/explorer">FB API &quot;Explorer&quot;</a></li>
+<li><a class="reference external" href="https://developers.facebook.com/docs/permissions/reference">FB Permissions Reference</a></li>
+<li><a class="reference external" href="https://developers.facebook.com/docs/facebook-login/access-tokens/debugging-and-error-handling/">Debugging Tokens</a></li>
+<li><a class="reference external" href="https://developers.facebook.com/docs/pages/publishing/">FB API Publishing</a></li>
+<li><a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/">A Guide to Tackling APIs</a>, written by me!</li>
+</ul>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/post-a-photo-to-your-facebook-page-with-the-unsplash-facebook-apis.html">posted at 15:13</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-programming.html" rel="tag">APIs, coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/facebook-api.html" class="tags">Facebook API</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/social-media.html" class="tags">social media</a>
+                    &nbsp;<a href="https://lofipython.com/tag/unsplash.html" class="tags">Unsplash</a>
                 </div>
             </article>            <h4 class="date">Sep 12, 2020</h4>
 
@@ -414,10 +626,10 @@ If you need to parse an XML response, check out Python's stock <a class="referen
 <p><strong>Authorization Scheme Example [</strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Mozilla</a><strong>]</strong></p>
 <p>Authorization: &lt;auth-scheme&gt; &lt;authorisation-parameters&gt;</p>
 </blockquote>
-<pre class="literal-block">
-# headers python dict example
-headers = {&quot;Authorization&quot;: f&quot;basic {token}&quot;}
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># headers python dict example</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;basic </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+</pre></div></td></tr></table></div>
 <p><strong>Pages</strong></p>
 <p>API data is commonly returned in multiple pages when there is a lot of data returned. Each page can be accessed one request at a time. Sometimes you can specify how many items you want on a page. But there is usually a maximum items per page limit like 100.</p>
 <p><strong>Status code</strong></p>
@@ -459,32 +671,54 @@ If you choose not to use Postman, you can use the json library. See the use of <
 <div class="section" id="example-1-get-the-geolocation-details-of-any-public-location-with-the-google-api">
 <h2>Example #1: <tt class="docutils literal">GET</tt> the geolocation details of any public location with the Google API</h2>
 <p>This was modified from another example of <a class="reference external" href="https://www.geeksforgeeks.org/get-post-requests-using-python/">Google's Geolocation API</a>. To use this, you need to <a class="reference external" href="https://developers.google.com/maps/documentation/geolocation/intro">create a developer account with Google</a> and paste your API keys below.</p>
-<pre class="literal-block">
-import requests
-# import pandas as pd
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># import pandas as pd</span>
 
-&quot;&quot;&quot;Find the best double-cheeseburger + fries $7 can buy.&quot;&quot;&quot;
-payload = {&quot;key&quot;:&quot;Add_Google_API_Key_Here&quot;, &quot;address&quot;:&quot;Redhot Ranch&quot;}
-# optional: set a 5 second timeout for the http request
-r = requests.get(url=&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;,
-                 params=payload,
-                 timeout=5)
-print(r.text)
-print(r.status_code)
-data = r.json()
+<span class="sd">&quot;&quot;&quot;Find the best double-cheeseburger + fries $7 can buy.&quot;&quot;&quot;</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;Redhot Ranch&quot;</span><span class="p">}</span>
+<span class="c1"># optional: set a 5 second timeout for the http request</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span><span class="p">,</span>
+                 <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+                 <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
-# extracting latitude, longitude and formatted address of the first matching location
-latitude = data['results'][0]['geometry']['location']['lat']
-longitude = data['results'][0]['geometry']['location']['lng']
-formatted_address = data['results'][0]['formatted_address']
-print(longitude)
-print(latitude)
-print(formatted_address)
+<span class="c1"># extracting latitude, longitude and formatted address of the first matching location</span>
+<span class="n">latitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+<span class="n">longitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lng&#39;</span><span class="p">]</span>
+<span class="n">formatted_address</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;formatted_address&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">longitude</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">formatted_address</span><span class="p">)</span>
 
-# optional: convert response into a dataframe with pandas
-# location_df = pd.json_normalize(data['results'])
-# location_df.to_csv('Locations.csv')
-</pre>
+<span class="c1"># optional: convert response into a dataframe with pandas</span>
+<span class="c1"># location_df = pd.json_normalize(data[&#39;results&#39;])</span>
+<span class="c1"># location_df.to_csv(&#39;Locations.csv&#39;)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Above you can see:</strong></p>
 <ul class="simple">
 <li><tt class="docutils literal">requests</tt> makes it easy to see the server's text response also with <tt class="docutils literal">response.text</tt></li>
@@ -499,53 +733,96 @@ print(formatted_address)
 <li>Convert it to encoded json string with <tt class="docutils literal">json.dumps</tt> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.loads">json module</a>.</li>
 <li><tt class="docutils literal">POST</tt> the encoded JSON to the endpoint url with requests.</li>
 </ol>
-<pre class="literal-block">
-import pprint
-import json
-import requests
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-def convert_dict_to_json_object():
-    &quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;
-    payload = {
-        &quot;first_name&quot;:&quot;P&quot;,
-        &quot;last_name&quot;:&quot;Sherman&quot;,
-        &quot;address&quot;:&quot;42 Wallaby Way&quot;,
-        &quot;address_2&quot;:&quot;&quot;,
-        &quot;city&quot;:&quot;Sydney&quot;,
-        &quot;state&quot;:&quot;NSW&quot;,
-        &quot;country&quot;:&quot;AU&quot;,
-        &quot;zip&quot;:&quot;2000&quot;
-        }
-    pprint.pprint(payload)
-    json_str = json.dumps(payload, ensure_ascii=True)
-    # encode json str to utf-8
-    return json_str.encode(&quot;utf-8&quot;)
+<span class="k">def</span> <span class="nf">convert_dict_to_json_object</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span><span class="p">:</span><span class="s2">&quot;P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span><span class="p">:</span><span class="s2">&quot;Sherman&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;42 Wallaby Way&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address_2&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;city&quot;</span><span class="p">:</span><span class="s2">&quot;Sydney&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;NSW&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;country&quot;</span><span class="p">:</span><span class="s2">&quot;AU&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;zip&quot;</span><span class="p">:</span><span class="s2">&quot;2000&quot;</span>
+        <span class="p">}</span>
+    <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+    <span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># encode json str to utf-8</span>
+    <span class="k">return</span> <span class="n">json_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
 
-def create_new_contact(json_str):
-    &quot;&quot;&quot;
-    This is a fictional API request.
-    Passing a json object to requests.
-    Decoding server response with response.json(),
-    Returning a contact id by calling the data's keys.
-    &quot;&quot;&quot;
-    headers = {
-        &quot;Authorization&quot;: f&quot;Bearer {token}&quot;,
-        &quot;Content-Type&quot;: &quot;application/json&quot;,
-        &quot;cache-control&quot;: &quot;no-cache&quot;,
-        &quot;Postman-Token&quot;: f&quot;{postman_token}&quot;
-        }
-    r = requests.request(method=&quot;POST&quot;,
-                         url=&quot;https://SomeSoftwareAPI.com/contacts/&quot;,
-                         data=json_str,
-                         headers=headers)
-    data = r.json()
-    print(data.keys())
-    contact_id = data['contact_id'] # call dict keys to get their values
-    return contact_id
+<span class="k">def</span> <span class="nf">create_new_contact</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a fictional API request.</span>
+<span class="sd">    Passing a json object to requests.</span>
+<span class="sd">    Decoding server response with response.json(),</span>
+<span class="sd">    Returning a contact id by calling the data&#39;s keys.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cache-control&quot;</span><span class="p">:</span> <span class="s2">&quot;no-cache&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Postman-Token&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">postman_token</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">}</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+                         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://SomeSoftwareAPI.com/contacts/&quot;</span><span class="p">,</span>
+                         <span class="n">data</span><span class="o">=</span><span class="n">json_str</span><span class="p">,</span>
+                         <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">contact_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;contact_id&#39;</span><span class="p">]</span> <span class="c1"># call dict keys to get their values</span>
+    <span class="k">return</span> <span class="n">contact_id</span>
 
-json_str = convert_dict_to_json_object()
-contact_id = create_new_contact(json_str)
-</pre>
+<span class="n">json_str</span> <span class="o">=</span> <span class="n">convert_dict_to_json_object</span><span class="p">()</span>
+<span class="n">contact_id</span> <span class="o">=</span> <span class="n">create_new_contact</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <!--  -->
 <blockquote>
 <p><strong>requests.request keyword argument alternatives for passing data</strong></p>
@@ -562,29 +839,40 @@ contact_id = create_new_contact(json_str)
 </ul>
 <p><strong>Sidebar:</strong><a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">requests.Session()</a></p>
 <p>You might be able to improve performance by using a requests <a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">&quot;session&quot; object</a>.</p>
-<pre class="literal-block">
-&quot;&quot;&quot;
-a session adds a &quot;keep-alive&quot; header to your HTTP connection.
-It can be used to store cookies across requests.
-&quot;&quot;&quot;
-import requests
-s = requests.Session()
-for page in range(0, 2):
-    url = f&quot;https://SomeSoftwareAPI.com/contacts/{str(page)}&quot;
-    r = s.get(url)
-    print(r.text)
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="sd">&quot;&quot;&quot;a session adds a &quot;keep-alive&quot; header to your HTTP connection.</span>
+<span class="sd">It can be used to store cookies across requests.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://SomeSoftwareAPI.com/contacts/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Dig deeper into requests by raising your HTTPConnection.debuglevel</strong></p>
 <p><strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <tt class="docutils literal">`debuglevel</tt> &lt;<a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel</a>&gt;`__ is greater than zero, messages will be printed to stdout as the response is read and parsed. <strong>-</strong><a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></p>
-<pre class="literal-block">
-from http.client import HTTPConnection
-import requests
-HTTPConnection.debuglevel = 1
-payload = {&quot;key&quot;:&quot;Add_Google_API_Key_Here&quot;, &quot;address&quot;:&quot;90 Miles&quot;}
-url = &quot;https://maps.googleapis.com/maps/api/geocode/json&quot;
-r = requests.get(url=url, params=payload, timeout=5)
-print(r.text)
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">http.client</span> <span class="kn">import</span> <span class="n">HTTPConnection</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">HTTPConnection</span><span class="o">.</span><span class="n">debuglevel</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;90 Miles&quot;</span><span class="p">}</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Conclusion</strong></p>
 <p>I remember APIs seemed mysterious and daunting before I had used them. But like all things, they can be conquered with knowledge, understanding and tenacity to keep trying until you figure it out. Good luck!</p>
 <p><strong>Requests Documentation</strong></p>
@@ -698,246 +986,6 @@ def randomize_contacts(df):
                     &nbsp;<a href="https://lofipython.com/tag/business.html" class="tags">business</a>
                     &nbsp;<a href="https://lofipython.com/tag/mistakes.html" class="tags">mistakes</a>
                     &nbsp;<a href="https://lofipython.com/tag/random.html" class="tags">random</a>
-                </div>
-            </article>            <h4 class="date">Apr 11, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/reflections-on-5-years-of-solving-problems-with-python.html" rel="bookmark" title="Permanent Link to &quot;Reflections on 5 Years of Solving Problems with Python&quot;">Reflections on 5 Years of Solving Problems with Python</a>
-                </h2>
-
-                
-                
-
-                <p>Prior to learning Python, I had no programming experience. I worked in marketing for a book publisher and did not perform well at my job. It was not a good fit. They eventually fired me. As my previous job unraveled, I discovered Python and the Coursera course, <a class="reference external" href="https://www.coursera.org/learn/python?utm_medium=email&amp;utm_source=other&amp;utm_campaign=opencourse.course_complete.python.%7Eopencourse.course_complete.7A1yFTaREeWWBQrVFXqd1w.">Programming for Everybody (Getting Started with Python)</a>. Fortunately, that course jump-started me onto a path of learning and reading each day. My aim was to make my own website, a <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/05/25/askkevinparker-com-my-first-web-app-other-notes/">goal that I accomplished</a>. I needed to know how the sausage was made.</p>
-<p>Looking back from 2020, I can safely say Python changed my life. Because of it, I now have a fulfilling marketingdata-oriented career. I'm also grateful for the financial stability that came with it. I love to learn about the language and continue to improve my abilities to solve problems with new tools, not only Python.</p>
-<p>Below are pieces of wisdom picked up from my experiences. They are the result of many hours of study, reading, mistakes, luck, toil and eventual glory.</p>
-<p><strong>These are thought-provoking adages and guidelines, not absolute truths in all cases.</strong></p>
-<ol class="arabic simple">
-<li>Developing a habit of learning pays off over time, no matter what the subject is. It is an investment in yourself that compounds.</li>
-<li>Follow your own curiosity. It's less important to compare what you know to others. Compare what you know today to what you knew yesterday. Don't worry about <a class="reference external" href="https://nedbatchelder.com/blog/202003/how_long_did_it_take_you_to_learn_python.html">how long it takes to learn</a>.</li>
-<li>Watch educational or technical conference talks on sites like <a class="reference external" href="https://www.youtube.com/channel/UCMjMBMGt0WJQLeluw6qNJuA/videos">YouTube</a> or InfoQ. <a class="reference external" href="https://www.infoq.com/presentations/Simple-Made-Easy/">Rich Hickey,</a> <a class="reference external" href="https://rhodesmill.org/brandon/talks/#selenium-at-scale">Brandon Rhodes</a> and <a class="reference external" href="https://www.youtube.com/watch?v=lyDLAutA88s">David Beazley</a> are some of my favorite speakers. Watch talks from all languages, not just Python. Often the concepts apply to any programming language.</li>
-<li>Use an RSS reader. Anytime you find a good blog, subscribe by RSS or email to get new posts. I use the <a class="reference external" href="https://chrome.google.com/webstore/detail/rss-feed-reader/pnjaodmkngahhkoihejjehlcdlnohgmp?hl=en">Feeder Chrome extension</a>\Android app.</li>
-<li>The <a class="reference external" href="https://www.python.org/dev/peps/pep-0020/">Zen of Python</a> contains a lot of wisdom. I like the concept of <tt class="docutils literal">Explicit is better than implicit.</tt> This implies declaring your actions in written or oral fashion, providing additional context. Consider favoring easier to read solutions over clever one-liners. For example:<ul>
-<li><a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">List comprehensions</a> are useful and &quot;pythonic&quot;, use them! But sometimes it's easier to use a for loop to hash out an idea. (Contrarily, avoiding the <a class="reference external" href="https://www.youtube.com/watch?v=W-lZttZhsUY">Initialize Then Modify</a> pattern benefits those comfortable with comprehensions.)</li>
-<li>Explicitly using <a class="reference external" href="https://treyhunner.com/2018/04/keyword-arguments-in-python/">keyword arguments</a> versus positional arguments is another way to make your code easier to understand.</li>
-</ul>
-</li>
-<li>Can you explain the solution simply? If not, try to clarify your understanding or maybe there's a simpler way. In Python, there are often several ways to accomplish the same goal. But keep in mind the Zen of Python: <tt class="docutils literal">There should be <span class="pre">one--</span> and preferably only one <span class="pre">--obvious</span> way to do it. Although that way may not be obvious at first unless you're Dutch.</tt> Look for the obvious way. An example of this is <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/04/07/python-101-working-with-strings/">string formatting.</a> I've heard f-strings are the hot new way to do this now.</li>
-<li>Don't be afraid to change course if things don't feel right. Ask yourself while coding, &quot;Does this feel efficient?&quot; Recently I was trying to format a json string so I approached it like I had in the past, by <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/">exporting the request from Postman and formatting the json string</a> with python's <a class="reference external" href="https://docs.python.org/3/library/functions.html?highlight=format#format">format() built-in</a>. But this time, the curly braces were confusing me, I was struggling and it wasn't working. I googled and around and saw python's <a class="reference external" href="https://docs.python.org/3/library/json.html?highlight=json#module-json">json module</a> and <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html">df.to_json()</a> in pandas. They were a much easier and better-looking solution. But it still wasn't working. Finally, i used the Postman approach and f-strings to format a successful payload. The third try worked! F-strings are super nice and clean.</li>
-<li>If you're stuck, there's probably a free online course or blog post that explains whatever is confusing you. Use the Googles. When in doubt, Google the error message.</li>
-<li>Begin your project by writing a list of requirements. This often leads to good questions and cases that may need to be addressed. The book <a class="reference external" href="https://www.amazon.com/gp/product/0735619670/">Code Complete 2</a> covers establishing project requirements in great detail, along with the other stages in the life-cycle of a software project. I'm really enjoying this book and highly recommend it.</li>
-<li>Names are really important. Take time to think about a good name for your variables and functions. Also, name your scripts well. I name my scripts using <a class="reference external" href="https://examples.yourdictionary.com/action-verb-examples.html">action verbs</a>. For example, my script that organizes accumulated files on my desktop into folders is named <tt class="docutils literal">clean_desktop_files.py</tt>. When I see this script months later, its name reminds me the action the script is performing. I believe it's better to err on the side of longer, more descriptive names for variables and functions. It makes code easier to understand. But there is a trade-off with length to keep in check.</li>
-<li>Moving a block of code into a function can abstract away repetitive code and increase its readability.</li>
-<li>Each function should do one thing only. Follow the <a class="reference external" href="https://en.wikipedia.org/wiki/Single-responsibility_principle">single-responsibility principle</a>.</li>
-<li>Train yourself to think in <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">data structure</a>&nbsp;conversions. The Python dictionary is very useful and can be converted to and from lists, tuples, sets, etc. I often find it more efficient to convert to a different structure to efficiently organize it. Usually I am googling things like &quot;convert class object to python dictionary&quot; because dictionaries are easy to work with or convert to other structures. The <tt class="docutils literal">vars()</tt> built-in is great for converting objects to a dictionary. For example, once you have a dictionary, you might be able to solve your problem by <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.from_dict.html">converting it to a dataframe</a>.</li>
-<li>Use only the data you need. Reading in just the essential data helps avoid memory issues and hanging programs. In <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">pandas</a>, the <tt class="docutils literal">usecols</tt> argument in <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pd.read_csv()</a> is great for this. This creates a dataframe with 2 columns:</li>
-</ol>
-<p><tt class="docutils literal">df = <span class="pre">pd.read_csv('emails.csv',</span> <span class="pre">usecols=['name','email'])</span></tt></p>
-<ol class="arabic" start="15">
-<li><p class="first">Assume that if something is broken, it's because of something you've done. Start from the assumption that your code contains the bug and work outward by eliminating possibilities. Avoid jumping to quick conclusions. Instead, carefully consider possible reasons for why something is happening. Many times, I find my 2nd or 3rd hypothesis is actually true.</p>
-</li>
-<li><p class="first">There will be times when you'll look at someone else's choices and wonder why they did things a certain way. Consider the possibility that they know more than you in this domain.</p>
-</li>
-<li><p class="first">Beware of sequencing errors. Are your tasks, scripts or functions executing in an efficient order to reach your end goal? Look to unblock bottlenecks and correct chronological mistakes in your processes.</p>
-</li>
-<li><p class="first">Before you send that email asking for help, go back and take another look. There's also no shame in asking for help. Be sure you proofread your email before sending.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status code 200</a> does not guarantee your API request was successful. You may want to write a test to confirm success that doesn't rely on response status codes.</p>
-<p>[caption id=&quot;attachment_3108&quot; align=&quot;alignnone&quot; width=&quot;941&quot;]<img alt="pytest_test_results" class="alignnone size-full wp-image-3108" src="https://pythonmarketer.files.wordpress.com/2020/04/pytest_test_results.png" style="width: 941px; height: 540px;" /> pytest deprecation warnings for unescaped pipes or slashes in docstrings? ¯_(ツ)_/¯[/caption]</p>
-</li>
-<li><p class="first">Unfortunately, <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">testing</a> gets shunned sometimes. Make it a priority. I enjoy writing <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a> more than most other code. Why? Because tests confirm my scripts are working to some degree, detect bugs and provide a refactoring safety net.</p>
-</li>
-<li><p class="first">Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.</p>
-</li>
-<li><p class="first">Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a <a class="reference external" href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10">Windows batch file</a> to instantly activate my Python <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>. It took me a few years of tediously pasting the <tt class="docutils literal">cd</tt> and <tt class="docutils literal">activate</tt> commands into command prompt every day to realize. Now it's a snap.</p>
-</li>
-<li><p class="first">Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...</p>
-</li>
-<li><p class="first">Read the documentation! An updated or more elegant solution might be there. I recently found <tt class="docutils literal">os.makedirs(path, exist_ok=True)</tt> in the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <tt class="docutils literal">exist_ok</tt> argument. I was creating folders with a more complicated alternative from <a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <tt class="docutils literal">`getpass.getuser()</tt> &lt;<a class="reference external" href="https://docs.python.org/3.8/library/getpass.html">https://docs.python.org/3.8/library/getpass.html</a>&gt;`__ is preferred over <tt class="docutils literal">os.getlogin()</tt>.</p>
-</li>
-<li><p class="first">Write documentation explaining how to use your projects. Even if you can only muster a quick <a class="reference external" href="https://en.wikipedia.org/wiki/README">README</a> text file, that's better than nothing. Within your code, <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> are a nice addition. I have yet to use <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, but it is a popular choice for generating documentation.</p>
-</li>
-<li><p class="first">Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...</p>
-</li>
-<li><p class="first">Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.</p>
-</li>
-<li><p class="first">When editing your writing, continually ask yourself, &quot;Do I need this word or phrase?&quot; for every word you write.</p>
-</li>
-</ol>
-<!--  -->
-<blockquote>
-&quot;Brevity is the soul of wit.&quot; - William Shakespeare (Hamlet)</blockquote>
-<ol class="arabic simple" start="29">
-<li>Draw inspiration from culture, nature and professional disciplines outside of your own. <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/01/28/lessons-learned-from-lost-in-space-on-netflix/">Insights can be mined from anything</a>. Don't dismiss a situation as mundane without first scanning for knowledge nuggets and gems.</li>
-<li>Better solutions often come to me after gaining time and experience with a problem. Building software is an iterative cycle of adjustment towards consistently fulfilling the needs of those it serves in 100% of cases. In a perfect world, you'd never have bugs. But edge cases tend to pop up in ways you didn't think of when you first wrote a solution. There will also be projects where requirements or business rules change. Consider that possibility when you are designing your solution.</li>
-<li>It's possible to find a job that you're excited about and genuinely enjoy the work.</li>
-<li>Respect your craft, whether it's coding or another profession. A skilled carpenter needs precision, practice and focus to make something beautiful. Approach your craft with the same mindset and pride in making your best art.</li>
-<li>We all have holes in our knowledge. Be receptive to other ways of thinking. The best way to learn is from other humans. Everyone has different backgrounds and experiences. I have never used object oriented programming, classes or certain command line tools like <a class="reference external" href="https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/">ssh</a>. I have a loose understanding of these things but have not yet applied them to my projects. Working with paths (os and pathlib) still gives me fits sometimes. These are knowledge gaps that I want to fill in. Additionally, we don't know what we don't know. Try to illuminate the fog of your unknown.</li>
-<li>Choosing to dedicate to learning Python is among the best decisions I've made.</li>
-<li>Attitude is more important than intelligence. Anyone can learn to program, play guitar or fly an airplane. You can become an adept problem solver. Acquire an attitude to support your determination and persistence.</li>
-</ol>
-<p>[caption id=&quot;attachment_2981&quot; align=&quot;alignnone&quot; width=&quot;959&quot;]<a class="reference external image-reference" href="https://www.youtube.com/watch?v=I56oFTm9UlE"><img alt="brandonrhodes" class="alignnone size-full wp-image-2981" src="https://pythonmarketer.files.wordpress.com/2020/04/brandonrhodes.png" style="width: 959px; height: 541px;" /></a> Brandon Rhodes: Stopping to Sharpen Your Tools - PyWaw Summit 2015[/caption]</p>
-<p><strong>I'll leave you with the 4 P's and 4 C's from my</strong> <a class="reference external" href="https://www.youtube.com/watch?v=SfQYA0JQWkA">Programming for Everybody Coursera course graduation ceremony</a><strong>. Cultivating these principles will guide you to growing your education and finding a positive course in life:</strong></p>
-<blockquote>
-<p><strong>4 P’s:</strong> Passion, Purpose, Persistence, Playfulness</p>
-<p><strong>4 C’s:</strong> Choice, Commitment, Connection, Completion</p>
-</blockquote>
-<p>Thank you for reading and I hope this post helps you on your own educational journey.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/reflections-on-5-years-of-solving-problems-with-python.html">posted at 17:15</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-education-marketing-programming-python-wisdom.html" rel="tag">coding, education, Marketing, programming, python, wisdom</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/advice.html" class="tags">advice</a>
-                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
-                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
-                    &nbsp;<a href="https://lofipython.com/tag/writing.html" class="tags">writing</a>
-                </div>
-            </article>            <h4 class="date">Mar 22, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/easy-wins-for-your-windows-computer.html" rel="bookmark" title="Permanent Link to &quot;Easy Tune-ups For Your Windows Computer&quot;">Easy Tune-ups For Your Windows Computer</a>
-                </h2>
-
-                
-                
-
-                <div class="section" id="this-post-covers-6-handy-windows-tools">
-<h2>This post covers 6 handy Windows tools:</h2>
-<ol class="arabic simple">
-<li>Windows Experience Index</li>
-<li>Disk Cleanup</li>
-<li>Windows Update Troubleshooter</li>
-<li>Windows Update</li>
-<li>Microsoft Support and Recovery Assistant</li>
-<li>Disk Defragmenter</li>
-</ol>
-</div>
-<div class="section" id="first-get-your-baseline-windows-experience-index-score">
-<h2><strong>First, get your baseline Windows Experience Index score.</strong></h2>
-<p>These metrics are a way to monitor your system's performance over time.</p>
-<ol class="arabic simple">
-<li>Go to &quot;Control PanelSystem and SecuritySystem&quot;</li>
-<li>Select &quot;Your Windows Experience Index needs to be refreshed.&quot;</li>
-<li>Note the metrics you see and the last updated date. If you've never refreshed them, these are likely your computer's factory scores.</li>
-<li>Then click &quot;Refresh Now&quot; and note the results. These are your computer's current scores.</li>
-</ol>
-<img alt="check_Windows_Experience_Index" class="alignnone size-full wp-image-2780" src="http://pythonmarketer.files.wordpress.com/2020/03/f6e0a-check_windows_experience_index-e1584936945758.jpg" style="width: 729px; height: 501px;" />
-</div>
-<hr class="docutils" />
-<div class="section" id="run-disk-cleanup">
-<h2><strong>Run Disk Cleanup</strong></h2>
-<p>The name says it all. Go to the Start menu and search 'Disk Cleanup'. Running this freed up 40 GB of C: drive space for me.</p>
-<p>disk_cleanup</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="install-os-patches-and-software-updates-withwindows-update">
-<h2><strong>Install OS patches and software updates withWindows Update.</strong></h2>
-<p><strong>First, troubleshoot Windows Update to fix any errors.</strong></p>
-<img alt="tdhotingtrpot2" class="wp-image-2790 alignright" src="http://pythonmarketer.files.wordpress.com/2020/03/83836-tdhotingtrpot2-e1584941263675.jpg" style="width: 357px; height: 274px;" />
-<p>The <a class="reference external" href="https://support.microsoft.com/en-us/help/4027322/windows-update-troubleshooter">Windows Update Troubleshooter</a>is supported by Windows and may help&nbsp;with updates that fail. I downloaded the troubleshooter forWindows Update and BITS, Windows'<a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal">Background Intelligence Transfer System.</a></p>
-<p>The troubleshooter analyzes Windows Update and tries to fix the errors it finds. After running, it provides a status update on the issues it finds.</p>
-<p><strong>Run Windows Update to upgrade your software.</strong></p>
-<p>Windows Update usually updates your software reliably. However, some updates may fail or are not triggered automatically. Installing updates, especially security patches for your operating system is typically a good idea.In my case, several Windows 7 OS security patches had not auto-updated, some from 6 months ago.</p>
-<p>check_updates</p>
-<ul class="simple">
-<li>Go to your start menu and search for 'Windows Update'.</li>
-<li>I clicked 'Check online for updates from Windows Update' also.</li>
-<li>When you restart your computer, use a power cord for your laptop.</li>
-<li>I found more new updates twice after installing new updates and restarting my system.&nbsp; Some updates are required before another update may be installed.</li>
-</ul>
-<p>windowsuptodate</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="microsoft-support-and-recovery-assistant">
-<h2>Microsoft Support and Recovery Assistant</h2>
-<p><strong>Got Microsoft Errors?</strong> Check out the <a class="reference external" href="https://support.office.com/en-us/article/about-the-microsoft-support-and-recovery-assistant-e90bb691-c2a7-4697-a94f-88836856c72f">Microsoft Support and Recovery Assistant</a>. It may help you if you're having trouble with Microsoft Office, Skype or any other Windows&nbsp;tools.</p>
-<img alt="options_recovery" class="wp-image-3225 alignnone" src="http://pythonmarketer.files.wordpress.com/2020/03/1ea73-options_recovery-e1587747001750.jpg" style="width: 465px; height: 350px;" />
-</div>
-<hr class="docutils" />
-<div class="section" id="finally-defragment-your-c-drive">
-<h2><strong>Finally, defragment your C: drive.</strong></h2>
-<p>Defragmentation is like spring cleaning for your computer's hard disk. It optimizes your drive's data for more efficient computing and frees up space for other activities.</p>
-<ol class="arabic simple">
-<li>Go to your start menu and search for 'Disk Defragmenter'.</li>
-<li>Click 'Analyze disk' to check your C: Drive's fragmented rate.</li>
-<li>If the fragmented rate is above 10%, <a class="reference external" href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Windows recommends</a> to defragment your C: Drive. As you can see below, mine had a whopping 48% fragmentation rate. 😨 My poor computer had never been defragged in 2.5 years of use.</li>
-</ol>
-<img alt="defragment_results" class="alignnone size-full wp-image-2740" src="http://pythonmarketer.files.wordpress.com/2020/03/699fd-defragment_results-e1585007505765.jpg" style="width: 658px; height: 529px;" />
-<p><strong>46% Less Fragmented Disk Space After Two Defrags</strong></p>
-<p>Running the defragmenter once reduced my drive's fragmentation from 48% to 32%. Re-running the defragmenter dropped my C: drive to a 2% fragmented rate. That's more like it. 🤓</p>
-<blockquote>
-<div class="ng-scope docutils container">
-Fragmentation makes your hard disk do extra work that can slow down your computer. Removable storage devices such as USB flash drives can also become fragmented. Disk Defragmenter in Windows rearranges fragmented data so your disks and drives can work more efficiently.</div>
-<div class="docutils container">
-Source: <a class="reference external" href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Ways to Improve Your Computer's Performance</a></div>
-</blockquote>
-</div>
-<hr class="docutils" />
-<div class="section" id="my-windows-7-system-improvement-results">
-<h2><strong>My Windows 7 System Improvement Results</strong></h2>
-<ul class="simple">
-<li>Raised Windows Experience Index base sub-score from 4.9 to 5.0/7.9.</li>
-<li>Added 40 GB of hard drive space thanks to Disk Cleanup.</li>
-<li>Patched operating system security vulnerabilities and all software is up to date.</li>
-<li>Fixed any misbehaving Windows products.</li>
-<li>Decreased fragmented drive space from 48% to 2%. Windows recommends keeping it under 10%.</li>
-</ul>
-<p>On paper, that looks great. Hopefully it means less spinning lag wheels and programs not responding when you really shoulda saved that document...&nbsp; <a class="reference external" href="https://www.youtube.com/watch?v=e2cjVhUrmII">We'll see</a>.</p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/easy-wins-for-your-windows-computer.html">posted at 22:59</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/performance-windows.html" rel="tag">performance, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/maintenance.html" class="tags">maintenance</a>
-                    &nbsp;<a href="https://lofipython.com/tag/operating-system.html" class="tags">operating system</a>
-                    &nbsp;<a href="https://lofipython.com/tag/windows-update.html" class="tags">windows update</a>
-                </div>
-            </article>            <h4 class="date">Jan 28, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/lessons-learned-from-lost-in-space-on-netflix.html" rel="bookmark" title="Permanent Link to &quot;Lessons Learned from "Lost in Space" on Netflix&quot;">Lessons Learned from &quot;Lost in Space&quot; on Netflix</a>
-                </h2>
-
-                
-                
-
-                <p>Being a developer has similarities to the life of a family surviving in space. Sure, the stakes are lower when writing code versus being chased by alien life forms, but the core idea is the same. One is faced with a problem and it must be solved, with varying degrees of consequences for failure.</p>
-<p>I enjoyed watching the Robinsons solve problem after problem to stay alive in alien worlds and the vacuum of space. I believe you can learn from anything. <strong>So in that spirit, here are some lessons from the show for us problem solving humans:</strong></p>
-<ol class="arabic simple">
-<li><img alt="tayrob" class="size-full wp-image-2271 alignright" src="https://pythonmarketer.files.wordpress.com/2020/01/tayrob.jpeg" style="width: 300px; height: 168px;" />Don't panic when you're in trouble. A cool head is vitally important to your survival chances when you're in a bind. Judy demonstrates this quality in evading the&nbsp;raptor-like creatures chasing her.</li>
-<li>Problems solved often lead to more problems to solve. We would be wise to anticipate what might happen if we do succeed.</li>
-<li>Be cautious when venturing into unfamiliar territories. You never know what could be there to trip you up. Which leads me to my next point...</li>
-<li>Respect nature's ability to f*ck you up. The environment you're in, other organisms, and bacteria can wreak havoc. Despite our perceived self-importance, nature is our god. We are but specks in its creation. Cases in point: the metal-dissolving virus that destroys Judy's chariot and the poisonous algae Don accidentally discovers that immobilizes him.</li>
-<li>Know when to go for broke, or when to re-group and wait to make your next move. The Robinsons spent 7 months stocking up at their new beach home. Until they suffered a setback...<img alt="beach" class="alignnone size-full wp-image-2279" src="https://pythonmarketer.files.wordpress.com/2020/01/beach.jpg" style="width: 2155px; height: 1181px;" /></li>
-<li>Adapt your plan when new information becomes available or unexpected events happen. They will happen.</li>
-<li>Think of unconventional ways to use the resources you do have to fix the problem at hand. Who would have thought a spaceship could be retrofitted into a boat?</li>
-<li>Things often work 83% of the way you expect them to work. Sometimes that's enough to move on. Or maybe it buys you enough time to figure out your next move. The electrical field stalled the fleet of robots long enough for the Robinsons to realize the children should &quot;<a class="reference external" href="https://en.wikipedia.org/wiki/Lord_of_the_Flies">Lord of the Flies</a>&quot; their way to Alpha Centauri.</li>
-<li>Question your own motivations, and be open to changing course if you are wrong. Adler realized he should help Will save Scarecrow's life after first trying to stop him. Scarecrow then exhibits this same quality when he turns against his robot comrades to save the children.</li>
-<li>Ethics and morals may conflict with each other. Was Maureen Robinson wrong for fraudulently saving her son Will? Ethically, yes. But morally, as a mother saving her son? No.</li>
-<li>Make time for your family and friends. Maureen was so busy saving the family that she didn't read Penny's book. Stop and smell the roses every once in a while. Or read your daughter's damn book.</li>
-<li>Humans are capable of both great compassion and horrible cruelty. We're running from alien robots, but sometimes we're the monsters? Cough cough Smith and Hastings... cough. Excuse me. (smh 🤦)</li>
-<li><img alt="robot" class="wp-image-2282 alignright" src="https://pythonmarketer.files.wordpress.com/2020/01/robot-1.jpeg" style="width: 358px; height: 179px;" />I'll spare you any parallels about modern artificial intelligence. The best, most grounded definition I've heard of modern AI is &quot;<a class="reference external" href="https://twitter.com/fchollet/status/1214392496375025664?lang=en">automated cognition</a>&quot;.</li>
-<li>Self-sacrifice is an honorable death to save the lives of others, but can be frustrating to watch on TV. &quot;Did you really have to kill yourself there?&quot; - me, several times during the show 😆</li>
-</ol>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/lessons-learned-from-lost-in-space-on-netflix.html">posted at 06:39</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/entertainment-life-space.html" rel="tag">entertainment, life, space</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/lost-in-space.html" class="tags">Lost in Space</a>
-                    &nbsp;<a href="https://lofipython.com/tag/netflix.html" class="tags">Netflix</a>
-                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
                 </div>
             </article>
 

@@ -76,19 +76,28 @@
 </div>
 <p>Then it asks if I want the Python code explained. I'm so chuffed at this point. It tapped the <a class="reference external" href="https://docs.python.org/3/library/subprocess.html">subprocess module</a> to write the script and capture its output. Simply stunning.</p>
 <p>SFC requires an administrator command prompt. You can start an admin command prompt from the start menu. I ran &quot;python run_sfc.py&quot; containing the below script on version Python 3.11. The command finished running approximately 20 minutes later. Additionally, if you get the error 'utf-8' bytes can't be decoded, you'll need to pass an encoding argument to decode(). Ok, here's <strong>the Python script</strong>:</p>
-<pre class="code python literal-block">
-<span class="c1"># Import the subprocess module</span><span class="w">
-</span><span class="kn">import</span> <span class="nn">subprocess</span><span class="w">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># Import the subprocess module</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
 
-</span><span class="c1"># Define the SFC command as a list of arguments</span><span class="w">
-</span><span class="n">sfc_command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sfc&quot;</span><span class="p">,</span> <span class="s2">&quot;/scannow&quot;</span><span class="p">]</span><span class="w">
+<span class="c1"># Define the SFC command as a list of arguments</span>
+<span class="n">sfc_command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sfc&quot;</span><span class="p">,</span> <span class="s2">&quot;/scannow&quot;</span><span class="p">]</span>
 
-</span><span class="c1"># Run the SFC command using subprocess.run and capture the output</span><span class="w">
-</span><span class="n">sfc_output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sfc_command</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
+<span class="c1"># Run the SFC command using subprocess.run and capture the output</span>
+<span class="n">sfc_output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sfc_command</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-</span><span class="c1"># Print the output of the SFC command</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">sfc_output</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-</pre>
+<span class="c1"># Print the output of the SFC command</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sfc_output</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
 <div class="wp-image-7493 figure">
 <img alt="" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image63547969-1677469517174.png?w=911" />
 </div>
@@ -96,7 +105,7 @@
 <img alt="" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image-324660109-1677469443109.png?w=527" />
 </div>
 <div class="wp-image-7517 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2023/02/wp-1677631583420.png" />
+<img alt="an" src="https://pythonmarketer.files.wordpress.com/2023/02/wp-1677631583420.png" />
 </div>
 <p>If your text is using a non-English character encoding, I found you may need to pass a different encoding besides the default utf-8. For example, I found this to work if your command prompt characters are in Spanish:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>

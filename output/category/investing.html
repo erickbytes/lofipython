@@ -53,19 +53,28 @@
 <p><strong>Install ffn with pip:</strong></p>
 <p><tt class="docutils literal">python <span class="pre">-m</span> pip install ffn</tt></p>
 <p>Here's the code to get stock data with <a class="reference external" href="https://pmorissette.github.io/ffn/quick.html">ffn</a>:</p>
-<pre class="code python literal-block">
-<span class="kn">import</span> <span class="nn">ffn</span><span class="w">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">ffn</span>
 
-</span><span class="c1"># ffn.get returns a pandas dataframe of market data.</span><span class="w">
-</span><span class="n">data</span> <span class="o">=</span> <span class="n">ffn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="w">
-</span>    <span class="s1">'tsla,spot,nflx,nke,addyy'</span><span class="p">,</span><span class="w">
-</span>    <span class="n">start</span><span class="o">=</span><span class="s1">'2019-01-01'</span><span class="p">,</span><span class="w">
-</span>    <span class="n">end</span><span class="o">=</span><span class="s1">'2020-12-31'</span><span class="w">
-</span><span class="p">)</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span><span class="w">
-</span><span class="n">stats</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">calc_stats</span><span class="p">()</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">display</span><span class="p">())</span>
-</pre>
+<span class="c1"># ffn.get returns a pandas dataframe of market data.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ffn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s1">&#39;tsla,spot,nflx,nke,addyy&#39;</span><span class="p">,</span>
+    <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2019-01-01&#39;</span><span class="p">,</span>
+    <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2020-12-31&#39;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">calc_stats</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">display</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
 <div class="wp-image-5165 figure">
 <img alt="" src="https://pythonmarketer.files.wordpress.com/2021/01/2019-2020-top-stock.jpg?w=794" />
 </div>

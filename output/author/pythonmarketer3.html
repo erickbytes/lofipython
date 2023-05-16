@@ -33,7 +33,108 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Nov 06, 2021</h4>
+        <div id="content">            <h4 class="date">Dec 19, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/tools-tips-to-beat-memoryerror-in-your-python-scripts.html" rel="bookmark" title="Permanent Link to &quot;Memory Monitoring Python Libraries + Tools&quot;">Memory Monitoring Python Libraries + Tools</a>
+                </h2>
+
+                
+                
+
+                <p>If you write Python code, there's probably been a time or two when you saw the dreaded <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#MemoryError">&quot;MemoryError&quot;</a>. This happens after one of your Python scripts stops because your computer has no spare <a class="reference external" href="https://en.wikipedia.org/wiki/Random-access_memory">RAM</a> to execute it. I recently experienced this frustration whilst trying to write hundreds of thousands of csv files. However, this time I grasped for tools that support smarter memory management. Now, I can watch my computer's memory bounce around with the Windows Resource Monitor. Python has quite a few memory profiling libraries for monitoring memory too!</p>
+<p><strong>Python Libraries and Guides</strong></p>
+<p><a class="reference external" href="https://docs.python.org/3/c-api/memory.html">Memory Management Overview</a>, Python documentation</p>
+<p><a class="reference external" href="https://github.com/pythonprofilers/memory_profiler">Memory Profiler</a>: &quot;monitor memory usage of Python code&quot;</p>
+<p><a class="reference external" href="https://github.com/giampaolo/psutil">psutil</a>: &quot;Cross-platform lib for process and system monitoring in Python&quot;</p>
+<p><a class="reference external" href="https://github.com/benfred/py-spy">py-spy</a>: &quot;Sampling profiler for Python programs&quot;</p>
+<p><a class="reference external" href="https://github.com/joerick/pyinstrument">pyinstrument</a>: &quot;🚴 Call stack profiler for Python. Shows you why your code is slow!&quot;</p>
+<p><a class="reference external" href="https://github.com/plasma-umass/scalene">Scalene</a>: &quot;a high-performance, high-precision CPU, GPU, and memory profiler for Python&quot;</p>
+<p><a class="reference external" href="https://github.com/nicolargo/glances">G</a><a class="reference external" href="https://github.com/nicolargo/glances">lances</a>: &quot;Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems.&quot;</p>
+<p><a class="reference external" href="https://github.com/sumerc/yappi">Yappi</a>: &quot;Yet Another Python Profiler, but this time thread&amp;coroutine&amp;greenlet aware.&quot;</p>
+<p><a class="reference external" href="https://github.com/pythonspeed/filprofiler">Fil</a>: &quot;A Python memory profiler for data processing and scientific computing applications&quot; (<a class="reference external" href="https://www.youtube.com/watch?v=2nKvzVIUjLE&amp;ab_channel=PyninsulaOfficial">Video</a>)</p>
+<p><a class="reference external" href="https://github.com/pyutils/line_profiler">line_profiler</a>: &quot;Line-by-line profiling for Python&quot;</p>
+<p><a class="reference external" href="https://github.com/vpelletier/pprofile">pprofile</a>: &quot;Line-granularity, thread-aware deterministic and statistic pure-python profiler&quot;</p>
+<p><a class="reference external" href="https://github.com/zhuyifei1999/guppy3/">Guppy 3</a>: &quot;Python programming environment and heap analysis toolset&quot;</p>
+<p>S<em>ee also:</em> <a class="reference external" href="https://docs.python.org/3/library/profile.html">The Python Profilers</a>, Python documentation</p>
+<blockquote>
+<p>CPython standard distribution comes with three deterministic profilers.&nbsp;<tt class="docutils literal">cProfile</tt>,&nbsp;<tt class="docutils literal">Profile</tt>&nbsp;and&nbsp;<tt class="docutils literal">hotshot</tt>.&nbsp;<tt class="docutils literal">cProfile</tt>&nbsp;is implemented as a C module based on&nbsp;<tt class="docutils literal">lsprof</tt>,&nbsp;<tt class="docutils literal">Profile</tt>&nbsp;is in pure Python and&nbsp;<tt class="docutils literal">hotshot</tt>&nbsp;can be seen as a small subset of a cProfile.</p>
+<p>Yappi Github, <a class="reference external" href="https://github.com/sumerc/yappi">https://github.com/sumerc/yappi</a></p>
+</blockquote>
+<p><strong>Windows</strong> <strong>Tools</strong></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Windows_Task_Manager#:~:text=The%20program%20can%20be%20started,typing%20taskmgr%20in%20the%20File">Task Manager</a>: Windows process management tool with some memory analytics</p>
+<p><a class="reference external" href="https://help.tableau.com/current/server/en-us/perf_collect_perfmon.htm">Collect Data in Windows with Performance Monitor</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Resource_Monitor">Resource Monitor</a>: Windows tool with Memory, CPU, Disk and Network monitoring tabs</p>
+<div class="wp-image-6300 figure">
+<img alt="Resource Monitor can stop processes from running and view in use, standby (Cached) and free memory. This shows 7 Python scripts running and 49% of total memory is being consumed. Looks like we are running steady and safely below &quot;MemoryError&quot; overflow. We might be able to add a few more scripts with 51% of RAM available!" src="https://pythonmarketer.files.wordpress.com/2021/12/resource-monitor-labels-full.jpg?w=796" />
+<p class="caption">Resource Monitor can stop processes from running and view in use, standby (Cached) and free memory. This shows 7 Python scripts running and 49% of total memory is being consumed. Looks like we are running steady and safely below &quot;MemoryError&quot; overflow. We might be able to add a few more scripts with 51% of RAM available!</p>
+</div>
+<p><strong>Memory Tips and Guides</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://towardsdatascience.com/memory-management-in-python-6bea0c8aecc9">Memory Management in Python</a>, Towards Data Science: this article shows some memory efficient ways to write your code.</li>
+<li>Use only the data you need. Any data you read in and aren't using is held in memory. The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">usecols argument</a> in pandas is a great way to read a csv and only use the columns you need.</li>
+<li><a class="reference external" href="https://pythonspeed.com/articles/chunking-pandas/">Reading data in chunks</a> with the <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/io/parsers/readers.py#L491-L586">chunksize argument</a> is another way to reduce memory usage for large datasets.</li>
+<li><a class="reference external" href="https://pythonspeed.com/articles/pandas-dataframe-series-memory-usage/">Measuring the memory usage of a Pandas dataframe</a></li>
+<li>Some tools are line oriented, others are function oriented. If your code contains large functions, you might favor a line based profiling tool.</li>
+<li>Be aware of the overhead some memory tools may incur. memory_profile was clocked with a whopping 270x slowdown per the Scalene PyCon talk below. The talk shows an awesome comparison of these Python profiling libraries:</li>
+</ul>
+<div class="wp-image-6330 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/12/scalene-pycon-us-2021-memory-library-comparison.png?w=1024" />
+</div>
+<p><strong>Recommended Reading</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://martinheinz.dev/blog/64">Profiling and Analyzing Performance of Python Programs</a></li>
+<li><a class="reference external" href="http://pymotw.com/2/profile/">profile, cProfile, and pstats – Performance analysis of Python programs.</a></li>
+<li><a class="reference external" href="https://martinheinz.dev/blog/64">Profiling and Analyzing Performance of Python Programs</a></li>
+<li><a class="reference external" href="https://www.tecmint.com/command-line-tools-to-monitor-linux-performance/">20 Linux Memory Management Command Line Tools</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Random-access_memory">Random-access Memory (RAM)</a></li>
+<li><a class="reference external" href="https://computersciencewiki.org/index.php/Cache_memory">Cache Memory</a></li>
+</ul>
+<p><strong>Conclusion</strong></p>
+<p>When you'll see &quot;MemoryError&quot; depends on your computer's hardware, the size of your dataset and what operations you need to script out. Generally speaking, <a class="reference external" href="https://en.wikipedia.org/wiki/Input/output">I/O</a> or file reads and writes are more expensive operations.</p>
+<p>The tools in this post will help you anticipate how much computing power you have available, monitor your memory consumption more closely and avoid pushing your computer past its limits. You can do things like reading data in chunks and only using the columns you need to reduce your memory consumption. Realizing these tools and strategies can make getting things done with Python a smoother ride.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/tools-tips-to-beat-memoryerror-in-your-python-scripts.html">posted at 11:57</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-computing-pandas-performance-programming.html" rel="tag">coding, computing, pandas, performance, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/memory-profiling.html" class="tags">memory profiling</a>
+                    &nbsp;<a href="https://lofipython.com/tag/monitoring.html" class="tags">monitoring</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/ram.html" class="tags">RAM</a>
+                    &nbsp;<a href="https://lofipython.com/tag/windows.html" class="tags">Windows</a>
+                </div>
+            </article>            <h4 class="date">Dec 18, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/in-praise-of-resource-scoping.html" rel="bookmark" title="Permanent Link to &quot;In Praise of Resource Scoping&quot;">In Praise of Resource Scoping</a>
+                </h2>
+
+                
+                
+
+                <p>When assessing your environment, problem or your goal, meticulously scout the tools at your disposal. When you're learning a new job, a new project or a programming language's tools for example, it pays to have a grasp of your options. Researching what documentation, guides, tools or libraries are at your disposal will help you accomplish your goal. That sounds obvious but here's what I mean.</p>
+<p>Seek out resources. Bookmark links and support info in an Excel spreadsheet with a handful of columns, for example. Soon, you'll amass a collection tools and guides to get things done. Most companies or products have &quot;resource centers&quot;, mountains of internal documentation, tools and blogs. At many organizations, people have likely made tools for something they needed in the past then moved on. Often these tools can be leveraged for anyone who cares enough to seek out, read about and learn how to use them. Dig for these tools too. Find resources by googling products you use. Subscribe to their <a class="reference external" href="https://status.box.com/">status pages</a>. Look for other tools that may help you in a pinch like <a class="reference external" href="https://support.goto.com/webinar/system-check-attendee">GoToWebinar's system check</a> to help someone figure out what's wrong with their browser. I love these types of browser-based troubleshooting software. These are ways to gain a better understanding of technologies that might affect or improve your productivity or day to day goals.</p>
+<p>I think of &quot;resource scoping&quot; as crawling these types of resources for every tool, guide and support contact that might good to know. The effort you put in to scope available resources is worth the time spent. Check out the &quot;resource scoping&quot; I did in <a class="reference external" href="https://pythonmarketer.com/2021/05/29/python-libraries-tools-resources-for-creative-and-academic-writers/">this post I wrote focused on tools for writers</a>!</p>
+<div class="wp-image-6282 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/12/pixel-cells-gce7fcdb43_640.png?w=640" />
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/in-praise-of-resource-scoping.html">posted at 11:09</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/productivity-work.html" rel="tag">productivity, work</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/documentation.html" class="tags">documentation</a>
+                    &nbsp;<a href="https://lofipython.com/tag/research.html" class="tags">research</a>
+                    &nbsp;<a href="https://lofipython.com/tag/tools.html" class="tags">tools</a>
+                </div>
+            </article>            <h4 class="date">Nov 06, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -208,9 +309,8 @@
                 
 
                 <p>I initially installed my Python version from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7">Windows Store</a> and it worked fine for almost a year on my Windows 10 computer. Then I started getting this error message when trying to use the <a class="reference external" href="https://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification">requests library</a> on all HTTP requests:</p>
-<pre class="code python literal-block">
-<span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">SSLError</span><span class="p">:</span> <span class="n">HTTPSConnectionPool</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'api.example.com'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">):</span> <span class="n">Max</span> <span class="n">retries</span> <span class="n">exceeded</span> <span class="k">with</span> <span class="n">url</span><span class="p">:</span> <span class="o">/</span><span class="n">oauth</span><span class="o">/</span><span class="n">token</span><span class="err">?</span><span class="n">grant_type</span><span class="o">=</span><span class="n">client_credentials</span> <span class="p">(</span><span class="n">Caused</span> <span class="n">by</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">SSLCertVerificationError</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)'</span><span class="p">)))</span>
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">SSLError</span><span class="p">:</span> <span class="n">HTTPSConnectionPool</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;api.example.com&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">):</span> <span class="n">Max</span> <span class="n">retries</span> <span class="n">exceeded</span> <span class="k">with</span> <span class="n">url</span><span class="p">:</span> <span class="o">/</span><span class="n">oauth</span><span class="o">/</span><span class="n">token</span><span class="err">?</span><span class="n">grant_type</span><span class="o">=</span><span class="n">client_credentials</span> <span class="p">(</span><span class="n">Caused</span> <span class="n">by</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">SSLCertVerificationError</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)&#39;</span><span class="p">)))</span>
+</pre></div></td></tr></table></div>
 <p>Apparently my Python certificates were not valid or up to date on my computer. These are &quot;.PEM&quot; or &quot;.cert&quot; files that certify your connection for the <a class="reference external" href="https://www.ssl.com/faqs/faq-what-is-ssl/">SSL protocol</a>. I googled this error until I found the <a class="reference external" href="https://pypi.org/project/python-certifi-win32/">python-certifi-win32</a> library. I only needed to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip install</a> this library and it fixed the problem:</p>
 <p><tt class="docutils literal">pip install <span class="pre">python-certifi-win32</span></tt></p>
 <p>Huge thank you to <a class="reference external" href="https://pypi.org/user/andrewleech/">the maintainer</a> of this package. It solved my issues and now I can make HTTP requests again!</p>
@@ -331,113 +431,6 @@
                     &nbsp;&middot;
                     &nbsp;<a href="https://lofipython.com/tag/errors.html" class="tags">errors</a>
                     &nbsp;<a href="https://lofipython.com/tag/solutions.html" class="tags">solutions</a>
-                </div>
-            </article>            <h4 class="date">Feb 07, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/using-gmails-search-operators-to-organize-your-emails-in-bulk.html" rel="bookmark" title="Permanent Link to &quot;Organize Your Emails in Bulk With Gmail Search Operators + Python Libraries&quot;">Organize Your Emails in Bulk With Gmail Search Operators + Python Libraries</a>
-                </h2>
-
-                
-                
-
-                <p>After 12 years with Gmail as my primary email inbox, I wanted to clear out old &quot;Promotions&quot; emails. This can be done with some clever use of Gmail's search syntax shown below.</p>
-<p>I wanted to preserve my &quot;Starred&quot; emails, but delete old emails to free up space. I was able to delete 58,000 &quot;Promotions&quot; emails! I wrote this post because I feel it might save you a little time figuring it out yourself. I also included brief details on possible Python tools for Gmail and IMAP below if you are considering scripting your contact management.</p>
-<p>I didn't need Python in the end after reading some <a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">Gmail search operator examples</a>. For example, adding a hypen before a search in Gmail acts similar to a <a class="reference external" href="https://en.wikipedia.org/wiki/Bitwise_operation#NOT">&quot;bitwise&quot; or unary operator (~)</a> in Python. It excludes or inverses the criteria in a search rather than including it. I was able to use this to exclude my starred emails. You can also add a filter for &quot;has attachment&quot;. I used that to star any emails with attachments, then delete the rest and excluded &quot;starred&quot; emails.</p>
-<p><strong>Gmail search syntax to get &quot;Promotions&quot; minus &quot;Starred&quot; emails and filter on a date range</strong>:</p>
-<p><tt class="docutils literal">category:promotions <span class="pre">-is:starred</span> after:2019/12/31 before:2021/1/1</tt></p>
-<p><strong>Selecting &quot;all&quot; emails in your search</strong></p>
-<div class="wp-image-5251 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/02/select-all-in-search.jpg?w=588" />
-</div>
-<p><strong>Once, you've selected &quot;All&quot; from the checkbox dropdown, click &quot;Select all conversations that match this search&quot;.</strong> Now you can apply actions such as &quot;add a star&quot; or &quot;delete&quot; them by clicking the (⋮) vertical ellipses menu:</p>
-<div class="wp-image-5258 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/02/gmail-filter-steps.jpg?w=1024" />
-</div>
-<p><strong>To Python or not?</strong></p>
-<p>I also considered Python tools for interfacing with gmail to accomplish this. There doesn't seem to be an easy way to group emails by &quot;Category&quot; in the <a class="reference external" href="https://developers.google.com/gmail/api/quickstart/python">Gmail API</a> or IMAP. IMAP is shorthand for <a class="reference external" href="https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol">Internet Message Access Protocol</a>.</p>
-<p><a class="reference external" href="https://docs.python.org/3/library/imaplib.html">imaplib</a> is an &quot;IMAP4 protocol client&quot; in the Python standard library. Usually python's <a class="reference external" href="https://docs.python.org/3/library/smtplib.html">smtplib</a> is the first library that comes up for email. Don't forget about imaplib! It might be more suitable for searching based on text in your emails or <a class="reference external" href="https://superuser.com/questions/719677/how-to-use-gmail-tabs-with-imap">creating labeled segments yourself, then applying actions to them</a>.</p>
-<p><strong>Additional Gmail + Python Resources</strong></p>
-<p><a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">G</a><a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">mail search operators</a></p>
-<p><a class="reference external" href="https://docs.python.org/3/library/imaplib.html">imaplib</a> - python standard library interface to email accounts [<a class="reference external" href="https://stackoverflow.com/questions/3180891/imap-how-to-delete-messages">Stack Overflow example</a>]</p>
-<p><a class="reference external" href="https://support.google.com/mail/answer/7126229?hl=en">enabling IMAP in your gmail</a></p>
-<p><a class="reference external" href="https://developers.google.com/gmail/api/quickstart/python">Gmail API Python Quickstart</a></p>
-<p><a class="reference external" href="https://github.com/charlierguo/gmail">Gmail python library</a> - There are also pythonic wrappers to the Gmail API like this one.</p>
-<p><a class="reference external" href="https://pymotw.com/2/imaplib/">imaplib - Python Module of the Week</a></p>
-<p><a class="reference external" href="https://markodenic.com/use-google-like-a-pro/">Use Google Like a Pro</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/using-gmails-search-operators-to-organize-your-emails-in-bulk.html">posted at 11:17</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/productivity-python.html" rel="tag">productivity, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/email.html" class="tags">email</a>
-                    &nbsp;<a href="https://lofipython.com/tag/gmail.html" class="tags">gmail</a>
-                    &nbsp;<a href="https://lofipython.com/tag/imap.html" class="tags">IMAP</a>
-                    &nbsp;<a href="https://lofipython.com/tag/smtp.html" class="tags">smtp</a>
-                </div>
-            </article>            <h4 class="date">Jan 16, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/pick-stocks-like-a-pro-with-ffn.html" rel="bookmark" title="Permanent Link to &quot;Pick Stocks Intelligently with ffn&quot;">Pick Stocks Intelligently with ffn</a>
-                </h2>
-
-                
-                
-
-                <p><strong>How do you calculate stock valuation metrics like</strong><a class="reference external" href="https://www.investopedia.com/terms/s/sharperatio.asp">Sharpe ratio</a><strong>?</strong></p>
-<p>Recently I've been reading about common <a class="reference external" href="https://www.suredividend.com/ratios-metrics/">stock valuation metrics</a> and wondered how I can apply them to my stock portfolio. I started reading about different metrics, sketching formulas and entertained writing a script to calculate these metrics. But Python has no shortage of finance-related libraries. After some furious googling I found <a class="reference external" href="https://github.com/pmorissette/ffn">ffn</a>, a way better option than rolling my own formulas. It's a &quot;financial function&quot; library, installable with pip.</p>
-<p>It will be interesting to observe how these metrics vary in my portfolio and learn more of <a class="reference external" href="http://pmorissette.github.io/ffn/ffn.html">ffn's API</a>. I like that they use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas dataframes</a> within their library because I'm already familiar with them. At minimum, it's good to understand what stock formulas purport to measure and what it means if the measure is low or high. It makes sense to compare stocks in similar industries or competitors like <a class="reference external" href="https://finance.yahoo.com/quote/NKE/">NKE</a> and <a class="reference external" href="https://finance.yahoo.com/quote/ADDYY?p=ADDYY&amp;.tsrc=fin-srch">ADDYY</a>. This is a neat tool for stock nerds who want to level up their stock analysis, make smart decisions and ideally pad the portfolio!</p>
-<p>The funny thing is... my lowest university grade was a &quot;C&quot; in my only Finance class. It wasn't easy for me to grasp. But with Python it's a little more interesting and easier to apply. Anyone can level up their finance skills thanks to a cornucopia of finance calculation libraries in the Python ecosystem.</p>
-<p>Recommended Reading: <a class="reference external" href="https://pmorissette.github.io/ffn/index.html#a-brief-introduction">A Brief Introduction - ffn documentation</a></p>
-<p><strong>Install ffn with pip:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install ffn</tt></p>
-<p>Here's the code to get stock data with <a class="reference external" href="https://pmorissette.github.io/ffn/quick.html">ffn</a>:</p>
-<pre class="code python literal-block">
-<span class="kn">import</span> <span class="nn">ffn</span><span class="w">
-
-</span><span class="c1"># ffn.get returns a pandas dataframe of market data.</span><span class="w">
-</span><span class="n">data</span> <span class="o">=</span> <span class="n">ffn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="w">
-</span>    <span class="s1">'tsla,spot,nflx,nke,addyy'</span><span class="p">,</span><span class="w">
-</span>    <span class="n">start</span><span class="o">=</span><span class="s1">'2019-01-01'</span><span class="p">,</span><span class="w">
-</span>    <span class="n">end</span><span class="o">=</span><span class="s1">'2020-12-31'</span><span class="w">
-</span><span class="p">)</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span><span class="w">
-</span><span class="n">stats</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">calc_stats</span><span class="p">()</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">display</span><span class="p">())</span>
-</pre>
-<div class="wp-image-5165 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/01/2019-2020-top-stock.jpg?w=794" />
-</div>
-<p><strong>side note on the pyfolio library</strong></p>
-<p>I first considered using pyfolio to pull stock data. It is not &quot;out of the box&quot; ready per se to deliver the results pictured in their <a class="reference external" href="https://pythonmarketer.wordpress.com/2021/01/16/pick-stocks-like-a-pro-with-pyfolio/">&quot;single stock&quot; example</a> documentation. You'd need to find another way to fetch your market data or somehow patch the Yahoo Finance API within pyfolio. I preferred <a class="reference external" href="http://pmorissette.github.io/ffn/quick.html">ffn</a>, mostly because it worked right away after pip installing it and running the above code.</p>
-<p><strong>2023 Update:</strong> ffn and pyfolio depend on the Yahoo Finance API, which changes sometimes break these libraries. Troubleshooting traceback errors may be required.</p>
-<p><strong>Try these other Python financial analysis libraries:</strong></p>
-<p><a class="reference external" href="https://financetrain.com/best-python-librariespackages-finance-financial-data-scientists/">Best Python Libraries/Packages for Finance and Financial Data Scientists</a></p>
-<p><a class="reference external" href="https://docs.python.org/3/library/statistics.html">python's built-in statistics module</a> - <a class="reference external" href="https://github.com/mementum/backtrader">Backtrader</a></p>
-<p><a class="reference external" href="https://github.com/bpsmith/tia">tia: Toolkit for integration and analysis</a> - <a class="reference external" href="https://github.com/peerchemist/finta">FinTA (Financial Technical Analysis)</a></p>
-<p><a class="reference external" href="https://pydata.github.io/pandas-datareader/index.html">pandas-datareader</a> - <a class="reference external" href="https://github.com/matplotlib/mplfinance#usage">mplfinance</a> - <a class="reference external" href="https://github.com/robertmartin8/PyPortfolioOpt">PyPortfolioOpt</a> - <a class="reference external" href="https://github.com/mrjbq7/ta-lib">TA-Lib Python Port</a></p>
-<p><a class="reference external" href="https://github.com/erickbytes/finsou.py">finsou.py</a> (CLI written by me)</p>
-<p>see more: <a class="reference external" href="https://github.com/wilsonfreitas/awesome-quant">awesome-quant</a>` &lt;<a class="reference external" href="https://github.com/bpsmith/tia#overview">https://github.com/bpsmith/tia#overview</a>&gt;`__</p>
-<div class="wp-image-5037 figure">
-<img alt="Image credit, ActiveState: https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/" src="https://pythonmarketer.files.wordpress.com/2021/01/top10financepackages-1200x675-1.png?w=1024" />
-<p class="caption">Image credit, ActiveState: <a class="reference external" href="https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/">https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/</a></p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/pick-stocks-like-a-pro-with-ffn.html">posted at 23:21</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/investing.html" rel="tag">investing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/money.html" class="tags">money</a>
-                    &nbsp;<a href="https://lofipython.com/tag/personal-finance.html" class="tags">personal finance</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/stock-formulas.html" class="tags">stock formulas</a>
-                    &nbsp;<a href="https://lofipython.com/tag/stocks.html" class="tags">stocks</a>
                 </div>
             </article>
 

@@ -9,7 +9,7 @@ Phone Number Cleaning Regex + pandas Series Example
 
 This is a solution I worked out recently to strip phone numbers into a uniform format. To install `pandas with pip <https://pandas.pydata.org/docs/getting_started/install.html>`__, enter in command prompt:
 
-.. code:: wp-block-preformatted
+.. code:: python
 
    python -m pip install pandas 
 
@@ -21,7 +21,7 @@ The pandas library has regex built in and it's pretty neat! Behold the power of 
    :width: 767px
    :height: 150px
 
-.. code:: wp-block-preformatted
+.. code-block:: python
 
    import pandas as pd
    s = pd.Series(data=["(010) 001-1010"], name="Phone", dtype="str")

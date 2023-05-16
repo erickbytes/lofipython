@@ -45,49 +45,77 @@
 
                 <p>This is an example of how to cast a Python dict into a dataframe and vice versa. I picked up the df to dict part from this <a class="reference external" href="https://cmdlinetips.com/2021/04/convert-two-column-values-from-pandas-dataframe-to-a-dictionary/#:~:text=Another%20approach%20to%20convert%20two,all%20columns%20in%20the%20dataframe.">Python and R tips post</a> and the dict to df part from a <a class="reference external" href="https://stackoverflow.com/questions/18837262/convert-python-dict-into-a-dataframe">Stack Overflow post</a>. The below adaptation begins by converting an &quot;NFL quarterbacks&quot; Python dictionary into a dataframe and then back into a dict.</p>
 <p>Sometimes a dictionary is adequate to solve a problem with handy methods like get() and <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#looping-techniques">items()</a>. You can also do a ton with a <a class="reference external" href="https://www.python.org/dev/peps/pep-0274/">dict comprehension</a>. When more complex tabular data operations are needed, the pandas pd.DataFrame class is well equipped for the job. Dictionaries and dataframes are delightfully interoperable, like Tom Brady and any football team on the planet.</p>
-<pre class="code python literal-block">
-<span class="kn">import</span> <span class="nn">pprint</span><span class="w">
-</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span><span class="w">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-</span><span class="n">qbs_dict</span> <span class="o">=</span> <span class="p">{</span><span class="w">
-</span>    <span class="s2">&quot;Matthew Stafford&quot;</span><span class="p">:</span><span class="s2">&quot;Los Angeles Rams&quot;</span><span class="p">,</span><span class="w">
-</span>    <span class="s2">&quot;Joe Burrow&quot;</span><span class="p">:</span><span class="s2">&quot;Cincinnati Bengals&quot;</span><span class="p">,</span><span class="w">
-</span>    <span class="s2">&quot;Tom Brady&quot;</span><span class="p">:</span><span class="s2">&quot;Tampa Bay Buccaneers&quot;</span><span class="p">,</span><span class="w">
-</span>    <span class="s2">&quot;Pat Mahomes&quot;</span><span class="p">:</span><span class="s2">&quot;Kansas City Chiefs&quot;</span><span class="p">,</span><span class="w">
-</span>    <span class="s2">&quot;Tony Romo&quot;</span><span class="p">:</span><span class="s2">&quot;Dallas Cowboys&quot;</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="n">qbs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;team&quot;</span><span class="p">])</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span><span class="w">
-</span><span class="n">qbs_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="w">
-</span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Tom Brady&quot;</span><span class="p">,</span> <span class="s2">&quot;Name not found.&quot;</span><span class="p">))</span>
-</pre>
+<span class="n">qbs_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Matthew Stafford&quot;</span><span class="p">:</span><span class="s2">&quot;Los Angeles Rams&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Joe Burrow&quot;</span><span class="p">:</span><span class="s2">&quot;Cincinnati Bengals&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tom Brady&quot;</span><span class="p">:</span><span class="s2">&quot;Tampa Bay Buccaneers&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pat Mahomes&quot;</span><span class="p">:</span><span class="s2">&quot;Kansas City Chiefs&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tony Romo&quot;</span><span class="p">:</span><span class="s2">&quot;Dallas Cowboys&quot;</span>
+<span class="p">}</span>
+<span class="n">qbs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;team&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="n">qbs_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Tom Brady&quot;</span><span class="p">,</span> <span class="s2">&quot;Name not found.&quot;</span><span class="p">))</span>
+</pre></div></td></tr></table></div>
 <p><strong>Terminal Output</strong></p>
-<pre class="code python literal-block">
-<span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="s1">'&gt;</span><span class="w">
-</span><span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">5</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">4</span><span class="w">
-</span><span class="n">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">):</span><span class="w">
-</span> <span class="c1">#   Column  Non-Null Count  Dtype</span><span class="w">
-</span><span class="o">---</span>  <span class="o">------</span>  <span class="o">--------------</span>  <span class="o">-----</span><span class="w">
-</span> <span class="mi">0</span>   <span class="n">name</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span><span class="w">
-</span> <span class="mi">1</span>   <span class="n">team</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span><span class="w">
-</span><span class="n">dtypes</span><span class="p">:</span> <span class="nb">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">
-</span><span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">208.0</span><span class="o">+</span> <span class="nb">bytes</span><span class="w">
-</span><span class="kc">None</span><span class="w">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="s1">&#39;&gt;</span>
+<span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">5</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">4</span>
+<span class="n">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">):</span>
+ <span class="c1">#   Column  Non-Null Count  Dtype</span>
+<span class="o">---</span>  <span class="o">------</span>  <span class="o">--------------</span>  <span class="o">-----</span>
+ <span class="mi">0</span>   <span class="n">name</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span>
+ <span class="mi">1</span>   <span class="n">team</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span>
+<span class="n">dtypes</span><span class="p">:</span> <span class="nb">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">208.0</span><span class="o">+</span> <span class="nb">bytes</span>
+<span class="kc">None</span>
 
-</span><span class="p">{</span><span class="s1">'Joe Burrow'</span><span class="p">:</span> <span class="s1">'Cincinnati Bengals'</span><span class="p">,</span><span class="w">
-</span> <span class="s1">'Matthew Stafford'</span><span class="p">:</span> <span class="s1">'Los Angeles Rams'</span><span class="p">,</span><span class="w">
-</span> <span class="s1">'Pat Mahomes'</span><span class="p">:</span> <span class="s1">'Kansas City Chiefs'</span><span class="p">,</span><span class="w">
-</span> <span class="s1">'Tom Brady'</span><span class="p">:</span> <span class="s1">'Tampa Bay Buccaneers'</span><span class="p">,</span><span class="w">
-</span> <span class="s1">'Tony Romo'</span><span class="p">:</span> <span class="s1">'Dallas Cowboys'</span><span class="p">}</span><span class="w">
+<span class="p">{</span><span class="s1">&#39;Joe Burrow&#39;</span><span class="p">:</span> <span class="s1">&#39;Cincinnati Bengals&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Matthew Stafford&#39;</span><span class="p">:</span> <span class="s1">&#39;Los Angeles Rams&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Pat Mahomes&#39;</span><span class="p">:</span> <span class="s1">&#39;Kansas City Chiefs&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Tom Brady&#39;</span><span class="p">:</span> <span class="s1">&#39;Tampa Bay Buccaneers&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Tony Romo&#39;</span><span class="p">:</span> <span class="s1">&#39;Dallas Cowboys&#39;</span><span class="p">}</span>
 
-</span><span class="n">Tampa</span> <span class="n">Bay</span> <span class="n">Buccaneers</span>
-</pre>
+<span class="n">Tampa</span> <span class="n">Bay</span> <span class="n">Buccaneers</span>
+</pre></div></td></tr></table></div>
 <p><strong>Did you notice that pprint sorts dicts by default?</strong></p>
 <p>Here the printed dict is reordered alphabetically on the QB's names. Per the pprint docs, you can alter this behavior if desired via a keyword argument new in Python version 3.8:</p>
-<pre class="code python literal-block">
-<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>pandas</strong> <strong>Documentation</strong></p>
 <p><a class="reference external" href="https://pandas.pydata.org/docs/getting_started/install.html">pandas installation documentation</a></p>
 <p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas.DataFrame</a></p>

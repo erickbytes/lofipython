@@ -15,7 +15,7 @@ The basis of many great programs revolve around a simple set of operations:
 
 Python is nice and simple for this. Paste the below lines into a `text editor <https://www.google.com/search?q=text+editor&oq=text+edit&aqs=chrome.0.0j69i57j0l4.2054j0j7&sourceid=chrome&ie=UTF-8>`__ and save as a .py file. `You need to have Python 3 installed <https://github.com/BurntSushi/nfldb/wiki/Python-&-pip-Windows-installation>`__. In the same folder as your .py file, save a .txt file with some words in it. Alright, let's write some code:
 
-::
+.. code-block:: python
 
    file_name = input("Enter your file name. e.g. words.txt")
    file_handle = open(file_name, "r")

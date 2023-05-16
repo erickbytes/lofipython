@@ -80,7 +80,7 @@ Authorization varies widely. This is the level of identification you need to pas
 
    Authorization: <auth-scheme> <authorisation-parameters>
 
-::
+.. code-block:: python
 
    # headers python dict example
    headers = {"Authorization": f"basic {token}"}
@@ -143,7 +143,7 @@ Example #1: ``GET`` the geolocation details of any public location with the Goog
 
 This was modified from another example of `Google's Geolocation API <https://www.geeksforgeeks.org/get-post-requests-using-python/>`__. To use this, you need to `create a developer account with Google <https://developers.google.com/maps/documentation/geolocation/intro>`__ and paste your API keys below.
 
-::
+.. code-block:: python
 
    import requests
    # import pandas as pd
@@ -183,7 +183,7 @@ Example #2: Encode a Python dictionary to json string and ``POST`` to a hypothet
 #. Convert it to encoded json string with ``json.dumps`` from the standard library's `json module <https://docs.python.org/3/library/json.html#json.loads>`__.
 #. ``POST`` the encoded JSON to the endpoint url with requests.
 
-::
+.. code-block:: python
 
    import pprint
    import json
@@ -253,10 +253,9 @@ Example #2: Encode a Python dictionary to json string and ``POST`` to a hypothet
 
 You might be able to improve performance by using a requests `"session" object <https://requests.readthedocs.io/en/master/user/advanced/>`__.
 
-::
+.. code-block:: python
 
-   """
-   a session adds a "keep-alive" header to your HTTP connection.
+   """a session adds a "keep-alive" header to your HTTP connection.
    It can be used to store cookies across requests.
    """
    import requests
@@ -270,7 +269,7 @@ You might be able to improve performance by using a requests `"session" object <
 
 **HTTPResponse.debuglevel:** A debugging hook. If ```debuglevel`` <https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel>`__ is greater than zero, messages will be printed to stdout as the response is read and parsed. **-**\ `http.client Python Docs <https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel>`__
 
-::
+.. code-block:: python
 
    from http.client import HTTPConnection
    import requests

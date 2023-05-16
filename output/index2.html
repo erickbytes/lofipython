@@ -31,7 +31,40 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jun 24, 2022</h4>
+        <div id="content">            <h4 class="date">Jul 06, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/the-things-they-dont-tell-you-about-ampersands-and-xml.html" rel="bookmark" title="Permanent Link to &quot;The Things They Don't Tell You About Ampersands and XML&quot;">The Things They Don't Tell You About Ampersands and XML</a>
+                </h2>
+
+                
+                
+
+                <p><strong>In an XML document, you need to escape any ampersands in your text as</strong> <tt class="docutils literal">&amp;amp;</tt></p>
+<p>I began a new coding project. Sure, there's documentation for the API that solves my problem. I find out it uses XML. <a class="reference external" href="https://en.wikipedia.org/wiki/XML">Extensible Markup Language</a>, a classic API format. Cool. I craft a beautiful script that works at first. Hallelujah!</p>
+<p>Later on, I realize it doesn't work as well as I believed. It turns out, if I want a server to accept my XML document, <a class="reference external" href="https://www.ibm.com/docs/en/was-liberty/base?topic=manually-xml-escape-characters">escaping certain characters</a> might be required. The documentation didn't mention this. It was my first time using XML, how would I know?</p>
+<p>I noticed a script only worked for a handful of requests. It failed for most, returning a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400 status code</a>. Suspecting the issue was likely in my payload, I studied the data of the request bodies that failed compared to the others that succeeded. All of the payload bodies that failed contained text with an ampersand.</p>
+<p>Suspecting it might be an XML + ampersand related issue, I google <a class="reference external" href="https://stackoverflow.com/questions/1328538/how-do-i-escape-ampersands-in-xml-so-they-are-rendered-as-entities-in-html">this Stack Overflow post</a> which explains the ampersand escaping situation. There are a handful of characters that must be escaped. Otherwise, you might not be able to connect to the server.</p>
+<p>These are the things they often don't tell you. Those little details you must sometimes realize for yourself, unless someone bothers to mention it or write it down. Now you know something that cost me an hour or two of tinkering to realize!</p>
+<div class="wp-image-7060 figure">
+<img alt="`Image Source &lt;https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml&gt;`__" src="https://pythonmarketer.files.wordpress.com/2022/07/xml-example-2.png?w=453" style="width: 453px; height: 521px;" />
+<p class="caption"><a class="reference external" href="https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml">Image Source</a></p>
+</div>
+<p>Wanna read more on HTTP? Check out my guide on <a class="reference external" href="https://pythonmarketer.com/2020/05/18/how-to-make-json-requests-with-python/">making HTTP requests with Python</a> to read more about HTTP requests.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/the-things-they-dont-tell-you-about-ampersands-and-xml.html">posted at 12:49</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-google-programming.html" rel="tag">APIs, coding, Google, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
+                    &nbsp;<a href="https://lofipython.com/tag/xml.html" class="tags">XML</a>
+                </div>
+            </article>            <h4 class="date">Jun 24, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -239,49 +272,77 @@
 
                 <p>This is an example of how to cast a Python dict into a dataframe and vice versa. I picked up the df to dict part from this <a class="reference external" href="https://cmdlinetips.com/2021/04/convert-two-column-values-from-pandas-dataframe-to-a-dictionary/#:~:text=Another%20approach%20to%20convert%20two,all%20columns%20in%20the%20dataframe.">Python and R tips post</a> and the dict to df part from a <a class="reference external" href="https://stackoverflow.com/questions/18837262/convert-python-dict-into-a-dataframe">Stack Overflow post</a>. The below adaptation begins by converting an &quot;NFL quarterbacks&quot; Python dictionary into a dataframe and then back into a dict.</p>
 <p>Sometimes a dictionary is adequate to solve a problem with handy methods like get() and <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#looping-techniques">items()</a>. You can also do a ton with a <a class="reference external" href="https://www.python.org/dev/peps/pep-0274/">dict comprehension</a>. When more complex tabular data operations are needed, the pandas pd.DataFrame class is well equipped for the job. Dictionaries and dataframes are delightfully interoperable, like Tom Brady and any football team on the planet.</p>
-<pre class="code python literal-block">
-<span class="kn">import</span> <span class="nn">pprint</span><span class="w">
-</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span><span class="w">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-</span><span class="n">qbs_dict</span> <span class="o">=</span> <span class="p">{</span><span class="w">
-</span>    <span class="s2">&quot;Matthew Stafford&quot;</span><span class="p">:</span><span class="s2">&quot;Los Angeles Rams&quot;</span><span class="p">,</span><span class="w">
-</span>    <span class="s2">&quot;Joe Burrow&quot;</span><span class="p">:</span><span class="s2">&quot;Cincinnati Bengals&quot;</span><span class="p">,</span><span class="w">
-</span>    <span class="s2">&quot;Tom Brady&quot;</span><span class="p">:</span><span class="s2">&quot;Tampa Bay Buccaneers&quot;</span><span class="p">,</span><span class="w">
-</span>    <span class="s2">&quot;Pat Mahomes&quot;</span><span class="p">:</span><span class="s2">&quot;Kansas City Chiefs&quot;</span><span class="p">,</span><span class="w">
-</span>    <span class="s2">&quot;Tony Romo&quot;</span><span class="p">:</span><span class="s2">&quot;Dallas Cowboys&quot;</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="n">qbs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;team&quot;</span><span class="p">])</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span><span class="w">
-</span><span class="n">qbs_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="w">
-</span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Tom Brady&quot;</span><span class="p">,</span> <span class="s2">&quot;Name not found.&quot;</span><span class="p">))</span>
-</pre>
+<span class="n">qbs_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Matthew Stafford&quot;</span><span class="p">:</span><span class="s2">&quot;Los Angeles Rams&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Joe Burrow&quot;</span><span class="p">:</span><span class="s2">&quot;Cincinnati Bengals&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tom Brady&quot;</span><span class="p">:</span><span class="s2">&quot;Tampa Bay Buccaneers&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pat Mahomes&quot;</span><span class="p">:</span><span class="s2">&quot;Kansas City Chiefs&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tony Romo&quot;</span><span class="p">:</span><span class="s2">&quot;Dallas Cowboys&quot;</span>
+<span class="p">}</span>
+<span class="n">qbs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;team&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="n">qbs_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Tom Brady&quot;</span><span class="p">,</span> <span class="s2">&quot;Name not found.&quot;</span><span class="p">))</span>
+</pre></div></td></tr></table></div>
 <p><strong>Terminal Output</strong></p>
-<pre class="code python literal-block">
-<span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="s1">'&gt;</span><span class="w">
-</span><span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">5</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">4</span><span class="w">
-</span><span class="n">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">):</span><span class="w">
-</span> <span class="c1">#   Column  Non-Null Count  Dtype</span><span class="w">
-</span><span class="o">---</span>  <span class="o">------</span>  <span class="o">--------------</span>  <span class="o">-----</span><span class="w">
-</span> <span class="mi">0</span>   <span class="n">name</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span><span class="w">
-</span> <span class="mi">1</span>   <span class="n">team</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span><span class="w">
-</span><span class="n">dtypes</span><span class="p">:</span> <span class="nb">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">
-</span><span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">208.0</span><span class="o">+</span> <span class="nb">bytes</span><span class="w">
-</span><span class="kc">None</span><span class="w">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="s1">&#39;&gt;</span>
+<span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">5</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">4</span>
+<span class="n">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">):</span>
+ <span class="c1">#   Column  Non-Null Count  Dtype</span>
+<span class="o">---</span>  <span class="o">------</span>  <span class="o">--------------</span>  <span class="o">-----</span>
+ <span class="mi">0</span>   <span class="n">name</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span>
+ <span class="mi">1</span>   <span class="n">team</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span>
+<span class="n">dtypes</span><span class="p">:</span> <span class="nb">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">208.0</span><span class="o">+</span> <span class="nb">bytes</span>
+<span class="kc">None</span>
 
-</span><span class="p">{</span><span class="s1">'Joe Burrow'</span><span class="p">:</span> <span class="s1">'Cincinnati Bengals'</span><span class="p">,</span><span class="w">
-</span> <span class="s1">'Matthew Stafford'</span><span class="p">:</span> <span class="s1">'Los Angeles Rams'</span><span class="p">,</span><span class="w">
-</span> <span class="s1">'Pat Mahomes'</span><span class="p">:</span> <span class="s1">'Kansas City Chiefs'</span><span class="p">,</span><span class="w">
-</span> <span class="s1">'Tom Brady'</span><span class="p">:</span> <span class="s1">'Tampa Bay Buccaneers'</span><span class="p">,</span><span class="w">
-</span> <span class="s1">'Tony Romo'</span><span class="p">:</span> <span class="s1">'Dallas Cowboys'</span><span class="p">}</span><span class="w">
+<span class="p">{</span><span class="s1">&#39;Joe Burrow&#39;</span><span class="p">:</span> <span class="s1">&#39;Cincinnati Bengals&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Matthew Stafford&#39;</span><span class="p">:</span> <span class="s1">&#39;Los Angeles Rams&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Pat Mahomes&#39;</span><span class="p">:</span> <span class="s1">&#39;Kansas City Chiefs&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Tom Brady&#39;</span><span class="p">:</span> <span class="s1">&#39;Tampa Bay Buccaneers&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Tony Romo&#39;</span><span class="p">:</span> <span class="s1">&#39;Dallas Cowboys&#39;</span><span class="p">}</span>
 
-</span><span class="n">Tampa</span> <span class="n">Bay</span> <span class="n">Buccaneers</span>
-</pre>
+<span class="n">Tampa</span> <span class="n">Bay</span> <span class="n">Buccaneers</span>
+</pre></div></td></tr></table></div>
 <p><strong>Did you notice that pprint sorts dicts by default?</strong></p>
 <p>Here the printed dict is reordered alphabetically on the QB's names. Per the pprint docs, you can alter this behavior if desired via a keyword argument new in Python version 3.8:</p>
-<pre class="code python literal-block">
-<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>pandas</strong> <strong>Documentation</strong></p>
 <p><a class="reference external" href="https://pandas.pydata.org/docs/getting_started/install.html">pandas installation documentation</a></p>
 <p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas.DataFrame</a></p>
@@ -323,32 +384,54 @@
 <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">textblob</span><span class="w">
 </span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">textblob</span><span class="o">.</span><span class="n">download_corpora</span>
 </pre>
-<pre class="code python literal-block">
-<span class="kn">import</span> <span class="nn">language_tool_python</span><span class="w">
-</span><span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">TextBlob</span><span class="w">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">language_tool_python</span>
+<span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">TextBlob</span>
 
-</span><span class="k">def</span> <span class="nf">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">):</span><span class="w">
-    </span><span class="sd">&quot;&quot;&quot; returns str: text transformed by language tool and text blob
-    1) Apply language tool API correction
-    Language Tool Public API: https://dev.languagetool.org/public-http-api
-    https://languagetool.org/http-api/swagger-ui/#!/default/post_check
-    python library: https://pypi.org/project/language-tool-python/
+<span class="k">def</span> <span class="nf">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; returns str: text transformed by language tool and text blob</span>
+<span class="sd">    1) Apply language tool API correction</span>
+<span class="sd">    Language Tool Public API: https://dev.languagetool.org/public-http-api</span>
+<span class="sd">    https://languagetool.org/http-api/swagger-ui/#!/default/post_check</span>
+<span class="sd">    python library: https://pypi.org/project/language-tool-python/</span>
 
-    2) Apply textblob's spell check to the text&quot;&quot;&quot;</span><span class="w">
-</span>    <span class="k">try</span><span class="p">:</span><span class="w">
-</span>        <span class="c1"># use the public API, language English</span><span class="w">
-</span>        <span class="n">tool</span> <span class="o">=</span> <span class="n">language_tool_python</span><span class="o">.</span><span class="n">LanguageToolPublicAPI</span><span class="p">(</span><span class="s1">'en-US'</span><span class="p">)</span><span class="w">
-</span>        <span class="n">text</span> <span class="o">=</span>  <span class="n">tool</span><span class="o">.</span><span class="n">correct</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="w">
-</span>        <span class="n">b</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="w">
-</span>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">correct</span><span class="p">())</span><span class="w">
-</span>    <span class="k">except</span><span class="p">:</span><span class="w">
-</span>        <span class="k">return</span> <span class="n">text</span><span class="w">
+<span class="sd">    2) Apply textblob&#39;s spell check to the text&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># use the public API, language English</span>
+        <span class="n">tool</span> <span class="o">=</span> <span class="n">language_tool_python</span><span class="o">.</span><span class="n">LanguageToolPublicAPI</span><span class="p">(</span><span class="s1">&#39;en-US&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span>  <span class="n">tool</span><span class="o">.</span><span class="n">correct</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">correct</span><span class="p">())</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text</span>
 
-</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Language is incredble. Fascinatng how hoomans have so many.&quot;</span><span class="w">
-</span><span class="n">transformed_text</span> <span class="o">=</span> <span class="n">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="w">
-</span><span class="nb">print</span><span class="p">(</span><span class="n">transformed_text</span><span class="p">)</span><span class="w">
-</span><span class="c1"># &gt;&gt;&gt; Language is incredible. Fascinating how humans have so many.</span>
-</pre>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Language is incredble. Fascinatng how hoomans have so many.&quot;</span>
+<span class="n">transformed_text</span> <span class="o">=</span> <span class="n">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">transformed_text</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; Language is incredible. Fascinating how humans have so many.</span>
+</pre></div></td></tr></table></div>
 
                 <div class="clear"></div>
 
@@ -418,80 +501,6 @@
                     &nbsp;<a href="https://lofipython.com/tag/ftfy.html" class="tags">ftfy</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/text-cleaning.html" class="tags">text cleaning</a>
-                </div>
-            </article>            <h4 class="date">Dec 19, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/tools-tips-to-beat-memoryerror-in-your-python-scripts.html" rel="bookmark" title="Permanent Link to &quot;Memory Monitoring Python Libraries + Tools&quot;">Memory Monitoring Python Libraries + Tools</a>
-                </h2>
-
-                
-                
-
-                <p>If you write Python code, there's probably been a time or two when you saw the dreaded <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#MemoryError">&quot;MemoryError&quot;</a>. This happens after one of your Python scripts stops because your computer has no spare <a class="reference external" href="https://en.wikipedia.org/wiki/Random-access_memory">RAM</a> to execute it. I recently experienced this frustration whilst trying to write hundreds of thousands of csv files. However, this time I grasped for tools that support smarter memory management. Now, I can watch my computer's memory bounce around with the Windows Resource Monitor. Python has quite a few memory profiling libraries for monitoring memory too!</p>
-<p><strong>Python Libraries and Guides</strong></p>
-<p><a class="reference external" href="https://docs.python.org/3/c-api/memory.html">Memory Management Overview</a>, Python documentation</p>
-<p><a class="reference external" href="https://github.com/pythonprofilers/memory_profiler">Memory Profiler</a>: &quot;monitor memory usage of Python code&quot;</p>
-<p><a class="reference external" href="https://github.com/giampaolo/psutil">psutil</a>: &quot;Cross-platform lib for process and system monitoring in Python&quot;</p>
-<p><a class="reference external" href="https://github.com/benfred/py-spy">py-spy</a>: &quot;Sampling profiler for Python programs&quot;</p>
-<p><a class="reference external" href="https://github.com/joerick/pyinstrument">pyinstrument</a>: &quot;🚴 Call stack profiler for Python. Shows you why your code is slow!&quot;</p>
-<p><a class="reference external" href="https://github.com/plasma-umass/scalene">Scalene</a>: &quot;a high-performance, high-precision CPU, GPU, and memory profiler for Python&quot;</p>
-<p><a class="reference external" href="https://github.com/nicolargo/glances">G</a><a class="reference external" href="https://github.com/nicolargo/glances">lances</a>: &quot;Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems.&quot;</p>
-<p><a class="reference external" href="https://github.com/sumerc/yappi">Yappi</a>: &quot;Yet Another Python Profiler, but this time thread&amp;coroutine&amp;greenlet aware.&quot;</p>
-<p><a class="reference external" href="https://github.com/pythonspeed/filprofiler">Fil</a>: &quot;A Python memory profiler for data processing and scientific computing applications&quot; (<a class="reference external" href="https://www.youtube.com/watch?v=2nKvzVIUjLE&amp;ab_channel=PyninsulaOfficial">Video</a>)</p>
-<p><a class="reference external" href="https://github.com/pyutils/line_profiler">line_profiler</a>: &quot;Line-by-line profiling for Python&quot;</p>
-<p><a class="reference external" href="https://github.com/vpelletier/pprofile">pprofile</a>: &quot;Line-granularity, thread-aware deterministic and statistic pure-python profiler&quot;</p>
-<p><a class="reference external" href="https://github.com/zhuyifei1999/guppy3/">Guppy 3</a>: &quot;Python programming environment and heap analysis toolset&quot;</p>
-<p>S<em>ee also:</em> <a class="reference external" href="https://docs.python.org/3/library/profile.html">The Python Profilers</a>, Python documentation</p>
-<blockquote>
-<p>CPython standard distribution comes with three deterministic profilers.&nbsp;<tt class="docutils literal">cProfile</tt>,&nbsp;<tt class="docutils literal">Profile</tt>&nbsp;and&nbsp;<tt class="docutils literal">hotshot</tt>.&nbsp;<tt class="docutils literal">cProfile</tt>&nbsp;is implemented as a C module based on&nbsp;<tt class="docutils literal">lsprof</tt>,&nbsp;<tt class="docutils literal">Profile</tt>&nbsp;is in pure Python and&nbsp;<tt class="docutils literal">hotshot</tt>&nbsp;can be seen as a small subset of a cProfile.</p>
-<p>Yappi Github, <a class="reference external" href="https://github.com/sumerc/yappi">https://github.com/sumerc/yappi</a></p>
-</blockquote>
-<p><strong>Windows</strong> <strong>Tools</strong></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Windows_Task_Manager#:~:text=The%20program%20can%20be%20started,typing%20taskmgr%20in%20the%20File">Task Manager</a>: Windows process management tool with some memory analytics</p>
-<p><a class="reference external" href="https://help.tableau.com/current/server/en-us/perf_collect_perfmon.htm">Collect Data in Windows with Performance Monitor</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Resource_Monitor">Resource Monitor</a>: Windows tool with Memory, CPU, Disk and Network monitoring tabs</p>
-<div class="wp-image-6300 figure">
-<img alt="Resource Monitor can stop processes from running and view in use, standby (Cached) and free memory. This shows 7 Python scripts running and 49% of total memory is being consumed. Looks like we are running steady and safely below &quot;MemoryError&quot; overflow. We might be able to add a few more scripts with 51% of RAM available!" src="https://pythonmarketer.files.wordpress.com/2021/12/resource-monitor-labels-full.jpg?w=796" />
-<p class="caption">Resource Monitor can stop processes from running and view in use, standby (Cached) and free memory. This shows 7 Python scripts running and 49% of total memory is being consumed. Looks like we are running steady and safely below &quot;MemoryError&quot; overflow. We might be able to add a few more scripts with 51% of RAM available!</p>
-</div>
-<p><strong>Memory Tips and Guides</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://towardsdatascience.com/memory-management-in-python-6bea0c8aecc9">Memory Management in Python</a>, Towards Data Science: this article shows some memory efficient ways to write your code.</li>
-<li>Use only the data you need. Any data you read in and aren't using is held in memory. The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">usecols argument</a> in pandas is a great way to read a csv and only use the columns you need.</li>
-<li><a class="reference external" href="https://pythonspeed.com/articles/chunking-pandas/">Reading data in chunks</a> with the <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/io/parsers/readers.py#L491-L586">chunksize argument</a> is another way to reduce memory usage for large datasets.</li>
-<li><a class="reference external" href="https://pythonspeed.com/articles/pandas-dataframe-series-memory-usage/">Measuring the memory usage of a Pandas dataframe</a></li>
-<li>Some tools are line oriented, others are function oriented. If your code contains large functions, you might favor a line based profiling tool.</li>
-<li>Be aware of the overhead some memory tools may incur. memory_profile was clocked with a whopping 270x slowdown per the Scalene PyCon talk below. The talk shows an awesome comparison of these Python profiling libraries:</li>
-</ul>
-<div class="wp-image-6330 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/12/scalene-pycon-us-2021-memory-library-comparison.png?w=1024" />
-</div>
-<p><strong>Recommended Reading</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://martinheinz.dev/blog/64">Profiling and Analyzing Performance of Python Programs</a></li>
-<li><a class="reference external" href="http://pymotw.com/2/profile/">profile, cProfile, and pstats – Performance analysis of Python programs.</a></li>
-<li><a class="reference external" href="https://martinheinz.dev/blog/64">Profiling and Analyzing Performance of Python Programs</a></li>
-<li><a class="reference external" href="https://www.tecmint.com/command-line-tools-to-monitor-linux-performance/">20 Linux Memory Management Command Line Tools</a></li>
-<li><a class="reference external" href="https://en.wikipedia.org/wiki/Random-access_memory">Random-access Memory (RAM)</a></li>
-<li><a class="reference external" href="https://computersciencewiki.org/index.php/Cache_memory">Cache Memory</a></li>
-</ul>
-<p><strong>Conclusion</strong></p>
-<p>When you'll see &quot;MemoryError&quot; depends on your computer's hardware, the size of your dataset and what operations you need to script out. Generally speaking, <a class="reference external" href="https://en.wikipedia.org/wiki/Input/output">I/O</a> or file reads and writes are more expensive operations.</p>
-<p>The tools in this post will help you anticipate how much computing power you have available, monitor your memory consumption more closely and avoid pushing your computer past its limits. You can do things like reading data in chunks and only using the columns you need to reduce your memory consumption. Realizing these tools and strategies can make getting things done with Python a smoother ride.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/tools-tips-to-beat-memoryerror-in-your-python-scripts.html">posted at 11:57</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-computing-pandas-performance-programming.html" rel="tag">coding, computing, pandas, performance, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/memory-profiling.html" class="tags">memory profiling</a>
-                    &nbsp;<a href="https://lofipython.com/tag/monitoring.html" class="tags">monitoring</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/ram.html" class="tags">RAM</a>
-                    &nbsp;<a href="https://lofipython.com/tag/windows.html" class="tags">Windows</a>
                 </div>
             </article>
 

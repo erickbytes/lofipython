@@ -105,7 +105,7 @@ Once eyedropper sends the color values to your system's clipboard, there are mul
 
 **To get the clipboard contents with pandas:**
 
-.. code:: python
+.. code-block:: python
 
    import pandas as pd
    hex_code_df = pd.read_clipboard() 

@@ -22,7 +22,7 @@ I found 2 errors when I piped the text of this post into the below code: the pro
    pip install -U textblob
    python -m textblob.download_corpora
 
-.. code:: python
+.. code-block:: python
 
    import language_tool_python
    from textblob import TextBlob

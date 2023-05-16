@@ -126,10 +126,10 @@ If you need to parse an XML response, check out Python's stock <a class="referen
 <p><strong>Authorization Scheme Example [</strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Mozilla</a><strong>]</strong></p>
 <p>Authorization: &lt;auth-scheme&gt; &lt;authorisation-parameters&gt;</p>
 </blockquote>
-<pre class="literal-block">
-# headers python dict example
-headers = {&quot;Authorization&quot;: f&quot;basic {token}&quot;}
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># headers python dict example</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;basic </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+</pre></div></td></tr></table></div>
 <p><strong>Pages</strong></p>
 <p>API data is commonly returned in multiple pages when there is a lot of data returned. Each page can be accessed one request at a time. Sometimes you can specify how many items you want on a page. But there is usually a maximum items per page limit like 100.</p>
 <p><strong>Status code</strong></p>
@@ -171,32 +171,54 @@ If you choose not to use Postman, you can use the json library. See the use of <
 <div class="section" id="example-1-get-the-geolocation-details-of-any-public-location-with-the-google-api">
 <h2>Example #1: <tt class="docutils literal">GET</tt> the geolocation details of any public location with the Google API</h2>
 <p>This was modified from another example of <a class="reference external" href="https://www.geeksforgeeks.org/get-post-requests-using-python/">Google's Geolocation API</a>. To use this, you need to <a class="reference external" href="https://developers.google.com/maps/documentation/geolocation/intro">create a developer account with Google</a> and paste your API keys below.</p>
-<pre class="literal-block">
-import requests
-# import pandas as pd
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># import pandas as pd</span>
 
-&quot;&quot;&quot;Find the best double-cheeseburger + fries $7 can buy.&quot;&quot;&quot;
-payload = {&quot;key&quot;:&quot;Add_Google_API_Key_Here&quot;, &quot;address&quot;:&quot;Redhot Ranch&quot;}
-# optional: set a 5 second timeout for the http request
-r = requests.get(url=&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;,
-                 params=payload,
-                 timeout=5)
-print(r.text)
-print(r.status_code)
-data = r.json()
+<span class="sd">&quot;&quot;&quot;Find the best double-cheeseburger + fries $7 can buy.&quot;&quot;&quot;</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;Redhot Ranch&quot;</span><span class="p">}</span>
+<span class="c1"># optional: set a 5 second timeout for the http request</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span><span class="p">,</span>
+                 <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+                 <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
-# extracting latitude, longitude and formatted address of the first matching location
-latitude = data['results'][0]['geometry']['location']['lat']
-longitude = data['results'][0]['geometry']['location']['lng']
-formatted_address = data['results'][0]['formatted_address']
-print(longitude)
-print(latitude)
-print(formatted_address)
+<span class="c1"># extracting latitude, longitude and formatted address of the first matching location</span>
+<span class="n">latitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+<span class="n">longitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lng&#39;</span><span class="p">]</span>
+<span class="n">formatted_address</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;formatted_address&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">longitude</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">formatted_address</span><span class="p">)</span>
 
-# optional: convert response into a dataframe with pandas
-# location_df = pd.json_normalize(data['results'])
-# location_df.to_csv('Locations.csv')
-</pre>
+<span class="c1"># optional: convert response into a dataframe with pandas</span>
+<span class="c1"># location_df = pd.json_normalize(data[&#39;results&#39;])</span>
+<span class="c1"># location_df.to_csv(&#39;Locations.csv&#39;)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Above you can see:</strong></p>
 <ul class="simple">
 <li><tt class="docutils literal">requests</tt> makes it easy to see the server's text response also with <tt class="docutils literal">response.text</tt></li>
@@ -211,53 +233,96 @@ print(formatted_address)
 <li>Convert it to encoded json string with <tt class="docutils literal">json.dumps</tt> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.loads">json module</a>.</li>
 <li><tt class="docutils literal">POST</tt> the encoded JSON to the endpoint url with requests.</li>
 </ol>
-<pre class="literal-block">
-import pprint
-import json
-import requests
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-def convert_dict_to_json_object():
-    &quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;
-    payload = {
-        &quot;first_name&quot;:&quot;P&quot;,
-        &quot;last_name&quot;:&quot;Sherman&quot;,
-        &quot;address&quot;:&quot;42 Wallaby Way&quot;,
-        &quot;address_2&quot;:&quot;&quot;,
-        &quot;city&quot;:&quot;Sydney&quot;,
-        &quot;state&quot;:&quot;NSW&quot;,
-        &quot;country&quot;:&quot;AU&quot;,
-        &quot;zip&quot;:&quot;2000&quot;
-        }
-    pprint.pprint(payload)
-    json_str = json.dumps(payload, ensure_ascii=True)
-    # encode json str to utf-8
-    return json_str.encode(&quot;utf-8&quot;)
+<span class="k">def</span> <span class="nf">convert_dict_to_json_object</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span><span class="p">:</span><span class="s2">&quot;P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span><span class="p">:</span><span class="s2">&quot;Sherman&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;42 Wallaby Way&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address_2&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;city&quot;</span><span class="p">:</span><span class="s2">&quot;Sydney&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;NSW&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;country&quot;</span><span class="p">:</span><span class="s2">&quot;AU&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;zip&quot;</span><span class="p">:</span><span class="s2">&quot;2000&quot;</span>
+        <span class="p">}</span>
+    <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+    <span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># encode json str to utf-8</span>
+    <span class="k">return</span> <span class="n">json_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
 
-def create_new_contact(json_str):
-    &quot;&quot;&quot;
-    This is a fictional API request.
-    Passing a json object to requests.
-    Decoding server response with response.json(),
-    Returning a contact id by calling the data's keys.
-    &quot;&quot;&quot;
-    headers = {
-        &quot;Authorization&quot;: f&quot;Bearer {token}&quot;,
-        &quot;Content-Type&quot;: &quot;application/json&quot;,
-        &quot;cache-control&quot;: &quot;no-cache&quot;,
-        &quot;Postman-Token&quot;: f&quot;{postman_token}&quot;
-        }
-    r = requests.request(method=&quot;POST&quot;,
-                         url=&quot;https://SomeSoftwareAPI.com/contacts/&quot;,
-                         data=json_str,
-                         headers=headers)
-    data = r.json()
-    print(data.keys())
-    contact_id = data['contact_id'] # call dict keys to get their values
-    return contact_id
+<span class="k">def</span> <span class="nf">create_new_contact</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a fictional API request.</span>
+<span class="sd">    Passing a json object to requests.</span>
+<span class="sd">    Decoding server response with response.json(),</span>
+<span class="sd">    Returning a contact id by calling the data&#39;s keys.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cache-control&quot;</span><span class="p">:</span> <span class="s2">&quot;no-cache&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Postman-Token&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">postman_token</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">}</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+                         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://SomeSoftwareAPI.com/contacts/&quot;</span><span class="p">,</span>
+                         <span class="n">data</span><span class="o">=</span><span class="n">json_str</span><span class="p">,</span>
+                         <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">contact_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;contact_id&#39;</span><span class="p">]</span> <span class="c1"># call dict keys to get their values</span>
+    <span class="k">return</span> <span class="n">contact_id</span>
 
-json_str = convert_dict_to_json_object()
-contact_id = create_new_contact(json_str)
-</pre>
+<span class="n">json_str</span> <span class="o">=</span> <span class="n">convert_dict_to_json_object</span><span class="p">()</span>
+<span class="n">contact_id</span> <span class="o">=</span> <span class="n">create_new_contact</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <!--  -->
 <blockquote>
 <p><strong>requests.request keyword argument alternatives for passing data</strong></p>
@@ -274,29 +339,40 @@ contact_id = create_new_contact(json_str)
 </ul>
 <p><strong>Sidebar:</strong><a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">requests.Session()</a></p>
 <p>You might be able to improve performance by using a requests <a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">&quot;session&quot; object</a>.</p>
-<pre class="literal-block">
-&quot;&quot;&quot;
-a session adds a &quot;keep-alive&quot; header to your HTTP connection.
-It can be used to store cookies across requests.
-&quot;&quot;&quot;
-import requests
-s = requests.Session()
-for page in range(0, 2):
-    url = f&quot;https://SomeSoftwareAPI.com/contacts/{str(page)}&quot;
-    r = s.get(url)
-    print(r.text)
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="sd">&quot;&quot;&quot;a session adds a &quot;keep-alive&quot; header to your HTTP connection.</span>
+<span class="sd">It can be used to store cookies across requests.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://SomeSoftwareAPI.com/contacts/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Dig deeper into requests by raising your HTTPConnection.debuglevel</strong></p>
 <p><strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <tt class="docutils literal">`debuglevel</tt> &lt;<a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel</a>&gt;`__ is greater than zero, messages will be printed to stdout as the response is read and parsed. <strong>-</strong><a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></p>
-<pre class="literal-block">
-from http.client import HTTPConnection
-import requests
-HTTPConnection.debuglevel = 1
-payload = {&quot;key&quot;:&quot;Add_Google_API_Key_Here&quot;, &quot;address&quot;:&quot;90 Miles&quot;}
-url = &quot;https://maps.googleapis.com/maps/api/geocode/json&quot;
-r = requests.get(url=url, params=payload, timeout=5)
-print(r.text)
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">http.client</span> <span class="kn">import</span> <span class="n">HTTPConnection</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">HTTPConnection</span><span class="o">.</span><span class="n">debuglevel</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;90 Miles&quot;</span><span class="p">}</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Conclusion</strong></p>
 <p>I remember APIs seemed mysterious and daunting before I had used them. But like all things, they can be conquered with knowledge, understanding and tenacity to keep trying until you figure it out. Good luck!</p>
 <p><strong>Requests Documentation</strong></p>
@@ -340,13 +416,16 @@ print(r.text)
 <li>Save the new file for the user.</li>
 </ol>
 <p>Python is nice and simple for this.&nbsp;Paste the below lines into a <a class="reference external" href="https://www.google.com/search?q=text+editor&amp;oq=text+edit&amp;aqs=chrome.0.0j69i57j0l4.2054j0j7&amp;sourceid=chrome&amp;ie=UTF-8">text editor</a> and save as a .py file. <a class="reference external" href="https://github.com/BurntSushi/nfldb/wiki/Python-&amp;-pip-Windows-installation">You need to have Python 3 installed</a>. In the same folder as your .py file, save a .txt file with some words in it. Alright, let's write some code:</p>
-<pre class="literal-block">
-file_name = input(&quot;Enter your file name. e.g. words.txt&quot;)
-file_handle = open(file_name, &quot;r&quot;)
-lines = file_handle.readlines()
-print (lines)
-file_handle.close()
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">file_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your file name. e.g. words.txt&quot;</span><span class="p">)</span>
+<span class="n">file_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<span class="n">file_handle</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
 <p>In line 1, we ask the user to enter their file name with Python's raw_input function. When the program runs, the user enters their text file name with extension. This line stores the name in a variable called file_name.</p>
 <p><strong>In line 2,</strong> we open your text file and store it in a variable I have named file_handle. Think of the file handle as a bridge between your code and the text file. Quick point about the 'r' above: that tells the program to open the file in &quot;Read&quot; mode. There are several different file modes in programming. Some modes are just for reading an existing file, some are just for writing a new file, and some are capable of both. <a class="reference external" href="https://stackoverflow.com/questions/16208206/confused-by-python-file-mode-w/16208298">This Stack Overflow post</a> is well written and details the differences between file modes. Once established, the file handle allows you to read the file's contents or write new contents to the file.</p>
 <p><strong>In line 3,</strong>&nbsp;we are calling the .readlines() method on our file handle. This method takes the file contents and stores them, line by line, into a list named &quot;lines&quot;. An alternative method is .read(), which opens the file and stores its contents as one string. Try switching this out in place of&nbsp; .readlines() to check out the difference.</p>

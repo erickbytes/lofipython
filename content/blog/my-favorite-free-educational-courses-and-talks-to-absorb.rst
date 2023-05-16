@@ -16,18 +16,13 @@ University CS Courses For Free
 
 `CS 61-C Great Ideas in Computer Architecture (Machine Structures) <https://archive.org/details/ucberkeley_webcast_gJJeUFyuvvg>`__, Spring 2015 \| UC Berkeley
 
-.. container::
-   :name: publisher-container
+`CS 109: Data Science <http://cs109.github.io/2015/>`__, 2015 \| Harvard University
 
-   `CS 109: Data Science <http://cs109.github.io/2015/>`__, 2015 \| Harvard University
+`Mathematical Modeling of Football <https://uppsala.instructure.com/courses/28112>`__, Fall 2020 \| Uppsala Universitet
 
-   `Mathematical Modeling of Football <https://uppsala.instructure.com/courses/28112>`__, Fall 2020 \| Uppsala Universitet
+`CS 162 - Operating Systems and Systems Programming <https://www.youtube.com/watch?v=hry_qqXLej8&list=PLN_mP1uWIrL6d_brjVN3qgDBxoYEAE-hG&index=2>`__, Fall 2013 \| UC Berkeley
 
-   `CS 162 - Operating Systems and Systems Programming <https://www.youtube.com/watch?v=hry_qqXLej8&list=PLN_mP1uWIrL6d_brjVN3qgDBxoYEAE-hG&index=2>`__, Fall 2013 \| UC Berkeley
-
-   `15-445/645 Intro to Database Systems <https://www.youtube.com/watch?v=oeYBdghaIjc&list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi>`__, Fall 2019 \| Carnegie Mellon University
-
-.. container::
+`15-445/645 Intro to Database Systems <https://www.youtube.com/watch?v=oeYBdghaIjc&list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi>`__, Fall 2019 \| Carnegie Mellon University
 
 `15-721 Advanced Database Systems <https://www.youtube.com/watch?v=SdW5RKUboKc&list=LLzDUyPGFtbvCCztZLs8-rfw&index=25&t=0s>`__, Spring 2020 \| Carnegie Mellon University
 
