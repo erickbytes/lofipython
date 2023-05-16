@@ -23,8 +23,8 @@ MENUITEMS = [
 DEFAULT_PAGINATION = 10
 THEME = "blue-penguin-dark"
 GITHUB_URL = "https://github.com/erickbytes/lofipython.com"
-STATIC_PATHS = ["images", "blog", "theme", "static"]
-ARTICLE_PATHS = ["images", "blog", "theme", "static"]
+STATIC_PATHS = ["images", "blog", "theme", "static", "extra"]
+ARTICLE_PATHS = ["images", "blog", "theme", "static", "extra"]
 EXTRA_PATH_METADATA = {
     "extra/robots.txt": {"path": "robots.txt"},
     "extra/favicon.ico": {"path": "favicon.ico"},

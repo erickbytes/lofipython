@@ -27,7 +27,7 @@ We began to hear murmurs of the same contacts getting mailed each month from our
 
 Then one day while making a change requested by our stakeholders, I noticed some code I had written that looked sort of like this:
 
-::
+.. code:: python
 
    def remove_duplicates(df):
        """Remove duplicates and randomize the order of the rows."""
@@ -64,7 +64,7 @@ I think postcards are still relevant as a Marketing tool in 2020. From an enviro
 
 **For the record, I changed my mistake to this:**
 
-::
+.. code:: python
 
    def remove_duplicates(df):
        """Remove duplicates and randomize the order of the rows."""
@@ -77,7 +77,7 @@ I think postcards are still relevant as a Marketing tool in 2020. From an enviro
 
 **Or maybe something like this would be better, for clearer separation of actions:**
 
-::
+.. code:: python
 
    def remove_duplicates(df):
        """Remove duplicates while preserving original data."""
