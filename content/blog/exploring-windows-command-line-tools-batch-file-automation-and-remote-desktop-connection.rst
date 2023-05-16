@@ -21,7 +21,8 @@ Helpful Windows Command Line Documentation
 A Few General Windows Commands
 ------------------------------
 
-**Use**\ `find <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)>`__\ **to look in a text file to count the lines matching a string:**
+Use  `find <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)>`__ 
+to look in a text file to count the lines matching a string:
 
 ::
 
@@ -60,7 +61,8 @@ Batch files can be run from command prompt or by double-clicking them. Here's an
 #. `cd <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)>`__\ into my python virtual env then activate it by running a batch file.
 #. Then call dir to print directory contents.
 
-`Set <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)>`__\ **a custom system 'last_name' variable to be recalled later.**
+`Set <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)>`__\ 
+a custom system 'last_name' variable to be recalled later.
 
 ::
 
@@ -115,7 +117,8 @@ You may want to `ping <https://docs.microsoft.com/en-us/windows-server/administr
 
    mstsc RDP_File_Name.rdp
 
-`WinRM <https://docs.microsoft.com/en-us/windows/win32/winrm/portal>`__\ **and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:**
+`WinRM <https://docs.microsoft.com/en-us/windows/win32/winrm/portal>`__\ 
+and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:
 
 ::
 
@@ -147,8 +150,7 @@ This module is extremely useful for scripting out Windows applications. For exam
    mail.To = 'someone@example.com'
    mail.CC = 'name@example.com'
    mail.Subject = 'Moneyball Review'
-   mail.Body = """
-               Moneyball is an inspiring movie, based on real events.
+   mail.Body = """Moneyball is an inspiring movie, based on real events.
                Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.
                The trade deadline scene is delightful. Wow.
                Chris Pratt as Hatteberg too. What a solid film.

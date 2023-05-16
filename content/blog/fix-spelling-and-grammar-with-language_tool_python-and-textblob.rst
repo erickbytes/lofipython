@@ -28,7 +28,7 @@ I found 2 errors when I piped the text of this post into the below code: the pro
    from textblob import TextBlob
 
    def fix_spelling_and_grammar(text):
-       """ returns str: text transformed by language tool and text blob
+       """Returns str: text transformed by language tool and text blob
        1) Apply language tool API correction
        Language Tool Public API: https://dev.languagetool.org/public-http-api
        https://languagetool.org/http-api/swagger-ui/#!/default/post_check

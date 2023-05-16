@@ -45,8 +45,7 @@
                 
                 
 
-                <div class="section" id="i-am-a-beginner-to-testing-my-code-i-wanted-to-write-about-testing-to-better-understand-it-while-shaping-this-link-fest-masquerading-as-an-essay-i-collected-great-ideas-from-people-who-are-way-more-experienced-than-me-you-ll-find-a-few-of-my-thoughts-a-pytest-example-i-use-to-monitor-files-ideas-for-unit-testing-property-testing-test-driven-development-and-many-other-commonly-used-software-tests">
-<h2>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</h2>
+                <p>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</p>
 <p><strong>An Introductory Rant on Testing</strong></p>
 <p>Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?</p>
 <blockquote>
@@ -198,21 +197,32 @@ Tests start to lose signal when <a class="reference external" href="https://docs
 <p><strong>I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:</strong></p>
 <p><tt class="docutils literal">python <span class="pre">-m</span> pip install pytest</tt></p>
 <p><strong>test_file_date.py</strong></p>
-<pre class="literal-block">
-import glob
-import os
-from datetime import datetime, date
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
 
-# The dir_query format is for a Windows path with Unix style pattern matching.
-def test_csv_date_equals_today():
-    dir_query = 'C:\\Users\\your_username\\Desktop\\*.csv' # specify csv extension and folder
-    file_path = sorted(glob.iglob(dir_query), key=os.path.getmtime)[-1] # get most recent file
-    file_timestamp = os.path.getmtime(file_path)
-    file_date = datetime.fromtimestamp(file_timestamp)
-    print(file_date.day)
-    print(date.today().day)
-    assert file_date.day == date.today().day
-</pre>
+<span class="c1"># The dir_query format is for a Windows path with Unix style pattern matching.</span>
+<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
+    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
+    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+</pre></div></td></tr></table></div>
 <div class="line-block">
 <div class="line"><strong>Run the test with pytest by entering:</strong></div>
 <div class="line"><tt class="docutils literal">pytest test_file_date.py</tt></div>
@@ -222,7 +232,6 @@ def test_csv_date_equals_today():
 <div class="line">I write programs for personal productivity and to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automate processes</a> at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.</div>
 </div>
 <p>It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.</p>
-</div>
 
                 <div class="clear"></div>
 

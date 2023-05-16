@@ -101,12 +101,6 @@ sqlite3 PythonMarketer.db
 <p><strong>Comparable Cursors and PEP 249</strong></p>
 <p>The cursor object has a variety of methods you can call on it for database operations and to execute SQL. You can read more about them in the <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">sqlite3 module documentation</a>. This library also follows <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/">PEP 249 - Python Database API Specification</a> for recommended Database API interfaces. I've noticed that in <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/">pyodbc</a>, for example, the cursor object looks and feels the same as the cursor object in sqlite3. This is because they are both likely following PEP 249. Very cool!</p>
 </div>
-<div class="section" id="before-you-go-check-out-python-marketer-s-open-data-github-repository">
-<h2>Before You Go, Check Out Python Marketer's <a class="reference external" href="https://github.com/erickbytes/Python-Marketer-Reader-Analytics">Open Data Github Repository</a></h2>
-<p>The data shown in this post is published on <a class="reference external" href="https://github.com/erickbytes/Python-Marketer-Reader-Analytics">Github</a>. There you'll find you this blog's reader by country data, with analysis in a Jupyter Notebook. <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">This post I wrote</a> shows more info about using Jupyter and matplotlib for data analysis if you're curious about it.</p>
-<p>In 2020, <strong>105 countries or 53%</strong> of the world's countries have read about Python on this blog. 🤯👏👏👏 Amazing.</p>
-<p>I think this data offers a hint of perspective into the question, &quot;Where in the world are people learning about Python?&quot; The short answer is all around the world! That's pretty rad. Thanks for reading and stay curious.</p>
-</div>
 
                 <div class="clear"></div>
 
@@ -197,12 +191,10 @@ sqlite3 PythonMarketer.db
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">tweepy</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">tweepy</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Delete All Your Tweets - Github Gist by davej</span>
+<span class="sd">&quot;&quot;&quot;Delete All Your Tweets - Github Gist by davej</span>
 <span class="sd">Credit: https://gist.github.com/davej/113241</span>
 <span class="sd">Ported to Python 3 by Python Marketer: pythonmarketer.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -1354,93 +1346,159 @@ If you choose not to use Postman, you can use the json library. See the use of <
                     &nbsp;<a href="https://lofipython.com/tag/sandwiches.html" class="tags">sandwiches</a>
                     &nbsp;<a href="https://lofipython.com/tag/web.html" class="tags">web</a>
                 </div>
-            </article>            <h4 class="date">May 09, 2020</h4>
+            </article>            <h4 class="date">May 06, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://lofipython.com/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html" rel="bookmark" title="Permanent Link to &quot;Assessing The Marketing Effects of Randomization Failure&quot;">Assessing The Marketing Effects of Randomization Failure</a>
+                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html" rel="bookmark" title="Permanent Link to &quot;Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32&quot;">Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32</a>
                 </h2>
 
                 
                 
 
-                <p><strong>Preface</strong></p>
-<p>I always enjoy reading when technical people share their stories of the times things went a little haywire. Times when, despite their best intentions, a solution didn't work as planned and it ends in unpleasant or catastrophic failure. I had an experience like this recently, so here's my &quot;oops&quot; story. Fortunately, I think this falls closer to the unpleasant end of the spectrum.</p>
-<p><strong>Finding A Solution</strong></p>
-<p>My employer needed a way to create postcard contact lists to mail 500,000 people each month. About 2 years in with the company, the old postcard system was breaking down and no one knew how to fix it. The guy who built it left the company. I never knew him and he didn't leave behind much help for anyone to fix his creation.</p>
-<p>For my team, it was easier to create the contacts lists by drawing contact data out of our CRM with <a class="reference external" href="https://requests.readthedocs.io/en/master/">requests</a> and formatting the data with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html">pandas</a>. So that's what I did to help us deliver the postcards. (Let's set aside the debate on the strategic value of postcards.)</p>
-<p>Things were going smooth for a few months. The new system was creating the lists and nothing appeared to change. The system is still in use today we are more reliable than the old system in its partially degraded state. But there were some growing pains.</p>
-<p><strong>The Moment of</strong> <a class="reference external" href="https://twitter.com/jamesorharry/status/1100717726547562503">Ely</a></p>
-<blockquote>
-ELY (n.) The first, tiniest inkling you get that something, somewhere, has gone terribly wrong. [Douglas Adams, The Meaning of Liff]</blockquote>
-<p>We began to hear murmurs of the same contacts getting mailed each month from our senders. The script was supposed to draw a certain allocation of contacts at random for each sender. I knew I used <tt class="docutils literal">`df.sample(n=1)</tt> &lt;<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html</a>&gt;`__ from pandas to randomize the contact pool. The contacts were definitely getting randomized.</p>
-<p>Then one day while making a change requested by our stakeholders, I noticed some code I had written that looked sort of like this:</p>
-<pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
-    </span><span class="sd">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span><span class="w">
-</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
-</span>    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span><span class="w">
-</span>    <span class="k">return</span> <span class="n">deduped_contacts</span>
-</pre>
-<p><strong>The idea of this function was to:</strong></p>
+                <p>Here are a few useful corners of the vast array of Windows scripting tools.</p>
+<div class="section" id="helpful-windows-command-line-documentation">
+<h2>Helpful Windows Command Line Documentation</h2>
 <ul class="simple">
-<li>create a throwaway copy of the original dataframe with <tt class="docutils literal">df.copy()</tt></li>
-<li>format the throwaway for better duplicate removal</li>
-<li><tt class="docutils literal">drop_duplicates()</tt> and randomize the dataframe's order of the rows with <tt class="docutils literal">df.sample(n=1)</tt></li>
-<li>return those rows from the original dataframe, preserving original data but in randomized order</li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key">Windows command line Documentation Syntax</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490890%28v%3dtechnet.10%29">Command-line reference A-Z</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490954%28v%3dtechnet.10%29">Command shell overview</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490982%28v%3dtechnet.10%29">Using command redirection operators</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/about-windows-remote-management">About Windows Remote Management</a></li>
 </ul>
-<p><strong>Discovering The Error</strong></p>
-<p>Looks great, right? Can you spot my error? Here's where I went wrong: I needed to randomize the data that gets returned. But instead, I randomized the throwaway dataframe. I never once altered the order of the original table. I did remove the duplicates, but the row order of the original dataframe never changed.</p>
-<p><strong>Assessing the Damage</strong></p>
-<p>It took me a few months after I wrote the code to realize. That was enough time for a small fraction of our customers to get postcard bombed.</p>
-<p>Suppose you have two postcard campaigns every month. Both campaigns are drawing from the same contact source data. Both lists are created by the same script with nearly the same logic. That's ok if you randomize the contact order or the list is static. But if you don't randomize them and it's supposed to be a &quot;random&quot; draw campaign, that means you'll likely end up sending to the same people in both campaigns. That's exactly what happened. I accidentally postcard bombed 'em.</p>
-<p>Thankfully, only a small percent of our &quot;senders&quot; were opted into both campaigns. What does that mean for those senders? Their contacts got <a class="reference external" href="https://www.youtube.com/watch?v=SSPewc--3yY">NFL blitzed</a> for 3 months straight. Instead of getting 1 or maybe 2 postcards a month if they're really lucky, they received 2 a month, each month until I caught the error. We bombarded about 3,000 lucky potential customers each month during that time. Some of them let us know they thought it was excessive.</p>
-<blockquote>
-The opposite of love is not hate, it's indifference. - Elie Wiesel</blockquote>
-<p><strong>Sidebar On Analog Marketing</strong></p>
-<p>I think postcards are still relevant as a Marketing tool in 2020. From an environmental perspective, I prefer going digital. Some people let us know when we mail them that they feel the same way and then we stop mailing them. But I think there's something tangible about real things you can hold in your hands. Postcards also tend to get a reaction, even if it's not a good one. Sometimes that reaction is an email stating, &quot;DON'T EVER MAIL ME AGAIN!!!&quot; 😆</p>
-<p><strong>For the record, I changed my mistake to this:</strong></p>
-<pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
-    </span><span class="sd">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span><span class="w">
-</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="w">
-</span>    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span><span class="w">
-</span>    <span class="n">randomized_contacts</span> <span class="o">=</span> <span class="n">deduped_contacts</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
-</span>    <span class="k">return</span> <span class="n">randomized_contacts</span>
+</div>
+<div class="section" id="a-few-general-windows-commands">
+<h2>A Few General Windows Commands</h2>
+<p>Use  <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a>
+to look in a text file to count the lines matching a string:</p>
+<pre class="literal-block">
+find /C &quot;FAIL&quot; &lt; &quot;Test_Results.txt&quot;
+# returns: 0 if no match or # of lines found, e.g. 2,50,100
 </pre>
-<p><strong>Or maybe something like this would be better, for clearer separation of actions:</strong></p>
-<pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
-    </span><span class="sd">&quot;&quot;&quot;Remove duplicates while preserving original data.&quot;&quot;&quot;</span><span class="w">
-</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="w">
-</span>    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span><span class="w">
-</span>    <span class="k">return</span> <span class="n">deduped_contacts</span><span class="w">
+<p>I wrote a post on <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/">findstr</a>, which offers similar functionality.</p>
+<p><strong>clip:</strong> pipe commands <a class="reference external" href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</p>
+<p><strong>If:</strong> <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</p>
+<p><strong>List ip address-related info:</strong></p>
+<pre class="literal-block">
+ipconfig
+</pre>
+<p><strong>Check system bit (usually 64-bit or 32-bit):</strong></p>
+<pre class="literal-block">
+wmic os getosarchitecture
+</pre>
+</div>
+<div class="section" id="automate-windows-scripts-with-batch-files">
+<h2>Automate Windows Scripts with Batch Files</h2>
+<p>Batch files can be run from command prompt or by double-clicking them. Here's an example of text in a batch file that activates a python virtual environment. Swap in your username and environment if you've created it.</p>
+<pre class="literal-block">
+cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd .. &amp; dir&quot;
+</pre>
+<ol class="arabic simple">
+<li>Save above as a .bat file.</li>
+<li>This uses <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29">cmd</a> to open a new command prompt in a Windows batch file.</li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a>into my python virtual env then activate it by running a batch file.</li>
+<li>Then call dir to print directory contents.</li>
+</ol>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a>a custom system 'last_name' variable to be recalled later.</p>
+<pre class="literal-block">
+set /p last_name=Enter a last name:
+echo %last_name%
+pause
+</pre>
+<p>Here we print it out with <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490897(v=technet.10)">echo</a>. Then <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490965(v=technet.10)">pause</a>.</p>
+<p><strong>Line continuation in batch files:</strong> Use ^ to continue your batch file scripts on a new line.</p>
+</div>
+<div class="section" id="system-assessment-tools-powercfg-and-sfc">
+<h2>System Assessment Tools: powercfg and sfc</h2>
+<p><strong>Display system stats:</strong></p>
+<pre class="literal-block">
+systeminfo
+</pre>
+<p><strong>Use powercfg to assess power, sleep and system states</strong></p>
+<pre class="literal-block">
+powercfg /SLEEPSTUDY
+</pre>
+<p>Use sfc to perform a system file check:</p>
+<pre class="literal-block">
+# scan and repair
+sfc /SCANNOW
+# scan, but do not repair:
+sfc /VERIFYONLY
+</pre>
+</div>
+<div class="section" id="accessing-a-remote-computer-from-the-command-line">
+<h2>Accessing a Remote Computer From the Command Line</h2>
+<p>You may want to <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ping">ping</a> a remote computer to see if it's running. Add your ip address instead of the below 1s and 0s:</p>
+<pre class="literal-block">
+ping 01.10.10.01
+</pre>
+<p><strong>Log into your Remote Desktop with</strong><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a><strong>:</strong></p>
+<ol class="arabic simple">
+<li>Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.</li>
+<li>You may need to <a class="reference external" href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on">adjust your credentials on your local machine.</a></li>
+<li>Finally, trigger login to an active window from command prompt:</li>
+</ol>
+<pre class="literal-block">
+mstsc RDP_File_Name.rdp
+</pre>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a>and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</p>
+<pre class="literal-block">
+winrm quickconfig
+</pre>
+<p><strong>Log into a remote computer with</strong><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs">winrs</a>**&nbsp;and run ipconfig:**</p>
+<pre class="literal-block">
+winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
+</pre>
+</div>
+<div class="section" id="check-out-python-s-pywin32-module">
+<h2>Check Out Python's <a class="reference external" href="https://github.com/mhammond/pywin32">pywin32</a> Module</h2>
+<p>This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook and <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">Task Scheduler</a>. Install with <a class="reference external" href="http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
+<pre class="literal-block">
+python -m pip install pywin32
+</pre>
+<p><strong>Here's an example to send an Outlook email:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">win32com.client</span>
 
-</span><span class="k">def</span> <span class="nf">randomize_contacts</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
-    </span><span class="sd">&quot;&quot;&quot;Randomize the order of the rows.&quot;&quot;&quot;</span><span class="w">
-</span>    <span class="n">randomized_contacts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
-</span>    <span class="k">return</span> <span class="n">randomized_contacts</span>
-</pre>
-<p><strong>In Conclusion: Mistakes Happen.</strong></p>
-<p>Sometimes they have interesting consequences when you make them at a certain scale. Maybe I could have written some tests to prevent this. Maybe I should have reviewed my code a couple more times. Sometimes, we're asked to do work that stretches our mental capacity and time to the limit.</p>
-<p>Additionally, it's almost always a better choice to use an existing system, rather than writing your own. But in this case, my team was put in a situation where we needed to deliver because some else's software wasn't doing the job. I did my best to fill that need. And we're still using this way to send postcards today.</p>
-<p>I wish this failure didn't happen for the sake of everyone involved, but <a class="reference external" href="https://en.wikipedia.org/wiki/An_Essay_on_Criticism">to err is human</a>, right? Live and learn.</p>
+<span class="n">outlook</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">&#39;outlook.application&#39;</span><span class="p">)</span>
+<span class="n">mail</span> <span class="o">=</span> <span class="n">outlook</span><span class="o">.</span><span class="n">CreateItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">To</span> <span class="o">=</span> <span class="s1">&#39;someone@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">CC</span> <span class="o">=</span> <span class="s1">&#39;name@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="s1">&#39;Moneyball Review&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Moneyball is an inspiring movie, based on real events.</span>
+<span class="s2">            Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.</span>
+<span class="s2">            The trade deadline scene is delightful. Wow.</span>
+<span class="s2">            Chris Pratt as Hatteberg too. What a solid film.</span>
+<span class="s2">            Money isn&#39;t everything. Playing ball is.</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Attachments</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Baseball_Analysis.csv&#39;</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Send</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+</div>
 
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="https://lofipython.com/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html">posted at 04:06</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-marketing-pandas-programming-python-work.html" rel="tag">coding, Marketing, pandas, programming, python, work</a>
+                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html">posted at 14:11</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-command-prompt-scripts-windows.html" rel="tag">automation, command prompt, Scripts, Windows</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/business.html" class="tags">business</a>
-                    &nbsp;<a href="https://lofipython.com/tag/mistakes.html" class="tags">mistakes</a>
-                    &nbsp;<a href="https://lofipython.com/tag/random.html" class="tags">random</a>
+                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/remote-computer.html" class="tags">remote computer</a>
+                    &nbsp;<a href="https://lofipython.com/tag/scripting.html" class="tags">scripting</a>
+                    &nbsp;<a href="https://lofipython.com/tag/shell.html" class="tags">shell</a>
                 </div>
             </article>
 

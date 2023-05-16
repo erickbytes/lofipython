@@ -103,12 +103,3 @@ Below, getting a cursor object that holds our S\ ``ELECT`` query results. Then i
 **Comparable Cursors and PEP 249**
 
 The cursor object has a variety of methods you can call on it for database operations and to execute SQL. You can read more about them in the `sqlite3 module documentation <https://docs.python.org/3/library/sqlite3.html>`__. This library also follows `PEP 249 - Python Database API Specification <https://www.python.org/dev/peps/pep-0249/>`__ for recommended Database API interfaces. I've noticed that in `pyodbc <https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/>`__, for example, the cursor object looks and feels the same as the cursor object in sqlite3. This is because they are both likely following PEP 249. Very cool!
-
-Before You Go, Check Out Python Marketer's `Open Data Github Repository <https://github.com/erickbytes/Python-Marketer-Reader-Analytics>`__
--------------------------------------------------------------------------------------------------------------------------------------------
-
-The data shown in this post is published on `Github <https://github.com/erickbytes/Python-Marketer-Reader-Analytics>`__. There you'll find you this blog's reader by country data, with analysis in a Jupyter Notebook. `This post I wrote <https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/>`__ shows more info about using Jupyter and matplotlib for data analysis if you're curious about it.
-
-In 2020, **105 countries or 53%** of the world's countries have read about Python on this blog. 🤯👏👏👏 Amazing.
-
-I think this data offers a hint of perspective into the question, "Where in the world are people learning about Python?" The short answer is all around the world! That's pretty rad. Thanks for reading and stay curious.

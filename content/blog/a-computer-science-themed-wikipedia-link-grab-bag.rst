@@ -25,11 +25,12 @@ Algorithms & Theories
 Databases
 ---------
 
-`Cache <https://en.wikipedia.org/wiki/Cache_(computing)>`__ + `Cache invalidation <https://en.wikipedia.org/wiki/Cache_invalidation>`__
+Cache: https://en.wikipedia.org/wiki/Cache_(computing)
+Cache invalidation: https://en.wikipedia.org/wiki/Cache_invalidation
 
    caching is a common technique to store data so that it can be quickly fetched later with limited usage of database resources.
 
-` <https://en.wikipedia.org/wiki/Column-oriented_DBMS>`__\ `Column-oriented DBMS <https://en.wikipedia.org/wiki/Column-oriented_DBMS>`__
+Column-oriented DBMS: https://en.wikipedia.org/wiki/Column-oriented_DBMS
 
 `Data definition language <https://en.wikipedia.org/wiki/Data_definition_language#:~:text=In%20the%20context%20of%20SQL,tables%2C%20indexes%2C%20and%20users.>`__
 
@@ -48,7 +49,8 @@ Developer
 
 `Asynchrony <https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)>`__ Used for performing operations in parallel.
 
-` <https://en.wikipedia.org/wiki/Remote_procedure_call>`__\ `Event-driven programming <https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads.>`__
+RPC: https://en.wikipedia.org/wiki/Remote_procedure_call
+Event-driven programming: https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads.
 
    Async is always event-driven, but not the other way round.
 

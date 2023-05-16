@@ -2,13 +2,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - automation, data, Databases, excel, ODBC, pandas, python, Windows</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/automation-data-databases-excel-odbc-pandas-python-windows.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2019-11-30T00:28:00-06:00</updated><entry><title>Inserting New Rows Into A Microsoft Access Database With Python and pyodbc</title><link href="https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python.html" rel="alternate"></link><published>2019-11-30T00:28:00-06:00</published><updated>2019-11-30T00:28:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2019-11-30:/inserting-new-records-into-a-microsoft-access-database-with-python.html</id><summary type="html">&lt;p&gt;I recently automated the loading of data into a Microsoft Access database with &lt;a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki"&gt;pyodbc&lt;/a&gt;, a Python library for connecting to databases. ODBC stands for &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity"&gt;Open Database Connectivity&lt;/a&gt;. It can be used for a variety of Database Management Systems outside of Access also.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;First,&lt;/strong&gt; &lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;install libraries with pip&lt;/a&gt;&lt;strong&gt;. Enter in terminal …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;I recently automated the loading of data into a Microsoft Access database with &lt;a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki"&gt;pyodbc&lt;/a&gt;, a Python library for connecting to databases. ODBC stands for &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity"&gt;Open Database Connectivity&lt;/a&gt;. It can be used for a variety of Database Management Systems outside of Access also.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;First,&lt;/strong&gt; &lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;install libraries with pip&lt;/a&gt;&lt;strong&gt;. Enter in terminal or command prompt:&lt;/strong&gt;&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;ol class="first arabic"&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pyodbc&lt;/tt&gt;&lt;/li&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pyodbc&lt;/tt&gt;
+&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
@@ -48,23 +43,19 @@
 &lt;span class="normal"&gt;22&lt;/span&gt;
 &lt;span class="normal"&gt;23&lt;/span&gt;
 &lt;span class="normal"&gt;24&lt;/span&gt;
-&lt;span class="normal"&gt;25&lt;/span&gt;
-&lt;span class="normal"&gt;26&lt;/span&gt;
-&lt;span class="normal"&gt;27&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="normal"&gt;25&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pyodbc&lt;/span&gt;
 
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;df_to_row_tuples&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    use list comprehension to format df rows as a list of tuples:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Use list comprehension to format df rows as a list of tuples:&lt;/span&gt;
 &lt;span class="sd"&gt;    rows = [(&amp;#39;Garfield&amp;#39;,&amp;#39;Orange&amp;#39;,&amp;#39;Eat&amp;#39;),(&amp;#39;Meowth&amp;#39;,&amp;#39;White&amp;#39;,&amp;#39;Scratch&amp;#39;)]&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fillna&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;rows&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;rows&lt;/span&gt;
 
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;Rows are not added to DB until they are committed.&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Rows are not added to DB until they are committed.&lt;/span&gt;
 &lt;span class="sd"&gt;Pass each row tuple as a SQL parameter (?,?,?).&lt;/span&gt;
 &lt;span class="sd"&gt;cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;

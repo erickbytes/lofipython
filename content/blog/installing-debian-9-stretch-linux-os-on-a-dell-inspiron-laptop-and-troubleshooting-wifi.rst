@@ -77,7 +77,7 @@ Now, let's check for enabled network interfaces. "wlan0" is usually the name of 
 
    sudo ifconfig
 
-::
+``
    eth0: flags=4099<UP,BROADCAST,MULTICAST> mtu 1500
    ether 00:25:a5:cf:38:7d txqueuelen 1000 (Ethernet)
    RX packets 0 bytes 0 (0.0 B)
@@ -100,7 +100,7 @@ Now, let's check for enabled network interfaces. "wlan0" is usually the name of 
    RX packets 8509 bytes 4639778 (4.4 MiB)
    RX errors 0 dropped 0 overruns 0 frame 0
    TX packets 6206 bytes 923792 (902.1 KiB)
-   TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+   TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0``
 
 **Check wlan0 is not blocked on kill list.**
 

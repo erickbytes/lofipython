@@ -113,31 +113,25 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt&lt;/blockquote&gt
 &lt;span class="normal"&gt;33&lt;/span&gt;
 &lt;span class="normal"&gt;34&lt;/span&gt;
 &lt;span class="normal"&gt;35&lt;/span&gt;
-&lt;span class="normal"&gt;36&lt;/span&gt;
-&lt;span class="normal"&gt;37&lt;/span&gt;
-&lt;span class="normal"&gt;38&lt;/span&gt;
-&lt;span class="normal"&gt;39&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
+&lt;span class="normal"&gt;36&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getpass&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;Automate pytest with Windows Task Scheduler - Python Marketer&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Automate pytest with Windows Task Scheduler - Python Marketer&lt;/span&gt;
 &lt;span class="sd"&gt;http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/&lt;/span&gt;
 
 &lt;span class="sd"&gt;Use Task Scheduler run a batch file.&lt;/span&gt;
 &lt;span class="sd"&gt;The batch file runs pytest and captures our pytest function results to sys.&lt;/span&gt;
 &lt;span class="sd"&gt;If a text file contains a failure or error, write the test contents into a folder.&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;user_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getpass&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getuser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;basicConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;user_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;logging&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Automated_Testing_Alerts.log&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Automated_Testing_Alerts.log&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%(asctime)s&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%(message)s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;datefmt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;-%b-%y %H:%M:%S&amp;#39;&lt;/span&gt;
     &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Checking for failed tests...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
 &lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;user_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Desktop&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;VM_Jobs&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;test_results&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;test_results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fname&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;fname&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.txt&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;txt_file&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;test_results&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -175,11 +169,11 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt&lt;/blockquote&gt
 &lt;li&gt;Creating a text file with any failing tests in a Box folder, if found&lt;/li&gt;
 &lt;li&gt;Then Box emails me if any test fails.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Final Thoughts on the .bat, Man&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format&lt;a class="reference external image-reference" href="https://www.youtube.com/watch?v=65eDsGY5MTE"&gt;&lt;img alt="legobatman" class="wp-image-2704 alignright" src="https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg" style="width: 95px; height: 95px;" /&gt;&lt;/a&gt; the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &amp;quot;glue&amp;quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Final Thoughts on the .bat&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format of the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &amp;quot;glue&amp;quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Life is in the journey.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!&lt;/p&gt;
-&lt;/p&gt;&lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="_wp_link_placeholder"&gt;pytest plugins&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://pypi.org/project/pytest-csv/"&gt;pytest-csv&lt;/a&gt;: write test results to a csv with this plugin&lt;/p&gt;
 &lt;p&gt;I wrote another post compiling peoples' thoughts on testing &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/"&gt;here&lt;/a&gt;.&lt;/p&gt;

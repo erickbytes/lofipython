@@ -16,7 +16,7 @@ webbrowser is a convenient Python standard library module. It opened my Firefox 
    webbrowser.register('firefox',
        None,
        webbrowser.BackgroundBrowser(firefox_sh))
-   url = 'https://atomic-temporary-107329037.wpcomstaging.com'
+   url = 'https://lofipython.com'
    webbrowser.get('firefox').open_new_tab(url)
    print(webbrowser._browsers)
 

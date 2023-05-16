@@ -31,7 +31,7 @@ Sometimes a dictionary is adequate to solve a problem with handy methods like ge
 
 **Terminal Output**
 
-.. code-block:: python
+::
 
    <class 'pandas.core.frame.DataFrame'>
    RangeIndex: 5 entries, 0 to 4

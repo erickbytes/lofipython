@@ -48,8 +48,7 @@ Since I had only 771 images, I was able to extract text on all of them and stay 
    import pandas as pd
 
 
-   """
-   Setup Instructions
+   """Setup Instructions
    1) Save this as detect_image_text.py
    2) Create a folder named 'photos' and put your photos in them.
    3) in your terminal, run: python detect_image_text.py
@@ -146,8 +145,6 @@ Eventually I will try the more sophisticated way using machine learning, but at 
    :figclass: wp-image-4695
 
 Maybe in the future I will use this for posts on my Facebook page, but it's not quite ready yet! I really enjoyed the process of researching this challenge and hope this post helps you evaluate your own text generation possibilities. This was fun to learn about. And best of all, I achieved satisfying, albeit primitive results within one weekend. Thanks for reading and stay positive.
-
-.. _see-the-markov-chain-in-the-wild-at-positivipy-com:
 
 Check out Markov chain in the wild `here <https://positivethoughts.pythonanywhere.com/>`__.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

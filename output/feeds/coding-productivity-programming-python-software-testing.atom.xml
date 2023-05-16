@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - coding, productivity, programming, python, software testing</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/coding-productivity-programming-python-software-testing.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2019-12-05T03:06:00-06:00</updated><entry><title>A Collection of Software Testing Opinions for Python and Beyond</title><link href="https://lofipython.com/a-collection-of-software-testing-opinions-for-python-and-beyond.html" rel="alternate"></link><published>2019-12-05T03:06:00-06:00</published><updated>2019-12-05T03:06:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2019-12-05:/a-collection-of-software-testing-opinions-for-python-and-beyond.html</id><summary type="html">&lt;div class="section" id="i-am-a-beginner-to-testing-my-code-i-wanted-to-write-about-testing-to-better-understand-it-while-shaping-this-link-fest-masquerading-as-an-essay-i-collected-great-ideas-from-people-who-are-way-more-experienced-than-me-you-ll-find-a-few-of-my-thoughts-a-pytest-example-i-use-to-monitor-files-ideas-for-unit-testing-property-testing-test-driven-development-and-many-other-commonly-used-software-tests"&gt;
-&lt;h2&gt;I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="i-am-a-beginner-to-testing-my-code-i-wanted-to-write-about-testing-to-better-understand-it-while-shaping-this-link-fest-masquerading-as-an-essay-i-collected-great-ideas-from-people-who-are-way-more-experienced-than-me-you-ll-find-a-few-of-my-thoughts-a-pytest-example-i-use-to-monitor-files-ideas-for-unit-testing-property-testing-test-driven-development-and-many-other-commonly-used-software-tests"&gt;
-&lt;h2&gt;I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - coding, productivity, programming, python, software testing</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/coding-productivity-programming-python-software-testing.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2019-12-05T03:06:00-06:00</updated><entry><title>A Collection of Software Testing Opinions for Python and Beyond</title><link href="https://lofipython.com/a-collection-of-software-testing-opinions-for-python-and-beyond.html" rel="alternate"></link><published>2019-12-05T03:06:00-06:00</published><updated>2019-12-05T03:06:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2019-12-05:/a-collection-of-software-testing-opinions-for-python-and-beyond.html</id><summary type="html">&lt;p&gt;I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;An Introductory Rant on Testing&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?&lt;/p&gt;
 &lt;blockquote&gt;
@@ -153,21 +151,32 @@ Tests start to lose signal when &lt;a class="reference external" href="https://d
 &lt;p&gt;&lt;strong&gt;I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pytest&lt;/tt&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;test_file_date.py&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-import glob
-import os
-from datetime import datetime, date
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;glob&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
 
-# The dir_query format is for a Windows path with Unix style pattern matching.
-def test_csv_date_equals_today():
-    dir_query = 'C:\\Users\\your_username\\Desktop\\*.csv' # specify csv extension and folder
-    file_path = sorted(glob.iglob(dir_query), key=os.path.getmtime)[-1] # get most recent file
-    file_timestamp = os.path.getmtime(file_path)
-    file_date = datetime.fromtimestamp(file_timestamp)
-    print(file_date.day)
-    print(date.today().day)
-    assert file_date.day == date.today().day
-&lt;/pre&gt;
+&lt;span class="c1"&gt;# The dir_query format is for a Windows path with Unix style pattern matching.&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_csv_date_equals_today&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;dir_query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;your_username&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Desktop&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;*.csv&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# specify csv extension and folder&lt;/span&gt;
+    &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iglob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dir_query&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# get most recent file&lt;/span&gt;
+    &lt;span class="n"&gt;file_timestamp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;file_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromtimestamp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_timestamp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;file_date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;strong&gt;Run the test with pytest by entering:&lt;/strong&gt;&lt;/div&gt;
 &lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;pytest test_file_date.py&lt;/tt&gt;&lt;/div&gt;
@@ -177,5 +186,4 @@ def test_csv_date_equals_today():
 &lt;div class="line"&gt;I write programs for personal productivity and to &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/"&gt;automate processes&lt;/a&gt; at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.&lt;/p&gt;
-&lt;/div&gt;
 </content><category term="coding, productivity, programming, python, software testing"></category><category term="pytest"></category><category term="software development"></category><category term="test driven development"></category></entry></feed>

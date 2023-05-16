@@ -31,140 +31,7 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jan 14, 2018</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/python-file-handling-basics.html" rel="bookmark" title="Permanent Link to &quot;Python File Handling Basics&quot;">Python File Handling Basics</a>
-                </h2>
-
-                
-                
-
-                <p>The basis of many great programs revolve around a simple set of operations:</p>
-<ol class="arabic simple">
-<li>Open a file.</li>
-<li>Do something with the file contents.</li>
-<li>Save the new file for the user.</li>
-</ol>
-<p>Python is nice and simple for this.&nbsp;Paste the below lines into a <a class="reference external" href="https://www.google.com/search?q=text+editor&amp;oq=text+edit&amp;aqs=chrome.0.0j69i57j0l4.2054j0j7&amp;sourceid=chrome&amp;ie=UTF-8">text editor</a> and save as a .py file. <a class="reference external" href="https://github.com/BurntSushi/nfldb/wiki/Python-&amp;-pip-Windows-installation">You need to have Python 3 installed</a>. In the same folder as your .py file, save a .txt file with some words in it. Alright, let's write some code:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">file_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your file name. e.g. words.txt&quot;</span><span class="p">)</span>
-<span class="n">file_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-<span class="nb">print</span> <span class="p">(</span><span class="n">lines</span><span class="p">)</span>
-<span class="n">file_handle</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div></td></tr></table></div>
-<p>In line 1, we ask the user to enter their file name with Python's raw_input function. When the program runs, the user enters their text file name with extension. This line stores the name in a variable called file_name.</p>
-<p><strong>In line 2,</strong> we open your text file and store it in a variable I have named file_handle. Think of the file handle as a bridge between your code and the text file. Quick point about the 'r' above: that tells the program to open the file in &quot;Read&quot; mode. There are several different file modes in programming. Some modes are just for reading an existing file, some are just for writing a new file, and some are capable of both. <a class="reference external" href="https://stackoverflow.com/questions/16208206/confused-by-python-file-mode-w/16208298">This Stack Overflow post</a> is well written and details the differences between file modes. Once established, the file handle allows you to read the file's contents or write new contents to the file.</p>
-<p><strong>In line 3,</strong>&nbsp;we are calling the .readlines() method on our file handle. This method takes the file contents and stores them, line by line, into a list named &quot;lines&quot;. An alternative method is .read(), which opens the file and stores its contents as one string. Try switching this out in place of&nbsp; .readlines() to check out the difference.</p>
-<p><strong>In line 4,</strong> we are printing the stored lines to show them to the user. We now have the file contents, ready to be used however we please.</p>
-<p><strong>In line 5</strong>, we are closing the file.</p>
-<p>Below, we are going to write a new file. Let's pretend we've done something worth saving with our lines and now want to save them to a new file. We will represent this as the variable &quot;output&quot; in the first line below.</p>
-<pre class="literal-block">
-file_name = input(&quot;Enter any file name.&quot;)
-save_file = open(file_name, &quot;w&quot;)
-save_file.write(&quot;Here is some text to save in a file.&quot;)
-save_file.close()
-</pre>
-<p>In line 1, we are using Python's input function to ask the user what to name the file and storing it in a variable named file_name.</p>
-<p>In line 2,&nbsp; we are calling the open function again that we used in the first example, but this time, notice the &quot;w&quot;. This indicates that we are opening the file in &quot;write&quot; mode.</p>
-<p>In line 3, we are calling the .write() method on our file handle, named save_file, and passing it our text to be saved in our new file.</p>
-<p><strong>In line 4</strong>, we are closing the file, completing the creation of our new file in the same folder as our .py program file.</p>
-<p>Your program is now ready to be run. Double-click your .py file to execute it.</p>
-<p>Before learning Python, file operations were a mystery to me. It took me a while to understand this clearly, and I wanted to share. Once you master these basic file operations, programming gets to be a lot more fun. Do try it out for yourself :D</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/python-file-handling-basics.html">posted at 18:53</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming.html" rel="tag">coding, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
-                </div>
-            </article>            <h4 class="date">Aug 09, 2017</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html" rel="bookmark" title="Permanent Link to &quot;Creating A Simple Website and Server Environment with Node.js and Express.js&quot;">Creating A Simple Website and Server Environment with Node.js and Express.js</a>
-                </h2>
-
-                
-                
-
-                <p>Here is what I have deduced is the fastest way to get an app up and running with Node.js. This requires some familiarity with using the command line.&nbsp;I completed the Codeacademy course &quot;<a class="reference external" href="https://www.codecademy.com/learn/learn-the-command-line">Learn The Command Line</a>&quot; before beginning with Node.js. I think it helped me better understand what the commands are and what they do.</p>
-<ol class="arabic simple">
-<li>Download and install&nbsp;<a class="reference external" href="https://nodejs.org/en/">Node.JS</a></li>
-<li>Open the node command prompt. (This was on a windows machine.)</li>
-<li><tt class="docutils literal">mkdir node_apps</tt><ul>
-<li>creates a folder for your app(s)</li>
-</ul>
-</li>
-<li><tt class="docutils literal">cd \app_name</tt><ul>
-<li>changes command prompt directory to your app's folder</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm &nbsp;init</tt><ul>
-<li>Creates json file for your app</li>
-<li>fill out applicable info or just hit enter until the file is created</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm install express</tt><ul>
-<li>installs express.js module in node.js</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm install <span class="pre">express-generator</span> <span class="pre">-g</span></tt><ul>
-<li>installs express-generator module in node.js</li>
-<li>this module creates the web app's structure once the command in the next step is entered</li>
-</ul>
-</li>
-<li><tt class="docutils literal">express app_name</tt><ul>
-<li>creates the structure for your app and all necessary folders. (views, css, Javascript, routing, etc.)</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm install</tt><ul>
-<li>ensures all app module dependencies are installed</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm start</tt><ul>
-<li>starts your server and web app</li>
-</ul>
-</li>
-<li>Go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> in a browser. Port 3000 is the default port of Express.<ul>
-<li>Your app is live.</li>
-</ul>
-</li>
-</ol>
-<p><strong>Notes</strong></p>
-<ul class="simple">
-<li>I learned most of this from <a class="reference external" href="https://codeforgeek.com/2014/10/express-complete-tutorial-part-1/">this great blog post</a>.</li>
-<li>The above does not include a database integration. I integrated with a MongoDB database by <a class="reference external" href="https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-for-front-end-developers-to-getting-up-and-running-with-nodejs-express-and-mongodb">following the instructions in this post</a>.</li>
-<li>This <a class="reference external" href="https://www.youtube.com/watch?v=1uFY60CESlM">YouTube video</a> was also very helpful to me for figuring out MongoDB and Node.js integration.</li>
-<li>An HTML shorthand language called jade (aka pug) comes stock within Express.js.&nbsp; <a class="reference external" href="https://webapplog.com/jade/">Here's further reading</a> on the pros and cons.</li>
-<li>All of the above has been from my own studies. I do not claim anything listed as the most efficient or best way to use Node.js. This is what has worked for me over the past two days.</li>
-<li>It feels good to whip up a nimble app environment that is capable of producing and supporting world changing software; Node.js is used by Netflix, PayPal, Microsoft and Uber.</li>
-</ul>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html">posted at 21:16</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-javascript-programming-web-development.html" rel="tag">coding, javascript, programming, web development</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
-                    &nbsp;<a href="https://lofipython.com/tag/creating-websites.html" class="tags">creating websites</a>
-                    &nbsp;<a href="https://lofipython.com/tag/expressjs.html" class="tags">express.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/mongodb.html" class="tags">mongodb</a>
-                    &nbsp;<a href="https://lofipython.com/tag/nodejs.html" class="tags">Node.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web-dev.html" class="tags">web dev</a>
-                    &nbsp;<a href="https://lofipython.com/tag/website.html" class="tags">website</a>
-                </div>
-            </article>            <h4 class="date">Aug 05, 2017</h4>
+        <div id="content">            <h4 class="date">Aug 05, 2017</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -434,6 +301,102 @@ An SSL certificate is required for the domain by PythonAnywhere to control the A
                 <div class="info">
                     <a href="https://lofipython.com/on-learning-new-things.html">posted at 00:36</a>
                     &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/life.html" rel="tag">life</a>
+                </div>
+            </article>            <h4 class="date">Mar 29, 2016</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/getting-started-with-web2py.html" rel="bookmark" title="Permanent Link to &quot;Getting Started With web2py&quot;">Getting Started With web2py</a>
+                </h2>
+
+                
+                
+
+                <p>Feeling really good about my progress with web2py. The tutorial videos are comprehensive, yet easy to understand. For a beginner, the &quot;batteries included&quot; philosophy that web2py has embraced is a godsend. This means&nbsp;everything you need to get creating comes stock. I <a class="reference external" href="http://www.web2py.com/init/default/download">downloaded the web2py program</a>, ran it, entered a password, and was immediately using&nbsp;a functional development interface.</p>
+<p>web2py follows the <a class="reference external" href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model - View - Controller software architecture</a>&nbsp;- which means it separates out the activities of programs into a few different layers (please forgive my oversimplified explanations):</p>
+<ul class="simple">
+<li>Model - Stores data / used&nbsp;in tutorial for database table creation (Written in Python)</li>
+<li>Controller - Used to define page functions (Python)</li>
+<li>Views - What the user sees (HTML/CSS/Javascript)</li>
+</ul>
+<img alt="en300" class="alignnone wp-image-479" src="https://pythonmarketer.files.wordpress.com/2016/03/en300.png" style="width: 460px; height: 307px;" />
+<p><em>(Image&nbsp;from web2py Documentation)</em></p>
+<p><strong>If you're thinking about trying web2py&nbsp;here's a few things that I've really liked so far:</strong></p>
+<ul class="simple">
+<li>I have minimal knowledge outside of&nbsp;a few basic concepts of server operations. web2py provides a few simple lines of code that allows quick creation of a table (done in model) and corresponding form (done in controller/view) to add entries to the table and display form submissions elsewhere on your site.</li>
+<li>Right now, I'm enjoying learning&nbsp;about the <a class="reference external" href="https://py4web.com/_documentation/static/en/chapter-05.html">Database Abstraction Layer (DAL),</a> which is pretty cool because you can rapidly run and test complex server queries within it.</li>
+<li>It's set up for multiple applications, so I can create and play with&nbsp;several projects at once, whether simple applications or more complex websites.</li>
+</ul>
+<p>There are 30 videos total on the web2py documentation page, and I've only watched 11 of them but have already learned a ton. The style of the Massimo Di Pierro is great because you often pick up on some golden nuggets of coding wisdom and programming&nbsp;tips while he walks you through the topic.</p>
+<p>It's pretty sweet&nbsp;to be able to create and manipulate a website so quickly; still need to learn more, such as pick up CSS to really make it my own. But for now I'm happy for the many small accomplishments&nbsp;that have been easier to reach thanks to web2py.</p>
+<blockquote>
+<strong>Update:</strong> consider using <a class="reference external" href="https://github.com/web2py/py4web">py4web</a>, web2py's successor</blockquote>
+<p><strong>See also:</strong> <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/04/30/useful-links-for-web2py-beginners/">Useful Links for web2py Beginners</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/getting-started-with-web2py.html">posted at 03:02</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-web-development-web2py.html" rel="tag">coding, programming, python, web development, web2py</a>
+                </div>
+            </article>            <h4 class="date">Mar 22, 2016</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/choosing-a-web-development-path.html" rel="bookmark" title="Permanent Link to &quot;Choosing a Web Development Path&quot;">Choosing a Web Development Path</a>
+                </h2>
+
+                
+                
+
+                <p>I have recently finished this <a class="reference external" href="https://www.coursera.org/learn/html">HTML course</a>, which recommends using cPanel to configure websites. So I bought a domain and registered with cPanel.</p>
+<ul class="simple">
+<li><strong>What I thought would happen in trying to create a website/app:</strong>&nbsp;Buy a domain and use cPanel and Python in perfect sync to create a website.</li>
+<li><strong>Reality:</strong>&nbsp;cPanel is configured mostly for PHP. You can run Python scripts with it, but it doesn't seem to be the most effective route from what I've read.</li>
+</ul>
+<p>So I went back to the drawing board and I've simplified this down to&nbsp;two basic paths:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="40%" />
+<col width="30%" />
+<col width="23%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>Options</td>
+<td>Languages</td>
+<td>Hosting</td>
+<td>Framework / IDE</td>
+</tr>
+<tr><td><strong>Path 1</strong></td>
+<td>Build a website using Python + Python Web Frameworks and HTML</td>
+<td>PythonAnywhere or other Python friendly hosts</td>
+<td><a class="reference external" href="http://www.web2py.com/">web2py</a></td>
+</tr>
+<tr><td><strong>Path 2</strong></td>
+<td>Use a combo of HTML, Javascript + Python, other languages</td>
+<td>cPanel, many other hosts</td>
+<td>None (AKA I'm not sure)</td>
+</tr>
+</tbody>
+</table>
+<p>I'm going with Path 1 because the only language I know is Python. I hope to learn other&nbsp;languages like Javascript and CSS but would like to get building as fast as possible.</p>
+<p>I found a free web hosting service called PythonAnywhere. There are other <a class="reference external" href="https://wiki.python.org/moin/FreeHosts">free</a> and <a class="reference external" href="https://www.heroku.com/">paid</a> Python-friendly hosts that allow you to use Python.</p>
+<p>Instead of the <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/03/starting-to-almost-kinda-think-about-creating-a-web-app/">previously mentioned web frameworks</a>, I've chosen web2py as a starter because of its compatibility with PythonAnywhere,&nbsp;its simplicity, easy to read documentation and relative ease of use for beginners.</p>
+<ul class="simple">
+<li>A note on PythonAnywhere: they get 5 stars for the tutorial pictured below. It is very nice to see in the whirlwind of confusion of learning to deal with code and a new environment.</li>
+</ul>
+<img alt="PythonAnywhere Tutorial" class="alignnone size-full wp-image-286" src="https://pythonmarketer.files.wordpress.com/2016/03/pythonanywhere-tutorial.jpg" style="width: 1199px; height: 313px;" />
+<p>++ Love this opening quote from <a class="reference external" href="http://web2py.com/book">web2py Documentation</a>: &quot;I believe that the ability to easily build high quality web applications is of critical importance for the growth of a free and open society. This prevents the biggest players from monopolizing the flow of information.&quot;</p>
+<p>+++ A note on web2py so far: <a class="reference external" href="http://www.web2py.com/init/default/documentation">the videos from the creator</a>, Massimo Di Pierro, are super useful!</p>
+<blockquote>
+<strong>Update:</strong> consider using <a class="reference external" href="https://github.com/web2py/py4web">py4web</a>, web2py's successor</blockquote>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/choosing-a-web-development-path.html">posted at 03:45</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-web-development-web2py.html" rel="tag">coding, programming, python, web development, web2py</a>
                 </div>
             </article>
 

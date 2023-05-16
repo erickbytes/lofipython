@@ -1155,31 +1155,25 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Automate pytest with Windows Task Scheduler - Python Marketer</span>
+<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler - Python Marketer</span>
 <span class="sd">http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</span>
 
 <span class="sd">Use Task Scheduler run a batch file.</span>
 <span class="sd">The batch file runs pytest and captures our pytest function results to sys.</span>
 <span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="n">user_name</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">logging</span><span class="se">\\</span><span class="s1">Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span>
     <span class="p">)</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for failed tests...&quot;</span><span class="p">)</span>
-
 <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">test_results</span><span class="se">\\</span><span class="s1">&#39;</span>
 <span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.txt&#39;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">txt_file</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
@@ -1217,11 +1211,11 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <li>Creating a text file with any failing tests in a Box folder, if found</li>
 <li>Then Box emails me if any test fails.</li>
 </ol>
-<p><strong>Final Thoughts on the .bat, Man</strong></p>
-<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format<a class="reference external image-reference" href="https://www.youtube.com/watch?v=65eDsGY5MTE"><img alt="legobatman" class="wp-image-2704 alignright" src="https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg" style="width: 95px; height: 95px;" /></a> the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &quot;glue&quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
+<p><strong>Final Thoughts on the .bat</strong></p>
+<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format of the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &quot;glue&quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
 <p><strong>Life is in the journey.</strong></p>
 <p>What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!</p>
-</p><p><strong>See also:</strong></p>
+<p><strong>See also:</strong></p>
 <p><a class="reference external" href="_wp_link_placeholder">pytest plugins</a></p>
 <p><a class="reference external" href="https://pypi.org/project/pytest-csv/">pytest-csv</a>: write test results to a csv with this plugin</p>
 <p>I wrote another post compiling peoples' thoughts on testing <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">here</a>.</p>
@@ -1714,13 +1708,11 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
 
 <span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Adding two argument groups, each accepting two arguments.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adding two argument groups, each accepting two arguments.</span>
 <span class="sd">    Using gooey_options to set layout.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">GooeyParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Export campaign report spreadsheets and upload below.&#39;</span><span class="p">)</span>

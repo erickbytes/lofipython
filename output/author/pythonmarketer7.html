@@ -33,162 +33,7 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">May 06, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html" rel="bookmark" title="Permanent Link to &quot;Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32&quot;">Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32</a>
-                </h2>
-
-                
-                
-
-                <p>Here are a few useful corners of the vast array of Windows scripting tools.</p>
-<div class="section" id="helpful-windows-command-line-documentation">
-<h2>Helpful Windows Command Line Documentation</h2>
-<ul class="simple">
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key">Windows command line Documentation Syntax</a></li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490890%28v%3dtechnet.10%29">Command-line reference A-Z</a></li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490954%28v%3dtechnet.10%29">Command shell overview</a></li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490982%28v%3dtechnet.10%29">Using command redirection operators</a></li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/about-windows-remote-management">About Windows Remote Management</a></li>
-</ul>
-</div>
-<div class="section" id="a-few-general-windows-commands">
-<h2>A Few General Windows Commands</h2>
-<p><strong>Use</strong><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a><strong>to look in a text file to count the lines matching a string:</strong></p>
-<pre class="literal-block">
-find /C &quot;FAIL&quot; &lt; &quot;Test_Results.txt&quot;
-# returns: 0 if no match or # of lines found, e.g. 2,50,100
-</pre>
-<p>I wrote a post on <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/">findstr</a>, which offers similar functionality.</p>
-<p><strong>clip:</strong> pipe commands <a class="reference external" href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</p>
-<p><strong>If:</strong> <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</p>
-<p><strong>List ip address-related info:</strong></p>
-<pre class="literal-block">
-ipconfig
-</pre>
-<p><strong>Check system bit (usually 64-bit or 32-bit):</strong></p>
-<pre class="literal-block">
-wmic os getosarchitecture
-</pre>
-</div>
-<div class="section" id="automate-windows-scripts-with-batch-files">
-<h2>Automate Windows Scripts with Batch Files</h2>
-<p>Batch files can be run from command prompt or by double-clicking them. Here's an example of text in a batch file that activates a python virtual environment. Swap in your username and environment if you've created it.</p>
-<pre class="literal-block">
-cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd .. &amp; dir&quot;
-</pre>
-<ol class="arabic simple">
-<li>Save above as a .bat file.</li>
-<li>This uses <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29">cmd</a> to open a new command prompt in a Windows batch file.</li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a>into my python virtual env then activate it by running a batch file.</li>
-<li>Then call dir to print directory contents.</li>
-</ol>
-<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a><strong>a custom system 'last_name' variable to be recalled later.</strong></p>
-<pre class="literal-block">
-set /p last_name=Enter a last name:
-echo %last_name%
-pause
-</pre>
-<p>Here we print it out with <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490897(v=technet.10)">echo</a>. Then <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490965(v=technet.10)">pause</a>.</p>
-<p><strong>Line continuation in batch files:</strong> Use ^ to continue your batch file scripts on a new line.</p>
-</div>
-<div class="section" id="system-assessment-tools-powercfg-and-sfc">
-<h2>System Assessment Tools: powercfg and sfc</h2>
-<p><strong>Display system stats:</strong></p>
-<pre class="literal-block">
-systeminfo
-</pre>
-<p><strong>Use powercfg to assess power, sleep and system states</strong></p>
-<pre class="literal-block">
-powercfg /SLEEPSTUDY
-</pre>
-<p>Use sfc to perform a system file check:</p>
-<pre class="literal-block">
-# scan and repair
-sfc /SCANNOW
-# scan, but do not repair:
-sfc /VERIFYONLY
-</pre>
-</div>
-<div class="section" id="accessing-a-remote-computer-from-the-command-line">
-<h2>Accessing a Remote Computer From the Command Line</h2>
-<p>You may want to <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ping">ping</a> a remote computer to see if it's running. Add your ip address instead of the below 1s and 0s:</p>
-<pre class="literal-block">
-ping 01.10.10.01
-</pre>
-<p><strong>Log into your Remote Desktop with</strong><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a><strong>:</strong></p>
-<ol class="arabic simple">
-<li>Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.</li>
-<li>You may need to <a class="reference external" href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on">adjust your credentials on your local machine.</a></li>
-<li>Finally, trigger login to an active window from command prompt:</li>
-</ol>
-<pre class="literal-block">
-mstsc RDP_File_Name.rdp
-</pre>
-<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a><strong>and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</strong></p>
-<pre class="literal-block">
-winrm quickconfig
-</pre>
-<p><strong>Log into a remote computer with</strong><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs">winrs</a>**&nbsp;and run ipconfig:**</p>
-<pre class="literal-block">
-winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
-</pre>
-</div>
-<div class="section" id="check-out-python-s-pywin32-module">
-<h2>Check Out Python's <a class="reference external" href="https://github.com/mhammond/pywin32">pywin32</a> Module</h2>
-<p>This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook and <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">Task Scheduler</a>. Install with <a class="reference external" href="http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
-<pre class="literal-block">
-python -m pip install pywin32
-</pre>
-<p><strong>Here's an example to send an Outlook email:</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">win32com.client</span>
-
-<span class="n">outlook</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">&#39;outlook.application&#39;</span><span class="p">)</span>
-<span class="n">mail</span> <span class="o">=</span> <span class="n">outlook</span><span class="o">.</span><span class="n">CreateItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">To</span> <span class="o">=</span> <span class="s1">&#39;someone@example.com&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">CC</span> <span class="o">=</span> <span class="s1">&#39;name@example.com&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="s1">&#39;Moneyball Review&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Moneyball is an inspiring movie, based on real events.</span>
-<span class="s2">            Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.</span>
-<span class="s2">            The trade deadline scene is delightful. Wow.</span>
-<span class="s2">            Chris Pratt as Hatteberg too. What a solid film.</span>
-<span class="s2">            Money isn&#39;t everything. Playing ball is.</span>
-<span class="s2">            &quot;&quot;&quot;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Attachments</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Baseball_Analysis.csv&#39;</span><span class="p">)</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Send</span><span class="p">()</span>
-</pre></div></td></tr></table></div>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html">posted at 14:11</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-command-prompt-scripts-windows.html" rel="tag">automation, command prompt, Scripts, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
-                    &nbsp;<a href="https://lofipython.com/tag/remote-computer.html" class="tags">remote computer</a>
-                    &nbsp;<a href="https://lofipython.com/tag/scripting.html" class="tags">scripting</a>
-                    &nbsp;<a href="https://lofipython.com/tag/shell.html" class="tags">shell</a>
-                </div>
-            </article>            <h4 class="date">Apr 11, 2020</h4>
+        <div id="content">            <h4 class="date">Apr 11, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -223,36 +68,21 @@ python -m pip install pywin32
 <li>Use only the data you need. Reading in just the essential data helps avoid memory issues and hanging programs. In <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">pandas</a>, the <tt class="docutils literal">usecols</tt> argument in <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pd.read_csv()</a> is great for this. This creates a dataframe with 2 columns:</li>
 </ol>
 <p><tt class="docutils literal">df = <span class="pre">pd.read_csv('emails.csv',</span> <span class="pre">usecols=['name','email'])</span></tt></p>
-<ol class="arabic" start="15">
-<li><p class="first">Assume that if something is broken, it's because of something you've done. Start from the assumption that your code contains the bug and work outward by eliminating possibilities. Avoid jumping to quick conclusions. Instead, carefully consider possible reasons for why something is happening. Many times, I find my 2nd or 3rd hypothesis is actually true.</p>
-</li>
-<li><p class="first">There will be times when you'll look at someone else's choices and wonder why they did things a certain way. Consider the possibility that they know more than you in this domain.</p>
-</li>
-<li><p class="first">Beware of sequencing errors. Are your tasks, scripts or functions executing in an efficient order to reach your end goal? Look to unblock bottlenecks and correct chronological mistakes in your processes.</p>
-</li>
-<li><p class="first">Before you send that email asking for help, go back and take another look. There's also no shame in asking for help. Be sure you proofread your email before sending.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status code 200</a> does not guarantee your API request was successful. You may want to write a test to confirm success that doesn't rely on response status codes.</p>
-<p>[caption id=&quot;attachment_3108&quot; align=&quot;alignnone&quot; width=&quot;941&quot;]<img alt="pytest_test_results" class="alignnone size-full wp-image-3108" src="https://pythonmarketer.files.wordpress.com/2020/04/pytest_test_results.png" style="width: 941px; height: 540px;" /> pytest deprecation warnings for unescaped pipes or slashes in docstrings? ¯_(ツ)_/¯[/caption]</p>
-</li>
-<li><p class="first">Unfortunately, <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">testing</a> gets shunned sometimes. Make it a priority. I enjoy writing <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a> more than most other code. Why? Because tests confirm my scripts are working to some degree, detect bugs and provide a refactoring safety net.</p>
-</li>
-<li><p class="first">Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.</p>
-</li>
-<li><p class="first">Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a <a class="reference external" href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10">Windows batch file</a> to instantly activate my Python <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>. It took me a few years of tediously pasting the <tt class="docutils literal">cd</tt> and <tt class="docutils literal">activate</tt> commands into command prompt every day to realize. Now it's a snap.</p>
-</li>
-<li><p class="first">Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...</p>
-</li>
-<li><p class="first">Read the documentation! An updated or more elegant solution might be there. I recently found <tt class="docutils literal">os.makedirs(path, exist_ok=True)</tt> in the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <tt class="docutils literal">exist_ok</tt> argument. I was creating folders with a more complicated alternative from <a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <tt class="docutils literal">`getpass.getuser()</tt> &lt;<a class="reference external" href="https://docs.python.org/3.8/library/getpass.html">https://docs.python.org/3.8/library/getpass.html</a>&gt;`__ is preferred over <tt class="docutils literal">os.getlogin()</tt>.</p>
-</li>
-<li><p class="first">Write documentation explaining how to use your projects. Even if you can only muster a quick <a class="reference external" href="https://en.wikipedia.org/wiki/README">README</a> text file, that's better than nothing. Within your code, <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> are a nice addition. I have yet to use <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, but it is a popular choice for generating documentation.</p>
-</li>
-<li><p class="first">Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...</p>
-</li>
-<li><p class="first">Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.</p>
-</li>
-<li><p class="first">When editing your writing, continually ask yourself, &quot;Do I need this word or phrase?&quot; for every word you write.</p>
-</li>
+<ol class="arabic simple" start="15">
+<li>Assume that if something is broken, it's because of something you've done. Start from the assumption that your code contains the bug and work outward by eliminating possibilities. Avoid jumping to quick conclusions. Instead, carefully consider possible reasons for why something is happening. Many times, I find my 2nd or 3rd hypothesis is actually true.</li>
+<li>There will be times when you'll look at someone else's choices and wonder why they did things a certain way. Consider the possibility that they know more than you in this domain.</li>
+<li>Beware of sequencing errors. Are your tasks, scripts or functions executing in an efficient order to reach your end goal? Look to unblock bottlenecks and correct chronological mistakes in your processes.</li>
+<li>Before you send that email asking for help, go back and take another look. There's also no shame in asking for help. Be sure you proofread your email before sending.</li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status code 200</a> does not guarantee your API request was successful. You may want to write a test to confirm success that doesn't rely on response status codes.</li>
+<li>Unfortunately, <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">testing</a> gets shunned sometimes. Make it a priority. I enjoy writing <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a> more than most other code. Why? Because tests confirm my scripts are working to some degree, detect bugs and provide a refactoring safety net.</li>
+<li>Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.</li>
+<li>Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a <a class="reference external" href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10">Windows batch file</a> to instantly activate my Python <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>. It took me a few years of tediously pasting the <tt class="docutils literal">cd</tt> and <tt class="docutils literal">activate</tt> commands into command prompt every day to realize. Now it's a snap.</li>
+<li>Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...</li>
+<li>Read the documentation! An updated or more elegant solution might be there. I recently found <tt class="docutils literal">os.makedirs(path, exist_ok=True)</tt> in the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <tt class="docutils literal">exist_ok</tt> argument. I was creating folders with a more complicated alternative from <a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <tt class="docutils literal">`getpass.getuser()</tt> &lt;<a class="reference external" href="https://docs.python.org/3.8/library/getpass.html">https://docs.python.org/3.8/library/getpass.html</a>&gt;`__ is preferred over <tt class="docutils literal">os.getlogin()</tt>.</li>
+<li>Write documentation explaining how to use your projects. Even if you can only muster a quick <a class="reference external" href="https://en.wikipedia.org/wiki/README">README</a> text file, that's better than nothing. Within your code, <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> are a nice addition. I have yet to use <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, but it is a popular choice for generating documentation.</li>
+<li>Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...</li>
+<li>Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.</li>
+<li>When editing your writing, continually ask yourself, &quot;Do I need this word or phrase?&quot; for every word you write.</li>
 </ol>
 <!--  -->
 <blockquote>
@@ -511,31 +341,25 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Automate pytest with Windows Task Scheduler - Python Marketer</span>
+<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler - Python Marketer</span>
 <span class="sd">http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</span>
 
 <span class="sd">Use Task Scheduler run a batch file.</span>
 <span class="sd">The batch file runs pytest and captures our pytest function results to sys.</span>
 <span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="n">user_name</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">logging</span><span class="se">\\</span><span class="s1">Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span>
     <span class="p">)</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for failed tests...&quot;</span><span class="p">)</span>
-
 <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">test_results</span><span class="se">\\</span><span class="s1">&#39;</span>
 <span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.txt&#39;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">txt_file</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
@@ -573,11 +397,11 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <li>Creating a text file with any failing tests in a Box folder, if found</li>
 <li>Then Box emails me if any test fails.</li>
 </ol>
-<p><strong>Final Thoughts on the .bat, Man</strong></p>
-<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format<a class="reference external image-reference" href="https://www.youtube.com/watch?v=65eDsGY5MTE"><img alt="legobatman" class="wp-image-2704 alignright" src="https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg" style="width: 95px; height: 95px;" /></a> the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &quot;glue&quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
+<p><strong>Final Thoughts on the .bat</strong></p>
+<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format of the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &quot;glue&quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
 <p><strong>Life is in the journey.</strong></p>
 <p>What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!</p>
-</p><p><strong>See also:</strong></p>
+<p><strong>See also:</strong></p>
 <p><a class="reference external" href="_wp_link_placeholder">pytest plugins</a></p>
 <p><a class="reference external" href="https://pypi.org/project/pytest-csv/">pytest-csv</a>: write test results to a csv with this plugin</p>
 <p>I wrote another post compiling peoples' thoughts on testing <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">here</a>.</p>
@@ -936,8 +760,7 @@ dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | grep vim
                 
                 
 
-                <div class="section" id="i-am-a-beginner-to-testing-my-code-i-wanted-to-write-about-testing-to-better-understand-it-while-shaping-this-link-fest-masquerading-as-an-essay-i-collected-great-ideas-from-people-who-are-way-more-experienced-than-me-you-ll-find-a-few-of-my-thoughts-a-pytest-example-i-use-to-monitor-files-ideas-for-unit-testing-property-testing-test-driven-development-and-many-other-commonly-used-software-tests">
-<h2>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</h2>
+                <p>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</p>
 <p><strong>An Introductory Rant on Testing</strong></p>
 <p>Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?</p>
 <blockquote>
@@ -1089,21 +912,32 @@ Tests start to lose signal when <a class="reference external" href="https://docs
 <p><strong>I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:</strong></p>
 <p><tt class="docutils literal">python <span class="pre">-m</span> pip install pytest</tt></p>
 <p><strong>test_file_date.py</strong></p>
-<pre class="literal-block">
-import glob
-import os
-from datetime import datetime, date
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
 
-# The dir_query format is for a Windows path with Unix style pattern matching.
-def test_csv_date_equals_today():
-    dir_query = 'C:\\Users\\your_username\\Desktop\\*.csv' # specify csv extension and folder
-    file_path = sorted(glob.iglob(dir_query), key=os.path.getmtime)[-1] # get most recent file
-    file_timestamp = os.path.getmtime(file_path)
-    file_date = datetime.fromtimestamp(file_timestamp)
-    print(file_date.day)
-    print(date.today().day)
-    assert file_date.day == date.today().day
-</pre>
+<span class="c1"># The dir_query format is for a Windows path with Unix style pattern matching.</span>
+<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
+    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
+    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+</pre></div></td></tr></table></div>
 <div class="line-block">
 <div class="line"><strong>Run the test with pytest by entering:</strong></div>
 <div class="line"><tt class="docutils literal">pytest test_file_date.py</tt></div>
@@ -1113,7 +947,6 @@ def test_csv_date_equals_today():
 <div class="line">I write programs for personal productivity and to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automate processes</a> at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.</div>
 </div>
 <p>It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.</p>
-</div>
 
                 <div class="clear"></div>
 
@@ -1137,13 +970,8 @@ def test_csv_date_equals_today():
 
                 <p>I recently automated the loading of data into a Microsoft Access database with <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc</a>, a Python library for connecting to databases. ODBC stands for <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Open Database Connectivity</a>. It can be used for a variety of Database Management Systems outside of Access also.</p>
 <p><strong>First,</strong> <a class="reference external" href="https://docs.python.org/3/installing/index.html">install libraries with pip</a><strong>. Enter in terminal or command prompt:</strong></p>
-<ol class="arabic simple">
-<li><ol class="first arabic">
-<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pyodbc</tt></li>
-<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
-</ol>
-</li>
-</ol>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pyodbc</tt>
+<tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></p>
 <p><strong>Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1183,23 +1011,19 @@ def test_csv_date_equals_today():
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">pyodbc</span>
 
 
 <span class="k">def</span> <span class="nf">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    use list comprehension to format df rows as a list of tuples:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Use list comprehension to format df rows as a list of tuples:</span>
 <span class="sd">    rows = [(&#39;Garfield&#39;,&#39;Orange&#39;,&#39;Eat&#39;),(&#39;Meowth&#39;,&#39;White&#39;,&#39;Scratch&#39;)]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">rows</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Rows are not added to DB until they are committed.</span>
+<span class="sd">&quot;&quot;&quot;Rows are not added to DB until they are committed.</span>
 <span class="sd">Pass each row tuple as a SQL parameter (?,?,?).</span>
 <span class="sd">cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -1238,6 +1062,175 @@ def test_csv_date_equals_today():
                     &nbsp;<a href="https://lofipython.com/tag/microsoft.html" class="tags">Microsoft</a>
                     &nbsp;<a href="https://lofipython.com/tag/productivity.html" class="tags">productivity</a>
                     &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
+                </div>
+            </article>            <h4 class="date">Feb 12, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/lightning-scripts-%e2%9a%a1.html" rel="bookmark" title="Permanent Link to &quot;Lightning Scripts ⚡&quot;">Lightning Scripts ⚡</a>
+                </h2>
+
+                
+                
+
+                <p>You may or may not be familiar with <a class="reference external" href="https://www.youtube.com/channel/UCsX05-2sVSH7Nx3zuk3NYuQ">PyCon</a>'s <a class="reference external" href="https://pyvideo.org/pycon-us-2010/pycon-2010--plenary--saturday-evening-lightning-t.html">Lightning Talks</a>, a session of quick hitter talks given each year on a variety of topics. These &quot;Lightning Scripts&quot; are ten of my favorite Python scripts that have served me well as of late to perform a variety of tasks.</p>
+<p>Highlights include the glob, os, calendar, webbrowser and pandas modules. Plus, how to convert a dataframe into a pdf and how to take a snapshot of a website with pdfkit. The webpage pdf was not the greatest snapshot in some cases, but did capture text and many of a live website's visual elements.</p>
+<p>If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.</p>
+<div class="section" id="the-first-5-scripts-use-modules-that-ship-with-python">
+<h2>The first 5 scripts use modules that ship with Python.</h2>
+<p><strong>1 Uppercase all of the file names in the current working directory.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+</pre></div></td></tr></table></div>
+<p>os module <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rename">documentation</a></p>
+<p><strong>2 Get all filenames in the current directory and write to a text file.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">folder_contents</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;list_of_dir_files.txt&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
+    <span class="p">[</span><span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;f</span><span class="si">{item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">folder_contents</span><span class="p">]</span>
+</pre></div></td></tr></table></div>
+<p><strong>3 Check what day of the week is today.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">calendar</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">calendar</span><span class="o">.</span><span class="n">day_name</span><span class="p">[</span><span class="n">today</span><span class="o">.</span><span class="n">weekday</span><span class="p">()]</span> <span class="o">==</span> <span class="s1">&#39;Friday&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is Friday.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is not Friday.&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><a class="reference external" href="https://docs.python.org/3/library/calendar.html">calendar documentation</a></p>
+<p><strong>4 Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">* means all, if need specific format then *.csv</span>
+<span class="sd">getctime == by created date, getmtime == by date modified</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">list_of_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># get all files, regardless of extension</span>
+<span class="n">newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">second_newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newest_file</span><span class="p">,</span> <span class="n">second_newest_file</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>glob module documentation: <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.iglob">https://docs.python.org/3/library/glob.html#glob.iglob</a></p>
+<p><strong>5  Auto-Hamilton Ticket Lottery</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;https://www.luckyseat.com/hamilton-chi/&#39;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>webbrowser PMOTW: <a class="reference external" href="https://pymotw.com/3/webbrowser">https://pymotw.com/3/webbrowser</a></p>
+</div>
+<div class="section" id="to-run-the-next-3-scripts-install-pandas">
+<h2>To Run The Next 3 Scripts, install pandas:</h2>
+<pre class="literal-block">
+python -m pip install pandas
+</pre>
+<p><strong>1 Split a csv file into smaller excel files.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;big_file.csv&#39;</span>
+<span class="n">src_file_minus_ext</span> <span class="o">=</span> <span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># slice off extension</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">250000</span><span class="p">)):</span>  <span class="c1"># alt. encoding = &quot;ISO-8859-1&quot;</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">src_file_minus_ext</span><span class="si">}{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s1">.csv&#39;</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>pandas beginner tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">https://www.youtube.com/watch?v=5JnMutdy6Fw</a></p>
+<p><strong>2 Convert a .xlsx to .csv</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>3 Convert a .xlsx to .html</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;data.xlsx&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="s2">&quot;data.html&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+</div>
+<div class="section" id="to-run-the-last-two-scripts-install-pdfkit">
+<h2>To Run The Last Two Scripts, install pdfkit:</h2>
+<p>pdfkit relies on another library, wkhtmltopdf, which adds an extra wrinkle to setting it up for Windows users. I've laid out the differences between using pdfkit for Windows vs. Ubuntu below.</p>
+<pre class="literal-block">
+python -m pip install pdfkit
+</pre>
+<p><strong>installing wkhtmltopdf on Windows</strong></p>
+<p>To use pdfkit on Windows, go to the link, choose your version to download. This installs a Windows executable that pdfkit needs to find to work.</p>
+<pre class="literal-block">
+https://wkhtmltopdf.org/downloads.html
+</pre>
+<p><strong>installing wkhtmltopdf on Ubuntu</strong></p>
+<pre class="literal-block">
+sudo apt-get install wkhtmltopdf
+
+
+**For Windows, **\ `download wkhtmltopdf &lt;https://wkhtmltopdf.org/downloads.html&gt;`__\ ** and add this config patch for pdfkit:**
+</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">pdfkit</span><span class="o">.</span><span class="n">configuration</span><span class="p">(</span><span class="n">wkhtmltopdf</span><span class="o">=</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Program Files</span><span class="se">\\</span><span class="s1">wkhtmltopdf</span><span class="se">\\</span><span class="s1">bin</span><span class="se">\\</span><span class="s1">wkhtmltopdf.exe&#39;</span><span class="p">)</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;webpage.pdf&#39;</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>4 Convert a .html file to .pdf. (Add config patch above for Windows.)</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data.html&#39;</span><span class="p">,</span> <span class="s1">&#39;report.pdf&#39;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>5 Create a pdf snapshot of a webpage on Ubuntu below. (Add config patch above for Windows.)</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;alicia_keys.pdf&#39;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>pdfkit documentation: <a class="reference external" href="https://pypi.org/project/pdfkit/">https://pypi.org/project/pdfkit/</a></p>
+<p><strong>Final Thoughts</strong></p>
+<p>I am very pleased with pdfkit. I am also toying around with Python's PyFPDF: <a class="reference external" href="https://pyfpdf.readthedocs.io/en/latest/index.html">https://pyfpdf.readthedocs.io/en/latest/index.html</a> and PyPDF2: <a class="reference external" href="https://pythonhosted.org/PyPDF2">https://pythonhosted.org/PyPDF2</a> libraries. Together, these three offer some unique abilities for creating and manipulating pdf files. And the pandas library is amazing for reading and writing tabular data sheets, can't say enough great things about pandas. Worth the time. Hope you enjoyed these Lightning Scripts :)</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/lightning-scripts-%e2%9a%a1.html">posted at 06:27</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-pandas-productivity-programming-scripts.html" rel="tag">automation, coding, pandas, productivity, programming, Scripts</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/alicia-keys.html" class="tags">alicia keys</a>
+                    &nbsp;<a href="https://lofipython.com/tag/code.html" class="tags">code</a>
+                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://lofipython.com/tag/hamilton.html" class="tags">hamilton</a>
+                    &nbsp;<a href="https://lofipython.com/tag/lightning-scripts.html" class="tags">lightning scripts</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                 </div>
             </article>
 

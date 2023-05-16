@@ -155,31 +155,25 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Automate pytest with Windows Task Scheduler - Python Marketer</span>
+<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler - Python Marketer</span>
 <span class="sd">http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</span>
 
 <span class="sd">Use Task Scheduler run a batch file.</span>
 <span class="sd">The batch file runs pytest and captures our pytest function results to sys.</span>
 <span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="n">user_name</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">logging</span><span class="se">\\</span><span class="s1">Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span>
     <span class="p">)</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for failed tests...&quot;</span><span class="p">)</span>
-
 <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">test_results</span><span class="se">\\</span><span class="s1">&#39;</span>
 <span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.txt&#39;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">txt_file</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
@@ -217,11 +211,11 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <li>Creating a text file with any failing tests in a Box folder, if found</li>
 <li>Then Box emails me if any test fails.</li>
 </ol>
-<p><strong>Final Thoughts on the .bat, Man</strong></p>
-<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format<a class="reference external image-reference" href="https://www.youtube.com/watch?v=65eDsGY5MTE"><img alt="legobatman" class="wp-image-2704 alignright" src="https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg" style="width: 95px; height: 95px;" /></a> the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &quot;glue&quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
+<p><strong>Final Thoughts on the .bat</strong></p>
+<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format of the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &quot;glue&quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
 <p><strong>Life is in the journey.</strong></p>
 <p>What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!</p>
-</p><p><strong>See also:</strong></p>
+<p><strong>See also:</strong></p>
 <p><a class="reference external" href="_wp_link_placeholder">pytest plugins</a></p>
 <p><a class="reference external" href="https://pypi.org/project/pytest-csv/">pytest-csv</a>: write test results to a csv with this plugin</p>
 <p>I wrote another post compiling peoples' thoughts on testing <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">here</a>.</p>
@@ -247,8 +241,7 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
                 
                 
 
-                <div class="section" id="i-am-a-beginner-to-testing-my-code-i-wanted-to-write-about-testing-to-better-understand-it-while-shaping-this-link-fest-masquerading-as-an-essay-i-collected-great-ideas-from-people-who-are-way-more-experienced-than-me-you-ll-find-a-few-of-my-thoughts-a-pytest-example-i-use-to-monitor-files-ideas-for-unit-testing-property-testing-test-driven-development-and-many-other-commonly-used-software-tests">
-<h2>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</h2>
+                <p>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</p>
 <p><strong>An Introductory Rant on Testing</strong></p>
 <p>Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?</p>
 <blockquote>
@@ -400,21 +393,32 @@ Tests start to lose signal when <a class="reference external" href="https://docs
 <p><strong>I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:</strong></p>
 <p><tt class="docutils literal">python <span class="pre">-m</span> pip install pytest</tt></p>
 <p><strong>test_file_date.py</strong></p>
-<pre class="literal-block">
-import glob
-import os
-from datetime import datetime, date
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
 
-# The dir_query format is for a Windows path with Unix style pattern matching.
-def test_csv_date_equals_today():
-    dir_query = 'C:\\Users\\your_username\\Desktop\\*.csv' # specify csv extension and folder
-    file_path = sorted(glob.iglob(dir_query), key=os.path.getmtime)[-1] # get most recent file
-    file_timestamp = os.path.getmtime(file_path)
-    file_date = datetime.fromtimestamp(file_timestamp)
-    print(file_date.day)
-    print(date.today().day)
-    assert file_date.day == date.today().day
-</pre>
+<span class="c1"># The dir_query format is for a Windows path with Unix style pattern matching.</span>
+<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
+    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
+    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+</pre></div></td></tr></table></div>
 <div class="line-block">
 <div class="line"><strong>Run the test with pytest by entering:</strong></div>
 <div class="line"><tt class="docutils literal">pytest test_file_date.py</tt></div>
@@ -424,7 +428,6 @@ def test_csv_date_equals_today():
 <div class="line">I write programs for personal productivity and to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automate processes</a> at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.</div>
 </div>
 <p>It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.</p>
-</div>
 
                 <div class="clear"></div>
 
@@ -520,13 +523,11 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
 
 <span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Adding two argument groups, each accepting two arguments.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adding two argument groups, each accepting two arguments.</span>
 <span class="sd">    Using gooey_options to set layout.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">GooeyParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Export campaign report spreadsheets and upload below.&#39;</span><span class="p">)</span>

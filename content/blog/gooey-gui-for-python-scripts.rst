@@ -60,8 +60,7 @@ Below is my script that uses the more advanced GooeyParser for its "FileChooser"
     
    @Gooey(program_name='Email Campaign Reporting Generator', default_size=(575, 600))
    def get_args():
-       """
-       Adding two argument groups, each accepting two arguments. 
+       """Adding two argument groups, each accepting two arguments. 
        Using gooey_options to set layout.
        """
        parser = GooeyParser(description='Export campaign report spreadsheets and upload below.')

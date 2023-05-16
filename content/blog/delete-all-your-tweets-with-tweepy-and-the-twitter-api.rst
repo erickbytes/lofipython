@@ -40,8 +40,7 @@ I found this `Github Gist <https://gist.github.com/davej/113241>`__ via Google a
    import tweepy
    import traceback
 
-   """
-   Delete All Your Tweets - Github Gist by davej
+   """Delete All Your Tweets - Github Gist by davej
    Credit: https://gist.github.com/davej/113241
    Ported to Python 3 by Python Marketer: pythonmarketer.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/
    """

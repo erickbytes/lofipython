@@ -46,8 +46,6 @@ Below are pieces of wisdom picked up from my experiences. They are the result of
 
 19. `Status code 200 <https://en.wikipedia.org/wiki/List_of_HTTP_status_codes>`__ does not guarantee your API request was successful. You may want to write a test to confirm success that doesn't rely on response status codes.
 
-    [caption id="attachment_3108" align="alignnone" width="941"]\ |pytest_test_results| pytest deprecation warnings for unescaped pipes or slashes in docstrings? ¯\_(ツ)_/¯[/caption]
-
 20. Unfortunately, `testing <https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/>`__ gets shunned sometimes. Make it a priority. I enjoy writing `pytest tests <https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/>`__ more than most other code. Why? Because tests confirm my scripts are working to some degree, detect bugs and provide a refactoring safety net.
 
 21. Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.

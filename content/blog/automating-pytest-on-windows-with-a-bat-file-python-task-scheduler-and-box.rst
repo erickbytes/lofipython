@@ -110,23 +110,20 @@ Let's set another task scheduler job to run **read_test_results.py,** to run a f
    import logging
    import os
 
-   """
-   Automate pytest with Windows Task Scheduler - Python Marketer
+   """Automate pytest with Windows Task Scheduler - Python Marketer
    http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/
 
    Use Task Scheduler run a batch file. 
    The batch file runs pytest and captures our pytest function results to sys. 
    If a text file contains a failure or error, write the test contents into a folder.
    """
-   user_name = getpass.getuser()
    logging.basicConfig(
-       filename=f'C:\\Users\\{user_name}\\logging\\Automated_Testing_Alerts.log',
+       filename=f'Automated_Testing_Alerts.log',
        level=logging.INFO,
        format='%(asctime)s - %(message)s',
        datefmt='%d-%b-%y %H:%M:%S'
        )
    logging.info("Checking for failed tests...")
-
    directory = f'C:\\Users\\{user_name}\\Desktop\\VM_Jobs\\test_results\\'
    test_results = [fname for fname in os.listdir(directory) if '.txt' in fname]
    for txt_file in test_results:
@@ -168,17 +165,13 @@ Or the `pywin32 module <https://github.com/mhammond/pywin32>`__ has an interface
 #. Creating a text file with any failing tests in a Box folder, if found
 #. Then Box emails me if any test fails.
 
-**Final Thoughts on the .bat, Man**
+**Final Thoughts on the .bat**
 
-This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format\ |legobatman| the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a "glue" piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.
+This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format of the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a "glue" piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.
 
 **Life is in the journey.**
 
 What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!
-
-.. raw:: html
-
-   </p>
 
 **See also:**
 
@@ -188,8 +181,4 @@ What we learn along the way shapes us. Learning to use these resources together 
 
 I wrote another post compiling peoples' thoughts on testing `here <https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/>`__.
 
-.. |legobatman| image:: https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg
-   :class: wp-image-2704 alignright
-   :width: 95px
-   :height: 95px
-   :target: https://www.youtube.com/watch?v=65eDsGY5MTE
+

@@ -28,10 +28,6 @@ I used pytube3 with `Flask <https://flask.palletsprojects.com/en/1.1.x/>`__ and 
    from pytube import YouTube
    from flask import Flask, request, send_file
 
-   """
-   Flask YouTube Video Downloader - Python Marketer
-   https://pythonmarketer.com/2020/10/07/making-a-youtube-video-downloader-with-pythons-flask-and-pytube3-libraries/
-   """
    logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
    app = Flask(__name__)
 
@@ -51,8 +47,7 @@ I used pytube3 with `Flask <https://flask.palletsprojects.com/en/1.1.x/>`__ and 
 
    @app.route("/download_video", methods=["GET","POST"])
    def download_video():
-       """
-       First pytube downloads the file locally in pythonanywhere:
+       """First pytube downloads the file locally in pythonanywhere:
        /home/your_username/video_name.mp4
 
        Then use Flask's send_file() to download the video 

@@ -31,95 +31,7 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">May 09, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html" rel="bookmark" title="Permanent Link to &quot;Assessing The Marketing Effects of Randomization Failure&quot;">Assessing The Marketing Effects of Randomization Failure</a>
-                </h2>
-
-                
-                
-
-                <p><strong>Preface</strong></p>
-<p>I always enjoy reading when technical people share their stories of the times things went a little haywire. Times when, despite their best intentions, a solution didn't work as planned and it ends in unpleasant or catastrophic failure. I had an experience like this recently, so here's my &quot;oops&quot; story. Fortunately, I think this falls closer to the unpleasant end of the spectrum.</p>
-<p><strong>Finding A Solution</strong></p>
-<p>My employer needed a way to create postcard contact lists to mail 500,000 people each month. About 2 years in with the company, the old postcard system was breaking down and no one knew how to fix it. The guy who built it left the company. I never knew him and he didn't leave behind much help for anyone to fix his creation.</p>
-<p>For my team, it was easier to create the contacts lists by drawing contact data out of our CRM with <a class="reference external" href="https://requests.readthedocs.io/en/master/">requests</a> and formatting the data with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html">pandas</a>. So that's what I did to help us deliver the postcards. (Let's set aside the debate on the strategic value of postcards.)</p>
-<p>Things were going smooth for a few months. The new system was creating the lists and nothing appeared to change. The system is still in use today we are more reliable than the old system in its partially degraded state. But there were some growing pains.</p>
-<p><strong>The Moment of</strong> <a class="reference external" href="https://twitter.com/jamesorharry/status/1100717726547562503">Ely</a></p>
-<blockquote>
-ELY (n.) The first, tiniest inkling you get that something, somewhere, has gone terribly wrong. [Douglas Adams, The Meaning of Liff]</blockquote>
-<p>We began to hear murmurs of the same contacts getting mailed each month from our senders. The script was supposed to draw a certain allocation of contacts at random for each sender. I knew I used <tt class="docutils literal">`df.sample(n=1)</tt> &lt;<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html</a>&gt;`__ from pandas to randomize the contact pool. The contacts were definitely getting randomized.</p>
-<p>Then one day while making a change requested by our stakeholders, I noticed some code I had written that looked sort of like this:</p>
-<pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
-    </span><span class="sd">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span><span class="w">
-</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
-</span>    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span><span class="w">
-</span>    <span class="k">return</span> <span class="n">deduped_contacts</span>
-</pre>
-<p><strong>The idea of this function was to:</strong></p>
-<ul class="simple">
-<li>create a throwaway copy of the original dataframe with <tt class="docutils literal">df.copy()</tt></li>
-<li>format the throwaway for better duplicate removal</li>
-<li><tt class="docutils literal">drop_duplicates()</tt> and randomize the dataframe's order of the rows with <tt class="docutils literal">df.sample(n=1)</tt></li>
-<li>return those rows from the original dataframe, preserving original data but in randomized order</li>
-</ul>
-<p><strong>Discovering The Error</strong></p>
-<p>Looks great, right? Can you spot my error? Here's where I went wrong: I needed to randomize the data that gets returned. But instead, I randomized the throwaway dataframe. I never once altered the order of the original table. I did remove the duplicates, but the row order of the original dataframe never changed.</p>
-<p><strong>Assessing the Damage</strong></p>
-<p>It took me a few months after I wrote the code to realize. That was enough time for a small fraction of our customers to get postcard bombed.</p>
-<p>Suppose you have two postcard campaigns every month. Both campaigns are drawing from the same contact source data. Both lists are created by the same script with nearly the same logic. That's ok if you randomize the contact order or the list is static. But if you don't randomize them and it's supposed to be a &quot;random&quot; draw campaign, that means you'll likely end up sending to the same people in both campaigns. That's exactly what happened. I accidentally postcard bombed 'em.</p>
-<p>Thankfully, only a small percent of our &quot;senders&quot; were opted into both campaigns. What does that mean for those senders? Their contacts got <a class="reference external" href="https://www.youtube.com/watch?v=SSPewc--3yY">NFL blitzed</a> for 3 months straight. Instead of getting 1 or maybe 2 postcards a month if they're really lucky, they received 2 a month, each month until I caught the error. We bombarded about 3,000 lucky potential customers each month during that time. Some of them let us know they thought it was excessive.</p>
-<blockquote>
-The opposite of love is not hate, it's indifference. - Elie Wiesel</blockquote>
-<p><strong>Sidebar On Analog Marketing</strong></p>
-<p>I think postcards are still relevant as a Marketing tool in 2020. From an environmental perspective, I prefer going digital. Some people let us know when we mail them that they feel the same way and then we stop mailing them. But I think there's something tangible about real things you can hold in your hands. Postcards also tend to get a reaction, even if it's not a good one. Sometimes that reaction is an email stating, &quot;DON'T EVER MAIL ME AGAIN!!!&quot; 😆</p>
-<p><strong>For the record, I changed my mistake to this:</strong></p>
-<pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
-    </span><span class="sd">&quot;&quot;&quot;Remove duplicates and randomize the order of the rows.&quot;&quot;&quot;</span><span class="w">
-</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="w">
-</span>    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span><span class="w">
-</span>    <span class="n">randomized_contacts</span> <span class="o">=</span> <span class="n">deduped_contacts</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
-</span>    <span class="k">return</span> <span class="n">randomized_contacts</span>
-</pre>
-<p><strong>Or maybe something like this would be better, for clearer separation of actions:</strong></p>
-<pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
-    </span><span class="sd">&quot;&quot;&quot;Remove duplicates while preserving original data.&quot;&quot;&quot;</span><span class="w">
-</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">format_for_duplicate_removal</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
-</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="w">
-</span>    <span class="n">deduped_contacts</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span><span class="w">
-</span>    <span class="k">return</span> <span class="n">deduped_contacts</span><span class="w">
-
-</span><span class="k">def</span> <span class="nf">randomize_contacts</span><span class="p">(</span><span class="n">df</span><span class="p">):</span><span class="w">
-    </span><span class="sd">&quot;&quot;&quot;Randomize the order of the rows.&quot;&quot;&quot;</span><span class="w">
-</span>    <span class="n">randomized_contacts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">
-</span>    <span class="k">return</span> <span class="n">randomized_contacts</span>
-</pre>
-<p><strong>In Conclusion: Mistakes Happen.</strong></p>
-<p>Sometimes they have interesting consequences when you make them at a certain scale. Maybe I could have written some tests to prevent this. Maybe I should have reviewed my code a couple more times. Sometimes, we're asked to do work that stretches our mental capacity and time to the limit.</p>
-<p>Additionally, it's almost always a better choice to use an existing system, rather than writing your own. But in this case, my team was put in a situation where we needed to deliver because some else's software wasn't doing the job. I did my best to fill that need. And we're still using this way to send postcards today.</p>
-<p>I wish this failure didn't happen for the sake of everyone involved, but <a class="reference external" href="https://en.wikipedia.org/wiki/An_Essay_on_Criticism">to err is human</a>, right? Live and learn.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/when-random-isnt-so-random-the-time-i-accidentally-postcard-bombed-some-people.html">posted at 04:06</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-marketing-pandas-programming-python-work.html" rel="tag">coding, Marketing, pandas, programming, python, work</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/business.html" class="tags">business</a>
-                    &nbsp;<a href="https://lofipython.com/tag/mistakes.html" class="tags">mistakes</a>
-                    &nbsp;<a href="https://lofipython.com/tag/random.html" class="tags">random</a>
-                </div>
-            </article>            <h4 class="date">May 06, 2020</h4>
+        <div id="content">            <h4 class="date">May 06, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -142,7 +54,8 @@ The opposite of love is not hate, it's indifference. - Elie Wiesel</blockquote>
 </div>
 <div class="section" id="a-few-general-windows-commands">
 <h2>A Few General Windows Commands</h2>
-<p><strong>Use</strong><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a><strong>to look in a text file to count the lines matching a string:</strong></p>
+<p>Use  <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a>
+to look in a text file to count the lines matching a string:</p>
 <pre class="literal-block">
 find /C &quot;FAIL&quot; &lt; &quot;Test_Results.txt&quot;
 # returns: 0 if no match or # of lines found, e.g. 2,50,100
@@ -171,7 +84,7 @@ cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd
 <li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a>into my python virtual env then activate it by running a batch file.</li>
 <li>Then call dir to print directory contents.</li>
 </ol>
-<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a><strong>a custom system 'last_name' variable to be recalled later.</strong></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a>a custom system 'last_name' variable to be recalled later.</p>
 <pre class="literal-block">
 set /p last_name=Enter a last name:
 echo %last_name%
@@ -213,7 +126,7 @@ ping 01.10.10.01
 <pre class="literal-block">
 mstsc RDP_File_Name.rdp
 </pre>
-<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a><strong>and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</strong></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a>and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</p>
 <pre class="literal-block">
 winrm quickconfig
 </pre>
@@ -243,16 +156,14 @@ python -m pip install pywin32
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">win32com.client</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">win32com.client</span>
 
 <span class="n">outlook</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">&#39;outlook.application&#39;</span><span class="p">)</span>
 <span class="n">mail</span> <span class="o">=</span> <span class="n">outlook</span><span class="o">.</span><span class="n">CreateItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">mail</span><span class="o">.</span><span class="n">To</span> <span class="o">=</span> <span class="s1">&#39;someone@example.com&#39;</span>
 <span class="n">mail</span><span class="o">.</span><span class="n">CC</span> <span class="o">=</span> <span class="s1">&#39;name@example.com&#39;</span>
 <span class="n">mail</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="s1">&#39;Moneyball Review&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Moneyball is an inspiring movie, based on real events.</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Moneyball is an inspiring movie, based on real events.</span>
 <span class="s2">            Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.</span>
 <span class="s2">            The trade deadline scene is delightful. Wow.</span>
 <span class="s2">            Chris Pratt as Hatteberg too. What a solid film.</span>
@@ -309,36 +220,21 @@ python -m pip install pywin32
 <li>Use only the data you need. Reading in just the essential data helps avoid memory issues and hanging programs. In <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">pandas</a>, the <tt class="docutils literal">usecols</tt> argument in <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pd.read_csv()</a> is great for this. This creates a dataframe with 2 columns:</li>
 </ol>
 <p><tt class="docutils literal">df = <span class="pre">pd.read_csv('emails.csv',</span> <span class="pre">usecols=['name','email'])</span></tt></p>
-<ol class="arabic" start="15">
-<li><p class="first">Assume that if something is broken, it's because of something you've done. Start from the assumption that your code contains the bug and work outward by eliminating possibilities. Avoid jumping to quick conclusions. Instead, carefully consider possible reasons for why something is happening. Many times, I find my 2nd or 3rd hypothesis is actually true.</p>
-</li>
-<li><p class="first">There will be times when you'll look at someone else's choices and wonder why they did things a certain way. Consider the possibility that they know more than you in this domain.</p>
-</li>
-<li><p class="first">Beware of sequencing errors. Are your tasks, scripts or functions executing in an efficient order to reach your end goal? Look to unblock bottlenecks and correct chronological mistakes in your processes.</p>
-</li>
-<li><p class="first">Before you send that email asking for help, go back and take another look. There's also no shame in asking for help. Be sure you proofread your email before sending.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status code 200</a> does not guarantee your API request was successful. You may want to write a test to confirm success that doesn't rely on response status codes.</p>
-<p>[caption id=&quot;attachment_3108&quot; align=&quot;alignnone&quot; width=&quot;941&quot;]<img alt="pytest_test_results" class="alignnone size-full wp-image-3108" src="https://pythonmarketer.files.wordpress.com/2020/04/pytest_test_results.png" style="width: 941px; height: 540px;" /> pytest deprecation warnings for unescaped pipes or slashes in docstrings? ¯_(ツ)_/¯[/caption]</p>
-</li>
-<li><p class="first">Unfortunately, <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">testing</a> gets shunned sometimes. Make it a priority. I enjoy writing <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a> more than most other code. Why? Because tests confirm my scripts are working to some degree, detect bugs and provide a refactoring safety net.</p>
-</li>
-<li><p class="first">Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.</p>
-</li>
-<li><p class="first">Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a <a class="reference external" href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10">Windows batch file</a> to instantly activate my Python <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>. It took me a few years of tediously pasting the <tt class="docutils literal">cd</tt> and <tt class="docutils literal">activate</tt> commands into command prompt every day to realize. Now it's a snap.</p>
-</li>
-<li><p class="first">Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...</p>
-</li>
-<li><p class="first">Read the documentation! An updated or more elegant solution might be there. I recently found <tt class="docutils literal">os.makedirs(path, exist_ok=True)</tt> in the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <tt class="docutils literal">exist_ok</tt> argument. I was creating folders with a more complicated alternative from <a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <tt class="docutils literal">`getpass.getuser()</tt> &lt;<a class="reference external" href="https://docs.python.org/3.8/library/getpass.html">https://docs.python.org/3.8/library/getpass.html</a>&gt;`__ is preferred over <tt class="docutils literal">os.getlogin()</tt>.</p>
-</li>
-<li><p class="first">Write documentation explaining how to use your projects. Even if you can only muster a quick <a class="reference external" href="https://en.wikipedia.org/wiki/README">README</a> text file, that's better than nothing. Within your code, <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> are a nice addition. I have yet to use <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, but it is a popular choice for generating documentation.</p>
-</li>
-<li><p class="first">Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...</p>
-</li>
-<li><p class="first">Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.</p>
-</li>
-<li><p class="first">When editing your writing, continually ask yourself, &quot;Do I need this word or phrase?&quot; for every word you write.</p>
-</li>
+<ol class="arabic simple" start="15">
+<li>Assume that if something is broken, it's because of something you've done. Start from the assumption that your code contains the bug and work outward by eliminating possibilities. Avoid jumping to quick conclusions. Instead, carefully consider possible reasons for why something is happening. Many times, I find my 2nd or 3rd hypothesis is actually true.</li>
+<li>There will be times when you'll look at someone else's choices and wonder why they did things a certain way. Consider the possibility that they know more than you in this domain.</li>
+<li>Beware of sequencing errors. Are your tasks, scripts or functions executing in an efficient order to reach your end goal? Look to unblock bottlenecks and correct chronological mistakes in your processes.</li>
+<li>Before you send that email asking for help, go back and take another look. There's also no shame in asking for help. Be sure you proofread your email before sending.</li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status code 200</a> does not guarantee your API request was successful. You may want to write a test to confirm success that doesn't rely on response status codes.</li>
+<li>Unfortunately, <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">testing</a> gets shunned sometimes. Make it a priority. I enjoy writing <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a> more than most other code. Why? Because tests confirm my scripts are working to some degree, detect bugs and provide a refactoring safety net.</li>
+<li>Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.</li>
+<li>Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a <a class="reference external" href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10">Windows batch file</a> to instantly activate my Python <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>. It took me a few years of tediously pasting the <tt class="docutils literal">cd</tt> and <tt class="docutils literal">activate</tt> commands into command prompt every day to realize. Now it's a snap.</li>
+<li>Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...</li>
+<li>Read the documentation! An updated or more elegant solution might be there. I recently found <tt class="docutils literal">os.makedirs(path, exist_ok=True)</tt> in the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <tt class="docutils literal">exist_ok</tt> argument. I was creating folders with a more complicated alternative from <a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <tt class="docutils literal">`getpass.getuser()</tt> &lt;<a class="reference external" href="https://docs.python.org/3.8/library/getpass.html">https://docs.python.org/3.8/library/getpass.html</a>&gt;`__ is preferred over <tt class="docutils literal">os.getlogin()</tt>.</li>
+<li>Write documentation explaining how to use your projects. Even if you can only muster a quick <a class="reference external" href="https://en.wikipedia.org/wiki/README">README</a> text file, that's better than nothing. Within your code, <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> are a nice addition. I have yet to use <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, but it is a popular choice for generating documentation.</li>
+<li>Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...</li>
+<li>Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.</li>
+<li>When editing your writing, continually ask yourself, &quot;Do I need this word or phrase?&quot; for every word you write.</li>
 </ol>
 <!--  -->
 <blockquote>
@@ -597,31 +493,25 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Automate pytest with Windows Task Scheduler - Python Marketer</span>
+<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler - Python Marketer</span>
 <span class="sd">http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</span>
 
 <span class="sd">Use Task Scheduler run a batch file.</span>
 <span class="sd">The batch file runs pytest and captures our pytest function results to sys.</span>
 <span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="n">user_name</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">logging</span><span class="se">\\</span><span class="s1">Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span>
     <span class="p">)</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for failed tests...&quot;</span><span class="p">)</span>
-
 <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">test_results</span><span class="se">\\</span><span class="s1">&#39;</span>
 <span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.txt&#39;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">txt_file</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
@@ -659,11 +549,11 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <li>Creating a text file with any failing tests in a Box folder, if found</li>
 <li>Then Box emails me if any test fails.</li>
 </ol>
-<p><strong>Final Thoughts on the .bat, Man</strong></p>
-<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format<a class="reference external image-reference" href="https://www.youtube.com/watch?v=65eDsGY5MTE"><img alt="legobatman" class="wp-image-2704 alignright" src="https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg" style="width: 95px; height: 95px;" /></a> the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &quot;glue&quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
+<p><strong>Final Thoughts on the .bat</strong></p>
+<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format of the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &quot;glue&quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
 <p><strong>Life is in the journey.</strong></p>
 <p>What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!</p>
-</p><p><strong>See also:</strong></p>
+<p><strong>See also:</strong></p>
 <p><a class="reference external" href="_wp_link_placeholder">pytest plugins</a></p>
 <p><a class="reference external" href="https://pypi.org/project/pytest-csv/">pytest-csv</a>: write test results to a csv with this plugin</p>
 <p>I wrote another post compiling peoples' thoughts on testing <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">here</a>.</p>
@@ -1022,8 +912,7 @@ dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | grep vim
                 
                 
 
-                <div class="section" id="i-am-a-beginner-to-testing-my-code-i-wanted-to-write-about-testing-to-better-understand-it-while-shaping-this-link-fest-masquerading-as-an-essay-i-collected-great-ideas-from-people-who-are-way-more-experienced-than-me-you-ll-find-a-few-of-my-thoughts-a-pytest-example-i-use-to-monitor-files-ideas-for-unit-testing-property-testing-test-driven-development-and-many-other-commonly-used-software-tests">
-<h2>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</h2>
+                <p>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</p>
 <p><strong>An Introductory Rant on Testing</strong></p>
 <p>Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?</p>
 <blockquote>
@@ -1175,21 +1064,32 @@ Tests start to lose signal when <a class="reference external" href="https://docs
 <p><strong>I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:</strong></p>
 <p><tt class="docutils literal">python <span class="pre">-m</span> pip install pytest</tt></p>
 <p><strong>test_file_date.py</strong></p>
-<pre class="literal-block">
-import glob
-import os
-from datetime import datetime, date
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
 
-# The dir_query format is for a Windows path with Unix style pattern matching.
-def test_csv_date_equals_today():
-    dir_query = 'C:\\Users\\your_username\\Desktop\\*.csv' # specify csv extension and folder
-    file_path = sorted(glob.iglob(dir_query), key=os.path.getmtime)[-1] # get most recent file
-    file_timestamp = os.path.getmtime(file_path)
-    file_date = datetime.fromtimestamp(file_timestamp)
-    print(file_date.day)
-    print(date.today().day)
-    assert file_date.day == date.today().day
-</pre>
+<span class="c1"># The dir_query format is for a Windows path with Unix style pattern matching.</span>
+<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
+    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
+    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+</pre></div></td></tr></table></div>
 <div class="line-block">
 <div class="line"><strong>Run the test with pytest by entering:</strong></div>
 <div class="line"><tt class="docutils literal">pytest test_file_date.py</tt></div>
@@ -1199,7 +1099,6 @@ def test_csv_date_equals_today():
 <div class="line">I write programs for personal productivity and to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automate processes</a> at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.</div>
 </div>
 <p>It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.</p>
-</div>
 
                 <div class="clear"></div>
 
@@ -1210,6 +1109,111 @@ def test_csv_date_equals_today():
                     &nbsp;<a href="https://lofipython.com/tag/pytest.html" class="tags">pytest</a>
                     &nbsp;<a href="https://lofipython.com/tag/software-development.html" class="tags">software development</a>
                     &nbsp;<a href="https://lofipython.com/tag/test-driven-development.html" class="tags">test driven development</a>
+                </div>
+            </article>            <h4 class="date">Nov 30, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python.html" rel="bookmark" title="Permanent Link to &quot;Inserting New Rows Into A Microsoft Access Database With Python and pyodbc&quot;">Inserting New Rows Into A Microsoft Access Database With Python and pyodbc</a>
+                </h2>
+
+                
+                
+
+                <p>I recently automated the loading of data into a Microsoft Access database with <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc</a>, a Python library for connecting to databases. ODBC stands for <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Open Database Connectivity</a>. It can be used for a variety of Database Management Systems outside of Access also.</p>
+<p><strong>First,</strong> <a class="reference external" href="https://docs.python.org/3/installing/index.html">install libraries with pip</a><strong>. Enter in terminal or command prompt:</strong></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pyodbc</tt>
+<tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></p>
+<p><strong>Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">python</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pyodbc</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">drivers</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Microsoft Access Driver&#39;</span><span class="p">)]</span>
+</pre></div></td></tr></table></div>
+<p><strong>Drivers for</strong> <strong>Access &amp; Many Other Data Sources</strong></p>
+<p>The driver is the engine that allows you to connect to a specific type of database. The drivers available vary depending on your machine.</p>
+<p>The two most common drivers for Access are Microsoft Access Driver (<em>.mdb) and Microsoft Access Driver (</em>.mdb, *.accdb). My computer only had *.mdb, which has been deprecated. My Access database was a .mdb file, so I was able to use this driver as shown below. Read more on Access drivers <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-Microsoft-Access">here</a>.</p>
+<blockquote>
+&quot;Drivers exist for all major DBMSs, many other data sources like address book systems and Microsoft Excel, and even for text or comma-separated values (CSV) files.&quot;&nbsp; - <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Wikipedia</a></blockquote>
+<p><strong>Database Data Types</strong></p>
+<p>I set all of the field data types to &quot;Short Text&quot; because I'm passing strings as SQL parameters below. Uploading as other data types may require additional formatting. To edit the data types of your table, open the table and select &quot;Design View&quot; under the &quot;Home&quot; tab. It got the job done for me!</p>
+<p><strong>Inserting new rows into a Microsoft Access Database:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyodbc</span>
+
+
+<span class="k">def</span> <span class="nf">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Use list comprehension to format df rows as a list of tuples:</span>
+<span class="sd">    rows = [(&#39;Garfield&#39;,&#39;Orange&#39;,&#39;Eat&#39;),(&#39;Meowth&#39;,&#39;White&#39;,&#39;Scratch&#39;)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">rows</span>
+
+<span class="sd">&quot;&quot;&quot;Rows are not added to DB until they are committed.</span>
+<span class="sd">Pass each row tuple as a SQL parameter (?,?,?).</span>
+<span class="sd">cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\Add_Path\To_DB\Here\Your_DB.mdb;&#39;</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39; INSERT INTO Cats (Name, Color, Move)</span>
+<span class="s1">          VALUES(?,?,?) &#39;&#39;&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Cat Data.csv&#39;</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+<p><strong>Conclusion</strong></p>
+<p>Running the above in command prompt uses pyodbc and SQL to add dataframe rows to a Microsoft Access DB table named &quot;Cats&quot;. Passing each row as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/#paramstyle">SQL parameter</a> has two benefits:</p>
+<ol class="arabic simple">
+<li>It handles strings with single quotes (') and loads them to the DB.</li>
+<li>It protects against <a class="reference external" href="https://www.acunetix.com/websitesecurity/sql-injection/">SQL injection</a> attacks.</li>
+</ol>
+<p><strong>Access Limitation Disclaimer</strong></p>
+<p>Access topped out just shy of 10 million rows in my use case, when records stopped getting added to my database. So keep that in mind if you're thinking about using Access to store your data.</p>
+<p><strong>Supplementary Resources</strong></p>
+<p><a class="reference external" href="https://datatofish.com/insert-ms-access-python/">Insert Values into MS Access Table using Python</a></p>
+<p><a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc documentation</a></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15">Microsoft Documentation pyodbc example</a></p>
+<p><a class="reference external" href="https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor.htm">The Python Cursor Class</a></p>
+<p><a class="reference external" href="https://www.psycopg.org/docs/cursor.html">Psycopg Cursor Class Documentation</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python.html">posted at 00:28</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-data-databases-excel-odbc-pandas-python-windows.html" rel="tag">automation, data, Databases, excel, ODBC, pandas, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/access.html" class="tags">Access</a>
+                    &nbsp;<a href="https://lofipython.com/tag/microsoft.html" class="tags">Microsoft</a>
+                    &nbsp;<a href="https://lofipython.com/tag/productivity.html" class="tags">productivity</a>
+                    &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
                 </div>
             </article>
 
