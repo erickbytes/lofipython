@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Python Marketer | Page 8</title>
-    <link rel="shortcut icon" type="image/png" href="./favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
-    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
-    <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="./theme/css/pygments.css" type="text/css" />
+    <title>Lo-Fi Python | Page 8</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="@erickbytes" />
@@ -18,1094 +18,212 @@
     <header>
         <nav style="overflow: hidden;">
             <ul>
-                <li><a href="./">Home</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
                 <li><a href="feeds/all.rss.xml">RSS</a></li>
                 <li><a href="feeds/all.atom.xml">Atom</a></li>
-                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
             </ul>
         </nav>
         <div class="header_box" style="height: 50px">
-        <h1><a href="./">
-            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
             </a></h1></div>
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">May 06, 2020</h4>
+        <div id="content">            <h4 class="date">Mar 03, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="./exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html" rel="bookmark" title="Permanent Link to &quot;Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32&quot;">Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32</a>
+                    <a href="https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app.html" rel="bookmark" title="Permanent Link to &quot;Starting to Almost Kinda Think About Creating a Web App&quot;">Starting to Almost Kinda Think About Creating a Web App</a>
                 </h2>
 
                 
                 
 
-                <p>Here are a few useful corners of the vast array of Windows scripting tools.</p>
-<h2>Helpful Windows Command Line Documentation</h2>
-<ul>
-<li><a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key">Windows command line Documentation Syntax</a></li>
-<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490890%28v%3dtechnet.10%29">Command-line reference A-Z</a></li>
-<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490954%28v%3dtechnet.10%29">Command shell overview</a></li>
-<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490982%28v%3dtechnet.10%29">Using command redirection operators</a></li>
-<li><a href="https://docs.microsoft.com/en-us/windows/win32/winrm/about-windows-remote-management">About Windows Remote Management</a></li>
+                <p>One of my first goals when I started learning Python was to build a web application. Once you've gotten a basic grip on Python, you might be ready to&nbsp;learn about&nbsp;web frameworks. A web framework consists of software designed to aid in web development. They make it easier to create a website or web app - if you know how to use them. Unfortunately, there is a learning curve to using the frameworks but thankfully there is plenty o' documentation to go around to help you.</p>
+<p>Here are the two&nbsp;<a class="reference external" href="https://www.airpair.com/python/posts/django-flask-pyramid">Python Frameworks</a> I've chosen to investigate (there are many out here on the webs):</p>
+<ul class="simple">
+<li>Django - widely used, great community support, comes with just about everything built in. Can be used for smaller apps or multi-page/app websites.</li>
+<li>Flask - a &quot;microframework&quot; used for smaller apps. Possibly more manageable for someone beginning a smaller project (me!)</li>
 </ul>
-<h2>A Few General Windows Commands</h2>
-<p><strong>Use <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a> to look in a text file to count the lines matching a string:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nv">find</span><span class="w"> </span><span class="o">/</span><span class="nv">C</span><span class="w"> </span><span class="s2">&quot;FAIL&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s2">&quot;Test_Results.txt&quot;</span>
-#<span class="w"> </span><span class="nv">returns</span>:<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">no</span><span class="w"> </span><span class="nv">match</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span>#<span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">lines</span><span class="w"> </span><span class="nv">found</span>,<span class="w"> </span><span class="nv">e</span>.<span class="nv">g</span>.<span class="w"> </span><span class="mi">2</span>,<span class="mi">50</span>,<span class="mi">100</span>
-</code></pre></div>
+<p>So as a beginnerish-level coder, I've chosen to start with Flask; I also found <a class="reference external" href="http://opentechschool.github.io/python-flask/">this sweet guide</a> that I think will help. Maybe someday I will graduate to Django, it sounds like a great framework.&nbsp;I've also decided that first I need to <a class="reference external" href="https://www.coursera.org/specializations/web-design">brush up on my HTML</a> - And according to a lot of what I've read it doesn't hurt to know CSS/Javascript. So this whole &quot;build a web app&quot; idea will continue, albeit with some hurdles to clear first.</p>
+<p>Edit: I ended up choosing web2py, which I hadn't even considered when I wrote this originally! Here's a <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/22/choosing-a-web-development-path/">post about why I chose it</a>.</p>
 
-<p>I wrote a post on <a href="https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/">findstr</a>, which offers similar functionality.</p>
-<p><strong>clip:</strong> pipe commands <a href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</p>
-<p><strong>If:</strong> <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</p>
-<p><strong>List ip address-related info:</strong></p>
-<div class="highlight"><pre><span></span><code>ipconfig
-</code></pre></div>
-
-<p><strong>Check system bit (usually 64-bit or 32-bit):</strong></p>
-<div class="highlight"><pre><span></span><code>wmic os getosarchitecture
-</code></pre></div>
-
-<h2>Automate Windows Scripts with Batch Files</h2>
-<p>Batch files can be run from command prompt or by double-clicking them. Here's an example of text in a batch file that activates a python virtual environment. Swap in your username and environment if you've created it.</p>
-<div class="highlight"><pre><span></span><code>cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd .. &amp; dir&quot;
-</code></pre></div>
-
-<ol>
-<li>Save above as a .bat file.</li>
-<li>This uses <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29">cmd</a> to [open a new command prompt in a Windows batch file.]{style="color:var(--color-text);"}</li>
-<li>[<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a> into my python virtual env then activate it by running a batch file.]{style="color:var(--color-text);"}</li>
-<li>[Then call dir to print directory contents.]{style="color:var(--color-text);"}</li>
-</ol>
-<p><strong><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a> a custom system 'last_name' variable to be recalled later.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nv">set</span><span class="w"> </span><span class="o">/</span><span class="nv">p</span><span class="w"> </span><span class="nv">last_name</span><span class="o">=</span><span class="nv">Enter</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">last</span><span class="w"> </span><span class="nv">name</span>:
-<span class="nv">echo</span><span class="w"> </span><span class="o">%</span><span class="nv">last_name</span><span class="o">%</span>
-<span class="k">pause</span>
-</code></pre></div>
-
-<p>Here we print it out with <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490897(v=technet.10)">echo</a>. Then <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490965(v=technet.10)">pause</a>.</p>
-<p><strong>Line continuation in batch files:</strong> Use \^ to continue your batch file scripts on a new line.</p>
-<h2>System Assessment Tools: powercfg and sfc</h2>
-<p><strong>Display system stats:</strong></p>
-<div class="highlight"><pre><span></span><code>systeminfo
-</code></pre></div>
-
-<p><strong>Use powercfg to assess power, sleep and system states</strong></p>
-<div class="highlight"><pre><span></span><code>powercfg /SLEEPSTUDY
-</code></pre></div>
-
-<p>Use sfc to perform a system file check:</p>
-<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">scan</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">repair</span>
-<span class="nv">sfc</span><span class="w"> </span><span class="o">/</span><span class="nv">SCANNOW</span>
-#<span class="w"> </span><span class="nv">scan</span>,<span class="w"> </span><span class="nv">but</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">repair</span>:
-<span class="nv">sfc</span><span class="w"> </span><span class="o">/</span><span class="nv">VERIFYONLY</span>
-</code></pre></div>
-
-<h2>Accessing a Remote Computer From the Command Line</h2>
-<p>You may want to <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ping">ping</a> a remote computer to see if it's running. Add your ip address instead of the below 1s and 0s:</p>
-<div class="highlight"><pre><span></span><code>ping 01.10.10.01
-</code></pre></div>
-
-<p><strong>Log into your Remote Desktop with <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a>:</strong></p>
-<ol>
-<li>Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.</li>
-<li>You may need to <a href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on">adjust your credentials on your local machine.</a></li>
-<li>Finally, trigger login to an active window from command prompt:</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="o">--&gt;</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>mstsc RDP_File_Name.rdp
-</code></pre></div>
-
-<p><strong><a href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a> and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</strong></p>
-<div class="highlight"><pre><span></span><code>winrm quickconfig
-</code></pre></div>
-
-<p><strong>Log into a remote computer with <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs">winrs</a> and run ipconfig:</strong></p>
-<div class="highlight"><pre><span></span><code>winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
-</code></pre></div>
-
-<h2>Check Out Python's <a href="https://github.com/mhammond/pywin32">pywin32</a> Module</h2>
-<p>This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook and <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">Task Scheduler</a>. Install with <a href="http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
-<div class="highlight"><pre><span></span><code>python -m pip install pywin32
-</code></pre></div>
-
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><strong>Here's an example to send an Outlook email:</strong></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">win32com.client</span>
-
-<span class="n">outlook</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">&#39;outlook.application&#39;</span><span class="p">)</span>
-<span class="n">mail</span> <span class="o">=</span> <span class="n">outlook</span><span class="o">.</span><span class="n">CreateItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">To</span> <span class="o">=</span> <span class="s1">&#39;someone@example.com&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">CC</span> <span class="o">=</span> <span class="s1">&#39;name@example.com&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="s1">&#39;Moneyball Review&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Moneyball is an inspiring movie, based on real events.</span>
-<span class="s2">            Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.</span>
-<span class="s2">            The trade deadline scene is delightful. Wow.</span>
-<span class="s2">            Chris Pratt as Hatteberg too. What a solid film.</span>
-<span class="s2">            Money isn&#39;t everything. Playing ball is.</span>
-<span class="s2">            &quot;&quot;&quot;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Attachments</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Baseball_Analysis.csv&#39;</span><span class="p">)</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Send</span><span class="p">()</span>
-</code></pre></div>
-
-<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="./exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html">posted at 14:11</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/automation-command-prompt-scripts-windows.html" rel="tag">automation, command prompt, Scripts, Windows</a>
+                    <a href="https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app.html">posted at 03:56</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-web-development.html" rel="tag">coding, programming, web development</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="./tag/command-line.html" class="tags">command line</a>
-                    &nbsp;<a href="./tag/remote-computer.html" class="tags">remote computer</a>
-                    &nbsp;<a href="./tag/scripting.html" class="tags">scripting</a>
-                    &nbsp;<a href="./tag/shell.html" class="tags">shell</a>
+                    &nbsp;<a href="https://lofipython.com/tag/django.html" class="tags">django</a>
+                    &nbsp;<a href="https://lofipython.com/tag/flask.html" class="tags">flask</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/web-apps.html" class="tags">web apps</a>
                 </div>
-            </article>            <h4 class="date">Apr 11, 2020</h4>
+            </article>            <h4 class="date">Feb 29, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="./reflections-on-5-years-of-solving-problems-with-python.html" rel="bookmark" title="Permanent Link to &quot;Reflections on 5 Years of Solving Problems with Python&quot;">Reflections on 5 Years of Solving Problems with Python</a>
+                    <a href="https://lofipython.com/tkinter-and-python-libraries.html" rel="bookmark" title="Permanent Link to &quot;Tkinter and Python Libraries&quot;">Tkinter and Python Libraries</a>
                 </h2>
 
                 
                 
 
-                <p>Prior to learning Python, I had no programming experience. I worked in marketing for a book publisher and did not perform well at my job. It was not a good fit. They eventually fired me. As my previous job unraveled, I discovered Python and the Coursera course, <a href="https://www.coursera.org/learn/python?utm_medium=email&amp;utm_source=other&amp;utm_campaign=opencourse.course_complete.python.%7Eopencourse.course_complete.7A1yFTaREeWWBQrVFXqd1w.">Programming for Everybody (Getting Started with Python)</a>. Fortunately, that course jump-started me onto a path of learning and reading each day. My aim was to make my own website, a <a href="https://pythonmarketer.wordpress.com/2016/05/25/askkevinparker-com-my-first-web-app-other-notes/">goal that I accomplished</a>. I needed to know how the sausage was made.</p>
-<p>Looking back from 2020, I can safely say Python changed my life. Because of it, I now have a fulfilling marketing\data-oriented career. I'm also grateful for the financial stability that came with it. I love to learn about the language and continue to improve my abilities to solve problems with new tools, not only Python.</p>
-<p>Below are pieces of wisdom picked up from my experiences. They are the result of many hours of study, reading, mistakes, luck, toil and eventual glory.</p>
-<p><strong>These are thought-provoking adages and guidelines, not absolute truths in all cases.</strong></p>
-<ol>
-<li>Developing a habit of learning pays off over time, no matter what the subject is. It is an investment in yourself that compounds.</li>
-<li>Follow your own curiosity. It's less important to compare what you know to others. Compare what you know today to what you knew yesterday. Don't worry about <a href="https://nedbatchelder.com/blog/202003/how_long_did_it_take_you_to_learn_python.html">how long it takes to learn</a>.</li>
-<li>Watch educational or technical conference talks on sites like <a href="https://www.youtube.com/channel/UCMjMBMGt0WJQLeluw6qNJuA/videos">YouTube</a> or InfoQ. <a href="https://www.infoq.com/presentations/Simple-Made-Easy/">Rich Hickey,</a> <a href="https://rhodesmill.org/brandon/talks/#selenium-at-scale">Brandon Rhodes</a> and <a href="https://www.youtube.com/watch?v=lyDLAutA88s">David Beazley</a> are some of my favorite speakers. Watch talks from all languages, not just Python. Often the concepts apply to any programming language.</li>
-<li>Use an RSS reader. Anytime you find a good blog, subscribe by RSS or email to get new posts. I use the <a href="https://chrome.google.com/webstore/detail/rss-feed-reader/pnjaodmkngahhkoihejjehlcdlnohgmp?hl=en">Feeder Chrome extension</a>\Android app.</li>
-<li>The <a href="https://www.python.org/dev/peps/pep-0020/">Zen of Python</a> contains a lot of wisdom. I like the concept of <code>Explicit is better than implicit.</code> This implies declaring your actions in written or oral fashion, providing additional context. Consider favoring easier to read solutions over clever one-liners. For example:<ul>
-<li><a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">List comprehensions</a> are useful and "pythonic", use them! But sometimes it's easier to use a for loop to hash out an idea. (Contrarily, avoiding the <a href="https://www.youtube.com/watch?v=W-lZttZhsUY">Initialize Then Modify</a> pattern benefits those comfortable with comprehensions.)</li>
-<li>Explicitly using <a href="https://treyhunner.com/2018/04/keyword-arguments-in-python/">keyword arguments</a> versus positional arguments is another way to make your code easier to understand.</li>
-</ul>
-</li>
-<li>Can you explain the solution simply? If not, try to clarify your understanding or maybe there's a simpler way. In Python, there are often several ways to accomplish the same goal. But keep in mind the Zen of Python: <code>There should be one-- and preferably only one --obvious way to do it. Although that way may not be obvious at first unless you're Dutch.</code> Look for the obvious way. An example of this is <a href="https://www.blog.pythonlibrary.org/2020/04/07/python-101-working-with-strings/">string formatting.</a> I've heard f-strings are the hot new way to do this now.</li>
-<li>Don't be afraid to change course if things don't feel right. Ask yourself while coding, "Does this feel efficient?" Recently I was trying to format a json string so I approached it like I had in the past, by <a href="https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/">exporting the request from Postman and formatting the json string</a> with python's <a href="https://docs.python.org/3/library/functions.html?highlight=format#format">format() built-in</a>. But this time, the curly braces were confusing me, I was struggling and it wasn't working. I googled and around and saw python's <a href="https://docs.python.org/3/library/json.html?highlight=json#module-json">json module</a> and <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html">df.to_json()</a> in pandas. They were a much easier and better-looking solution. But it still wasn't working. Finally, i used the Postman approach and f-strings to format a successful payload. The third try worked! F-strings are super nice and clean.</li>
-<li>If you're stuck, there's probably a free online course or blog post that explains whatever is confusing you. Use the Googles. When in doubt, Google the error message.</li>
-<li>Begin your project by writing a list of requirements. This often leads to good questions and cases that may need to be addressed. The book <a href="https://www.amazon.com/gp/product/0735619670/">Code Complete 2</a> covers establishing project requirements in great detail, along with the other stages in the life-cycle of a software project. I'm really enjoying this book and highly recommend it.</li>
-<li>Names are really important. Take time to think about a good name for your variables and functions. Also, name your scripts well. I name my scripts using <a href="https://examples.yourdictionary.com/action-verb-examples.html">action verbs</a>. For example, my script that organizes accumulated files on my desktop into folders is named <code>clean_desktop_files.py</code>. When I see this script months later, its name reminds me the action the script is performing. I believe it's better to err on the side of longer, more descriptive names for variables and functions. It makes code easier to understand. But there is a trade-off with length to keep in check.</li>
-<li>Moving a block of code into a function can abstract away repetitive code and increase its readability.</li>
-<li>Each function should do one thing only. Follow the <a href="https://en.wikipedia.org/wiki/Single-responsibility_principle">single-responsibility principle</a>.</li>
-<li>Train yourself to think in <a href="https://docs.python.org/3/tutorial/datastructures.html">data structure</a> conversions. The Python dictionary is very useful and can be converted to and from lists, tuples, sets, etc. I often find it more efficient to convert to a different structure to efficiently organize it. Usually I am googling things like "convert class object to python dictionary" because dictionaries are easy to work with or convert to other structures. The <code>vars()</code> built-in is great for converting objects to a dictionary. For example, once you have a dictionary, you might be able to solve your problem by <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.from_dict.html">converting it to a dataframe</a>.</li>
-<li>Use only the data you need. Reading in just the essential data helps avoid memory issues and hanging programs. In <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">pandas</a>, the <code>usecols</code> argument in <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pd.read_csv()</a> is great for this. This creates a dataframe with 2 columns:</li>
-</ol>
-<p><code>df = pd.read_csv('emails.csv', usecols=['name','email'])</code></p>
-<ol>
-<li>
-<p>Assume that if something is broken, it's because of something you've done. Start from the assumption that your code contains the bug and work outward by eliminating possibilities. Avoid jumping to quick conclusions. Instead, carefully consider possible reasons for why something is happening. Many times, I find my 2nd or 3rd hypothesis is actually true.</p>
-</li>
-<li>
-<p>There will be times when you'll look at someone else's choices and wonder why they did things a certain way. Consider the possibility that they know more than you in this domain.</p>
-</li>
-<li>
-<p>Beware of sequencing errors. Are your tasks, scripts or functions executing in an efficient order to reach your end goal? Look to unblock bottlenecks and correct chronological mistakes in your processes.</p>
-</li>
-<li>
-<p>Before you send that email asking for help, go back and take another look. There's also no shame in asking for help. Be sure you proofread your email before sending.</p>
-</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status code 200</a> does not guarantee your API request was successful. You may want to write a test to confirm success that doesn't rely on response status codes.</p>
-<p>[caption id="attachment_3108" align="alignnone" width="941"]<img alt="pytest_test_results" class="alignnone size-full wp-image-3108" height="540" src="https://pythonmarketer.files.wordpress.com/2020/04/pytest_test_results.png" width="941"> pytest deprecation warnings for unescaped pipes or slashes in docstrings? ¯\_(ツ)_/¯[/caption]</p>
-</li>
-<li>
-<p>Unfortunately, <a href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">testing</a> gets shunned sometimes. Make it a priority. I enjoy writing <a href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a> more than most other code. Why? Because tests confirm my scripts are working to some degree, detect bugs and provide a refactoring safety net.</p>
-</li>
-<li>
-<p>Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.</p>
-</li>
-<li>
-<p>Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a <a href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10">Windows batch file</a> to instantly activate my Python <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>. It took me a few years of tediously pasting the <code>cd</code> and <code>activate</code> commands into command prompt every day to realize. Now it's a snap.</p>
-</li>
-<li>
-<p>Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...</p>
-</li>
-<li>
-<p>Read the documentation! An updated or more elegant solution might be there. I recently found <code>os.makedirs(path, exist_ok=True)</code> in the <a href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <code>exist_ok</code> argument. I was creating folders with a more complicated alternative from <a href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <a href="https://docs.python.org/3.8/library/getpass.html"><code>getpass.getuser()</code></a> is preferred over <code>os.getlogin()</code>.</p>
-</li>
-<li>
-<p>Write documentation explaining how to use your projects. Even if you can only muster a quick <a href="https://en.wikipedia.org/wiki/README">README</a> text file, that's better than nothing. Within your code, <a href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> are a nice addition. I have yet to use <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, but it is a popular choice for generating documentation.</p>
-</li>
-<li>
-<p>Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...</p>
-</li>
-<li>
-<p>Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.</p>
-</li>
-<li>
-<p>When editing your writing, continually ask yourself, "Do I need this word or phrase?" for every word you write.</p>
-</li>
-</ol>
-<blockquote>
-<p>"Brevity is the soul of wit." - William Shakespeare (Hamlet)</p>
-</blockquote>
-<ol>
-<li>Draw inspiration from culture, nature and professional disciplines outside of your own. <a href="https://pythonmarketer.wordpress.com/2020/01/28/lessons-learned-from-lost-in-space-on-netflix/">Insights can be mined from anything</a>. Don't dismiss a situation as mundane without first scanning for knowledge nuggets and gems.</li>
-<li>Better solutions often come to me after gaining time and experience with a problem. Building software is an iterative cycle of adjustment towards consistently fulfilling the needs of those it serves in 100% of cases. In a perfect world, you'd never have bugs. But edge cases tend to pop up in ways you didn't think of when you first wrote a solution. There will also be projects where requirements or business rules change. Consider that possibility when you are designing your solution.</li>
-<li>It's possible to find a job that you're excited about and genuinely enjoy the work.</li>
-<li>Respect your craft, whether it's coding or another profession. A skilled carpenter needs precision, practice and focus to make something beautiful. Approach your craft with the same mindset and pride in making your best art.</li>
-<li>We all have holes in our knowledge. Be receptive to other ways of thinking. The best way to learn is from other humans. Everyone has different backgrounds and experiences. I have never used object oriented programming, classes or certain command line tools like <a href="https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/">ssh</a>. I have a loose understanding of these things but have not yet applied them to my projects. Working with paths (os and pathlib) still gives me fits sometimes. These are knowledge gaps that I want to fill in. Additionally, we don't know what we don't know. Try to illuminate the fog of your unknown.</li>
-<li>Choosing to dedicate to learning Python is among the best decisions I've made.</li>
-<li>Attitude is more important than intelligence. Anyone can learn to program, play guitar or fly an airplane. You can become an adept problem solver. Acquire an attitude to support your determination and persistence.</li>
-</ol>
-<p>[caption id="attachment_2981" align="alignnone" width="959"]<a href="https://www.youtube.com/watch?v=I56oFTm9UlE"><img alt="brandonrhodes" class="alignnone size-full wp-image-2981" height="541" src="https://pythonmarketer.files.wordpress.com/2020/04/brandonrhodes.png" width="959"></a> Brandon Rhodes: Stopping to Sharpen Your Tools - PyWaw Summit 2015[/caption]</p>
-<p><strong>I'll leave you with the 4 P's and 4 C's from my</strong> <strong><a href="https://www.youtube.com/watch?v=SfQYA0JQWkA">Programming for Everybody Coursera course graduation ceremony</a>. Cultivating these principles will guide you to growing your education and finding a positive course in life:</strong></p>
-<blockquote>
-<p><strong>4 P’s:</strong> Passion, Purpose, Persistence, Playfulness</p>
-<p><strong>4 C’s:</strong> Choice, Commitment, Connection, Completion</p>
-</blockquote>
-<p>Thank you for reading and I hope this post helps you on your own educational journey.</p>
+                <p>Python's set of libraries are&nbsp;fun to explore. They allow Python to work with many types of other coding languages, allow you to do cool stuff, and seem&nbsp;to require&nbsp;a minimal knowledge of the actual code. You can read the complete list of standard libraries <a class="reference external" href="https://docs.python.org/2/library/">here</a>. There are also others available that you can download and install for unique challenges or software such as <a class="reference external" href="https://wiki.python.org/moin/Android">Android</a>.</p>
+<p>Currently, my favorite library is <a class="reference external" href="http://thinkingtkinter.sourceforge.net/">Tkinter</a>. Tkinter is a module that replicates <a class="reference external" href="https://en.wikipedia.org/wiki/Tcl">Tk/TCL</a>&nbsp;within Python and&nbsp;allows you to create a quick Graphical User Interface (GUI) for your programs - great for trying to put together a prototype program with&nbsp;basic aesthetic design control&nbsp;for&nbsp;things like buttons, entry boxes, text and other visual elements that make up the front end of a computer program.</p>
+<p>+Pro Tip: When you're trying to use a new module, you can read how to use it in the module's documentation. <a class="reference external" href="https://docs.python.org/3.8/library/tkinter.html">Here's Tkinter's documentation</a>.</p>
+<p>++ Today's find: Free guide called &quot;<a class="reference external" href="https://automatetheboringstuff.com/">Automate the Boring stuff with Python</a>&quot;</p>
+
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="./reflections-on-5-years-of-solving-problems-with-python.html">posted at 17:15</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/coding-education-marketing-programming-python-wisdom.html" rel="tag">coding, education, Marketing, programming, python, wisdom</a>
+                    <a href="https://lofipython.com/tkinter-and-python-libraries.html">posted at 01:11</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-software.html" rel="tag">coding, python, software</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="./tag/advice.html" class="tags">advice</a>
-                    &nbsp;<a href="./tag/learning.html" class="tags">learning</a>
-                    &nbsp;<a href="./tag/problem-solving.html" class="tags">problem solving</a>
-                    &nbsp;<a href="./tag/writing.html" class="tags">writing</a>
+                    &nbsp;<a href="https://lofipython.com/tag/gui.html" class="tags">gui</a>
+                    &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
                 </div>
-            </article>            <h4 class="date">Mar 22, 2020</h4>
+            </article>            <h4 class="date">Feb 25, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="./easy-wins-for-your-windows-computer.html" rel="bookmark" title="Permanent Link to &quot;Easy Tune-ups For Your Windows Computer&quot;">Easy Tune-ups For Your Windows Computer</a>
+                    <a href="https://lofipython.com/start-before-you-are-ready.html" rel="bookmark" title="Permanent Link to &quot;Start Before You Are Ready&quot;">Start Before You Are Ready</a>
                 </h2>
 
                 
                 
 
-                <h3>This post covers 6 handy Windows tools:</h3>
-<ol>
-<li>Windows Experience Index</li>
-<li>Disk Cleanup</li>
-<li>Windows Update Troubleshooter</li>
-<li>Windows Update</li>
-<li>Microsoft Support and Recovery Assistant</li>
-<li>Disk Defragmenter</li>
-</ol>
-<h3><strong>First, get your baseline Windows Experience Index score.</strong></h3>
-<p>These metrics are a way to monitor your system's performance over time.</p>
-<ol>
-<li>Go to "Control Panel\System and Security\System"</li>
-<li>Select "Your Windows Experience Index needs to be refreshed."</li>
-<li>Note the metrics you see and the last updated date. If you've never refreshed them, these are likely your computer's factory scores.</li>
-<li>Then click "Refresh Now" and note the results. These are your computer's current scores.</li>
-</ol>
-<p><img alt="check_Windows_Experience_Index" class="alignnone size-full wp-image-2780" height="501" src="http://pythonmarketer.files.wordpress.com/2020/03/f6e0a-check_windows_experience_index-e1584936945758.jpg" width="729"></p>
-<hr>
-<h3><strong>Run Disk Cleanup</strong></h3>
-<p>[The name says it all. Go to the Start menu and search 'Disk Cleanup'. Running this freed up 40 GB of C: drive space for me.]{style="color:var(--color-text);"}</p>
-<p>[<img alt="disk_cleanup" class="alignnone size-full wp-image-2794" height="167" src="https://pythonmarketer.files.wordpress.com/2020/03/disk_cleanup.jpg" style="color:var(--color-text);" width="364">]{style="color:var(--color-text);"}</p>
-<hr>
-<h3><strong>[Install OS patches and software updates with ]{style="color:var(--color-text);"}[Windows Update.]{style="color:var(--color-text);"}</strong></h3>
-<p><strong>First, troubleshoot Windows Update to fix any errors.</strong></p>
-<p><img alt="tdhotingtrpot2" class="wp-image-2790 alignright" height="274" src="http://pythonmarketer.files.wordpress.com/2020/03/83836-tdhotingtrpot2-e1584941263675.jpg" style="color:var(--color-text);" width="357"></p>
-<p>The <a href="https://support.microsoft.com/en-us/help/4027322/windows-update-troubleshooter">Windows Update Troubleshooter</a>[ is supp]{style="color:var(--color-text);"}[orted by Windows and may help]{style="color:var(--color-text);"}[ with updates that fail. I downloaded the troubleshooter for ]{style="color:var(--color-text);"}[Windows Update and BITS, Windows' ]{style="color:var(--color-text);"}<a href="https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal">Background Intelligence Transfer System.</a></p>
-<p>[The troubleshooter analyzes Windows Update and tries to fix the errors it finds. After running, it provides a status update on the issues it finds.]{style="color:var(--color-text);"}</p>
-<p><strong>Run Windows Update to upgrade your software.</strong></p>
-<p>[Windows Update usually updates your software reliably. Howev]{style="color:var(--color-text);"}[er, some updates may fail or are not triggered automatically. Installing updates, especially security patches for your operating system is typically a good idea. ]{style="color:var(--color-text);"}[In my case, several Windows 7 OS security patches had not auto-updated, some from 6 months ago.]{style="color:var(--color-text);"}</p>
-<p>[<img alt="check_updates" class="alignnone wp-image-2742" height="241" src="http://pythonmarketer.files.wordpress.com/2020/03/4c81a-check_updates-e1584948533963.jpg" width="518">]{style="color:var(--color-text);"}</p>
-<ul>
-<li>[Go to your start menu and search for 'Windows Update'. ]{style="color:var(--color-text);"}</li>
-<li>[I clicked 'Check online for updates from Windows Update' also. ]{style="color:var(--color-text);"}</li>
-<li>[When you restart your computer, use a power cord for your laptop.]{style="color:var(--color-text);"}</li>
-<li>[I found more new updates twice after installing new updates and restarting my system.  Some updates are required before another update may be installed.]{style="color:var(--color-text);"}</li>
-</ul>
-<p>[<img alt="windowsuptodate" class="wp-image-2846 alignleft" height="78" src="https://pythonmarketer.files.wordpress.com/2020/03/windowsuptodate.jpg" width="439">]{style="color:var(--color-text);"}</p>
-<hr>
-<h3>Microsoft Support and Recovery Assistant</h3>
-<p><strong>Got Microsoft Errors?</strong> Check out the <a href="https://support.office.com/en-us/article/about-the-microsoft-support-and-recovery-assistant-e90bb691-c2a7-4697-a94f-88836856c72f">Microsoft Support and Recovery Assistant</a>. It may help you if you're having trouble with Microsoft Office, Skype or any other Windows [tools.]{style="color:var(--color-text);"}</p>
-<p><img alt="options_recovery" class="wp-image-3225 alignnone" height="350" src="http://pythonmarketer.files.wordpress.com/2020/03/1ea73-options_recovery-e1587747001750.jpg" width="465"></p>
-<hr>
-<h3><strong>Finally, defragment your C: drive.</strong></h3>
-<p>Defragmentation is like spring cleaning for your computer's hard disk. It optimizes your drive's data for more efficient computing and frees up space for other activities.</p>
-<ol>
-<li>[Go to your start menu and search for 'Disk Defragmenter'.]{style="color:var(--color-text);"}</li>
-<li>Click 'Analyze disk' to check your C: Drive's fragmented rate.</li>
-<li>If the fragmented rate is above 10%, <a href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Windows recommends</a> to defragment your C: Drive. As you can see below, mine had a whopping 48% fragmentation rate. 😨 My poor computer had never been defragged in 2.5 years of use.</li>
-</ol>
-<p><img alt="defragment_results" class="alignnone size-full wp-image-2740" height="529" src="http://pythonmarketer.files.wordpress.com/2020/03/699fd-defragment_results-e1585007505765.jpg" width="658"></p>
-<p><strong>46% Less Fragmented Disk Space After Two Defrags</strong></p>
-<p>Running the defragmenter once reduced my drive's fragmentation from 48% to 32%. Re-running the defragmenter dropped my C: drive to a 2% fragmented rate. That's more like it. 🤓</p>
-<blockquote>
-<p>::: ng-scope
-Fragmentation makes your hard disk do extra work that can slow down your computer. Removable storage devices such as USB flash drives can also become fragmented. Disk Defragmenter in Windows rearranges fragmented data so your disks and drives can work more efficiently.
-:::</p>
-<div>
-<p>Source: <a href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Ways to Improve Your Computer's Performance</a></p>
-</div>
-</blockquote>
-<hr>
-<h3><strong>My Windows 7 System Improvement Results</strong></h3>
-<ul>
-<li>Raised Windows Experience Index base sub-score from 4.9 to 5.0/7.9.</li>
-<li>Added 40 GB of hard drive space thanks to Disk Cleanup.</li>
-<li>Patched operating system security vulnerabilities and all software is up to date.</li>
-<li>Fixed any misbehaving Windows products.</li>
-<li>Decreased fragmented drive space from 48% to 2%. Windows recommends keeping it under 10%.</li>
-</ul>
-<p>On paper, that looks great. Hopefully it means less spinning lag wheels and programs not responding when you really shoulda saved that document...  <a href="https://www.youtube.com/watch?v=e2cjVhUrmII">We'll see</a>.</p>
+                <p>Found <a class="reference external" href="https://medium.com/life-learning/start-before-you-re-ready-ac7d5608c83d#.wzka2rmm1">this article</a> today via <a class="reference external" href="http://www.thedolectures.com/">The Do Lectures</a> and think it's so true - whatever you want to do, just start. Because &quot;Sucking is the first step to being sorta good at something.&quot;</p>
+
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="./easy-wins-for-your-windows-computer.html">posted at 22:59</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/performance-windows.html" rel="tag">performance, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="./tag/maintenance.html" class="tags">maintenance</a>
-                    &nbsp;<a href="./tag/operating-system.html" class="tags">operating system</a>
-                    &nbsp;<a href="./tag/windows-update.html" class="tags">windows update</a>
+                    <a href="https://lofipython.com/start-before-you-are-ready.html">posted at 13:55</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/life.html" rel="tag">life</a>
                 </div>
-            </article>            <h4 class="date">Mar 21, 2020</h4>
+            </article>            <h4 class="date">Feb 25, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="./automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html" rel="bookmark" title="Permanent Link to &quot;Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box&quot;">Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box</a>
+                    <a href="https://lofipython.com/15-marketing-observations.html" rel="bookmark" title="Permanent Link to &quot;15 Marketing Observations&quot;">15 Marketing Observations</a>
                 </h2>
 
                 
                 
 
-                <p><strong>Automatic pytest Testing and Failure Alert Monitoring</strong></p>
-<p>This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.</p>
-<p><strong>Installing <a href="https://docs.pytest.org/en/latest/getting-started.html">pytest</a>, a python testing library:</strong></p>
-<p><code>python -m pip install pytest</code></p>
-<p><strong>A Few Words on pytest</strong></p>
-<p>It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.</p>
-<p>**Writing a Test **</p>
-<p>Let's use <strong>test_file_date.py</strong> as our test, which uses the <a href="https://docs.python.org/3/library/glob.html">glob</a> module and [<a href="https://docs.python.org/2/library/os.path.html#os.path.getmtime">os.getmtime</a>]{style="color:var(--color-text);"}[ ]{style="color:var(--color-text);"}[to get the csv with the most recent modification date ]{style="color:var(--color-text);"}[on my desktop. Then it tests if that date is today, in my case, for an expected daily file drop.]{style="color:var(--color-text);"}</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span> 
-<span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">getpass</span>
-
-<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The dir_query format is for a Windows path with Unix style pattern matching.&quot;&quot;&quot;</span>
-    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">{getpass.getuser()}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
-    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
-</code></pre></div>
-
-<p><strong>Here's the pytest text output when the test is passing:</strong></p>
-<div class="highlight"><pre><span></span><code>============================= test session starts =============================
-platform win32 -- Python 3.8.1, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
-rootdir: C:
-</code></pre></div>
-
-<p>collected 1 item</p>
-<div class="highlight"><pre><span></span><code><span class="cp">..\..\Users\martech\Desktop\test_file_date.py . [ 14%]</span>
-<span class="cp">                                                                   [100%]</span>
-
-============================== 1 passed in 0.28s ==============================
-</code></pre></div>
-
-<p><strong>Creating a Task with Windows Task Scheduler</strong></p>
-<p>If you haven't used python with Windows Task Scheduler before, <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">my previous post</a> on creating a task may help you. We'll create two of them for our testing system.</p>
-<p><strong>Adding Your Task Scheduler Program: a Windows .bat file</strong></p>
-<p>Add your username to the text below and adjust the paths to your system. Then save a <a href="https://en.wikipedia.org/wiki/Batch_file">Windows .bat file</a> with this text, which points to your pytest.exe file:</p>
-<div class="highlight"><pre><span></span><code>cmd /c &quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&quot; ^
-C:\Users\your_username\Desktop\test_file_date.py &gt; C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
-</code></pre></div>
-
-<p>This example is referencing an .exe within a hypothetical "VM_Jobs" <a href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)</p>
-<p><strong>Breaking this out, there are five .bat files parts:</strong></p>
-<blockquote>
-<p>cmd /c "C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys"</p>
-</blockquote>
-<p>Windows' <a href="https://ss64.com/nt/cmd.html">cmd command</a> takes a program, so we're passing pytest. <a href="https://docs.pytest.org/en/latest/capture.html">The --capture=sys argument</a> tells pytest to capture the test results. <strong>Note:</strong> switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.</p>
-<blockquote>
-<p>\^</p>
-</blockquote>
-<p>circumflex represents a line continuation in Windows batch files for better readability</p>
-<blockquote>
-<p>C:\Users\your_username\Desktop\test_file_date.py</p>
-</blockquote>
-<p>Next we're passing our python file as an argument to pytest, testing our file's modified date matches today's date.</p>
-<blockquote>
-<p><strong>&gt;</strong></p>
-</blockquote>
-<p>This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:</p>
-<blockquote>
-<p>C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt</p>
-</blockquote>
-<p><strong>Browse to select your .bat file for your Windows Task Scheduler task:</strong></p>
-<p><img alt="bat_task" class="alignnone size-full wp-image-2669" height="590" src="https://pythonmarketer.files.wordpress.com/2020/03/bat_task.jpg" width="1032"></p>
-<p><strong>Reading the Tests and Triggering Alerts</strong></p>
-<p>Passing tests signal your scripts are running successfully. When things don't work, email alerts of the failure help us respond quickly.</p>
-<p>Let's set another task scheduler job to run <strong>read_test_results.py,</strong> to run a few minutes after the first job each day. See this <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">example of running Python with Task Scheduler</a> if you haven't triggered a python script from Task Scheduler before.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
-<span class="kn">import</span> <span class="nn">getpass</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Automate pytest with Windows Task Scheduler - Python Marketer</span>
-<span class="sd">http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</span>
-
-<span class="sd">Use Task Scheduler run a batch file. </span>
-<span class="sd">The batch file runs pytest and captures our pytest function results to sys. </span>
-<span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">user_name</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">logging</span><span class="se">\\</span><span class="s1">Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
-    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span>
-    <span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for failed tests...&quot;</span><span class="p">)</span>
-
-<span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">test_results</span><span class="se">\\</span><span class="s1">&#39;</span>
-<span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.txt&#39;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">txt_file</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">+</span> <span class="n">txt_file</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">if</span> <span class="s1">&#39;FAILURES&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
-        <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">send_failure_alert</span><span class="se">\\</span><span class="s1">&#39;</span>
-        <span class="n">today</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
-        <span class="n">out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}{</span><span class="n">txt_file</span><span class="si">}</span><span class="s1">_Failed_Results_</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s1">.txt&#39;</span>
-        <span class="n">alert_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span><span class="s2">&quot;w+&quot;</span><span class="p">)</span>
-        <span class="n">alert_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">txt_file</span><span class="p">)</span>
-        <span class="n">alert_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-        <span class="n">alert_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No failed tests found in file:&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">txt_file</span><span class="p">)</span>
-</code></pre></div>
-
-<p><strong>Setting up Email Alert Notifications on a Box Folder</strong></p>
-<p>The above script checks the test results and creates a file with any failed tests in a different folder. I <a href="https://support.box.com/hc/en-us/articles/360044194073-Manage-Notifications-for-Enterprise-Users">edited the folder's settings</a> to email me when a new file is added, thanks to Box notifications. We use <a href="http://www.box.com">Box</a> for secure file sharing at my day current day job.</p>
-<p>Alternatively for those without Box, you could use 'ole trusty <a href="https://docs.python.org/3/library/smtplib.html">smtplib</a> to send the failure alerts with python. I chose the easier, ready to go option. Remember, "<a href="https://zen-of-python.info/simple-is-better-than-complex.html">Simple is better than complex</a>."</p>
-<p>Or the <a href="https://github.com/mhammond/pywin32">pywin32 module</a> has an interface to Outlook that is very handy. For an example of sending a Windows Outlook email, check the very end of <a href="http://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/">this post I wrote on "Scripting Windows Like a Pro"</a>.</p>
-<p><strong>We now have an automated testing system with email monitoring alerts if our csv file date test fails, thanks to:</strong></p>
-<ul>
-<li>Windows Task Scheduler (two tasks running each day in succession)</li>
-<li>python/pytest</li>
-<li>a Windows .bat file</li>
-<li>Box (or smtplib or pywin32) email alerts</li>
-</ul>
-<p><strong>In Summation</strong></p>
-<ol>
-<li>The first task runs a .bat file to run pytest and create a text file with daily automation test results.</li>
-<li>The second task runs a python file. Setting in motion:</li>
-<li>Checking the test result text files, looking for failed tests</li>
-<li>Creating a text file with any failing tests in a Box folder, if found</li>
-<li>Then Box emails me if any test fails.</li>
+                <p>Tonight, I made a list of 15 things I've observed&nbsp;after&nbsp;4 years of study at the University of Illinois and 4 years of professional experience in Marketing. So here they are:</p>
+<ol class="arabic simple">
+<li>It's easier to sell one thing than several different products.</li>
+<li>Distribution = Very Important (Duh!)</li>
+<li>Marketing depends a lot on product quality - what can you do for the user/customer? What problems can you solve?&nbsp;<a class="reference external" href="http://sethgodin.typepad.com/seths_blog/2016/02/fit-and-finish.html">Seth Godin</a>&nbsp;talks about this quite often.</li>
+<li>Design matters - in product, communications, and everything else in this world.</li>
+<li>Sell benefits, not features.</li>
+<li>People are emotional buyers.</li>
+<li>The more you know about your customer, the better.</li>
+<li>Budget and resources matter.</li>
+<li>There can be an extremely wide variance from industry to industry - the key is to look for&nbsp;parallels.</li>
+<li>Humanize your company as much as possible - <a class="reference external" href="http://members.cdbaby.com/shipping-confirmation.aspx">This is a great example</a>.</li>
+<li>You're more likely to find success with talented people around you.</li>
+<li>Be aware of&nbsp;the&nbsp;<a class="reference external" href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> (The 80/20 Rule) - 80% of results often come from 20% of customers.</li>
+<li>Ads that annoy / shout about your product don't work; Ads&nbsp;that&nbsp;tell customers useful information or help them in some way do.</li>
+<li>There is such a thing as too many choices for the customer - it overwhelms them.</li>
+<li>Practice brevity. Whatever you've got to say,&nbsp;do it in&nbsp;fewer words.</li>
 </ol>
-<p><strong>Final Thoughts on the .bat, Man</strong></p>
-<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format<strong><a href="https://www.youtube.com/watch?v=65eDsGY5MTE"><img alt="legobatman" class="wp-image-2704 alignright" height="95" src="https://pythonmarketer.files.wordpress.com/2020/03/legobatman.jpg" width="95"></a></strong> the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a "glue" piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
-<p><strong>Life is in the journey.</strong></p>
-<p>What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!</p>
-<div class="highlight"><pre><span></span><code>&lt;/p&gt;
-</code></pre></div>
+<p>Agree? Disagree?</p>
 
-<p><strong>See also:</strong></p>
-<p><a href="_wp_link_placeholder">pytest plugins</a></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><a href="https://pypi.org/project/pytest-csv/">pytest-csv</a>: write test results to a csv with this plugin</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>I wrote another post compiling peoples' thoughts on testing <a href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/">here</a>.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="./automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html">posted at 01:47</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/automation-programming-software-testing-windows.html" rel="tag">automation, programming, software testing, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="./tag/coding.html" class="tags">coding</a>
-                    &nbsp;<a href="./tag/pytest.html" class="tags">pytest</a>
-                    &nbsp;<a href="./tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="./tag/software-development.html" class="tags">software development</a>
+                    <a href="https://lofipython.com/15-marketing-observations.html">posted at 03:32</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/marketing.html" rel="tag">Marketing</a>
                 </div>
-            </article>            <h4 class="date">Jan 28, 2020</h4>
+            </article>            <h4 class="date">Feb 23, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="./lessons-learned-from-lost-in-space-on-netflix.html" rel="bookmark" title="Permanent Link to &quot;Lessons Learned from "Lost in Space" on Netflix&quot;">Lessons Learned from "Lost in Space" on Netflix</a>
+                    <a href="https://lofipython.com/dotd-python-koans.html" rel="bookmark" title="Permanent Link to &quot;Python Koans&quot;">Python Koans</a>
                 </h2>
 
                 
                 
 
-                <p>Being a developer has similarities to the life of a family surviving in space. Sure, the stakes are lower when writing code versus being chased by alien life forms, but the core idea is the same. One is faced with a problem and it must be solved, with varying degrees of consequences for failure.</p>
-<p>I enjoyed watching the Robinsons solve problem after problem to stay alive in alien worlds and the vacuum of space. I believe you can learn from anything. <strong>So in that spirit, here are some lessons from the show for us problem solving humans:</strong></p>
-<ol>
-<li><img alt="tayrob" class="size-full wp-image-2271 alignright" height="168" src="https://pythonmarketer.files.wordpress.com/2020/01/tayrob.jpeg" width="300">Don't panic when you're in trouble. A cool head is vitally important to your survival chances when you're in a bind. Judy demonstrates this quality in evading the raptor-like creatures chasing her.</li>
-<li>Problems solved often lead to more problems to solve. We would be wise to anticipate what might happen if we do succeed.</li>
-<li>Be cautious when venturing into unfamiliar territories. You never know what could be there to trip you up. Which leads me to my next point...</li>
-<li>Respect nature's ability to f*ck you up. The environment you're in, other organisms, and bacteria can wreak havoc. Despite our perceived self-importance, nature is our god. We are but specks in its creation. Cases in point: the metal-dissolving virus that destroys Judy's chariot and the poisonous algae Don accidentally discovers that immobilizes him.</li>
-<li>Know when to go for broke, or when to re-group and wait to make your next move. The Robinsons spent 7 months stocking up at their new beach home. Until they suffered a setback...<img alt="beach" class="alignnone size-full wp-image-2279" height="1181" src="https://pythonmarketer.files.wordpress.com/2020/01/beach.jpg" width="2155"></li>
-<li>Adapt your plan when new information becomes available or unexpected events happen. They will happen.</li>
-<li>Think of unconventional ways to use the resources you do have to fix the problem at hand. Who would have thought a spaceship could be retrofitted into a boat?</li>
-<li>Things often work 83% of the way you expect them to work. Sometimes that's enough to move on. Or maybe it buys you enough time to figure out your next move. The electrical field stalled the fleet of robots long enough for the Robinsons to realize the children should "<a href="https://en.wikipedia.org/wiki/Lord_of_the_Flies">Lord of the Flies</a>" their way to Alpha Centauri.</li>
-<li>Question your own motivations, and be open to changing course if you are wrong. Adler realized he should help Will save Scarecrow's life after first trying to stop him. Scarecrow then exhibits this same quality when he turns against his robot comrades to save the children.</li>
-<li>Ethics and morals may conflict with each other. Was Maureen Robinson wrong for fraudulently saving her son Will? Ethically, yes. But morally, as a mother saving her son? No.</li>
-<li>Make time for your family and friends. Maureen was so busy saving the family that she didn't read Penny's book. Stop and smell the roses every once in a while. Or read your daughter's damn book.</li>
-<li>Humans are capable of both great compassion and horrible cruelty. We're running from alien robots, but sometimes we're the monsters? Cough cough Smith and Hastings... cough. Excuse me. (smh 🤦)</li>
-<li><img alt="robot" class="wp-image-2282 alignright" height="179" src="https://pythonmarketer.files.wordpress.com/2020/01/robot-1.jpeg" width="358">I'll spare you any parallels about modern artificial intelligence. The best, most grounded definition I've heard of modern AI is "<a href="https://twitter.com/fchollet/status/1214392496375025664?lang=en">automated cognition</a>".</li>
-<li>Self-sacrifice is an honorable death to save the lives of others, but can be frustrating to watch on TV. "Did you really have to kill yourself there?" - me, several times during the show 😆</li>
-</ol>
+                <p>Today's discovery is <a class="reference external" href="https://github.com/gregmalcolm/python_koans">Python Koans</a>.&nbsp;According to <a class="reference external" href="http://docs.python-guide.org/en/latest/intro/learning/">python-guide.org</a>, Koans &quot;uses a test-driven approach, q.v. TEST DRIVEN DESIGN SECTION to provide an interactive tutorial teaching basic Python concepts. By fixing assertion statements that fail in a test script, this provides sequential steps to learning Python.&quot;</p>
+<p>I was also curious what a &quot;Koan&quot; actually is: &quot;a paradox to be meditated upon that is used to train Zen Buddhist monks to abandon ultimate dependence on reason and to force them into gaining sudden intuitive enlightenment&quot; - Merriam-Webster</p>
+<p>Koans takes a little work to install. <a class="reference external" href="https://github.com/OmkarPathak/pygorithm">Pygorithm</a> is an similar package for learning advanced more algorithm theories with python, and can be more easily installed by <a class="reference external" href="https://github.com/OmkarPathak/pygorithm">pip</a>.</p>
+
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="./lessons-learned-from-lost-in-space-on-netflix.html">posted at 06:39</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/entertainment-life-space.html" rel="tag">entertainment, life, space</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="./tag/lost-in-space.html" class="tags">Lost in Space</a>
-                    &nbsp;<a href="./tag/netflix.html" class="tags">Netflix</a>
-                    &nbsp;<a href="./tag/problem-solving.html" class="tags">problem solving</a>
+                    <a href="https://lofipython.com/dotd-python-koans.html">posted at 14:10</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/programming-python.html" rel="tag">programming, python</a>
                 </div>
-            </article>            <h4 class="date">Jan 25, 2020</h4>
+            </article>            <h4 class="date">Feb 22, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="./git-the-basics-a-git-version-control-cheat-sheet.html" rel="bookmark" title="Permanent Link to &quot;"Git" The Basics: A Version Control Cheat Sheet&quot;">"Git" The Basics: A Version Control Cheat Sheet</a>
+                    <a href="https://lofipython.com/marketer-slash-programmer.html" rel="bookmark" title="Permanent Link to &quot;Marketer Slash Programmer&quot;">Marketer Slash Programmer</a>
                 </h2>
 
                 
                 
 
-                <p><em>I am finally starting to understand <a href="https://en.wikipedia.org/wiki/Git">git version control</a>! It makes developing a project on different computers easy. Some of these notes were picked up from the super informative <a href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a> by Jake VanderPlas, author of the <a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a>.</em></p>
-<p><em>First, <a href="https://git-scm.com/downloads">go here</a>, download and install git if you haven't yet. Alright, here are my go-to steps and commands for git:</em></p>
-<p><strong>Beginning a New Project With Git</strong></p>
-<ol>
-<li>Create new repository on GitHub</li>
-<li>Add a README</li>
-<li>Add a Python gitignore</li>
-<li>Add a license (Jake V. used an MIT license)</li>
+                <p>I have studied and currently work in Marketing*, with around 5 years of experience. I&nbsp;would like to begin sharing my journey through&nbsp;the coding world. I have chosen Python as my language to explore, to start. I began last fall by completing three&nbsp;<a class="reference external" href="https://www.coursera.org/learn/python">free online courses on Coursera</a> - taught by an amazing professor, Dr. Charles Severance from the University of Michigan. Check 'em out if you want an epic introduction to Python and coding in general.</p>
+<p>I previously had a little bit of HTML experience - nothing else - so I am very new to coding and enjoying learning a little more every day. I'm going to post my trials, problems, and things I figure out along the way and anything else I find interesting.</p>
+<p><strong>Why do I want to learn to program?</strong></p>
+<ol class="arabic simple">
+<li>Rapidly growing segments of our lives rely on computers and similar technologies. It seems unwise to remain ignorant of their internal processes.</li>
+<li>Web apps are cool, useful and make our lives better. I'd like to build them.</li>
+<li>To strengthen myself professionally.</li>
+<li>To CREATE - coding is actually a very great creative outlet.</li>
 </ol>
-<p><strong>Clone Any Repository from GitHub</strong></p>
-<ol>
-<li>Visit your new project, or any GitHub project, click the green "Clone or download" button and copy the link.</li>
-<li>In your terminal or command prompt, navigate to the directory where you want to clone your project.</li>
-<li>In terminal, enter: <code>git clone PASTE_URL_HERE</code></li>
-<li>Now cd into your project folder.</li>
-</ol>
-<p><strong>Push Your Local Computer Changes to the Master Repository</strong></p>
-<p>Let's say you did some work on your computer and want to push the changes to GitHub. Enter these commands in terminal:</p>
-<ol>
-<li><code>git add .</code></li>
-<li><code>git commit -m "Add your commit note here"</code></li>
-<li><code>git push origin master</code></li>
-</ol>
-<p>*Above: <code>git add .</code> = stage all files in project directory for master</p>
-<p>**Substitute <code>git add path\to\file\here</code> to stage only a single file to add to your master repository.</p>
-<p><strong>Fetch Changes From Master Branch to Your Local Computer</strong></p>
-<p>I like to update my local computer with any master branch changes before beginning work on it. Enter these commands in terminal:</p>
-<ol>
-<li><code>git fetch</code></li>
-<li><code>git pull origin master</code></li>
-</ol>
-<p><strong>Review Merge Conflicts</strong></p>
-<p>Sometimes, your code may conflict with changes in the master branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use "git status" to locate the files with the conflicts. Enter in your terminal:</p>
-<ol>
-<li><code>git status</code></li>
-<li>Then <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line">follow these instructions</a> to review the merge conflicts.</li>
-</ol>
-<p>See also: <a href="https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/conflicts.html">Resolving Conflicts - Virtualenv Documentation</a></p>
-<p><strong>Or maybe you want to discard any local changes, then merge:</strong></p>
-<ol>
-<li><code>git fetch</code></li>
-<li><code>git checkout .</code></li>
-<li><code>git pull origin master</code></li>
-</ol>
-<p><strong>Recovering from a Corrupted Repository</strong></p>
-<p><code>git fsck --full --no-dangling</code></p>
-<p><a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html#recovering-from-repository-corruption">Additional Reading</a></p>
-<p><strong>Supplementary Reading</strong></p>
-<p><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a></p>
-<p><a href="https://lanraccoon.com/2018/8-git-commands-i-use-everyday/">8 Git Commands I Use Every Day</a></p>
-<p><a href="http://who-t.blogspot.com/2009/12/on-commit-messages.html">On Commit Messages</a></p>
-<p><a href="https://github.com/pandas-dev/pandas/wiki/Git-Workflows">Pandas Library Git Workflows</a></p>
+<p><strong>Why Python?</strong></p>
+<p>It's a language that emphasizes readability, is very versatile and has a great community of users to help you solve problems. It can be used for everything from the front end - functionality, user interface, etc. to the back end - data storage, server use, etc.</p>
+<p>My goal is to get better every day, and eventually build some cool shit.</p>
+<p>Thank you for reading,</p>
+<p>Erick</p>
+<p>*At the time I wrote this, I worked in a non-techincal marketing role. I've since moved into a role where I use Python nearly every day. If you're wondering how, I use <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/">Pandas</a>, <a class="reference external" href="https://2.python-requests.org/en/master/">Requests</a> and Excel a lot at my current gig.</p>
+
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="./git-the-basics-a-git-version-control-cheat-sheet.html">posted at 05:06</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/coding-command-prompt-data-analysis-git-programming-software.html" rel="tag">coding, command prompt, data analysis, git, programming, software</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="./tag/github.html" class="tags">github</a>
-                    &nbsp;<a href="./tag/terminal.html" class="tags">terminal</a>
-                    &nbsp;<a href="./tag/version-control.html" class="tags">version control</a>
+                    <a href="https://lofipython.com/marketer-slash-programmer.html">posted at 01:41</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/business-programming.html" rel="tag">business, programming</a>
                 </div>
-            </article>            <h4 class="date">Dec 26, 2019</h4>
+            </article>            <h4 class="date">Feb 21, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="./comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code.html" rel="bookmark" title="Permanent Link to &quot;Comparing Text Editors on Ubuntu: Atom, Emacs, Sublime, Vim & VS Code&quot;">Comparing Text Editors on Ubuntu: Atom, Emacs, Sublime, Vim & VS Code</a>
+                    <a href="https://lofipython.com/contact.html" rel="bookmark" title="Permanent Link to &quot;about&quot;">about</a>
                 </h2>
 
                 
                 
 
-                <p>The text editor is a core tool for writing software. I've always used Atom. Lately, I've noticed my Atom text editor was bogging down on my Chromebook running Ubuntu 16.04. Keystrokes and mouse movements were lagging and slowing my coding down. I'm also getting low on disk space, which may be a related issue.</p>
-<p>You'll want to choose a text editor based on how it suits your own needs. In this case, I want a light-weight, responsive editor with no lag. Bells and whistles are less important. I'm also looking to minimize disk space required.</p>
-<p>I decided to compare the <a href="https://codeburst.io/a-beginners-guide-to-using-apt-get-commands-in-linux-ubuntu-d5f102a56fc4">apt installed</a> package size of some popular editors. First, I installed Atom, Emacs, Sublime, VS Code and Vim using the Ubuntu 16.04 terminal. You could also consider using <a href="https://docs.python.org/3/library/idle.html">IDLE, python's built-in text editor</a> as an alternative that requires no additional software.</p>
-<p><strong>Then I</strong> <strong><a href="https://unix.stackexchange.com/questions/40442/which-installed-software-packages-use-the-most-disk-space-on-debian">found the below command</a></strong> <strong>to list all installed apt packages by package size on Ubuntu:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="w"> </span>dpkg-query<span class="w"> </span>-Wf<span class="w"> </span>&#39;<span class="cp">${</span><span class="n">Installed</span><span class="o">-</span><span class="n">Size</span><span class="cp">}</span>\t<span class="cp">${</span><span class="n">Package</span><span class="cp">}</span>\n&#39;<span class="w"> </span>|<span class="w"> </span>sort<span class="w"> </span>-n
-</code></pre></div>
+                <p>Python developer who automates tasks, builds apps and writes about coding. Send me your project \ event \ questions. Collaborative inquiries welcome.
+erickrumbold[at]gmail</p>
+<p><strong>Projects</strong></p>
+<p><a class="reference external" href="http://divbull.com">divbull.com</a>, an investing and stocks blog</p>
+<p><a class="reference external" href="https://www.positivethoughts.pythonanywhere.com/">positivipy</a>, text generation flask + mysql app built with fuzzywuzzy, ftfy, language_tool_python, textblob and markovify libraries</p>
+<p><a class="reference external" href="https://tameimpala.pythonanywhere.com/">Ask</a> <a class="reference external" href="https://tameimpala.pythonanywhere.com/">Tame Impala,</a> web2py + MongoDB Tame Impala lyrics search app</p>
+<p><a class="reference external" href="https://mastacos.pythonanywhere.com/">mas tacos</a>, proof of concept app with a US taco restaurant dataset</p>
 
-<p><strong>Here's the terminal output with relevant packages in Megabytes (including Firefox for comparative size):</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">136</span><span class="w">    </span><span class="n">emacsen</span><span class="o">-</span><span class="n">common</span>
-<span class="mf">366</span><span class="w"> </span><span class="n">vim</span><span class="o">-</span><span class="n">common</span>
-<span class="mf">1071</span><span class="w">    </span><span class="n">vim</span><span class="o">-</span><span class="n">tiny</span>
-<span class="mf">2400</span><span class="w">    </span><span class="n">vim</span>
-<span class="mf">21648</span><span class="w">   </span><span class="n">emacs26</span>
-<span class="mf">26870</span><span class="w">   </span><span class="n">vim</span><span class="o">-</span><span class="kr">run</span><span class="n">time</span>
-<span class="mf">34033</span><span class="w">   </span><span class="n">sublime</span><span class="o">-</span><span class="n">text</span>
-<span class="mf">70307</span><span class="w">   </span><span class="n">emacs26</span><span class="o">-</span><span class="n">common</span>
-<span class="mf">193694</span><span class="w">  </span><span class="n">firefox</span>
-<span class="mf">236965</span><span class="w">  </span><span class="n">code</span>
-<span class="mf">607932</span><span class="w">  </span><span class="n">atom</span>
-</code></pre></div>
-
-<p>Atom is by far the largest package I downloaded. It is nearly three times the size of VS Code, my second largest package. The next largest was my web browser, Firefox. Most of the other packages I downloaded were considerably smaller.</p>
-<blockquote>
-<p>Side note: I also found out Ubuntu 16.04 ships with a stripped down version of Vim called <a href="https://askubuntu.com/questions/104138/what-features-does-vim-tiny-have">vim-tiny</a>.</p>
-</blockquote>
-<p><strong>Total Installed Package Sizes in Megabytes (Smallest to Largest)</strong></p>
-<p>Some of these editors have multiple packages they are dependent on.</p>
-<hr>
-<p>Text Editor   Total Installed Packages Size   <strong>Packages Installed</strong>
-  Vim           29,636 MB                       vim, vim-common, vim-runtime
-  Sublime       34,033 MB                       sublime-text
-  Emacs         91,955 MB                       emacs26-common, emacs26, emacsen-common
-  VS Code       236,965 MB                      code
-  Atom          607,932 MB                      atom</p>
-<hr>
-<p><strong>Results: Vim and Sublime win for smallest installed package size.</strong></p>
-<ul>
-<li>Vim is the lightest-weight package of these 5 popular text editors, with Sublime not far behind. Emacs is comparable to them for usability and relatively small.</li>
-<li>Atom is nearly 3x the size of VS Code and 20x the size of Vim. Atom and VS Code are larger than the Firefox browser package, the third largest of any downloaded package on my system.</li>
-<li>I tested out all of the editors by opening the same Python file and making some edits. I found Vim, Emacs and Sublime were much more responsive than Atom and VS Code.</li>
-</ul>
-<p><strong>Conclusion: All Editors Are Not Created Equal</strong></p>
-<p>These are fine editors when paired with the right machine and developer needs. In my case, a Chromebook running Linux installed with <a href="https://github.com/dnschneid/crouton">Crouton</a>, a few editors are performing faster and taking up less space. I've chosen Sublime or Emacs as my editor for this computer. One slightly annoying feature of Sublime is being prompted to buy the paid version from the trial version. Atom, Emacs, Vim and VS Code are free. Vim might be a good option if I ever decide to conquer its <a href="https://stackoverflow.com/questions/11828270/how-do-i-exit-the-vim-editor">notoriously high learning curve</a>.</p>
-<p><strong>[Bonus] Find the size of all packages matching with "vim" in their name:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="w"> </span>dpkg-query<span class="w"> </span>-Wf<span class="w"> </span>&#39;<span class="cp">${</span><span class="n">Installed</span><span class="o">-</span><span class="n">Size</span><span class="cp">}</span>\t<span class="cp">${</span><span class="n">Package</span><span class="cp">}</span>\n&#39;<span class="w"> </span>|<span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span>|<span class="w"> </span>grep<span class="w"> </span>vim
-</code></pre></div>
-
-<p><strong>Terminal output from above command:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">366</span><span class="w"> </span><span class="n">vim</span><span class="o">-</span><span class="n">common</span>
-<span class="mf">1071</span><span class="w"> </span><span class="n">vim</span><span class="o">-</span><span class="n">tiny</span>
-<span class="mf">2400</span><span class="w"> </span><span class="n">vim</span>
-<span class="mf">26870</span><span class="w"> </span><span class="n">vim</span><span class="o">-</span><span class="kr">run</span><span class="n">time</span>
-</code></pre></div>
-
-<p><strong>Additional Reading</strong></p>
-<p><a href="https://www.quora.com/What-is-the-best-lightweight-text-editor">What is the best lightweight text editor?</a></p>
-<p><a href="https://github.com/atom/atom/issues/9755">Atom as an Editor is Too Big</a></p>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="./comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code.html">posted at 01:25</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/coding-linux-scripts-software-ubuntu.html" rel="tag">coding, Linux, Scripts, software, Ubuntu</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="./tag/atom.html" class="tags">atom</a>
-                    &nbsp;<a href="./tag/emacs.html" class="tags">emacs</a>
-                    &nbsp;<a href="./tag/sublime.html" class="tags">sublime</a>
-                    &nbsp;<a href="./tag/text-editors.html" class="tags">text editors</a>
-                    &nbsp;<a href="./tag/vim.html" class="tags">vim</a>
-                    &nbsp;<a href="./tag/vs-code.html" class="tags">vs code</a>
-                </div>
-            </article>            <h4 class="date">Dec 21, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="./copying-a-csv-file-to-google-sheets-with-pygsheets.html" rel="bookmark" title="Permanent Link to &quot;Copying a pandas Dataframe to Google Sheets with pygsheets&quot;">Copying a pandas Dataframe to Google Sheets with pygsheets</a>
-                </h2>
-
-                
-                
-
-                <blockquote>
-<p><strong>Disclaimer</strong>: This endeavor was before I discovered <a href="https://developers.google.com/apps-script">AppScript</a>, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by automating Google Sheet operations.</p>
-</blockquote>
-<p><strong>This was done on the Windows 7 OS.</strong> <strong>First, <a href="https://docs.python.org/3/installing/index.html">install libraries with pip</a>. Enter in command prompt or terminal:</strong></p>
-<ol>
-<li><code>python -m pip install pandas</code></li>
-<li><code>python -m pip install numpy</code></li>
-<li><code>python -m pip install pygsheets</code></li>
-</ol>
-<p><strong>Then, following the</strong> <strong><a href="https://pygsheets.readthedocs.io/en/stable/authorization.html">steps documented by pygsheets:</a></strong></p>
-<ol>
-<li>Create a Google Developer Account at <a href="http://console.developers.google.com">console.developers.google.com</a></li>
-<li><a href="https://pygsheets.readthedocs.io/en/stable/authorization.html">Enable Sheets API</a> to account</li>
-<li>Enable Drive API to account. Same as last step, but search for Drive.</li>
-<li>Create a Client Secret json file. Select "Credentials" tab, and "Create Credentials". Select Client Secret from options. Export from console and place in same directory as your .py file.</li>
-<li>Create a Service Account json file by selecting it instead of "Client Secret".</li>
-<li>Authorize pygsheets with your json files. (See below.)</li>
-<li>Copy spreadsheet to Google Sheet with pandas and pygsheets. (See below.)</li>
-</ol>
-<p><strong>After completing the first 5 steps, import pygsheets and authorize your account with the client secret json file:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygsheets</span>
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pygsheets</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">client_secret</span><span class="o">=</span><span class="s1">&#39;path/to/client_secret[...].json&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>You will be prompted by the terminal to go to a hyperlink in a browser, get your authorization code, and enter that authorization code into the terminal.</p>
-<p><strong>Now, import both libraries needed and switch to authorize with your service json file. Then, load the csv to a dataframe with pandas. Finally, copy it to an existing Google Sheet with pygsheets:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygsheets</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="sd">&quot;&quot;&quot;Select worksheets by id, index, or title.&quot;&quot;&quot;</span>
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pygsheets</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s1">&#39;path/to/service_account_credentials.json&#39;</span><span class="p">)</span> 
-<span class="n">sh</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;add_google_sheet_name_here&#39;</span><span class="p">)</span>
-<span class="n">wks</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="n">worksheet_by_title</span><span class="p">(</span><span class="s1">&#39;add_sheet_tab_name_here&#39;</span><span class="p">)</span>
-
-<span class="sd">&quot;&quot;&quot;Set a pandas dataframe to google sheet, starting at 1st row, 1st column&quot;&quot;&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Example_Data.csv&#39;</span><span class="p">)</span> 
-<span class="n">wks</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-</code></pre></div>
-
-<p><strong>[Example] Split and upload a sheet with 40 columns</strong></p>
-<p>Google Sheets limits importing to 26 columns and 1,000 rows at a time. So you'll have to load the sheets in chunks if you have more than that. This approach uses numpy's <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_split.html">array_split</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygsheets</span> 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pygsheets</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">client_secret</span><span class="o">=</span><span class="s1">&#39;path/to/client_secret[...].json&#39;</span><span class="p">)</span>
-<span class="n">sh</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;add_google_sheet_name_here&#39;</span><span class="p">)</span> 
-<span class="n">wks</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="n">worksheet_by_title</span><span class="p">(</span><span class="s1">&#39;add_sheet_tab_name_here&#39;</span><span class="p">)</span> 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Data_to_GSheets.csv&#39;</span><span class="p">)</span>
-
-<span class="c1"># split columns into two dataframes with numpy and pandas</span>
-<span class="n">first_half_cols</span><span class="p">,</span> <span class="n">second_half_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array_split</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">first_half</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">first_half_cols</span><span class="p">]</span>
-<span class="n">second_half</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">second_half_cols</span><span class="p">]</span>
-
-<span class="c1"># set both dataframes side-by-side in Google sheet</span>
-<span class="n">wks</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">first_half</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">start_column</span> <span class="o">=</span> <span class="n">first_half</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">wks</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">second_half</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span> <span class="n">start_column</span><span class="p">))</span>
-</code></pre></div>
-
-<p><strong>Conclusion</strong></p>
-<p>I found the terminal error messages from pygsheets to be very helpful while debugging the above. This module offers many other nifty spreadsheet operations. Solid library. You can now create and edit Google Sheets with Python.</p>
-<p>AppsScript should probably be the default tool when working with Google Sheets because it is built in, but Python does have tools available to work with Google Sheets.</p>
-<p><strong>Resources</strong></p>
-<p><a href="https://github.com/nithinmurali/pygsheets">pygsheets Github</a></p>
-<p><a href="https://pygsheets.readthedocs.io/en/stable/authorization.html">pygsheets Documentation</a></p>
-<p><a href="https://developers.google.com/sheets/api/guides/concepts">Google Sheets Documentation</a></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pandas Documentation</a></p>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="./copying-a-csv-file-to-google-sheets-with-pygsheets.html">posted at 18:58</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/automation-coding-excel-google-pandas.html" rel="tag">automation, coding, excel, Google, pandas</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="./tag/api.html" class="tags">api</a>
-                    &nbsp;<a href="./tag/google-api.html" class="tags">google api</a>
-                    &nbsp;<a href="./tag/google-sheets.html" class="tags">google sheets</a>
-                    &nbsp;<a href="./tag/json.html" class="tags">json</a>
-                    &nbsp;<a href="./tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="./tag/spreadsheets.html" class="tags">spreadsheets</a>
-                </div>
-            </article>            <h4 class="date">Dec 05, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="./a-collection-of-software-testing-opinions-for-python-and-beyond.html" rel="bookmark" title="Permanent Link to &quot;A Collection of Software Testing Opinions for Python and Beyond&quot;">A Collection of Software Testing Opinions for Python and Beyond</a>
-                </h2>
-
-                
-                
-
-                <h4>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</h4>
-<p><strong>An Introductory Rant on Testing</strong></p>
-<p>Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?</p>
-<blockquote>
-<p>Yeah. And the worst thing that happens is that you get people that just stop <em>thinking</em> about what they’re doing. “This is the principle, to always write unit tests, so I’m always going to write unit tests,” and then they’re just not thinking about how they’re spending their time, and they wind up wasting a lot of it.</p>
-<p>Joel Spolsky, <a href="https://www.joelonsoftware.com/2009/01/">Stack Overflow Podcast #38</a></p>
-</blockquote>
-<p>Implementing software tests is a best practice for maintaining code, but seems ambiguous to someone who has not tested any code before. I guess the best way is to <a href="https://github.com/iodide-project/pyodide/tree/master/test">read open source projects with test suites</a>, but those can be tough to find. How do you know <a href="https://docs.python-guide.org/writing/reading/">a good test suite</a> when you see it? Maybe the maintainers went rogue and off the deep end with tests. Online, everybody says you should test your code, <a href="https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes">is the emperor wearing any clothes?</a></p>
-<p>As a beginner stumbling across articles on testing, these questions were tough to answer. As with most things in programming, figuring out the right question to ask is a challenge in itself. <a href="https://www.codecademy.com/learn/learn-python-3">Codeacademy</a> and <a href="https://www.coursera.org/specializations/python">Coursera</a> never mentioned anything about writing tests. On the other hand, <a href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django</a> includes testing in its tutorial and documentation. Also, most languages come with built-in testing tools. Python has the <a href="https://docs.python.org/3/library/unittest.html">unittest</a> library.</p>
-<p><strong>Why test at all? First, some solid benefits of software testing:</strong></p>
-<ul>
-<li>With tests on your code in place, you can implement changes and have confidence the code still works if the tests pass. This gives developers more confidence to iterate and improve an application.</li>
-<li>Detect problems faster. Passing tests are a good indicator that your programs are actually doing what they're supposed to do. If they don't pass, you likely found a bug you might have missed otherwise.</li>
-<li>When you find a bug, you either need to amend your code, or your tests. write a test for that bug and then fix it. Either that, or you need to be amend your tests. You've just improved the quality of your test suite.</li>
-<li><a href="https://daedtech.com/dont-learn-to-code-learn-to-automate/">Automation</a>. If you are writing tests, those tests can be automated. If you are manually checking the results of your program, you're missing a chance to automate those checks away. I haven't applied it yet, but have heard the <a href="https://tox.readthedocs.io/en/latest/">Tox library</a> may be useful to automate tests related to Python packaging. For more on automating tests, see this PyCon talk, <a href="https://www.youtube.com/watch?v=-BHverY7IwU">Three Excellent Python Tools to Automate Repetitive Tasks</a>.</li>
-<li>Test Driven Development can decrease the time spent debugging code. This claim sometimes lacks empirical evidence, supporting evidence tends to be anecdotal.</li>
-</ul>
-<blockquote>
-<p>A good unit test, therefore, is one that helps enforce the contract to which the function is committed.</p>
-<p>If a good unit test breaks, the contract is violated and should be either explicitly amended (by changing the documentation and tests), or fixed (by fixing the code and leaving the tests as is).</p>
-<p>A good unit test is also <em>strict</em>. It does its best to ensure the output is valid. This helps it catch more bugs.</p>
-<p>- Moshe Zadka, <a href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></p>
-</blockquote>
-<p><strong>Pytest and Unit Testing in Python</strong></p>
-<p>This is where the Python hits the pavement. Unit tests are generally liked, although some prefer property tests or integration tests because they think the scope of unit tests is too narrow. The <a href="https://docs.python.org/3/library/unittest.html">unittest</a> library is Python's default testing framework. However nowadays, <a href="https://docs.pytest.org/en/latest/contents.html">pytest</a> seems to be the preferred unit testing framework for Python. <a href="https://hypothesis.readthedocs.io/en/latest/">Hypothesis</a> is another popular framework I've read about.</p>
-<p><strong>Pytest Testing</strong></p>
-<ul>
-<li>
-<p><a href="https://realpython.com/interview-brian-okken/">Interview with the author of Pytest</a></p>
-</li>
-<li>
-<p><a href="https://docs.pytest.org/en/latest/">Pytest Documentation</a></p>
-</li>
-<li>
-<p><a href="https://martinheinz.dev/blog/7">Pytest Features That You Need In Your Life</a></p>
-</li>
-<li>
-<p><a href="http://love-python.blogspot.com/2017/10/table-driven-unit-test-in-python.html">Table Driven Unit Testing With pytest</a></p>
-</li>
-<li>
-<p><a href="https://www.youtube.com/watch?v=Pf1ADyUKOrE">Reproducible Data Analysis in Jupyter, Part 6/10: Unit Testing with PyTest</a> [YouTube]</p>
-</li>
-</ul>
-<blockquote>
-<p>Tests start to lose signal when <a href="https://docs.python.org/3/library/unittest.mock.html">Mock</a> becomes routine instead of a reluctant workaround. - Brandon Rhodes, <a href="http://S0No2zSJmks">When Python Practices Go Wrong</a></p>
-</blockquote>
-<p><strong>Testing in Python \ General Unit Testing Ideas</strong></p>
-<ul>
-<li><a href="https://github.com/pandas-dev/pandas/wiki/Testing">Testing Conventions for the Pandas Library</a></li>
-<li><a href="https://kanoki.org/2019/11/18/how-to-create-dataframe-for-testing/">How to Create a Dataframe for Testing</a></li>
-<li><a href="https://jeffknupp.com/blog/2013/12/09/improve-your-python-understanding-unit-testing//">Improve Your Python: Understanding Unit Testing</a></li>
-<li><a href="http://kbroman.org/blog/2015/12/07/write-unit-tests/">Write Unit Tests</a></li>
-<li><a href="https://henrikwarne.com/2013/12/08/tdd-unit-tests-and-the-passage-of-time/">Writing Unit Tests for Time</a></li>
-<li><a href="https://henrikwarne.com/2014/02/19/5-unit-testing-mistakes/">5 Unit Testing Mistakes</a></li>
-<li><a href="https://hillelwayne.com/post/unit-tests-are-not-tests/">Unit Tests Are Not Tests</a></li>
-<li><a href="https://hakibenita.com/the-best-new-feature-in-unittest-you-didnt-know-you-need">The Best New Feature in unittest You Didn't Know You Need</a></li>
-<li><a href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></li>
-<li><a href="https://michaelfeathers.typepad.com/michael_feathers_blog/2008/06/the-flawed-theo.html">The Flawed Theory Behind Unit Testing</a></li>
-<li><a href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django Introduction to Automated Testing</a></li>
-<li><a href="https://hillelwayne.com/post/python-doctests/">Python Doc Tests</a> Turn docstrings into tests, unique to Python.</li>
-</ul>
-<blockquote>
-<p>I think <a href="https://hypothesis.readthedocs.io/en/latest/">hypothesis</a> is probably underrated—some libraries are hesitant to incorporate it into their testing frameworks, but I think the property-based testing has real potential to catch scenarios humans would have a hard time anticipating, or at least that would take a long time to properly plan for. I find that hypothesis almost always adds a few useful test cases I hadn’t thought of that will require special error handling, for example.</p>
-<p><a href="http://www.blog.pythonlibrary.org/2020/01/13/pydev-of-the-week-tyler-reddy/">Tyler Reddy</a>, SciPy Release Manager</p>
-</blockquote>
-<p><strong>Integration \ Property Tests</strong></p>
-<ul>
-<li><a href="https://blog.juliobiason.me/books/things-i-learnt/integration-tests/">Unit Tests Are Good, Integration Tests Are Gooder</a></li>
-<li><a href="https://hillelwayne.com/post/pbt-contracts/">PROPERTY TESTS + CONTRACTS = INTEGRATION TESTS</a></li>
-<li><a href="https://hillelwayne.com/post/contract-examples/">Finding Property Tests</a></li>
-<li><a href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-Based Testing</a></li>
-<li><a href="https://hillelwayne.com/post/contracts/">Contracts</a></li>
-</ul>
-<blockquote>
-<p>Traditional, or example-based, testing specifies the behavior of your software by writing examples of it[—]{.mt-dash}each test sets up a single concrete scenario and asserts how the software should behave in that scenario. Property-based tests take these concrete scenarios and generalize them by focusing on which features of the scenario are essential and which are allowed to vary. This results in cleaner tests that better specify the software’s behavior[—]{.mt-dash}and that better uncover bugs missed by traditional testing[.]{.mt-periodPullEnd}</p>
-<p>- David Maciver, <a href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-based Testing</a></p>
-</blockquote>
-<p><strong>Assertions</strong></p>
-<p>Assertions are generally accepted as welcome additions to your code.</p>
-<ul>
-<li><a href="https://blog.regehr.org/archives/1091">Use of Assertions</a></li>
-<li><a href="http://www.squarefree.com/2014/02/03/fuzzers-love-assertions/">Fuzzers Love Assertions</a></li>
-<li><a href="http://pgbovine.net/code-carabiners.htm">Code Carabiners</a></li>
-<li><a href="https://docs.pytest.org/en/latest/assert.html#assert">pytest Assertions</a></li>
-</ul>
-<blockquote>
-<p>In reality, the safety and restraints that these code carabiners provide actually give you <strong>more freedom</strong> to take risks in your coding. If you want to try out some risky feature, refactoring, or external library, you know something is wrong as soon as one of your assertions or tests fail and can undo back to an earlier working state.</p>
-<p>Phillip J. Guo, <a href="http://pgbovine.net/code-carabiners.htm">Code Carabiners</a></p>
-</blockquote>
-<p><strong>Test Driven Development</strong></p>
-<p>Eventually, you'll discover the evangelists preaching Test Driven Development. There are certain discussions which polarize us in the software development world, such as the appropriate scenarios to deploy this system of development.</p>
-<p>Opinions vary widely on the merits and appropriate application of TDD. I'm admittedly skeptical but do see the merits of TDD. But which flavor? Where do unit tests and integration tests fit in? How many tests should I write? What exactly should I be testing? <a href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">This essay</a> claims anyone pair programming software with an expected life of 3 or more years should use Test Driven Development.</p>
-<ul>
-<li><a href="https://henrikwarne.com/2019/09/29/when-tdd-is-not-a-good-fit/">When TDD is Not a Good Fit</a></li>
-<li><a href="http://neverworkintheory.org/2016/10/05/test-driven-development.html">Test Driven Development vs. Test Last Development</a> [Study]</li>
-<li><a href="https://www.youtube.com/watch?v=DQBf6li1hww">Why TDD Is Crap</a> [YouTube]</li>
-<li><a href="https://hillelwayne.com/post/why-tdd-isnt-crap/">Why TDD Isn't Crap</a> [Response Blog to Video]</li>
-<li><a href="https://www.arp242.net/testing.html">Testing Isn't Everything</a></li>
-<li><a href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">Is Pair Programming + TDD worth it?</a></li>
-</ul>
-<blockquote>
-<p>"Test Driven Development is a tool for continuously evaluating hypotheses."</p>
-<p>- <a href="https://www.youtube.com/watch?time_continue=170&amp;v=UOOuW5tqT8M&amp;feature=emb_logo">James Shore, Assert(JS) Con 2019</a></p>
-</blockquote>
-<p><strong>General Testing Ideas and Principles</strong></p>
-<ul>
-<li><a href="https://docs.python-guide.org/writing/tests/">Testing Your Code</a>, The Hitchhiker's Guide to Python</li>
-<li><a href="https://blog.liw.fi/posts/2019/06/29/dijkstra_was_only_partially_correct_about_testing/">The Point of Software Testing</a></li>
-<li><a href="https://rachelbythebay.com/w/2013/01/30/test/">Connecting Bug Fixing to Automated Testing</a></li>
-<li><a href="https://www.jamesshore.com/In-the-News/Thinking-In-Tests.html">Thinking in Tests</a> [YouTube]</li>
-<li><a href="https://www.drmaciver.com/2015/04/some-empirically-derived-testing-principles/">Some empirically derived testing principles</a></li>
-<li><a href="https://danluu.com/tests-v-reason/">Testing Vs. Informal Reasoning</a></li>
-<li><a href="https://blog.nelhage.com/2016/12/how-i-test/">How I Write Tests</a></li>
-<li><a href="https://www.youtube.com/watch?v=Xu5EhKVZdV8">Stop Mocking, Start Testing</a> [YouTube]</li>
-<li>"<a href="https://python-guide-es.readthedocs.io/es/latest/writing/reading.html">Each one of these projects is a paragon of Python coding.</a>"</li>
-<li><a href="https://increment.com/development/what-its-like-to-be-a-developer-at/">What it's Like to Be a Developer at...</a> [Testing Practices Described]</li>
-<li><a href="https://www.youtube.com/watch?v=f84n5oFoZBc">Hammock Driven Development</a> [YouTube] Not so much testing focused, but including because I really enjoyed this talk.</li>
-</ul>
-<p><strong>Other common tests types:</strong></p>
-<blockquote>
-<p>Unit test: when it fails, it tells you what piece of your code needs to be fixed.</p>
-<p>Integration test: when it fails, it tells you that the pieces of your application are not working together as expected.</p>
-<p>Acceptance test: when it fails, it tells you that the application is not doing what the customer expects it to do.</p>
-<p>Regression test: when it fails, it tells you that the application no longer behaves the way it used to.</p>
-<p>- <a href="https://stackoverflow.com/questions/7672511/unit-test-integration-test-regression-test-acceptance-test">Mathias, Stack Overflow Answer</a></p>
-</blockquote>
-<p><strong>Testing maturity level progression:</strong></p>
-<ol>
-<li>No tests</li>
-<li>Occasional, slow, unreliable tests</li>
-<li>Semi-comprehensive integration tests</li>
-<li>Fast, comprehensive unit tests comprise the bulk of testing<ul>
-<li>Dependency injection</li>
-<li>Composable subsystem design</li>
-</ul>
-</li>
-<li>Real-time test feedback (ideally integrated into the editor)</li>
-<li>Tests are extremely reliable or <a href="http://andyfriesen.com/2015/06/17/testable-io-in-haskell.html">guaranteed reliable by the type system</a><ul>
-<li>With tooling that tracks the reliability of tests and provides that feedback to authors.</li>
-</ul>
-</li>
-<li>Fuzzing, statistically automated microbenchmarking, rich testing frameworks for every language and every platform, and a company culture of writing the appropriate number of unit tests and high-value integration tests.</li>
-</ol>
-<p>- <a href="https://chadaustin.me/2019/11/two-years-at-dropbox/">ChadAustin.me</a></p>
-<p><strong>I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:</strong></p>
-<p><code>python -m pip install pytest</code></p>
-<p><strong>test_file_date.py</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
-
-<span class="c1"># The dir_query format is for a Windows path with Unix style pattern matching.</span>
-<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
-    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
-    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
-</code></pre></div>
-
-<p><strong>Run the test with pytest by entering:</strong><br>
-<code>pytest test_file_date.py</code></p>
-<p><strong>Conclusion</strong><br>
-I write programs for personal productivity and to <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automate processes</a> at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.</p>
-<p>It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.</p>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="./a-collection-of-software-testing-opinions-for-python-and-beyond.html">posted at 03:06</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/coding-productivity-programming-python-software-testing.html" rel="tag">coding, productivity, programming, python, software testing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="./tag/pytest.html" class="tags">pytest</a>
-                    &nbsp;<a href="./tag/software-development.html" class="tags">software development</a>
-                    &nbsp;<a href="./tag/test-driven-development.html" class="tags">test driven development</a>
-                </div>
-            </article>            <h4 class="date">Nov 30, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="./inserting-new-records-into-a-microsoft-access-database-with-python.html" rel="bookmark" title="Permanent Link to &quot;Inserting New Rows Into A Microsoft Access Database With Python and pyodbc&quot;">Inserting New Rows Into A Microsoft Access Database With Python and pyodbc</a>
-                </h2>
-
-                
-                
-
-                <p>I recently automated the loading of data into a Microsoft Access database with <a href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc</a>, a Python library for connecting to databases. ODBC stands for <a href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Open Database Connectivity</a>. It can be used for a variety of Database Management Systems outside of Access also.</p>
-<p><strong>First,</strong> <strong><a href="https://docs.python.org/3/installing/index.html">install libraries with pip</a>. Enter in terminal or command prompt:</strong></p>
-<ol>
-<li>
-<ol>
-<li><code>python -m pip install pyodbc</code></li>
-<li><code>python -m pip install pandas</code></li>
-</ol>
-</li>
-</ol>
-<p><strong>Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">python</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pyodbc</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">drivers</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Microsoft Access Driver&#39;</span><span class="p">)]</span>
-</code></pre></div>
-
-<p><strong>Drivers for</strong> <strong>Access &amp; Many Other Data Sources</strong></p>
-<p>The driver is the engine that allows you to connect to a specific type of database. The drivers available vary depending on your machine.</p>
-<p>The two most common drivers for Access are Microsoft Access Driver (*.mdb) and Microsoft Access Driver (*.mdb, *.accdb). My computer only had *.mdb, which has been deprecated. My Access database was a .mdb file, so I was able to use this driver as shown below. Read more on Access drivers <a href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-Microsoft-Access">here</a>.</p>
-<blockquote>
-<p>"Drivers exist for all major DBMSs, many other data sources like address book systems and Microsoft Excel, and even for text or comma-separated values (CSV) files."  - <a href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Wikipedia</a></p>
-</blockquote>
-<p><strong>Database Data Types</strong></p>
-<p>I set all of the field data types to "Short Text" because I'm passing strings as SQL parameters below. Uploading as other data types may require additional formatting. To edit the data types of your table, open the table and select "Design View" under the "Home" tab. It got the job done for me!</p>
-<p><strong>Inserting new rows into a Microsoft Access Database:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pyodbc</span>
-
-
-<span class="k">def</span> <span class="nf">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    use list comprehension to format df rows as a list of tuples: </span>
-<span class="sd">    rows = [(&#39;Garfield&#39;,&#39;Orange&#39;,&#39;Eat&#39;),(&#39;Meowth&#39;,&#39;White&#39;,&#39;Scratch&#39;)] </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">rows</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Rows are not added to DB until they are committed. </span>
-<span class="sd">Pass each row tuple as a SQL parameter (?,?,?). </span>
-<span class="sd">cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm</span>
-<span class="sd">&quot;&quot;&quot;</span> 
-<span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\Add_Path\To_DB\Here\Your_DB.mdb;&#39;</span><span class="p">)</span>
-<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39; INSERT INTO Cats (Name, Color, Move) </span>
-<span class="s1">          VALUES(?,?,?) &#39;&#39;&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Cat Data.csv&#39;</span><span class="p">)</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="n">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> 
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> 
-<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</code></pre></div>
-
-<p><strong>Conclusion</strong></p>
-<p>Running the above in command prompt uses pyodbc and SQL to add dataframe rows to a Microsoft Access DB table named "Cats". Passing each row as a <a href="https://www.python.org/dev/peps/pep-0249/#paramstyle">SQL parameter</a> has two benefits:</p>
-<ol>
-<li>It handles strings with single quotes (') and loads them to the DB.</li>
-<li>It protects against <a href="https://www.acunetix.com/websitesecurity/sql-injection/">SQL injection</a> attacks.</li>
-</ol>
-<p><strong>Access Limitation Disclaimer</strong></p>
-<p>Access topped out just shy of 10 million rows in my use case, when records stopped getting added to my database. So keep that in mind if you're thinking about using Access to store your data.</p>
-<p><strong>Supplementary Resources</strong></p>
-<p><a href="https://datatofish.com/insert-ms-access-python/">Insert Values into MS Access Table using Python</a></p>
-<p><a href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc documentation</a></p>
-<p><a href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15">Microsoft Documentation pyodbc example</a></p>
-<p><a href="https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor.htm">The Python Cursor Class</a></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><a href="https://www.psycopg.org/docs/cursor.html">Psycopg Cursor Class Documentation</a></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="./inserting-new-records-into-a-microsoft-access-database-with-python.html">posted at 00:28</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/automation-data-databases-excel-odbc-pandas-python-windows.html" rel="tag">automation, data, Databases, excel, ODBC, pandas, python, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="./tag/access.html" class="tags">Access</a>
-                    &nbsp;<a href="./tag/microsoft.html" class="tags">Microsoft</a>
-                    &nbsp;<a href="./tag/productivity.html" class="tags">productivity</a>
-                    &nbsp;<a href="./tag/programming.html" class="tags">programming</a>
+                    <a href="https://lofipython.com/contact.html">posted at 19:18</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/blog.html" rel="tag">blog</a>
                 </div>
             </article>
 
                 <div class="clear"></div>
                 <div class="pages">
 
-                    <a href="./index7.html" class="prev_page">&larr;&nbsp;Previous</a>
+                    <a href="https://lofipython.com/index7.html" class="prev_page">&larr;&nbsp;Previous</a>
 
-                    <a href="./index9.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 8 of 12</span>
+                    <span>Page 8 of 8</span>
                 </div>
 
             <div class="clear"></div>
@@ -1115,9 +233,9 @@ I write programs for personal productivity and to <a href="https://pythonmarkete
                 &middot;
                 Powered by <a href="http://getpelican.com">Pelican</a>
                 &middot;
-                <a href="./feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
                 &middot;
-                <a href="./feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
             </footer>
         </div>
         <div class="clear"></div>

@@ -21,7 +21,7 @@ I used pytube3 with `Flask <https://flask.palletsprojects.com/en/1.1.x/>`__ and 
 
 ``python -m pip install flask``
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import logging
    import sys

@@ -40,7 +40,7 @@ Once I had a folder of .jpg images, I used the `Google Vision API <https://githu
 
 Since I had only 771 images, I was able to extract text on all of them and stay within Google's free plan (1,000 requests / month). I `followed these installation instructions <https://cloud.google.com/vision/docs/quickstart>`__ on my Ubuntu Linux computer. It worked well on most of the images. Here's the code I used to detect text in all my images and save it in a .csv file:
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import io
    import os
@@ -127,7 +127,7 @@ Google pointed me to `this post from Analytics India Magazine <https://analytics
 
 Here's the code to create Markov chain on the quote text:
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import markovify
    # Build a markov chain model.

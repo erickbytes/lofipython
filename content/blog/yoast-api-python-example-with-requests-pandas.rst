@@ -9,7 +9,7 @@ Yoast SEO API Python Example With requests + pandas
 
 Lately I've been checking out the `Yoast SEO plug-in <https://yoast.com/wordpress/plugins/seo/>`__ and their `REST API <https://developer.yoast.com/customization/apis/rest-api>`__. The API returns all of the SEO metadata, meta tags, schema.org data, etc. for your Wordpress blog posts. Here's a Yoast API Python example script to fetch post metadata via requests and pandas:
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import pandas as pd
    import requests

@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Python Marketer | articles tagged "tweets"</title>
-    <link rel="shortcut icon" type="image/png" href="../favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
-    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
-    <link href="https://pythonmarketer.com/feeds/tweets.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
-    <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" />
+    <title>Lo-Fi Python | articles tagged "tweets"</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/tweets.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Tags Atom Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="@erickbytes" />
@@ -19,16 +19,16 @@
     <header>
         <nav style="overflow: hidden;">
             <ul>
-                <li class="ephemeral selected"><a href="../tag/tweets.html">tweets</a></li>
-                <li><a href="../">Home</a></li>
+                <li class="ephemeral selected"><a href="https://lofipython.com/tag/tweets.html">tweets</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
                 <li><a href="feeds/all.rss.xml">RSS</a></li>
                 <li><a href="feeds/all.atom.xml">Atom</a></li>
-                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
             </ul>
         </nav>
         <div class="header_box" style="height: 50px">
-        <h1><a href="../">
-            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
             </a></h1></div>
         </div>
     </header>
@@ -37,54 +37,82 @@
 
             <article class="post">
                 <h2 class="title">
-                    <a href="../delete-all-your-tweets-with-tweepy-and-the-twitter-api.html" rel="bookmark" title="Permanent Link to &quot;Delete All Your Tweets with Tweepy and the Twitter API&quot;">Delete All Your Tweets with Tweepy and the Twitter API</a>
+                    <a href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api.html" rel="bookmark" title="Permanent Link to &quot;Delete All Your Tweets with Tweepy and the Twitter API&quot;">Delete All Your Tweets with Tweepy and the Twitter API</a>
                 </h2>
 
                 
                 
 
-                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>You may want to <a href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive">download an archive</a> of your tweets before deleting them. I did this and it took about a day to get my archive download.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+                <p>You may want to <a class="reference external" href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive">download an archive</a> of your tweets before deleting them. I did this and it took about a day to get my archive download.</p>
 <p><strong>How To Purge Your Tweet History with Python</strong></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:list {"ordered":true} --&gt;</code></p>
-<ol>
-<li>Per the <a href="http://docs.tweepy.org/en/latest/install.html">Tweepy library documentation</a>, install tweepy with <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. It worked fine in my python 3.8 <a href="https://docs.python.org/3/library/venv.html">virtual environment</a>.</li>
+<ol class="arabic simple">
+<li>Per the <a class="reference external" href="http://docs.tweepy.org/en/latest/install.html">Tweepy library documentation</a>, install tweepy with <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. It worked fine in my python 3.8 <a class="reference external" href="https://docs.python.org/3/library/venv.html">virtual environment</a>.</li>
 </ol>
-<p><code>&lt;!-- /wp:list --&gt;</code></p>
-<p><code>&lt;!-- wp:code --&gt;</code></p>
-<div class="highlight"><pre><span></span><code>pip install tweepy
-</code></pre></div>
-
-<p><code>&lt;!-- /wp:code --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>2. Sign up for a <a href="https://developer.twitter.com/">Twitter Developer account</a> and create an app. I named mine "tweetcleanr".</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>3. Find your app under "Projects &amp; Apps". Edit your app's permissions to "<strong>Read + Write + Direct Messages</strong>".</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>4. After you update your permissions, select the "Keys and tokens" tab. Then regenerate new API keys. Then paste them in the below script.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:image {"align":"left","id":4350,"sizeSlug":"large"} --&gt;</code></p>
-<p><img alt="" class="wp-image-4350" src="https://pythonmarketer.files.wordpress.com/2020/09/twitter-dev.png?w=1024"></p>
-<p><code>&lt;!-- /wp:image --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>5. Save the below script as a python file. In command prompt or terminal, run python <strong>delete_tweets.py</strong> or whatever you want to name it!</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>6. You'll be asked to go to a link and enter an authorization code. Then you'll see your tweets being deleted like pictured below.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="n">install</span> <span class="n">tweepy</span>
+</pre>
+<ol class="arabic simple" start="2">
+<li>Sign up for a <a class="reference external" href="https://developer.twitter.com/">Twitter Developer account</a> and create an app. I named mine &quot;tweetcleanr&quot;.</li>
+<li>Find your app under &quot;Projects &amp; Apps&quot;. Edit your app's permissions to &quot;<strong>Read + Write + Direct Messages</strong>&quot;.</li>
+<li>After you update your permissions, select the &quot;Keys and tokens&quot; tab. Then regenerate new API keys. Then paste them in the below script.</li>
+</ol>
+<div class="wp-image-4350 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/twitter-dev.png?w=1024" />
+</div>
+<ol class="arabic simple" start="5">
+<li>Save the below script as a python file. In command prompt or terminal, run python <strong>delete_tweets.py</strong> or whatever you want to name it!</li>
+<li>You'll be asked to go to a link and enter an authorization code. Then you'll see your tweets being deleted like pictured below.</li>
+</ol>
 <p><strong>delete_tweets.py</strong></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>I found this <a href="https://gist.github.com/davej/113241">Github Gist</a> via Google and updated the print and input statements to Python 3. I also added the <a href="https://docs.python.org/3/library/traceback.html">traceback module</a> in case you need to debug it. Initially, I received an error telling me to complete step 3 above. I didn't see the error message at first, until adding <code>traceback.print_exc()</code> like you see below.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tweepy</span>
+<p>I found this <a class="reference external" href="https://gist.github.com/davej/113241">Github Gist</a> via Google and updated the print and input statements to Python 3. I also added the <a class="reference external" href="https://docs.python.org/3/library/traceback.html">traceback module</a> in case you need to debug it. Initially, I received an error telling me to complete step 3 above. I didn't see the error message at first, until adding <tt class="docutils literal">traceback.print_exc()</tt> like you see below.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">tweepy</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -132,40 +160,27 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authenticated as: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">api</span><span class="o">.</span><span class="n">me</span><span class="p">()</span><span class="o">.</span><span class="n">screen_name</span><span class="p">)</span>
 
     <span class="n">batch_delete</span><span class="p">(</span><span class="n">api</span><span class="p">)</span>
-</code></pre></div>
-
-<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
-<p><code>&lt;!-- wp:image {"align":"left","id":4325,"sizeSlug":"large"} --&gt;</code></p>
-<p><img alt="" class="wp-image-4325" src="https://pythonmarketer.files.wordpress.com/2020/09/terminaltweepy.png?w=755"></p>
-<p><code>&lt;!-- /wp:image --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+</pre></div></td></tr></table></div>
+<div class="wp-image-4325 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/terminaltweepy.png?w=755" />
+</div>
 <p><strong>✅</strong> <strong>Twitter Cleanse Complete</strong></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
 <p>Twitter has a really slick developer dashboard. Its API combined with the tweepy library got the job done for me. It's great when stuff just works. And it only cost me about 1 hour to complete. Time to start a clean slate. Here's to looking forward.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
 <p><strong>Supplementary Reading</strong></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><a href="http://docs.tweepy.org/en/latest/getting_started.html">Tweepy Documentation Tutorial</a></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><a href="https://developer.twitter.com/en/docs/tutorials">Twitter's API Tutorials</a></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><a href="https://developer.twitter.com/en/docs/tutorials/postman-getting-started">Twitter Postman Tutorial</a></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><a class="reference external" href="http://docs.tweepy.org/en/latest/getting_started.html">Tweepy Documentation Tutorial</a></p>
+<p><a class="reference external" href="https://developer.twitter.com/en/docs/tutorials">Twitter's API Tutorials</a></p>
+<p><a class="reference external" href="https://developer.twitter.com/en/docs/tutorials/postman-getting-started">Twitter Postman Tutorial</a></p>
+
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="../delete-all-your-tweets-with-tweepy-and-the-twitter-api.html">posted at 21:07</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/coding-programming-python.html" rel="tag">coding, programming, python</a>
+                    <a href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api.html">posted at 21:07</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="../tag/api.html" class="tags">api</a>
-                    &nbsp;<a href="../tag/tweepy.html" class="tags">tweepy</a>
-                    &nbsp;<a href="../tag/tweets.html" class="tags selected">tweets</a>
-                    &nbsp;<a href="../tag/twitter.html" class="tags">twitter</a>
+                    &nbsp;<a href="https://lofipython.com/tag/api.html" class="tags">api</a>
+                    &nbsp;<a href="https://lofipython.com/tag/tweepy.html" class="tags">tweepy</a>
+                    &nbsp;<a href="https://lofipython.com/tag/tweets.html" class="tags selected">tweets</a>
+                    &nbsp;<a href="https://lofipython.com/tag/twitter.html" class="tags">twitter</a>
                 </div>
             </article>
 
@@ -176,9 +191,9 @@
                 &middot;
                 Powered by <a href="http://getpelican.com">Pelican</a>
                 &middot;
-                <a href="../feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
                 &middot;
-                <a href="../feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
             </footer>
         </div>
         <div class="clear"></div>

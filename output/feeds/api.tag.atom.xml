@@ -1,5 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - api</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/api.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2020-05-18T05:41:00-05:00</updated><entry><title>A Guide To Making HTTP Requests To APIs With JSON &amp; Python</title><link href="https://lofipython.com/how-to-make-json-requests-with-python.html" rel="alternate"></link><published>2020-05-18T05:41:00-05:00</published><updated>2020-05-18T05:41:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-05-18:/how-to-make-json-requests-with-python.html</id><summary type="html">&lt;p&gt;This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - api</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/api.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2020-09-13T21:07:00-05:00</updated><entry><title>Delete All Your Tweets with Tweepy and the Twitter API</title><link href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api.html" rel="alternate"></link><published>2020-09-13T21:07:00-05:00</published><updated>2020-09-13T21:07:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-09-13:/delete-all-your-tweets-with-tweepy-and-the-twitter-api.html</id><summary type="html">&lt;p&gt;You may want to &lt;a class="reference external" href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive"&gt;download an archive&lt;/a&gt; of your tweets before deleting them. I did this and it took about a day to get my archive download.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How To Purge Your Tweet History with Python&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Per the &lt;a class="reference external" href="http://docs.tweepy.org/en/latest/install.html"&gt;Tweepy library documentation&lt;/a&gt;, install tweepy with &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;. It worked fine in my python …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;You may want to &lt;a class="reference external" href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive"&gt;download an archive&lt;/a&gt; of your tweets before deleting them. I did this and it took about a day to get my archive download.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How To Purge Your Tweet History with Python&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Per the &lt;a class="reference external" href="http://docs.tweepy.org/en/latest/install.html"&gt;Tweepy library documentation&lt;/a&gt;, install tweepy with &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;. It worked fine in my python 3.8 &lt;a class="reference external" href="https://docs.python.org/3/library/venv.html"&gt;virtual environment&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;tweepy&lt;/span&gt;
+&lt;/pre&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;Sign up for a &lt;a class="reference external" href="https://developer.twitter.com/"&gt;Twitter Developer account&lt;/a&gt; and create an app. I named mine &amp;quot;tweetcleanr&amp;quot;.&lt;/li&gt;
+&lt;li&gt;Find your app under &amp;quot;Projects &amp;amp; Apps&amp;quot;. Edit your app's permissions to &amp;quot;&lt;strong&gt;Read + Write + Direct Messages&lt;/strong&gt;&amp;quot;.&lt;/li&gt;
+&lt;li&gt;After you update your permissions, select the &amp;quot;Keys and tokens&amp;quot; tab. Then regenerate new API keys. Then paste them in the below script.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="wp-image-4350 figure"&gt;
+&lt;img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/twitter-dev.png?w=1024" /&gt;
+&lt;/div&gt;
+&lt;ol class="arabic simple" start="5"&gt;
+&lt;li&gt;Save the below script as a python file. In command prompt or terminal, run python &lt;strong&gt;delete_tweets.py&lt;/strong&gt; or whatever you want to name it!&lt;/li&gt;
+&lt;li&gt;You'll be asked to go to a link and enter an authorization code. Then you'll see your tweets being deleted like pictured below.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;delete_tweets.py&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I found this &lt;a class="reference external" href="https://gist.github.com/davej/113241"&gt;Github Gist&lt;/a&gt; via Google and updated the print and input statements to Python 3. I also added the &lt;a class="reference external" href="https://docs.python.org/3/library/traceback.html"&gt;traceback module&lt;/a&gt; in case you need to debug it. Initially, I received an error telling me to complete step 3 above. I didn't see the error message at first, until adding &lt;tt class="docutils literal"&gt;traceback.print_exc()&lt;/tt&gt; like you see below.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;
+&lt;span class="normal"&gt;25&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;
+&lt;span class="normal"&gt;27&lt;/span&gt;
+&lt;span class="normal"&gt;28&lt;/span&gt;
+&lt;span class="normal"&gt;29&lt;/span&gt;
+&lt;span class="normal"&gt;30&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;
+&lt;span class="normal"&gt;32&lt;/span&gt;
+&lt;span class="normal"&gt;33&lt;/span&gt;
+&lt;span class="normal"&gt;34&lt;/span&gt;
+&lt;span class="normal"&gt;35&lt;/span&gt;
+&lt;span class="normal"&gt;36&lt;/span&gt;
+&lt;span class="normal"&gt;37&lt;/span&gt;
+&lt;span class="normal"&gt;38&lt;/span&gt;
+&lt;span class="normal"&gt;39&lt;/span&gt;
+&lt;span class="normal"&gt;40&lt;/span&gt;
+&lt;span class="normal"&gt;41&lt;/span&gt;
+&lt;span class="normal"&gt;42&lt;/span&gt;
+&lt;span class="normal"&gt;43&lt;/span&gt;
+&lt;span class="normal"&gt;44&lt;/span&gt;
+&lt;span class="normal"&gt;45&lt;/span&gt;
+&lt;span class="normal"&gt;46&lt;/span&gt;
+&lt;span class="normal"&gt;47&lt;/span&gt;
+&lt;span class="normal"&gt;48&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tweepy&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;traceback&lt;/span&gt;
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;Delete All Your Tweets - Github Gist by davej&lt;/span&gt;
+&lt;span class="sd"&gt;Credit: https://gist.github.com/davej/113241&lt;/span&gt;
+&lt;span class="sd"&gt;Ported to Python 3 by Python Marketer: pythonmarketer.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;CONSUMER_KEY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;get_from_dev_portal&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;CONSUMER_SECRET&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;get_from_dev_portal&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;oauth_login&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;consumer_key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;consumer_secret&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Authenticate with twitter using OAuth&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="n"&gt;auth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tweepy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OAuthHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;consumer_key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;consumer_secret&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;auth_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_authorization_url&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="n"&gt;verify_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;Authenticate at &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt; and then enter you verification code here &amp;gt; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;auth_url&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_access_token&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verify_code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;tweepy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;API&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;batch_delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;You are about to delete all tweets from the account @&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;.&amp;quot;&lt;/span&gt;
+        &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;verify_credentials&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;screen_name&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Does this sound ok? There is no undo! Type yes to carry out this action.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;do_delete&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;do_delete&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;yes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;tweepy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Cursor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_timeline&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;destroy_status&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Deleted:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;traceback&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_exc&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+                &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Failed to delete:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;api&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;oauth_login&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;CONSUMER_KEY&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CONSUMER_SECRET&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Authenticated as: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;me&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;screen_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;batch_delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;div class="wp-image-4325 figure"&gt;
+&lt;img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/terminaltweepy.png?w=755" /&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;✅&lt;/strong&gt; &lt;strong&gt;Twitter Cleanse Complete&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Twitter has a really slick developer dashboard. Its API combined with the tweepy library got the job done for me. It's great when stuff just works. And it only cost me about 1 hour to complete. Time to start a clean slate. Here's to looking forward.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Supplementary Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://docs.tweepy.org/en/latest/getting_started.html"&gt;Tweepy Documentation Tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://developer.twitter.com/en/docs/tutorials"&gt;Twitter's API Tutorials&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://developer.twitter.com/en/docs/tutorials/postman-getting-started"&gt;Twitter Postman Tutorial&lt;/a&gt;&lt;/p&gt;
+</content><category term="coding, programming, python"></category><category term="api"></category><category term="tweepy"></category><category term="tweets"></category><category term="twitter"></category></entry><entry><title>A Guide To Making HTTP Requests To APIs With JSON &amp; Python</title><link href="https://lofipython.com/how-to-make-json-requests-with-python.html" rel="alternate"></link><published>2020-05-18T05:41:00-05:00</published><updated>2020-05-18T05:41:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-05-18:/how-to-make-json-requests-with-python.html</id><summary type="html">&lt;p&gt;This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Here's what is covered:&lt;/strong&gt;&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;API &amp;amp; HTTP Lingo You …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.&lt;/p&gt;

@@ -35,7 +35,7 @@ Most examples I found used a build.spec file. Think of this as the blueprint by 
 
 Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen(). This was contrary to `Gooey's instructions <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__.
 
-::
+.. code-block:: python
 
    import os
    import sys
@@ -46,7 +46,7 @@ Python's design requires some code to play nice with Windows when it prints a st
 
 In order to run on any user's system, we need to grab their local file paths. I accomplished this by referencing the sys._MEIPASS via the below code I found from a Stack Overflow post.
 
-::
+.. code-block:: python
 
    def resource_path(relative_path):
        """ Get absolute path to resource, works for dev and for PyInstaller"""
@@ -60,7 +60,7 @@ In order to run on any user's system, we need to grab their local file paths. I 
 
 1. Below is the `fix <https://github.com/pyinstaller/pyinstaller/issues/3422>`__ I found for the Pandas library, which I added to my build.spec:
 
-::
+.. code-block:: python
 
    hiddenimports=['pandas._libs.tslibs.timedeltas','pandas._libs.tslibs.nattype',
    'pandas._libs.tslibs.np_datetime','pandas._libs.skiplist']
@@ -94,7 +94,7 @@ Compiling Python to Windows binary code sounds like a daunting task, but it was
 
 **My full build.spec file, modified from**\ `here <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__\ **:**
 
-::
+.. code-block:: python
 
    # -*- mode: python -*-
    import gooey

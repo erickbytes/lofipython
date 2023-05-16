@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Python Marketer | Articles by pythonmarketer</title>
-    <link rel="shortcut icon" type="image/png" href="../favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
-    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
-    <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" />
+    <title>Lo-Fi Python | Articles by pythonmarketer</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="@erickbytes" />
@@ -19,1138 +19,183 @@
         <nav style="overflow: hidden;">
             <ul>
 
-                <li class="ephemeral selected"><a href="../author/pythonmarketer8.html">pythonmarketer</a></li>
-                <li><a href="../">Home</a></li>
+                <li class="ephemeral selected"><a href="https://lofipython.com/author/pythonmarketer8.html">pythonmarketer</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
                 <li><a href="feeds/all.rss.xml">RSS</a></li>
                 <li><a href="feeds/all.atom.xml">Atom</a></li>
-                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
             </ul>
         </nav>
         <div class="header_box" style="height: 50px">
-        <h1><a href="../">
-            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
             </a></h1></div>
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jan 25, 2020</h4>
+        <div id="content">            <h4 class="date">Feb 29, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="../git-the-basics-a-git-version-control-cheat-sheet.html" rel="bookmark" title="Permanent Link to &quot;"Git" The Basics: A Version Control Cheat Sheet&quot;">"Git" The Basics: A Version Control Cheat Sheet</a>
+                    <a href="https://lofipython.com/tkinter-and-python-libraries.html" rel="bookmark" title="Permanent Link to &quot;Tkinter and Python Libraries&quot;">Tkinter and Python Libraries</a>
                 </h2>
 
                 
                 
 
-                <p><em>I am finally starting to understand <a href="https://en.wikipedia.org/wiki/Git">git version control</a>! It makes developing a project on different computers easy. Some of these notes were picked up from the super informative <a href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a> by Jake VanderPlas, author of the <a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a>.</em></p>
-<p><em>First, <a href="https://git-scm.com/downloads">go here</a>, download and install git if you haven't yet. Alright, here are my go-to steps and commands for git:</em></p>
-<p><strong>Beginning a New Project With Git</strong></p>
-<ol>
-<li>Create new repository on GitHub</li>
-<li>Add a README</li>
-<li>Add a Python gitignore</li>
-<li>Add a license (Jake V. used an MIT license)</li>
-</ol>
-<p><strong>Clone Any Repository from GitHub</strong></p>
-<ol>
-<li>Visit your new project, or any GitHub project, click the green "Clone or download" button and copy the link.</li>
-<li>In your terminal or command prompt, navigate to the directory where you want to clone your project.</li>
-<li>In terminal, enter: <code>git clone PASTE_URL_HERE</code></li>
-<li>Now cd into your project folder.</li>
-</ol>
-<p><strong>Push Your Local Computer Changes to the Master Repository</strong></p>
-<p>Let's say you did some work on your computer and want to push the changes to GitHub. Enter these commands in terminal:</p>
-<ol>
-<li><code>git add .</code></li>
-<li><code>git commit -m "Add your commit note here"</code></li>
-<li><code>git push origin master</code></li>
-</ol>
-<p>*Above: <code>git add .</code> = stage all files in project directory for master</p>
-<p>**Substitute <code>git add path\to\file\here</code> to stage only a single file to add to your master repository.</p>
-<p><strong>Fetch Changes From Master Branch to Your Local Computer</strong></p>
-<p>I like to update my local computer with any master branch changes before beginning work on it. Enter these commands in terminal:</p>
-<ol>
-<li><code>git fetch</code></li>
-<li><code>git pull origin master</code></li>
-</ol>
-<p><strong>Review Merge Conflicts</strong></p>
-<p>Sometimes, your code may conflict with changes in the master branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use "git status" to locate the files with the conflicts. Enter in your terminal:</p>
-<ol>
-<li><code>git status</code></li>
-<li>Then <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line">follow these instructions</a> to review the merge conflicts.</li>
-</ol>
-<p>See also: <a href="https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/conflicts.html">Resolving Conflicts - Virtualenv Documentation</a></p>
-<p><strong>Or maybe you want to discard any local changes, then merge:</strong></p>
-<ol>
-<li><code>git fetch</code></li>
-<li><code>git checkout .</code></li>
-<li><code>git pull origin master</code></li>
-</ol>
-<p><strong>Recovering from a Corrupted Repository</strong></p>
-<p><code>git fsck --full --no-dangling</code></p>
-<p><a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html#recovering-from-repository-corruption">Additional Reading</a></p>
-<p><strong>Supplementary Reading</strong></p>
-<p><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a></p>
-<p><a href="https://lanraccoon.com/2018/8-git-commands-i-use-everyday/">8 Git Commands I Use Every Day</a></p>
-<p><a href="http://who-t.blogspot.com/2009/12/on-commit-messages.html">On Commit Messages</a></p>
-<p><a href="https://github.com/pandas-dev/pandas/wiki/Git-Workflows">Pandas Library Git Workflows</a></p>
+                <p>Python's set of libraries are&nbsp;fun to explore. They allow Python to work with many types of other coding languages, allow you to do cool stuff, and seem&nbsp;to require&nbsp;a minimal knowledge of the actual code. You can read the complete list of standard libraries <a class="reference external" href="https://docs.python.org/2/library/">here</a>. There are also others available that you can download and install for unique challenges or software such as <a class="reference external" href="https://wiki.python.org/moin/Android">Android</a>.</p>
+<p>Currently, my favorite library is <a class="reference external" href="http://thinkingtkinter.sourceforge.net/">Tkinter</a>. Tkinter is a module that replicates <a class="reference external" href="https://en.wikipedia.org/wiki/Tcl">Tk/TCL</a>&nbsp;within Python and&nbsp;allows you to create a quick Graphical User Interface (GUI) for your programs - great for trying to put together a prototype program with&nbsp;basic aesthetic design control&nbsp;for&nbsp;things like buttons, entry boxes, text and other visual elements that make up the front end of a computer program.</p>
+<p>+Pro Tip: When you're trying to use a new module, you can read how to use it in the module's documentation. <a class="reference external" href="https://docs.python.org/3.8/library/tkinter.html">Here's Tkinter's documentation</a>.</p>
+<p>++ Today's find: Free guide called &quot;<a class="reference external" href="https://automatetheboringstuff.com/">Automate the Boring stuff with Python</a>&quot;</p>
+
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="../git-the-basics-a-git-version-control-cheat-sheet.html">posted at 05:06</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/coding-command-prompt-data-analysis-git-programming-software.html" rel="tag">coding, command prompt, data analysis, git, programming, software</a>
+                    <a href="https://lofipython.com/tkinter-and-python-libraries.html">posted at 01:11</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-software.html" rel="tag">coding, python, software</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="../tag/github.html" class="tags">github</a>
-                    &nbsp;<a href="../tag/terminal.html" class="tags">terminal</a>
-                    &nbsp;<a href="../tag/version-control.html" class="tags">version control</a>
+                    &nbsp;<a href="https://lofipython.com/tag/gui.html" class="tags">gui</a>
+                    &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
                 </div>
-            </article>            <h4 class="date">Dec 26, 2019</h4>
+            </article>            <h4 class="date">Feb 25, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="../comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code.html" rel="bookmark" title="Permanent Link to &quot;Comparing Text Editors on Ubuntu: Atom, Emacs, Sublime, Vim & VS Code&quot;">Comparing Text Editors on Ubuntu: Atom, Emacs, Sublime, Vim & VS Code</a>
+                    <a href="https://lofipython.com/start-before-you-are-ready.html" rel="bookmark" title="Permanent Link to &quot;Start Before You Are Ready&quot;">Start Before You Are Ready</a>
                 </h2>
 
                 
                 
 
-                <p>The text editor is a core tool for writing software. I've always used Atom. Lately, I've noticed my Atom text editor was bogging down on my Chromebook running Ubuntu 16.04. Keystrokes and mouse movements were lagging and slowing my coding down. I'm also getting low on disk space, which may be a related issue.</p>
-<p>You'll want to choose a text editor based on how it suits your own needs. In this case, I want a light-weight, responsive editor with no lag. Bells and whistles are less important. I'm also looking to minimize disk space required.</p>
-<p>I decided to compare the <a href="https://codeburst.io/a-beginners-guide-to-using-apt-get-commands-in-linux-ubuntu-d5f102a56fc4">apt installed</a> package size of some popular editors. First, I installed Atom, Emacs, Sublime, VS Code and Vim using the Ubuntu 16.04 terminal. You could also consider using <a href="https://docs.python.org/3/library/idle.html">IDLE, python's built-in text editor</a> as an alternative that requires no additional software.</p>
-<p><strong>Then I</strong> <strong><a href="https://unix.stackexchange.com/questions/40442/which-installed-software-packages-use-the-most-disk-space-on-debian">found the below command</a></strong> <strong>to list all installed apt packages by package size on Ubuntu:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="w"> </span>dpkg-query<span class="w"> </span>-Wf<span class="w"> </span>&#39;<span class="cp">${</span><span class="n">Installed</span><span class="o">-</span><span class="n">Size</span><span class="cp">}</span>\t<span class="cp">${</span><span class="n">Package</span><span class="cp">}</span>\n&#39;<span class="w"> </span>|<span class="w"> </span>sort<span class="w"> </span>-n
-</code></pre></div>
+                <p>Found <a class="reference external" href="https://medium.com/life-learning/start-before-you-re-ready-ac7d5608c83d#.wzka2rmm1">this article</a> today via <a class="reference external" href="http://www.thedolectures.com/">The Do Lectures</a> and think it's so true - whatever you want to do, just start. Because &quot;Sucking is the first step to being sorta good at something.&quot;</p>
 
-<p><strong>Here's the terminal output with relevant packages in Megabytes (including Firefox for comparative size):</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">136</span><span class="w">    </span><span class="n">emacsen</span><span class="o">-</span><span class="n">common</span>
-<span class="mf">366</span><span class="w"> </span><span class="n">vim</span><span class="o">-</span><span class="n">common</span>
-<span class="mf">1071</span><span class="w">    </span><span class="n">vim</span><span class="o">-</span><span class="n">tiny</span>
-<span class="mf">2400</span><span class="w">    </span><span class="n">vim</span>
-<span class="mf">21648</span><span class="w">   </span><span class="n">emacs26</span>
-<span class="mf">26870</span><span class="w">   </span><span class="n">vim</span><span class="o">-</span><span class="kr">run</span><span class="n">time</span>
-<span class="mf">34033</span><span class="w">   </span><span class="n">sublime</span><span class="o">-</span><span class="n">text</span>
-<span class="mf">70307</span><span class="w">   </span><span class="n">emacs26</span><span class="o">-</span><span class="n">common</span>
-<span class="mf">193694</span><span class="w">  </span><span class="n">firefox</span>
-<span class="mf">236965</span><span class="w">  </span><span class="n">code</span>
-<span class="mf">607932</span><span class="w">  </span><span class="n">atom</span>
-</code></pre></div>
-
-<p>Atom is by far the largest package I downloaded. It is nearly three times the size of VS Code, my second largest package. The next largest was my web browser, Firefox. Most of the other packages I downloaded were considerably smaller.</p>
-<blockquote>
-<p>Side note: I also found out Ubuntu 16.04 ships with a stripped down version of Vim called <a href="https://askubuntu.com/questions/104138/what-features-does-vim-tiny-have">vim-tiny</a>.</p>
-</blockquote>
-<p><strong>Total Installed Package Sizes in Megabytes (Smallest to Largest)</strong></p>
-<p>Some of these editors have multiple packages they are dependent on.</p>
-<hr>
-<p>Text Editor   Total Installed Packages Size   <strong>Packages Installed</strong>
-  Vim           29,636 MB                       vim, vim-common, vim-runtime
-  Sublime       34,033 MB                       sublime-text
-  Emacs         91,955 MB                       emacs26-common, emacs26, emacsen-common
-  VS Code       236,965 MB                      code
-  Atom          607,932 MB                      atom</p>
-<hr>
-<p><strong>Results: Vim and Sublime win for smallest installed package size.</strong></p>
-<ul>
-<li>Vim is the lightest-weight package of these 5 popular text editors, with Sublime not far behind. Emacs is comparable to them for usability and relatively small.</li>
-<li>Atom is nearly 3x the size of VS Code and 20x the size of Vim. Atom and VS Code are larger than the Firefox browser package, the third largest of any downloaded package on my system.</li>
-<li>I tested out all of the editors by opening the same Python file and making some edits. I found Vim, Emacs and Sublime were much more responsive than Atom and VS Code.</li>
-</ul>
-<p><strong>Conclusion: All Editors Are Not Created Equal</strong></p>
-<p>These are fine editors when paired with the right machine and developer needs. In my case, a Chromebook running Linux installed with <a href="https://github.com/dnschneid/crouton">Crouton</a>, a few editors are performing faster and taking up less space. I've chosen Sublime or Emacs as my editor for this computer. One slightly annoying feature of Sublime is being prompted to buy the paid version from the trial version. Atom, Emacs, Vim and VS Code are free. Vim might be a good option if I ever decide to conquer its <a href="https://stackoverflow.com/questions/11828270/how-do-i-exit-the-vim-editor">notoriously high learning curve</a>.</p>
-<p><strong>[Bonus] Find the size of all packages matching with "vim" in their name:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="w"> </span>dpkg-query<span class="w"> </span>-Wf<span class="w"> </span>&#39;<span class="cp">${</span><span class="n">Installed</span><span class="o">-</span><span class="n">Size</span><span class="cp">}</span>\t<span class="cp">${</span><span class="n">Package</span><span class="cp">}</span>\n&#39;<span class="w"> </span>|<span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span>|<span class="w"> </span>grep<span class="w"> </span>vim
-</code></pre></div>
-
-<p><strong>Terminal output from above command:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">366</span><span class="w"> </span><span class="n">vim</span><span class="o">-</span><span class="n">common</span>
-<span class="mf">1071</span><span class="w"> </span><span class="n">vim</span><span class="o">-</span><span class="n">tiny</span>
-<span class="mf">2400</span><span class="w"> </span><span class="n">vim</span>
-<span class="mf">26870</span><span class="w"> </span><span class="n">vim</span><span class="o">-</span><span class="kr">run</span><span class="n">time</span>
-</code></pre></div>
-
-<p><strong>Additional Reading</strong></p>
-<p><a href="https://www.quora.com/What-is-the-best-lightweight-text-editor">What is the best lightweight text editor?</a></p>
-<p><a href="https://github.com/atom/atom/issues/9755">Atom as an Editor is Too Big</a></p>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="../comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code.html">posted at 01:25</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/coding-linux-scripts-software-ubuntu.html" rel="tag">coding, Linux, Scripts, software, Ubuntu</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="../tag/atom.html" class="tags">atom</a>
-                    &nbsp;<a href="../tag/emacs.html" class="tags">emacs</a>
-                    &nbsp;<a href="../tag/sublime.html" class="tags">sublime</a>
-                    &nbsp;<a href="../tag/text-editors.html" class="tags">text editors</a>
-                    &nbsp;<a href="../tag/vim.html" class="tags">vim</a>
-                    &nbsp;<a href="../tag/vs-code.html" class="tags">vs code</a>
+                    <a href="https://lofipython.com/start-before-you-are-ready.html">posted at 13:55</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/life.html" rel="tag">life</a>
                 </div>
-            </article>            <h4 class="date">Dec 21, 2019</h4>
+            </article>            <h4 class="date">Feb 25, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="../copying-a-csv-file-to-google-sheets-with-pygsheets.html" rel="bookmark" title="Permanent Link to &quot;Copying a pandas Dataframe to Google Sheets with pygsheets&quot;">Copying a pandas Dataframe to Google Sheets with pygsheets</a>
+                    <a href="https://lofipython.com/15-marketing-observations.html" rel="bookmark" title="Permanent Link to &quot;15 Marketing Observations&quot;">15 Marketing Observations</a>
                 </h2>
 
                 
                 
 
-                <blockquote>
-<p><strong>Disclaimer</strong>: This endeavor was before I discovered <a href="https://developers.google.com/apps-script">AppScript</a>, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by automating Google Sheet operations.</p>
-</blockquote>
-<p><strong>This was done on the Windows 7 OS.</strong> <strong>First, <a href="https://docs.python.org/3/installing/index.html">install libraries with pip</a>. Enter in command prompt or terminal:</strong></p>
-<ol>
-<li><code>python -m pip install pandas</code></li>
-<li><code>python -m pip install numpy</code></li>
-<li><code>python -m pip install pygsheets</code></li>
+                <p>Tonight, I made a list of 15 things I've observed&nbsp;after&nbsp;4 years of study at the University of Illinois and 4 years of professional experience in Marketing. So here they are:</p>
+<ol class="arabic simple">
+<li>It's easier to sell one thing than several different products.</li>
+<li>Distribution = Very Important (Duh!)</li>
+<li>Marketing depends a lot on product quality - what can you do for the user/customer? What problems can you solve?&nbsp;<a class="reference external" href="http://sethgodin.typepad.com/seths_blog/2016/02/fit-and-finish.html">Seth Godin</a>&nbsp;talks about this quite often.</li>
+<li>Design matters - in product, communications, and everything else in this world.</li>
+<li>Sell benefits, not features.</li>
+<li>People are emotional buyers.</li>
+<li>The more you know about your customer, the better.</li>
+<li>Budget and resources matter.</li>
+<li>There can be an extremely wide variance from industry to industry - the key is to look for&nbsp;parallels.</li>
+<li>Humanize your company as much as possible - <a class="reference external" href="http://members.cdbaby.com/shipping-confirmation.aspx">This is a great example</a>.</li>
+<li>You're more likely to find success with talented people around you.</li>
+<li>Be aware of&nbsp;the&nbsp;<a class="reference external" href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> (The 80/20 Rule) - 80% of results often come from 20% of customers.</li>
+<li>Ads that annoy / shout about your product don't work; Ads&nbsp;that&nbsp;tell customers useful information or help them in some way do.</li>
+<li>There is such a thing as too many choices for the customer - it overwhelms them.</li>
+<li>Practice brevity. Whatever you've got to say,&nbsp;do it in&nbsp;fewer words.</li>
 </ol>
-<p><strong>Then, following the</strong> <strong><a href="https://pygsheets.readthedocs.io/en/stable/authorization.html">steps documented by pygsheets:</a></strong></p>
-<ol>
-<li>Create a Google Developer Account at <a href="http://console.developers.google.com">console.developers.google.com</a></li>
-<li><a href="https://pygsheets.readthedocs.io/en/stable/authorization.html">Enable Sheets API</a> to account</li>
-<li>Enable Drive API to account. Same as last step, but search for Drive.</li>
-<li>Create a Client Secret json file. Select "Credentials" tab, and "Create Credentials". Select Client Secret from options. Export from console and place in same directory as your .py file.</li>
-<li>Create a Service Account json file by selecting it instead of "Client Secret".</li>
-<li>Authorize pygsheets with your json files. (See below.)</li>
-<li>Copy spreadsheet to Google Sheet with pandas and pygsheets. (See below.)</li>
-</ol>
-<p><strong>After completing the first 5 steps, import pygsheets and authorize your account with the client secret json file:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygsheets</span>
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pygsheets</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">client_secret</span><span class="o">=</span><span class="s1">&#39;path/to/client_secret[...].json&#39;</span><span class="p">)</span>
-</code></pre></div>
+<p>Agree? Disagree?</p>
 
-<p>You will be prompted by the terminal to go to a hyperlink in a browser, get your authorization code, and enter that authorization code into the terminal.</p>
-<p><strong>Now, import both libraries needed and switch to authorize with your service json file. Then, load the csv to a dataframe with pandas. Finally, copy it to an existing Google Sheet with pygsheets:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygsheets</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="sd">&quot;&quot;&quot;Select worksheets by id, index, or title.&quot;&quot;&quot;</span>
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pygsheets</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s1">&#39;path/to/service_account_credentials.json&#39;</span><span class="p">)</span> 
-<span class="n">sh</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;add_google_sheet_name_here&#39;</span><span class="p">)</span>
-<span class="n">wks</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="n">worksheet_by_title</span><span class="p">(</span><span class="s1">&#39;add_sheet_tab_name_here&#39;</span><span class="p">)</span>
-
-<span class="sd">&quot;&quot;&quot;Set a pandas dataframe to google sheet, starting at 1st row, 1st column&quot;&quot;&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Example_Data.csv&#39;</span><span class="p">)</span> 
-<span class="n">wks</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-</code></pre></div>
-
-<p><strong>[Example] Split and upload a sheet with 40 columns</strong></p>
-<p>Google Sheets limits importing to 26 columns and 1,000 rows at a time. So you'll have to load the sheets in chunks if you have more than that. This approach uses numpy's <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_split.html">array_split</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygsheets</span> 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pygsheets</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">client_secret</span><span class="o">=</span><span class="s1">&#39;path/to/client_secret[...].json&#39;</span><span class="p">)</span>
-<span class="n">sh</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;add_google_sheet_name_here&#39;</span><span class="p">)</span> 
-<span class="n">wks</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="n">worksheet_by_title</span><span class="p">(</span><span class="s1">&#39;add_sheet_tab_name_here&#39;</span><span class="p">)</span> 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Data_to_GSheets.csv&#39;</span><span class="p">)</span>
-
-<span class="c1"># split columns into two dataframes with numpy and pandas</span>
-<span class="n">first_half_cols</span><span class="p">,</span> <span class="n">second_half_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array_split</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">first_half</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">first_half_cols</span><span class="p">]</span>
-<span class="n">second_half</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">second_half_cols</span><span class="p">]</span>
-
-<span class="c1"># set both dataframes side-by-side in Google sheet</span>
-<span class="n">wks</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">first_half</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">start_column</span> <span class="o">=</span> <span class="n">first_half</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">wks</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">second_half</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span> <span class="n">start_column</span><span class="p">))</span>
-</code></pre></div>
-
-<p><strong>Conclusion</strong></p>
-<p>I found the terminal error messages from pygsheets to be very helpful while debugging the above. This module offers many other nifty spreadsheet operations. Solid library. You can now create and edit Google Sheets with Python.</p>
-<p>AppsScript should probably be the default tool when working with Google Sheets because it is built in, but Python does have tools available to work with Google Sheets.</p>
-<p><strong>Resources</strong></p>
-<p><a href="https://github.com/nithinmurali/pygsheets">pygsheets Github</a></p>
-<p><a href="https://pygsheets.readthedocs.io/en/stable/authorization.html">pygsheets Documentation</a></p>
-<p><a href="https://developers.google.com/sheets/api/guides/concepts">Google Sheets Documentation</a></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pandas Documentation</a></p>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="../copying-a-csv-file-to-google-sheets-with-pygsheets.html">posted at 18:58</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/automation-coding-excel-google-pandas.html" rel="tag">automation, coding, excel, Google, pandas</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="../tag/api.html" class="tags">api</a>
-                    &nbsp;<a href="../tag/google-api.html" class="tags">google api</a>
-                    &nbsp;<a href="../tag/google-sheets.html" class="tags">google sheets</a>
-                    &nbsp;<a href="../tag/json.html" class="tags">json</a>
-                    &nbsp;<a href="../tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="../tag/spreadsheets.html" class="tags">spreadsheets</a>
+                    <a href="https://lofipython.com/15-marketing-observations.html">posted at 03:32</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/marketing.html" rel="tag">Marketing</a>
                 </div>
-            </article>            <h4 class="date">Dec 05, 2019</h4>
+            </article>            <h4 class="date">Feb 23, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="../a-collection-of-software-testing-opinions-for-python-and-beyond.html" rel="bookmark" title="Permanent Link to &quot;A Collection of Software Testing Opinions for Python and Beyond&quot;">A Collection of Software Testing Opinions for Python and Beyond</a>
+                    <a href="https://lofipython.com/dotd-python-koans.html" rel="bookmark" title="Permanent Link to &quot;Python Koans&quot;">Python Koans</a>
                 </h2>
 
                 
                 
 
-                <h4>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</h4>
-<p><strong>An Introductory Rant on Testing</strong></p>
-<p>Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?</p>
-<blockquote>
-<p>Yeah. And the worst thing that happens is that you get people that just stop <em>thinking</em> about what they’re doing. “This is the principle, to always write unit tests, so I’m always going to write unit tests,” and then they’re just not thinking about how they’re spending their time, and they wind up wasting a lot of it.</p>
-<p>Joel Spolsky, <a href="https://www.joelonsoftware.com/2009/01/">Stack Overflow Podcast #38</a></p>
-</blockquote>
-<p>Implementing software tests is a best practice for maintaining code, but seems ambiguous to someone who has not tested any code before. I guess the best way is to <a href="https://github.com/iodide-project/pyodide/tree/master/test">read open source projects with test suites</a>, but those can be tough to find. How do you know <a href="https://docs.python-guide.org/writing/reading/">a good test suite</a> when you see it? Maybe the maintainers went rogue and off the deep end with tests. Online, everybody says you should test your code, <a href="https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes">is the emperor wearing any clothes?</a></p>
-<p>As a beginner stumbling across articles on testing, these questions were tough to answer. As with most things in programming, figuring out the right question to ask is a challenge in itself. <a href="https://www.codecademy.com/learn/learn-python-3">Codeacademy</a> and <a href="https://www.coursera.org/specializations/python">Coursera</a> never mentioned anything about writing tests. On the other hand, <a href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django</a> includes testing in its tutorial and documentation. Also, most languages come with built-in testing tools. Python has the <a href="https://docs.python.org/3/library/unittest.html">unittest</a> library.</p>
-<p><strong>Why test at all? First, some solid benefits of software testing:</strong></p>
-<ul>
-<li>With tests on your code in place, you can implement changes and have confidence the code still works if the tests pass. This gives developers more confidence to iterate and improve an application.</li>
-<li>Detect problems faster. Passing tests are a good indicator that your programs are actually doing what they're supposed to do. If they don't pass, you likely found a bug you might have missed otherwise.</li>
-<li>When you find a bug, you either need to amend your code, or your tests. write a test for that bug and then fix it. Either that, or you need to be amend your tests. You've just improved the quality of your test suite.</li>
-<li><a href="https://daedtech.com/dont-learn-to-code-learn-to-automate/">Automation</a>. If you are writing tests, those tests can be automated. If you are manually checking the results of your program, you're missing a chance to automate those checks away. I haven't applied it yet, but have heard the <a href="https://tox.readthedocs.io/en/latest/">Tox library</a> may be useful to automate tests related to Python packaging. For more on automating tests, see this PyCon talk, <a href="https://www.youtube.com/watch?v=-BHverY7IwU">Three Excellent Python Tools to Automate Repetitive Tasks</a>.</li>
-<li>Test Driven Development can decrease the time spent debugging code. This claim sometimes lacks empirical evidence, supporting evidence tends to be anecdotal.</li>
-</ul>
-<blockquote>
-<p>A good unit test, therefore, is one that helps enforce the contract to which the function is committed.</p>
-<p>If a good unit test breaks, the contract is violated and should be either explicitly amended (by changing the documentation and tests), or fixed (by fixing the code and leaving the tests as is).</p>
-<p>A good unit test is also <em>strict</em>. It does its best to ensure the output is valid. This helps it catch more bugs.</p>
-<p>- Moshe Zadka, <a href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></p>
-</blockquote>
-<p><strong>Pytest and Unit Testing in Python</strong></p>
-<p>This is where the Python hits the pavement. Unit tests are generally liked, although some prefer property tests or integration tests because they think the scope of unit tests is too narrow. The <a href="https://docs.python.org/3/library/unittest.html">unittest</a> library is Python's default testing framework. However nowadays, <a href="https://docs.pytest.org/en/latest/contents.html">pytest</a> seems to be the preferred unit testing framework for Python. <a href="https://hypothesis.readthedocs.io/en/latest/">Hypothesis</a> is another popular framework I've read about.</p>
-<p><strong>Pytest Testing</strong></p>
-<ul>
-<li>
-<p><a href="https://realpython.com/interview-brian-okken/">Interview with the author of Pytest</a></p>
-</li>
-<li>
-<p><a href="https://docs.pytest.org/en/latest/">Pytest Documentation</a></p>
-</li>
-<li>
-<p><a href="https://martinheinz.dev/blog/7">Pytest Features That You Need In Your Life</a></p>
-</li>
-<li>
-<p><a href="http://love-python.blogspot.com/2017/10/table-driven-unit-test-in-python.html">Table Driven Unit Testing With pytest</a></p>
-</li>
-<li>
-<p><a href="https://www.youtube.com/watch?v=Pf1ADyUKOrE">Reproducible Data Analysis in Jupyter, Part 6/10: Unit Testing with PyTest</a> [YouTube]</p>
-</li>
-</ul>
-<blockquote>
-<p>Tests start to lose signal when <a href="https://docs.python.org/3/library/unittest.mock.html">Mock</a> becomes routine instead of a reluctant workaround. - Brandon Rhodes, <a href="http://S0No2zSJmks">When Python Practices Go Wrong</a></p>
-</blockquote>
-<p><strong>Testing in Python \ General Unit Testing Ideas</strong></p>
-<ul>
-<li><a href="https://github.com/pandas-dev/pandas/wiki/Testing">Testing Conventions for the Pandas Library</a></li>
-<li><a href="https://kanoki.org/2019/11/18/how-to-create-dataframe-for-testing/">How to Create a Dataframe for Testing</a></li>
-<li><a href="https://jeffknupp.com/blog/2013/12/09/improve-your-python-understanding-unit-testing//">Improve Your Python: Understanding Unit Testing</a></li>
-<li><a href="http://kbroman.org/blog/2015/12/07/write-unit-tests/">Write Unit Tests</a></li>
-<li><a href="https://henrikwarne.com/2013/12/08/tdd-unit-tests-and-the-passage-of-time/">Writing Unit Tests for Time</a></li>
-<li><a href="https://henrikwarne.com/2014/02/19/5-unit-testing-mistakes/">5 Unit Testing Mistakes</a></li>
-<li><a href="https://hillelwayne.com/post/unit-tests-are-not-tests/">Unit Tests Are Not Tests</a></li>
-<li><a href="https://hakibenita.com/the-best-new-feature-in-unittest-you-didnt-know-you-need">The Best New Feature in unittest You Didn't Know You Need</a></li>
-<li><a href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></li>
-<li><a href="https://michaelfeathers.typepad.com/michael_feathers_blog/2008/06/the-flawed-theo.html">The Flawed Theory Behind Unit Testing</a></li>
-<li><a href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django Introduction to Automated Testing</a></li>
-<li><a href="https://hillelwayne.com/post/python-doctests/">Python Doc Tests</a> Turn docstrings into tests, unique to Python.</li>
-</ul>
-<blockquote>
-<p>I think <a href="https://hypothesis.readthedocs.io/en/latest/">hypothesis</a> is probably underrated—some libraries are hesitant to incorporate it into their testing frameworks, but I think the property-based testing has real potential to catch scenarios humans would have a hard time anticipating, or at least that would take a long time to properly plan for. I find that hypothesis almost always adds a few useful test cases I hadn’t thought of that will require special error handling, for example.</p>
-<p><a href="http://www.blog.pythonlibrary.org/2020/01/13/pydev-of-the-week-tyler-reddy/">Tyler Reddy</a>, SciPy Release Manager</p>
-</blockquote>
-<p><strong>Integration \ Property Tests</strong></p>
-<ul>
-<li><a href="https://blog.juliobiason.me/books/things-i-learnt/integration-tests/">Unit Tests Are Good, Integration Tests Are Gooder</a></li>
-<li><a href="https://hillelwayne.com/post/pbt-contracts/">PROPERTY TESTS + CONTRACTS = INTEGRATION TESTS</a></li>
-<li><a href="https://hillelwayne.com/post/contract-examples/">Finding Property Tests</a></li>
-<li><a href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-Based Testing</a></li>
-<li><a href="https://hillelwayne.com/post/contracts/">Contracts</a></li>
-</ul>
-<blockquote>
-<p>Traditional, or example-based, testing specifies the behavior of your software by writing examples of it[—]{.mt-dash}each test sets up a single concrete scenario and asserts how the software should behave in that scenario. Property-based tests take these concrete scenarios and generalize them by focusing on which features of the scenario are essential and which are allowed to vary. This results in cleaner tests that better specify the software’s behavior[—]{.mt-dash}and that better uncover bugs missed by traditional testing[.]{.mt-periodPullEnd}</p>
-<p>- David Maciver, <a href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-based Testing</a></p>
-</blockquote>
-<p><strong>Assertions</strong></p>
-<p>Assertions are generally accepted as welcome additions to your code.</p>
-<ul>
-<li><a href="https://blog.regehr.org/archives/1091">Use of Assertions</a></li>
-<li><a href="http://www.squarefree.com/2014/02/03/fuzzers-love-assertions/">Fuzzers Love Assertions</a></li>
-<li><a href="http://pgbovine.net/code-carabiners.htm">Code Carabiners</a></li>
-<li><a href="https://docs.pytest.org/en/latest/assert.html#assert">pytest Assertions</a></li>
-</ul>
-<blockquote>
-<p>In reality, the safety and restraints that these code carabiners provide actually give you <strong>more freedom</strong> to take risks in your coding. If you want to try out some risky feature, refactoring, or external library, you know something is wrong as soon as one of your assertions or tests fail and can undo back to an earlier working state.</p>
-<p>Phillip J. Guo, <a href="http://pgbovine.net/code-carabiners.htm">Code Carabiners</a></p>
-</blockquote>
-<p><strong>Test Driven Development</strong></p>
-<p>Eventually, you'll discover the evangelists preaching Test Driven Development. There are certain discussions which polarize us in the software development world, such as the appropriate scenarios to deploy this system of development.</p>
-<p>Opinions vary widely on the merits and appropriate application of TDD. I'm admittedly skeptical but do see the merits of TDD. But which flavor? Where do unit tests and integration tests fit in? How many tests should I write? What exactly should I be testing? <a href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">This essay</a> claims anyone pair programming software with an expected life of 3 or more years should use Test Driven Development.</p>
-<ul>
-<li><a href="https://henrikwarne.com/2019/09/29/when-tdd-is-not-a-good-fit/">When TDD is Not a Good Fit</a></li>
-<li><a href="http://neverworkintheory.org/2016/10/05/test-driven-development.html">Test Driven Development vs. Test Last Development</a> [Study]</li>
-<li><a href="https://www.youtube.com/watch?v=DQBf6li1hww">Why TDD Is Crap</a> [YouTube]</li>
-<li><a href="https://hillelwayne.com/post/why-tdd-isnt-crap/">Why TDD Isn't Crap</a> [Response Blog to Video]</li>
-<li><a href="https://www.arp242.net/testing.html">Testing Isn't Everything</a></li>
-<li><a href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">Is Pair Programming + TDD worth it?</a></li>
-</ul>
-<blockquote>
-<p>"Test Driven Development is a tool for continuously evaluating hypotheses."</p>
-<p>- <a href="https://www.youtube.com/watch?time_continue=170&amp;v=UOOuW5tqT8M&amp;feature=emb_logo">James Shore, Assert(JS) Con 2019</a></p>
-</blockquote>
-<p><strong>General Testing Ideas and Principles</strong></p>
-<ul>
-<li><a href="https://docs.python-guide.org/writing/tests/">Testing Your Code</a>, The Hitchhiker's Guide to Python</li>
-<li><a href="https://blog.liw.fi/posts/2019/06/29/dijkstra_was_only_partially_correct_about_testing/">The Point of Software Testing</a></li>
-<li><a href="https://rachelbythebay.com/w/2013/01/30/test/">Connecting Bug Fixing to Automated Testing</a></li>
-<li><a href="https://www.jamesshore.com/In-the-News/Thinking-In-Tests.html">Thinking in Tests</a> [YouTube]</li>
-<li><a href="https://www.drmaciver.com/2015/04/some-empirically-derived-testing-principles/">Some empirically derived testing principles</a></li>
-<li><a href="https://danluu.com/tests-v-reason/">Testing Vs. Informal Reasoning</a></li>
-<li><a href="https://blog.nelhage.com/2016/12/how-i-test/">How I Write Tests</a></li>
-<li><a href="https://www.youtube.com/watch?v=Xu5EhKVZdV8">Stop Mocking, Start Testing</a> [YouTube]</li>
-<li>"<a href="https://python-guide-es.readthedocs.io/es/latest/writing/reading.html">Each one of these projects is a paragon of Python coding.</a>"</li>
-<li><a href="https://increment.com/development/what-its-like-to-be-a-developer-at/">What it's Like to Be a Developer at...</a> [Testing Practices Described]</li>
-<li><a href="https://www.youtube.com/watch?v=f84n5oFoZBc">Hammock Driven Development</a> [YouTube] Not so much testing focused, but including because I really enjoyed this talk.</li>
-</ul>
-<p><strong>Other common tests types:</strong></p>
-<blockquote>
-<p>Unit test: when it fails, it tells you what piece of your code needs to be fixed.</p>
-<p>Integration test: when it fails, it tells you that the pieces of your application are not working together as expected.</p>
-<p>Acceptance test: when it fails, it tells you that the application is not doing what the customer expects it to do.</p>
-<p>Regression test: when it fails, it tells you that the application no longer behaves the way it used to.</p>
-<p>- <a href="https://stackoverflow.com/questions/7672511/unit-test-integration-test-regression-test-acceptance-test">Mathias, Stack Overflow Answer</a></p>
-</blockquote>
-<p><strong>Testing maturity level progression:</strong></p>
-<ol>
-<li>No tests</li>
-<li>Occasional, slow, unreliable tests</li>
-<li>Semi-comprehensive integration tests</li>
-<li>Fast, comprehensive unit tests comprise the bulk of testing<ul>
-<li>Dependency injection</li>
-<li>Composable subsystem design</li>
-</ul>
-</li>
-<li>Real-time test feedback (ideally integrated into the editor)</li>
-<li>Tests are extremely reliable or <a href="http://andyfriesen.com/2015/06/17/testable-io-in-haskell.html">guaranteed reliable by the type system</a><ul>
-<li>With tooling that tracks the reliability of tests and provides that feedback to authors.</li>
-</ul>
-</li>
-<li>Fuzzing, statistically automated microbenchmarking, rich testing frameworks for every language and every platform, and a company culture of writing the appropriate number of unit tests and high-value integration tests.</li>
-</ol>
-<p>- <a href="https://chadaustin.me/2019/11/two-years-at-dropbox/">ChadAustin.me</a></p>
-<p><strong>I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:</strong></p>
-<p><code>python -m pip install pytest</code></p>
-<p><strong>test_file_date.py</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
+                <p>Today's discovery is <a class="reference external" href="https://github.com/gregmalcolm/python_koans">Python Koans</a>.&nbsp;According to <a class="reference external" href="http://docs.python-guide.org/en/latest/intro/learning/">python-guide.org</a>, Koans &quot;uses a test-driven approach, q.v. TEST DRIVEN DESIGN SECTION to provide an interactive tutorial teaching basic Python concepts. By fixing assertion statements that fail in a test script, this provides sequential steps to learning Python.&quot;</p>
+<p>I was also curious what a &quot;Koan&quot; actually is: &quot;a paradox to be meditated upon that is used to train Zen Buddhist monks to abandon ultimate dependence on reason and to force them into gaining sudden intuitive enlightenment&quot; - Merriam-Webster</p>
+<p>Koans takes a little work to install. <a class="reference external" href="https://github.com/OmkarPathak/pygorithm">Pygorithm</a> is an similar package for learning advanced more algorithm theories with python, and can be more easily installed by <a class="reference external" href="https://github.com/OmkarPathak/pygorithm">pip</a>.</p>
 
-<span class="c1"># The dir_query format is for a Windows path with Unix style pattern matching.</span>
-<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
-    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
-    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
-</code></pre></div>
-
-<p><strong>Run the test with pytest by entering:</strong><br>
-<code>pytest test_file_date.py</code></p>
-<p><strong>Conclusion</strong><br>
-I write programs for personal productivity and to <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automate processes</a> at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.</p>
-<p>It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.</p>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="../a-collection-of-software-testing-opinions-for-python-and-beyond.html">posted at 03:06</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/coding-productivity-programming-python-software-testing.html" rel="tag">coding, productivity, programming, python, software testing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="../tag/pytest.html" class="tags">pytest</a>
-                    &nbsp;<a href="../tag/software-development.html" class="tags">software development</a>
-                    &nbsp;<a href="../tag/test-driven-development.html" class="tags">test driven development</a>
+                    <a href="https://lofipython.com/dotd-python-koans.html">posted at 14:10</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/programming-python.html" rel="tag">programming, python</a>
                 </div>
-            </article>            <h4 class="date">Nov 30, 2019</h4>
+            </article>            <h4 class="date">Feb 22, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="../inserting-new-records-into-a-microsoft-access-database-with-python.html" rel="bookmark" title="Permanent Link to &quot;Inserting New Rows Into A Microsoft Access Database With Python and pyodbc&quot;">Inserting New Rows Into A Microsoft Access Database With Python and pyodbc</a>
+                    <a href="https://lofipython.com/marketer-slash-programmer.html" rel="bookmark" title="Permanent Link to &quot;Marketer Slash Programmer&quot;">Marketer Slash Programmer</a>
                 </h2>
 
                 
                 
 
-                <p>I recently automated the loading of data into a Microsoft Access database with <a href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc</a>, a Python library for connecting to databases. ODBC stands for <a href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Open Database Connectivity</a>. It can be used for a variety of Database Management Systems outside of Access also.</p>
-<p><strong>First,</strong> <strong><a href="https://docs.python.org/3/installing/index.html">install libraries with pip</a>. Enter in terminal or command prompt:</strong></p>
-<ol>
-<li>
-<ol>
-<li><code>python -m pip install pyodbc</code></li>
-<li><code>python -m pip install pandas</code></li>
+                <p>I have studied and currently work in Marketing*, with around 5 years of experience. I&nbsp;would like to begin sharing my journey through&nbsp;the coding world. I have chosen Python as my language to explore, to start. I began last fall by completing three&nbsp;<a class="reference external" href="https://www.coursera.org/learn/python">free online courses on Coursera</a> - taught by an amazing professor, Dr. Charles Severance from the University of Michigan. Check 'em out if you want an epic introduction to Python and coding in general.</p>
+<p>I previously had a little bit of HTML experience - nothing else - so I am very new to coding and enjoying learning a little more every day. I'm going to post my trials, problems, and things I figure out along the way and anything else I find interesting.</p>
+<p><strong>Why do I want to learn to program?</strong></p>
+<ol class="arabic simple">
+<li>Rapidly growing segments of our lives rely on computers and similar technologies. It seems unwise to remain ignorant of their internal processes.</li>
+<li>Web apps are cool, useful and make our lives better. I'd like to build them.</li>
+<li>To strengthen myself professionally.</li>
+<li>To CREATE - coding is actually a very great creative outlet.</li>
 </ol>
-</li>
-</ol>
-<p><strong>Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">python</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pyodbc</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">drivers</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Microsoft Access Driver&#39;</span><span class="p">)]</span>
-</code></pre></div>
+<p><strong>Why Python?</strong></p>
+<p>It's a language that emphasizes readability, is very versatile and has a great community of users to help you solve problems. It can be used for everything from the front end - functionality, user interface, etc. to the back end - data storage, server use, etc.</p>
+<p>My goal is to get better every day, and eventually build some cool shit.</p>
+<p>Thank you for reading,</p>
+<p>Erick</p>
+<p>*At the time I wrote this, I worked in a non-techincal marketing role. I've since moved into a role where I use Python nearly every day. If you're wondering how, I use <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/">Pandas</a>, <a class="reference external" href="https://2.python-requests.org/en/master/">Requests</a> and Excel a lot at my current gig.</p>
 
-<p><strong>Drivers for</strong> <strong>Access &amp; Many Other Data Sources</strong></p>
-<p>The driver is the engine that allows you to connect to a specific type of database. The drivers available vary depending on your machine.</p>
-<p>The two most common drivers for Access are Microsoft Access Driver (*.mdb) and Microsoft Access Driver (*.mdb, *.accdb). My computer only had *.mdb, which has been deprecated. My Access database was a .mdb file, so I was able to use this driver as shown below. Read more on Access drivers <a href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-Microsoft-Access">here</a>.</p>
-<blockquote>
-<p>"Drivers exist for all major DBMSs, many other data sources like address book systems and Microsoft Excel, and even for text or comma-separated values (CSV) files."  - <a href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Wikipedia</a></p>
-</blockquote>
-<p><strong>Database Data Types</strong></p>
-<p>I set all of the field data types to "Short Text" because I'm passing strings as SQL parameters below. Uploading as other data types may require additional formatting. To edit the data types of your table, open the table and select "Design View" under the "Home" tab. It got the job done for me!</p>
-<p><strong>Inserting new rows into a Microsoft Access Database:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pyodbc</span>
-
-
-<span class="k">def</span> <span class="nf">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    use list comprehension to format df rows as a list of tuples: </span>
-<span class="sd">    rows = [(&#39;Garfield&#39;,&#39;Orange&#39;,&#39;Eat&#39;),(&#39;Meowth&#39;,&#39;White&#39;,&#39;Scratch&#39;)] </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">rows</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Rows are not added to DB until they are committed. </span>
-<span class="sd">Pass each row tuple as a SQL parameter (?,?,?). </span>
-<span class="sd">cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm</span>
-<span class="sd">&quot;&quot;&quot;</span> 
-<span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\Add_Path\To_DB\Here\Your_DB.mdb;&#39;</span><span class="p">)</span>
-<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39; INSERT INTO Cats (Name, Color, Move) </span>
-<span class="s1">          VALUES(?,?,?) &#39;&#39;&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Cat Data.csv&#39;</span><span class="p">)</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="n">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> 
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> 
-<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</code></pre></div>
-
-<p><strong>Conclusion</strong></p>
-<p>Running the above in command prompt uses pyodbc and SQL to add dataframe rows to a Microsoft Access DB table named "Cats". Passing each row as a <a href="https://www.python.org/dev/peps/pep-0249/#paramstyle">SQL parameter</a> has two benefits:</p>
-<ol>
-<li>It handles strings with single quotes (') and loads them to the DB.</li>
-<li>It protects against <a href="https://www.acunetix.com/websitesecurity/sql-injection/">SQL injection</a> attacks.</li>
-</ol>
-<p><strong>Access Limitation Disclaimer</strong></p>
-<p>Access topped out just shy of 10 million rows in my use case, when records stopped getting added to my database. So keep that in mind if you're thinking about using Access to store your data.</p>
-<p><strong>Supplementary Resources</strong></p>
-<p><a href="https://datatofish.com/insert-ms-access-python/">Insert Values into MS Access Table using Python</a></p>
-<p><a href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc documentation</a></p>
-<p><a href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15">Microsoft Documentation pyodbc example</a></p>
-<p><a href="https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor.htm">The Python Cursor Class</a></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><a href="https://www.psycopg.org/docs/cursor.html">Psycopg Cursor Class Documentation</a></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="../inserting-new-records-into-a-microsoft-access-database-with-python.html">posted at 00:28</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/automation-data-databases-excel-odbc-pandas-python-windows.html" rel="tag">automation, data, Databases, excel, ODBC, pandas, python, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="../tag/access.html" class="tags">Access</a>
-                    &nbsp;<a href="../tag/microsoft.html" class="tags">Microsoft</a>
-                    &nbsp;<a href="../tag/productivity.html" class="tags">productivity</a>
-                    &nbsp;<a href="../tag/programming.html" class="tags">programming</a>
+                    <a href="https://lofipython.com/marketer-slash-programmer.html">posted at 01:41</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/business-programming.html" rel="tag">business, programming</a>
                 </div>
-            </article>            <h4 class="date">Aug 19, 2019</h4>
+            </article>            <h4 class="date">Feb 21, 2016</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="../choosing-rust-as-my-second-language.html" rel="bookmark" title="Permanent Link to &quot;Reasons to Explore Rust and A Brief Intro&quot;">Reasons to Explore Rust and A Brief Intro</a>
+                    <a href="https://lofipython.com/contact.html" rel="bookmark" title="Permanent Link to &quot;about&quot;">about</a>
                 </h2>
 
                 
                 
 
-                <p>Four years ago, I began studying Python as my first programming language. I have enjoyed it so much. I now enjoy going to work and writing Python scripts for up to 60% of a typical work day. I love the language. I've also dabbled in JavaScript, CSS and HTML, but have only applied those to make simple, minimum viable websites. So why learn another language, Rust?</p>
-<ol>
-<li><strong>Learning multiple languages enhances one's understanding of computing.</strong> All languages tackle the same problems in different ways. Some leverage trade-offs enabling them to better solve specific computing problems than others. Seeing different approaches to the same challenges increases your understanding of the concepts.</li>
-<li><strong>Rust is beloved by its developers.</strong> It scored highly on <a href="https://insights.stackoverflow.com/survey/2019">Stack Overflow's 2019 developer survey</a>. The most loved language was Rust, with 83.5% of developers saying they loved it. Python was tied for 2nd at 73.1% with TypeScript.</li>
-<li><strong>Rust is an LLVM language, Python is not.</strong> Per <a href="https://en.wikipedia.org/wiki/LLVM">Wikipedia</a>, "The LLVM <a href="https://en.wikipedia.org/wiki/Compiler" title="Compiler">compiler</a> infrastructure project is a set of compiler and <a href="https://en.wikipedia.org/wiki/Toolchain" title="Toolchain">toolchain</a> technologies, which can be used to develop a <a href="https://en.wikipedia.org/wiki/Compiler#Front_end" title="Compiler">front end</a> for any <a href="https://en.wikipedia.org/wiki/Programming_language" title="Programming language">programming language</a> and a <a href="https://en.wikipedia.org/wiki/Compiler#Back_end" title="Compiler">back end</a> for any <a href="https://en.wikipedia.org/wiki/Instruction_set_architecture" title="Instruction set architecture">instruction set architecture</a>." It seems Rust opens up modularity to mesh with a bunch of other LLVM languages. Side note: <a href="https://en.wikipedia.org/wiki/LLVM">LLVM started</a> at my alma mater, the University of Illinois at Urbana-Champaign 😃 ILL 🔶🔷</li>
-</ol>
-<blockquote>
-<p>LLVM was originally developed as a research infrastructure to investigate <a href="https://en.wikipedia.org/wiki/Dynamic_compilation" title="Dynamic compilation">dynamic compilation</a> techniques for static and <a href="https://en.wikipedia.org/wiki/Dynamic_programming_language" title="Dynamic programming language">dynamic</a> <a href="https://en.wikipedia.org/wiki/Programming_language" title="Programming language">programming languages</a>. -<a href="https://en.wikipedia.org/wiki/LLVM">Wikipedia</a></p>
-</blockquote>
-<ol>
-<li><strong>Rust plays well with WebAssembly.</strong> AKA <a href="https://webassembly.org/">Wasm</a>, a new standard introduced in 2015 that allows compilation of high performance browser or Desktop applications. I am still grappling with why Wasm is getting so much hype, but it seems to be a big deal. Rust opens doors to Wasm compatibility. Python is Wasm capable as well but I am getting the impression there is something in Rust's design that makes it useful for compiling to Wasm.</li>
-<li><strong>It is a modern language, which surfaced in 2010, that is still coming of age.</strong> This is both good and bad. But the good here is modern language design. Its creator saw the shortcomings of countless languages that have come before it. An enthusiastic community has already made Rust a good programming language option in a short time.</li>
-</ol>
-<p><strong>Getting Started with Rust</strong></p>
-<p>The <a href="https://www.rust-lang.org/learn/get-started">Getting Started</a> page contains a simple curl command for downloading and installing Rust via "Rustup", an installer and version management tool. This will install Cargo, Rust's package manager. (Think pip for Pythonistas.) I used my Linux environment on my Chromebook, but there's a <a href="https://doc.rust-lang.org/cargo/getting-started/installation.html">Windows executable</a> available as well.</p>
-<p>::: row</p>
-<div class="db highlight"><pre><span></span><code>curl https://sh.rustup.rs -sSf | sh
-</code></pre></div>
+                <p>Python developer who automates tasks, builds apps and writes about coding. Send me your project \ event \ questions. Collaborative inquiries welcome.
+erickrumbold[at]gmail</p>
+<p><strong>Projects</strong></p>
+<p><a class="reference external" href="http://divbull.com">divbull.com</a>, an investing and stocks blog</p>
+<p><a class="reference external" href="https://www.positivethoughts.pythonanywhere.com/">positivipy</a>, text generation flask + mysql app built with fuzzywuzzy, ftfy, language_tool_python, textblob and markovify libraries</p>
+<p><a class="reference external" href="https://tameimpala.pythonanywhere.com/">Ask</a> <a class="reference external" href="https://tameimpala.pythonanywhere.com/">Tame Impala,</a> web2py + MongoDB Tame Impala lyrics search app</p>
+<p><a class="reference external" href="https://mastacos.pythonanywhere.com/">mas tacos</a>, proof of concept app with a US taco restaurant dataset</p>
 
-<div>
-
-</div>
-<p>:::</p>
-<p><img alt="rust_startup.png" class="alignnone size-full wp-image-1917" height="857" src="http://pythonmarketer.files.wordpress.com/2019/08/b2024-rust_startup-e1566179301570.png" width="814"></p>
-<p>[gallery type="rectangular" size="full" columns="1" link="file" ids="1918"]</p>
-<p><a href="https://doc.rust-lang.org/cargo/index.html">The Cargo Book</a> provides documentation for the package manager. I like the "<a href="https://doc.rust-lang.org/cargo/getting-started/first-steps.html">First Steps with Cargo</a>" section because it gets you immediately into creating and running a "build" by entering a few short commands in the terminal.</p>
-<p><strong>Create a New Build</strong><br>
-<code>cargo new hello_world</code></p>
-<p>``<img alt="Rust_Hello_World" class="alignnone size-full wp-image-1919" height="50" src="http://pythonmarketer.files.wordpress.com/2019/08/15b99-rust_hello_world-e1566179455440.png" width="788"></p>
-<p><strong>cd Into Your hello_world Program</strong></p>
-<p>Note the creation of a .toml manifest, and simple Rust program that prints "Hello, world!".</p>
-<p><strong>Compile and Run Your Program</strong><br>
-<code>cargo run</code></p>
-<p><img alt="Rust_cargo_run" class="alignnone size-full wp-image-1916" height="84" src="http://pythonmarketer.files.wordpress.com/2019/08/1d7ac-rust_cargo_run-e1566178950427.png" style="color:var(--color-text);" width="781"></p>
-<p>N[ow, on to learning the syntax, which is often compared to languages like C and C++. First stop for me will be "the book", ]{style="color:var(--color-text);"}<a href="https://doc.rust-lang.org/book/"><em>The Rust Programming Language</em></a>[. Cheers :)]{style="color:var(--color-text);"}</p>
-<p><strong>See also:</strong> <a href="https://cheats.rs/">Rust Cheat Sheet</a></p>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="../choosing-rust-as-my-second-language.html">posted at 02:17</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/coding-programming-rust-software-webassembly.html" rel="tag">coding, programming, Rust, software, WebAssembly</a>
-                </div>
-            </article>            <h4 class="date">Apr 25, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="../installing-debian-9-stretch-linux-os-on-a-dell-inspiron-laptop-and-troubleshooting-wifi.html" rel="bookmark" title="Permanent Link to &quot;Installing Debian 9 Stretch Linux OS on a Dell Inspiron Laptop and Configuring the Wifi Network&quot;">Installing Debian 9 Stretch Linux OS on a Dell Inspiron Laptop and Configuring the Wifi Network</a>
-                </h2>
-
-                
-                
-
-                <p>Yesterday, I converted an 11-year old Dell Inspiron E1505 from Windows XP to Debian 9 Stretch. I may have overwrote my Windows XP OS. I do not care if I lost it since it's a vulnerable and outdated OS, which is no longer supported by Microsoft. I encountered difficulty with getting the wifi to work on Debian, but was able to find a solution using <a href="https://help.ubuntu.com/community/WICD">Wicd</a>. Here are the steps I followed to do it all.</p>
-<h2>Using The Debian Installer-Loader</h2>
-<ol>
-<li>First, back up your Windows computer files. Then download the <a href="https://wiki.debian.org/DebianInstaller/Loader">Debian-Installer Loader</a> Windows executable from the Debian wiki.</li>
-<li>Click the downloaded executable and <img alt="IMG_20190423_184816999" class="wp-image-1785 alignright" height="196" src="http://pythonmarketer.files.wordpress.com/2019/04/97878-img_20190423_184816999-e1556211269262.jpg" width="311">follow instructions. I followed the default settings all the way through.</li>
-<li>You may need to choose your own partitioning settings to ensure Windows is preserved if desired.</li>
-<li>During installation, choose your Linux collection. I chose Xfce because it <a href="https://www.slant.co/versus/1122/1124/~xfce_vs_gnome-3">seems to be highest ranked</a> among Linux users and "not just helpful for older computers where few system resources are available, but also simply for those who want to get the most out of their systems." Gnome and KDE are other popular options.</li>
-</ol>
-<p><img alt="IMG_20190423_184023738" class="wp-image-1784 aligncenter" height="375" src="http://pythonmarketer.files.wordpress.com/2019/04/46248-img_20190423_184023738-e1556211291659.jpg" width="564"></p>
-<p><strong>After completing installation, restart your computer and select your new OS on boot-up. The following error codes displayed for me while starting up, signaling missing wifi firmware. </strong>[<br>
-ERROR Failed to load firmware!<br>
-b43ssb0:0: firmware: failed to load b43/ucode5.fw (-2)<br>
-b43ssb0:0: firmware: failed to load b43-open/ucode5.fw (-2)<br>
-b43-phy0 ERROR: You must go to https://wireless.wiki.kernel.org/en/users/drivers/b43#devicefirmware and download the correct firmware for this driver version.]{style="font-size:8pt;"}</p>
-<p><em>It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to <a href="http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/">this page</a>, which is linked to from the link in the error message, and try the solution there first.</em></p>
-<h2>Post Installation Setup</h2>
-<p><strong>Open up the terminal once you're into your new Desktop OS</strong> and enter the below commands.</p>
-<div class="highlight"><pre><span></span><code>su - 
-apt-get install sudo -y usermod -aG sudo yourusername
-</code></pre></div>
-
-<p><strong>1) Enable yourself as root user.</strong></p>
-<p><strong>2) Install sudo.</strong></p>
-<p>**3) Give yourself sudo user permissions. **</p>
-<h2>Optional: Replacing Network-Manager With Wicd</h2>
-<p>This Debian 9 package ships with Network-Manager. After logging in, I wasn't sure why wifi was not working, so I decided to remove Network-Manager and install Wicd. (This was before I realized what the error code displayed on boot-up meant.) Wicd is a Linux network managing alternative and it's built with Python, by the way. I followed <a href="https://help.ubuntu.com/community/WICD">these instructions</a> to execute the below commands.</p>
-<div class="highlight"><pre><span></span><code>uninstall nm
-sudo apt-get install -d --reinstall network-manager network-manager-gnome
-install wicd
-sudo apt-get install wicd-gtk
-</code></pre></div>
-
-<p><strong>After installing Wicd, my Ethernet connection was not working. This fixed it for me:</strong></p>
-<div class="highlight"><pre><span></span><code>sudo ifconfig eth0 up
-</code></pre></div>
-
-<h2>Troubleshooting Linux Wifi &amp; Inspecting Your System</h2>
-<p>Now, let's check for enabled network interfaces. "wlan0" is usually the name of the wireless interface. Does wlan0 show when you enter this command? If not, then you may need to update your wifi firmware. This was the case for me. Below is an output where wlan0 is correctly configured.</p>
-<div class="highlight"><pre><span></span><code>sudo ifconfig
-</code></pre></div>
-
-<p>[eth0: flags=4099\<UP,BROADCAST,MULTICAST> mtu 1500<br>
-ether 00:25:a5:cf:38:7d txqueuelen 1000 (Ethernet)<br>
-RX packets 0 bytes 0 (0.0 B)<br>
-RX errors 0 dropped 0 overruns 0 frame 0<br>
-TX packets 0 bytes 0 (0.0 B)<br>
-TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0<br>
-device interrupt 17]{style="font-size:8pt;"}<br>
-[<br>
-lo: flags=73\<UP,LOOPBACK,RUNNING> mtu 65536<br>
-inet 127.0.0.1 netmask 255.0.0.0<br>
-inet6 ::1 prefixlen 128 scopeid 0x10<br>
-loop txqueuelen 1 (Local Loopback)<br>
-RX packets 4 bytes 240 (240.0 B)<br>
-RX errors 0 dropped 0 overruns 0 frame 0<br>
-TX packets 4 bytes 240 (240.0 B)<br>
-TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0<br>
-[<br>
-wlan0: flags=4163\<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500<br>
-inet 191.142.1.297 netmask 255.255.255.0 broadcast 182.138.5.255<br>
-inet6 2601:241:8c00:50ea:21a:92ff:fe0d:7531 prefixlen 64 scopeid 0x0<br>
-inet6 fe80::22a:42tf:fe0d:7531 prefixlen 64 scopeid 0x20 ether 00:2a:92:2d:45:51 txqueuelen 1000 (Ethernet)<br>
-RX packets 8509 bytes 4639778 (4.4 MiB)<br>
-RX errors 0 dropped 0 overruns 0 frame 0<br>
-TX packets 6206 bytes 923792 (902.1 KiB)<br>
-TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0]{style="font-size:8pt;"}]{style="font-size:8pt;"}</p>
-<p><strong>Check wlan0 is not blocked on kill list.</strong></p>
-<div class="highlight"><pre><span></span><code>sudo rfkill list all
-</code></pre></div>
-
-<p>Some computers have a "kill switch" for wifi. This command lists any blocked interfaces. If it is blocked, <a href="https://ubuntuforums.org/showthread.php?t=2298330">this thread</a> might be useful. If nothing shows when you run this command, or if you see wlan0 is not blocked, carry on.</p>
-<p><strong>Check which wifi controller you have.</strong> <strong><a href="https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers">This thread</a></strong> <strong>provides more info on what this means.</strong></p>
-<div class="highlight"><pre><span></span><code>lspci -nn | grep -e 0200 -e 0280
-</code></pre></div>
-
-<p>[03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)<br>
-0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)]{style="font-size:8pt;"}</p>
-<p><strong>Find your system architecture. This determines which firmware you should download in the next step.</strong></p>
-<div class="highlight"><pre><span></span><code>sudo dpkg --print-architecture
-</code></pre></div>
-
-<p><strong>First,</strong> <strong><a href="https://wireless.wiki.kernel.org/en/users/drivers/b43/firmware">read here</a></strong> **to determine the right packages for your Linux system. Then download the appropriate missing wifi firmware. For Debian, I downloaded the two packages below. **</p>
-<p>1) <a href="https://packages.debian.org/stretch/b43-fwcutter">b43-fwcutter</a>    2) <a href="https://packages.debian.org/stretch/firmware-b43-installer">b43-installer</a></p>
-<p><strong>"cd" into the directory with .deb files. Run the below commands to install the new firmware, then reboot your computer. The last two commands are adapted from</strong> <strong><a href="https://ubuntuforums.org/showthread.php?t=2203312&amp;page=4">this thread</a></strong>.</p>
-<div class="highlight"><pre><span></span><code>sudo dpkg -i firmware-b43-installer_019-3_all.deb
-sudo dpkg -i firmware-b43-fwcutter_019-3_i386.deb
-sudo modprobe -r b43
-sudo modprobe b43
-</code></pre></div>
-
-<p><strong>Edit Wicd preferences to set wlan0 as the wireless interface if needed.</strong></p>
-<p><img alt="change_wicd_settings" class="alignnone wp-image-1779" height="357" src="https://pythonmarketer.files.wordpress.com/2019/04/change_wicd_settings.png" width="380"></p>
-<p><strong>Success! Wireless networks are now showing.<br>
-</strong></p>
-<p><img alt="wicd_success" class="alignnone wp-image-1780" height="351" src="https://pythonmarketer.files.wordpress.com/2019/04/wicd_success.png" width="375"></p>
-<p><strong>Wrapping Up</strong></p>
-<p>I'd like to thank the awesome people who contributed to the Debian Installer-loader and all the help in Linux forums that enabled me figure this out. I'm new to the world of Linux but already enjoying diving into this operating system. Its ability to do just about anything from the command line are a lot of fun. I am now running two Linux systems, one on my Dell and another running Ubuntu that I installed on a Chromebook with <a href="https://www.howtogeek.com/162120/how-to-install-ubuntu-linux-on-your-chromebook-with-crouton/">Crouton</a>. Both have been relatively painless to set up. It this case, it turned a sluggish laptop into a very capable machine. They should call it Lit-nux :)</p>
-<p>https://twitter.com/erickbytes/status/1120864722855825409</p>
-<p><strong>Full Disclosure</strong></p>
-<p>This worked on my computer for a few days before the keyboard stopped working correctly on my computer. Typing became impossible because the keys didn't work or entered the wrong letters when pressed. I'm not sure what the cause of it was, but consider that before attempting this on a machine. Be prepared to lose it. If you really need the machine to be functional, it may not be a great idea to try this. This was attempted on an old beat up computer. I would try this method of porting a Windows machine to Linux again as a salvage project or on a low-risk Windows machine if I had one lying around.</p>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="../installing-debian-9-stretch-linux-os-on-a-dell-inspiron-laptop-and-troubleshooting-wifi.html">posted at 14:14</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/linux-software.html" rel="tag">Linux, software</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="../tag/computers.html" class="tags">computers</a>
-                    &nbsp;<a href="../tag/debian.html" class="tags">debian</a>
-                    &nbsp;<a href="../tag/operating-system.html" class="tags">operating system</a>
-                    &nbsp;<a href="../tag/os-upgrade.html" class="tags">os upgrade</a>
-                    &nbsp;<a href="../tag/windows.html" class="tags">Windows</a>
-                </div>
-            </article>            <h4 class="date">Apr 12, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="../datasets-plotting-using-jupyter-pandas-and-matplotlib.html" rel="bookmark" title="Permanent Link to &quot;Plotting Datasets Using Jupyter, Pandas and Matplotlib&quot;">Plotting Datasets Using Jupyter, Pandas and Matplotlib</a>
-                </h2>
-
-                
-                
-
-                <p>I'm new to exploring datasets, but I've already found some great public data online. First, can I say that <a href="https://toolbox.google.com/datasetsearch">Google Dataset Search</a> is great? I have been enjoying many of the datasets I've found there. Additionally, organizations with public data like the <a href="https://data.cityofchicago.org/">Chicago Data Portal</a> are interesting to check out. I'm happy to live in a city that provides a lot of its data online for free. Do you know if your city has public data available? I discovered some of this data via sites like <a href="http://data.world">data.world</a> as well. With playful curiosity and the tools in this article, you will be well equipped to mine insights from any data.<a href="https://toolbox.google.com/datasetsearch"><img alt="screencapture-toolbox-google-datasetsearch-2019-04-11-07_47_50" class="alignleft size-full wp-image-1736" height="295" src="http://pythonmarketer.files.wordpress.com/2019/04/de1c3-screencapture-toolbox-google-datasetsearch-2019-04-11-07_47_50-e1555047601227.png" width="917"></a></p>
-<p><strong>Below, I will highlight three datasets that I recently stumbled into.</strong></p>
-<ol>
-<li>Chicago Red Light Camera Violation Data</li>
-<li>USDA Nutritional Data (2015)</li>
-<li>Job Computerisation Forecast Data</li>
-</ol>
-<h2>Installation and Startup</h2>
-<p>**New to Jupyter, pandas or pip? **</p>
-<p>Welcome to the club. If you need a run-down on using pip, I wrote <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">this post</a> to help sort it out. If you want a superb, gentle and funny introduction to pandas, Jupyter, and data analysis, <a href="https://www.youtube.com/watch?v=5JnMutdy6Fw">this PyCon session</a> is the best tutorial I have found, by far.</p>
-<p><strong>To run the scripts shown in this post, you must:</strong> (1) install the three libraries below to run in a Jupyter notebook (recommended) <strong>OR</strong> (2) run these plots from the command line and view them as a saved image. To do that, just install pandas and matplotlib.</p>
-<p><strong>First, <a href="https://docs.python.org/3/installing/index.html">install libraries with pip</a>. Enter in command prompt or terminal:</strong></p>
-<ol>
-<li>
-<p>python -m pip install pandas</p>
-</li>
-<li>
-<p>python -m pip install matplotlib</p>
-</li>
-<li>
-<p>python3 -m pip install jupyter</p>
-</li>
-</ol>
-<p><strong>Then, run Jupyter Notebook</strong></p>
-<div class="highlight"><pre><span></span><code>jupyter notebook
-</code></pre></div>
-
-<h2>1. <a href="https://data.cityofchicago.org/Transportation/Red-Light-Camera-Violations/spqx-js37">Chicago Red Light Camera Violations (2014 - 2019)</a></h2>
-<p><em>Note the spikes in tickets per day in 2016 and 2017, and the amount of tickets issued in 2016.  Less tickets were issued in 2017 and 2018, after more allegations surfaced about this troublesome red light camera program. Jupyter Notebook with code for both these charts can be found <a href="https://github.com/erickbytes/Dataset-Analysis-Notebooks/blob/master/Chicago%20Red%20Light%20Camera%20Tickets%20(2014-2019)/Chicago%20Red%20Light%20Violations.ipynb">here</a>.</em></p>
-<p><img alt="Chicago Traffic Violations Per Day" class="wp-image-1751 alignleft" height="306" src="https://pythonmarketer.files.wordpress.com/2019/04/chicago-traffic-violations-per-day-1.png" width="322"></p>
-<p><img alt="Chicago Red Light Violations By Year" class="wp-image-1745 alignright" height="207" src="https://pythonmarketer.files.wordpress.com/2019/04/chicago-red-light-violations-by-year.png" style="padding-bottom:20px;" width="323"></p>
-<p><strong>Chicago's Shady Red Light Camera Program</strong></p>
-<p>[2,573,339 violations occurred from July 2014 - March 2019. Personally, I was issued 3 red light camera tickets over the last 5 years. I charted out the tickets by year, month and day.  ]{style="color:var(--color-neutral-600);"}[The below code was used for the left image above, in which I plotted each day of red light camera violations in Chicago over the past 5 years.]{style="color:var(--color-neutral-600);"}</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">plotting red light tickets with matplotlib - Python Marketer</span>
-<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/</span>
-<span class="sd">matplotlib.plot_date docs: https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.plot_date.html </span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Red_Light_Camera_Violations.csv&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;VIOLATION DATE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;VIOLATION DATE&#39;</span><span class="p">])</span>
-
-<span class="sd">&quot;&quot;&quot;Applying Plot Formatting&quot;&quot;&quot;</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
-<span class="n">years</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">YearLocator</span><span class="p">()</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
-<span class="n">red_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkRed&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Each Dot is 1 Day&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">red_patch</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;xx-small&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
-
-<span class="sd">&quot;&quot;&quot;Pass pandas columns to plt.plot_date to create and save plot.&quot;&quot;&quot;</span>
-<span class="n">values</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;VIOLATIONS&#39;</span><span class="p">]</span> 
-<span class="n">dates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;VIOLATION DATE&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> 
-              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkRed&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Chicago Red Light Ticket Violations - Past 5 Years&#39;</span><span class="p">,</span> 
-          <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Chicago traffic Violations By Year.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<p><strong>Analysis:</strong> We can see 2016 is the leader for the past 5 years in amount of violations that occurred. The city of Chicago has drawn criticism for unethical practices in its camera program to reap more revenue. In 2017, the city approved a settlement of "nearly \$40 million after a previous class-action lawsuit alleged that the program had violated 1.2 million motorists’ due process rights." (<a href="https://www.illinoispolicy.org/lawsuit-claims-chicago-red-light-cameras-violate-state-law/">Source</a>)</p>
-<blockquote>
-<p>"A Tribune analysis of more than 4 million tickets issued since 2007 and a deeper probe of individual cases reveal clear evidence that a series of sudden, unexplainable spikes in Chicago's network of 380 cameras were caused by faulty equipment, human tinkering or both. Chicago transportation officials say they had no knowledge of the wild swings in ticketing until they were told by the Tribune — even though City Hall legally required the camera vendor to watch for the slightest anomaly in ticketing patterns every day. Many of the spikes lasted weeks." (<a href="http://graphics.chicagotribune.com/news/local/red-light-timeline/">Source</a>)</p>
-</blockquote>
-<p><a href="https://github.com/erickbytes/Dataset-Analysis-Notebooks/blob/master/Chicago%20Red%20Light%20Camera%20Tickets%20(2014-2019)/Chicago%20Red%20Light%20Violations.ipynb">See Full Jupyter Notebook</a></p>
-<h2><a href="https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/">2. USDA Nutritional Data (2015)</a></h2>
-<p>This USDA data was updated in 2015. It provides many common foods and their nutrient levels, such as carbohydrates and iron, for breads, fruits, vegetables, beverages and most foods you can find in a grocery store. I decided to see which foods contained the most: Sugar, Catbohydrates and Iron. The pandas <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.nlargest.html">nlargest</a> method made this a breeze.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;ABBREV.xlsx&#39;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sugar_Tot_(g)&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Shrt_Desc</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s1">&#39;CEREALS,&#39;</span><span class="p">,</span> 
-                                  <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                  <span class="n">case</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Sugar_Tot_(g)&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Shrt_Desc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Sugar_Tot_(g)&#39;</span><span class="p">,</span>
-             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkBlue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Grams of Sugar&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Foods&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Most Sugar, Cereals - USDA&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
-</code></pre></div>
-
-<blockquote>
-<p>*<em>"Research suggests that as many as 80 percent of people in the world don't have enough iron in their bodies." </em>-World Health Organization ***</p>
-</blockquote>
-<p><img alt="Foods with The Most Iron - USDA" class="alignnone size-full wp-image-1754" height="279" src="https://pythonmarketer.files.wordpress.com/2019/04/foods-with-the-most-iron-usda.png" width="718"><strong>Analysis:</strong> Instant oatmeal and cereals are the highest in sugar co[ntent. Stay away from them if possible.  If you need to boost your iron levels, beef and pork are good options. If you don't eat meat, certain spices and wheat bran/flakes contain high levels of iron. Seaweed is also a good, iron rich snack. Ultimately, there are lots of ways to get iron in your diet besides meat.]{style="color:var(--color-neutral-600);"}</p>
-<p><a href="https://github.com/erickbytes/Dataset-Analysis-Notebooks/blob/master/USDA%20Nutritional%20Data%20(2015)/USDA%20Food%20Nutrition.ipynb">See Full Jupyter Notebook</a></p>
-<h2>3. <a href="https://data.world/quanticdata/occupation-and-salary-by-state-and-likelihood-of-automation/workspace/query?queryid=51754b08-7414-4f76-8a31-8b5c75166146">Job Computerisation Forecast Data</a></h2>
-<p>This data orignates from a 2013 University of Oxford study and the United States Bureau of Labor Statistics. It provides two key values: probability (%) that a job will be computerised within 1-2 decades, and the number of jobs that currently exist for that profession in each state.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">plotting occupational automation risk - Python Marketer</span>
-<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/</span>
-
-<span class="sd">Find most common Illinois jobs affected and at highest risk of automation.</span>
-<span class="sd">Source Data: https://data.world/quanticdata/occupation-and-salary-by-state-and-likelihood-of-automation/workspace/query?queryid=51754b08-7414-4f76-8a31-8b5c75166146</span>
-
-<span class="sd">plt.text matplotlib docs: https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.text.html </span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;high-risk-in-your-st-occupation-and-salary-by-state-and-likelihood-of-automation-QueryResult.csv&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;Illinois&#39;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.95</span><span class="p">]</span> <span class="c1"># gets  &quot;highest risk&quot; subset</span>
-
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;occupation&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Illinois&#39;</span><span class="p">,</span> 
-             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkBlue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-
-<span class="c1"># add corresponding percent over each bar</span>
-<span class="n">probs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">])</span> 
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">probs</span><span class="p">):</span>
-    <span class="n">percent</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;0.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> 
-             <span class="n">y</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">.25</span><span class="p">,</span> 
-             <span class="n">s</span><span class="o">=</span><span class="n">percent</span><span class="p">,</span> 
-             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> 
-             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> 
-             <span class="n">fontsize</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
-
-<span class="n">white_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> 
-                             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Est. % Probability of Computerisation&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">white_patch</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;xx-large&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Est. Number of Jobs At Risk in Illinois&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupation&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Most Common Illinois Jobs at &quot;Highest Risk&quot; of Being Computerised Within 15 Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Source: Carl Benedikt Frey and Michael A. Osborne (2013 University of Oxford Study)&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Source: data.world/quanticdata &amp; Bureau of Labor Statistics&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Most Common Jobs at &quot;High Risk&quot; of Being Computerised.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img alt="job_computerisation" class="alignnone size-full wp-image-1734" height="672" src="https://pythonmarketer.files.wordpress.com/2019/04/job_computerisation.png" width="1614"></p>
-<p><strong>Analysis:</strong> It's strange to think that these common jobs, which currently make up a large portion of our economy, will likely be computerised some day. They all seem to be entry-level manual tasks. The promise of automation is that it frees humans up to focus on more meaningful or complex problems. How will the 125,000 cashiers in Illinois adapt when that is no longer a way to earn money?</p>
-<p><a href="https://github.com/erickbytes/Dataset-Analysis-Notebooks/blob/master/Illinois%20Job%20Computerisation%20Forecast/Job%20Automation%20Forecast%20-%20Illinois.ipynb">See Full Jupyter Notebook</a></p>
-<p><strong>The Plot Thickens...</strong></p>
-<p>I've barely scratched the surface in my experience with datasets, but already found some very interesting data to inspect and play with. These data visualization skills are adaptable to many situations. All you need is good data to bring to life. Stay curious, my friends.</p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><strong>Additional reading</strong></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><a href="https://uppsala.instructure.com/courses/28112/files?preview=1042670">Matplotlib: Beyond the Default</a></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="../datasets-plotting-using-jupyter-pandas-and-matplotlib.html">posted at 05:59</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/automation-chicago-coding-data-pandas-plots-programming.html" rel="tag">automation, Chicago, coding, data, pandas, plots, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="../tag/data-analysis.html" class="tags">data analysis</a>
-                    &nbsp;<a href="../tag/datasets.html" class="tags">datasets</a>
-                    &nbsp;<a href="../tag/jupyter.html" class="tags">jupyter</a>
-                    &nbsp;<a href="../tag/matplotlib.html" class="tags">matplotlib</a>
-                    &nbsp;<a href="../tag/python.html" class="tags">python</a>
-                </div>
-            </article>            <h4 class="date">Feb 12, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="../lightning-scripts-%e2%9a%a1.html" rel="bookmark" title="Permanent Link to &quot;Lightning Scripts ⚡&quot;">Lightning Scripts ⚡</a>
-                </h2>
-
-                
-                
-
-                <p>You may or may not be familiar with <a href="https://www.youtube.com/channel/UCsX05-2sVSH7Nx3zuk3NYuQ">PyCon</a>'s <a href="https://pyvideo.org/pycon-us-2010/pycon-2010--plenary--saturday-evening-lightning-t.html">Lightning Talks</a>, a session of quick hitter talks given each year on a variety of topics. These "Lightning Scripts" are ten of my favorite Python scripts that have served me well as of late to perform a variety of tasks.</p>
-<p>Highlights include the glob, os, calendar, webbrowser and pandas modules. Plus, how to convert a dataframe into a pdf and how to take a snapshot of a website with pdfkit. The webpage pdf was not the greatest snapshot in some cases, but did capture text and many of a live website's visual elements.</p>
-<p>If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.</p>
-<h2>The first 5 scripts use modules that ship with Python.</h2>
-<p><strong>1 ⚡ Uppercase all of the file names in the current working directory.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
-</code></pre></div>
-
-<p>os module <a href="https://docs.python.org/3/library/os.html#os.rename">documentation</a></p>
-<p><strong>2 ⚡ Get all filenames in the current directory and write to a text file.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">folder_contents</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;list_of_dir_files.txt&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
-    <span class="p">[</span><span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;f</span><span class="si">{item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">folder_contents</span><span class="p">]</span>
-</code></pre></div>
-
-<p><strong>3 ⚡ Check what day of the week is today.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">calendar</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
-<span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> 
-<span class="k">if</span> <span class="n">calendar</span><span class="o">.</span><span class="n">day_name</span><span class="p">[</span><span class="n">today</span><span class="o">.</span><span class="n">weekday</span><span class="p">()]</span> <span class="o">==</span> <span class="s1">&#39;Friday&#39;</span><span class="p">:</span> 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is Friday.&quot;</span><span class="p">)</span> 
-<span class="k">else</span><span class="p">:</span> 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is not Friday.&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p><a href="https://docs.python.org/3/library/calendar.html">calendar documentation</a></p>
-<p><strong>4 ⚡ Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">* means all, if need specific format then *.csv</span>
-<span class="sd">getctime == by created date, getmtime == by date modified</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">list_of_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># get all files, regardless of extension </span>
-<span class="n">newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">second_newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">newest_file</span><span class="p">,</span> <span class="n">second_newest_file</span><span class="p">)</span>
-</code></pre></div>
-
-<p><a href="https://docs.python.org/3/library/glob.html#glob.iglob">glob module documentation</a></p>
-<p><strong>5  ⚡ Auto-Hamilton Ticket Lottery</strong></p>
-<div>
-
-    import webbrowser
-    webbrowser.open('https://www.luckyseat.com/hamilton-chi/', new=0)
-
-</div>
-
-<p><a href="https://pymotw.com/3/webbrowser/">webbrowser PMOTW</a></p>
-<h2>To Run The Next 3 Scripts, install pandas:</h2>
-<p>I installed pandas and pdfkit with pip. <a href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">Psst... new to pip</a>?</p>
-<div class="highlight"><pre><span></span><code>python -m pip install pandas
-</code></pre></div>
-
-<p>**1 ⚡ Split a csv file into smaller excel files. **</p>
-<div class="highlight"><pre><span></span><code><span class="s s-Atom">import</span> <span class="s s-Atom">pandas</span> <span class="s s-Atom">as</span> <span class="s s-Atom">pd</span>
-<span class="s s-Atom">file_name</span> <span class="o">=</span> <span class="s s-Atom">&#39;big_file.csv&#39;</span>
-<span class="s s-Atom">src_file_minus_ext</span> <span class="o">=</span> <span class="s s-Atom">file_name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s s-Atom">&#39;.&#39;</span><span class="p">)[</span><span class="o">:-</span><span class="mi">1</span><span class="p">]</span> <span class="s s-Atom">#</span> <span class="s s-Atom">slice</span> <span class="s s-Atom">off</span> <span class="s s-Atom">extension</span>
-<span class="s s-Atom">for</span> <span class="s s-Atom">i</span><span class="p">,</span> <span class="s s-Atom">df</span> <span class="s s-Atom">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="s s-Atom">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="s s-Atom">file_name</span><span class="p">,</span> <span class="s s-Atom">chunksize</span><span class="o">=</span><span class="mi">250000</span><span class="p">))</span><span class="o">:</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">alt</span><span class="p">.</span> <span class="s s-Atom">encoding</span> <span class="o">=</span> <span class="s2">&quot;ISO-8859-1&quot;</span>
-    <span class="s s-Atom">out_file</span> <span class="o">=</span> <span class="s s-Atom">f&#39;{src_file_minus_ext}{str(i)}.csv&#39;</span>
-    <span class="s s-Atom">df</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="s s-Atom">out_file</span><span class="p">,</span> <span class="s s-Atom">index</span><span class="o">=</span><span class="nv">False</span><span class="p">,</span> <span class="s s-Atom">header</span><span class="o">=</span><span class="s s-Atom">df</span><span class="p">.</span><span class="s s-Atom">columns</span><span class="p">)</span>
-</code></pre></div>
-
-<p><a href="https://www.youtube.com/watch?v=5JnMutdy6Fw">pandas beginner tutorial</a></p>
-<p><strong>2 ⚡ Convert a .xlsx to .csv</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</code></pre></div>
-
-<p><strong>3 ⚡ Convert a .xlsx to .html</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;data.xlsx&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="s2">&quot;data.html&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<h2>To Run The Last Two Scripts, install pdfkit:</h2>
-<p>pdfkit relies on another library, wkhtmltopdf, which adds an extra wrinkle to setting it up for Windows users. I've laid out the differences between using pdfkit for Windows vs. Ubuntu below.</p>
-<div class="highlight"><pre><span></span><code>python -m pip install pdfkit
-</code></pre></div>
-
-<p><strong>installing wkhtmltopdf on Windows</strong></p>
-<p>To use pdfkit on Windows, go to the link, choose your version to download. This installs a Windows executable that pdfkit needs to find to work.</p>
-<div class="highlight"><pre><span></span><code><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">wkhtmltopdf</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">downloads</span><span class="o">.</span><span class="n">html</span>
-</code></pre></div>
-
-<p><strong>installing wkhtmltopdf on Ubuntu</strong></p>
-<div class="highlight"><pre><span></span><code>sudo apt-get install wkhtmltopdf
-</code></pre></div>
-
-<div>
-
-**For Windows, [download wkhtmltopdf](https://wkhtmltopdf.org/downloads.html) and add this config patch for pdfkit:**
-
-</div>
-
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pdfkit</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
-<span class="n">config</span> <span class="o">=</span> <span class="n">pdfkit</span><span class="o">.</span><span class="n">configuration</span><span class="p">(</span><span class="n">wkhtmltopdf</span><span class="o">=</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Program Files</span><span class="se">\\</span><span class="s1">wkhtmltopdf</span><span class="se">\\</span><span class="s1">bin</span><span class="se">\\</span><span class="s1">wkhtmltopdf.exe&#39;</span><span class="p">)</span>
-<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;webpage.pdf&#39;</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
-</code></pre></div>
-
-<p><strong>4 ⚡ Convert a .html file to .pdf. (Add config patch above for Windows.)</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pdfkit</span>
-<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data.html&#39;</span><span class="p">,</span> <span class="s1">&#39;report.pdf&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<p><strong>5 ⚡ Create a pdf snapshot of a webpage on Ubuntu below. (Add config patch above for Windows.)</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pdfkit</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
-<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;alicia_keys.pdf&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<div>
-
-</div>
-
-<div>
-
-[pdfkit documentation](https://pypi.org/project/pdfkit/)  
-
-
-</div>
-
-<div>
-
-</div>
-
-<div>
-
-</div>
-
-<p>⚡ <strong>Final Thoughts</strong></p>
-<p>I am very pleased with pdfkit. I am also toying around with Python's <a href="https://pyfpdf.readthedocs.io/en/latest/index.html">PyFPDF</a> and <a href="https://pythonhosted.org/PyPDF2/">PyPDF2</a> libraries. Together, these three offer some unique abilities for creating and manipulating pdf files. And the pandas library is amazing for reading and writing tabular data sheets, can't say enough great things about pandas. Worth the time. Hope you enjoyed these Lightning Scripts :) **⚡ **</p>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="../lightning-scripts-%e2%9a%a1.html">posted at 06:27</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/automation-coding-pandas-productivity-programming-scripts.html" rel="tag">automation, coding, pandas, productivity, programming, Scripts</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="../tag/alicia-keys.html" class="tags">alicia keys</a>
-                    &nbsp;<a href="../tag/code.html" class="tags">code</a>
-                    &nbsp;<a href="../tag/computers.html" class="tags">computers</a>
-                    &nbsp;<a href="../tag/hamilton.html" class="tags">hamilton</a>
-                    &nbsp;<a href="../tag/lightning-scripts.html" class="tags">lightning scripts</a>
-                    &nbsp;<a href="../tag/python.html" class="tags">python</a>
-                </div>
-            </article>            <h4 class="date">Feb 02, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="../the-joy-of-logging-with-python.html" rel="bookmark" title="Permanent Link to &quot;The Joy of Logging With Python&quot;">The Joy of Logging With Python</a>
-                </h2>
-
-                
-                
-
-                <p>**In painting and coding, there are no mistakes, only happy accidents. **</p>
-<p>Fortunately when errors happen, Python affords us its stock '<a href="https://docs.python.org/3/howto/logging.html">logging</a>' module, which sometimes catches flak in the community for its syntax and documentation. After poking around this module, I've found it quite suitable to my needs. Thanks to the logging module, I'm catching my happy coding accidents and fixing them like a pro.</p>
-<p><strong>Below is my simple logging setup, which I am using to monitor <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automated Python scripts</a>.</strong> <strong>This script is a "painting" program created to demonstrate logging. </strong>Passing the below to the basicConfig() format argument logs a timestamp, effective for tracking the time of errors. This example logs the error and the traceback to a .log file.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;your_log.log&#39;</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span><span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Running painter...&#39;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="n">painter</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">painter</span> <span class="o">==</span> <span class="s1">&#39;Bob Ross&#39;</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Choose colors, Pfthalo Blue.&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Apply liquid white to canvas.&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Clean brush in odorless paint thinner, and juuust beat the devil out of it.&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Paint happy little trees. There’s nothing wrong with having a tree as a friend.&#39;</span><span class="p">)</span>
-        <span class="n">painting</span> <span class="o">=</span> <span class="s1">&#39;https://www.youtube.com/watch?v=5U3G61r35Mc&#39;</span>
-        <span class="n">painting_complete</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">wisdom</span> <span class="o">=</span> <span class="s1">&#39;Remember this is your world. You get to decide what&#39;</span><span class="n">s</span> <span class="ow">in</span> <span class="n">it</span><span class="o">.</span><span class="s1">&#39;</span>
-        <span class="k">return</span> <span class="n">painting</span><span class="p">,</span> <span class="n">wisdom</span><span class="p">,</span> <span class="n">painting_complete</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">painter</span> <span class="o">=</span> <span class="s1">&#39;Bob Ross&#39;</span> <span class="c1"># comment this line out to produce error for log</span>
-    <span class="n">painting</span><span class="p">,</span> <span class="n">wisdom</span><span class="p">,</span> <span class="n">painting_complete</span> <span class="o">=</span> <span class="n">paint</span><span class="p">(</span><span class="n">painter</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">painting</span><span class="p">)</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Got exception on main handler&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<p><strong>Below is an example of logging only the error, without a traceback. </strong>I am still learning when each is appropriate, but I've found this exception handling variation useful when logging lots of errors that are acceptable and expected in my try/except loops. Note also that in this variation, I have changed the level argument to logging.DEBUG. This mode offers more program execution details to help debug an error when needed.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;your_log.log&#39;</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span><span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running painter...&quot;</span><span class="p">)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">painter</span> <span class="o">=</span> <span class="s2">&quot;Bob Ross&quot;</span>
-    <span class="n">painting</span> <span class="o">=</span> <span class="n">paint</span><span class="p">(</span><span class="n">painter</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">painting</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-</code></pre></div>
-
-<p><strong>Result: writing errors to a .log file.</strong><br>
-You should see that Python has created a fresh .log file with your happy little errors. Below is an example log from a tabular data cleaning program I wrote. The single line errors were produced using the second "Exception as e" method. At the bottom, we can see the full traceback, produced by the first, "logging.exception" method. This .log file resulted from passing the level=logging.INFO argument.</p>
-<p><strong>Example .log output file:</strong></p>
-<p><img alt="logex.png" class="alignnone size-full wp-image-1637" height="648" src="http://pythonmarketer.files.wordpress.com/2019/02/006e2-logex-e1549135549973.png" width="960"></p>
-<p><strong>What's the difference between a .log file and a .txt file?</strong></p>
-<blockquote>
-<p>The difference between the two file types is that <a href="https://pc.net/extensions/file/log">.LOG</a> files are typically generated automatically, while <a href="https://pc.net/extensions/file/txt">.TXT</a> files are created by the user.  <strong>- pc.net</strong></p>
-</blockquote>
-<p><strong>Final Thoughts</strong></p>
-<p>I will continue to explore logging methods but this seems to sufficiently log my program activity and errors. Now, my favorite part of work is peeking in on the logs to see how my happy little Python programs are running.</p>
-<p><a href="https://www.youtube.com/watch?v=5U3G61r35Mc"><img alt="The_Joy_of_Painting_title_screen" class="wp-image-1638 alignright" height="229" hspace="100" src="https://pythonmarketer.files.wordpress.com/2019/02/the_joy_of_painting_title_screen.jpg" width="312"></a></p>
-<p>It's worth mentioning there are alternative, external logging libraries to Python's default logging library. <em>Do whatever makes you happy</em>, just make sure you are logging somehow, especially if you have <a href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automated your Python programs</a> and want to monitor them. This method has worked for me as someone who previously had no experience whatsoever at logging program error activity. Thank you for reading and enjoying the joy of logging. :)</p>
-<blockquote>
-<p><em>Do whatever makes you happy, because ~~painting~~ coding is individual and you should ~~paint~~ code what you want. </em>- adapted from Bob Ross</p>
-</blockquote>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="../the-joy-of-logging-with-python.html">posted at 20:23</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/automation-coding-colors-programming-software.html" rel="tag">automation, coding, Colors, programming, software</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="../tag/bob-ross.html" class="tags">Bob Ross</a>
-                    &nbsp;<a href="../tag/python.html" class="tags">python</a>
+                    <a href="https://lofipython.com/contact.html">posted at 19:18</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/blog.html" rel="tag">blog</a>
                 </div>
             </article>
 
                 <div class="clear"></div>
                 <div class="pages">
 
-                    <a href="../author/pythonmarketer7.html" class="prev_page">&larr;&nbsp;Previous</a>
+                    <a href="https://lofipython.com/author/pythonmarketer7.html" class="prev_page">&larr;&nbsp;Previous</a>
 
-                    <a href="../author/pythonmarketer9.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 8 of 12</span>
+                    <span>Page 8 of 8</span>
                 </div>
 
             <div class="clear"></div>
@@ -1160,9 +205,9 @@ You should see that Python has created a fresh .log file with your happy little 
                 &middot;
                 Powered by <a href="http://getpelican.com">Pelican</a>
                 &middot;
-                <a href="../feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
                 &middot;
-                <a href="../feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
             </footer>
         </div>
         <div class="clear"></div>

@@ -33,7 +33,84 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Dec 19, 2021</h4>
+        <div id="content">            <h4 class="date">Jan 06, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/ftfy-the-wonky-text-fixing-python-library.html" rel="bookmark" title="Permanent Link to &quot;ftfy, The Wonky Text Fixing Python Library&quot;">ftfy, The Wonky Text Fixing Python Library</a>
+                </h2>
+
+                
+                
+
+                <p>Every Python programmer has undoubtedly come across some crazy characters. The <a class="reference external" href="https://ftfy.readthedocs.io/en/latest/">ftfy library &quot;Fixes Text For You&quot;</a> and acts like a swiss army knife when you've got questionable characters breaking your script. In my case, an HTTP request was failing because of weird cryptic letters hiding in the data when it was only supposed to be an apostrophe. This library fixed my text and made it appear flawless. I really like ftfy because it solves a common problem, fixing &quot;<a class="reference external" href="https://en.wikipedia.org/wiki/Mojibake#:~:text=Mojibake%20(%E6%96%87%E5%AD%97%E5%8C%96%E3%81%91%3B%20IPA%3A,from%20a%20different%20writing%20system.">mojibake</a>&quot; or mangled characters. It's a good tool to have when you see these types of issues!</p>
+<p><a class="reference external" href="https://pypi.org/project/ftfy/">Install with pip</a>:</p>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="n">install</span> <span class="n">ftfy</span>
+</pre>
+<div class="wp-image-6448 figure">
+<img alt="source: `ftfy documentation &lt;https://ftfy.readthedocs.io/en/latest/avoid.html&gt;`__" src="https://pythonmarketer.files.wordpress.com/2022/01/ftfy-example-1.png?w=819" />
+<p class="caption">source: <a class="reference external" href="https://ftfy.readthedocs.io/en/latest/avoid.html">ftfy documentation</a></p>
+</div>
+<p>See also: <a class="reference external" href="https://docs.python.org/3/howto/unicode.html">Python Unicode How To</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/ftfy-the-wonky-text-fixing-python-library.html">posted at 11:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/ftfy.html" class="tags">ftfy</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/text-cleaning.html" class="tags">text cleaning</a>
+                </div>
+            </article>            <h4 class="date">Dec 31, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/phone-number-cleaning-regex-pandas-series-example.html" rel="bookmark" title="Permanent Link to &quot;Phone Number Cleaning Regex + pandas Series Example&quot;">Phone Number Cleaning Regex + pandas Series Example</a>
+                </h2>
+
+                
+                
+
+                <p>This is a solution I worked out recently to strip phone numbers into a uniform format. To install <a class="reference external" href="https://pandas.pydata.org/docs/getting_started/install.html">pandas with pip</a>, enter in command prompt:</p>
+<pre class="code python literal-block">
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
+</pre>
+<p>The pandas library has regex built in and it's pretty neat! Behold the power of pandas and a <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">regular expression</a> to do trivial telephone tidying:</p>
+<div class="wp-image-6382 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/12/pandas-example-7-3.41.12-pm.png?w=561" style="width: 767px; height: 150px;" />
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;(010) 001-1010&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Phone&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;str&quot;</span><span class="p">)</span>
+<span class="c1"># remove parentheses, hyphens and spaces with pandas + regex</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s2">&quot;\(|\)|-| &quot;</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="c1"># resulting number: &quot;0100011010&quot;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Regex is cool.</strong></p>
+<p>Grasping the intricacies of what this code is doing feels elegant when you connect the dots.. or pipes. The replace is done via a pandas <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/series.html#api-series-str">str accessor</a>. In the pat string, the parentheses are escaped with slashes and separated by pipes &quot;|&quot;. They act as an <a class="reference external" href="https://realpython.com/python-or-operator/">or operator</a>, succinctly chaining multiple characters together for matching and in this case replacing them with nothing. Pretty nifty. If you read the <a class="reference external" href="https://pandas.pydata.org/docs/">pandas docs</a>, you'll find regex is accessible in different parts of the API. Dive in, it's some of my favorite documentation to snoop. There is so much you can do with pandas. This example demonstrates how its flexible functions get the job done efficiently.</p>
+<p><strong>Further Reading:</strong></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">pandas.Series documentation</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.replace.html">pandas str.replace documentation</a></p>
+<p><a class="reference external" href="http://regex.info/blog/2006-09-15/247">Source of the famous “Now you have two problems” quote</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/phone-number-cleaning-regex-pandas-series-example.html">posted at 14:19</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-programming-python.html" rel="tag">coding, pandas, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/data-cleaning.html" class="tags">data cleaning</a>
+                    &nbsp;<a href="https://lofipython.com/tag/regex.html" class="tags">regex</a>
+                </div>
+            </article>            <h4 class="date">Dec 19, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -237,200 +314,217 @@
                     &nbsp;<a href="https://lofipython.com/tag/coding-practice.html" class="tags">coding practice</a>
                     &nbsp;<a href="https://lofipython.com/tag/how-to-code.html" class="tags">how to code</a>
                 </div>
-            </article>            <h4 class="date">Jul 28, 2021</h4>
+            </article>            <h4 class="date">Sep 06, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators.html" rel="bookmark" title="Permanent Link to &quot;8 Promising Python Static Site Generators&quot;">8 Promising Python Static Site Generators</a>
+                    <a href="https://lofipython.com/yoast-api-python-example-with-requests-pandas.html" rel="bookmark" title="Permanent Link to &quot;Yoast SEO API Python Example With requests + pandas&quot;">Yoast SEO API Python Example With requests + pandas</a>
                 </h2>
 
                 
                 
 
-                <p>A static site generator creates static HTML and markdown files to serve as a website. They're commonly used to host blogs but not exclusively. I recently researched my options to roll a static site in Python. I'm assessing a few of them as a potential future self-hosted blogging solution for this Wordpress blog. Or maybe I'll spin up a new one!</p>
-<blockquote>
-<p><strong>Why Statics?</strong></p>
-<p>Most &quot;modern&quot; websites are <em>dynamic</em> in the sense that the contents of the site live in a database, and are converted into presentation-ready HTML only when a user wants to see the page. That's great. However, it presents some minor issues that static site generators try to solve.</p>
-<p>In a static site, the whole site, every page, <em>everything</em>, is created before the first user even sees it and uploaded to the server as a simple folder full of HTML files (and images, CSS, etc).</p>
-<p>The Nikola Handbook - <a class="reference external" href="https://getnikola.com/handbook.html#why-static">https://getnikola.com/handbook.html#why-static</a></p>
-</blockquote>
-<div class="section" id="static-site-generator-python-libraries">
-<h2>Static Site Generator Python Libraries</h2>
-<p><em>listed in largest to smallest order by # of Github project stars</em></p>
-<p><strong>Pelican</strong> | <a class="reference external" href="https://github.com/getpelican/pelican">Github - 11K Stars</a></p>
-<p>Seems to be the front running static site generator in Python's ecosystem. It contains a convenient pelican-importer tool to import existing content from WordPress, Dotclear, or RSS feeds. Enjoying the modular nature of the <a class="reference external" href="https://github.com/pelican-plugins">pelican-plugins</a> and <a class="reference external" href="https://github.com/getpelican/pelican-themes">pelican-themes</a>!</p>
-<p><strong>Lektor</strong> | <a class="reference external" href="https://github.com/lektor/lektor">Github - 3.5K Stars</a></p>
-<p>Intriguing CMS project touting a &quot;Python API&quot;, <a class="reference external" href="https://www.getlektor.com/plugins/">plugins for tools like Webpack</a> and talented maintainers including the author of Flask.</p>
-<p><strong>Cactus</strong> | <a class="reference external" href="https://github.com/eudicots/Cactus">Github - 3.5K stars</a></p>
-<p>&quot;Simple but powerful <a class="reference external" href="http://mickgardner.com/2011/04/27/An-Introduction-To-Static-Site-Generators.html">static website generator</a> using Python and the <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/templates/">Django template system</a>... typical users would be designers that are tech-savvy, want to use templates, but don't like to mess with setting up django or S3.&quot; (Mac OS) <a class="reference external" href="https://vimeo.com/46999791">Demo Video</a></p>
-<p><strong>Nikola</strong> | <a class="reference external" href="https://github.com/getnikola/nikola">Github - 2.2K stars</a></p>
-<p>Viable option to host your site with the informative <a class="reference external" href="https://getnikola.com/handbook.html#why-static">Nikola Handbook</a> walking you through each step. <a class="reference external" href="https://plugins.getnikola.com/">Plugins</a> for <a class="reference external" href="https://plugins.getnikola.com/v7/notebook_shortcode/">Jupyter Notebooks</a>, <a class="reference external" href="https://getnikola.com/handbook.html#post-processing-filters">post processing filters</a>, a <a class="reference external" href="https://getnikola.com/handbook.html#importing-your-wordpress-site-into-nikola">Wordpress importer</a> command line tool and about <a class="reference external" href="https://themes.getnikola.com/">40 ready to go themes</a> to find the perfect style.</p>
-<p><strong>Makesite</strong> | <a class="reference external" href="https://github.com/sunainapai/makesite">Github - 1.6K Stars</a></p>
-<p>Offers less configuration, using only a single makesite.py file.</p>
-<p><strong>Hyde</strong> | <a class="reference external" href="https://github.com/hyde/hyde">Github - 1.6K stars</a></p>
-<p>Port from <a class="reference external" href="https://jekyllrb.com/">Jekyll</a>, a <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> static site generator. It has since formed its own &quot;evil twin&quot; identity.</p>
-<p><strong>Mynt</strong> | <a class="reference external" href="https://github.com/Anomareh/mynt">Github - 400 stars</a></p>
-<p>&quot;Designed to give you all the features of a CMS with none of the often rigid implementations of those features.&quot;</p>
-<p><strong>Staticjinja</strong> | <a class="reference external" href="https://github.com/staticjinja/staticjinja">Github - 250 Stars</a></p>
-<p>&quot;Minimalist Python library for building static websites with Jinja.&quot;</p>
-</div>
-<div class="section" id="additional-resources">
-<h2>Additional Resources</h2>
-<ul class="simple">
-<li><a class="reference external" href="http://PyLadies.com">PyLadies.com</a>, <a class="reference external" href="https://pyladies.com/">created with Mynt</a></li>
-<li>FullStackPython.com, <a class="reference external" href="https://github.com/mattmakai/fullstackpython.com">created with Pelican</a></li>
-<li>GetLektor.com, <a class="reference external" href="https://github.com/lektor/lektor-website">created with Lektor</a></li>
-<li><a class="reference external" href="https://github.com/gohugoio/hugo">Hugo</a>, a Go static site generator</li>
-<li><a class="reference external" href="https://solar.lowtechmagazine.com/2018/09/how-to-build-a-lowtech-website.html">How to Build a Low-tech&nbsp;Website?</a> (featuring Pelican)</li>
-<li>One convenient way to serve your static files up on the web is with a <a class="reference external" href="https://www.cloudflare.com/learning/cdn/what-is-a-cdn/#:~:text=A%20content%20delivery%20network%20(CDN,stylesheets%2C%20images%2C%20and%20videos.">CDN</a> like <a class="reference external" href="https://developers.cloudflare.com/pages/framework-guides/deploy-anything/">Cloudflare Pages</a>.</li>
-<li>You can research more projects on <a class="reference external" href="https://jamstack.org/generators/">Jamstack</a>, a site I found helpful for finding these libraries.</li>
-</ul>
-<p><strong>Update</strong>! I launched a Pelican blog about investing with Cloudflare pages. It's my first live static blog. Read more about it <a class="reference external" href="https://pythonmarketer.com/2022/07/08/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/">here</a>.</p>
-</div>
+                <p>Lately I've been checking out the <a class="reference external" href="https://yoast.com/wordpress/plugins/seo/">Yoast SEO plug-in</a> and their <a class="reference external" href="https://developer.yoast.com/customization/apis/rest-api">REST API</a>. The API returns all of the SEO metadata, meta tags, schema.org data, etc. for your Wordpress blog posts. Here's a Yoast API Python example script to fetch post metadata via requests and pandas:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-                <div class="clear"></div>
+<span class="k">def</span> <span class="nf">fetch_metadata</span><span class="p">(</span><span class="n">post_url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the Yoast API response as pandas dataframe.&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://atomic-temporary-107329037.wpcomstaging.com/wp-json/yoast/v1/get_head?url=</span><span class="si">{</span><span class="n">post_url</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+    <span class="n">response_dict</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">metadata_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">response_dict</span><span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">metadata_df</span>
 
-                <div class="info">
-                    <a href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators.html">posted at 23:31</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-web-development.html" rel="tag">coding, programming, web development</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/creating-your-own-blog.html" class="tags">creating your own blog</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/static-site-generator.html" class="tags">static site generator</a>
-                </div>
-            </article>            <h4 class="date">Jun 10, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/how-to-fix-your-python-certificates-on-windows.html" rel="bookmark" title="Permanent Link to &quot;Python Requests SSLCertVerificationError Solution for Windows&quot;">Python Requests SSLCertVerificationError Solution for Windows</a>
-                </h2>
-
-                
-                
-
-                <p>I initially installed my Python version from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7">Windows Store</a> and it worked fine for almost a year on my Windows 10 computer. Then I started getting this error message when trying to use the <a class="reference external" href="https://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification">requests library</a> on all HTTP requests:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">SSLError</span><span class="p">:</span> <span class="n">HTTPSConnectionPool</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;api.example.com&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">):</span> <span class="n">Max</span> <span class="n">retries</span> <span class="n">exceeded</span> <span class="k">with</span> <span class="n">url</span><span class="p">:</span> <span class="o">/</span><span class="n">oauth</span><span class="o">/</span><span class="n">token</span><span class="err">?</span><span class="n">grant_type</span><span class="o">=</span><span class="n">client_credentials</span> <span class="p">(</span><span class="n">Caused</span> <span class="n">by</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">SSLCertVerificationError</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)&#39;</span><span class="p">)))</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/erickbytes/Python-Marketer-Reader-Analytics/blob/master/dataset/2020_pythonmarketer.com_post_views.xlsx?raw=true.xlsx&#39;</span>
+<span class="n">posts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="c1"># update url domain with pandas .str accessor</span>
+<span class="n">posts</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s1">&#39;.wordpress&#39;</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">posts</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fetch_metadata</span><span class="p">)</span>
+<span class="n">metadata_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">posts</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]))</span>
+<span class="n">metadata_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Wordpress Blog Post Yoast API Metadata.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p>Apparently my Python certificates were not valid or up to date on my computer. These are &quot;.PEM&quot; or &quot;.cert&quot; files that certify your connection for the <a class="reference external" href="https://www.ssl.com/faqs/faq-what-is-ssl/">SSL protocol</a>. I googled this error until I found the <a class="reference external" href="https://pypi.org/project/python-certifi-win32/">python-certifi-win32</a> library. I only needed to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip install</a> this library and it fixed the problem:</p>
-<p><tt class="docutils literal">pip install <span class="pre">python-certifi-win32</span></tt></p>
-<p>Huge thank you to <a class="reference external" href="https://pypi.org/user/andrewleech/">the maintainer</a> of this package. It solved my issues and now I can make HTTP requests again!</p>
+<p><strong>What this script is doing:</strong></p>
+<ol class="arabic simple">
+<li>Read a list of my blog posts from Github into a <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas dataframe</a>.</li>
+<li>Use <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.apply.html">pandas .apply</a> to fetch the metadata for each post url.</li>
+<li>Deserialize + normalize the JSON response.</li>
+<li>Convert to a pandas dataframe and store in a pandas Series named 'metadata'.</li>
+<li>Merge the series and write the metadata to a csv file.</li>
+</ol>
+<p><strong>The Payoff</strong>:</p>
+<p>You'll end up with blobs of JSON formatted metadata to sift through or wrangle to your liking! Check out the <a class="reference external" href="https://developer.yoast.com/">Yoast documentation</a> if you're interested in finding out more about their APIs.</p>
+<p><strong>New to APIs?</strong></p>
+<p>It's ok if so, we all were once. Check out my <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/">guide to making HTTP requests with Python</a> if you want to see more API examples.</p>
+<div class="wp-image-5922 figure">
+<img alt="SEO Overview" src="https://pythonmarketer.files.wordpress.com/2021/10/e5f7c-image.png" style="width: 640px; height: 451px;" />
+</div>
 
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="https://lofipython.com/how-to-fix-your-python-certificates-on-windows.html">posted at 11:59</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-http-python-windows.html" rel="tag">coding, HTTP, python, Windows</a>
+                    <a href="https://lofipython.com/yoast-api-python-example-with-requests-pandas.html">posted at 14:12</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-http-programming-python.html" rel="tag">APIs, coding, HTTP, programming, python</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/pem-solution.html" class="tags">.PEM solution</a>
-                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
-                    &nbsp;<a href="https://lofipython.com/tag/windows-10.html" class="tags">Windows 10</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-wordpress-blog-seo.html" class="tags">Python Wordpress Blog SEO</a>
+                    &nbsp;<a href="https://lofipython.com/tag/seo.html" class="tags">SEO</a>
+                    &nbsp;<a href="https://lofipython.com/tag/yoast-api.html" class="tags">Yoast API</a>
                 </div>
-            </article>            <h4 class="date">May 29, 2021</h4>
+            </article>            <h4 class="date">Aug 15, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://lofipython.com/python-libraries-tools-resources-for-creative-and-academic-writers.html" rel="bookmark" title="Permanent Link to &quot;Python Libraries, Tools + Resources for Creative and Academic Writers&quot;">Python Libraries, Tools + Resources for Creative and Academic Writers</a>
+                    <a href="https://lofipython.com/how-to-open-firefox-with-webbrowser-on-ubuntu-linux.html" rel="bookmark" title="Permanent Link to &quot;Opening Firefox Via the webbrowser Module + RPA Tools&quot;">Opening Firefox Via the webbrowser Module + RPA Tools</a>
                 </h2>
 
                 
                 
 
-                <p>Today I scoured the internet for tools written in Python that assist writing in any form. After some relentless Google and Github searching, here are my favorites. I found tools to help write modular stories and novels, screenwriting with Trelby and several libraries for academic papers. I haven't tried all of these... yet!</p>
-<p><strong>Storywriting</strong></p>
+                <p>webbrowser is a convenient Python standard library module. It opened my Firefox browser on my Ubuntu Linux operating system running on a Chromebook. This code is adapted from a <a class="reference external" href="https://pythonexamples.org/python-open-url-in-firefox-browser/">Python Examples blog post</a>. Below is a list of other browsers you can open with webbrowser. At the bottom of this post, you'll find more tools to interact with browsers and GUIs programmatically.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
+<span class="n">firefox_sh</span> <span class="o">=</span> <span class="s1">&#39;/usr/lib/firefox/firefox.sh&#39;</span>
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;firefox&#39;</span><span class="p">,</span>
+    <span class="kc">None</span><span class="p">,</span>
+    <span class="n">webbrowser</span><span class="o">.</span><span class="n">BackgroundBrowser</span><span class="p">(</span><span class="n">firefox_sh</span><span class="p">))</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://atomic-temporary-107329037.wpcomstaging.com&#39;</span>
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;firefox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open_new_tab</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">webbrowser</span><span class="o">.</span><span class="n">_browsers</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<figure class="wp-block-table is-style-regular"><table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Type Name</th>
+<th class="head">Class Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal">'mozilla'</tt></td>
+<td><tt class="docutils literal"><span class="pre">Mozilla('mozilla')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'firefox'</tt></td>
+<td><tt class="docutils literal"><span class="pre">Mozilla('mozilla')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'netscape'</tt></td>
+<td><tt class="docutils literal"><span class="pre">Mozilla('netscape')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'galeon'</tt></td>
+<td><tt class="docutils literal"><span class="pre">Galeon('galeon')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'epiphany'</tt></td>
+<td><tt class="docutils literal"><span class="pre">Galeon('epiphany')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'skipstone'</tt></td>
+<td><tt class="docutils literal"><span class="pre">BackgroundBrowser('skipstone')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'kfmclient'</tt></td>
+<td><tt class="docutils literal">Konqueror()</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'konqueror'</tt></td>
+<td><tt class="docutils literal">Konqueror()</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'kfm'</tt></td>
+<td><tt class="docutils literal">Konqueror()</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'mosaic'</tt></td>
+<td><tt class="docutils literal"><span class="pre">BackgroundBrowser('mosaic')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'opera'</tt></td>
+<td><tt class="docutils literal">Opera()</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'grail'</tt></td>
+<td><tt class="docutils literal">Grail()</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'links'</tt></td>
+<td><tt class="docutils literal"><span class="pre">GenericBrowser('links')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'elinks'</tt></td>
+<td><tt class="docutils literal"><span class="pre">Elinks('elinks')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'lynx'</tt></td>
+<td><tt class="docutils literal"><span class="pre">GenericBrowser('lynx')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'w3m'</tt></td>
+<td><tt class="docutils literal"><span class="pre">GenericBrowser('w3m')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">'windows-default'</span></tt></td>
+<td><tt class="docutils literal">WindowsDefault</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'macosx'</tt></td>
+<td><tt class="docutils literal"><span class="pre">MacOSX('default')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'safari'</tt></td>
+<td><tt class="docutils literal"><span class="pre">MacOSX('safari')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">'google-chrome'</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">Chrome('google-chrome')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'chrome'</tt></td>
+<td><tt class="docutils literal"><span class="pre">Chrome('chrome')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">'chromium'</tt></td>
+<td><tt class="docutils literal"><span class="pre">Chromium('chromium')</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">'chromium-browser'</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">Chromium('chromium-browser')</span></tt></td>
+</tr>
+</tbody>
+</table>
+<figcaption><p><a class="reference external" href="https://docs.python.org/3/library/webbrowser.html#webbrowser.get">webbrowser docs</a></p>
+</figcaption></figure><p><strong>Check out these other browsergui automation tools:</strong></p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/olivierkes/manuskript">manuskript</a>: A open-source tool for writers</li>
-<li><a class="reference external" href="https://github.com/mimadrone/writerblocks">writerblocks</a>: A toolkit for writing stories in a modular way</li>
-<li><a class="reference external" href="https://github.com/vkbo/novelWriter">NovelWriter</a>: novelWriter is an open source plain text editor designed for writing novels.</li>
-<li><a class="reference external" href="https://github.com/trelby/trelby">Trelby</a>: The free, multiplatform, feature-rich screenwriting program!</li>
-<li><a class="reference external" href="https://github.com/Carleslc/Readteractive">Readeractive</a>: Tool for writing and generating interactive books, also known as gamebooks.</li>
-<li><a class="reference external" href="https://github.com/Moonbase59/PAWS">PAWS</a>: Python Adventure Writing System</li>
+<li><a class="reference external" href="https://pyautogui.readthedocs.io/en/latest/">pyautogui</a></li>
+<li><a class="reference external" href="https://www.selenium.dev/selenium/docs/api/py/">Selenium</a></li>
+<li><a class="reference external" href="https://github.com/tebelorg/RPA-Python">RPA for Python</a></li>
+<li><a class="reference external" href="https://github.com/robotframework/robotframework">robotframework</a></li>
+<li><a class="reference external" href="https://github.com/kelaberetiv/TagUI">TagUI</a></li>
+<li><a class="reference external" href="https://github.com/RaiMan/SikuliX1">Sikuli</a></li>
+<li><a class="reference external" href="https://github.com/open-rpa/openrpa">Open RPA</a></li>
+<li><a class="reference external" href="https://flow.microsoft.com/en-us/blog/automate-tasks-with-power-automate-desktop-for-windows-10-no-additional-cost/">Power Automate</a></li>
+<li><a class="reference external" href="https://www.casperjs.org/">CasperJS</a></li>
+<li><a class="reference external" href="https://github.com/ariya/phantomjs">PhantomJS</a></li>
+<li><a class="reference external" href="https://slimerjs.org/">SlimerJS</a></li>
 </ul>
-<p><strong>Miscellaneous Writing, Text Cleaning and Proofreading Resources</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://languagetool.org/http-api/swagger-ui/#!/default/post_check">Language Tool API</a>: Open Source proofreading software for English, French, German, Polish, Russian, and&nbsp;more than 20 other languages. It finds many errors that a simple spell checker cannot detect. See also: <a class="reference external" href="https://pypi.org/project/language-tool-python/">language_tool_python library</a> (<a class="reference external" href="https://github.com/languagetool-org/languagetool">Github</a>)</li>
-<li><a class="reference external" href="https://github.com/jfilter/clean-text">clean-text</a>: Python package for text cleaning</li>
-<li><a class="reference external" href="https://github.com/pudo/normality">normality</a>: A tiny library for Python text normalisation. Useful for ad-hoc text processing.</li>
-<li><a class="reference external" href="https://github.com/shivam5992/textstat">textstat</a>: Python package to calculate readability statistics of a text object - paragraphs, sentences, articles.</li>
-<li><a class="reference external" href="https://github.com/sloria/TextBlob">textblob</a>: Simple, Pythonic, text processing--Sentiment analysis, part-of-speech tagging, noun phrase extraction, translation, spelling correction and more.</li>
-<li><a class="reference external" href="https://www.nltk.org/">Natural Language Toolkit (NLTK)</a></li>
-<li><a class="reference external" href="https://github.com/miso-belica/sumy">Sumy</a>: Module for automatic summarization of text documents and HTML pages.</li>
-<li><a class="reference external" href="https://pythonmarketer.wordpress.com/wp-admin/post.php?post=5519&amp;action=edit">Mackerel</a>: Mackerel provides an automated, easy to use alternative for company or school writing tasks. Simply provide the topic and/or files and we will do the rest.</li>
-<li><a class="reference external" href="https://github.com/fandu/Verb-Miner">Verb Miner</a>: This tool can help you analyze a document and discover cool verbs from pdf papers.</li>
-<li><a class="reference external" href="https://github.com/lkjie/paper-translator">paper-translater</a>: Chinese and English essay translator, paper translator, clipboard listener</li>
-<li>There are many <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/26/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code/">text editor options</a> like Sublime or Atom with useful <a class="reference external" href="https://github.com/thedataking/SublimeWritingStyle">plug-ins for text documents</a> or code.</li>
-<li><a class="reference external" href="https://developers.google.com/tech-writing">Free Google Technical Writing Courses</a></li>
-<li><a class="reference external" href="https://wiki.python.org/moin/PythonWriters">PythonWriters Wiki</a></li>
-</ul>
-<p><strong>Academic Writing</strong></p>
-<ul>
-<li><p class="first"><a class="reference external" href="https://github.com/Wookai/paper-tips-and-tricks">Tips and Tricks for Writing Scientific Papers</a>: Practice and tips &amp; tricks to write scientific papers in LaTeX, with figures generated in Python or Matlab.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/dmvaldman/library">library</a>: A collection of essays and timeless papers</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/amusi/CVPR2021-Papers-with-Code">2021 Papers with Code</a></p>
-</li>
-<li><p class="first">` &lt;<a class="reference external" href="https://github.com/JelteF/PyLaTeX">https://github.com/JelteF/PyLaTeX</a>&gt;`__<a class="reference external" href="https://github.com/JelteF/PyLaTeX">PyLaTeX</a>: A Python library for creating LaTeX files</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/luong-komorebi/Begin-Latex-in-minutes">Begin LaTeX in minutes</a>: Brief Intro to LaTeX for beginners that helps you use LaTeX with ease.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://pypi.org/project/texbib/">Texbib</a>: A program that helps you to manage your BibTeX references.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/Pezmc/BibLatex-Check">BibLatex-Check</a>: A python script for checking BibLatex .bib files for common referencing mistakes!</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/paperpy/paperpy">paperpy</a>: Tools for simplifying the preparation of version-controlled and well-written academic papers.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/devd/Academic-Writing-Check">Academic Writing Check</a>: Check for passive words, weasel words, duplicate words, typographical errors and words strunk &amp; white don't like. (Written in Perl.)</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/matplotlib/AnatomyOfMatplotlib">Anatomy of Matplotlib</a>: Tutorial developed for the SciPy conference</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://www.scipy.org/">SciPy</a>: (pronounced “Sigh Pie”) is a Python-based ecosystem of open-source software for mathematics, science, and engineering.</p>
-</li>
-<li><p class="first"><a class="reference external" href="http://www.numpy.org/">NumPy</a>:&nbsp;A fundamental package for scientific computing with Python</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://pandas.pydata.org/">pandas</a>: A fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the&nbsp;<a class="reference external" href="https://www.python.org/">Python</a>&nbsp;programming language.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://newsletter.timber.fm/p/a-writing-tip-i-learned-at-oxford">A writing tip I learned at Oxford</a>: TLDR read your writing out loud to proof it.</p>
-<p>In Math, Computer Science, Physics, or any field where your typical paper has even a modest amount of mathematical notation the percentage of papers written using LaTeX (or even plain TeX!) is probably about 90%+.</p>
-<p><a class="reference external" href="https://www.quora.com/What-percent-of-papers-are-written-with-LaTeX">Adam Russell,&nbsp;PhD Data Visualization, Computational Geometry</a></p>
-<p>BibTeX is reference management software for formatting lists of references. The BibTeX tool is typically used together with the LaTeX document preparation system.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/BibTeX">https://en.wikipedia.org/wiki/BibTeX</a></p>
-</li>
-</ul>
+<p><em>see</em> <em>also:</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Robotic_process_automation">Robot Process Automation</a>, <a class="reference external" href="https://github.com/luruke/browser-2020">Things You Can Do With a Browser in 2020</a></p>
 
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="https://lofipython.com/python-libraries-tools-resources-for-creative-and-academic-writers.html">posted at 17:51</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/education-productivity-python-writing.html" rel="tag">education, productivity, python, writing</a>
+                    <a href="https://lofipython.com/how-to-open-firefox-with-webbrowser-on-ubuntu-linux.html">posted at 23:13</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-gui-programming-python.html" rel="tag">automation, coding, gui, programming, python</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/academic-writing.html" class="tags">academic writing</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-tools-for-writing.html" class="tags">Python Tools for Writing</a>
-                    &nbsp;<a href="https://lofipython.com/tag/resources-for-writers.html" class="tags">resources for writers</a>
-                    &nbsp;<a href="https://lofipython.com/tag/storywriting.html" class="tags">storywriting</a>
-                    &nbsp;<a href="https://lofipython.com/tag/writing-tools.html" class="tags">writing tools</a>
-                </div>
-            </article>            <h4 class="date">Apr 15, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/did-you-read-the-whole-error.html" rel="bookmark" title="Permanent Link to &quot;Did You Read the Whole Error?&quot;">Did You Read the Whole Error?</a>
-                </h2>
-
-                
-                
-
-                <p>You read the whole thing front to back? Every word? Stop and think about it. What is the computer trying to tell you?</p>
-<p>Sometimes something is obvious but needs to be reminded. I found myself thinking this yet again today. Often there are times where I would have saved some time and grief by carefully reading the error.</p>
-<p>Carefully read the error when you see a traceback. Then once you've taken it all in, consider what to do next. If you're stumped, googling it might yield a solution. But make sure you actually read the error first.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/did-you-read-the-whole-error.html">posted at 15:34</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming.html" rel="tag">coding, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/errors.html" class="tags">errors</a>
-                    &nbsp;<a href="https://lofipython.com/tag/solutions.html" class="tags">solutions</a>
+                    &nbsp;<a href="https://lofipython.com/tag/firefox.html" class="tags">Firefox</a>
+                    &nbsp;<a href="https://lofipython.com/tag/rpa.html" class="tags">RPA</a>
                 </div>
             </article>
 
@@ -441,7 +535,7 @@
 
                     <a href="https://lofipython.com/author/pythonmarketer4.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 3 of 7</span>
+                    <span>Page 3 of 8</span>
                 </div>
 
             <div class="clear"></div>

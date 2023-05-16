@@ -33,7 +33,156 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">May 18, 2020</h4>
+        <div id="content">            <h4 class="date">Sep 13, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api.html" rel="bookmark" title="Permanent Link to &quot;Delete All Your Tweets with Tweepy and the Twitter API&quot;">Delete All Your Tweets with Tweepy and the Twitter API</a>
+                </h2>
+
+                
+                
+
+                <p>You may want to <a class="reference external" href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive">download an archive</a> of your tweets before deleting them. I did this and it took about a day to get my archive download.</p>
+<p><strong>How To Purge Your Tweet History with Python</strong></p>
+<ol class="arabic simple">
+<li>Per the <a class="reference external" href="http://docs.tweepy.org/en/latest/install.html">Tweepy library documentation</a>, install tweepy with <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. It worked fine in my python 3.8 <a class="reference external" href="https://docs.python.org/3/library/venv.html">virtual environment</a>.</li>
+</ol>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="n">install</span> <span class="n">tweepy</span>
+</pre>
+<ol class="arabic simple" start="2">
+<li>Sign up for a <a class="reference external" href="https://developer.twitter.com/">Twitter Developer account</a> and create an app. I named mine &quot;tweetcleanr&quot;.</li>
+<li>Find your app under &quot;Projects &amp; Apps&quot;. Edit your app's permissions to &quot;<strong>Read + Write + Direct Messages</strong>&quot;.</li>
+<li>After you update your permissions, select the &quot;Keys and tokens&quot; tab. Then regenerate new API keys. Then paste them in the below script.</li>
+</ol>
+<div class="wp-image-4350 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/twitter-dev.png?w=1024" />
+</div>
+<ol class="arabic simple" start="5">
+<li>Save the below script as a python file. In command prompt or terminal, run python <strong>delete_tweets.py</strong> or whatever you want to name it!</li>
+<li>You'll be asked to go to a link and enter an authorization code. Then you'll see your tweets being deleted like pictured below.</li>
+</ol>
+<p><strong>delete_tweets.py</strong></p>
+<p>I found this <a class="reference external" href="https://gist.github.com/davej/113241">Github Gist</a> via Google and updated the print and input statements to Python 3. I also added the <a class="reference external" href="https://docs.python.org/3/library/traceback.html">traceback module</a> in case you need to debug it. Initially, I received an error telling me to complete step 3 above. I didn't see the error message at first, until adding <tt class="docutils literal">traceback.print_exc()</tt> like you see below.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">tweepy</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Delete All Your Tweets - Github Gist by davej</span>
+<span class="sd">Credit: https://gist.github.com/davej/113241</span>
+<span class="sd">Ported to Python 3 by Python Marketer: pythonmarketer.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">CONSUMER_KEY</span> <span class="o">=</span> <span class="s2">&quot;get_from_dev_portal&quot;</span>
+<span class="n">CONSUMER_SECRET</span> <span class="o">=</span> <span class="s2">&quot;get_from_dev_portal&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">oauth_login</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Authenticate with twitter using OAuth&quot;&quot;&quot;</span>
+
+    <span class="n">auth</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">OAuthHandler</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">)</span>
+    <span class="n">auth_url</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="n">get_authorization_url</span><span class="p">()</span>
+
+    <span class="n">verify_code</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+        <span class="s2">&quot;Authenticate at </span><span class="si">%s</span><span class="s2"> and then enter you verification code here &gt; &quot;</span> <span class="o">%</span> <span class="n">auth_url</span>
+    <span class="p">)</span>
+    <span class="n">auth</span><span class="o">.</span><span class="n">get_access_token</span><span class="p">(</span><span class="n">verify_code</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">batch_delete</span><span class="p">(</span><span class="n">api</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;You are about to delete all tweets from the account @</span><span class="si">%s</span><span class="s2">.&quot;</span>
+        <span class="o">%</span> <span class="n">api</span><span class="o">.</span><span class="n">verify_credentials</span><span class="p">()</span><span class="o">.</span><span class="n">screen_name</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Does this sound ok? There is no undo! Type yes to carry out this action.&quot;</span><span class="p">)</span>
+    <span class="n">do_delete</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;&gt; &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">do_delete</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">Cursor</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">user_timeline</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">api</span><span class="o">.</span><span class="n">destroy_status</span><span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Deleted:&quot;</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to delete:&quot;</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">oauth_login</span><span class="p">(</span><span class="n">CONSUMER_KEY</span><span class="p">,</span> <span class="n">CONSUMER_SECRET</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authenticated as: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">api</span><span class="o">.</span><span class="n">me</span><span class="p">()</span><span class="o">.</span><span class="n">screen_name</span><span class="p">)</span>
+
+    <span class="n">batch_delete</span><span class="p">(</span><span class="n">api</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-4325 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/terminaltweepy.png?w=755" />
+</div>
+<p><strong>✅</strong> <strong>Twitter Cleanse Complete</strong></p>
+<p>Twitter has a really slick developer dashboard. Its API combined with the tweepy library got the job done for me. It's great when stuff just works. And it only cost me about 1 hour to complete. Time to start a clean slate. Here's to looking forward.</p>
+<p><strong>Supplementary Reading</strong></p>
+<p><a class="reference external" href="http://docs.tweepy.org/en/latest/getting_started.html">Tweepy Documentation Tutorial</a></p>
+<p><a class="reference external" href="https://developer.twitter.com/en/docs/tutorials">Twitter's API Tutorials</a></p>
+<p><a class="reference external" href="https://developer.twitter.com/en/docs/tutorials/postman-getting-started">Twitter Postman Tutorial</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api.html">posted at 21:07</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/api.html" class="tags selected">api</a>
+                    &nbsp;<a href="https://lofipython.com/tag/tweepy.html" class="tags">tweepy</a>
+                    &nbsp;<a href="https://lofipython.com/tag/tweets.html" class="tags">tweets</a>
+                    &nbsp;<a href="https://lofipython.com/tag/twitter.html" class="tags">twitter</a>
+                </div>
+            </article>            <h4 class="date">May 18, 2020</h4>
 
             <article class="post">
                 <h2 class="title">

@@ -9,7 +9,7 @@ Opening Firefox Via the webbrowser Module + RPA Tools
 
 webbrowser is a convenient Python standard library module. It opened my Firefox browser on my Ubuntu Linux operating system running on a Chromebook. This code is adapted from a `Python Examples blog post <https://pythonexamples.org/python-open-url-in-firefox-browser/>`__. Below is a list of other browsers you can open with webbrowser. At the bottom of this post, you'll find more tools to interact with browsers and GUIs programmatically.
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import webbrowser
    firefox_sh = '/usr/lib/firefox/firefox.sh'

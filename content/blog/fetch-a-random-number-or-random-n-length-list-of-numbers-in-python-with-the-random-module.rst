@@ -15,7 +15,7 @@ There are usually many ways to do most things in Python. I've retrieved random n
 
 When combined with the `range() built-in <https://docs.python.org/3.3/library/stdtypes.html?highlight=range#range>`__, it makes doing this easy. Being able to specify a length and return a list of random numbers is mighty convenient. This function seems a Pythonic way to randomize to me. Have a look!
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import random
    # Returns a list of 5 random numbers.

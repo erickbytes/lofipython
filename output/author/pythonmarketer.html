@@ -499,6 +499,53 @@
                     &nbsp;<a href="https://lofipython.com/tag/github-stars-python.html" class="tags">github stars python</a>
                     &nbsp;<a href="https://lofipython.com/tag/repo-star-counts.html" class="tags">repo star counts</a>
                 </div>
+            </article>            <h4 class="date">Sep 15, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/fetch-a-random-number-or-random-n-length-list-of-numbers-in-python-with-the-random-module.html" rel="bookmark" title="Permanent Link to &quot;Retrieve Random Numbers Via Python's random Module + range() Built-in&quot;">Retrieve Random Numbers Via Python's random Module + range() Built-in</a>
+                </h2>
+
+                
+                
+
+                <p>There are usually many ways to do most things in Python. I've retrieved random numbers a few different ways at various times within the random module, often after reading a Stack Overflow post. This time in my most recent search for random digits, I discovered in the Python docs the <a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample">random.sample()</a> function with its k parameter:</p>
+<blockquote>
+<p>Return a&nbsp;<em>k</em>&nbsp;length list of unique elements chosen from the population sequence or set. Used for random sampling without replacement.</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample">https://docs.python.org/3/library/random.html#random.sample</a></p>
+</blockquote>
+<p>When combined with the <a class="reference external" href="https://docs.python.org/3.3/library/stdtypes.html?highlight=range#range">range() built-in</a>, it makes doing this easy. Being able to specify a length and return a list of random numbers is mighty convenient. This function seems a Pythonic way to randomize to me. Have a look!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="c1"># Returns a list of 5 random numbers.</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="c1"># Returns a single random number.</span>
+<span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000000</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7196 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/09/image-2.png?w=552" />
+<p class="caption">To choose a sample from a range of integers, use a&nbsp;<tt class="docutils literal">`range()</tt> &lt;<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#range">https://docs.python.org/3/library/stdtypes.html#range</a>&gt;`__&nbsp;object as an argument. This is especially fast and space efficient for sampling from a large population:&nbsp;<tt class="docutils literal"><span class="pre">sample(range(10000000),&nbsp;k=60)</span></tt>.</p>
+<div class="legend">
+<a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample">https://docs.python.org/3/library/random.html#random.sample</a></div>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/fetch-a-random-number-or-random-n-length-list-of-numbers-in-python-with-the-random-module.html">posted at 23:09</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/python-random-numbers-list.html" class="tags">python random numbers list</a>
+                    &nbsp;<a href="https://lofipython.com/tag/random-module.html" class="tags">random module</a>
+                    &nbsp;<a href="https://lofipython.com/tag/random-numbers-python.html" class="tags">random numbers python</a>
+                </div>
             </article>            <h4 class="date">Sep 07, 2022</h4>
 
             <article class="post">
@@ -614,39 +661,6 @@ Like static site generators? Check out <a class="reference external" href="https
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/static-site-generator.html" class="tags">static site generator</a>
                 </div>
-            </article>            <h4 class="date">Jul 06, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/the-things-they-dont-tell-you-about-ampersands-and-xml.html" rel="bookmark" title="Permanent Link to &quot;The Things They Don't Tell You About Ampersands and XML&quot;">The Things They Don't Tell You About Ampersands and XML</a>
-                </h2>
-
-                
-                
-
-                <p><strong>In an XML document, you need to escape any ampersands in your text as</strong> <tt class="docutils literal">&amp;amp;</tt></p>
-<p>I began a new coding project. Sure, there's documentation for the API that solves my problem. I find out it uses XML. <a class="reference external" href="https://en.wikipedia.org/wiki/XML">Extensible Markup Language</a>, a classic API format. Cool. I craft a beautiful script that works at first. Hallelujah!</p>
-<p>Later on, I realize it doesn't work as well as I believed. It turns out, if I want a server to accept my XML document, <a class="reference external" href="https://www.ibm.com/docs/en/was-liberty/base?topic=manually-xml-escape-characters">escaping certain characters</a> might be required. The documentation didn't mention this. It was my first time using XML, how would I know?</p>
-<p>I noticed a script only worked for a handful of requests. It failed for most, returning a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400 status code</a>. Suspecting the issue was likely in my payload, I studied the data of the request bodies that failed compared to the others that succeeded. All of the payload bodies that failed contained text with an ampersand.</p>
-<p>Suspecting it might be an XML + ampersand related issue, I google <a class="reference external" href="https://stackoverflow.com/questions/1328538/how-do-i-escape-ampersands-in-xml-so-they-are-rendered-as-entities-in-html">this Stack Overflow post</a> which explains the ampersand escaping situation. There are a handful of characters that must be escaped. Otherwise, you might not be able to connect to the server.</p>
-<p>These are the things they often don't tell you. Those little details you must sometimes realize for yourself, unless someone bothers to mention it or write it down. Now you know something that cost me an hour or two of tinkering to realize!</p>
-<div class="wp-image-7060 figure">
-<img alt="`Image Source &lt;https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml&gt;`__" src="https://pythonmarketer.files.wordpress.com/2022/07/xml-example-2.png?w=453" style="width: 453px; height: 521px;" />
-<p class="caption"><a class="reference external" href="https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml">Image Source</a></p>
-</div>
-<p>Wanna read more on HTTP? Check out my guide on <a class="reference external" href="https://pythonmarketer.com/2020/05/18/how-to-make-json-requests-with-python/">making HTTP requests with Python</a> to read more about HTTP requests.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/the-things-they-dont-tell-you-about-ampersands-and-xml.html">posted at 12:49</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-google-programming.html" rel="tag">APIs, coding, Google, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
-                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
-                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
-                    &nbsp;<a href="https://lofipython.com/tag/xml.html" class="tags">XML</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -655,7 +669,7 @@ Like static site generators? Check out <a class="reference external" href="https
 
                     <a href="https://lofipython.com/author/pythonmarketer2.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 1 of 7</span>
+                    <span>Page 1 of 8</span>
                 </div>
 
             <div class="clear"></div>

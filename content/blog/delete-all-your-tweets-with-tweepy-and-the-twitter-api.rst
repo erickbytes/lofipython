@@ -13,7 +13,7 @@ You may want to `download an archive <https://help.twitter.com/en/managing-your-
 
 #. Per the `Tweepy library documentation <http://docs.tweepy.org/en/latest/install.html>`__, install tweepy with `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__. It worked fine in my python 3.8 `virtual environment <https://docs.python.org/3/library/venv.html>`__.
 
-.. code:: wp-block-code
+.. code:: python
 
    pip install tweepy
 
@@ -35,7 +35,7 @@ You may want to `download an archive <https://help.twitter.com/en/managing-your-
 
 I found this `Github Gist <https://gist.github.com/davej/113241>`__ via Google and updated the print and input statements to Python 3. I also added the `traceback module <https://docs.python.org/3/library/traceback.html>`__ in case you need to debug it. Initially, I received an error telling me to complete step 3 above. I didn't see the error message at first, until adding ``traceback.print_exc()`` like you see below.
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import tweepy
    import traceback

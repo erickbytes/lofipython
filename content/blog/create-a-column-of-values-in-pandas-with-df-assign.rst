@@ -11,7 +11,7 @@ Create a Column of Values in Pandas with df.assign()
 
 I recently picked up the `pandas dataframe's "assign" function <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html>`__ for creating a new column of values. This is an elegant way to set a column of values in tabular data with the pandas library. Below you'll see two ways to set a column of values in pandas. In the first way, I am chaining two assign functions together to create 2 new columns, "sound" and "type". I prefer using assign because it looks better and it does not result in any warnings from pandas. Highly recommend getting familiar with pandas functions like assign and API nuances like `Series accessors <https://pandas.pydata.org/docs/reference/series.html?highlight=str%20accessors#accessors>`__ to up your tabular data game.
 
-.. code:: wp-block-preformatted
+.. code-block:: python
 
    import pandas as pd
    cats = ["Garfield","Meowth","Tom"]
