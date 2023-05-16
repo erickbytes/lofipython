@@ -136,7 +136,7 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
 
 **Data is commonly read in from file with**\ `pd.read_csv() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html>`__\ **
 
-::
+.. code-block:: python
 
    import pandas as pd
    file_name = 'my_bank_statement.csv'
@@ -149,7 +149,7 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
 
 **Create a dataframe from a list of Python lists, named movies below, with**\ `pd.DataFrame <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__\ **:**
 
-::
+.. code-block:: python
 
    import pandas as pd
 
@@ -181,7 +181,7 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
 #. Get the year from an array of datetime objects
 #. Set the year as the dataframe index
 
-::
+.. code-block:: python
 
    df = pd.DataFrame(movies, columns=column_names)
    date_df = df[['Title', 'Release Date']].drop_duplicates(subset=['Title'])
@@ -208,7 +208,7 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 -  Convert columns to int and calculate the difference between two columns.
 -  Let's format those integers back to dollars with python's lambda and pandas' applymap for extra jazz.
 
-::
+.. code-block:: python
 
    def format_dollars_as_int(dollars):
        """Accepts a dollar formatted string, returns an int."""
@@ -227,7 +227,7 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 -  Then add the IMDB ratings of our three films in a new column.
 -  Finally, write the result to markdown and a csv file.
 
-::
+.. code-block:: python
 
    # create a new column with the three movies' IMDB ratings 
    df['IMDB Rating'] = list([7.8,5.5,7.8]) 
@@ -267,21 +267,21 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 
 **Get a row by index number us**\ `pandas.DataFrame.loc[] <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html>`__\ **:**
 
-::
+.. code-block:: python
 
    first_row = df.loc[0, df.columns]
    third_row = df.loc[2, df.columns]
 
 **Filter the df to get rows where the actor is 'Julia Roberts'.**
 
-::
+.. code-block:: python
 
    julia_roberts_movies = df[df.Actor=='Julia Roberts'].reset_index(drop=True) 
    print(julia_roberts_movies.head())
 
 **"Get" an item from a column of lists with**\ `str.get() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html>`__\ **.**
 
-::
+.. code-block:: python
 
    # returns first item in each cell's list into new column
    df['first_item'] = df['items'].str.get(0)
@@ -305,7 +305,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
    uses `pd.Series.isin() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html>`__ to check if each email is in the DB.
 
-::
+.. code-block:: python
 
    import pandas as pd
    import pyodbc
@@ -333,7 +333,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 **Using**\ `pd.read_clipboard(): <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html>`__\ **
 **
 
-::
+.. code-block:: python
 
    import pandas as pd
    clipboard_contents = pd.read_clipboard() 
@@ -341,7 +341,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **Use**\ `pd.to_clipboard() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html>`__\ **to store a dataframe as clipboard text:**
 
-::
+.. code-block:: python
 
    import pandas as pd
    truths = ['pandas is great','I love pandas','pandas changed my life']
@@ -352,7 +352,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **Convert the clipboard contents to df with**\ `pd.DataFrame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__\ **:**
 
-::
+.. code-block:: python
 
    import pandas as pd 
    clipboard_contents = list(input('Press ctrl-v '))
@@ -372,7 +372,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **Inversely, consider using**\ `pandas.Series.to_frame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame>`__\ **to convert a Series to a dataframe:**
 
-::
+.. code-block:: python
 
    import pandas as pd 
    clipboard_contents = pd.Series(input('Press ctrl-v '))
@@ -384,20 +384,9 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **For**\ `older pandas versions <https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html>`__\ **:**
 
-::
-
-   from pandas.io.json import json_normalize
-   import requests
-   url = 'pseudo_API.com/endpoint/'
-   parameters = {'page_size'=100, format='json', api_type='contact_sync' }
-   response = requests.get(url=url, params=parameters)
-   data = response.json() # decode response into json
-   # turn subset of json into df
-   df = json_normalize(data['any_key']) 
-
 **Update: beginning in pandas 1.0,**\ `json_normalize <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html>`__\ **became a top-level pandas namespace.**
 
-::
+.. code-block:: python
 
    import pandas as pd
    import requests 
@@ -418,7 +407,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **Make a bar plot of the movie release year counts using pandas and matplotlib formatting.**
 
-::
+.. code-block:: python
 
    import pandas as pd
    import matplotlib.pyplot as plt
@@ -443,7 +432,7 @@ Use Jupyter Notebook to show plot, and/or download plot from command line. Read 
 
 **Plot George Clooney's movies over time in a line graph. [\ `Source <https://www.youtube.com/watch?v=5JnMutdy6Fw>`__\ ]**
 
-::
+.. code-block:: python
 
    import matplotlib.pyplot as plt
    df = df[df.Actor=='George Clooney']

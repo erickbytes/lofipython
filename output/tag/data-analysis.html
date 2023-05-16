@@ -126,32 +126,49 @@ python -m pip install -U matplotlib
 <div class="section" id="data-wrangling-exploration-and-broadcasting">
 <h2>(3) <a class="reference external" href="https://en.wikipedia.org/wiki/Data_wrangling">Data Wrangling</a>, Exploration and Broadcasting</h2>
 <p><strong>Data is commonly read in from file with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pd.read_csv()</a>**</p>
-<pre class="literal-block">
-import pandas as pd
-file_name = 'my_bank_statement.csv'
-# you may sometimes need to specify an alternate encoding: encoding = &quot;ISO-8859-1&quot;
-df = pd.read_csv(file_name, encoding='utf-8')
-print(df.head())
-print(df.shape) # returns a tuple: (# of rows, # of columns)
-print(df.dtypes)
-print(df.info())
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;my_bank_statement.csv&#39;</span>
+<span class="c1"># you may sometimes need to specify an alternate encoding: encoding = &quot;ISO-8859-1&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># returns a tuple: (# of rows, # of columns)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
 <p><strong>Create a dataframe from a list of Python lists, named movies below, with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pd.DataFrame</a><strong>:</strong></p>
-<pre class="literal-block">
-import pandas as pd
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-column_names = [&quot;Title&quot;, &quot;Release Date&quot;, &quot;Character&quot;, &quot;Actor&quot;, &quot;Movie Budget&quot;, &quot;Worldwide Gross&quot;]
-movies = [[&quot;Ocean's 11&quot;, &quot;12/7/2001&quot;, &quot;Danny Ocean&quot;, &quot;George Clooney&quot;,&quot;$85,000,000&quot;,&quot; $450,728,529&quot;],
-[&quot;Ocean's 11&quot;, &quot;12/7/2001&quot;, &quot;Tess Ocean&quot;, &quot;Julia Roberts&quot;,&quot;$85,000,000&quot;,&quot; $450,728,529&quot;],
-[&quot;Runaway Bride&quot;, &quot;6/30/1999&quot;, &quot;Ike Graham&quot;, &quot;Richard Gere&quot;,&quot;$70,000,000&quot;,&quot;$309,457,509&quot;],
-[&quot;Runaway Bride&quot;, &quot;6/30/1999&quot;, &quot;Maggy Carpenter&quot;, &quot;Julia Roberts&quot;,&quot;$70,000,000&quot;,&quot;$309,457,509&quot;],
-[&quot;Bonnie and Clyde&quot;, &quot;9/1/1967&quot;, &quot;Clyde Barrow&quot;, &quot;Warren Beaty&quot;,&quot;$2,500,000&quot;, &quot;$70,000,000&quot;],
-[&quot;Bonnie and Clyde&quot;, &quot;9/1/1967&quot;, &quot;Bonnie Parker&quot;, &quot;Faye Dunaway&quot;,&quot;$2,500,000&quot;, &quot;$70,000,000&quot;]]
+<span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Title&quot;</span><span class="p">,</span> <span class="s2">&quot;Release Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Character&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span><span class="p">,</span> <span class="s2">&quot;Movie Budget&quot;</span><span class="p">,</span> <span class="s2">&quot;Worldwide Gross&quot;</span><span class="p">]</span>
+<span class="n">movies</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Ocean&#39;s 11&quot;</span><span class="p">,</span> <span class="s2">&quot;12/7/2001&quot;</span><span class="p">,</span> <span class="s2">&quot;Danny Ocean&quot;</span><span class="p">,</span> <span class="s2">&quot;George Clooney&quot;</span><span class="p">,</span><span class="s2">&quot;$85,000,000&quot;</span><span class="p">,</span><span class="s2">&quot; $450,728,529&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Ocean&#39;s 11&quot;</span><span class="p">,</span> <span class="s2">&quot;12/7/2001&quot;</span><span class="p">,</span> <span class="s2">&quot;Tess Ocean&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">,</span><span class="s2">&quot;$85,000,000&quot;</span><span class="p">,</span><span class="s2">&quot; $450,728,529&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Runaway Bride&quot;</span><span class="p">,</span> <span class="s2">&quot;6/30/1999&quot;</span><span class="p">,</span> <span class="s2">&quot;Ike Graham&quot;</span><span class="p">,</span> <span class="s2">&quot;Richard Gere&quot;</span><span class="p">,</span><span class="s2">&quot;$70,000,000&quot;</span><span class="p">,</span><span class="s2">&quot;$309,457,509&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Runaway Bride&quot;</span><span class="p">,</span> <span class="s2">&quot;6/30/1999&quot;</span><span class="p">,</span> <span class="s2">&quot;Maggy Carpenter&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">,</span><span class="s2">&quot;$70,000,000&quot;</span><span class="p">,</span><span class="s2">&quot;$309,457,509&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Bonnie and Clyde&quot;</span><span class="p">,</span> <span class="s2">&quot;9/1/1967&quot;</span><span class="p">,</span> <span class="s2">&quot;Clyde Barrow&quot;</span><span class="p">,</span> <span class="s2">&quot;Warren Beaty&quot;</span><span class="p">,</span><span class="s2">&quot;$2,500,000&quot;</span><span class="p">,</span> <span class="s2">&quot;$70,000,000&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Bonnie and Clyde&quot;</span><span class="p">,</span> <span class="s2">&quot;9/1/1967&quot;</span><span class="p">,</span> <span class="s2">&quot;Bonnie Parker&quot;</span><span class="p">,</span> <span class="s2">&quot;Faye Dunaway&quot;</span><span class="p">,</span><span class="s2">&quot;$2,500,000&quot;</span><span class="p">,</span> <span class="s2">&quot;$70,000,000&quot;</span><span class="p">]]</span>
 
-df = pd.DataFrame(movies, columns=column_names)
-df = df[[&quot;Title&quot;,&quot;Character&quot;, &quot;Actor&quot;, &quot;Movie Budget&quot;, &quot;Worldwide Gross&quot;]]
-print(df.to_markdown(showindex=False, tablefmt=&quot;simple&quot;))
-</pre>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Title&quot;</span><span class="p">,</span><span class="s2">&quot;Character&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span><span class="p">,</span> <span class="s2">&quot;Movie Budget&quot;</span><span class="p">,</span> <span class="s2">&quot;Worldwide Gross&quot;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;simple&quot;</span><span class="p">))</span>
+</pre></div></td></tr></table></div>
 <p><strong>Let's print the table to our terminal with</strong><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html">pd.to_markdown()</a><strong>, which is`new in pandas version 1.0.0 &lt;https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html&gt;`__:</strong></p>
 <img alt="simple_layout_markdown" class="alignnone size-full wp-image-2538" src="https://pythonmarketer.files.wordpress.com/2018/05/simple_layout_markdown.jpg" style="width: 847px; height: 189px;" />
 <p><strong>Slicing and sorting a dataframe, removing duplicates, and working with datetime objects</strong></p>
@@ -162,16 +179,22 @@ print(df.to_markdown(showindex=False, tablefmt=&quot;simple&quot;))
 <li>Get the year from an array of datetime objects</li>
 <li>Set the year as the dataframe index</li>
 </ol>
-<pre class="literal-block">
-df = pd.DataFrame(movies, columns=column_names)
-date_df = df[['Title', 'Release Date']].drop_duplicates(subset=['Title'])
-date_df['Release Date'] = pd.to_datetime(date_df['Release Date'])
-# create year column using the pd.Series.dt datetime accessor:
-date_df['Release Year'] = df['Release Date'].dt.year
-date_df = date_df.sort_values(by=['Release Date'])
-date_df = date_df.set_index('Release Year')
-print(date_df.to_markdown(showindex=False, tablefmt='simple'))
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">date_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Title&#39;</span><span class="p">,</span> <span class="s1">&#39;Release Date&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">])</span>
+<span class="n">date_df</span><span class="p">[</span><span class="s1">&#39;Release Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date_df</span><span class="p">[</span><span class="s1">&#39;Release Date&#39;</span><span class="p">])</span>
+<span class="c1"># create year column using the pd.Series.dt datetime accessor:</span>
+<span class="n">date_df</span><span class="p">[</span><span class="s1">&#39;Release Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Release Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">date_df</span> <span class="o">=</span> <span class="n">date_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Release Date&#39;</span><span class="p">])</span>
+<span class="n">date_df</span> <span class="o">=</span> <span class="n">date_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Release Year&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">date_df</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;simple&#39;</span><span class="p">))</span>
+</pre></div></td></tr></table></div>
 <div class="section" id="dates-of-movies">
 <h3><img alt="dates_of_movies" class="alignnone wp-image-2537" src="https://pythonmarketer.files.wordpress.com/2018/05/dates_of_movies.jpg" style="width: 662px; height: 148px;" /></h3>
 <p><strong>Applying Broadcasting in pandas</strong></p>
@@ -187,30 +210,41 @@ print(date_df.to_markdown(showindex=False, tablefmt='simple'))
 <li>Convert columns to int and calculate the difference between two columns.</li>
 <li>Let's format those integers back to dollars with python's lambda and pandas' applymap for extra jazz.</li>
 </ul>
-<pre class="literal-block">
-def format_dollars_as_int(dollars):
-    &quot;&quot;&quot;Accepts a dollar formatted string, returns an int.&quot;&quot;&quot;
-    number = dollars.replace('$','').replace(',','')
-    return int(number)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">def</span> <span class="nf">format_dollars_as_int</span><span class="p">(</span><span class="n">dollars</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Accepts a dollar formatted string, returns an int.&quot;&quot;&quot;</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">dollars</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
 
-df = pd.DataFrame(movies, columns=column_names)
-df = df.drop_duplicates(subset=['Title'])
-df[['Movie Budget','Worldwide Gross']] = df[['Movie Budget','Worldwide Gross']].astype(str).applymap(format_dollars_as_int)
-df['Movie Net Income'] = df['Worldwide Gross'] - df['Movie Budget']
-money_columns = ['Movie Budget', 'Worldwide Gross','Movie Net Income']
-df[money_columns] = df[money_columns].applymap(lambda x:'${:,}'.format(x))
-</pre>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Movie Budget&#39;</span><span class="p">,</span><span class="s1">&#39;Worldwide Gross&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Movie Budget&#39;</span><span class="p">,</span><span class="s1">&#39;Worldwide Gross&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">format_dollars_as_int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Movie Net Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Worldwide Gross&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Movie Budget&#39;</span><span class="p">]</span>
+<span class="n">money_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Movie Budget&#39;</span><span class="p">,</span> <span class="s1">&#39;Worldwide Gross&#39;</span><span class="p">,</span><span class="s1">&#39;Movie Net Income&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="n">money_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">money_columns</span><span class="p">]</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="s1">&#39;$</span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div></td></tr></table></div>
 <p><strong>Creating a new column and writing to a .csv file</strong></p>
 <ul class="simple">
 <li>Then add the IMDB ratings of our three films in a new column.</li>
 <li>Finally, write the result to markdown and a csv file.</li>
 </ul>
-<pre class="literal-block">
-# create a new column with the three movies' IMDB ratings
-df['IMDB Rating'] = list([7.8,5.5,7.8])
-print(df.to_markdown(showindex=False, tablefmt='simple'))
-df.to_csv('Movies.csv', index=False)
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># create a new column with the three movies&#39; IMDB ratings</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;IMDB Rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="mf">7.8</span><span class="p">,</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">7.8</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;simple&#39;</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Movies.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <img alt="IMDB_movies" class="alignnone size-full wp-image-2540" src="https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg" style="width: 870px; height: 117px;" />
 <p><tt class="docutils literal"><span class="pre">print(df.Actor.value_counts().to_markdown(tablefmt=&quot;github&quot;))</span></tt></p>
 <p>[caption id=&quot;attachment_2539&quot; align=&quot;alignright&quot; width=&quot;189&quot;]<img alt="actor" class="alignnone wp-image-2539" src="https://pythonmarketer.files.wordpress.com/2018/05/actor.jpg" style="width: 189px; height: 111px;" /> Count the Actors with df.Actor.value_counts()[/caption]</p>
@@ -229,20 +263,20 @@ df.to_csv('Movies.csv', index=False)
 <p><strong>Fix pesky leading zero zip codes with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html">str.zfill()</a><strong>:</strong></p>
 <p><tt class="docutils literal"><span class="pre">log_df['zip']</span> = <span class="pre">log_df['zip'].astype(str).str.zfill(5)</span></tt></p>
 <p><strong>Get a row by index number us</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">pandas.DataFrame.loc[]</a><strong>:</strong></p>
-<pre class="literal-block">
-first_row = df.loc[0, df.columns]
-third_row = df.loc[2, df.columns]
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">first_row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">third_row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+</pre></div></td></tr></table></div>
 <p><strong>Filter the df to get rows where the actor is 'Julia Roberts'.</strong></p>
-<pre class="literal-block">
-julia_roberts_movies = df[df.Actor=='Julia Roberts'].reset_index(drop=True)
-print(julia_roberts_movies.head())
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">julia_roberts_movies</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Actor</span><span class="o">==</span><span class="s1">&#39;Julia Roberts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">julia_roberts_movies</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
 <p><strong>&quot;Get&quot; an item from a column of lists with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html">str.get()</a><strong>.</strong></p>
-<pre class="literal-block">
-# returns first item in each cell's list into new column
-df['first_item'] = df['items'].str.get(0)
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># returns first item in each cell&#39;s list into new column</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;first_item&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Execute SQL-like operations between dataframes with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html">df.merge()</a><strong>.</strong></p>
 <p>First, use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html">df.copy()</a> to create a new dataframe copy of our actors table above.&nbsp; By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':</p>
 <pre class="literal-block">
@@ -257,52 +291,75 @@ print(joined_df.head(10))
 <p>When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/">pyodbc</a> or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.</p>
 <blockquote>
 uses <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html">pd.Series.isin()</a> to check if each email is in the DB.</blockquote>
-<pre class="literal-block">
-import pandas as pd
-import pyodbc
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyodbc</span>
 
-emails = ['email&#64;email.com', 'notanemail&#64;example.com', 'gmail&#64;gmail.com']
-connection_string = r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;'
-print(connection_string)
-conn = pyodbc.connect(connection_string)
-query = &quot;&quot;&quot;
-    SELECT *
-    FROM   ADD_TABLE_NAME
-    &quot;&quot;&quot;
-dfs = list()
-for i, db_chunk in enumerate(pd.read_sql(query, conn, chunksize=500000)):
-    emails_in_db = db_chunk[db_chunk['EmailAddress'].isin(emails)]
-    dfs.append(emails_in_db)
-    print(i)
-emails_in_db = pd.concat(dfs)
-emails_in_db.to_csv('DB_Email_Query_Results.csv', index=False)
-</pre>
+<span class="n">emails</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;email@email.com&#39;</span><span class="p">,</span> <span class="s1">&#39;notanemail@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;gmail@gmail.com&#39;</span><span class="p">]</span>
+<span class="n">connection_string</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">connection_string</span><span class="p">)</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">connection_string</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT *</span>
+<span class="s2">    FROM   ADD_TABLE_NAME</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">db_chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">500000</span><span class="p">)):</span>
+    <span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">db_chunk</span><span class="p">[</span><span class="n">db_chunk</span><span class="p">[</span><span class="s1">&#39;EmailAddress&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">emails</span><span class="p">)]</span>
+    <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">emails_in_db</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
+<span class="n">emails_in_db</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;DB_Email_Query_Results.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <!--  -->
 <blockquote>
 In case you are wondering, enumerate is a <a class="reference external" href="https://docs.python.org/3/library/functions.html">python built-in</a> for enumerating, or counting an iterable, e.g. list or generator, as you iterate through it.</blockquote>
 <p><strong>Using</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard():</a>**
 **</p>
-<pre class="literal-block">
-import pandas as pd
-clipboard_contents = pd.read_clipboard()
-print(clipboard_contents)
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">clipboard_contents</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_clipboard</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clipboard_contents</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Use</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html">pd.to_clipboard()</a><strong>to store a dataframe as clipboard text:</strong></p>
-<pre class="literal-block">
-import pandas as pd
-truths = ['pandas is great','I love pandas','pandas changed my life']
-df = pd.DataFrame([truths], columns=['Truths'])
-df = df.to_clipboard(index=False, sep='|')
-clipboard_contents = input('Press ctrl-v ')
-print(clipboard_contents)
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">truths</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pandas is great&#39;</span><span class="p">,</span><span class="s1">&#39;I love pandas&#39;</span><span class="p">,</span><span class="s1">&#39;pandas changed my life&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">truths</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Truths&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_clipboard</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+<span class="n">clipboard_contents</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Press ctrl-v &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clipboard_contents</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Convert the clipboard contents to df with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pd.DataFrame()</a><strong>:</strong></p>
-<pre class="literal-block">
-import pandas as pd
-clipboard_contents = list(input('Press ctrl-v '))
-df = pd.DataFrame([clipboard_contents])
-print(df.head())
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">clipboard_contents</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Press ctrl-v &#39;</span><span class="p">))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">clipboard_contents</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
 <p><strong>If the clipboard dataframe has one column, you could</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze">squeeze</a><strong>the clipboard contents into a</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html">pd.Series</a><strong>object:</strong></p>
 <pre class="literal-block">
 import pandas as pd
@@ -313,37 +370,34 @@ clipboard_series = df.squeeze(axis='columns')
 print(type(clipboard_series))
 </pre>
 <p><strong>Inversely, consider using</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame">pandas.Series.to_frame()</a><strong>to convert a Series to a dataframe:</strong></p>
-<pre class="literal-block">
-import pandas as pd
-clipboard_contents = pd.Series(input('Press ctrl-v '))
-df = clipboard_contents.to_frame()
-print(df.head())
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">clipboard_contents</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Press ctrl-v &#39;</span><span class="p">))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">clipboard_contents</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
 </div>
 </div>
 <div class="section" id="turning-json-api-responses-into-a-dataframe-with-pd-json-normalize">
 <h2>(4) Turning json API responses into a dataframe with pd.json_normalize()</h2>
 <p><strong>For</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html">older pandas versions</a><strong>:</strong></p>
-<pre class="literal-block">
-from pandas.io.json import json_normalize
-import requests
-url = 'pseudo_API.com/endpoint/'
-parameters = {'page_size'=100, format='json', api_type='contact_sync' }
-response = requests.get(url=url, params=parameters)
-data = response.json() # decode response into json
-# turn subset of json into df
-df = json_normalize(data['any_key'])
-</pre>
 <p><strong>Update: beginning in pandas 1.0,</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html">json_normalize</a><strong>became a top-level pandas namespace.</strong></p>
-<pre class="literal-block">
-import pandas as pd
-import requests
-url = 'pseudo_API.com/endpoint/'
-parameters = {'page_size'=100, format='json', api_type='contact_sync' }
-response = requests.get(url=url, params=parameters)
-data = response.json() # decode response into json
-df = pd.json_normalize(data['any_key'])
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;pseudo_API.com/endpoint/&#39;</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;page_size&#39;</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">api_type</span><span class="o">=</span><span class="s1">&#39;contact_sync&#39;</span> <span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="c1"># decode response into json</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;any_key&#39;</span><span class="p">])</span>
+</pre></div></td></tr></table></div>
 <!--  -->
 <blockquote>
 <p>pandas.json_normalize() is now exposed in the top-level namespace. Usage of json_normalize as pandas.io.json.json_normalize is now deprecated and it is recommended to use json_normalize as pandas.json_normalize() instead (GH27586).</p>
@@ -353,35 +407,54 @@ df = pd.json_normalize(data['any_key'])
 <div class="section" id="plotting-visualizations-with-matplotlib">
 <h2>(5) Plotting Visualizations with matplotlib</h2>
 <p><strong>Make a bar plot of the movie release year counts using pandas and matplotlib formatting.</strong></p>
-<pre class="literal-block">
-import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.ticker import MaxNLocator
-import matplotlib.ticker as ticker
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MaxNLocator</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
 
-column_names = [&quot;Title&quot;, &quot;Release Date&quot;, &quot;Character&quot;, &quot;Actor&quot;]
-rows = [[&quot;Ocean's 11&quot;, &quot;12/7/2001&quot;, &quot;Danny Ocean&quot;, &quot;George Clooney&quot;],
-[&quot;Ocean's 11&quot;, &quot;12/7/2001&quot;, &quot;Tess Ocean&quot;, &quot;Julia Roberts&quot;],
-[&quot;Runaway Bride&quot;, &quot;6/30/1999&quot;, &quot;Ike Graham&quot;, &quot;Richard Gere&quot;],
-[&quot;Runaway Bride&quot;, &quot;6/30/1999&quot;, &quot;Maggy Carpenter&quot;, &quot;Julia Roberts&quot;],
-[&quot;Bonnie and Clyde&quot;, &quot;9/1/1967&quot;, &quot;Clyde Barrow&quot;, &quot;Richard Gere&quot;],
-[&quot;Bonnie and Clyde&quot;, &quot;9/1/1967&quot;, &quot;Bonnie Parker&quot;, &quot;Julia Roberts&quot;]]
-df = pd.DataFrame(rows, columns=column_names)
-ax = df.Year.value_counts().plot(x='title', ylim=0, kind='bar', title='Release Year of Movies', rot=0)
-ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-fig = ax.get_figure()
-fig.tight_layout()
-fig.savefig('images/Movie_Plot.png')
-</pre>
+<span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Title&quot;</span><span class="p">,</span> <span class="s2">&quot;Release Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Character&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span><span class="p">]</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Ocean&#39;s 11&quot;</span><span class="p">,</span> <span class="s2">&quot;12/7/2001&quot;</span><span class="p">,</span> <span class="s2">&quot;Danny Ocean&quot;</span><span class="p">,</span> <span class="s2">&quot;George Clooney&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Ocean&#39;s 11&quot;</span><span class="p">,</span> <span class="s2">&quot;12/7/2001&quot;</span><span class="p">,</span> <span class="s2">&quot;Tess Ocean&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Runaway Bride&quot;</span><span class="p">,</span> <span class="s2">&quot;6/30/1999&quot;</span><span class="p">,</span> <span class="s2">&quot;Ike Graham&quot;</span><span class="p">,</span> <span class="s2">&quot;Richard Gere&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Runaway Bride&quot;</span><span class="p">,</span> <span class="s2">&quot;6/30/1999&quot;</span><span class="p">,</span> <span class="s2">&quot;Maggy Carpenter&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Bonnie and Clyde&quot;</span><span class="p">,</span> <span class="s2">&quot;9/1/1967&quot;</span><span class="p">,</span> <span class="s2">&quot;Clyde Barrow&quot;</span><span class="p">,</span> <span class="s2">&quot;Richard Gere&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="s2">&quot;Bonnie and Clyde&quot;</span><span class="p">,</span> <span class="s2">&quot;9/1/1967&quot;</span><span class="p">,</span> <span class="s2">&quot;Bonnie Parker&quot;</span><span class="p">,</span> <span class="s2">&quot;Julia Roberts&quot;</span><span class="p">]]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Year</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Release Year of Movies&#39;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;images/Movie_Plot.png&#39;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p>Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">plotting with Jupyter/pandas/Python here</a>.</p>
 <p><strong>Plot George Clooney's movies over time in a line graph. [`Source &lt;https://www.youtube.com/watch?v=5JnMutdy6Fw&gt;`__]</strong></p>
-<pre class="literal-block">
-import matplotlib.pyplot as plt
-df = df[df.Actor=='George Clooney']
-df.groupby(['Year']).size().plot(ylim=0)
-fig = ax.get_figure()
-fig.savefig('/path/to/figure.pdf')
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Actor</span><span class="o">==</span><span class="s1">&#39;George Clooney&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;/path/to/figure.pdf&#39;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 </div>
 <div class="section" id="supplementary-resources-and-guides">
 <h2>(7) Supplementary Resources and Guides</h2>
