@@ -77,7 +77,7 @@ It seems there are many options available in Python but it's not clear which too
 
 I recently deployed the `ThreadPoolExecutor <https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor>`__ from the concurrent.futures module to efficiently move thousands of files to a new folder. So Python does have fairly accessible alternatives to concurrency. I guess I'll need to try Go sometime to compare!
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    from concurrent.futures import ThreadPoolExecutor
    import numpy as np

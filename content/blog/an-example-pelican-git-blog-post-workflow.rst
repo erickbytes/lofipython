@@ -9,20 +9,20 @@ An Example Pelican + Git Blog Post Workflow
 
 On my Windows subsystem for Linux environment, I am now publishing new blog posts following this `Pelican <https://docs.getpelican.com/en/latest/quickstart.html>`__-based workflow:
 
-.. code:: wp-block-code
+::
 
    1. Activate the Python environment: cd Your_Env/bin & source activate
 
-.. code:: wp-block-code
+::
 
    2. Go to the project folder: cd /home/username/my_project
 
-.. code:: wp-block-code
+::
 
    3. Run Python script to create new markdown file from a template:
    python new_post.py
 
-.. code:: wp-block-code
+::
 
    4. After writing the new post, update the Pelican content:
    pelican content
@@ -30,7 +30,7 @@ On my Windows subsystem for Linux environment, I am now publishing new blog post
    (Optional) preview the new post at local host http://127.0.0.1:8000/
    pelican -l 
 
-.. code:: wp-block-code
+::
 
    5. Use git to stage, commit and push the files to a Github repo:
    git add .
@@ -41,13 +41,13 @@ The new blog post is now live! This is my own workflow for my Pelican blog, `div
 
 You will need to `create a SSH key and connect it to your Github account <https://docs.github.com/en/authentication/connecting-to-github-with-ssh>`__ to get this completely working, as it's required by Github now. Make sure you write down your passphrase! I was able to create an ssh key with this command:
 
-.. code:: wp-block-code
+::
 
    ssh-keygen -t ed25519 -C "youname@example.com"
 
 Below is the short Python script I wrote for generating the markdown file for a new post. I've enjoyed working this out on my new blog and now can fire off posts rapidly with this command line based workflow.
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    from datetime import date
 

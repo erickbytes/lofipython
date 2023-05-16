@@ -31,7 +31,56 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Sep 15, 2022</h4>
+        <div id="content">            <h4 class="date">Oct 08, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html" rel="bookmark" title="Permanent Link to &quot;Pelican Fix for "No valid files found in content"...&quot;">Pelican Fix for &quot;No valid files found in content&quot;...</a>
+                </h2>
+
+                
+                
+
+                <p>Pelican is a popular <a class="reference external" href="https://pythonmarketer.com/2021/07/28/a-brief-summary-of-promising-python-static-site-generators/">static site generator library</a> in Python. I didn't know why my pelican blog was not working. I've used the &quot;pelican content&quot; command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">WARNING</span>  <span class="n">No</span> <span class="n">valid</span> <span class="n">files</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">content</span> <span class="k">for</span> <span class="n">the</span> <span class="n">active</span>         <span class="n">log</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">91</span>
+         <span class="n">readers</span><span class="p">:</span>
+           <span class="o">|</span> <span class="n">BaseReader</span> <span class="p">(</span><span class="n">static</span><span class="p">)</span>
+           <span class="o">|</span> <span class="n">HTMLReader</span> <span class="p">(</span><span class="n">htm</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+           <span class="o">|</span> <span class="n">RstReader</span> <span class="p">(</span><span class="n">rst</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7221 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image.png?w=665" />
+</div>
+<p><strong>Solution</strong></p>
+<p>Install the markdown library, which is stated in the <a class="reference external" href="https://docs.getpelican.com/en/3.6.3/install.html#optional-packages">pelican docs</a>. This <a class="reference external" href="https://github.com/getpelican/pelican/issues/1868">Github issue</a> also provides some background on this warning.</p>
+<pre class="literal-block">
+pip install markdown
+</pre>
+<div class="wp-image-7224 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image-1.png?w=672" />
+</div>
+<p>Now my &quot;pelican content&quot; command works!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">pelican</span> <span class="n">content</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7226 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image-2.png?w=679" />
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html">posted at 13:43</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-writing.html" rel="tag">coding, python, writing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/markdown-library.html" class="tags">markdown library</a>
+                    &nbsp;<a href="https://lofipython.com/tag/pelican-blog.html" class="tags">pelican blog</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-fix.html" class="tags">python fix</a>
+                </div>
+            </article>            <h4 class="date">Sep 15, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -421,110 +470,6 @@ Like static site generators? Check out <a class="reference external" href="https
                     &nbsp;<a href="https://lofipython.com/tag/best-peps-python.html" class="tags">best PEPs Python</a>
                     &nbsp;<a href="https://lofipython.com/tag/pep-8.html" class="tags">PEP 8</a>
                     &nbsp;<a href="https://lofipython.com/tag/wsgi.html" class="tags">WSGI</a>
-                </div>
-            </article>            <h4 class="date">Feb 09, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html" rel="bookmark" title="Permanent Link to &quot;How to Convert a Python Dictionary to and from a pandas DataFrame&quot;">How to Convert a Python Dictionary to and from a pandas DataFrame</a>
-                </h2>
-
-                
-                
-
-                <p>This is an example of how to cast a Python dict into a dataframe and vice versa. I picked up the df to dict part from this <a class="reference external" href="https://cmdlinetips.com/2021/04/convert-two-column-values-from-pandas-dataframe-to-a-dictionary/#:~:text=Another%20approach%20to%20convert%20two,all%20columns%20in%20the%20dataframe.">Python and R tips post</a> and the dict to df part from a <a class="reference external" href="https://stackoverflow.com/questions/18837262/convert-python-dict-into-a-dataframe">Stack Overflow post</a>. The below adaptation begins by converting an &quot;NFL quarterbacks&quot; Python dictionary into a dataframe and then back into a dict.</p>
-<p>Sometimes a dictionary is adequate to solve a problem with handy methods like get() and <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#looping-techniques">items()</a>. You can also do a ton with a <a class="reference external" href="https://www.python.org/dev/peps/pep-0274/">dict comprehension</a>. When more complex tabular data operations are needed, the pandas pd.DataFrame class is well equipped for the job. Dictionaries and dataframes are delightfully interoperable, like Tom Brady and any football team on the planet.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">qbs_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Matthew Stafford&quot;</span><span class="p">:</span><span class="s2">&quot;Los Angeles Rams&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Joe Burrow&quot;</span><span class="p">:</span><span class="s2">&quot;Cincinnati Bengals&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Tom Brady&quot;</span><span class="p">:</span><span class="s2">&quot;Tampa Bay Buccaneers&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Pat Mahomes&quot;</span><span class="p">:</span><span class="s2">&quot;Kansas City Chiefs&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Tony Romo&quot;</span><span class="p">:</span><span class="s2">&quot;Dallas Cowboys&quot;</span>
-<span class="p">}</span>
-<span class="n">qbs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;team&quot;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="n">qbs_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Tom Brady&quot;</span><span class="p">,</span> <span class="s2">&quot;Name not found.&quot;</span><span class="p">))</span>
-</pre></div></td></tr></table></div>
-<p><strong>Terminal Output</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="s1">&#39;&gt;</span>
-<span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">5</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">4</span>
-<span class="n">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">):</span>
- <span class="c1">#   Column  Non-Null Count  Dtype</span>
-<span class="o">---</span>  <span class="o">------</span>  <span class="o">--------------</span>  <span class="o">-----</span>
- <span class="mi">0</span>   <span class="n">name</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span>
- <span class="mi">1</span>   <span class="n">team</span>    <span class="mi">5</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>      <span class="nb">object</span>
-<span class="n">dtypes</span><span class="p">:</span> <span class="nb">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">208.0</span><span class="o">+</span> <span class="nb">bytes</span>
-<span class="kc">None</span>
-
-<span class="p">{</span><span class="s1">&#39;Joe Burrow&#39;</span><span class="p">:</span> <span class="s1">&#39;Cincinnati Bengals&#39;</span><span class="p">,</span>
- <span class="s1">&#39;Matthew Stafford&#39;</span><span class="p">:</span> <span class="s1">&#39;Los Angeles Rams&#39;</span><span class="p">,</span>
- <span class="s1">&#39;Pat Mahomes&#39;</span><span class="p">:</span> <span class="s1">&#39;Kansas City Chiefs&#39;</span><span class="p">,</span>
- <span class="s1">&#39;Tom Brady&#39;</span><span class="p">:</span> <span class="s1">&#39;Tampa Bay Buccaneers&#39;</span><span class="p">,</span>
- <span class="s1">&#39;Tony Romo&#39;</span><span class="p">:</span> <span class="s1">&#39;Dallas Cowboys&#39;</span><span class="p">}</span>
-
-<span class="n">Tampa</span> <span class="n">Bay</span> <span class="n">Buccaneers</span>
-</pre></div></td></tr></table></div>
-<p><strong>Did you notice that pprint sorts dicts by default?</strong></p>
-<p>Here the printed dict is reordered alphabetically on the QB's names. Per the pprint docs, you can alter this behavior if desired via a keyword argument new in Python version 3.8:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>pandas</strong> <strong>Documentation</strong></p>
-<p><a class="reference external" href="https://pandas.pydata.org/docs/getting_started/install.html">pandas installation documentation</a></p>
-<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas.DataFrame</a></p>
-<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">pandas.Series</a></p>
-<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_dict.html">pandas.DataFrame.to_dict</a></p>
-<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html">pandas.DataFrame.info</a></p>
-<p><strong>Python Standard Library Documentation</strong></p>
-<p><a class="reference external" href="https://docs.python.org/3/library/pprint.html#pprint.pprint">pprint.pprint</a></p>
-<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html?highlight=dict#mapping-types-dict">dict</a></p>
-<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict.get">dict.get</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html">posted at 23:16</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-programming-python.html" rel="tag">coding, pandas, programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/pandas-df-to-python-dict.html" class="tags">pandas df to Python dict</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-data-structure-conversion.html" class="tags">Python data structure conversion</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-dict-to-pandas-df.html" class="tags">Python dict to pandas df</a>
                 </div>
             </article>
 

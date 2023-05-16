@@ -33,7 +33,54 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Sep 07, 2022</h4>
+        <div id="content">            <h4 class="date">Sep 15, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/fetch-a-random-number-or-random-n-length-list-of-numbers-in-python-with-the-random-module.html" rel="bookmark" title="Permanent Link to &quot;Retrieve Random Numbers Via Python's random Module + range() Built-in&quot;">Retrieve Random Numbers Via Python's random Module + range() Built-in</a>
+                </h2>
+
+                
+                
+
+                <p>There are usually many ways to do most things in Python. I've retrieved random numbers a few different ways at various times within the random module, often after reading a Stack Overflow post. This time in my most recent search for random digits, I discovered in the Python docs the <a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample">random.sample()</a> function with its k parameter:</p>
+<blockquote>
+<p>Return a&nbsp;<em>k</em>&nbsp;length list of unique elements chosen from the population sequence or set. Used for random sampling without replacement.</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample">https://docs.python.org/3/library/random.html#random.sample</a></p>
+</blockquote>
+<p>When combined with the <a class="reference external" href="https://docs.python.org/3.3/library/stdtypes.html?highlight=range#range">range() built-in</a>, it makes doing this easy. Being able to specify a length and return a list of random numbers is mighty convenient. This function seems a Pythonic way to randomize to me. Have a look!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="c1"># Returns a list of 5 random numbers.</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="c1"># Returns a single random number.</span>
+<span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000000</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7196 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/09/image-2.png?w=552" />
+<p class="caption">To choose a sample from a range of integers, use a&nbsp;<tt class="docutils literal">`range()</tt> &lt;<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#range">https://docs.python.org/3/library/stdtypes.html#range</a>&gt;`__&nbsp;object as an argument. This is especially fast and space efficient for sampling from a large population:&nbsp;<tt class="docutils literal"><span class="pre">sample(range(10000000),&nbsp;k=60)</span></tt>.</p>
+<div class="legend">
+<a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample">https://docs.python.org/3/library/random.html#random.sample</a></div>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/fetch-a-random-number-or-random-n-length-list-of-numbers-in-python-with-the-random-module.html">posted at 23:09</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/python-random-numbers-list.html" class="tags">python random numbers list</a>
+                    &nbsp;<a href="https://lofipython.com/tag/random-module.html" class="tags">random module</a>
+                    &nbsp;<a href="https://lofipython.com/tag/random-numbers-python.html" class="tags">random numbers python</a>
+                </div>
+            </article>            <h4 class="date">Sep 07, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -480,87 +527,6 @@ Like static site generators? Check out <a class="reference external" href="https
                     &nbsp;<a href="https://lofipython.com/tag/pandas-df-to-python-dict.html" class="tags">pandas df to Python dict</a>
                     &nbsp;<a href="https://lofipython.com/tag/python-data-structure-conversion.html" class="tags">Python data structure conversion</a>
                     &nbsp;<a href="https://lofipython.com/tag/python-dict-to-pandas-df.html" class="tags">Python dict to pandas df</a>
-                </div>
-            </article>            <h4 class="date">Jan 30, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob.html" rel="bookmark" title="Permanent Link to &quot;Fix Spelling and Grammar with language_tool_python and textblob&quot;">Fix Spelling and Grammar with language_tool_python&nbsp;and textblob</a>
-                </h2>
-
-                
-                
-
-                <p>Below are two practical Python libraries for text processing. This function uses <a class="reference external" href="https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=correct#textblob.blob.TextBlob.correct">textblob's spelling correction</a> along with <a class="reference external" href="https://pypi.org/project/language-tool-python/">language_tool_python</a>, which applies grammatical corrections via the <a class="reference external" href="https://languagetool.org/http-api/swagger-ui/#!/default/post_check">Language Tool API</a>. I added these text processing transformations into my <a class="reference external" href="https://www.positivipy.com/">concept text generation app</a>. These are free, public APIs up to around 20 requests per second. You can send both text and receive back an improved version of your text, ideally altering and improving your writing.</p>
-<p>I found 2 errors when I piped the text of this post into the below code: the proper noun &quot;textblob&quot; corrected to &quot;text blow's&quot; and the word &quot;app&quot; corrected to &quot;pp&quot;. Be sure to proof your results. Regardless, I like having these two Python tools in my bag!</p>
-<p><a class="reference external" href="https://textblob.readthedocs.io/en/dev/install.html">Install textblob</a><strong>and</strong><a class="reference external" href="https://pypi.org/project/language-tool-python/">language_tool_python</a><strong>with these</strong><a class="reference external" href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a><strong>commands:</strong></p>
-<pre class="code python literal-block">
-<span class="n">pip</span> <span class="n">install</span> <span class="n">language</span><span class="o">-</span><span class="n">tool</span><span class="o">-</span><span class="n">python</span>
-</pre>
-<pre class="code python literal-block">
-<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">textblob</span><span class="w">
-</span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">textblob</span><span class="o">.</span><span class="n">download_corpora</span>
-</pre>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">language_tool_python</span>
-<span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">TextBlob</span>
-
-<span class="k">def</span> <span class="nf">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; returns str: text transformed by language tool and text blob</span>
-<span class="sd">    1) Apply language tool API correction</span>
-<span class="sd">    Language Tool Public API: https://dev.languagetool.org/public-http-api</span>
-<span class="sd">    https://languagetool.org/http-api/swagger-ui/#!/default/post_check</span>
-<span class="sd">    python library: https://pypi.org/project/language-tool-python/</span>
-
-<span class="sd">    2) Apply textblob&#39;s spell check to the text&quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># use the public API, language English</span>
-        <span class="n">tool</span> <span class="o">=</span> <span class="n">language_tool_python</span><span class="o">.</span><span class="n">LanguageToolPublicAPI</span><span class="p">(</span><span class="s1">&#39;en-US&#39;</span><span class="p">)</span>
-        <span class="n">text</span> <span class="o">=</span>  <span class="n">tool</span><span class="o">.</span><span class="n">correct</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">correct</span><span class="p">())</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">text</span>
-
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Language is incredble. Fascinatng how hoomans have so many.&quot;</span>
-<span class="n">transformed_text</span> <span class="o">=</span> <span class="n">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">transformed_text</span><span class="p">)</span>
-<span class="c1"># &gt;&gt;&gt; Language is incredible. Fascinating how humans have so many.</span>
-</pre></div></td></tr></table></div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob.html">posted at 16:28</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-data-programming-writing.html" rel="tag">APIs, data, programming, writing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/language.html" class="tags">language</a>
-                    &nbsp;<a href="https://lofipython.com/tag/language-tool.html" class="tags">language tool</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/text.html" class="tags">text</a>
-                    &nbsp;<a href="https://lofipython.com/tag/textblob.html" class="tags">textblob</a>
                 </div>
             </article>
 

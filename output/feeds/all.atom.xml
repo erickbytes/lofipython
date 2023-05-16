@@ -249,7 +249,101 @@ Embrace helping others by helping yourself. This is the way.&lt;/p&gt;</content>
 &lt;li&gt;&lt;a class="reference external" href="https://changhsinlee.com/python-package/"&gt;How to Make an Internal Python Package&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/erickbytes/pymarketer/blob/main/pymarketer_examples.py"&gt;pymarketer Github Examples&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content><category term="coding, excel, HTTP"></category><category term="problem solving"></category><category term="programming"></category><category term="python"></category><category term="software"></category></entry><entry><title>How to Find and Open a Public Wi-Fi Login Page</title><link href="https://lofipython.com/how-to-find-and-open-a-public-wi-fi-login-page.html" rel="alternate"></link><published>2022-10-18T12:38:00-05:00</published><updated>2022-10-18T12:38:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-10-18:/how-to-find-and-open-a-public-wi-fi-login-page.html</id><summary type="html">&lt;p&gt;Sometimes, we find ourselves on a public Wi-Fi connection that is &amp;quot;connected&amp;quot;, but unable to get to the login page. While the login page is triggered automatically on most mobile devices, computers may not connect so easily. As usual, I turned to Google to find a way to get to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sometimes, we find ourselves on a public Wi-Fi connection that is &amp;quot;connected&amp;quot;, but unable to get to the login page. While the login page is triggered automatically on most mobile devices, computers may not connect so easily. As usual, I turned to Google to find a way to get to a public Wi-Fi login page.&lt;/p&gt;
+</content><category term="coding, excel, HTTP"></category><category term="problem solving"></category><category term="programming"></category><category term="python"></category><category term="software"></category></entry><entry><title>An Example Pelican + Git Blog Post Workflow</title><link href="https://lofipython.com/an-example-pelican-git-blog-post-workflow.html" rel="alternate"></link><published>2022-12-04T12:17:00-06:00</published><updated>2022-12-04T12:17:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-12-04:/an-example-pelican-git-blog-post-workflow.html</id><summary type="html">&lt;p&gt;On my Windows subsystem for Linux environment, I am now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt;-based workflow:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+1. Activate the Python environment: cd Your_Env/bin &amp;amp; source activate
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+2. Go to the project folder: cd /home/username/my_project
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+3. Run Python script to create new markdown file from a …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;On my Windows subsystem for Linux environment, I am now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt;-based workflow:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+1. Activate the Python environment: cd Your_Env/bin &amp;amp; source activate
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+2. Go to the project folder: cd /home/username/my_project
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+3. Run Python script to create new markdown file from a template:
+python new_post.py
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+4. After writing the new post, update the Pelican content:
+pelican content
+
+(Optional) preview the new post at local host http://127.0.0.1:8000/
+pelican -l
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+5. Use git to stage, commit and push the files to a Github repo:
+git add .
+git commit -m &amp;quot;new post edits and fixes&amp;quot;
+git push -u origin main
+&lt;/pre&gt;
+&lt;p&gt;The new blog post is now live! This is my own workflow for my Pelican blog, &lt;a class="reference external" href="http://divbull.com"&gt;divbull.com&lt;/a&gt;, which is hosted for free with &lt;a class="reference external" href="https://pages.cloudflare.com/"&gt;Cloudflare Pages&lt;/a&gt;. You can read more about connecting Pelican and Cloudflare in &lt;a class="reference external" href="https://pythonmarketer.com/2022/07/08/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/"&gt;this past post I wrote&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You will need to &lt;a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh"&gt;create a SSH key and connect it to your Github account&lt;/a&gt; to get this completely working, as it's required by Github now. Make sure you write down your passphrase! I was able to create an ssh key with this command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ssh-keygen -t ed25519 -C &amp;quot;youname&amp;#64;example.com&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;Below is the short Python script I wrote for generating the markdown file for a new post. I've enjoyed working this out on my new blog and now can fire off posts rapidly with this command line based workflow.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;
+&lt;span class="normal"&gt;25&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;
+&lt;span class="normal"&gt;27&lt;/span&gt;
+&lt;span class="normal"&gt;28&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;post_name&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Ask for the new post&amp;#39;s name.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Enter the new post&amp;#39;s title:&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;post_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Return str, post draft&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Title: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Date: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; 4:20 &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Category: Essay&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;save_draft&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Save new post draft to content folder.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/home/erickbytes/divbull/divbull.com/content&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;md&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.md&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;w&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;fhand&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;fhand&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+
+
+&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;post_name&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;post_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;save_draft&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+</content><category term="automation, git, pelican, programming, python, writing"></category><category term="pelican blog"></category><category term="pelican workflow"></category><category term="pelican writing example"></category></entry><entry><title>How to Find and Open a Public Wi-Fi Login Page</title><link href="https://lofipython.com/how-to-find-and-open-a-public-wi-fi-login-page.html" rel="alternate"></link><published>2022-10-18T12:38:00-05:00</published><updated>2022-10-18T12:38:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-10-18:/how-to-find-and-open-a-public-wi-fi-login-page.html</id><summary type="html">&lt;p&gt;Sometimes, we find ourselves on a public Wi-Fi connection that is &amp;quot;connected&amp;quot;, but unable to get to the login page. While the login page is triggered automatically on most mobile devices, computers may not connect so easily. As usual, I turned to Google to find a way to get to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sometimes, we find ourselves on a public Wi-Fi connection that is &amp;quot;connected&amp;quot;, but unable to get to the login page. While the login page is triggered automatically on most mobile devices, computers may not connect so easily. As usual, I turned to Google to find a way to get to a public Wi-Fi login page.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://zapier.com/blog/open-wifi-login-page/#:~:text=An%20easy%20trick%20is%20to,you're%20at%20home)."&gt;This helpful Zapier blog post&lt;/a&gt; outlines a few different approaches you can take. My solution below is one of the IP addresses they suggested trying. Decide if you need to edit your computer's network settings. Alternatively, you may just need to find the public login page. I was able to load my public Wi-Fi login page with this IP address in my web browser:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 192.168.1.11
@@ -2107,7 +2201,134 @@ sqlite3 PythonMarketer.db
 &lt;p&gt;&amp;quot;No join algorithm works well in all scenarios.&amp;quot;&lt;/p&gt;
 &lt;p&gt;-Prof. Andy Pavlo&lt;/p&gt;
 &lt;/blockquote&gt;
-</content><category term="coding, data, Databases, programming"></category><category term="algorithms"></category><category term="computer science"></category><category term="joins"></category><category term="learning"></category><category term="study"></category><category term="technology"></category></entry><entry><title>Characterizing Database Workloads &amp; Storage Models</title><link href="https://lofipython.com/choosing-database-storage-models-and-workloads-that-mesh.html" rel="alternate"></link><published>2020-06-27T13:22:00-05:00</published><updated>2020-06-27T13:22:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-06-27:/choosing-database-storage-models-and-workloads-that-mesh.html</id><summary type="html">&lt;p&gt;Thank you &lt;a class="reference external" href="https://db.cs.cmu.edu/"&gt;Carnegie Mellon Database Group&lt;/a&gt; for putting this online! These are my notes from watching on YouTube.&lt;/p&gt;
+</content><category term="coding, data, Databases, programming"></category><category term="algorithms"></category><category term="computer science"></category><category term="joins"></category><category term="learning"></category><category term="study"></category><category term="technology"></category></entry><entry><title>Benefits of Go and Threads in Distributed Systems</title><link href="https://lofipython.com/benefits-of-go-and-threads-in-distributed-systems.html" rel="alternate"></link><published>2020-07-15T00:24:00-05:00</published><updated>2020-07-15T00:24:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-07-15:/benefits-of-go-and-threads-in-distributed-systems.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Preface&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;These are my &lt;a class="reference external" href="https://www.youtube.com/watch?v=gA4YXUJX7t8&amp;amp;list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB&amp;amp;index=3&amp;amp;t=0s"&gt;YouTube lecture&lt;/a&gt; notes from MIT's Distributed Systems course. Thank you MIT and Professor Morris!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB"&gt;MIT 6.824 Distributed Systems&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lecture 2: RPC and Threads - Feb 7, 2020&lt;/p&gt;
+&lt;p&gt;Prof. Robert Morris (Spring 2020)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Go is a popular programming language choice so my ears perked up when …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Preface&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;These are my &lt;a class="reference external" href="https://www.youtube.com/watch?v=gA4YXUJX7t8&amp;amp;list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB&amp;amp;index=3&amp;amp;t=0s"&gt;YouTube lecture&lt;/a&gt; notes from MIT's Distributed Systems course. Thank you MIT and Professor Morris!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB"&gt;MIT 6.824 Distributed Systems&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lecture 2: RPC and Threads - Feb 7, 2020&lt;/p&gt;
+&lt;p&gt;Prof. Robert Morris (Spring 2020)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Go is a popular programming language choice so my ears perked up when this lecture began. These notes were taken as the professor explains why he teaches his class in Go. He also mentioned he'd be able to teach it with Python or Java. He used C++ years ago.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The beginning of this lecture was a great summary of:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;key benefits of Golang&lt;/li&gt;
+&lt;li&gt;what threads are and why they're great&lt;/li&gt;
+&lt;li&gt;how Go, threads and async tie together&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Go is Good for Distributed Systems&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Go is concurrency-friendly. With concurrent threads, you can effectively split a task such as making web requests to a server into many threads, completing them simultaneously.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Golang's Convenient Features and Benefits&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;convenient &lt;a class="reference external" href="https://golang.org/pkg/net/rpc/"&gt;Remote Procedure Call library&lt;/a&gt; (&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Remote_procedure_call"&gt;RPC&lt;/a&gt;) C++ lacks anything comparable?&lt;/li&gt;
+&lt;li&gt;&amp;quot;Go is type-safe and memory-safe, unlike C++&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)"&gt;garbage collection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;quot;the language is simple, unlike C++&amp;quot;&lt;/li&gt;
+&lt;li&gt;&amp;quot;good support for threads, &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Lock_(computer_science)"&gt;locking&lt;/a&gt; and synchronization between threads&amp;quot;&lt;/li&gt;
+&lt;li&gt;in Go, &amp;quot;&lt;a class="reference external" href="https://golang.org/doc/effective_go.html#goroutines"&gt;goroutines&lt;/a&gt;&amp;quot; are threads&lt;/li&gt;
+&lt;li&gt;professor's recommended reading to learn Go: &lt;a class="reference external" href="https://golang.org/doc/effective_go.html"&gt;Effective Go&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Why use threads?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I/O Concurrency&lt;/li&gt;
+&lt;li&gt;Multi-core &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Parallel_computing#:~:text=Parallel%20computers%20can%20be%20roughly,work%20on%20the%20same%20task."&gt;Parallelism&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Convenience, e.g. &amp;quot;create 10 threads that sleep for a second and then do a little bit of work&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--  --&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;Threads are the main tool we're using to manage concurrency in programs.&amp;quot;&lt;/p&gt;
+&lt;p&gt;-Prof. Robert Morris&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Contrast With&lt;/strong&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads."&gt;Event-driven Programming&lt;/a&gt;&lt;strong&gt;(&amp;quot;Asynchronomous&amp;quot;)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A single thread, single loop that waits for an event.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Combining Threads and Event Driven Programming&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;Create one thread for each procedure call.&amp;quot;... &amp;quot;On each of the threads run a stripped down event driven loop. Sort of one event loop per core. That results in parallelism and I/O concurrency.&amp;quot;&lt;/p&gt;
+&lt;p&gt;-Prof. Robert Morris&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Postface: Concurrent Python Context&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I've rarely if ever used multiple threads in Python. Simply running a single threaded script seems sufficient for most of my tasks. Maybe I could speed up API requests by splitting into threads when making a few hundred thousand requests? Apparently I'm missing out on concurrent threading efficiency gains.&lt;/p&gt;
+&lt;p&gt;I once experimented with the &lt;a class="reference external" href="https://docs.python.org/3.8/library/multiprocessing.html"&gt;multiprocessing&lt;/a&gt; module's &lt;a class="reference external" href="https://docs.python.org/3.8/library/multiprocessing.html#the-process-class"&gt;Process class&lt;/a&gt;, which worked on Linux but not Windows for me. I ended up taking an simpler, single thread approach instead. I've also heard of using multiprocessing &lt;a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool"&gt;pool&lt;/a&gt; objects. There's also the &lt;a class="reference external" href="https://docs.python.org/3/library/asyncio.html"&gt;asyncio&lt;/a&gt; library &lt;a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html"&gt;concurrent.futures&lt;/a&gt; modules to consider. The &lt;a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example"&gt;ProcessPoolExecutor&lt;/a&gt; looks promising.&lt;/p&gt;
+&lt;p&gt;Python also has the &lt;a class="reference external" href="https://docs.python.org/3/library/queue.html"&gt;queue module.&lt;/a&gt; I haven't used it yet but at one point I watched a talk where &lt;a class="reference external" href="https://www.youtube.com/watch?v=_GP9OpZPUYc"&gt;Raymond Hettinger&lt;/a&gt; recommended queue as a good option if you want concurrency in Python.&lt;/p&gt;
+&lt;p&gt;It seems there are many options available in Python but it's not clear which tools should be deployed and when. And your chosen concurrency strategy may add extra complexity. Handle with care. Or consider learning Go if you want to use threads to scale your distributed system.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update: Python Concurrency Success&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I recently deployed the &lt;a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor"&gt;ThreadPoolExecutor&lt;/a&gt; from the concurrent.futures module to efficiently move thousands of files to a new folder. So Python does have fairly accessible alternatives to concurrency. I guess I'll need to try Go sometime to compare!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;
+&lt;span class="normal"&gt;25&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;
+&lt;span class="normal"&gt;27&lt;/span&gt;
+&lt;span class="normal"&gt;28&lt;/span&gt;
+&lt;span class="normal"&gt;29&lt;/span&gt;
+&lt;span class="normal"&gt;30&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;
+&lt;span class="normal"&gt;32&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;concurrent.futures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ThreadPoolExecutor&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shutil&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;Move files concurrently from the&lt;/span&gt;
+&lt;span class="sd"&gt;current working directory to a new folder.&lt;/span&gt;
+
+&lt;span class="sd"&gt;This script is adapted from the Python&lt;/span&gt;
+&lt;span class="sd"&gt;ThreadPoolExecutor documentation:&lt;/span&gt;
+&lt;span class="sd"&gt;https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.shutdown&lt;/span&gt;
+
+&lt;span class="sd"&gt;disclaimer: I am new to concurrency. Not 100% sure&lt;/span&gt;
+&lt;span class="sd"&gt;if I am using the ThreadPoolExecutor correctly&lt;/span&gt;
+&lt;span class="sd"&gt;but it seems to work, by moving my files concurrently and fast.&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;csvs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getcwd&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.csv&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;split_num&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csvs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;file_batches&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csvs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;split_num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;ThreadPoolExecutor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_workers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_batches&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;csv_A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;csv_B&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;csv_C&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;csv_D&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt;
+            &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;submit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;csv_A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_folder&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;submit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;csv_B&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_folder&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;submit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;csv_C&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_folder&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;submit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;csv_D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_folder&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Additional Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://opensource.googleblog.com/2020/08/new-case-studies-about-googles-use-of-go.html?utm_source=feedburner&amp;amp;utm_medium=feed&amp;amp;utm_campaign=Feed%3A+GoogleOpenSourceBlog+%28Google+Open+Source+Blog%29"&gt;New Case Studies About Google's Use of Go&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://go.dev/"&gt;go.dev&lt;/a&gt;&lt;/p&gt;
+</content><category term="coding, concurrency, data, education, Go, lectures notes, programming"></category><category term="computers"></category><category term="distributed systems"></category><category term="golang"></category><category term="MIT"></category><category term="python"></category><category term="rpc"></category></entry><entry><title>Characterizing Database Workloads &amp; Storage Models</title><link href="https://lofipython.com/choosing-database-storage-models-and-workloads-that-mesh.html" rel="alternate"></link><published>2020-06-27T13:22:00-05:00</published><updated>2020-06-27T13:22:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-06-27:/choosing-database-storage-models-and-workloads-that-mesh.html</id><summary type="html">&lt;p&gt;Thank you &lt;a class="reference external" href="https://db.cs.cmu.edu/"&gt;Carnegie Mellon Database Group&lt;/a&gt; for putting this online! These are my notes from watching on YouTube.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Carnegie Mellon Databases Storage II, Lecture 4&lt;/p&gt;
 &lt;p&gt;Prof. Andy Pavlo [&lt;a class="reference external" href="https://www.youtube.com/watch?v=YWRYEXNy6IE&amp;amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;amp;index=4"&gt;Watch on YouTube&lt;/a&gt;]&lt;/p&gt;

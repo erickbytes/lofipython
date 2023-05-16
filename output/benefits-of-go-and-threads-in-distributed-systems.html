@@ -3,15 +3,15 @@
 <head>
         <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Python Marketer | Benefits of Go and Threads in Distributed Systems</title>
-    <link rel="shortcut icon" type="image/png" href="./favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
-    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
-    <link href="https://pythonmarketer.com/feeds/coding-concurrency-data-education-go-lectures-notes-programming.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
-    <link href="https://pythonmarketer.com/feeds/coding-concurrency-data-education-go-lectures-notes-programming.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
-    <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="./theme/css/pygments.css" type="text/css" />
+    <title>Lo-Fi Python | Benefits of Go and Threads in Distributed Systems</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/coding-concurrency-data-education-go-lectures-notes-programming.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
+    <link href="https://lofipython.com/feeds/coding-concurrency-data-education-go-lectures-notes-programming.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="@erickbytes" />
@@ -22,15 +22,15 @@
     <header>
         <nav style="overflow: hidden;">
             <ul>
-                <li><a href="./">Home</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
                 <li><a href="feeds/all.rss.xml">RSS</a></li>
                 <li><a href="feeds/all.atom.xml">Atom</a></li>
-                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
             </ul>
         </nav>
         <div class="header_box" style="height: 50px">
-        <h1><a href="./">
-            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
             </a></h1></div>
         </div>
     </header>
@@ -39,23 +39,23 @@
 
             <article class="post">
                 <h2 class="title">
-                    <a href="./benefits-of-go-and-threads-in-distributed-systems.html" rel="bookmark" title="Permanent Link to &quot;Benefits of Go and Threads in Distributed Systems&quot;">Benefits of Go and Threads in Distributed Systems</a>
+                    <a href="https://lofipython.com/benefits-of-go-and-threads-in-distributed-systems.html" rel="bookmark" title="Permanent Link to &quot;Benefits of Go and Threads in Distributed Systems&quot;">Benefits of Go and Threads in Distributed Systems</a>
                 </h2>
 
                 
                 
 
                 <p><strong>Preface</strong></p>
-<p>These are my <a href="https://www.youtube.com/watch?v=gA4YXUJX7t8&amp;list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB&amp;index=3&amp;t=0s">YouTube lecture</a> notes from MIT's Distributed Systems course. Thank you MIT and Professor Morris!</p>
+<p>These are my <a class="reference external" href="https://www.youtube.com/watch?v=gA4YXUJX7t8&amp;list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB&amp;index=3&amp;t=0s">YouTube lecture</a> notes from MIT's Distributed Systems course. Thank you MIT and Professor Morris!</p>
 <blockquote>
-<p><a class="yt-simple-endpoint style-scope yt-formatted-string" href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB">MIT 6.824 Distributed Systems</a></p>
+<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB">MIT 6.824 Distributed Systems</a></p>
 <p>Lecture 2: RPC and Threads - Feb 7, 2020</p>
 <p>Prof. Robert Morris (Spring 2020)</p>
 </blockquote>
 <p><strong>Introduction</strong></p>
 <p>Go is a popular programming language choice so my ears perked up when this lecture began. These notes were taken as the professor explains why he teaches his class in Go. He also mentioned he'd be able to teach it with Python or Java. He used C++ years ago.</p>
 <p><strong>The beginning of this lecture was a great summary of:</strong></p>
-<ul>
+<ul class="simple">
 <li>key benefits of Golang</li>
 <li>what threads are and why they're great</li>
 <li>how Go, threads and async tie together</li>
@@ -63,60 +63,91 @@
 <p><strong>Go is Good for Distributed Systems</strong></p>
 <p>Go is concurrency-friendly. With concurrent threads, you can effectively split a task such as making web requests to a server into many threads, completing them simultaneously.</p>
 <p><strong>Golang's Convenient Features and Benefits</strong></p>
-<ul>
-<li>convenient <a href="https://golang.org/pkg/net/rpc/">Remote Procedure Call library</a> (<a href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a>) C++ lacks anything comparable?</li>
-<li>"Go is type-safe and memory-safe, unlike C++"</li>
-<li><a href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">garbage collection</a></li>
-<li>"the language is simple, unlike C++"</li>
-<li>"good support for threads, <a href="https://en.wikipedia.org/wiki/Lock_(computer_science)">locking</a> and synchronization between threads"</li>
-<li>in Go, "<a href="https://golang.org/doc/effective_go.html#goroutines">goroutines</a>" are threads</li>
-<li>professor's recommended reading to learn Go: <a href="https://golang.org/doc/effective_go.html">Effective Go</a></li>
+<ul class="simple">
+<li>convenient <a class="reference external" href="https://golang.org/pkg/net/rpc/">Remote Procedure Call library</a> (<a class="reference external" href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a>) C++ lacks anything comparable?</li>
+<li>&quot;Go is type-safe and memory-safe, unlike C++&quot;</li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">garbage collection</a></li>
+<li>&quot;the language is simple, unlike C++&quot;</li>
+<li>&quot;good support for threads, <a class="reference external" href="https://en.wikipedia.org/wiki/Lock_(computer_science)">locking</a> and synchronization between threads&quot;</li>
+<li>in Go, &quot;<a class="reference external" href="https://golang.org/doc/effective_go.html#goroutines">goroutines</a>&quot; are threads</li>
+<li>professor's recommended reading to learn Go: <a class="reference external" href="https://golang.org/doc/effective_go.html">Effective Go</a></li>
 </ul>
-<p><strong><em>*Why use threads?</em></strong>*</p>
-<ul>
+<p><strong>Why use threads?</strong></p>
+<ul class="simple">
 <li>I/O Concurrency</li>
-<li>Multi-core <a href="https://en.wikipedia.org/wiki/Parallel_computing#:~:text=Parallel%20computers%20can%20be%20roughly,work%20on%20the%20same%20task.">Parallelism</a></li>
-<li>Convenience, e.g. "create 10 threads that sleep for a second and then do a little bit of work"</li>
+<li>Multi-core <a class="reference external" href="https://en.wikipedia.org/wiki/Parallel_computing#:~:text=Parallel%20computers%20can%20be%20roughly,work%20on%20the%20same%20task.">Parallelism</a></li>
+<li>Convenience, e.g. &quot;create 10 threads that sleep for a second and then do a little bit of work&quot;</li>
 </ul>
+<!--  -->
 <blockquote>
-<p>"Threads are the main tool we're using to manage concurrency in programs."</p>
+<p>&quot;Threads are the main tool we're using to manage concurrency in programs.&quot;</p>
 <p>-Prof. Robert Morris</p>
 </blockquote>
-<p><strong>Contrast With <a href="https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads.">Event-driven Programming</a> ("Asynchronomous")</strong></p>
+<p><strong>Contrast With</strong><a class="reference external" href="https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads.">Event-driven Programming</a><strong>(&quot;Asynchronomous&quot;)</strong></p>
 <p>A single thread, single loop that waits for an event.</p>
 <p><strong>Combining Threads and Event Driven Programming</strong></p>
 <blockquote>
-<p>"Create one thread for each procedure call."... "On each of the threads run a stripped down event driven loop. Sort of one event loop per core. That results in parallelism and I/O concurrency."</p>
+<p>&quot;Create one thread for each procedure call.&quot;... &quot;On each of the threads run a stripped down event driven loop. Sort of one event loop per core. That results in parallelism and I/O concurrency.&quot;</p>
 <p>-Prof. Robert Morris</p>
 </blockquote>
 <p><strong>Postface: Concurrent Python Context</strong></p>
 <p>I've rarely if ever used multiple threads in Python. Simply running a single threaded script seems sufficient for most of my tasks. Maybe I could speed up API requests by splitting into threads when making a few hundred thousand requests? Apparently I'm missing out on concurrent threading efficiency gains.</p>
-<p>I once experimented with the <a href="https://docs.python.org/3.8/library/multiprocessing.html">multiprocessing</a> module's <a href="https://docs.python.org/3.8/library/multiprocessing.html#the-process-class">Process class</a>, which worked on Linux but not Windows for me. I ended up taking an simpler, single thread approach instead. I've also heard of using multiprocessing <a href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool">pool</a> objects. There's also the <a href="https://docs.python.org/3/library/asyncio.html">asyncio</a> library <a href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> modules to consider. The <a href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example">ProcessPoolExecutor</a> looks promising.</p>
-<p>Python also has the <a href="https://docs.python.org/3/library/queue.html">queue module.</a> I haven't used it yet but at one point I watched a talk where <a href="https://www.youtube.com/watch?v=_GP9OpZPUYc">Raymond Hettinger</a> recommended queue as a good option if you want concurrency in Python.</p>
+<p>I once experimented with the <a class="reference external" href="https://docs.python.org/3.8/library/multiprocessing.html">multiprocessing</a> module's <a class="reference external" href="https://docs.python.org/3.8/library/multiprocessing.html#the-process-class">Process class</a>, which worked on Linux but not Windows for me. I ended up taking an simpler, single thread approach instead. I've also heard of using multiprocessing <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool">pool</a> objects. There's also the <a class="reference external" href="https://docs.python.org/3/library/asyncio.html">asyncio</a> library <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> modules to consider. The <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example">ProcessPoolExecutor</a> looks promising.</p>
+<p>Python also has the <a class="reference external" href="https://docs.python.org/3/library/queue.html">queue module.</a> I haven't used it yet but at one point I watched a talk where <a class="reference external" href="https://www.youtube.com/watch?v=_GP9OpZPUYc">Raymond Hettinger</a> recommended queue as a good option if you want concurrency in Python.</p>
 <p>It seems there are many options available in Python but it's not clear which tools should be deployed and when. And your chosen concurrency strategy may add extra complexity. Handle with care. Or consider learning Go if you want to use threads to scale your distributed system.</p>
 <p><strong>Update: Python Concurrency Success</strong></p>
-<p>I recently deployed the <a href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor">ThreadPoolExecutor</a> from the concurrent.futures module to efficiently move thousands of files to a new folder. So Python does have fairly accessible alternatives to concurrency. I guess I'll need to try Go sometime to compare!</p>
-<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<p>I recently deployed the <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor">ThreadPoolExecutor</a> from the concurrent.futures module to efficiently move thousands of files to a new folder. So Python does have fairly accessible alternatives to concurrency. I guess I'll need to try Go sometime to compare!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Move files concurrently from the </span>
+<span class="sd">Move files concurrently from the</span>
 <span class="sd">current working directory to a new folder.</span>
 
-<span class="sd">This script is adapted from the Python </span>
+<span class="sd">This script is adapted from the Python</span>
 <span class="sd">ThreadPoolExecutor documentation:</span>
 <span class="sd">https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.shutdown</span>
 
-<span class="sd">disclaimer: I am new to concurrency. Not 100% sure </span>
-<span class="sd">if I am using the ThreadPoolExecutor correctly </span>
+<span class="sd">disclaimer: I am new to concurrency. Not 100% sure</span>
+<span class="sd">if I am using the ThreadPoolExecutor correctly</span>
 <span class="sd">but it seems to work, by moving my files concurrently and fast.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">csvs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
 <span class="n">split_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">csvs</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="n">file_batches</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array_split</span><span class="p">(</span><span class="n">csvs</span><span class="p">,</span> <span class="n">split_num</span><span class="p">)</span>
+<span class="n">file_batches</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">csvs</span><span class="p">,</span> <span class="n">split_num</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -129,30 +160,23 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
-
-<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+</pre></div></td></tr></table></div>
 <p><strong>Additional Reading</strong></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><a href="https://opensource.googleblog.com/2020/08/new-case-studies-about-googles-use-of-go.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+GoogleOpenSourceBlog+%28Google+Open+Source+Blog%29">New Case Studies About Google's Use of Go</a></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><a href="https://go.dev/">go.dev</a></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p><a class="reference external" href="https://opensource.googleblog.com/2020/08/new-case-studies-about-googles-use-of-go.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+GoogleOpenSourceBlog+%28Google+Open+Source+Blog%29">New Case Studies About Google's Use of Go</a></p>
+<p><a class="reference external" href="https://go.dev/">go.dev</a></p>
+
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="./benefits-of-go-and-threads-in-distributed-systems.html">posted at 00:24</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/coding-concurrency-data-education-go-lectures-notes-programming.html" rel="tag">coding, concurrency, data, education, Go, lectures notes, programming</a>
+                    <a href="https://lofipython.com/benefits-of-go-and-threads-in-distributed-systems.html">posted at 00:24</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-concurrency-data-education-go-lectures-notes-programming.html" rel="tag">coding, concurrency, data, education, Go, lectures notes, programming</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="./tag/computers.html" class="tags">computers</a>
-                    &nbsp;<a href="./tag/distributed-systems.html" class="tags">distributed systems</a>
-                    &nbsp;<a href="./tag/golang.html" class="tags">golang</a>
-                    &nbsp;<a href="./tag/mit.html" class="tags">MIT</a>
-                    &nbsp;<a href="./tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="./tag/rpc.html" class="tags">rpc</a>
+                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://lofipython.com/tag/distributed-systems.html" class="tags">distributed systems</a>
+                    &nbsp;<a href="https://lofipython.com/tag/golang.html" class="tags">golang</a>
+                    &nbsp;<a href="https://lofipython.com/tag/mit.html" class="tags">MIT</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/rpc.html" class="tags">rpc</a>
                 </div>
             </article>
             <div class="clear"></div>
@@ -162,9 +186,9 @@
                 &middot;
                 Powered by <a href="http://getpelican.com">Pelican</a>
                 &middot;
-                <a href="./feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
                 &middot;
-                <a href="./feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
             </footer>
         </div>
         <div class="clear"></div>
