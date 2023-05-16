@@ -134,7 +134,8 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
 (3) `Data Wrangling <https://en.wikipedia.org/wiki/Data_wrangling>`__, Exploration and Broadcasting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Data is commonly read in from file with**\ `pd.read_csv() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html>`__\ **
+**Data is commonly read in from file with** 
+ `pd.read_csv() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html>`__
 
 .. code-block:: python
 
@@ -165,7 +166,8 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
    df = df[["Title","Character", "Actor", "Movie Budget", "Worldwide Gross"]]
    print(df.to_markdown(showindex=False, tablefmt="simple"))
 
-**Let's print the table to our terminal with**\ `pd.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__\ **, which is\ `new in pandas version 1.0.0 <https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html>`__:**
+**Let's print the table to our terminal with **\ `pd.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__\ 
+**`new in pandas version 1.0.0 <https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html>`__ :**
 
 .. image:: https://pythonmarketer.files.wordpress.com/2018/05/simple_layout_markdown.jpg
    :alt: simple_layout_markdown
@@ -233,14 +235,13 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
    df['IMDB Rating'] = list([7.8,5.5,7.8]) 
    print(df.to_markdown(showindex=False, tablefmt='simple'))
    df.to_csv('Movies.csv', index=False)
+   print(df.Actor.value_counts().to_markdown(tablefmt="github"))
 
 .. image:: https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg
    :alt: IMDB_movies
    :class: alignnone size-full wp-image-2540
    :width: 870px
    :height: 117px
-
-``print(df.Actor.value_counts().to_markdown(tablefmt="github"))``
 
 [caption id="attachment_2539" align="alignright" width="189"]\ |actor| Count the Actors with df.Actor.value_counts()[/caption]
 
@@ -290,7 +291,7 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 
 First, use `df.copy() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html>`__ to create a new dataframe copy of our actors table above.  By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':
 
-::
+.. code-block:: python
 
    actors = df.copy(deep=True)
    # slice only the columns we want to merge:
@@ -361,7 +362,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 **If the clipboard dataframe has one column, you could**\ `squeeze <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze>`__\ **the clipboard contents into a**\ `pd.Series <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html>`__\ **object:**
 
-::
+.. code-block:: python
 
    import pandas as pd 
    clipboard_text = pd.read_clipboard() 

@@ -39,10 +39,9 @@ Regular expressions are so powerful. It's nice to have this utility within the c
 
 **I've previously explored regex with Python. This Python regex example finds all words in a text file containing '@' symbols:**
 
-::
+.. code-block:: python
 
    import re
-
 
    # read the file to string + regex email search
    with open('test.txt', 'r') as fhand:
