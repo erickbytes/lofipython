@@ -242,6 +242,170 @@ sudo modprobe b43
                     &nbsp;<a href="https://lofipython.com/tag/os-upgrade.html" class="tags">os upgrade</a>
                     &nbsp;<a href="https://lofipython.com/tag/windows.html" class="tags selected">Windows</a>
                 </div>
+            </article>            <h4 class="date">Nov 20, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/packaging-python-as-a-windows-app.html" rel="bookmark" title="Permanent Link to &quot;Packaging Python as a Windows App via Pyinstaller&quot;">Packaging Python as a Windows App via Pyinstaller</a>
+                </h2>
+
+                
+                
+
+                <p>My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller. It worked on my Windows 7 PC. My program used a <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/">Gooey GUI</a>, but many of the popular Python GUI libraries work as well.</p>
+<p><strong>Installation:</strong></p>
+<div class="line-block">
+<div class="line">To install, enter this into command your command prompt or terminal:</div>
+<div class="line"><tt class="docutils literal">python <span class="pre">-m</span> pip install pyinstaller</tt></div>
+<div class="line"><em>At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5.</em><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">Go here</a><em>for a refresher on setting up pip if you need it.</em></div>
+</div>
+<p><strong>Using the build.spec file and starting Pyinstaller:</strong></p>
+<p>Most examples I found used a build.spec file. Think of this as the blueprint by which your app will be constructed. It provides the compiling settings, images and any other data necessary for assembling your app. The format for passing the .spec file to Pyinstaller in pseudo-code:</p>
+<blockquote>
+pyinstaller (run mode options) (.spec file)</blockquote>
+<div class="line-block">
+<div class="line"><strong>Basic start compiler command to build.spec:</strong></div>
+<div class="line"><tt class="docutils literal">pyinstaller build.spec</tt></div>
+<div class="line"><strong>Establishing a debugging loop with Pyinstaller:</strong></div>
+</div>
+<div class="line-block">
+<div class="line">Debug mode can be set from the command line:</div>
+<div class="line"><tt class="docutils literal">pyinstaller <span class="pre">-debug</span> build.spec</tt></div>
+</div>
+<p><strong>OR</strong>
+by passing debug=True to the EXE() function of the build.spec. I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.</p>
+<p><em>To see your app's error message, run the resulting your_app.exe from the command line.</em>
+You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.</p>
+<p><strong>Flushing sys.stdout/Python printing for Windows:</strong></p>
+<p>Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen(). This was contrary to <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey's instructions</a>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">nonbuffered_stdout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fdopen</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">nonbuffered_stdout</span>
+</pre></div></td></tr></table></div>
+<p><strong>Fetching the local user's system information:</strong></p>
+<p>In order to run on any user's system, we need to grab their local file paths. I accomplished this by referencing the sys._MEIPASS via the below code I found from a Stack Overflow post.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">def</span> <span class="nf">resource_path</span><span class="p">(</span><span class="n">relative_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Get absolute path to resource, works for dev and for PyInstaller&quot;&quot;&quot;</span>
+    <span class="n">base_path</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_MEIPASS&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">relative_path</span><span class="p">)</span>
+
+<span class="n">temp_folder_path</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_MEIPASS&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="n">relative_path</span> <span class="o">=</span> <span class="n">resource_path</span><span class="p">(</span><span class="n">temp_folder_path</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Adding library-specific patches:</strong></p>
+<ol class="arabic simple">
+<li>Below is the <a class="reference external" href="https://github.com/pyinstaller/pyinstaller/issues/3422">fix</a> I found for the Pandas library, which I added to my build.spec:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">hiddenimports</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pandas._libs.tslibs.timedeltas&#39;</span><span class="p">,</span><span class="s1">&#39;pandas._libs.tslibs.nattype&#39;</span><span class="p">,</span>
+<span class="s1">&#39;pandas._libs.tslibs.np_datetime&#39;</span><span class="p">,</span><span class="s1">&#39;pandas._libs.skiplist&#39;</span><span class="p">]</span>
+</pre></div></td></tr></table></div>
+<ol class="arabic simple" start="2">
+<li>The Gooey library needs some special code added to the build.spec for its images and languages data. More details are found in this <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">blog post</a>, written by the author of the Gooey library.</li>
+</ol>
+<img alt="Will Ferrell Old School" class="wp-image-1535 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/will_ferrell_composure.jpg" style="width: 293px; height: 216px;" />
+<p><strong>Last, but not least: don't panic.</strong></p>
+<p>Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn't nearly as complex as I feared. The folks behind Pyinstaller have done a great job of making it possible and, dare I say, simple. Stay calm, drink some coffee, dig in and welcome the challenge with a trial and error mentality. I was able to figure it out over the span of one Saturday. Good luck.</p>
+<p><strong>Useful Resources:</strong></p>
+<ol class="arabic simple">
+<li>Pyinstaller Github - <a class="reference external" href="https://github.com/pyinstaller/pyinstaller/wiki/If-Things-Go-Wrong">If Things Go Wrong</a></li>
+<li>Pyinstaller Documentation:<a class="reference external" href="https://pyinstaller.readthedocs.io/en/stable/usage.html">Using Pyinstaller/Useful Arguments</a></li>
+<li><a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey Pyinstaller Instructions</a></li>
+<li><a class="reference external" href="https://github.com/pyinstaller/pyinstaller/issues/3422">Pandas hiddenimports Discussion</a></li>
+</ol>
+<p><strong>Caveats:</strong></p>
+<ol class="arabic simple">
+<li>You should compile the program on the operating system it will be run on. There are options for creating a multi-os compatible package, but I did not attempt them.</li>
+<li>Windows 7 is proven to work with Pyinstaller, per the documentation. It's also what I am running on. Other Windows systems older than Windows 10 may be less reliable.</li>
+<li>I experienced trouble when passing arguments from the command line to pyinstaller and have so far been unable to get the console window to hide. Neither the -w, --windowed, --noconsole arguments seemed to work. I will update if I am able to find a solution.</li>
+<li>Now that I am testing my compiled app, I am seeing 10x performance slowdowns when running as the final .exe vs. the original .py file. But at least the program runs correctly and still does so relatively quickly.</li>
+<li>I also received the error: &quot;Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform.&quot; I fixed this by upgrading to the latest version of Pyinstaller: <tt class="docutils literal">pip3 install <span class="pre">--upgrade</span> pyinstaller</tt></li>
+</ol>
+<p><strong>My full build.spec file, modified from</strong><a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">here</a><strong>:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># -*- mode: python -*-</span>
+<span class="kn">import</span> <span class="nn">gooey</span>
+<span class="n">gooey_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">gooey</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="n">gooey_languages</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gooey_root</span><span class="p">,</span> <span class="s1">&#39;languages&#39;</span><span class="p">),</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;gooey/languages&#39;</span><span class="p">)</span>
+<span class="n">gooey_images</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gooey_root</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">),</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;gooey/images&#39;</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">([</span><span class="s1">&#39;your_program.py&#39;</span><span class="p">],</span>
+             <span class="n">pathex</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Python36</span><span class="se">\\</span><span class="s1">Lib</span><span class="se">\\</span><span class="s1">site-packages</span><span class="se">\\</span><span class="s1">your_appdir&#39;</span><span class="p">],</span>
+             <span class="n">hiddenimports</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pandas._libs.tslibs.timedeltas&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas._libs.tslibs.np_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas._libs.tslibs.nattype&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas._libs.skiplist&#39;</span><span class="p">],</span>
+             <span class="n">hookspath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">runtime_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="p">)</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;OPTION&#39;</span><span class="p">)]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">datas</span> <span class="o">+=</span> <span class="p">[(</span><span class="s1">&#39;program_icon.ico&#39;</span><span class="p">,</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Python36</span><span class="se">\\</span><span class="s1">Lib</span><span class="se">\\</span><span class="s1">site-packages</span><span class="se">\\</span><span class="s1">your_appdir</span><span class="se">\\</span><span class="s1">program_icon.ico&#39;</span><span class="p">,</span>  <span class="s1">&#39;DATA&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;config_icon.png&#39;</span><span class="p">,</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Python36</span><span class="se">\\</span><span class="s1">Lib</span><span class="se">\\</span><span class="s1">site-packages</span><span class="se">\\</span><span class="s1">your_appdir</span><span class="se">\\</span><span class="s1">config_icon.png&#39;</span><span class="p">,</span><span class="s1">&#39;DATA&#39;</span><span class="p">)]</span>
+
+<span class="n">pyz</span> <span class="o">=</span> <span class="n">PYZ</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">pure</span><span class="p">)</span>
+<span class="n">exe</span> <span class="o">=</span> <span class="n">EXE</span><span class="p">(</span><span class="n">pyz</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">scripts</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">binaries</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">zipfiles</span><span class="p">,</span>
+          <span class="n">a</span><span class="o">.</span><span class="n">datas</span><span class="p">,</span>
+          <span class="n">options</span><span class="p">,</span>
+          <span class="n">gooey_languages</span><span class="p">,</span>
+          <span class="n">gooey_images</span><span class="p">,</span>
+          <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ADD YOUR APP NAME HERE&#39;</span><span class="p">,</span>
+          <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">strip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+          <span class="n">upx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">console</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">icon</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;program_icon.ico&#39;</span><span class="p">))</span>
+</pre></div></td></tr></table></div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/packaging-python-as-a-windows-app.html">posted at 02:59</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-python-software.html" rel="tag">coding, pandas, python, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/app-development.html" class="tags">app development</a>
+                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://lofipython.com/tag/windows.html" class="tags selected">Windows</a>
+                </div>
             </article>
 
             <div class="clear"></div>

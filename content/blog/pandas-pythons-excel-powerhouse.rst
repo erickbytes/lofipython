@@ -9,7 +9,7 @@ A Stroll Through Pandas 1.0, Python’s Tabular Data Powerhouse
 
 **Introduction**
 
-|pandas|\ Thanks to pandas, I have automated some data cleaning and file reading processes at my job. Here are some terms and code that have been useful or interesting to me after 2 years of exploration. I also checked out "\ `Python for Data Analysis <https://github.com/wesm/pydata-book>`__\ " from the\ `Chicago Public Library <https://www.chipublib.org/>`__\ .
+|pandas|\ Thanks to pandas, I have automated some data cleaning and file reading processes at my job.Here are some terms and code that have been useful or interesting to me after 2 years of exploration. I also checked out "\ `Python for Data Analysis <https://github.com/wesm/pydata-book>`__\ " from the\ `Chicago Public Library <https://www.chipublib.org/>`__\ .
 
 If I could suggest anything to be successful with pandas, it is repetition. I use it nearly every day at work. Dive into its `API documentation. <https://pandas.pydata.org/pandas-docs/stable/reference/index.html>`__ There are tons of useful tools there, laid out with meticulous detail and examples. I began learning pandas with this PyCon 2015 `tutorial from Brandon Rhodes <https://www.youtube.com/watch?v=5JnMutdy6Fw>`__, it's informative and entertaining! (It's a little dated now but I still recommend it.) The `Reproducible Data Analysis in Jupyter video series <https://www.youtube.com/watch?v=_ZEWDGpM-vM>`__ by Jake VanderPlas is also a great example of pandas-related workflows.
 
@@ -64,7 +64,7 @@ I also saw this message when completing install:
    cd /home/erick/Python-3.8.0/
    ./configure --enable-loadable-sqlite-extensions && make && sudo make install
 
-I installed missing  \_bz2 and \_sqllite3 modules then re-built with these commands.
+I installed missing \_bz2 and \_sqllite3 modules then re-built with these commands.
 
 **Installing Older pandas Versions on Ubuntu**
 
@@ -110,7 +110,7 @@ To check if pip is installed: ``python -m pip list``
 
 ``python -m pip install tabulate``
 
-**To use pd.read_clipboard() on Linux, install**\ `xclip <https://github.com/astrand/xclip>`__\ **or**\ `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__\  
+**To use pd.read_clipboard() on Linux, install**\ `xclip <https://github.com/astrand/xclip>`__\ **or**\ `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__\ 
 
 ``sudo apt-get install xclip``\ **
 **
@@ -126,12 +126,12 @@ To check if pip is installed: ``python -m pip list``
    python3.8 -m pip install pandas
    python -m pip install -U matplotlib
 
-(2) Welcome to pandas 1.0
+(2)Welcome to pandas 1.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You did it! Welcome to the good life. The basis of pandas is the "`dataframe <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__", commonly abbreviated as df, which is similar to a spreadsheet. Another core pandas object is the `pandas.Series <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html>`__ object, which is similar to a Python list or `numpy <http://cs231n.github.io/python-numpy-tutorial/>`__ array. When imported, pandas is aliased as "pd". The pd object allows you to access many useful pandas functions. I'll use it interchangeably with pandas in this post.
 
-   The library’s name derives from **pan**\ el **da**\ ta, a common term for multidimensional data sets encountered in statistics and econometrics.
+   The library’s name derives from**pan**\ el**da**\ ta, a common term for multidimensional data sets encountered in statistics and econometrics.
 
    `pandas: a Foundational Python Library for Data Analysis and Statistics <https://www.dlr.de/sc/Portaldata/15/Resources/dokumente/pyhpc2011/submissions/pyhpc2011_submission_9.pdf>`__
 
@@ -140,7 +140,8 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
 (3) `Data Wrangling <https://en.wikipedia.org/wiki/Data_wrangling>`__, Exploration and Broadcasting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Data is commonly read in from file with**\ `pd.read_csv() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html>`__\ **. **
+**Data is commonly read in from file with**
+pd.read_csv(): https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html
 
 .. code-block:: python
 
@@ -262,7 +263,7 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 
 **Lowercase column names Python's map function:**
 
-``df.columns = map(str.lower, df.columns)``\ ````
+``df.columns = map(str.lower, df.columns)``
 
 | **Strip whitespace from a column of strings with the**\ `pandas.Series.str <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html>`__\ **accessor:**
 | ``df['Character'] = df['Character'].astype(str).str.strip()``
@@ -294,7 +295,7 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 
 **Execute SQL-like operations between dataframes with**\ `df.merge() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html>`__\ **.**
 
-First, use `df.copy() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html>`__ to create a new dataframe copy of our actors table above.  By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':
+First, use `df.copy() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html>`__ to create a new dataframe copy of our actors table above. By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':
 
 .. code-block:: python
 
@@ -336,8 +337,8 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
    In case you are wondering, enumerate is a `python built-in <https://docs.python.org/3/library/functions.html>`__ for enumerating, or counting an iterable, e.g. list or generator, as you iterate through it.
 
-**Using**\ `pd.read_clipboard(): <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html>`__\ **
-**
+**Using**
+pd.read_clipboard(): https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html
 
 .. code-block:: python
 
@@ -345,8 +346,8 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
    clipboard_contents = pd.read_clipboard() 
    print(clipboard_contents)
 
-**Use**\ `pd.to_clipboard() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html>`__\ **to store a dataframe as clipboard text:
-**
+Use pd.to_clipboard(): https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html
+to store a dataframe as clipboard text:
 
 .. code-block:: python
 
@@ -357,7 +358,8 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
    clipboard_contents = input('Press ctrl-v ')
    print(clipboard_contents)
 
-**Convert the clipboard contents to df with**\ `pd.DataFrame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__\ **:**
+**Convert the clipboard contents to df with**
+pd.DataFrame()": https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html 
 
 .. code-block:: python
 
@@ -366,7 +368,9 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
    df = pd.DataFrame([clipboard_contents])
    print(df.head())
 
-**If the clipboard dataframe has one column, you could**\ `squeeze <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze>`__\ **the clipboard contents into a**\ `pd.Series <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html>`__\ **object:**
+**If the clipboard dataframe has one column, you could**
+squeeze: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze 
+the clipboard contents into a pd.Series: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html
 
 .. code-block:: python
 
@@ -377,7 +381,9 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
    clipboard_series = df.squeeze(axis='columns')
    print(type(clipboard_series))
 
-**Inversely, consider using**\ `pandas.Series.to_frame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame>`__\ **to convert a Series to a dataframe:**
+**Inversely, consider using**
+pandas.Series.to_frame(): https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame
+**to convert a Series to a dataframe:**
 
 .. code-block:: python
 
@@ -448,7 +454,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
 Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about `plotting with Jupyter/pandas/Python here <https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/>`__.
 
-**Plot George Clooney's movies over time in a line graph. [**\ `Source <https://www.youtube.com/watch?v=5JnMutdy6Fw>`__\ **] **
+**Plot George Clooney's movies over time in a line graph. [**\ `Source <https://www.youtube.com/watch?v=5JnMutdy6Fw>`__\ **]**
 
 .. code-block:: python
 

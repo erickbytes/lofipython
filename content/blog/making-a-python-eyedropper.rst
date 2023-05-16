@@ -7,13 +7,17 @@ Making A Desktop Color Eyedropper in Python to Grab Color Values
 :slug: making-a-python-eyedropper
 :status: published
 
-| **Goal:** recreate my resume in the dark Atom text editor theme (background and fonts).
-| **Sub-goal:** find a color eyedropper to grab the actual color values of the Atom layout.
+**Goal:**
+recreate my resume in the dark Atom text editor theme (background and fonts).
+**Sub-goal:**
+find a color eyedropper to grab the actual color values of the Atom layout.
 
 **Approach #1: find an Atom eyedropper package to grab the colors.**
-My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper <https://atom.io/packages/an-color-picker>`__ and `color picker <https://atom.io/packages/color-picker>`__. The an-color-eyedropper description sounds perfect: *"A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." *\ Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated. I was unable to find a repo anywhere by googling.
+My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: https://atom.io/packages/an-color-picker and color picker: https://atom.io/packages/color-picker>. The an-color-eyedropper description sounds perfect: "A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." 
 
-`Color picker <https://atom.io/packages/color-picker>`__ has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.
+Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated. I was unable to find a repo anywhere by googling.
+
+Color picker: https://atom.io/packages/color-picker has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.
 
 **Approach #2: Use the python tkcolorpicker package to grab the colors.**
 

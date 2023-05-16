@@ -27,9 +27,12 @@ Most examples I found used a build.spec file. Think of this as the blueprint by 
 
 | Debug mode can be set from the command line:
 | ``pyinstaller -debug build.spec``
-| **OR** by passing debug=True to the EXE() function of the build.spec.\ *I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.
 
-*To see your app's error message, run the resulting your_app.exe from the command line.* You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.
+**OR** 
+by passing debug=True to the EXE() function of the build.spec. I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.
+
+*To see your app's error message, run the resulting your_app.exe from the command line.* 
+You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.
 
 **Flushing sys.stdout/Python printing for Windows:**
 

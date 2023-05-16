@@ -86,7 +86,7 @@ Essential MySQL Terminal Commands
 
 **Select 10 Newest Records**
 
-.. code:: prettyprint
+::
 
    SELECT * from Marijuana ORDER BY id DESC LIMIT 10;
 
@@ -265,7 +265,7 @@ I previously created a `website <http://tameimpala.pythonanywhere.com/>`__with `
 
    **App #1**          web2py + MongoDB
 
-   **App #2          **\ Flask + MySQL
+   **App #2**           Flask + MySQL
 
    **Future App?**   py4web + pyDAL + PostgreSQL
 

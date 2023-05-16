@@ -16,7 +16,7 @@ If you have Python installed, paste the script into a text editor and run your .
 The first 5 scripts use modules that ship with Python.
 ------------------------------------------------------
 
-**1 ⚡ Uppercase all of the file names in the current working directory.**
+**1 Uppercase all of the file names in the current working directory.**
 
 .. code-block:: python
 
@@ -26,7 +26,7 @@ The first 5 scripts use modules that ship with Python.
 
 os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`__
 
-**2 ⚡ Get all filenames in the current directory and write to a text file.**
+**2 Get all filenames in the current directory and write to a text file.**
 
 .. code-block:: python
 
@@ -35,7 +35,7 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
    with open("list_of_dir_files.txt","w") as fhand:
        [fhand.write('f{item}\n') for item in folder_contents]
 
-**3 ⚡ Check what day of the week is today.**
+**3 Check what day of the week is today.**
 
 .. code-block:: python
 
@@ -49,7 +49,7 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
 
 `calendar documentation <https://docs.python.org/3/library/calendar.html>`__
 
-**4 ⚡ Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.**
+**4 Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.**
 
 .. code-block:: python
 
@@ -64,9 +64,9 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
    second_newest_file = sorted(glob.iglob('C:\\Users\\your_username\\Desktop\\*.csv'), key=os.path.getmtime)[-2] 
    print(newest_file, second_newest_file)
 
-`glob module documentation <https://docs.python.org/3/library/glob.html#glob.iglob>`__
+glob module documentation: https://docs.python.org/3/library/glob.html#glob.iglob
 
-**5  ⚡ Auto-Hamilton Ticket Lottery**
+**5  Auto-Hamilton Ticket Lottery**
 
 .. code-block:: python
 
@@ -81,7 +81,7 @@ To Run The Next 3 Scripts, install pandas:
 
    python -m pip install pandas
 
-**1 ⚡ Split a csv file into smaller excel files. **
+**1 Split a csv file into smaller excel files.**
 
 .. code-block:: python
 
@@ -94,7 +94,7 @@ To Run The Next 3 Scripts, install pandas:
 
 pandas beginner tutorial: https://www.youtube.com/watch?v=5JnMutdy6Fw
 
-**2 ⚡ Convert a .xlsx to .csv**
+**2 Convert a .xlsx to .csv**
 
 .. code-block:: python
 
@@ -102,7 +102,7 @@ pandas beginner tutorial: https://www.youtube.com/watch?v=5JnMutdy6Fw
    df = pd.read_excel("input.xlsx")
    df.to_csv("output.csv", index=False)
 
-**3 ⚡ Convert a .xlsx to .html**
+**3 Convert a .xlsx to .html**
 
 .. code-block:: python
 
@@ -144,14 +144,14 @@ To use pdfkit on Windows, go to the link, choose your version to download. This 
    config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
    pdfkit.from_url(url, 'webpage.pdf', configuration=config)
 
-**4 ⚡ Convert a .html file to .pdf. (Add config patch above for Windows.)**
+**4 Convert a .html file to .pdf. (Add config patch above for Windows.)**
 
 .. code-block:: python
 
    import pdfkit
    pdfkit.from_file('data.html', 'report.pdf')
 
-**5 ⚡ Create a pdf snapshot of a webpage on Ubuntu below. (Add config patch above for Windows.)**
+**5 Create a pdf snapshot of a webpage on Ubuntu below. (Add config patch above for Windows.)**
 
 .. code-block:: python
 
@@ -159,9 +159,10 @@ To use pdfkit on Windows, go to the link, choose your version to download. This 
    url = 'https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013'
    pdfkit.from_url(url, 'alicia_keys.pdf')
 
-`pdfkit documentation <https://pypi.org/project/pdfkit/>`__
+pdfkit documentation: https://pypi.org/project/pdfkit/
 
 
-⚡ **Final Thoughts**
+**Final Thoughts**
 
-I am very pleased with pdfkit. I am also toying around with Python's `PyFPDF <https://pyfpdf.readthedocs.io/en/latest/index.html>`__ and `PyPDF2 <https://pythonhosted.org/PyPDF2/>`__ libraries. Together, these three offer some unique abilities for creating and manipulating pdf files. And the pandas library is amazing for reading and writing tabular data sheets, can't say enough great things about pandas. Worth the time. Hope you enjoyed these Lightning Scripts :) **⚡ **
+I am very pleased with pdfkit. I am also toying around with Python's PyFPDF: https://pyfpdf.readthedocs.io/en/latest/index.html and PyPDF2: https://pythonhosted.org/PyPDF2 libraries. Together, these three offer some unique abilities for creating and manipulating pdf files. And the pandas library is amazing for reading and writing tabular data sheets, can't say enough great things about pandas. Worth the time. Hope you enjoyed these Lightning Scripts :)
+
