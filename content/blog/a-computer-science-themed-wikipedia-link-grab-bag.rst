@@ -49,8 +49,9 @@ Developer
 
 `Asynchrony <https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)>`__ Used for performing operations in parallel.
 
-RPC: https://en.wikipedia.org/wiki/Remote_procedure_call
-Event-driven programming: https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads.
+`RPC <https://en.wikipedia.org/wiki/Remote_procedure_call>`_
+
+`Event-driven programming <https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads.>`_
 
    Async is always event-driven, but not the other way round.
 

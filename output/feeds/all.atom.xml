@@ -910,20 +910,15 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 </content><category term="APIs, coding, HTTP, productivity, programming"></category><category term="flow state"></category><category term="python"></category><category term="skills"></category></entry><entry><title>Create a Column of Values in Pandas with df.assign()</title><link href="https://lofipython.com/create-a-column-of-values-in-pandas-with-df-assign.html" rel="alternate"></link><published>2022-01-07T13:12:00-06:00</published><updated>2022-01-07T13:12:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-01-07:/create-a-column-of-values-in-pandas-with-df-assign.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/docs/"&gt;Pandas&lt;/a&gt; is amazing, what else is there to say? Learning the nuances of its API have yielded tons of times where it helped me get stuff done.&lt;/p&gt;
 &lt;p&gt;I recently picked up the &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html"&gt;pandas dataframe's &amp;quot;assign&amp;quot; function&lt;/a&gt; for creating a new column of values. This is an elegant way to set …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/docs/"&gt;Pandas&lt;/a&gt; is amazing, what else is there to say? Learning the nuances of its API have yielded tons of times where it helped me get stuff done.&lt;/p&gt;
 &lt;p&gt;I recently picked up the &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html"&gt;pandas dataframe's &amp;quot;assign&amp;quot; function&lt;/a&gt; for creating a new column of values. This is an elegant way to set a column of values in tabular data with the pandas library. Below you'll see two ways to set a column of values in pandas. In the first way, I am chaining two assign functions together to create 2 new columns, &amp;quot;sound&amp;quot; and &amp;quot;type&amp;quot;. I prefer using assign because it looks better and it does not result in any warnings from pandas. Highly recommend getting familiar with pandas functions like assign and API nuances like &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/series.html?highlight=str%20accessors#accessors"&gt;Series accessors&lt;/a&gt; to up your tabular data game.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;
+&lt;span class="normal"&gt;8&lt;/span&gt;
+&lt;span class="normal"&gt;9&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="n"&gt;cats&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Garfield&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Meowth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tom&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;cats&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;cats&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="c1"&gt;# best way&lt;/span&gt;
@@ -932,12 +927,9 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 
 &lt;span class="c1"&gt;# alternative way that also works, but with warnings from pandas&lt;/span&gt;
 &lt;span class="c1"&gt;# df[&amp;quot;sound&amp;quot;] = &amp;quot;Meow&amp;quot;&lt;/span&gt;
-
-&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assign&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Can&lt;/span&gt; &lt;span class="n"&gt;evaluate&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;expression&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt;
-&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;column&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
-
-&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;pandas&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;blob&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.3.5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="c1"&gt;#L4421-L4487&amp;gt;`__\&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;DataFrame.assign : Can evaluate an expression or function to create new values for a column.
+pandas source code: &lt;a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487"&gt;https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487&lt;/a&gt;&lt;/p&gt;
 </content><category term="pandas, programming, python"></category><category term="cats"></category><category term="data"></category></entry><entry><title>ftfy, The Wonky Text Fixing Python Library</title><link href="https://lofipython.com/ftfy-the-wonky-text-fixing-python-library.html" rel="alternate"></link><published>2022-01-06T11:44:00-06:00</published><updated>2022-01-06T11:44:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-01-06:/ftfy-the-wonky-text-fixing-python-library.html</id><summary type="html">&lt;p&gt;Every Python programmer has undoubtedly come across some crazy characters. The &lt;a class="reference external" href="https://ftfy.readthedocs.io/en/latest/"&gt;ftfy library &amp;quot;Fixes Text For You&amp;quot;&lt;/a&gt; and acts like a swiss army knife when you've got questionable characters breaking your script. In my case, an HTTP request was failing because of weird cryptic letters hiding in the data when …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Every Python programmer has undoubtedly come across some crazy characters. The &lt;a class="reference external" href="https://ftfy.readthedocs.io/en/latest/"&gt;ftfy library &amp;quot;Fixes Text For You&amp;quot;&lt;/a&gt; and acts like a swiss army knife when you've got questionable characters breaking your script. In my case, an HTTP request was failing because of weird cryptic letters hiding in the data when it was only supposed to be an apostrophe. This library fixed my text and made it appear flawless. I really like ftfy because it solves a common problem, fixing &amp;quot;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Mojibake#:~:text=Mojibake%20(%E6%96%87%E5%AD%97%E5%8C%96%E3%81%91%3B%20IPA%3A,from%20a%20different%20writing%20system."&gt;mojibake&lt;/a&gt;&amp;quot; or mangled characters. It's a good tool to have when you see these types of issues!&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://pypi.org/project/ftfy/"&gt;Install with pip&lt;/a&gt;:&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
@@ -1310,7 +1302,10 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exceptions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SSLError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;HTTPSConnectionPool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;api.example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;443&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;Max&lt;/span&gt; &lt;span class="n"&gt;retries&lt;/span&gt; &lt;span class="n"&gt;exceeded&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;oauth&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="err"&gt;?&lt;/span&gt;&lt;span class="n"&gt;grant_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;client_credentials&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Caused&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;SSLError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SSLCertVerificationError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;Apparently my Python certificates were not valid or up to date on my computer. These are &amp;quot;.PEM&amp;quot; or &amp;quot;.cert&amp;quot; files that certify your connection for the &lt;a class="reference external" href="https://www.ssl.com/faqs/faq-what-is-ssl/"&gt;SSL protocol&lt;/a&gt;. I googled this error until I found the &lt;a class="reference external" href="https://pypi.org/project/python-certifi-win32/"&gt;python-certifi-win32&lt;/a&gt; library. I only needed to &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip install&lt;/a&gt; this library and it fixed the problem:&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;pip install &lt;span class="pre"&gt;python-certifi-win32&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;::&lt;/dt&gt;
+&lt;dd&gt;pip install python-certifi-win32&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;p&gt;Huge thank you to &lt;a class="reference external" href="https://pypi.org/user/andrewleech/"&gt;the maintainer&lt;/a&gt; of this package. It solved my issues and now I can make HTTP requests again!&lt;/p&gt;
 </content><category term="coding, HTTP, python, Windows"></category><category term=".PEM solution"></category><category term="problem solving"></category><category term="Windows 10"></category></entry><entry><title>Python Libraries, Tools + Resources for Creative and Academic Writers</title><link href="https://lofipython.com/python-libraries-tools-resources-for-creative-and-academic-writers.html" rel="alternate"></link><published>2021-05-29T17:51:00-05:00</published><updated>2021-05-29T17:51:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2021-05-29:/python-libraries-tools-resources-for-creative-and-academic-writers.html</id><summary type="html">&lt;p&gt;Today I scoured the internet for tools written in Python that assist writing in any form. After some relentless Google and Github searching, here are my favorites. I found tools to help write modular stories and novels, screenwriting with Trelby and several libraries for academic papers. I haven't tried all …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today I scoured the internet for tools written in Python that assist writing in any form. After some relentless Google and Github searching, here are my favorites. I found tools to help write modular stories and novels, screenwriting with Trelby and several libraries for academic papers. I haven't tried all of these... yet!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Storywriting&lt;/strong&gt;&lt;/p&gt;
@@ -1346,7 +1341,7 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;&lt;a class="reference external" href="https://github.com/amusi/CVPR2021-Papers-with-Code"&gt;2021 Papers with Code&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;` &amp;lt;&lt;a class="reference external" href="https://github.com/JelteF/PyLaTeX"&gt;https://github.com/JelteF/PyLaTeX&lt;/a&gt;&amp;gt;`__&lt;a class="reference external" href="https://github.com/JelteF/PyLaTeX"&gt;PyLaTeX&lt;/a&gt;: A Python library for creating LaTeX files&lt;/p&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;a class="reference external" href="https://github.com/JelteF/PyLaTeX"&gt;PyLaTeX&lt;/a&gt;: A Python library for creating LaTeX files&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;&lt;a class="reference external" href="https://github.com/luong-komorebi/Begin-Latex-in-minutes"&gt;Begin LaTeX in minutes&lt;/a&gt;: Brief Intro to LaTeX for beginners that helps you use LaTeX with ease.&lt;/p&gt;
 &lt;/li&gt;
@@ -1414,8 +1409,7 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 &lt;span class="normal"&gt;23&lt;/span&gt;
 &lt;span class="normal"&gt;24&lt;/span&gt;
 &lt;span class="normal"&gt;25&lt;/span&gt;
-&lt;span class="normal"&gt;26&lt;/span&gt;
-&lt;span class="normal"&gt;27&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_errors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -1429,9 +1423,8 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
                 &lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt;
 
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;parse traceback errors from log files in current working directory&lt;/span&gt;
-&lt;span class="sd"&gt;and write to them to a csv file&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Parse traceback errors from log files in current working directory&lt;/span&gt;
+&lt;span class="sd"&gt;and write to them to a csv file.&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;logs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getcwd&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.log&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt;
 &lt;span class="n"&gt;tracebacks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;parse_errors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;logs&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -1592,8 +1585,8 @@ caching is a common technique to store data so that it can be quickly fetched la
 &lt;div class="section" id="developer"&gt;
 &lt;h2&gt;Developer&lt;/h2&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)"&gt;Asynchrony&lt;/a&gt; Used for performing operations in parallel.&lt;/p&gt;
-&lt;p&gt;RPC: &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Remote_procedure_call"&gt;https://en.wikipedia.org/wiki/Remote_procedure_call&lt;/a&gt;
-Event-driven programming: &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads"&gt;https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Remote_procedure_call"&gt;RPC&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads."&gt;Event-driven programming&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Async is always event-driven, but not the other way round.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/5844955/whats-the-difference-between-event-driven-and-asynchronous-between-epoll-and-a#:~:text=Asynchronous%20is%20basically%20multitasking.,in%20an%20easy%20responsive%20manner."&gt;Stephen Chung - Stack Overflow&lt;/a&gt;&lt;/p&gt;
@@ -2355,14 +2348,12 @@ sqlite3 PythonMarketer.db
 &lt;span class="normal"&gt;28&lt;/span&gt;
 &lt;span class="normal"&gt;29&lt;/span&gt;
 &lt;span class="normal"&gt;30&lt;/span&gt;
-&lt;span class="normal"&gt;31&lt;/span&gt;
-&lt;span class="normal"&gt;32&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;concurrent.futures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ThreadPoolExecutor&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;concurrent.futures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ThreadPoolExecutor&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shutil&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;Move files concurrently from the&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Move files concurrently from the&lt;/span&gt;
 &lt;span class="sd"&gt;current working directory to a new folder.&lt;/span&gt;
 
 &lt;span class="sd"&gt;This script is adapted from the Python&lt;/span&gt;
@@ -2681,23 +2672,12 @@ python -m pip3.8 install --user pandas
 &lt;span class="normal"&gt;79&lt;/span&gt;
 &lt;span class="normal"&gt;80&lt;/span&gt;
 &lt;span class="normal"&gt;81&lt;/span&gt;
-&lt;span class="normal"&gt;82&lt;/span&gt;
-&lt;span class="normal"&gt;83&lt;/span&gt;
-&lt;span class="normal"&gt;84&lt;/span&gt;
-&lt;span class="normal"&gt;85&lt;/span&gt;
-&lt;span class="normal"&gt;86&lt;/span&gt;
-&lt;span class="normal"&gt;87&lt;/span&gt;
-&lt;span class="normal"&gt;88&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;mysql.connector&lt;/span&gt;
+&lt;span class="normal"&gt;82&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;mysql.connector&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;Flask + MySQL + pandas app from Python Marketer:&lt;/span&gt;
-&lt;span class="sd"&gt;https://atomic-temporary-107329037.wpcomstaging.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/&lt;/span&gt;
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 
 &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;basicConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -2714,8 +2694,7 @@ python -m pip3.8 install --user pandas
         &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exception&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Failed to connect to database.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;render_homepage&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Note: you should use Flask&amp;#39;s render_template to render HTML files.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Note: you should use Flask&amp;#39;s render_template to render HTML files.&lt;/span&gt;
 &lt;span class="sd"&gt;    But here&amp;#39;s a quick f-string HTML page that works:&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;html_page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;link rel=&amp;#39;stylesheet&amp;#39; href=&amp;quot;/static/styles/some_file.css&amp;quot;&amp;gt;&amp;lt;link rel=&amp;quot;shortcut icon&amp;quot; type=&amp;quot;image/x-icon&amp;quot; href=&amp;quot;static/favicon.ico&amp;quot;&amp;gt;&lt;/span&gt;
@@ -2843,9 +2822,9 @@ HTTP: you = client. API = way to communicate with server&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;``GET``, ``POST`` and ``PATCH``&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;These are three common types of request methods.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;GET&lt;/tt&gt;: &amp;nbsp;Read data returned, such as all of your tweets in &lt;a class="reference external" href="https://developer.twitter.com/en/docs"&gt;the Twitter API&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;POST&lt;/tt&gt;: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!&lt;/li&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;PATCH&lt;/tt&gt;: Similar to &lt;tt class="docutils literal"&gt;POST&lt;/tt&gt;, this is typically used for updating data.&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;GET&lt;/cite&gt;: &amp;nbsp;Read data returned, such as all of your tweets in &lt;a class="reference external" href="https://developer.twitter.com/en/docs"&gt;the Twitter API&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;POST&lt;/cite&gt;: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;PATCH&lt;/cite&gt;: Similar to &lt;cite&gt;POST&lt;/cite&gt;, this is typically used for updating data.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;URL or &amp;quot;endpoint&amp;quot;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The website location to send your request&lt;/p&gt;
@@ -3015,8 +2994,7 @@ If you choose not to use Postman, you can use the json library. See the use of &
 &lt;span class="normal"&gt;41&lt;/span&gt;
 &lt;span class="normal"&gt;42&lt;/span&gt;
 &lt;span class="normal"&gt;43&lt;/span&gt;
-&lt;span class="normal"&gt;44&lt;/span&gt;
-&lt;span class="normal"&gt;45&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt;
+&lt;span class="normal"&gt;44&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
 
@@ -3038,8 +3016,7 @@ If you choose not to use Postman, you can use the json library. See the use of &
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;json_str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_new_contact&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;json_str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    This is a fictional API request.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;This is a fictional API request.&lt;/span&gt;
 &lt;span class="sd"&gt;    Passing a json object to requests.&lt;/span&gt;
 &lt;span class="sd"&gt;    Decoding server response with response.json(),&lt;/span&gt;
 &lt;span class="sd"&gt;    Returning a contact id by calling the data&amp;#39;s keys.&lt;/span&gt;
@@ -3065,9 +3042,9 @@ If you choose not to use Postman, you can use the json library. See the use of &
 &lt;!--  --&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;requests.request keyword argument alternatives for passing data&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;params&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples or bytes to send in the query string for the&amp;nbsp;&lt;tt class="docutils literal"&gt;`Request&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request"&gt;https://2.python-requests.org/en/master/api/#requests.Request&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;data&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the&amp;nbsp;&lt;tt class="docutils literal"&gt;`Request&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request"&gt;https://2.python-requests.org/en/master/api/#requests.Request&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;json&lt;/strong&gt;&amp;nbsp;– (optional) A JSON serializable Python object to send in the body of the&amp;nbsp;&lt;tt class="docutils literal"&gt;`Request&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request"&gt;https://2.python-requests.org/en/master/api/#requests.Request&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;params&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;data&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;json&lt;/strong&gt;&amp;nbsp;– (optional) A JSON serializable Python object to send in the body of the Request&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;[&lt;/strong&gt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/"&gt;requests API documentation&lt;/a&gt;&lt;strong&gt;]&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;&amp;quot;Gotchyas&amp;quot; To Avoid&lt;/strong&gt;&lt;/p&gt;
@@ -3555,7 +3532,7 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt&lt;/blockquote&gt
 &lt;span class="sd"&gt;If a text file contains a failure or error, write the test contents into a folder.&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;basicConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Automated_Testing_Alerts.log&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Automated_Testing_Alerts.log&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%(asctime)s&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%(message)s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;datefmt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;-%b-%y %H:%M:%S&amp;#39;&lt;/span&gt;

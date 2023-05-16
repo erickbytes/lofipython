@@ -118,7 +118,7 @@ Let's set another task scheduler job to run **read_test_results.py,** to run a f
    If a text file contains a failure or error, write the test contents into a folder.
    """
    logging.basicConfig(
-       filename=f'Automated_Testing_Alerts.log',
+       filename='Automated_Testing_Alerts.log',
        level=logging.INFO,
        format='%(asctime)s - %(message)s',
        datefmt='%d-%b-%y %H:%M:%S'

@@ -46,20 +46,15 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 </content><category term="command prompt, productivity"></category><category term="command line"></category><category term="data"></category><category term="fifa"></category><category term="football"></category><category term="jq"></category><category term="json"></category></entry><entry><title>Create a Column of Values in Pandas with df.assign()</title><link href="https://lofipython.com/create-a-column-of-values-in-pandas-with-df-assign.html" rel="alternate"></link><published>2022-01-07T13:12:00-06:00</published><updated>2022-01-07T13:12:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-01-07:/create-a-column-of-values-in-pandas-with-df-assign.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/docs/"&gt;Pandas&lt;/a&gt; is amazing, what else is there to say? Learning the nuances of its API have yielded tons of times where it helped me get stuff done.&lt;/p&gt;
 &lt;p&gt;I recently picked up the &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html"&gt;pandas dataframe's &amp;quot;assign&amp;quot; function&lt;/a&gt; for creating a new column of values. This is an elegant way to set …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/docs/"&gt;Pandas&lt;/a&gt; is amazing, what else is there to say? Learning the nuances of its API have yielded tons of times where it helped me get stuff done.&lt;/p&gt;
 &lt;p&gt;I recently picked up the &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html"&gt;pandas dataframe's &amp;quot;assign&amp;quot; function&lt;/a&gt; for creating a new column of values. This is an elegant way to set a column of values in tabular data with the pandas library. Below you'll see two ways to set a column of values in pandas. In the first way, I am chaining two assign functions together to create 2 new columns, &amp;quot;sound&amp;quot; and &amp;quot;type&amp;quot;. I prefer using assign because it looks better and it does not result in any warnings from pandas. Highly recommend getting familiar with pandas functions like assign and API nuances like &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/series.html?highlight=str%20accessors#accessors"&gt;Series accessors&lt;/a&gt; to up your tabular data game.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;
+&lt;span class="normal"&gt;8&lt;/span&gt;
+&lt;span class="normal"&gt;9&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="n"&gt;cats&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Garfield&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Meowth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tom&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;cats&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;cats&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="c1"&gt;# best way&lt;/span&gt;
@@ -68,12 +63,9 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 
 &lt;span class="c1"&gt;# alternative way that also works, but with warnings from pandas&lt;/span&gt;
 &lt;span class="c1"&gt;# df[&amp;quot;sound&amp;quot;] = &amp;quot;Meow&amp;quot;&lt;/span&gt;
-
-&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assign&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Can&lt;/span&gt; &lt;span class="n"&gt;evaluate&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;expression&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt;
-&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;column&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
-
-&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;pandas&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;blob&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.3.5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="c1"&gt;#L4421-L4487&amp;gt;`__\&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;DataFrame.assign : Can evaluate an expression or function to create new values for a column.
+pandas source code: &lt;a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487"&gt;https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487&lt;/a&gt;&lt;/p&gt;
 </content><category term="pandas, programming, python"></category><category term="cats"></category><category term="data"></category></entry><entry><title>A Guide To Making HTTP Requests To APIs With JSON &amp; Python</title><link href="https://lofipython.com/how-to-make-json-requests-with-python.html" rel="alternate"></link><published>2020-05-18T05:41:00-05:00</published><updated>2020-05-18T05:41:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-05-18:/how-to-make-json-requests-with-python.html</id><summary type="html">&lt;p&gt;This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Here's what is covered:&lt;/strong&gt;&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -105,9 +97,9 @@ HTTP: you = client. API = way to communicate with server&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;``GET``, ``POST`` and ``PATCH``&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;These are three common types of request methods.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;GET&lt;/tt&gt;: &amp;nbsp;Read data returned, such as all of your tweets in &lt;a class="reference external" href="https://developer.twitter.com/en/docs"&gt;the Twitter API&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;POST&lt;/tt&gt;: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!&lt;/li&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;PATCH&lt;/tt&gt;: Similar to &lt;tt class="docutils literal"&gt;POST&lt;/tt&gt;, this is typically used for updating data.&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;GET&lt;/cite&gt;: &amp;nbsp;Read data returned, such as all of your tweets in &lt;a class="reference external" href="https://developer.twitter.com/en/docs"&gt;the Twitter API&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;POST&lt;/cite&gt;: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;PATCH&lt;/cite&gt;: Similar to &lt;cite&gt;POST&lt;/cite&gt;, this is typically used for updating data.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;URL or &amp;quot;endpoint&amp;quot;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The website location to send your request&lt;/p&gt;
@@ -277,8 +269,7 @@ If you choose not to use Postman, you can use the json library. See the use of &
 &lt;span class="normal"&gt;41&lt;/span&gt;
 &lt;span class="normal"&gt;42&lt;/span&gt;
 &lt;span class="normal"&gt;43&lt;/span&gt;
-&lt;span class="normal"&gt;44&lt;/span&gt;
-&lt;span class="normal"&gt;45&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt;
+&lt;span class="normal"&gt;44&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
 
@@ -300,8 +291,7 @@ If you choose not to use Postman, you can use the json library. See the use of &
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;json_str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_new_contact&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;json_str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    This is a fictional API request.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;This is a fictional API request.&lt;/span&gt;
 &lt;span class="sd"&gt;    Passing a json object to requests.&lt;/span&gt;
 &lt;span class="sd"&gt;    Decoding server response with response.json(),&lt;/span&gt;
 &lt;span class="sd"&gt;    Returning a contact id by calling the data&amp;#39;s keys.&lt;/span&gt;
@@ -327,9 +317,9 @@ If you choose not to use Postman, you can use the json library. See the use of &
 &lt;!--  --&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;requests.request keyword argument alternatives for passing data&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;params&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples or bytes to send in the query string for the&amp;nbsp;&lt;tt class="docutils literal"&gt;`Request&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request"&gt;https://2.python-requests.org/en/master/api/#requests.Request&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;data&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the&amp;nbsp;&lt;tt class="docutils literal"&gt;`Request&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request"&gt;https://2.python-requests.org/en/master/api/#requests.Request&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;json&lt;/strong&gt;&amp;nbsp;– (optional) A JSON serializable Python object to send in the body of the&amp;nbsp;&lt;tt class="docutils literal"&gt;`Request&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/#requests.Request"&gt;https://2.python-requests.org/en/master/api/#requests.Request&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;params&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;data&lt;/strong&gt;&amp;nbsp;– (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;json&lt;/strong&gt;&amp;nbsp;– (optional) A JSON serializable Python object to send in the body of the Request&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;[&lt;/strong&gt;&lt;a class="reference external" href="https://2.python-requests.org/en/master/api/"&gt;requests API documentation&lt;/a&gt;&lt;strong&gt;]&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;&amp;quot;Gotchyas&amp;quot; To Avoid&lt;/strong&gt;&lt;/p&gt;

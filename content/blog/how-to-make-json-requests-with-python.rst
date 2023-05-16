@@ -46,9 +46,9 @@ A REST API is built for interoperability and has properties like: "simplicity of
 
 These are three common types of request methods.
 
--  ``GET``:  Read data returned, such as all of your tweets in `the Twitter API <https://developer.twitter.com/en/docs>`__.
--  ``POST``: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!
--  ``PATCH``: Similar to ``POST``, this is typically used for updating data.
+-  `GET`:  Read data returned, such as all of your tweets in `the Twitter API <https://developer.twitter.com/en/docs>`__.
+-  `POST`: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!
+-  `PATCH`: Similar to `POST`, this is typically used for updating data.
 
 **URL or "endpoint"**
 
@@ -207,8 +207,7 @@ Example #2: Encode a Python dictionary to json string and ``POST`` to a hypothet
        return json_str.encode("utf-8")
 
    def create_new_contact(json_str):
-       """
-       This is a fictional API request. 
+       """This is a fictional API request. 
        Passing a json object to requests.
        Decoding server response with response.json(), 
        Returning a contact id by calling the data's keys.
@@ -235,11 +234,11 @@ Example #2: Encode a Python dictionary to json string and ``POST`` to a hypothet
 
    **requests.request keyword argument alternatives for passing data**
 
-   **params** – (optional) Dictionary, list of tuples or bytes to send in the query string for the ```Request`` <https://2.python-requests.org/en/master/api/#requests.Request>`__.
+   **params** – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.
 
-   **data** – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the ```Request`` <https://2.python-requests.org/en/master/api/#requests.Request>`__.
+   **data** – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request
 
-   **json** – (optional) A JSON serializable Python object to send in the body of the ```Request`` <https://2.python-requests.org/en/master/api/#requests.Request>`__.
+   **json** – (optional) A JSON serializable Python object to send in the body of the Request
 
    **[**\ `requests API documentation <https://2.python-requests.org/en/master/api/>`__\ **]**
 

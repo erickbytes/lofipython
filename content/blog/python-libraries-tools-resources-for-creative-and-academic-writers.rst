@@ -39,7 +39,7 @@ Today I scoured the internet for tools written in Python that assist writing in 
 -  `Tips and Tricks for Writing Scientific Papers <https://github.com/Wookai/paper-tips-and-tricks>`__: Practice and tips & tricks to write scientific papers in LaTeX, with figures generated in Python or Matlab.
 -  `library <https://github.com/dmvaldman/library>`__: A collection of essays and timeless papers
 -  `2021 Papers with Code <https://github.com/amusi/CVPR2021-Papers-with-Code>`__
--  ` <https://github.com/JelteF/PyLaTeX>`__\ `PyLaTeX <https://github.com/JelteF/PyLaTeX>`__: A Python library for creating LaTeX files
+-  `PyLaTeX <https://github.com/JelteF/PyLaTeX>`__: A Python library for creating LaTeX files
 -  `Begin LaTeX in minutes <https://github.com/luong-komorebi/Begin-Latex-in-minutes>`__: Brief Intro to LaTeX for beginners that helps you use LaTeX with ease.
 -  `Texbib <https://pypi.org/project/texbib/>`__: A program that helps you to manage your BibTeX references.
 -  `BibLatex-Check <https://github.com/Pezmc/BibLatex-Check>`__: A python script for checking BibLatex .bib files for common referencing mistakes!

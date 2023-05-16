@@ -23,7 +23,6 @@ I recently picked up the `pandas dataframe's "assign" function <https://pandas.p
    # alternative way that also works, but with warnings from pandas
    # df["sound"] = "Meow"
 
-   | DataFrame.assign : Can evaluate an expression or function to create new
-   | values for a column.
 
-   - `pandas source code <https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487>`__\ 
+DataFrame.assign : Can evaluate an expression or function to create new values for a column.
+pandas source code: https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487

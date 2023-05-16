@@ -31,9 +31,8 @@ Follow these steps to maintain more reliable scripts and catch more of your trac
                    errors.append([log,line])
            return errors
 
-   """
-   parse traceback errors from log files in current working directory 
-   and write to them to a csv file
+   """Parse traceback errors from log files in current working directory 
+   and write to them to a csv file.
    """
    logs = [f for f in os.listdir(os.getcwd()) if '.log' in f.lower()]
    tracebacks = [parse_errors(log) for log in logs]

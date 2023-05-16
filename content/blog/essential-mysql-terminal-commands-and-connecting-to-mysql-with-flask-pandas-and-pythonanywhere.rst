@@ -141,11 +141,6 @@ Flask app with `mysql.connector API <https://dev.mysql.com/doc/connector-python/
    import logging
    import sys
 
-   """
-   Flask + MySQL + pandas app from Python Marketer:
-   https://atomic-temporary-107329037.wpcomstaging.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/ 
-   """
-
    app = Flask(__name__)
    logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 
@@ -161,8 +156,7 @@ Flask app with `mysql.connector API <https://dev.mysql.com/doc/connector-python/
            logging.exception('Failed to connect to database.')
 
    def render_homepage():
-       """
-       Note: you should use Flask's render_template to render HTML files. 
+       """Note: you should use Flask's render_template to render HTML files. 
        But here's a quick f-string HTML page that works:
        """
        html_page = f"""<html><head><link rel='stylesheet' href="/static/styles/some_file.css"><link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">

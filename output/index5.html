@@ -45,7 +45,10 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">SSLError</span><span class="p">:</span> <span class="n">HTTPSConnectionPool</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;api.example.com&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">):</span> <span class="n">Max</span> <span class="n">retries</span> <span class="n">exceeded</span> <span class="k">with</span> <span class="n">url</span><span class="p">:</span> <span class="o">/</span><span class="n">oauth</span><span class="o">/</span><span class="n">token</span><span class="err">?</span><span class="n">grant_type</span><span class="o">=</span><span class="n">client_credentials</span> <span class="p">(</span><span class="n">Caused</span> <span class="n">by</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">SSLCertVerificationError</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)&#39;</span><span class="p">)))</span>
 </pre></div></td></tr></table></div>
 <p>Apparently my Python certificates were not valid or up to date on my computer. These are &quot;.PEM&quot; or &quot;.cert&quot; files that certify your connection for the <a class="reference external" href="https://www.ssl.com/faqs/faq-what-is-ssl/">SSL protocol</a>. I googled this error until I found the <a class="reference external" href="https://pypi.org/project/python-certifi-win32/">python-certifi-win32</a> library. I only needed to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip install</a> this library and it fixed the problem:</p>
-<p><tt class="docutils literal">pip install <span class="pre">python-certifi-win32</span></tt></p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>pip install python-certifi-win32</dd>
+</dl>
 <p>Huge thank you to <a class="reference external" href="https://pypi.org/user/andrewleech/">the maintainer</a> of this package. It solved my issues and now I can make HTTP requests again!</p>
 
                 <div class="clear"></div>
@@ -102,7 +105,7 @@
 </li>
 <li><p class="first"><a class="reference external" href="https://github.com/amusi/CVPR2021-Papers-with-Code">2021 Papers with Code</a></p>
 </li>
-<li><p class="first">` &lt;<a class="reference external" href="https://github.com/JelteF/PyLaTeX">https://github.com/JelteF/PyLaTeX</a>&gt;`__<a class="reference external" href="https://github.com/JelteF/PyLaTeX">PyLaTeX</a>: A Python library for creating LaTeX files</p>
+<li><p class="first"><a class="reference external" href="https://github.com/JelteF/PyLaTeX">PyLaTeX</a>: A Python library for creating LaTeX files</p>
 </li>
 <li><p class="first"><a class="reference external" href="https://github.com/luong-komorebi/Begin-Latex-in-minutes">Begin LaTeX in minutes</a>: Brief Intro to LaTeX for beginners that helps you use LaTeX with ease.</p>
 </li>
@@ -208,8 +211,7 @@
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
@@ -223,9 +225,8 @@
                 <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">log</span><span class="p">,</span><span class="n">line</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">errors</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">parse traceback errors from log files in current working directory</span>
-<span class="sd">and write to them to a csv file</span>
+<span class="sd">&quot;&quot;&quot;Parse traceback errors from log files in current working directory</span>
+<span class="sd">and write to them to a csv file.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.log&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
 <span class="n">tracebacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">]</span>
@@ -469,8 +470,8 @@ caching is a common technique to store data so that it can be quickly fetched la
 <div class="section" id="developer">
 <h2>Developer</h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)">Asynchrony</a> Used for performing operations in parallel.</p>
-<p>RPC: <a class="reference external" href="https://en.wikipedia.org/wiki/Remote_procedure_call">https://en.wikipedia.org/wiki/Remote_procedure_call</a>
-Event-driven programming: <a class="reference external" href="https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads">https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads</a>.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads.">Event-driven programming</a></p>
 <blockquote>
 <p>Async is always event-driven, but not the other way round.</p>
 <p><a class="reference external" href="https://stackoverflow.com/questions/5844955/whats-the-difference-between-event-driven-and-asynchronous-between-epoll-and-a#:~:text=Asynchronous%20is%20basically%20multitasking.,in%20an%20easy%20responsive%20manner.">Stephen Chung - Stack Overflow</a></p>

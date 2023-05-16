@@ -388,20 +388,15 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 
                 <p><a class="reference external" href="https://pandas.pydata.org/docs/">Pandas</a> is amazing, what else is there to say? Learning the nuances of its API have yielded tons of times where it helped me get stuff done.</p>
 <p>I recently picked up the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html">pandas dataframe's &quot;assign&quot; function</a> for creating a new column of values. This is an elegant way to set a column of values in tabular data with the pandas library. Below you'll see two ways to set a column of values in pandas. In the first way, I am chaining two assign functions together to create 2 new columns, &quot;sound&quot; and &quot;type&quot;. I prefer using assign because it looks better and it does not result in any warnings from pandas. Highly recommend getting familiar with pandas functions like assign and API nuances like <a class="reference external" href="https://pandas.pydata.org/docs/reference/series.html?highlight=str%20accessors#accessors">Series accessors</a> to up your tabular data game.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">cats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Garfield&quot;</span><span class="p">,</span><span class="s2">&quot;Meowth&quot;</span><span class="p">,</span><span class="s2">&quot;Tom&quot;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">cats</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cats&quot;</span><span class="p">])</span>
 <span class="c1"># best way</span>
@@ -410,12 +405,9 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 
 <span class="c1"># alternative way that also works, but with warnings from pandas</span>
 <span class="c1"># df[&quot;sound&quot;] = &quot;Meow&quot;</span>
-
-<span class="o">|</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">assign</span> <span class="p">:</span> <span class="n">Can</span> <span class="n">evaluate</span> <span class="n">an</span> <span class="n">expression</span> <span class="ow">or</span> <span class="n">function</span> <span class="n">to</span> <span class="n">create</span> <span class="n">new</span>
-<span class="o">|</span> <span class="n">values</span> <span class="k">for</span> <span class="n">a</span> <span class="n">column</span><span class="o">.</span>
-
-<span class="o">-</span> <span class="err">`</span><span class="n">pandas</span> <span class="n">source</span> <span class="n">code</span> <span class="o">&lt;</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pandas</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">blob</span><span class="o">/</span><span class="n">v1</span><span class="mf">.3.5</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">frame</span><span class="o">.</span><span class="n">py</span><span class="c1">#L4421-L4487&gt;`__\</span>
 </pre></div></td></tr></table></div>
+<p>DataFrame.assign : Can evaluate an expression or function to create new values for a column.
+pandas source code: <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487">https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487</a></p>
 
                 <div class="clear"></div>
 

@@ -84,8 +84,7 @@ I recently deployed the `ThreadPoolExecutor <https://docs.python.org/3/library/c
    import shutil
    import os
 
-   """
-   Move files concurrently from the 
+   """Move files concurrently from the 
    current working directory to a new folder.
 
    This script is adapted from the Python 
