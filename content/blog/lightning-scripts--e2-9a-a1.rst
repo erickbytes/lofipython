@@ -68,8 +68,6 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
 
 **5  ⚡ Auto-Hamilton Ticket Lottery**
 
-.. container::
-
 .. code-block:: python
 
       import webbrowser
@@ -139,7 +137,6 @@ To use pdfkit on Windows, go to the link, choose your version to download. This 
 
    sudo apt-get install wkhtmltopdf
 
-.. container::
 
    **For Windows, **\ `download wkhtmltopdf <https://wkhtmltopdf.org/downloads.html>`__\ ** and add this config patch for pdfkit:**
 

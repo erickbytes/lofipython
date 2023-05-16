@@ -101,7 +101,7 @@ I find these videos to be an entertaining, thought-provoking take on software hi
 
 You may be able to teach yourself to type more efficiently with this tutorial. I definitely need to do this. It's worth mentioning, per `Rich Hickey: <https://www.youtube.com/watch?v=f84n5oFoZBc>`__ with a proper design phase, you'll spend less time typing in the first place!
 
-**Extra Credit: Python Wikipedia Library **
+**Extra Credit: Python Wikipedia Library**
 
 import wikipedia [`GitHub <https://github.com/goldsmith/Wikipedia>`__]
 

@@ -25,10 +25,9 @@ Here are a few Python concepts for beginners to explore if you are starting out 
 
 For tabular data, I often use ``pd.to_datetime()`` to convert a series of strings to datetime objects:
 
-.. code:: wp-block-preformatted
+.. code-block:: python
 
-   """
-   install pandas with this command:
+   """install pandas with this command:
    python -m pip install pandas
    """
    import pandas as pd

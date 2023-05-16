@@ -43,8 +43,7 @@ For Windows installation, see the python docs for an installer, "`Using Python o
 
 `Follow these steps to download and install Python 3.8 in the Ubuntu terminal. <https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/>`__ To upgrade to pandas 1.0, I installed Python 3.8, the `latest stable release <https://www.google.com/search?client=ubuntu&channel=fs&q=python+latest+stable+release&ie=utf-8&oe=utf-8>`__, "`from source <https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/>`__" on Ubuntu 16.04.
 
-**If you intend to use**\ `pandas.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__\ **on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.
-
+**If you intend to use** `pandas.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.
 
 On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal: ``sudo apt-get install libbz2-dev``
 

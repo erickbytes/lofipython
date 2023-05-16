@@ -148,6 +148,68 @@
                     &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
                     &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
                 </div>
+            </article>            <h4 class="date">Feb 14, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/so-you-want-to-learn-python.html" rel="bookmark" title="Permanent Link to &quot;So You Want to Learn Python?&quot;">So You Want to Learn Python?</a>
+                </h2>
+
+                
+                
+
+                <p>Here are a few Python concepts for beginners to explore if you are starting out with the language. In this post, I'll highlight my favorite &quot;must-learn&quot; tools to master that come with your Python installation. Understanding them will make you a more capable Python programmer and problem solver.</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="https://docs.python.org/3/library/functions.html#built-in-funcs">Built-in Functions</a>. They are awesome! You can do so much with these. Learn to apply them. You won't regret it! See also: <a class="reference external" href="https://www.blog.pythonlibrary.org/2021/02/17/an-intro-to-pythons-built-in-functions/">An Intro to Python's Built-in Functions</a></li>
+<li><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#string-methods">String methods</a>. Want to capitalize, lowercase or replace characters in text? How about checking if a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.isdigit">str.isdigit()</a>? Get to know Python's string methods. I use these frequently. Also, the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.isdigit.html">pandas string method implementations</a> are great for applying them to tabular data.</li>
+<li><a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#documentation-strings">Docstrings</a>. I truly enjoy adding docstrings at the beginning of my functions. They add clarity and ease of understanding.</li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=C4Kc8xzcA68&amp;ab_channel=EugeneYarmash">The Mighty Dictionary</a>. Lists and tuples are useful too, but <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">dictionaries</a> are so handy with the ability to store and access key-value pairs.</li>
+<li><a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">List Comprehensions</a>. These allow you to perform transformations on lists in one line of code! I love the feeling when I apply a list comprehension that is concise, yet readable.</li>
+<li><a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions">Lambda Expressions</a>. These can be used to apply a function &quot;on the fly&quot;. I love their succinctness. It took me a few years to become comfortable with them. Sometimes it makes sense to use a lambda expression instead of a regular function to transform data.</li>
+<li><a class="reference external" href="https://docs.python.org/3/library/datetime.html#date-objects">Date Objects</a>. Wielding date objects and formatting them to your needs is a pivotal Python skill. Once you have it down, it unlocks a lot of automation and scripting abilities when combined with libraries like <a class="reference external" href="https://docs.python.org/3/library/pathlib.html">pathlib</a>, <a class="reference external" href="https://docs.python.org/3/library/os.html?highlight=os#module-os">os</a> or <a class="reference external" href="https://docs.python.org/3/library/glob.html?highlight=glob#module-glob">glob</a> for reading file metadata and then executing an action based on the date of the file, for example. I use <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date.today">date.today()</a> a lot when I want to fetch today's date and <a class="reference external" href="https://docs.python.org/3/library/datetime.html#available-types">timedelta</a> to compare two dates. The datetime module is your friend, dive in. Must know for custom date formatting: <tt class="docutils literal">`strftime()</tt>&nbsp;and&nbsp;<tt class="docutils literal">strptime()</tt>&nbsp;Format Codes &lt;<a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes">https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes</a>&gt;`__</li>
+</ol>
+<p>For tabular data, I often use <tt class="docutils literal">pd.to_datetime()</tt> to convert a series of strings to datetime objects:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="sd">&quot;&quot;&quot;install pandas with this command:</span>
+<span class="sd">python -m pip install pandas</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">events</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;USA Born&#39;</span><span class="p">,</span><span class="s1">&#39;1776-07-04&#39;</span><span class="p">],[</span><span class="s1">&#39;WTC Bombings&#39;</span><span class="p">,</span><span class="s1">&#39;2001-09-11&#39;</span><span class="p">],[</span><span class="s1">&#39;Biden Inauguration&#39;</span><span class="p">,</span><span class="s1">&#39;2021-01-20&#39;</span><span class="p">]]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;events&#39;</span><span class="p">,</span><span class="s1">&#39;dates&#39;</span><span class="p">])</span>
+<span class="c1"># convert a pandas series of strings to datetime objects</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dates</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
+<p><a class="reference external" href="#%20convert%20a%20list%20of%20strings%20to%20a%20pandas%20series%20of%20datetime%20objects">Go here</a> if you're having pip installation problems.</p>
+<p><strong>Just the tip of the iceberg...</strong></p>
+<p>The amazing part of Python is that its community has developed an astonishing plethora of external libraries which can be <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">installed by pip</a>. Usually I'll learn how to use new libraries after googling to find a well-written README on Github or helpful documentation. The language comes with an impressive line-up of baked-in <a class="reference external" href="https://docs.python.org/3/library/">tools and libraries</a> way beyond what I've mentioned here. But I think this is a great start. Get to know these common Python language features and you'll be surprised how much you can do!</p>
+<p><strong>Additional Comprehensive Python Learning Resources</strong></p>
+<p><a class="reference external" href="https://nedbatchelder.com/blog/202003/how_long_did_it_take_you_to_learn_python.html">How long did it take you to learn Python?</a></p>
+<p><a class="reference external" href="https://github.com/dabeaz-course/practical-python">Practical Python Programming</a> (free course)</p>
+<p><a class="reference external" href="https://google.github.io/styleguide/pyguide.html">Google Python Style Guide</a></p>
+<p><a class="reference external" href="https://github.com/satwikkansal/wtfpython">What the f*ck Python!</a></p>
+<p><a class="reference external" href="https://pysanity.netlify.app/#testing">PySanity</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/so-you-want-to-learn-python.html">posted at 14:05</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/programming.html" rel="tag">programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags selected">learning</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/skills.html" class="tags">skills</a>
+                    &nbsp;<a href="https://lofipython.com/tag/technology.html" class="tags">technology</a>
+                </div>
             </article>            <h4 class="date">Aug 09, 2020</h4>
 
             <article class="post">
@@ -291,6 +353,102 @@
                     &nbsp;<a href="https://lofipython.com/tag/database-storage.html" class="tags">database storage</a>
                     &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags selected">learning</a>
                     &nbsp;<a href="https://lofipython.com/tag/lectures-notes.html" class="tags">lectures notes</a>
+                </div>
+            </article>            <h4 class="date">Jun 23, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/my-favorite-free-educational-courses-and-talks-to-absorb.html" rel="bookmark" title="Permanent Link to &quot;Free Computer Science Courses and Talks To Absorb&quot;">Free Computer Science Courses and Talks To Absorb</a>
+                </h2>
+
+                
+                
+
+                <p>Below you'll find a balanced curriculum of juicy courses and videos that are available for free on the internet. I'll definitely be diving into most of these in the 2nd half of 2020. Stay curious!</p>
+<div class="section" id="university-cs-courses-for-free">
+<h2>University CS Courses For Free</h2>
+<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLhQjrBD2T382hIW-IsOVuXP1uMzEvmcE5">CS50's Web Programming with Python and JavaScript</a> | Harvard University</p>
+<p><a class="reference external" href="https://archive.org/details/ucberkeley_webcast_gJJeUFyuvvg">CS 61-C Great Ideas in Computer Architecture (Machine Structures)</a>, Spring 2015 | UC Berkeley</p>
+<p><a class="reference external" href="http://cs109.github.io/2015/">CS 109: Data Science</a>, 2015 | Harvard University</p>
+<p><a class="reference external" href="https://uppsala.instructure.com/courses/28112">Mathematical Modeling of Football</a>, Fall 2020 | Uppsala Universitet</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=hry_qqXLej8&amp;list=PLN_mP1uWIrL6d_brjVN3qgDBxoYEAE-hG&amp;index=2">CS 162 - Operating Systems and Systems Programming</a>, Fall 2013 | UC Berkeley</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=oeYBdghaIjc&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi">15-445/645 Intro to Database Systems</a>, Fall 2019&nbsp;| Carnegie Mellon University</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=SdW5RKUboKc&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=25&amp;t=0s">15-721 Advanced Database Systems</a>, Spring 2020 | Carnegie Mellon University</p>
+<p><a class="reference external" href="https://missing.csail.mit.edu/2020/">Missing Semester: Shell Tools &amp; Scripting</a>, Spring 2020 | MIT</p>
+<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB">6.824 Distributed Systems</a>, Spring 2020 | MIT</p>
+<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLOtl7M3yp-DX32N0fVIyvn7ipWKNGmwpp">CSE 373 - Analysis of Algorithms</a>, 2016 | Stony Brook University</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=9Btjg3I5-Wg">CS 4150 Algorithms</a>, Spring 2020 | University of Utah</p>
+<p>CS 241 System Programming, Spring 2020 [<a class="reference external" href="http://cs241.cs.illinois.edu/coursebook/index.html">course wiki</a>] |&nbsp;University of Illinois</p>
+<p><a class="reference external" href="https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/">CS 6120: Advanced Compilers: The Self-Guided Online Course</a> | Cornell University</p>
+</div>
+<div class="section" id="intriguing-coursera-classes">
+<h2>Intriguing Coursera Classes</h2>
+<p><a class="reference external" href="https://www.coursera.org/learn/devops-culture-and-mindset#syllabus">DevOps Culture and Mindset</a> | UC-Davis</p>
+<p><a class="reference external" href="https://www.coursera.org/specializations/data-structures-algorithms">Computer Science: Algorithms, Theory, and Machines</a> | Princeton University</p>
+<p><a class="reference external" href="https://www.coursera.org/learn/excel-data-analysis-fundamentals?courseSlug=excel-data-analysis-fundamentals&amp;showOnboardingModal=check">Excel Fundamentals for Data Analysis</a> | Macquarie University</p>
+<p><a class="reference external" href="https://www.coursera.org/projects/data-science-streamlit-python">Build a Data Science Web App with Streamlit and Python</a> | Guided Project [$10]</p>
+</div>
+<div class="section" id="programming-talks-tutorials">
+<h2>Programming Talks &amp; Tutorials</h2>
+<p>These programming talks piqued my interest, highly recommended.</p>
+<p><strong>David Beazley | Built in Super Heroes [</strong><a class="reference external" href="https://www.youtube.com/watch?v=lyDLAutA88s&amp;index=4&amp;list=LLzDUyPGFtbvCCztZLs8-rfw">YouTube</a><strong>]</strong></p>
+<p>Mr. Beazley shows how to use pure Python built-in functions to clean and analyze the City of Chicago's food inspection data. No pandas in this talk, behold the power of the Python standard library. Spoiler: Don't eat at O'hare airport. He also has a new course, available for free:</p>
+<p><strong>David Beazley | Practical Python Programming&nbsp;[</strong><a class="reference external" href="https://dabeaz-course.github.io/practical-python/">Course</a><strong>]</strong></p>
+<blockquote>
+This is not a course for absolute beginners on how to program a computer. It is assumed that you already have programming experience in some other programming language or Python itself.</blockquote>
+<p><strong>Sebastian Witowski | Modern Python Developer's Toolkit [</strong><a class="reference external" href="https://www.youtube.com/watch?v=WkUBx3g2QfQ">YouTube</a><strong>]</strong></p>
+<p>An overview covering editing tools and setup from <a class="reference external" href="https://www.youtube.com/channel/UCMjMBMGt0WJQLeluw6qNJuA/videos">PyCon 2020</a>. Honing your development environment is crucial to being an efficent coder. This example uses VS Code. I use Atom as my primary text editor. The most recommended linters are usually pylint, flake8 or pyflakes.</p>
+<p><strong>Jake VanderPlas | Reproducible Data Analysis in Jupyter [</strong><a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=138">YouTube</a><strong>]</strong></p>
+<p>This 10 video series is a must-watch for aspiring data scientists and analysts if you use Python. Includes a git workflow demonstration, working in Jupyter Notebooks and many other essentials.</p>
+<p><strong>Rich Hickey | Hammock Driven Development [</strong><a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">YouTube</a><strong>]</strong></p>
+<p>Sometimes, the best thing we can do is step away from the keyboard. I really enjoy this speaker's communication style.</p>
+<p><strong>Eric J. Ma | Demystifying Deep Learning for Data Scientists [</strong><a class="reference external" href="https://www.youtube.com/watch?v=gGu3pPC_fBM&amp;feature=youtu.be">YouTube</a><strong>]</strong></p>
+<p>Tutorial-style Pythonmachine learning walk-through from PyCon 2020.</p>
+<p><strong>Julie Michelman | Pandas, Pipelines, and Custom Transformers [</strong><a class="reference external" href="https://www.youtube.com/watch?v=BFaadIqWlAg&amp;index=6&amp;list=PLGVZCDnMOq0rxoq9Nx0B4tqtr891vaCn7">YouTube</a><strong>]</strong></p>
+<p>This video shows a deep dive into the world of sci-kit learn and machine learning. PyCon and PyData videos usually include some cutting edge tech. Machine learning moves so fast there are always new tools surfacing. But certain libraries like sci-kit learn, TensorFlow, keras and PyTorch have been constant.</p>
+<p><strong>Ville Tuuls | A Billion Rows per Second: Metaprogramming Python for Big Data [</strong><a class="reference external" href="https://www.youtube.com/watch?time_continue=1745&amp;v=rXj5nayS7Yg">YouTube</a><strong>]</strong></p>
+<p>Make your data dense by tactically re-arranging into efficient structures and compiling it down to lower-level bytes. This details a successful Python / Postgres / Numba / Multicorn big data implementation.</p>
+</div>
+<div class="section" id="video-course-grab-bag">
+<h2>Video &amp; Course Grab Bag</h2>
+<p><strong>Discover the role of Python in space exploration [</strong><a class="reference external" href="https://docs.microsoft.com/en-us/learn/paths/introduction-python-space-exploration-nasa/">course</a><strong>]</strong></p>
+<p>Microsoft and NASA made a free course about Python in space! 🤓</p>
+<p><strong>Ted Nelson | Computers for Cynics [</strong><a class="reference external" href="https://www.youtube.com/watch?v=hZ3gmh-d9oI&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=137&amp;t=0s">YouTube</a><strong>]</strong></p>
+<p>I find these videos to be an entertaining, thought-provoking take on software history. Recommended from Joe Armstrong, the creator of <a class="reference external" href="https://en.wikipedia.org/wiki/Erlang_(programming_language)">Erlang</a>.</p>
+<p><strong>GNU Typist [</strong><a class="reference external" href="https://www.gnu.org/savannah-checkouts/gnu/gtypist/gtypist.html">Tutorial</a><strong>]</strong></p>
+<p>You may be able to teach yourself to type more efficiently with this tutorial. I definitely need to do this. It's worth mentioning, per <a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">Rich Hickey:</a> with a proper design phase, you'll spend less time typing in the first place!</p>
+<p><strong>Extra Credit: Python Wikipedia Library</strong></p>
+<p>import wikipedia [<a class="reference external" href="https://github.com/goldsmith/Wikipedia">GitHub</a>]</p>
+</div>
+<div class="section" id="supplementary-resources">
+<h2>Supplementary Resources</h2>
+<ul class="simple">
+<li><a class="reference external" href="https://teachyourselfcs.com/">teachyourselfcs.com</a></li>
+<li><a class="reference external" href="https://github.com/chiphuyen/python-is-cool/blob/master/cool-python-tips.ipynb">Cool Python Tips Jupyter Notebook</a></li>
+<li><a class="reference external" href="https://github.com/google/styleguide/blob/gh-pages/pyguide.md">Google's Python Style Guide</a></li>
+<li><a class="reference external" href="https://github.com/gto76/python-cheatsheet">Python Cheat Sheet (Github)</a></li>
+<li><a class="reference external" href="https://nocomplexity.com/machine-learning-resources/">Free and Open Machine Learning</a></li>
+<li><a class="reference external" href="https://pages.dataiku.com/hubfs/PDF/Whitepaper/Importance_of_AutoML-for-Augmented-Analytics.pdf">AutoML and The Rise of the Citizen Data Scientist</a></li>
+<li><a class="reference external" href="https://docs.google.com/spreadsheets/d/1GOO4s1NcxCR8a44F0XnsErz5rYDxNbHAHznu4pJMRkw/edit#gid=0">Data Engineering Study Guide</a></li>
+<li><a class="reference external" href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a></li>
+<li><a class="reference external" href="https://github.com/ossu/computer-science#advanced-cs">Open Source University</a></li>
+<li><a class="reference external" href="https://drive.google.com/drive/u/0/folders/1ZS57_40tWuIB7tV4APVMmTZ-5PXDwX9w">Data Training Materials from the New York Times</a></li>
+<li><a class="reference external" href="https://www.freecodecamp.org/">freecodecamp.org</a></li>
+</ul>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/my-favorite-free-educational-courses-and-talks-to-absorb.html">posted at 03:35</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-data-databases-education-programming-python-software.html" rel="tag">coding, data, Databases, education, programming, python, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/free-education.html" class="tags">free education</a>
+                    &nbsp;<a href="https://lofipython.com/tag/harvard.html" class="tags">harvard</a>
+                    &nbsp;<a href="https://lofipython.com/tag/knowledge.html" class="tags">knowledge</a>
+                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags selected">learning</a>
+                    &nbsp;<a href="https://lofipython.com/tag/mit.html" class="tags">MIT</a>
+                    &nbsp;<a href="https://lofipython.com/tag/university.html" class="tags">university</a>
                 </div>
             </article>            <h4 class="date">Apr 11, 2020</h4>
 

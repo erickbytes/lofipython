@@ -12,14 +12,16 @@ Making A Desktop Color Eyedropper in Python to Grab Color Values
 
 **Approach #1: find an Atom eyedropper package to grab the colors.**
 
-My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were `an-color-eyedropper <https://atom.io/packages/an-color-picker>`__ and `color picker <https://atom.io/packages/color-picker>`__. The an-color-eyedropper description sounds perfect: *"A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." *\ Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated (`script <https://atom.io/packages/script>`__ is its successor). I was unable to find a repo anywhere by googling.
+My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were `an-color-eyedropper <https://atom.io/packages/an-color-picker>`__ and `color picker <https://atom.io/packages/color-picker>`__. The an-color-eyedropper description sounds perfect: *"A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." *\ Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated (`script <https://atom.io/packages/script>`__ 
+is its successor). I was unable to find a repo anywhere by googling.
 
 `Color picker <https://atom.io/packages/color-picker>`__ has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.
 
 **Approach #2: Use the python tkcolorpicker package to grab the colors.**
 
 | The first thing I found on Google was `tkcolorpicker <https://pypi.org/project/tkcolorpicker/>`__, a package that uses the `tkinter <https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/>`__ library. I couldn't tell exactly what it was, so let's find out. First, install via `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
-| ``python -m pip install tkcolorpicker``
+
+``python -m pip install tkcolorpicker``
 
 | Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D
 | |color_picker_gui|
@@ -101,7 +103,6 @@ Once eyedropper sends the color values to your system's clipboard, there are mul
    python -m pip install pyperclip
 
 **On Linux, install**\ `xclip <https://github.com/astrand/xclip>`__\ **or**\ `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__\  ``sudo apt-get install xclip``\ **
-**
 
 **To get the clipboard contents with pandas:**
 

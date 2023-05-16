@@ -31,7 +31,242 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Sep 12, 2020</h4>
+        <div id="content">            <h4 class="date">Sep 20, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/getting-the-lay-of-the-land-in-sqlite-and-connecting-to-a-db-with-pythons-sqlite3-library.html" rel="bookmark" title="Permanent Link to &quot;SQLite3: Pythonic First Impressions & Lay of the Land&quot;">SQLite3: Pythonic First Impressions &amp; Lay of the Land</a>
+                </h2>
+
+                
+                
+
+                <p><strong>introduction</strong></p>
+<p>SQLite is one of the heavy hitters in the database space, up there with other popular choices like MySQL, Postgres, Microsoft SQLServer, Cassandra and MariaDB. There is no shortage of <a class="reference external" href="https://dbdb.io/">database technologies</a> but SQLite is certainly one that is commonly used. It also has a positive reputation. Its terminal interface reminds me of <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/">MySQL</a>. The syntax of both seem similarly &quot;SQL-like&quot; and easy to pick up.</p>
+<p>I finally got around to test-driving a <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLite</a> database this week. In this post, I've listed my impressions of some practical SQLite commands. The &quot;dot&quot; syntax is helpful to do a lot things as you'll see below. I'll conclude by briefly exploring the sqlite3 python library in the python interpreter.</p>
+<p><strong>getting started</strong></p>
+<p>I <a class="reference external" href="https://linuxhint.com/install_sqlite_browser_ubuntu_1804/">installed SQLite from the terminal</a> with apt on Ubuntu Linux.</p>
+<p>There are also downloads for Windows. A popular GUI is <a class="reference external" href="https://sqlitestudio.pl/">SQLite Studio</a>.</p>
+<p><strong>create a new database</strong></p>
+<p><tt class="docutils literal">sqlite3 PythonMarketer.db</tt></p>
+<p><strong>create a new db + new table and import a csv file to the table, &quot;Readers&quot;</strong></p>
+<pre class="literal-block">
+sqlite3 PythonMarketer.db
+.mode csv Readers
+.import PythonMarketerReaders2015-2020.csv Readers
+</pre>
+<p>[<a class="reference external" href="https://tableplus.com/blog/2018/07/sqlite-how-to-import-csv-file-into-sqlite-table.html">source</a>]</p>
+<p><strong>create a table</strong></p>
+<p><tt class="docutils literal">CREATE TABLE</tt>Readers<tt class="docutils literal">(Country TEXT,Visits INTEGER);</tt></p>
+<p><strong>add new column with a default value</strong></p>
+<p><tt class="docutils literal">ALTER TABLE Readers ADD&nbsp; TEXT DEFAULT '0';</tt></p>
+<p><strong>show all help (and . syntax) options</strong></p>
+<p><tt class="docutils literal">.help</tt></p>
+<p><strong>show all tables</strong></p>
+<p><tt class="docutils literal">.tables</tt></p>
+<p><strong>show table creation statement (table schema)</strong></p>
+<p><tt class="docutils literal">.schema Readers</tt></p>
+<p><strong>exit sqlite terminal</strong></p>
+<p><tt class="docutils literal">.exit</tt></p>
+<p><strong>show databases</strong></p>
+<p><tt class="docutils literal">.databases</tt></p>
+<p><strong>show all indexes</strong></p>
+<p><tt class="docutils literal">.indexes</tt></p>
+<p><strong>&quot;show&quot; various DB settings</strong></p>
+<p><tt class="docutils literal">.show</tt></p>
+<div class="wp-block-image docutils container">
+<div class="wp-image-4412 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/show-explain-sqlite3.jpg?w=904" />
+</div>
+</div>
+<p><em>Pictured: &quot;showing&quot; DB settings and &quot;</em><a class="reference external" href="https://sqlite.org/lang_explain.html">EXPLAIN-ing</a><em>&quot; a query</em></p>
+<p><strong>Exploring sqlite operators:</strong> the <a class="reference external" href="https://www.sqlitetutorial.net/sqlite-glob/">GLOB operator</a></p>
+<div class="section" id="exploring-my-new-table-with-the-python-sqlite3-library-in-the-python-interpreter">
+<h2>Exploring my new table with the <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">Python sqlite3 library</a> in the Python interpreter</h2>
+<p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> is in the python standard library, always a nice convenience to simply import it! Here we are connecting to an existing .db with <tt class="docutils literal">sqlite3.connect()</tt></p>
+<div class="wp-block-image docutils container">
+<div class="wp-image-4416 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/python-interpreter-python-sqlite.jpeg?w=717" />
+</div>
+</div>
+<p>Below, getting a cursor object that holds our S<tt class="docutils literal">ELECT</tt> query results. Then iterating through each row of the cursor object with a for loop, as demonstrated in the documentation.</p>
+<div class="wp-block-image docutils container">
+<div class="wp-image-4417 figure">
+<img alt="**Shown above:** printing the rows within the cursor object returned from executing a SELECT SQL statement." src="https://pythonmarketer.files.wordpress.com/2020/09/pythonsqlitedbreaders.jpeg?w=820" />
+<p class="caption"><strong>Shown above:</strong> printing the rows within the cursor object returned from executing a SELECT SQL statement.</p>
+</div>
+</div>
+<p><strong>Comparable Cursors and PEP 249</strong></p>
+<p>The cursor object has a variety of methods you can call on it for database operations and to execute SQL. You can read more about them in the <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">sqlite3 module documentation</a>. This library also follows <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/">PEP 249 - Python Database API Specification</a> for recommended Database API interfaces. I've noticed that in <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/">pyodbc</a>, for example, the cursor object looks and feels the same as the cursor object in sqlite3. This is because they are both likely following PEP 249. Very cool!</p>
+</div>
+<div class="section" id="before-you-go-check-out-python-marketer-s-open-data-github-repository">
+<h2>Before You Go, Check Out Python Marketer's <a class="reference external" href="https://github.com/erickbytes/Python-Marketer-Reader-Analytics">Open Data Github Repository</a></h2>
+<p>The data shown in this post is published on <a class="reference external" href="https://github.com/erickbytes/Python-Marketer-Reader-Analytics">Github</a>. There you'll find you this blog's reader by country data, with analysis in a Jupyter Notebook. <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">This post I wrote</a> shows more info about using Jupyter and matplotlib for data analysis if you're curious about it.</p>
+<p>In 2020, <strong>105 countries or 53%</strong> of the world's countries have read about Python on this blog. 🤯👏👏👏 Amazing.</p>
+<p>I think this data offers a hint of perspective into the question, &quot;Where in the world are people learning about Python?&quot; The short answer is all around the world! That's pretty rad. Thanks for reading and stay curious.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/getting-the-lay-of-the-land-in-sqlite-and-connecting-to-a-db-with-pythons-sqlite3-library.html">posted at 00:09</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/data-databases-python-sql.html" rel="tag">data, Databases, python, SQL</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/open-data.html" class="tags">open data</a>
+                    &nbsp;<a href="https://lofipython.com/tag/sqlite.html" class="tags">SQLite</a>
+                    &nbsp;<a href="https://lofipython.com/tag/sqlite-commands.html" class="tags">SQLite commands</a>
+                    &nbsp;<a href="https://lofipython.com/tag/sqlite3.html" class="tags">sqlite3</a>
+                </div>
+            </article>            <h4 class="date">Sep 13, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api.html" rel="bookmark" title="Permanent Link to &quot;Delete All Your Tweets with Tweepy and the Twitter API&quot;">Delete All Your Tweets with Tweepy and the Twitter API</a>
+                </h2>
+
+                
+                
+
+                <p>You may want to <a class="reference external" href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive">download an archive</a> of your tweets before deleting them. I did this and it took about a day to get my archive download.</p>
+<p><strong>How To Purge Your Tweet History with Python</strong></p>
+<ol class="arabic simple">
+<li>Per the <a class="reference external" href="http://docs.tweepy.org/en/latest/install.html">Tweepy library documentation</a>, install tweepy with <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. It worked fine in my python 3.8 <a class="reference external" href="https://docs.python.org/3/library/venv.html">virtual environment</a>.</li>
+</ol>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="n">install</span> <span class="n">tweepy</span>
+</pre>
+<ol class="arabic simple" start="2">
+<li>Sign up for a <a class="reference external" href="https://developer.twitter.com/">Twitter Developer account</a> and create an app. I named mine &quot;tweetcleanr&quot;.</li>
+<li>Find your app under &quot;Projects &amp; Apps&quot;. Edit your app's permissions to &quot;<strong>Read + Write + Direct Messages</strong>&quot;.</li>
+<li>After you update your permissions, select the &quot;Keys and tokens&quot; tab. Then regenerate new API keys. Then paste them in the below script.</li>
+</ol>
+<div class="wp-image-4350 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/twitter-dev.png?w=1024" />
+</div>
+<ol class="arabic simple" start="5">
+<li>Save the below script as a python file. In command prompt or terminal, run python <strong>delete_tweets.py</strong> or whatever you want to name it!</li>
+<li>You'll be asked to go to a link and enter an authorization code. Then you'll see your tweets being deleted like pictured below.</li>
+</ol>
+<p><strong>delete_tweets.py</strong></p>
+<p>I found this <a class="reference external" href="https://gist.github.com/davej/113241">Github Gist</a> via Google and updated the print and input statements to Python 3. I also added the <a class="reference external" href="https://docs.python.org/3/library/traceback.html">traceback module</a> in case you need to debug it. Initially, I received an error telling me to complete step 3 above. I didn't see the error message at first, until adding <tt class="docutils literal">traceback.print_exc()</tt> like you see below.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">tweepy</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Delete All Your Tweets - Github Gist by davej</span>
+<span class="sd">Credit: https://gist.github.com/davej/113241</span>
+<span class="sd">Ported to Python 3 by Python Marketer: pythonmarketer.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">CONSUMER_KEY</span> <span class="o">=</span> <span class="s2">&quot;get_from_dev_portal&quot;</span>
+<span class="n">CONSUMER_SECRET</span> <span class="o">=</span> <span class="s2">&quot;get_from_dev_portal&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">oauth_login</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Authenticate with twitter using OAuth&quot;&quot;&quot;</span>
+
+    <span class="n">auth</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">OAuthHandler</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">)</span>
+    <span class="n">auth_url</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="n">get_authorization_url</span><span class="p">()</span>
+
+    <span class="n">verify_code</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+        <span class="s2">&quot;Authenticate at </span><span class="si">%s</span><span class="s2"> and then enter you verification code here &gt; &quot;</span> <span class="o">%</span> <span class="n">auth_url</span>
+    <span class="p">)</span>
+    <span class="n">auth</span><span class="o">.</span><span class="n">get_access_token</span><span class="p">(</span><span class="n">verify_code</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">batch_delete</span><span class="p">(</span><span class="n">api</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;You are about to delete all tweets from the account @</span><span class="si">%s</span><span class="s2">.&quot;</span>
+        <span class="o">%</span> <span class="n">api</span><span class="o">.</span><span class="n">verify_credentials</span><span class="p">()</span><span class="o">.</span><span class="n">screen_name</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Does this sound ok? There is no undo! Type yes to carry out this action.&quot;</span><span class="p">)</span>
+    <span class="n">do_delete</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;&gt; &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">do_delete</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">Cursor</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">user_timeline</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">api</span><span class="o">.</span><span class="n">destroy_status</span><span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Deleted:&quot;</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to delete:&quot;</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">oauth_login</span><span class="p">(</span><span class="n">CONSUMER_KEY</span><span class="p">,</span> <span class="n">CONSUMER_SECRET</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authenticated as: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">api</span><span class="o">.</span><span class="n">me</span><span class="p">()</span><span class="o">.</span><span class="n">screen_name</span><span class="p">)</span>
+
+    <span class="n">batch_delete</span><span class="p">(</span><span class="n">api</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-4325 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2020/09/terminaltweepy.png?w=755" />
+</div>
+<p><strong>✅</strong> <strong>Twitter Cleanse Complete</strong></p>
+<p>Twitter has a really slick developer dashboard. Its API combined with the tweepy library got the job done for me. It's great when stuff just works. And it only cost me about 1 hour to complete. Time to start a clean slate. Here's to looking forward.</p>
+<p><strong>Supplementary Reading</strong></p>
+<p><a class="reference external" href="http://docs.tweepy.org/en/latest/getting_started.html">Tweepy Documentation Tutorial</a></p>
+<p><a class="reference external" href="https://developer.twitter.com/en/docs/tutorials">Twitter's API Tutorials</a></p>
+<p><a class="reference external" href="https://developer.twitter.com/en/docs/tutorials/postman-getting-started">Twitter Postman Tutorial</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api.html">posted at 21:07</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/api.html" class="tags">api</a>
+                    &nbsp;<a href="https://lofipython.com/tag/tweepy.html" class="tags">tweepy</a>
+                    &nbsp;<a href="https://lofipython.com/tag/tweets.html" class="tags">tweets</a>
+                    &nbsp;<a href="https://lofipython.com/tag/twitter.html" class="tags">twitter</a>
+                </div>
+            </article>            <h4 class="date">Sep 12, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -367,6 +602,102 @@
                     &nbsp;<a href="https://lofipython.com/tag/database-storage.html" class="tags">database storage</a>
                     &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
                     &nbsp;<a href="https://lofipython.com/tag/lectures-notes.html" class="tags">lectures notes</a>
+                </div>
+            </article>            <h4 class="date">Jun 23, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/my-favorite-free-educational-courses-and-talks-to-absorb.html" rel="bookmark" title="Permanent Link to &quot;Free Computer Science Courses and Talks To Absorb&quot;">Free Computer Science Courses and Talks To Absorb</a>
+                </h2>
+
+                
+                
+
+                <p>Below you'll find a balanced curriculum of juicy courses and videos that are available for free on the internet. I'll definitely be diving into most of these in the 2nd half of 2020. Stay curious!</p>
+<div class="section" id="university-cs-courses-for-free">
+<h2>University CS Courses For Free</h2>
+<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLhQjrBD2T382hIW-IsOVuXP1uMzEvmcE5">CS50's Web Programming with Python and JavaScript</a> | Harvard University</p>
+<p><a class="reference external" href="https://archive.org/details/ucberkeley_webcast_gJJeUFyuvvg">CS 61-C Great Ideas in Computer Architecture (Machine Structures)</a>, Spring 2015 | UC Berkeley</p>
+<p><a class="reference external" href="http://cs109.github.io/2015/">CS 109: Data Science</a>, 2015 | Harvard University</p>
+<p><a class="reference external" href="https://uppsala.instructure.com/courses/28112">Mathematical Modeling of Football</a>, Fall 2020 | Uppsala Universitet</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=hry_qqXLej8&amp;list=PLN_mP1uWIrL6d_brjVN3qgDBxoYEAE-hG&amp;index=2">CS 162 - Operating Systems and Systems Programming</a>, Fall 2013 | UC Berkeley</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=oeYBdghaIjc&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi">15-445/645 Intro to Database Systems</a>, Fall 2019&nbsp;| Carnegie Mellon University</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=SdW5RKUboKc&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=25&amp;t=0s">15-721 Advanced Database Systems</a>, Spring 2020 | Carnegie Mellon University</p>
+<p><a class="reference external" href="https://missing.csail.mit.edu/2020/">Missing Semester: Shell Tools &amp; Scripting</a>, Spring 2020 | MIT</p>
+<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB">6.824 Distributed Systems</a>, Spring 2020 | MIT</p>
+<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLOtl7M3yp-DX32N0fVIyvn7ipWKNGmwpp">CSE 373 - Analysis of Algorithms</a>, 2016 | Stony Brook University</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=9Btjg3I5-Wg">CS 4150 Algorithms</a>, Spring 2020 | University of Utah</p>
+<p>CS 241 System Programming, Spring 2020 [<a class="reference external" href="http://cs241.cs.illinois.edu/coursebook/index.html">course wiki</a>] |&nbsp;University of Illinois</p>
+<p><a class="reference external" href="https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/">CS 6120: Advanced Compilers: The Self-Guided Online Course</a> | Cornell University</p>
+</div>
+<div class="section" id="intriguing-coursera-classes">
+<h2>Intriguing Coursera Classes</h2>
+<p><a class="reference external" href="https://www.coursera.org/learn/devops-culture-and-mindset#syllabus">DevOps Culture and Mindset</a> | UC-Davis</p>
+<p><a class="reference external" href="https://www.coursera.org/specializations/data-structures-algorithms">Computer Science: Algorithms, Theory, and Machines</a> | Princeton University</p>
+<p><a class="reference external" href="https://www.coursera.org/learn/excel-data-analysis-fundamentals?courseSlug=excel-data-analysis-fundamentals&amp;showOnboardingModal=check">Excel Fundamentals for Data Analysis</a> | Macquarie University</p>
+<p><a class="reference external" href="https://www.coursera.org/projects/data-science-streamlit-python">Build a Data Science Web App with Streamlit and Python</a> | Guided Project [$10]</p>
+</div>
+<div class="section" id="programming-talks-tutorials">
+<h2>Programming Talks &amp; Tutorials</h2>
+<p>These programming talks piqued my interest, highly recommended.</p>
+<p><strong>David Beazley | Built in Super Heroes [</strong><a class="reference external" href="https://www.youtube.com/watch?v=lyDLAutA88s&amp;index=4&amp;list=LLzDUyPGFtbvCCztZLs8-rfw">YouTube</a><strong>]</strong></p>
+<p>Mr. Beazley shows how to use pure Python built-in functions to clean and analyze the City of Chicago's food inspection data. No pandas in this talk, behold the power of the Python standard library. Spoiler: Don't eat at O'hare airport. He also has a new course, available for free:</p>
+<p><strong>David Beazley | Practical Python Programming&nbsp;[</strong><a class="reference external" href="https://dabeaz-course.github.io/practical-python/">Course</a><strong>]</strong></p>
+<blockquote>
+This is not a course for absolute beginners on how to program a computer. It is assumed that you already have programming experience in some other programming language or Python itself.</blockquote>
+<p><strong>Sebastian Witowski | Modern Python Developer's Toolkit [</strong><a class="reference external" href="https://www.youtube.com/watch?v=WkUBx3g2QfQ">YouTube</a><strong>]</strong></p>
+<p>An overview covering editing tools and setup from <a class="reference external" href="https://www.youtube.com/channel/UCMjMBMGt0WJQLeluw6qNJuA/videos">PyCon 2020</a>. Honing your development environment is crucial to being an efficent coder. This example uses VS Code. I use Atom as my primary text editor. The most recommended linters are usually pylint, flake8 or pyflakes.</p>
+<p><strong>Jake VanderPlas | Reproducible Data Analysis in Jupyter [</strong><a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=138">YouTube</a><strong>]</strong></p>
+<p>This 10 video series is a must-watch for aspiring data scientists and analysts if you use Python. Includes a git workflow demonstration, working in Jupyter Notebooks and many other essentials.</p>
+<p><strong>Rich Hickey | Hammock Driven Development [</strong><a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">YouTube</a><strong>]</strong></p>
+<p>Sometimes, the best thing we can do is step away from the keyboard. I really enjoy this speaker's communication style.</p>
+<p><strong>Eric J. Ma | Demystifying Deep Learning for Data Scientists [</strong><a class="reference external" href="https://www.youtube.com/watch?v=gGu3pPC_fBM&amp;feature=youtu.be">YouTube</a><strong>]</strong></p>
+<p>Tutorial-style Pythonmachine learning walk-through from PyCon 2020.</p>
+<p><strong>Julie Michelman | Pandas, Pipelines, and Custom Transformers [</strong><a class="reference external" href="https://www.youtube.com/watch?v=BFaadIqWlAg&amp;index=6&amp;list=PLGVZCDnMOq0rxoq9Nx0B4tqtr891vaCn7">YouTube</a><strong>]</strong></p>
+<p>This video shows a deep dive into the world of sci-kit learn and machine learning. PyCon and PyData videos usually include some cutting edge tech. Machine learning moves so fast there are always new tools surfacing. But certain libraries like sci-kit learn, TensorFlow, keras and PyTorch have been constant.</p>
+<p><strong>Ville Tuuls | A Billion Rows per Second: Metaprogramming Python for Big Data [</strong><a class="reference external" href="https://www.youtube.com/watch?time_continue=1745&amp;v=rXj5nayS7Yg">YouTube</a><strong>]</strong></p>
+<p>Make your data dense by tactically re-arranging into efficient structures and compiling it down to lower-level bytes. This details a successful Python / Postgres / Numba / Multicorn big data implementation.</p>
+</div>
+<div class="section" id="video-course-grab-bag">
+<h2>Video &amp; Course Grab Bag</h2>
+<p><strong>Discover the role of Python in space exploration [</strong><a class="reference external" href="https://docs.microsoft.com/en-us/learn/paths/introduction-python-space-exploration-nasa/">course</a><strong>]</strong></p>
+<p>Microsoft and NASA made a free course about Python in space! 🤓</p>
+<p><strong>Ted Nelson | Computers for Cynics [</strong><a class="reference external" href="https://www.youtube.com/watch?v=hZ3gmh-d9oI&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=137&amp;t=0s">YouTube</a><strong>]</strong></p>
+<p>I find these videos to be an entertaining, thought-provoking take on software history. Recommended from Joe Armstrong, the creator of <a class="reference external" href="https://en.wikipedia.org/wiki/Erlang_(programming_language)">Erlang</a>.</p>
+<p><strong>GNU Typist [</strong><a class="reference external" href="https://www.gnu.org/savannah-checkouts/gnu/gtypist/gtypist.html">Tutorial</a><strong>]</strong></p>
+<p>You may be able to teach yourself to type more efficiently with this tutorial. I definitely need to do this. It's worth mentioning, per <a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">Rich Hickey:</a> with a proper design phase, you'll spend less time typing in the first place!</p>
+<p><strong>Extra Credit: Python Wikipedia Library</strong></p>
+<p>import wikipedia [<a class="reference external" href="https://github.com/goldsmith/Wikipedia">GitHub</a>]</p>
+</div>
+<div class="section" id="supplementary-resources">
+<h2>Supplementary Resources</h2>
+<ul class="simple">
+<li><a class="reference external" href="https://teachyourselfcs.com/">teachyourselfcs.com</a></li>
+<li><a class="reference external" href="https://github.com/chiphuyen/python-is-cool/blob/master/cool-python-tips.ipynb">Cool Python Tips Jupyter Notebook</a></li>
+<li><a class="reference external" href="https://github.com/google/styleguide/blob/gh-pages/pyguide.md">Google's Python Style Guide</a></li>
+<li><a class="reference external" href="https://github.com/gto76/python-cheatsheet">Python Cheat Sheet (Github)</a></li>
+<li><a class="reference external" href="https://nocomplexity.com/machine-learning-resources/">Free and Open Machine Learning</a></li>
+<li><a class="reference external" href="https://pages.dataiku.com/hubfs/PDF/Whitepaper/Importance_of_AutoML-for-Augmented-Analytics.pdf">AutoML and The Rise of the Citizen Data Scientist</a></li>
+<li><a class="reference external" href="https://docs.google.com/spreadsheets/d/1GOO4s1NcxCR8a44F0XnsErz5rYDxNbHAHznu4pJMRkw/edit#gid=0">Data Engineering Study Guide</a></li>
+<li><a class="reference external" href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a></li>
+<li><a class="reference external" href="https://github.com/ossu/computer-science#advanced-cs">Open Source University</a></li>
+<li><a class="reference external" href="https://drive.google.com/drive/u/0/folders/1ZS57_40tWuIB7tV4APVMmTZ-5PXDwX9w">Data Training Materials from the New York Times</a></li>
+<li><a class="reference external" href="https://www.freecodecamp.org/">freecodecamp.org</a></li>
+</ul>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/my-favorite-free-educational-courses-and-talks-to-absorb.html">posted at 03:35</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-data-databases-education-programming-python-software.html" rel="tag">coding, data, Databases, education, programming, python, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/free-education.html" class="tags">free education</a>
+                    &nbsp;<a href="https://lofipython.com/tag/harvard.html" class="tags">harvard</a>
+                    &nbsp;<a href="https://lofipython.com/tag/knowledge.html" class="tags">knowledge</a>
+                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://lofipython.com/tag/mit.html" class="tags">MIT</a>
+                    &nbsp;<a href="https://lofipython.com/tag/university.html" class="tags">university</a>
                 </div>
             </article>            <h4 class="date">May 18, 2020</h4>
 
@@ -885,222 +1216,6 @@ def randomize_contacts(df):
                     &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
                     &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
                     &nbsp;<a href="https://lofipython.com/tag/writing.html" class="tags">writing</a>
-                </div>
-            </article>            <h4 class="date">Mar 22, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/easy-wins-for-your-windows-computer.html" rel="bookmark" title="Permanent Link to &quot;Easy Tune-ups For Your Windows Computer&quot;">Easy Tune-ups For Your Windows Computer</a>
-                </h2>
-
-                
-                
-
-                <div class="section" id="this-post-covers-6-handy-windows-tools">
-<h2>This post covers 6 handy Windows tools:</h2>
-<ol class="arabic simple">
-<li>Windows Experience Index</li>
-<li>Disk Cleanup</li>
-<li>Windows Update Troubleshooter</li>
-<li>Windows Update</li>
-<li>Microsoft Support and Recovery Assistant</li>
-<li>Disk Defragmenter</li>
-</ol>
-</div>
-<div class="section" id="first-get-your-baseline-windows-experience-index-score">
-<h2><strong>First, get your baseline Windows Experience Index score.</strong></h2>
-<p>These metrics are a way to monitor your system's performance over time.</p>
-<ol class="arabic simple">
-<li>Go to &quot;Control PanelSystem and SecuritySystem&quot;</li>
-<li>Select &quot;Your Windows Experience Index needs to be refreshed.&quot;</li>
-<li>Note the metrics you see and the last updated date. If you've never refreshed them, these are likely your computer's factory scores.</li>
-<li>Then click &quot;Refresh Now&quot; and note the results. These are your computer's current scores.</li>
-</ol>
-<img alt="check_Windows_Experience_Index" class="alignnone size-full wp-image-2780" src="http://pythonmarketer.files.wordpress.com/2020/03/f6e0a-check_windows_experience_index-e1584936945758.jpg" style="width: 729px; height: 501px;" />
-</div>
-<hr class="docutils" />
-<div class="section" id="run-disk-cleanup">
-<h2><strong>Run Disk Cleanup</strong></h2>
-<p>The name says it all. Go to the Start menu and search 'Disk Cleanup'. Running this freed up 40 GB of C: drive space for me.</p>
-<p>disk_cleanup</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="install-os-patches-and-software-updates-withwindows-update">
-<h2><strong>Install OS patches and software updates withWindows Update.</strong></h2>
-<p><strong>First, troubleshoot Windows Update to fix any errors.</strong></p>
-<img alt="tdhotingtrpot2" class="wp-image-2790 alignright" src="http://pythonmarketer.files.wordpress.com/2020/03/83836-tdhotingtrpot2-e1584941263675.jpg" style="width: 357px; height: 274px;" />
-<p>The <a class="reference external" href="https://support.microsoft.com/en-us/help/4027322/windows-update-troubleshooter">Windows Update Troubleshooter</a>is supported by Windows and may help&nbsp;with updates that fail. I downloaded the troubleshooter forWindows Update and BITS, Windows'<a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal">Background Intelligence Transfer System.</a></p>
-<p>The troubleshooter analyzes Windows Update and tries to fix the errors it finds. After running, it provides a status update on the issues it finds.</p>
-<p><strong>Run Windows Update to upgrade your software.</strong></p>
-<p>Windows Update usually updates your software reliably. However, some updates may fail or are not triggered automatically. Installing updates, especially security patches for your operating system is typically a good idea.In my case, several Windows 7 OS security patches had not auto-updated, some from 6 months ago.</p>
-<p>check_updates</p>
-<ul class="simple">
-<li>Go to your start menu and search for 'Windows Update'.</li>
-<li>I clicked 'Check online for updates from Windows Update' also.</li>
-<li>When you restart your computer, use a power cord for your laptop.</li>
-<li>I found more new updates twice after installing new updates and restarting my system.&nbsp; Some updates are required before another update may be installed.</li>
-</ul>
-<p>windowsuptodate</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="microsoft-support-and-recovery-assistant">
-<h2>Microsoft Support and Recovery Assistant</h2>
-<p><strong>Got Microsoft Errors?</strong> Check out the <a class="reference external" href="https://support.office.com/en-us/article/about-the-microsoft-support-and-recovery-assistant-e90bb691-c2a7-4697-a94f-88836856c72f">Microsoft Support and Recovery Assistant</a>. It may help you if you're having trouble with Microsoft Office, Skype or any other Windows&nbsp;tools.</p>
-<img alt="options_recovery" class="wp-image-3225 alignnone" src="http://pythonmarketer.files.wordpress.com/2020/03/1ea73-options_recovery-e1587747001750.jpg" style="width: 465px; height: 350px;" />
-</div>
-<hr class="docutils" />
-<div class="section" id="finally-defragment-your-c-drive">
-<h2><strong>Finally, defragment your C: drive.</strong></h2>
-<p>Defragmentation is like spring cleaning for your computer's hard disk. It optimizes your drive's data for more efficient computing and frees up space for other activities.</p>
-<ol class="arabic simple">
-<li>Go to your start menu and search for 'Disk Defragmenter'.</li>
-<li>Click 'Analyze disk' to check your C: Drive's fragmented rate.</li>
-<li>If the fragmented rate is above 10%, <a class="reference external" href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Windows recommends</a> to defragment your C: Drive. As you can see below, mine had a whopping 48% fragmentation rate. 😨 My poor computer had never been defragged in 2.5 years of use.</li>
-</ol>
-<img alt="defragment_results" class="alignnone size-full wp-image-2740" src="http://pythonmarketer.files.wordpress.com/2020/03/699fd-defragment_results-e1585007505765.jpg" style="width: 658px; height: 529px;" />
-<p><strong>46% Less Fragmented Disk Space After Two Defrags</strong></p>
-<p>Running the defragmenter once reduced my drive's fragmentation from 48% to 32%. Re-running the defragmenter dropped my C: drive to a 2% fragmented rate. That's more like it. 🤓</p>
-<blockquote>
-<div class="ng-scope docutils container">
-Fragmentation makes your hard disk do extra work that can slow down your computer. Removable storage devices such as USB flash drives can also become fragmented. Disk Defragmenter in Windows rearranges fragmented data so your disks and drives can work more efficiently.</div>
-<div class="docutils container">
-Source: <a class="reference external" href="https://support.microsoft.com/en-us/help/17126/windows-7-improve-performance-defragmenting-hard-disk">Ways to Improve Your Computer's Performance</a></div>
-</blockquote>
-</div>
-<hr class="docutils" />
-<div class="section" id="my-windows-7-system-improvement-results">
-<h2><strong>My Windows 7 System Improvement Results</strong></h2>
-<ul class="simple">
-<li>Raised Windows Experience Index base sub-score from 4.9 to 5.0/7.9.</li>
-<li>Added 40 GB of hard drive space thanks to Disk Cleanup.</li>
-<li>Patched operating system security vulnerabilities and all software is up to date.</li>
-<li>Fixed any misbehaving Windows products.</li>
-<li>Decreased fragmented drive space from 48% to 2%. Windows recommends keeping it under 10%.</li>
-</ul>
-<p>On paper, that looks great. Hopefully it means less spinning lag wheels and programs not responding when you really shoulda saved that document...&nbsp; <a class="reference external" href="https://www.youtube.com/watch?v=e2cjVhUrmII">We'll see</a>.</p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/easy-wins-for-your-windows-computer.html">posted at 22:59</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/performance-windows.html" rel="tag">performance, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/maintenance.html" class="tags">maintenance</a>
-                    &nbsp;<a href="https://lofipython.com/tag/operating-system.html" class="tags">operating system</a>
-                    &nbsp;<a href="https://lofipython.com/tag/windows-update.html" class="tags">windows update</a>
-                </div>
-            </article>            <h4 class="date">Jan 28, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/lessons-learned-from-lost-in-space-on-netflix.html" rel="bookmark" title="Permanent Link to &quot;Lessons Learned from "Lost in Space" on Netflix&quot;">Lessons Learned from &quot;Lost in Space&quot; on Netflix</a>
-                </h2>
-
-                
-                
-
-                <p>Being a developer has similarities to the life of a family surviving in space. Sure, the stakes are lower when writing code versus being chased by alien life forms, but the core idea is the same. One is faced with a problem and it must be solved, with varying degrees of consequences for failure.</p>
-<p>I enjoyed watching the Robinsons solve problem after problem to stay alive in alien worlds and the vacuum of space. I believe you can learn from anything. <strong>So in that spirit, here are some lessons from the show for us problem solving humans:</strong></p>
-<ol class="arabic simple">
-<li><img alt="tayrob" class="size-full wp-image-2271 alignright" src="https://pythonmarketer.files.wordpress.com/2020/01/tayrob.jpeg" style="width: 300px; height: 168px;" />Don't panic when you're in trouble. A cool head is vitally important to your survival chances when you're in a bind. Judy demonstrates this quality in evading the&nbsp;raptor-like creatures chasing her.</li>
-<li>Problems solved often lead to more problems to solve. We would be wise to anticipate what might happen if we do succeed.</li>
-<li>Be cautious when venturing into unfamiliar territories. You never know what could be there to trip you up. Which leads me to my next point...</li>
-<li>Respect nature's ability to f*ck you up. The environment you're in, other organisms, and bacteria can wreak havoc. Despite our perceived self-importance, nature is our god. We are but specks in its creation. Cases in point: the metal-dissolving virus that destroys Judy's chariot and the poisonous algae Don accidentally discovers that immobilizes him.</li>
-<li>Know when to go for broke, or when to re-group and wait to make your next move. The Robinsons spent 7 months stocking up at their new beach home. Until they suffered a setback...<img alt="beach" class="alignnone size-full wp-image-2279" src="https://pythonmarketer.files.wordpress.com/2020/01/beach.jpg" style="width: 2155px; height: 1181px;" /></li>
-<li>Adapt your plan when new information becomes available or unexpected events happen. They will happen.</li>
-<li>Think of unconventional ways to use the resources you do have to fix the problem at hand. Who would have thought a spaceship could be retrofitted into a boat?</li>
-<li>Things often work 83% of the way you expect them to work. Sometimes that's enough to move on. Or maybe it buys you enough time to figure out your next move. The electrical field stalled the fleet of robots long enough for the Robinsons to realize the children should &quot;<a class="reference external" href="https://en.wikipedia.org/wiki/Lord_of_the_Flies">Lord of the Flies</a>&quot; their way to Alpha Centauri.</li>
-<li>Question your own motivations, and be open to changing course if you are wrong. Adler realized he should help Will save Scarecrow's life after first trying to stop him. Scarecrow then exhibits this same quality when he turns against his robot comrades to save the children.</li>
-<li>Ethics and morals may conflict with each other. Was Maureen Robinson wrong for fraudulently saving her son Will? Ethically, yes. But morally, as a mother saving her son? No.</li>
-<li>Make time for your family and friends. Maureen was so busy saving the family that she didn't read Penny's book. Stop and smell the roses every once in a while. Or read your daughter's damn book.</li>
-<li>Humans are capable of both great compassion and horrible cruelty. We're running from alien robots, but sometimes we're the monsters? Cough cough Smith and Hastings... cough. Excuse me. (smh 🤦)</li>
-<li><img alt="robot" class="wp-image-2282 alignright" src="https://pythonmarketer.files.wordpress.com/2020/01/robot-1.jpeg" style="width: 358px; height: 179px;" />I'll spare you any parallels about modern artificial intelligence. The best, most grounded definition I've heard of modern AI is &quot;<a class="reference external" href="https://twitter.com/fchollet/status/1214392496375025664?lang=en">automated cognition</a>&quot;.</li>
-<li>Self-sacrifice is an honorable death to save the lives of others, but can be frustrating to watch on TV. &quot;Did you really have to kill yourself there?&quot; - me, several times during the show 😆</li>
-</ol>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/lessons-learned-from-lost-in-space-on-netflix.html">posted at 06:39</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/entertainment-life-space.html" rel="tag">entertainment, life, space</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/lost-in-space.html" class="tags">Lost in Space</a>
-                    &nbsp;<a href="https://lofipython.com/tag/netflix.html" class="tags">Netflix</a>
-                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
-                </div>
-            </article>            <h4 class="date">Jan 25, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/git-the-basics-a-git-version-control-cheat-sheet.html" rel="bookmark" title="Permanent Link to &quot;"Git" The Basics: A Version Control Cheat Sheet&quot;">&quot;Git&quot; The Basics: A Version Control Cheat Sheet</a>
-                </h2>
-
-                
-                
-
-                <p><em>I am finally starting to understand</em><a class="reference external" href="https://en.wikipedia.org/wiki/Git">git version control</a><em>! It makes developing a project on different computers easy. Some of these notes were picked up from the super informative</em><a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a><em>by Jake VanderPlas, author of the</em><a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a><em>.</em></p>
-<p><em>First,</em><a class="reference external" href="https://git-scm.com/downloads">go here</a><em>, download and install git if you haven't yet. Alright, here are my go-to steps and commands for git:</em></p>
-<p><strong>Beginning a New Project With Git</strong></p>
-<ol class="arabic simple">
-<li>Create new repository on GitHub</li>
-<li>Add a README</li>
-<li>Add a Python gitignore</li>
-<li>Add a license (Jake V. used an MIT license)</li>
-</ol>
-<p><strong>Clone Any Repository from GitHub</strong></p>
-<ol class="arabic simple">
-<li>Visit your new project, or any GitHub project, click the green &quot;Clone or download&quot; button and copy the link.</li>
-<li>In your terminal or command prompt, navigate to the directory where you want to clone your project.</li>
-<li>In terminal, enter: <tt class="docutils literal">git clone PASTE_URL_HERE</tt></li>
-<li>Now cd into your project folder.</li>
-</ol>
-<p><strong>Push Your Local Computer Changes to the Master Repository</strong></p>
-<p>Let's say you did some work on your computer and want to push the changes to GitHub. Enter these commands in terminal:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">git add .</tt></li>
-<li><tt class="docutils literal">git commit <span class="pre">-m</span> &quot;Add your commit note here&quot;</tt></li>
-<li><tt class="docutils literal">git push origin master</tt></li>
-</ol>
-<p>*Above: <tt class="docutils literal">git add .</tt> = stage all files in project directory for master</p>
-<p>**Substitute <tt class="docutils literal">git add path\to\file\here</tt> to stage only a single file to add to your master repository.</p>
-<p><strong>Fetch Changes From Master Branch to Your Local Computer</strong></p>
-<p>I like to update my local computer with any master branch changes before beginning work on it. Enter these commands in terminal:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">git fetch</tt></li>
-<li><tt class="docutils literal">git pull origin master</tt></li>
-</ol>
-<p><strong>Review Merge Conflicts</strong></p>
-<p>Sometimes, your code may conflict with changes in the master branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use &quot;git status&quot; to locate the files with the conflicts. Enter in your terminal:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">git status</tt></li>
-<li>Then <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line">follow these instructions</a> to review the merge conflicts.</li>
-</ol>
-<p>See also: <a class="reference external" href="https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/conflicts.html">Resolving Conflicts - Virtualenv Documentation</a></p>
-<p><strong>Or maybe you want to discard any local changes, then merge:</strong></p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">git fetch</tt></li>
-<li><tt class="docutils literal">git checkout .</tt></li>
-<li><tt class="docutils literal">git pull origin master</tt></li>
-</ol>
-<p><strong>Recovering from a Corrupted Repository</strong></p>
-<p><tt class="docutils literal">git fsck <span class="pre">--full</span> <span class="pre">--no-dangling</span></tt></p>
-<p><a class="reference external" href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html#recovering-from-repository-corruption">Additional Reading</a></p>
-<p><strong>Supplementary Reading</strong></p>
-<p><a class="reference external" href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a></p>
-<p><a class="reference external" href="https://lanraccoon.com/2018/8-git-commands-i-use-everyday/">8 Git Commands I Use Every Day</a></p>
-<p><a class="reference external" href="http://who-t.blogspot.com/2009/12/on-commit-messages.html">On Commit Messages</a></p>
-<p><a class="reference external" href="https://github.com/pandas-dev/pandas/wiki/Git-Workflows">Pandas Library Git Workflows</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/git-the-basics-a-git-version-control-cheat-sheet.html">posted at 05:06</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-command-prompt-data-analysis-git-programming-software.html" rel="tag">coding, command prompt, data analysis, git, programming, software</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/github.html" class="tags">github</a>
-                    &nbsp;<a href="https://lofipython.com/tag/terminal.html" class="tags">terminal</a>
-                    &nbsp;<a href="https://lofipython.com/tag/version-control.html" class="tags">version control</a>
                 </div>
             </article>
 

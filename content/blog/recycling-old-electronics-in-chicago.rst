@@ -25,7 +25,6 @@ Our recycling program also accepts nail polish, chemicals, paints, auto fluids, 
 
 The website also has an option for Spanish language speakers. You can sign up for email updates on the city's recycling program at the bottom of their website. Overall, I give the city's recycling service an A+ for its accessibility. Happy to see a wealth of resources available to re-purpose our planet's resources. If we all choose to care in our day to day lives, we can make a better future for generations to come.
 
-   **Tip:** `Best Buy <http://www.bestbuy.com/site/Global-Promotions/Recycling-Electronics/pcmcat149900050025.c?id=pcmcat149900050025>`__, `Staples <http://www.staples.com/sbd/cre/marketing/about_us/recycling-solutions.html>`__, `Dell <http://www.dell.com/learn/us/en/19/campaigns/trade-in-program?c=us&l=en&s=dhs&cs=19&~ck=mn>`__ and `Apple <http://www.apple.com/recycling/>`__ offer trade-in credits for recycling newer electronics with them.  Choose trade-in over e-cycling if your electronics still have some life. **Better for the planet, better for your wallet.**
 
    | **Here's what to take: **
    | •   All computer-related equipment (monitors, mice, hard drives, CPU’s, computer cables, keyboards, laptops, etc.)
