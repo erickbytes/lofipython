@@ -7,13 +7,11 @@ Making A Desktop Color Eyedropper in Python to Grab Color Values
 :slug: making-a-python-eyedropper
 :status: published
 
-| **Goal:** recreate my resume in the dark Atom text editor theme (background and fonts).
-| **Sub-goal:** find a color eyedropper to grab the actual color values of the Atom layout.
+| **Goal:** recreate my resume in the dark Atom text editor theme (background and fonts).
+| **Sub-goal:** find a color eyedropper to grab the actual color values of the Atom layout.
 
 **Approach #1: find an Atom eyedropper package to grab the colors.**
-
-My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were `an-color-eyedropper <https://atom.io/packages/an-color-picker>`__ and `color picker <https://atom.io/packages/color-picker>`__. The an-color-eyedropper description sounds perfect: *"A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." *\ Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated (`script <https://atom.io/packages/script>`__ 
-is its successor). I was unable to find a repo anywhere by googling.
+My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper <https://atom.io/packages/an-color-picker>`__ and `color picker <https://atom.io/packages/color-picker>`__. The an-color-eyedropper description sounds perfect: *"A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." *\ Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated. I was unable to find a repo anywhere by googling.
 
 `Color picker <https://atom.io/packages/color-picker>`__ has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.
 
@@ -43,7 +41,7 @@ is its successor). I was unable to find a repo anywhere by googling.
 
 **Approach #3: Use the Python eyedropper package to grab the colors.**
 
-I then found `eyedropper <https://github.com/umluizlima/eyedropper>`__ for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__: ``python -m pip install eyedropper``
+I then found `eyedropper <https://github.com/umluizlima/eyedropper>`__ for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__: ``python -m pip install eyedropper``
 
 .. image:: https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png
    :alt: pyeyedropper_start
@@ -102,7 +100,7 @@ Once eyedropper sends the color values to your system's clipboard, there are mul
    python -m pip install pandas
    python -m pip install pyperclip
 
-**On Linux, install**\ `xclip <https://github.com/astrand/xclip>`__\ **or**\ `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__\  ``sudo apt-get install xclip``\ **
+**On Linux, install**\ `xclip <https://github.com/astrand/xclip>`__\ **or**\ `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__\  ``sudo apt-get install xclip``\ **
 
 **To get the clipboard contents with pandas:**
 
@@ -114,14 +112,14 @@ Once eyedropper sends the color values to your system's clipboard, there are mul
 
 **Supplementary Notes and Links**
 
--  Here's a Python `eyedropper script <https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py>`__ featuring the `pillow <https://pillow.readthedocs.io/en/5.2.x/index.html>`__ and `xlib <https://github.com/python-xlib/python-xlib>`__ libraries that I was unable to get working.
+-  Here's a Python `eyedropper script <https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py>`__ featuring the `pillow <https://pillow.readthedocs.io/en/5.2.x/index.html>`__ and `xlib <https://github.com/python-xlib/python-xlib>`__ libraries that I was unable to get working.
 -  I didn't try `ColorCop for Windows <http://colorcop.net/>`__, but it may be a non-Python alternative.
--  **Did you know?** Python 2 had a `ColorPicker <https://docs.python.org/2/library/colorpicker.html>`__ module that is not in Python 3.
+-  **Did you know?** Python 2 had a `ColorPicker <https://docs.python.org/2/library/colorpicker.html>`__ module that is not in Python 3.
 -  `How pandas read_clipboard method works <https://dev.to/espoir/how-pandas-readclipboard-method-works-ake>`__
 -  `pandas to_clipboard and read_clipboard source code <https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/io/clipboards.py#L10-L76>`__
--  This `desktop tool <https://github.com/Toinane/colorpicker>`__ has great U/X and an eyedropper feature. It runs on Electron, a Javascript based framework. Coincidentally, Electron was used to build Atom.
+-  This `desktop tool <https://github.com/Toinane/colorpicker>`__ has great U/X and an eyedropper feature. It runs on Electron, a Javascript based framework. Coincidentally, Electron was used to build Atom.
 
- 
+ 
 
 .. |color_picker_gui| image:: https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png
    :class: wp-image-1462 alignright

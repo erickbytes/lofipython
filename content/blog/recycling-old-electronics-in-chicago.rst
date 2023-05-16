@@ -26,20 +26,20 @@ Our recycling program also accepts nail polish, chemicals, paints, auto fluids, 
 The website also has an option for Spanish language speakers. You can sign up for email updates on the city's recycling program at the bottom of their website. Overall, I give the city's recycling service an A+ for its accessibility. Happy to see a wealth of resources available to re-purpose our planet's resources. If we all choose to care in our day to day lives, we can make a better future for generations to come.
 
 
-   | **Here's what to take: **
-   | •   All computer-related equipment (monitors, mice, hard drives, CPU’s, computer cables, keyboards, laptops, etc.)
-   | •   Cell phones
-   | •   Fax machines
-   | •   Scanners
-   | •   Printers/copiers
-   | •   Televisions
-   | •   DVD players
-   | •   VHS players
-   | •   MP3/digital music players
-   | •   PDAs
-   | •   Video game consoles
-   | •   Zip drive
-   | •   Computer cables
+   | **Here's what to take:**
+   | •   All computer-related equipment (monitors, mice, hard drives, CPU’s, computer cables, keyboards, laptops, etc.)
+   | •   Cell phones
+   | •   Fax machines
+   | •   Scanners
+   | •   Printers/copiers
+   | •   Televisions
+   | •   DVD players
+   | •   VHS players
+   | •   MP3/digital music players
+   | •   PDAs
+   | •   Video game consoles
+   | •   Zip drive
+   | •   Computer cables
 
    https://www.recyclebycity.com/chicago/brief/household-chemicals-computer-recycling-facility
 

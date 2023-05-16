@@ -19,9 +19,9 @@ This is my solution to replace manually running pytest each day in command promp
 
 It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.
 
-**Writing a Test **
+**Writing a Test**
 
-Let's use **test_file_date.py** as our test, which uses the `glob <https://docs.python.org/3/library/glob.html>`__ module and `os.getmtime <https://docs.python.org/2/library/os.path.html#os.path.getmtime>`__\  to get the csv with the most recent modification dateon my desktop. Then it tests if that date is today, in my case, for an expected daily file drop.
+Let's use **test_file_date.py** as our test, which uses the `glob <https://docs.python.org/3/library/glob.html>`__ module and `os.getmtime <https://docs.python.org/2/library/os.path.html#os.path.getmtime>`__\  to get the csv with the most recent modification dateon my desktop. Then it tests if that date is today, in my case, for an expected daily file drop.
 
 .. code-block:: python
 
@@ -87,7 +87,7 @@ Next we're passing our python file as an argument to pytest, testing our file's 
 
 This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:
 
-    C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
+    C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
 
 **Browse to select your .bat file for your Windows Task Scheduler task:**
 
@@ -170,7 +170,7 @@ Or the `pywin32 module <https://github.com/mhammond/pywin32>`__ has an interface
 
 **Final Thoughts on the .bat, Man**
 
-This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format\ |legobatman| the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a "glue" piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.
+This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format\ |legobatman| the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a "glue" piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.
 
 **Life is in the journey.**
 

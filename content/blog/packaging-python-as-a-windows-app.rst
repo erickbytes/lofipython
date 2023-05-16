@@ -17,7 +17,7 @@ My research found that for creating a single-file Windows executable from a .py 
 
 **Using the build.spec file and starting Pyinstaller:**
 
-Most examples I found used a build.spec file. Think of this as the blueprint by which your app will be constructed. It provides the compiling settings, images and any other data necessary for assembling your app.  The format for passing the .spec file to Pyinstaller in pseudo-code:
+Most examples I found used a build.spec file. Think of this as the blueprint by which your app will be constructed. It provides the compiling settings, images and any other data necessary for assembling your app. The format for passing the .spec file to Pyinstaller in pseudo-code:
 
    pyinstaller (run mode options) (.spec file)
 
@@ -27,9 +27,9 @@ Most examples I found used a build.spec file. Think of this as the blueprint by 
 
 | Debug mode can be set from the command line:
 | ``pyinstaller -debug build.spec``
-| **OR** by passing debug=True to the EXE() function of the build.spec.\ * I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.*
+| **OR** by passing debug=True to the EXE() function of the build.spec.\ *I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.
 
-*To see your app's error message, run the resulting your_app.exe from the command line. *\ You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.
+*To see your app's error message, run the resulting your_app.exe from the command line.* You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.
 
 **Flushing sys.stdout/Python printing for Windows:**
 
@@ -75,12 +75,12 @@ In order to run on any user's system, we need to grab their local file paths. I 
 
 **Last, but not least: don't panic.**
 
-Compiling Python to Windows binary code sounds like a daunting task, but it wasn't nearly as complex as I feared. The folks behind Pyinstaller have done a great job of making it possible and, dare I say, simple. Stay calm, drink some coffee, dig in and welcome the challenge with a trial and error mentality. I was able to figure it out over the span of one Saturday. Good luck.
+Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn't nearly as complex as I feared. The folks behind Pyinstaller have done a great job of making it possible and, dare I say, simple. Stay calm, drink some coffee, dig in and welcome the challenge with a trial and error mentality. I was able to figure it out over the span of one Saturday. Good luck.
 
 **Useful Resources:**
 
 #. Pyinstaller Github - `If Things Go Wrong <https://github.com/pyinstaller/pyinstaller/wiki/If-Things-Go-Wrong>`__
-#. Pyinstaller Documentation: `Using Pyinstaller/Useful Arguments <https://pyinstaller.readthedocs.io/en/stable/usage.html>`__
+#. Pyinstaller Documentation:`Using Pyinstaller/Useful Arguments <https://pyinstaller.readthedocs.io/en/stable/usage.html>`__
 #. `Gooey Pyinstaller Instructions <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__
 #. `Pandas hiddenimports Discussion <https://github.com/pyinstaller/pyinstaller/issues/3422>`__
 

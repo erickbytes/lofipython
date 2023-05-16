@@ -7,7 +7,7 @@ Copying a pandas Dataframe to Google Sheets with pygsheets
 :slug: copying-a-csv-file-to-google-sheets-with-pygsheets
 :status: published
 
-   **Disclaimer**: This endeavor was before I discovered `AppScript <https://developers.google.com/apps-script>`__, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by automating Google Sheet operations.
+**Disclaimer**: This endeavor was before I discovered `AppScript <https://developers.google.com/apps-script>`__, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by automating Google Sheet operations.
 
 **This was done on the Windows 7 OS.** **First,**\ `install libraries with pip <https://docs.python.org/3/installing/index.html>`__\ **. Enter in command prompt or terminal:**
 

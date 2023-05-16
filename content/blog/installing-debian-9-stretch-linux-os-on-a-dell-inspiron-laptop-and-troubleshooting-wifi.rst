@@ -48,12 +48,12 @@ Post Installation Setup
 
 **2) Install sudo.**
 
-**3) Give yourself sudo user permissions. **
+**3) Give yourself sudo user permission.**
 
 Optional: Replacing Network-Manager With Wicd
 ---------------------------------------------
 
-This Debian 9 package ships with Network-Manager. After logging in, I wasn't sure why wifi was not working, so I decided to remove Network-Manager and install Wicd. (This was before I realized what the error code displayed on boot-up meant.) Wicd is a Linux network managing alternative and it's built with Python, by the way. I followed `these instructions <https://help.ubuntu.com/community/WICD>`__ to execute the below commands.
+This Debian 9 package ships with Network-Manager. After logging in, I wasn't sure why wifi was not working, so I decided to remove Network-Manager and install Wicd. (This was before I realized what the error code displayed on boot-up meant.) Wicd is a Linux network managing alternative and it's built with Python, by the way. I followed `these instructions <https://help.ubuntu.com/community/WICD>`__ to execute the below commands.
 
 ::
 
@@ -125,9 +125,9 @@ Some computers have a "kill switch" for wifi. This command lists any blocked int
 
    sudo dpkg --print-architecture
 
-**First,** `read here <https://wireless.wiki.kernel.org/en/users/drivers/b43/firmware>`__ **to determine the right packages for your Linux system. Then download the appropriate missing wifi firmware. For Debian, I downloaded the two packages below. **
+**First,** `read here <https://wireless.wiki.kernel.org/en/users/drivers/b43/firmware>`__ **to determine the right packages for your Linux system. Then download the appropriate missing wifi firmware. For Debian, I downloaded the two packages below.**
 
-1) `b43-fwcutter <https://packages.debian.org/stretch/b43-fwcutter>`__    2) `b43-installer <https://packages.debian.org/stretch/firmware-b43-installer>`__
+1) `b43-fwcutter <https://packages.debian.org/stretch/b43-fwcutter>`__ 2) `b43-installer <https://packages.debian.org/stretch/firmware-b43-installer>`__
 
 **"cd" into the directory with .deb files. Run the below commands to install the new firmware, then reboot your computer. The last two commands are adapted from** `this thread <https://ubuntuforums.org/showthread.php?t=2203312&page=4>`__.
 
@@ -146,8 +146,7 @@ Some computers have a "kill switch" for wifi. This command lists any blocked int
    :width: 380px
    :height: 357px
 
-**Success! Wireless networks are now showing.
-**
+**Success! Wireless networks are now showing.**
 
 .. image:: https://pythonmarketer.files.wordpress.com/2019/04/wicd_success.png
    :alt: wicd_success

@@ -124,6 +124,161 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
                     &nbsp;<a href="https://lofipython.com/tag/jq.html" class="tags">jq</a>
                     &nbsp;<a href="https://lofipython.com/tag/json.html" class="tags">json</a>
                 </div>
+            </article>            <h4 class="date">May 06, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html" rel="bookmark" title="Permanent Link to &quot;Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32&quot;">Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32</a>
+                </h2>
+
+                
+                
+
+                <p>Here are a few useful corners of the vast array of Windows scripting tools.</p>
+<div class="section" id="helpful-windows-command-line-documentation">
+<h2>Helpful Windows Command Line Documentation</h2>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key">Windows command line Documentation Syntax</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490890%28v%3dtechnet.10%29">Command-line reference A-Z</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490954%28v%3dtechnet.10%29">Command shell overview</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490982%28v%3dtechnet.10%29">Using command redirection operators</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/about-windows-remote-management">About Windows Remote Management</a></li>
+</ul>
+</div>
+<div class="section" id="a-few-general-windows-commands">
+<h2>A Few General Windows Commands</h2>
+<p><strong>Use</strong><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a><strong>to look in a text file to count the lines matching a string:</strong></p>
+<pre class="literal-block">
+find /C &quot;FAIL&quot; &lt; &quot;Test_Results.txt&quot;
+# returns: 0 if no match or # of lines found, e.g. 2,50,100
+</pre>
+<p>I wrote a post on <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/">findstr</a>, which offers similar functionality.</p>
+<p><strong>clip:</strong> pipe commands <a class="reference external" href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</p>
+<p><strong>If:</strong> <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</p>
+<p><strong>List ip address-related info:</strong></p>
+<pre class="literal-block">
+ipconfig
+</pre>
+<p><strong>Check system bit (usually 64-bit or 32-bit):</strong></p>
+<pre class="literal-block">
+wmic os getosarchitecture
+</pre>
+</div>
+<div class="section" id="automate-windows-scripts-with-batch-files">
+<h2>Automate Windows Scripts with Batch Files</h2>
+<p>Batch files can be run from command prompt or by double-clicking them. Here's an example of text in a batch file that activates a python virtual environment. Swap in your username and environment if you've created it.</p>
+<pre class="literal-block">
+cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd .. &amp; dir&quot;
+</pre>
+<ol class="arabic simple">
+<li>Save above as a .bat file.</li>
+<li>This uses <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29">cmd</a> to open a new command prompt in a Windows batch file.</li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a>into my python virtual env then activate it by running a batch file.</li>
+<li>Then call dir to print directory contents.</li>
+</ol>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a><strong>a custom system 'last_name' variable to be recalled later.</strong></p>
+<pre class="literal-block">
+set /p last_name=Enter a last name:
+echo %last_name%
+pause
+</pre>
+<p>Here we print it out with <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490897(v=technet.10)">echo</a>. Then <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490965(v=technet.10)">pause</a>.</p>
+<p><strong>Line continuation in batch files:</strong> Use ^ to continue your batch file scripts on a new line.</p>
+</div>
+<div class="section" id="system-assessment-tools-powercfg-and-sfc">
+<h2>System Assessment Tools: powercfg and sfc</h2>
+<p><strong>Display system stats:</strong></p>
+<pre class="literal-block">
+systeminfo
+</pre>
+<p><strong>Use powercfg to assess power, sleep and system states</strong></p>
+<pre class="literal-block">
+powercfg /SLEEPSTUDY
+</pre>
+<p>Use sfc to perform a system file check:</p>
+<pre class="literal-block">
+# scan and repair
+sfc /SCANNOW
+# scan, but do not repair:
+sfc /VERIFYONLY
+</pre>
+</div>
+<div class="section" id="accessing-a-remote-computer-from-the-command-line">
+<h2>Accessing a Remote Computer From the Command Line</h2>
+<p>You may want to <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ping">ping</a> a remote computer to see if it's running. Add your ip address instead of the below 1s and 0s:</p>
+<pre class="literal-block">
+ping 01.10.10.01
+</pre>
+<p><strong>Log into your Remote Desktop with</strong><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a><strong>:</strong></p>
+<ol class="arabic simple">
+<li>Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.</li>
+<li>You may need to <a class="reference external" href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on">adjust your credentials on your local machine.</a></li>
+<li>Finally, trigger login to an active window from command prompt:</li>
+</ol>
+<pre class="literal-block">
+mstsc RDP_File_Name.rdp
+</pre>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a><strong>and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</strong></p>
+<pre class="literal-block">
+winrm quickconfig
+</pre>
+<p><strong>Log into a remote computer with</strong><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs">winrs</a>**&nbsp;and run ipconfig:**</p>
+<pre class="literal-block">
+winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
+</pre>
+</div>
+<div class="section" id="check-out-python-s-pywin32-module">
+<h2>Check Out Python's <a class="reference external" href="https://github.com/mhammond/pywin32">pywin32</a> Module</h2>
+<p>This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook and <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">Task Scheduler</a>. Install with <a class="reference external" href="http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
+<pre class="literal-block">
+python -m pip install pywin32
+</pre>
+<p><strong>Here's an example to send an Outlook email:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">win32com.client</span>
+
+<span class="n">outlook</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">&#39;outlook.application&#39;</span><span class="p">)</span>
+<span class="n">mail</span> <span class="o">=</span> <span class="n">outlook</span><span class="o">.</span><span class="n">CreateItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">To</span> <span class="o">=</span> <span class="s1">&#39;someone@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">CC</span> <span class="o">=</span> <span class="s1">&#39;name@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="s1">&#39;Moneyball Review&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            Moneyball is an inspiring movie, based on real events.</span>
+<span class="s2">            Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.</span>
+<span class="s2">            The trade deadline scene is delightful. Wow.</span>
+<span class="s2">            Chris Pratt as Hatteberg too. What a solid film.</span>
+<span class="s2">            Money isn&#39;t everything. Playing ball is.</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Attachments</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Baseball_Analysis.csv&#39;</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Send</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html">posted at 14:11</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-command-prompt-scripts-windows.html" rel="tag">automation, command prompt, Scripts, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags selected">command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/remote-computer.html" class="tags">remote computer</a>
+                    &nbsp;<a href="https://lofipython.com/tag/scripting.html" class="tags">scripting</a>
+                    &nbsp;<a href="https://lofipython.com/tag/shell.html" class="tags">shell</a>
+                </div>
             </article>            <h4 class="date">Jan 20, 2018</h4>
 
             <article class="post">

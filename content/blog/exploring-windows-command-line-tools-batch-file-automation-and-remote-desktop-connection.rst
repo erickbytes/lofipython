@@ -138,7 +138,7 @@ This module is extremely useful for scripting out Windows applications. For exam
 
 **Here's an example to send an Outlook email:**
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import win32com.client
 
