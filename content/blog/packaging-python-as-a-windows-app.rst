@@ -13,7 +13,7 @@ My research found that for creating a single-file Windows executable from a .py 
 
 | To install, enter this into command your command prompt or terminal:
 | ``python -m pip install pyinstaller``
-| *At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5.*\ `Go here <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__\ *for a refresher on setting up pip if you need it.*
+| *At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5.*\ `Go here <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__\ *for a refresher on setting up pip if you need it.*
 
 **Using the build.spec file and starting Pyinstaller:**
 

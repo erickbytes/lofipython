@@ -29,6 +29,10 @@ When combined with the `range() built-in <https://docs.python.org/3.3/library/st
    :alt: 
    :figclass: wp-image-7196
 
-   To choose a sample from a range of integers, use a ```range()`` <https://docs.python.org/3/library/stdtypes.html#range>`__ object as an argument. This is especially fast and space efficient for sampling from a large population: ``sample(range(10000000), k=60)``.
+   To choose a sample from a range of integers, use a `range() <https://docs.python.org/3/library/stdtypes.html#range>`__ object as an argument. 
+   
+   This is especially fast and space efficient for sampling from a large population: 
+   
+   ``sample(range(10000000), k=60)``.
 
    https://docs.python.org/3/library/random.html#random.sample

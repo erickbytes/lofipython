@@ -43,7 +43,7 @@ Here's the code to get stock data with `ffn <https://pmorissette.github.io/ffn/q
 
 **side note on the pyfolio library**
 
-I first considered using pyfolio to pull stock data. It is not "out of the box" ready per se to deliver the results pictured in their `"single stock" example <https://pythonmarketer.wordpress.com/2021/01/16/pick-stocks-like-a-pro-with-pyfolio/>`__ documentation. You'd need to find another way to fetch your market data or somehow patch the Yahoo Finance API within pyfolio. I preferred `ffn <http://pmorissette.github.io/ffn/quick.html>`__, mostly because it worked right away after pip installing it and running the above code.
+I first considered using pyfolio to pull stock data. It is not "out of the box" ready per se to deliver the results pictured in their `"single stock" example <https://lofipython.com/pick-stocks-like-a-pro-with-pyfolio/>`__ documentation. You'd need to find another way to fetch your market data or somehow patch the Yahoo Finance API within pyfolio. I preferred `ffn <http://pmorissette.github.io/ffn/quick.html>`__, mostly because it worked right away after pip installing it and running the above code.
 
 **2023 Update:** ffn and pyfolio depend on the Yahoo Finance API, which changes sometimes break these libraries. Troubleshooting traceback errors may be required.
 

@@ -7,7 +7,7 @@ How to Check Github Repo Star Counts With Python
 :slug: how-to-check-github-repo-star-counts-with-python
 :status: published
 
-Snooping through my package list, I noticed the `PyGithub library <https://github.com/PyGithub/PyGithub>`__ was installed. Its repo boasts "Typed interactions with the GitHub API v3". I googled the package, wanting to check in on the repos I profiled in an `earlier post about static site generators <https://pythonmarketer.com/2021/07/28/a-brief-summary-of-promising-python-static-site-generators/>`__.
+Snooping through my package list, I noticed the `PyGithub library <https://github.com/PyGithub/PyGithub>`__ was installed. Its repo boasts "Typed interactions with the GitHub API v3". I googled the package, wanting to check in on the repos I profiled in an `earlier post about static site generators <https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/>`__.
 
 I drafted the code below after noticing the `repo.stargazer_count <https://pygithub.readthedocs.io/en/latest/examples/Repository.html#get-count-of-stars>`__ function in its documentation. This is neat to have if you want to keep tabs on a batch of repos, instead of tediously checking the Github web interface! If you're new to Github, the `trending page <https://github.com/trending>`__ is an easy way to find new, interesting repos.
 

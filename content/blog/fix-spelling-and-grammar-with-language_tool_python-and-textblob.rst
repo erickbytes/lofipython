@@ -13,12 +13,9 @@ I found 2 errors when I piped the text of this post into the below code: the pro
 
 `Install textblob <https://textblob.readthedocs.io/en/dev/install.html>`__\ **and**\ `language_tool_python <https://pypi.org/project/language-tool-python/>`__\ **with these**\ `pip <https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__\ **commands:**
 
-.. code:: python
+::
 
    pip install language-tool-python
-
-.. code:: python
-
    pip install -U textblob
    python -m textblob.download_corpora
 
@@ -47,4 +44,4 @@ I found 2 errors when I piped the text of this post into the below code: the pro
    text = "Language is incredble. Fascinatng how hoomans have so many."
    transformed_text = fix_spelling_and_grammar(text)
    print(transformed_text)
-   # >>> Language is incredible. Fascinating how humans have so many.
+   # Result: Language is incredible. Fascinating how humans have so many.

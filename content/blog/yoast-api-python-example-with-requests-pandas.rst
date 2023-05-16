@@ -46,7 +46,7 @@ You'll end up with blobs of JSON formatted metadata to sift through or wrangle t
 
 **New to APIs?**
 
-It's ok if so, we all were once. Check out my `guide to making HTTP requests with Python <https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/>`__ if you want to see more API examples.
+It's ok if so, we all were once. Check out my `guide to making HTTP requests with Python <https://lofipython.com/how-to-make-json-requests-with-python/>`__ if you want to see more API examples.
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/10/e5f7c-image.png
    :alt: SEO Overview

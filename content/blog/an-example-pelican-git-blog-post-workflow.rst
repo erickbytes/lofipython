@@ -37,7 +37,7 @@ On my Windows subsystem for Linux environment, I am now publishing new blog post
    git commit -m "new post edits and fixes"
    git push -u origin main
 
-The new blog post is now live! This is my own workflow for my Pelican blog, `divbull.com <http://divbull.com>`__, which is hosted for free with `Cloudflare Pages <https://pages.cloudflare.com/>`__. You can read more about connecting Pelican and Cloudflare in `this past post I wrote <https://pythonmarketer.com/2022/07/08/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/>`__.
+The new blog post is now live! This is my own workflow for my Pelican blog, `divbull.com <http://divbull.com>`__, which is hosted for free with `Cloudflare Pages <https://pages.cloudflare.com/>`__. You can read more about connecting Pelican and Cloudflare in `this past post I wrote <https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/>`__.
 
 You will need to `create a SSH key and connect it to your Github account <https://docs.github.com/en/authentication/connecting-to-github-with-ssh>`__ to get this completely working, as it's required by Github now. Make sure you write down your passphrase! I was able to create an ssh key with this command:
 

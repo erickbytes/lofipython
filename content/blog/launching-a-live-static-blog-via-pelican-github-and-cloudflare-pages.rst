@@ -37,4 +37,4 @@ Connecting the repo to Cloudflare pages, adding the files to the repo and findin
 
    Head over to `divbull.com <https://divbull.com>`__ to see this Pelican, Github and Cloudflare pages stack in action.
 
-   Like static site generators? Check out `this post about static site generator libraries in Python <https://pythonmarketer.com/2021/07/28/a-brief-summary-of-promising-python-static-site-generators/>`__.
+   Like static site generators? Check out `this post about static site generator libraries in Python <https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/>`__.

@@ -65,4 +65,4 @@ Additional Resources
 -  One convenient way to serve your static files up on the web is with a `CDN <https://www.cloudflare.com/learning/cdn/what-is-a-cdn/#:~:text=A%20content%20delivery%20network%20(CDN,stylesheets%2C%20images%2C%20and%20videos.>`__ like `Cloudflare Pages <https://developers.cloudflare.com/pages/framework-guides/deploy-anything/>`__.
 -  You can research more projects on `Jamstack <https://jamstack.org/generators/>`__, a site I found helpful for finding these libraries.
 
-**Update**! I launched a Pelican blog about investing with Cloudflare pages. It's my first live static blog. Read more about it `here <https://pythonmarketer.com/2022/07/08/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/>`__.
+**Update**! I launched a Pelican blog about investing with Cloudflare pages. It's my first live static blog. Read more about it `here <https://lofipython/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/>`__.
