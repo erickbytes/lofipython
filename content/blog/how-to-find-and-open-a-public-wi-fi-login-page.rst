@@ -16,7 +16,7 @@ Sometimes, we find ourselves on a public Wi-Fi connection that is "connected", b
    192.168.1.11
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/10/image-6.png?w=727
-   :alt: 
+   :alt: web browser navigation bar
    :figclass: wp-image-7279
 
 This is a fun little trick to keep in mind if you're having difficulty connecting to public Wi-Fi. Problem solved!

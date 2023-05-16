@@ -17,7 +17,7 @@ Here's a short list of Python packages making a splash this year:
 -  `tomllib <https://docs.python.org/3/library/tomllib.html>`__: new in the Python 3.11 standard library. It's quietly picking up steam amongst Python developers. Tom's Obvious Minimal Language, TOML, "`a config file format for humans <https://toml.io/en/>`__"
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2023/01/wp-1674420268721.png?w=780
-   :alt: 
+   :alt: Python + Rust logos
    :figclass: wp-image-7389
 
 **Python + Rust = High Performance**
@@ -41,5 +41,5 @@ FastAPI is the new option in a space dominated by Flask and Django. Web framewor
 Running Python in a browser has been a movement in recent years. First Pyodide, WASM euphoria, and now a Python library that takes Python in a browser to new levels. Excited to see where these projects go and what new buzzy libraries will emerge this year!
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2023/01/wp-1674420015498.png?w=967
-   :alt: 
+   :alt: pyscript landing page
    :figclass: wp-image-7386

@@ -37,7 +37,7 @@ The pymarketer package helps you do things like:
    wordcloud.to_file("Text Word Cloud Visualization.jpg")
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2023/01/text-word-cloud-visualization.jpg?w=400
-   :alt: 
+   :alt: Python wordcloud example
    :figclass: wp-image-7362
    :width: 400px
    :height: 200px

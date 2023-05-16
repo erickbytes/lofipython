@@ -1,0 +1,30 @@
+Python os, pandas and tqdm File Deletion Script
+###############################################
+:date: 2022-06-13 14:50
+:author: pythonmarketer
+:category: Uncategorized
+:slug: 7014
+:status: draft
+
+Here's a deletion script that uses `os.remove() <https://docs.python.org/3/library/os.html#os.remove>`__ to delete files. Assuming the full path to the file is in a csv, with column named "files". It uses tqdm to display a progress bar as it is deleting the files. Short, sweet and it is surprisingly fast. I noted it averaged about 175 files deleted per second according to tqdm! At just 7 lines of code, this does the job. Give it a try!
+
+**Install with**\ `pip <https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
+
+.. code:: wp-block-preformatted
+
+   pip install pandas
+   pip install tqdm
+
+`pandas pypi <https://pypi.org/project/pandas/>`__
+
+`tqdm pypi <https://pypi.org/project/tqdm/>`__
+
+.. code:: wp-block-syntaxhighlighter-code
+
+   import os
+   import pandas as pd
+   from tqdm import tqdm
+   csv = input("Enter csv with column name files:")
+   df = pd.read_csv(csv)
+   for path in tqdm(df.files):
+       os.remove(path)

@@ -20,13 +20,13 @@ I didn't need Python in the end after reading some `Gmail search operator exampl
 **Selecting "all" emails in your search**
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/02/select-all-in-search.jpg?w=588
-   :alt: 
+   :alt: Filtering Gmail Emails
    :figclass: wp-image-5251
 
 **Once, you've selected "All" from the checkbox dropdown, click "Select all conversations that match this search".** Now you can apply actions such as "add a star" or "delete" them by clicking the (⋮) vertical ellipses menu:
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/02/gmail-filter-steps.jpg?w=1024
-   :alt: 
+   :alt: Gmail Filter Steps
    :figclass: wp-image-5258
 
 **To Python or not?**

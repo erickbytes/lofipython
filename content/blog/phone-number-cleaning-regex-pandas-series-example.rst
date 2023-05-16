@@ -16,7 +16,7 @@ This is a solution I worked out recently to strip phone numbers into a uniform f
 The pandas library has regex built in and it's pretty neat! Behold the power of pandas and a `regular expression <https://en.wikipedia.org/wiki/Regular_expression>`__ to do trivial telephone tidying:
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/12/pandas-example-7-3.41.12-pm.png?w=561
-   :alt: 
+   :alt: strip phone formatting with Python
    :figclass: wp-image-6382
    :width: 767px
    :height: 150px

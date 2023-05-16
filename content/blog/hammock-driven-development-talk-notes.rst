@@ -36,7 +36,7 @@ Key Ideas
 **On Problem Solving**
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/06/solve-problems-1.png?w=730
-   :alt: 
+   :alt: solving problems by Rich Hickey
    :figclass: wp-image-7029
 
 **Problem Solving (cont.)**

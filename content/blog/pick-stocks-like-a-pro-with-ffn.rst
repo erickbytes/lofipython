@@ -38,7 +38,7 @@ Here's the code to get stock data with `ffn <https://pmorissette.github.io/ffn/q
    print(stats.display())
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/01/2019-2020-top-stock.jpg?w=794
-   :alt: 
+   :alt: ffn stock report 2019-2021
    :figclass: wp-image-5165
 
 **side note on the pyfolio library**

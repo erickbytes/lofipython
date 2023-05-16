@@ -16,7 +16,7 @@ The `divbull.com Github repo <https://github.com/erickbytes/divbull/tree/main/di
    https://developers.cloudflare.com/pages/get-started/
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/07/cloudflare-deployment-details-1.png?w=1024
-   :alt: 
+   :alt: Cloudflare pages deployment details
    :figclass: wp-image-7113
 
 Working in the Cloudflare pages build dashboard is sweet. It took me about 5 failed Pelican `build commands <https://developers.cloudflare.com/pages/platform/build-configuration/>`__ to get the site to deploy. Finally, I was able to get the site build to complete by leaving the build command blank. Cloudflare was able to scoop up my Pelican "output" folder contents and render the blog. How cool. I feel like I've done the impossible, launching a passable quality blog with top shelf tools this quickly for under $10!
@@ -26,13 +26,13 @@ Initially, I spent a few hours getting to know Pelican. Once I correctly install
 Connecting the repo to Cloudflare pages, adding the files to the repo and finding the correct build command added a few more hours. In total, it took me about 1-2 days to make a live site since I did not know about Pelican or Cloudflare pages when I began playing with a Pelican blog in April. This was my first static site launch!
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/07/cloudflare-build-settings.png?w=528
-   :alt: 
+   :alt: Cloudflare build settings
    :figclass: wp-image-7115
 
    Generating a Blue Penguin themed Pelican blog.
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/07/pelican-blog-dev.png?w=1024
-   :alt: 
+   :alt: showing Pelican blog workflow
    :figclass: wp-image-7086
 
    Head over to `divbull.com <https://divbull.com>`__ to see this Pelican, Github and Cloudflare pages stack in action.

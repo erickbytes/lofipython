@@ -63,5 +63,5 @@ Here is a list of external Python modules you can install with `pip <https://pyt
 `Python Documentation: Installing Python Modules <https://docs.python.org/3/installing/index.html>`__
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/09/image.png?w=672
-   :alt: 
+   :alt: python pip install shell
    :figclass: wp-image-7164

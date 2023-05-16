@@ -18,7 +18,7 @@ Pelican is a popular `static site generator library <https://pythonmarketer.com/
               | RstReader (rst)     
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/10/image.png?w=665
-   :alt: 
+   :alt: no valid files found in pelican content
    :figclass: wp-image-7221
 
 **Solution**
@@ -30,7 +30,7 @@ Install the markdown library, which is stated in the `pelican docs <https://docs
    pip install markdown
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/10/image-1.png?w=672
-   :alt: 
+   :alt: python pip installing markdown
    :figclass: wp-image-7224
 
 Now my "pelican content" command works!
@@ -40,5 +40,5 @@ Now my "pelican content" command works!
    pelican content
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/10/image-2.png?w=679
-   :alt: 
+   :alt: successful pelican content build
    :figclass: wp-image-7226

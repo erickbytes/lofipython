@@ -72,7 +72,7 @@ There are also downloads for Windows. A popular GUI is `SQLite Studio <https://s
 .. container:: wp-block-image
 
    .. figure:: https://pythonmarketer.files.wordpress.com/2020/09/show-explain-sqlite3.jpg?w=904
-      :alt: 
+      :alt: explain a table in sqllite
       :figclass: wp-image-4412
 
 *Pictured: "showing" DB settings and "*\ `EXPLAIN-ing <https://sqlite.org/lang_explain.html>`__\ *" a query*
@@ -87,7 +87,7 @@ Exploring my new table with the `Python sqlite3 library <https://docs.python.org
 .. container:: wp-block-image
 
    .. figure:: https://pythonmarketer.files.wordpress.com/2020/09/python-interpreter-python-sqlite.jpeg?w=717
-      :alt: 
+      :alt: sqllite in the python interpreter 
       :figclass: wp-image-4416
 
 Below, getting a cursor object that holds our S\ ``ELECT`` query results. Then iterating through each row of the cursor object with a for loop, as demonstrated in the documentation.

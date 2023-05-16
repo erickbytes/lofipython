@@ -61,13 +61,13 @@ I drafted the code below after noticing the `repo.stargazer_count <https://pygit
 On Linux, I was able to check the results of the CSV with the cat command:
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/10/check-pelican.png?w=409
-   :alt: 
+   :alt: View repo github stars with Python
    :figclass: wp-image-7254
 
 I confirmed the API was accurate against the web interface in `pelican's repo <https://github.com/getpelican/pelican>`__!
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/10/pelican-stars.png?w=1024
-   :alt: 
+   :alt: Github browser UX
    :figclass: wp-image-7251
 
 `Github Repo Stargazer API Reference <https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html#github.Repository.Repository.stargazers_count>`__

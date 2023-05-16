@@ -1,0 +1,33 @@
+Python to Android Development in 2019
+#####################################
+:date: 2019-01-12 18:48
+:author: intellectualpositivity
+:category: Uncategorized
+:slug: 1624
+:status: draft
+
+**Preface**
+
+I am at the beginning stages of creating an android app. Since my past experience is primarily with Python, I looked into a few Python to Android compilers. I also have heard good things about Kotlin, a language from Google that plays well with Android.
+
+I am aiming to build a minimum functional app as fast as possible. I understand that Python is less adaptable to Android than other languages. I also know that learning an entire new language, while interesting and more practical in the long run, is most likely not the fastest way for me to create a prototype Android app. Your approach should reflect your experience and aims as well.
+
+For this build, I am using an Ubuntu 16.04.5 Linux OS that I have installed onto my acer Chromebook 15 with `crouton <https://github.com/dnschneid/crouton>`__.
+
+**Here are the libraries and build alternatives that have caught my interest:**
+
+kivy / python-for-android: This library seems to be the core of most Python to Android tools. On initial installation I've had issues getting the error "**E: Package 'openjdk-7-jdk' has no installation candidate".** I read `here <https://python-for-android.readthedocs.io/en/latest/troubleshooting/#exception-in-thread-main-java-lang-unsupportedclassversionerror-com-android-dx-command-main-unsupported-major-minor-version-52-0>`__ that openjdk-7-jdk is now obsolete and you should try openjdk-8-jdk with the below command.
+
+.. code:: lang-java
+
+   sudo apt install openjdk-8-jre
+
+`p4a build spaces <https://github.com/JonasT/p4a-build-spaces>`__: a Docker environment setup for python-for-android. Docker is a top option in the up-and-coming "containerization" movement.  In short, the creation of apps within Docker containers allows for you to run the app and all dependencies on any operating system. I am just scratching the surface with containers, but may dig into this more if python-for-android works out for my Android app.
+
+buildozer: a .spec file based python compiler, which reminds operates similar to pyinstaller for Windows apps
+
+`sl4a <https://github.com/damonkohler/sl4a>`__: stands for "Scripting Layer for Android". From the Github: "SL4A brings scripting languages to Android by allowing you to edit and execute scripts and interactive interpreters directly on the Android device."
+
+**Android Environment SDK Setup**
+
+Dounload the SDK and NDK.

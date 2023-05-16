@@ -12,13 +12,13 @@ Though we feel powerless at times, our individual choices can have ripple effect
 **Look up the schedule for any Chicago address here:** https://www.recyclebycity.com/chicago/schedule
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/08/screenshot-2022-08-14-1.32.53-pm.png?w=931
-   :alt: 
+   :alt: Chicago Recycling Schedule Website
    :figclass: wp-image-7143
 
 I was able to look up my address, see the recycling pickup schedule for my street, and see collection events for old electronics and waste. I scheduled an email reminder for the day before an upcoming event near me. I have a graveyard of broken phones and a busted Macbook that I want to dispose of.
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/08/send-reminder-recycling.png?w=928
-   :alt: 
+   :alt: Sign up for a reminder to recycle.
    :figclass: wp-image-7149
 
 Our recycling program also accepts nail polish, chemicals, paints, auto fluids, pharmaceuticals and "Misc. Hazardous Waste". I learned today that the city says alkaline batteries are ok to throw away in the trash since they no longer contain Mercury like they did in the '90s.

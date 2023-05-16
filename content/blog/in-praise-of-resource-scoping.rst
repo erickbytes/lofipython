@@ -14,5 +14,5 @@ Seek out resources. Bookmark links and support info in an Excel spreadsheet with
 I think of "resource scoping" as crawling these types of resources for every tool, guide and support contact that might good to know. The effort you put in to scope available resources is worth the time spent. Check out the "resource scoping" I did in `this post I wrote focused on tools for writers <https://pythonmarketer.com/2021/05/29/python-libraries-tools-resources-for-creative-and-academic-writers/>`__!
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/12/pixel-cells-gce7fcdb43_640.png?w=640
-   :alt: 
+   :alt: cartoon media types
    :figclass: wp-image-6282

@@ -28,12 +28,12 @@ Messi (Left) Vs. Ronaldo (Right) FIFA Player Ratings
          .. container:: tiled-gallery__col
 
             .. figure:: https://pythonmarketer.files.wordpress.com/2022/01/messi-fifa-attributes-cropped.png
-               :alt: 
+               :alt: Messi FIFA skill attributes
 
          .. container:: tiled-gallery__col
 
             .. figure:: https://pythonmarketer.files.wordpress.com/2022/01/ronaldo-attributes-fifa.png
-               :alt: 
+               :alt: Ronaldo FIFA skill attributes
 
 These ratings represent the players at their peak of their careers. Messi is a better dribbler, while Ronaldo has more power and strength. Messi has the edge in free kicks, curve in his shot and "longshots" 99 to 98 over Cristiano. They are tied at "finishing", each with 99. Ronaldo has the "Power Free-Kick" trait, whereas Messi has "Chip Shot", "Finesse Shot" and "Playmaker" traits giving him an edge.
 

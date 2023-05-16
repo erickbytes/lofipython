@@ -22,5 +22,5 @@ I concluded I will not be running ads anytime soon. I wanted to get a baseline o
 There's also the added benefit of not serving up people's data to ad companies. Ads seem to be a generally accepted way to earn from your internet labors. But right now, they're not for this blog. Good luck monetizing your blog. Or just writing for the hell of it!
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/10/sept-2021-ad-campaign-results.png?w=1024
-   :alt: 
+   :alt: Wordpress Ad Campaign Analytics
    :figclass: wp-image-6182

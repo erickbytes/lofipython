@@ -111,7 +111,7 @@ Essential MySQL Terminal Commands
    </figure>
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2020/05/mysql_commands-1.png
-   :alt: 
+   :alt: mysql commands in shell
    :figclass: wp-image-3418
 
 Installing Libraries in PythonAnywhere

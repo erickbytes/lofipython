@@ -65,7 +65,7 @@ S\ *ee also:* `The Python Profilers <https://docs.python.org/3/library/profile.h
 -  Be aware of the overhead some memory tools may incur. memory_profile was clocked with a whopping 270x slowdown per the Scalene PyCon talk below. The talk shows an awesome comparison of these Python profiling libraries:
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/12/scalene-pycon-us-2021-memory-library-comparison.png?w=1024
-   :alt: 
+   :alt: Scalene Pycon US 2021 Talk 
    :figclass: wp-image-6330
 
 **Recommended Reading**

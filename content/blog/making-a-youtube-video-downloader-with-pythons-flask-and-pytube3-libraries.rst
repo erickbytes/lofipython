@@ -63,7 +63,7 @@ I used pytube3 with `Flask <https://flask.palletsprojects.com/en/1.1.x/>`__ and 
            return "Video download failed!"
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/09/download.png?w=952
-   :alt: 
+   :alt: download video
    :figclass: wp-image-7185
 
 **Minimum Viable Prototype Achieved**

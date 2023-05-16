@@ -24,7 +24,7 @@ You may want to `download an archive <https://help.twitter.com/en/managing-your-
 4. After you update your permissions, select the "Keys and tokens" tab. Then regenerate new API keys. Then paste them in the below script.
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2020/09/twitter-dev.png?w=1024
-   :alt: 
+   :alt: Twitter Dev UX
    :figclass: wp-image-4350
 
 5. Save the below script as a python file. In command prompt or terminal, run python **delete_tweets.py** or whatever you want to name it!
@@ -86,7 +86,7 @@ I found this `Github Gist <https://gist.github.com/davej/113241>`__ via Google a
        batch_delete(api)
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2020/09/terminaltweepy.png?w=755
-   :alt: 
+   :alt: Python Script Deleting Tweets
    :figclass: wp-image-4325
 
 **✅** **Twitter Cleanse Complete**

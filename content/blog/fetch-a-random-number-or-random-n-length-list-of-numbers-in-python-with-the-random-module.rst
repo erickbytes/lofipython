@@ -26,7 +26,7 @@ When combined with the `range() built-in <https://docs.python.org/3.3/library/st
    print(number)
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/09/image-2.png?w=552
-   :alt: 
+   :alt: Python Random Number Code
    :figclass: wp-image-7196
 
    To choose a sample from a range of integers, use a `range() <https://docs.python.org/3/library/stdtypes.html#range>`__ object as an argument. 

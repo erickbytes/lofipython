@@ -30,6 +30,7 @@ EXTRA_PATH_METADATA = {
     "extra/favicon.ico": {"path": "favicon.ico"},
 }
 PYGMENTS_RST_OPTIONS = {"linenos": "table"}
+ARTICLE_EXCLUDES = ["blog/drafts"]
 # DARK_LIGHT_SWITCHING_OFF = False
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
