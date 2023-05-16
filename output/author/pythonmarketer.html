@@ -196,47 +196,6 @@
                     &nbsp;<a href="https://lofipython.com/tag/open-source-tools.html" class="tags">open source tools</a>
                     &nbsp;<a href="https://lofipython.com/tag/opens-source-software.html" class="tags">opens source software</a>
                 </div>
-            </article>            <h4 class="date">Feb 21, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/shutdown-windows-in-a-batch-file.html" rel="bookmark" title="Permanent Link to &quot;"Shutdown" a Windows Computer by Double-clicking a Batch File&quot;">&quot;Shutdown&quot; a Windows Computer by Double-clicking a Batch File</a>
-                </h2>
-
-                
-                
-
-                <p>Here is a quick and easy way to automate turning off your computer. This saves me about 15 seconds to manually click the start menu and restart buttons. It worked for me on an old, laggy HP computer running the Windows 10 operating system. Now, I can double-click a batch file on my Desktop and walk away while it struggles.</p>
-<p>Batch files are executable via:</p>
-<ul class="simple">
-<li>double-clicking them</li>
-<li>right-clicking and selecting &quot;Run&quot;</li>
-<li>entering the batch file name in command prompt, ex: &quot;shut down CPU.bat&quot; if the current working directory is in the same folder as the batch file</li>
-</ul>
-<p>Open a blank Notepad document and save as <strong>shut down CPU.bat</strong> with this text:</p>
-<dl class="docutils">
-<dt>::</dt>
-<dd>cmd /c shutdown -s</dd>
-</dl>
-<div class="wp-image-7432 figure">
-<img alt="Source: `Microsoft shutdown documentation &lt;https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/shutdown&gt;`__" src="https://pythonmarketer.files.wordpress.com/2023/02/screenshot_20230221-225405-494.png?w=681" />
-<p class="caption">Source: <a class="reference external" href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/shutdown">Microsoft shutdown documentation</a></p>
-</div>
-<p>When this batch file runs, it will trigger a pop-up window warning that your computer is about to shut down. For my slow, slogging computer it shut off about 20 seconds later. This may also trigger queued automatic updates to install, which happened when I used the above command.</p>
-<div class="wp-image-7423 figure">
-<img alt="`Source: Stack Overflow &lt;https://stackoverflow.com/questions/162304/how-do-i-shutdown-restart-or-log-off-windows-via-a-bat-file&gt;`__" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image1037058739-1677025419090.png?w=687" />
-<p class="caption"><a class="reference external" href="https://stackoverflow.com/questions/162304/how-do-i-shutdown-restart-or-log-off-windows-via-a-bat-file">Source: Stack Overflow</a></p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/shutdown-windows-in-a-batch-file.html">posted at 18:28</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-windows.html" rel="tag">automation, coding, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/windows-automation.html" class="tags">windows automation</a>
-                    &nbsp;<a href="https://lofipython.com/tag/windows-batch-files.html" class="tags">windows batch files</a>
-                </div>
             </article>            <h4 class="date">Feb 20, 2023</h4>
 
             <article class="post">
@@ -676,6 +635,55 @@ ssh-keygen -t ed25519 -C &quot;youname&#64;example.com&quot;
                     &nbsp;<a href="https://lofipython.com/tag/github-api.html" class="tags">github api</a>
                     &nbsp;<a href="https://lofipython.com/tag/github-stars-python.html" class="tags">github stars python</a>
                     &nbsp;<a href="https://lofipython.com/tag/repo-star-counts.html" class="tags">repo star counts</a>
+                </div>
+            </article>            <h4 class="date">Oct 08, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html" rel="bookmark" title="Permanent Link to &quot;Pelican Fix for "No valid files found in content"...&quot;">Pelican Fix for &quot;No valid files found in content&quot;...</a>
+                </h2>
+
+                
+                
+
+                <p>Pelican is a popular <a class="reference external" href="https://pythonmarketer.com/2021/07/28/a-brief-summary-of-promising-python-static-site-generators/">static site generator library</a> in Python. I didn't know why my pelican blog was not working. I've used the &quot;pelican content&quot; command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">WARNING</span>  <span class="n">No</span> <span class="n">valid</span> <span class="n">files</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">content</span> <span class="k">for</span> <span class="n">the</span> <span class="n">active</span>         <span class="n">log</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">91</span>
+         <span class="n">readers</span><span class="p">:</span>
+           <span class="o">|</span> <span class="n">BaseReader</span> <span class="p">(</span><span class="n">static</span><span class="p">)</span>
+           <span class="o">|</span> <span class="n">HTMLReader</span> <span class="p">(</span><span class="n">htm</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+           <span class="o">|</span> <span class="n">RstReader</span> <span class="p">(</span><span class="n">rst</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7221 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image.png?w=665" />
+</div>
+<p><strong>Solution</strong></p>
+<p>Install the markdown library, which is stated in the <a class="reference external" href="https://docs.getpelican.com/en/3.6.3/install.html#optional-packages">pelican docs</a>. This <a class="reference external" href="https://github.com/getpelican/pelican/issues/1868">Github issue</a> also provides some background on this warning.</p>
+<pre class="literal-block">
+pip install markdown
+</pre>
+<div class="wp-image-7224 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image-1.png?w=672" />
+</div>
+<p>Now my &quot;pelican content&quot; command works!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">pelican</span> <span class="n">content</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7226 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image-2.png?w=679" />
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html">posted at 13:43</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-writing.html" rel="tag">coding, python, writing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/markdown-library.html" class="tags">markdown library</a>
+                    &nbsp;<a href="https://lofipython.com/tag/pelican-blog.html" class="tags">pelican blog</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-fix.html" class="tags">python fix</a>
                 </div>
             </article>
 

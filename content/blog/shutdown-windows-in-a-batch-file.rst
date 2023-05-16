@@ -17,9 +17,8 @@ Batch files are executable via:
 
 Open a blank Notepad document and save as **shut down CPU.bat** with this text:
 
-::
+.. code:: python
    cmd /c shutdown -s
-
 
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2023/02/screenshot_20230221-225405-494.png?w=681

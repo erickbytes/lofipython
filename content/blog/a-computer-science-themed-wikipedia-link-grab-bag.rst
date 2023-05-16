@@ -25,8 +25,9 @@ Algorithms & Theories
 Databases
 ---------
 
-Cache: https://en.wikipedia.org/wiki/Cache_(computing)
-Cache invalidation: https://en.wikipedia.org/wiki/Cache_invalidation
+`Cache <https://en.wikipedia.org/wiki/Cache_(computing)>`_
+
+`Cache invalidation <https://en.wikipedia.org/wiki/Cache_invalidation>`_
 
    caching is a common technique to store data so that it can be quickly fetched later with limited usage of database resources.
 

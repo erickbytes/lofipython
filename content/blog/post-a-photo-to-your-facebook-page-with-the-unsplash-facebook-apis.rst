@@ -51,8 +51,7 @@ Setting up Unsplash
    from unsplash.api import Api
    from unsplash.auth import Auth
    import requests
-   """
-   Python-Unsplash library Github: 
+   """Python-Unsplash library Github: 
    https://github.com/yakupadakli/python-unsplash
    """
    client_id = "add_your_client_id"
@@ -64,10 +63,7 @@ Setting up Unsplash
    # returns a python list containing a class
    image = api.photo.random(collections=66610223) # my collection id
    image_id = image[0].id
-   """
-   Use image_id to get random photo's 
-   download link from a collection.
-   """
+   # Use image_id to get random photo's download link from a collection.
    url = f"https://api.unsplash.com/photos/{image_id}/download?client_id={client_id}"
    r = requests.get(url)
    print(r.text)
