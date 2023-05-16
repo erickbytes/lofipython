@@ -12,11 +12,12 @@ Below are two practical Python libraries for text processing. This function uses
 I found 2 errors when I piped the text of this post into the below code: the proper noun "textblob" corrected to "text blow's" and the word "app" corrected to "pp". Be sure to proof your results. Regardless, I like having these two Python tools in my bag!
 
 **Install**
-`Install textblob <https://textblob.readthedocs.io/en/dev/install.html>`__
+
+`textblob <https://textblob.readthedocs.io/en/dev/install.html>`__
 
 `language_tool_python <https://pypi.org/project/language-tool-python/>`__ 
 
-`pip <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__
+`help with pip <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__
 
 ::
 
