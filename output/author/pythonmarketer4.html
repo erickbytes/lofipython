@@ -33,7 +33,81 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Dec 18, 2021</h4>
+        <div id="content">            <h4 class="date">Dec 19, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/tools-tips-to-beat-memoryerror-in-your-python-scripts.html" rel="bookmark" title="Permanent Link to &quot;Memory Monitoring Python Libraries + Tools&quot;">Memory Monitoring Python Libraries + Tools</a>
+                </h2>
+
+                
+                
+
+                <p>If you write Python code, there's probably been a time or two when you saw the dreaded <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#MemoryError">&quot;MemoryError&quot;</a>. This happens after one of your Python scripts stops because your computer has no spare <a class="reference external" href="https://en.wikipedia.org/wiki/Random-access_memory">RAM</a> to execute it. I recently experienced this frustration whilst trying to write hundreds of thousands of csv files. However, this time I grasped for tools that support smarter memory management. Now, I can watch my computer's memory bounce around with the Windows Resource Monitor. Python has quite a few memory profiling libraries for monitoring memory too!</p>
+<p><strong>Python Libraries and Guides</strong></p>
+<p><a class="reference external" href="https://docs.python.org/3/c-api/memory.html">Memory Management Overview</a>, Python documentation</p>
+<p><a class="reference external" href="https://github.com/pythonprofilers/memory_profiler">Memory Profiler</a>: &quot;monitor memory usage of Python code&quot;</p>
+<p><a class="reference external" href="https://github.com/giampaolo/psutil">psutil</a>: &quot;Cross-platform lib for process and system monitoring in Python&quot;</p>
+<p><a class="reference external" href="https://github.com/benfred/py-spy">py-spy</a>: &quot;Sampling profiler for Python programs&quot;</p>
+<p><a class="reference external" href="https://github.com/joerick/pyinstrument">pyinstrument</a>: &quot;🚴 Call stack profiler for Python. Shows you why your code is slow!&quot;</p>
+<p><a class="reference external" href="https://github.com/plasma-umass/scalene">Scalene</a>: &quot;a high-performance, high-precision CPU, GPU, and memory profiler for Python&quot;</p>
+<p><a class="reference external" href="https://github.com/nicolargo/glances">G</a><a class="reference external" href="https://github.com/nicolargo/glances">lances</a>: &quot;Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems.&quot;</p>
+<p><a class="reference external" href="https://github.com/sumerc/yappi">Yappi</a>: &quot;Yet Another Python Profiler, but this time thread&amp;coroutine&amp;greenlet aware.&quot;</p>
+<p><a class="reference external" href="https://github.com/pythonspeed/filprofiler">Fil</a>: &quot;A Python memory profiler for data processing and scientific computing applications&quot; (<a class="reference external" href="https://www.youtube.com/watch?v=2nKvzVIUjLE&amp;ab_channel=PyninsulaOfficial">Video</a>)</p>
+<p><a class="reference external" href="https://github.com/pyutils/line_profiler">line_profiler</a>: &quot;Line-by-line profiling for Python&quot;</p>
+<p><a class="reference external" href="https://github.com/vpelletier/pprofile">pprofile</a>: &quot;Line-granularity, thread-aware deterministic and statistic pure-python profiler&quot;</p>
+<p><a class="reference external" href="https://github.com/zhuyifei1999/guppy3/">Guppy 3</a>: &quot;Python programming environment and heap analysis toolset&quot;</p>
+<p>S<em>ee also:</em> <a class="reference external" href="https://docs.python.org/3/library/profile.html">The Python Profilers</a>, Python documentation</p>
+<blockquote>
+<p>CPython standard distribution comes with three deterministic profilers.&nbsp;<tt class="docutils literal">cProfile</tt>,&nbsp;<tt class="docutils literal">Profile</tt>&nbsp;and&nbsp;<tt class="docutils literal">hotshot</tt>.&nbsp;<tt class="docutils literal">cProfile</tt>&nbsp;is implemented as a C module based on&nbsp;<tt class="docutils literal">lsprof</tt>,&nbsp;<tt class="docutils literal">Profile</tt>&nbsp;is in pure Python and&nbsp;<tt class="docutils literal">hotshot</tt>&nbsp;can be seen as a small subset of a cProfile.</p>
+<p>Yappi Github, <a class="reference external" href="https://github.com/sumerc/yappi">https://github.com/sumerc/yappi</a></p>
+</blockquote>
+<p><strong>Windows</strong> <strong>Tools</strong></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Windows_Task_Manager#:~:text=The%20program%20can%20be%20started,typing%20taskmgr%20in%20the%20File">Task Manager</a>: Windows process management tool with some memory analytics</p>
+<p><a class="reference external" href="https://help.tableau.com/current/server/en-us/perf_collect_perfmon.htm">Collect Data in Windows with Performance Monitor</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Resource_Monitor">Resource Monitor</a>: Windows tool with Memory, CPU, Disk and Network monitoring tabs</p>
+<div class="wp-image-6300 figure">
+<img alt="Resource Monitor can stop processes from running and view in use, standby (Cached) and free memory. This shows 7 Python scripts running and 49% of total memory is being consumed. Looks like we are running steady and safely below &quot;MemoryError&quot; overflow. We might be able to add a few more scripts with 51% of RAM available!" src="https://pythonmarketer.files.wordpress.com/2021/12/resource-monitor-labels-full.jpg?w=796" />
+<p class="caption">Resource Monitor can stop processes from running and view in use, standby (Cached) and free memory. This shows 7 Python scripts running and 49% of total memory is being consumed. Looks like we are running steady and safely below &quot;MemoryError&quot; overflow. We might be able to add a few more scripts with 51% of RAM available!</p>
+</div>
+<p><strong>Memory Tips and Guides</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://towardsdatascience.com/memory-management-in-python-6bea0c8aecc9">Memory Management in Python</a>, Towards Data Science: this article shows some memory efficient ways to write your code.</li>
+<li>Use only the data you need. Any data you read in and aren't using is held in memory. The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">usecols argument</a> in pandas is a great way to read a csv and only use the columns you need.</li>
+<li><a class="reference external" href="https://pythonspeed.com/articles/chunking-pandas/">Reading data in chunks</a> with the <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/io/parsers/readers.py#L491-L586">chunksize argument</a> is another way to reduce memory usage for large datasets.</li>
+<li><a class="reference external" href="https://pythonspeed.com/articles/pandas-dataframe-series-memory-usage/">Measuring the memory usage of a Pandas dataframe</a></li>
+<li>Some tools are line oriented, others are function oriented. If your code contains large functions, you might favor a line based profiling tool.</li>
+<li>Be aware of the overhead some memory tools may incur. memory_profile was clocked with a whopping 270x slowdown per the Scalene PyCon talk below. The talk shows an awesome comparison of these Python profiling libraries:</li>
+</ul>
+<div class="wp-image-6330 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2021/12/scalene-pycon-us-2021-memory-library-comparison.png?w=1024" />
+</div>
+<p><strong>Recommended Reading</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://martinheinz.dev/blog/64">Profiling and Analyzing Performance of Python Programs</a></li>
+<li><a class="reference external" href="http://pymotw.com/2/profile/">profile, cProfile, and pstats – Performance analysis of Python programs.</a></li>
+<li><a class="reference external" href="https://martinheinz.dev/blog/64">Profiling and Analyzing Performance of Python Programs</a></li>
+<li><a class="reference external" href="https://www.tecmint.com/command-line-tools-to-monitor-linux-performance/">20 Linux Memory Management Command Line Tools</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Random-access_memory">Random-access Memory (RAM)</a></li>
+<li><a class="reference external" href="https://computersciencewiki.org/index.php/Cache_memory">Cache Memory</a></li>
+</ul>
+<p><strong>Conclusion</strong></p>
+<p>When you'll see &quot;MemoryError&quot; depends on your computer's hardware, the size of your dataset and what operations you need to script out. Generally speaking, <a class="reference external" href="https://en.wikipedia.org/wiki/Input/output">I/O</a> or file reads and writes are more expensive operations.</p>
+<p>The tools in this post will help you anticipate how much computing power you have available, monitor your memory consumption more closely and avoid pushing your computer past its limits. You can do things like reading data in chunks and only using the columns you need to reduce your memory consumption. Realizing these tools and strategies can make getting things done with Python a smoother ride.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/tools-tips-to-beat-memoryerror-in-your-python-scripts.html">posted at 11:57</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-computing-pandas-performance-programming.html" rel="tag">coding, computing, pandas, performance, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/memory-profiling.html" class="tags">memory profiling</a>
+                    &nbsp;<a href="https://lofipython.com/tag/monitoring.html" class="tags">monitoring</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/ram.html" class="tags">RAM</a>
+                    &nbsp;<a href="https://lofipython.com/tag/windows.html" class="tags">Windows</a>
+                </div>
+            </article>            <h4 class="date">Dec 18, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -197,7 +271,7 @@
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="k">def</span> <span class="nf">fetch_metadata</span><span class="p">(</span><span class="n">post_url</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the Yoast API response as pandas dataframe.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Returns the Yoast API response as pandas dataframe.&quot;&quot;&quot;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://atomic-temporary-107329037.wpcomstaging.com/wp-json/yoast/v1/get_head?url=</span><span class="si">{</span><span class="n">post_url</span><span class="si">}</span><span class="s1">&#39;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
@@ -465,90 +539,6 @@
                     &nbsp;<a href="https://lofipython.com/tag/pem-solution.html" class="tags">.PEM solution</a>
                     &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
                     &nbsp;<a href="https://lofipython.com/tag/windows-10.html" class="tags">Windows 10</a>
-                </div>
-            </article>            <h4 class="date">May 29, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/python-libraries-tools-resources-for-creative-and-academic-writers.html" rel="bookmark" title="Permanent Link to &quot;Python Libraries, Tools + Resources for Creative and Academic Writers&quot;">Python Libraries, Tools + Resources for Creative and Academic Writers</a>
-                </h2>
-
-                
-                
-
-                <p>Today I scoured the internet for tools written in Python that assist writing in any form. After some relentless Google and Github searching, here are my favorites. I found tools to help write modular stories and novels, screenwriting with Trelby and several libraries for academic papers. I haven't tried all of these... yet!</p>
-<p><strong>Storywriting</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://github.com/olivierkes/manuskript">manuskript</a>: A open-source tool for writers</li>
-<li><a class="reference external" href="https://github.com/mimadrone/writerblocks">writerblocks</a>: A toolkit for writing stories in a modular way</li>
-<li><a class="reference external" href="https://github.com/vkbo/novelWriter">NovelWriter</a>: novelWriter is an open source plain text editor designed for writing novels.</li>
-<li><a class="reference external" href="https://github.com/trelby/trelby">Trelby</a>: The free, multiplatform, feature-rich screenwriting program!</li>
-<li><a class="reference external" href="https://github.com/Carleslc/Readteractive">Readeractive</a>: Tool for writing and generating interactive books, also known as gamebooks.</li>
-<li><a class="reference external" href="https://github.com/Moonbase59/PAWS">PAWS</a>: Python Adventure Writing System</li>
-</ul>
-<p><strong>Miscellaneous Writing, Text Cleaning and Proofreading Resources</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://languagetool.org/http-api/swagger-ui/#!/default/post_check">Language Tool API</a>: Open Source proofreading software for English, French, German, Polish, Russian, and&nbsp;more than 20 other languages. It finds many errors that a simple spell checker cannot detect. See also: <a class="reference external" href="https://pypi.org/project/language-tool-python/">language_tool_python library</a> (<a class="reference external" href="https://github.com/languagetool-org/languagetool">Github</a>)</li>
-<li><a class="reference external" href="https://github.com/jfilter/clean-text">clean-text</a>: Python package for text cleaning</li>
-<li><a class="reference external" href="https://github.com/pudo/normality">normality</a>: A tiny library for Python text normalisation. Useful for ad-hoc text processing.</li>
-<li><a class="reference external" href="https://github.com/shivam5992/textstat">textstat</a>: Python package to calculate readability statistics of a text object - paragraphs, sentences, articles.</li>
-<li><a class="reference external" href="https://github.com/sloria/TextBlob">textblob</a>: Simple, Pythonic, text processing--Sentiment analysis, part-of-speech tagging, noun phrase extraction, translation, spelling correction and more.</li>
-<li><a class="reference external" href="https://www.nltk.org/">Natural Language Toolkit (NLTK)</a></li>
-<li><a class="reference external" href="https://github.com/miso-belica/sumy">Sumy</a>: Module for automatic summarization of text documents and HTML pages.</li>
-<li><a class="reference external" href="https://pythonmarketer.wordpress.com/wp-admin/post.php?post=5519&amp;action=edit">Mackerel</a>: Mackerel provides an automated, easy to use alternative for company or school writing tasks. Simply provide the topic and/or files and we will do the rest.</li>
-<li><a class="reference external" href="https://github.com/fandu/Verb-Miner">Verb Miner</a>: This tool can help you analyze a document and discover cool verbs from pdf papers.</li>
-<li><a class="reference external" href="https://github.com/lkjie/paper-translator">paper-translater</a>: Chinese and English essay translator, paper translator, clipboard listener</li>
-<li>There are many <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/26/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code/">text editor options</a> like Sublime or Atom with useful <a class="reference external" href="https://github.com/thedataking/SublimeWritingStyle">plug-ins for text documents</a> or code.</li>
-<li><a class="reference external" href="https://developers.google.com/tech-writing">Free Google Technical Writing Courses</a></li>
-<li><a class="reference external" href="https://wiki.python.org/moin/PythonWriters">PythonWriters Wiki</a></li>
-</ul>
-<p><strong>Academic Writing</strong></p>
-<ul>
-<li><p class="first"><a class="reference external" href="https://github.com/Wookai/paper-tips-and-tricks">Tips and Tricks for Writing Scientific Papers</a>: Practice and tips &amp; tricks to write scientific papers in LaTeX, with figures generated in Python or Matlab.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/dmvaldman/library">library</a>: A collection of essays and timeless papers</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/amusi/CVPR2021-Papers-with-Code">2021 Papers with Code</a></p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/JelteF/PyLaTeX">PyLaTeX</a>: A Python library for creating LaTeX files</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/luong-komorebi/Begin-Latex-in-minutes">Begin LaTeX in minutes</a>: Brief Intro to LaTeX for beginners that helps you use LaTeX with ease.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://pypi.org/project/texbib/">Texbib</a>: A program that helps you to manage your BibTeX references.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/Pezmc/BibLatex-Check">BibLatex-Check</a>: A python script for checking BibLatex .bib files for common referencing mistakes!</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/paperpy/paperpy">paperpy</a>: Tools for simplifying the preparation of version-controlled and well-written academic papers.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/devd/Academic-Writing-Check">Academic Writing Check</a>: Check for passive words, weasel words, duplicate words, typographical errors and words strunk &amp; white don't like. (Written in Perl.)</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/matplotlib/AnatomyOfMatplotlib">Anatomy of Matplotlib</a>: Tutorial developed for the SciPy conference</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://www.scipy.org/">SciPy</a>: (pronounced “Sigh Pie”) is a Python-based ecosystem of open-source software for mathematics, science, and engineering.</p>
-</li>
-<li><p class="first"><a class="reference external" href="http://www.numpy.org/">NumPy</a>:&nbsp;A fundamental package for scientific computing with Python</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://pandas.pydata.org/">pandas</a>: A fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the&nbsp;<a class="reference external" href="https://www.python.org/">Python</a>&nbsp;programming language.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://newsletter.timber.fm/p/a-writing-tip-i-learned-at-oxford">A writing tip I learned at Oxford</a>: TLDR read your writing out loud to proof it.</p>
-<p>In Math, Computer Science, Physics, or any field where your typical paper has even a modest amount of mathematical notation the percentage of papers written using LaTeX (or even plain TeX!) is probably about 90%+.</p>
-<p><a class="reference external" href="https://www.quora.com/What-percent-of-papers-are-written-with-LaTeX">Adam Russell,&nbsp;PhD Data Visualization, Computational Geometry</a></p>
-<p>BibTeX is reference management software for formatting lists of references. The BibTeX tool is typically used together with the LaTeX document preparation system.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/BibTeX">https://en.wikipedia.org/wiki/BibTeX</a></p>
-</li>
-</ul>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/python-libraries-tools-resources-for-creative-and-academic-writers.html">posted at 17:51</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/education-productivity-python-writing.html" rel="tag">education, productivity, python, writing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/academic-writing.html" class="tags">academic writing</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-tools-for-writing.html" class="tags">Python Tools for Writing</a>
-                    &nbsp;<a href="https://lofipython.com/tag/resources-for-writers.html" class="tags">resources for writers</a>
-                    &nbsp;<a href="https://lofipython.com/tag/storywriting.html" class="tags">storywriting</a>
-                    &nbsp;<a href="https://lofipython.com/tag/writing-tools.html" class="tags">writing tools</a>
                 </div>
             </article>
 

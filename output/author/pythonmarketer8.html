@@ -33,7 +33,264 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Nov 20, 2018</h4>
+        <div id="content">            <h4 class="date">Feb 12, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/lightning-scripts-%e2%9a%a1.html" rel="bookmark" title="Permanent Link to &quot;Lightning Scripts ⚡&quot;">Lightning Scripts ⚡</a>
+                </h2>
+
+                
+                
+
+                <p>You may or may not be familiar with <a class="reference external" href="https://www.youtube.com/channel/UCsX05-2sVSH7Nx3zuk3NYuQ">PyCon</a>'s <a class="reference external" href="https://pyvideo.org/pycon-us-2010/pycon-2010--plenary--saturday-evening-lightning-t.html">Lightning Talks</a>, a session of quick hitter talks given each year on a variety of topics. These &quot;Lightning Scripts&quot; are ten of my favorite Python scripts that have served me well as of late to perform a variety of tasks.</p>
+<p>Highlights include the glob, os, calendar, webbrowser and pandas modules. Plus, how to convert a dataframe into a pdf and how to take a snapshot of a website with pdfkit. The webpage pdf was not the greatest snapshot in some cases, but did capture text and many of a live website's visual elements.</p>
+<p>If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.</p>
+<div class="section" id="the-first-5-scripts-use-modules-that-ship-with-python">
+<h2>The first 5 scripts use modules that ship with Python.</h2>
+<p><strong>1 Uppercase all of the file names in the current working directory.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+</pre></div></td></tr></table></div>
+<p>os module <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rename">documentation</a></p>
+<p><strong>2 Get all filenames in the current directory and write to a text file.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">folder_contents</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;list_of_dir_files.txt&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
+    <span class="p">[</span><span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;f</span><span class="si">{item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">folder_contents</span><span class="p">]</span>
+</pre></div></td></tr></table></div>
+<p><strong>3 Check what day of the week is today.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">calendar</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">calendar</span><span class="o">.</span><span class="n">day_name</span><span class="p">[</span><span class="n">today</span><span class="o">.</span><span class="n">weekday</span><span class="p">()]</span> <span class="o">==</span> <span class="s1">&#39;Friday&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is Friday.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is not Friday.&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><a class="reference external" href="https://docs.python.org/3/library/calendar.html">calendar documentation</a></p>
+<p><strong>4 Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">* means all, if need specific format then *.csv</span>
+<span class="sd">getctime == by created date, getmtime == by date modified</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">list_of_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># get all files, regardless of extension</span>
+<span class="n">newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">second_newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newest_file</span><span class="p">,</span> <span class="n">second_newest_file</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>glob module documentation: <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.iglob">https://docs.python.org/3/library/glob.html#glob.iglob</a></p>
+<p><strong>5  Auto-Hamilton Ticket Lottery</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;https://www.luckyseat.com/hamilton-chi/&#39;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>webbrowser PMOTW: <a class="reference external" href="https://pymotw.com/3/webbrowser">https://pymotw.com/3/webbrowser</a></p>
+</div>
+<div class="section" id="to-run-the-next-3-scripts-install-pandas">
+<h2>To Run The Next 3 Scripts, install pandas:</h2>
+<pre class="literal-block">
+python -m pip install pandas
+</pre>
+<p><strong>1 Split a csv file into smaller excel files.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;big_file.csv&#39;</span>
+<span class="n">src_file_minus_ext</span> <span class="o">=</span> <span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># slice off extension</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">250000</span><span class="p">)):</span>  <span class="c1"># alt. encoding = &quot;ISO-8859-1&quot;</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">src_file_minus_ext</span><span class="si">}{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s1">.csv&#39;</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>pandas beginner tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">https://www.youtube.com/watch?v=5JnMutdy6Fw</a></p>
+<p><strong>2 Convert a .xlsx to .csv</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>3 Convert a .xlsx to .html</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;data.xlsx&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="s2">&quot;data.html&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+</div>
+<div class="section" id="to-run-the-last-two-scripts-install-pdfkit">
+<h2>To Run The Last Two Scripts, install pdfkit:</h2>
+<p>pdfkit relies on another library, wkhtmltopdf, which adds an extra wrinkle to setting it up for Windows users. I've laid out the differences between using pdfkit for Windows vs. Ubuntu below.</p>
+<pre class="literal-block">
+python -m pip install pdfkit
+</pre>
+<p><strong>installing wkhtmltopdf on Windows</strong></p>
+<p>To use pdfkit on Windows, go to the link, choose your version to download. This installs a Windows executable that pdfkit needs to find to work.</p>
+<pre class="literal-block">
+https://wkhtmltopdf.org/downloads.html
+</pre>
+<p><strong>installing wkhtmltopdf on Ubuntu</strong></p>
+<pre class="literal-block">
+sudo apt-get install wkhtmltopdf
+
+
+**For Windows, **\ `download wkhtmltopdf &lt;https://wkhtmltopdf.org/downloads.html&gt;`__\ ** and add this config patch for pdfkit:**
+</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">pdfkit</span><span class="o">.</span><span class="n">configuration</span><span class="p">(</span><span class="n">wkhtmltopdf</span><span class="o">=</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Program Files</span><span class="se">\\</span><span class="s1">wkhtmltopdf</span><span class="se">\\</span><span class="s1">bin</span><span class="se">\\</span><span class="s1">wkhtmltopdf.exe&#39;</span><span class="p">)</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;webpage.pdf&#39;</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>4 Convert a .html file to .pdf. (Add config patch above for Windows.)</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data.html&#39;</span><span class="p">,</span> <span class="s1">&#39;report.pdf&#39;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>5 Create a pdf snapshot of a webpage on Ubuntu below. (Add config patch above for Windows.)</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;alicia_keys.pdf&#39;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>pdfkit documentation: <a class="reference external" href="https://pypi.org/project/pdfkit/">https://pypi.org/project/pdfkit/</a></p>
+<p><strong>Final Thoughts</strong></p>
+<p>I am very pleased with pdfkit. I am also toying around with Python's PyFPDF: <a class="reference external" href="https://pyfpdf.readthedocs.io/en/latest/index.html">https://pyfpdf.readthedocs.io/en/latest/index.html</a> and PyPDF2: <a class="reference external" href="https://pythonhosted.org/PyPDF2">https://pythonhosted.org/PyPDF2</a> libraries. Together, these three offer some unique abilities for creating and manipulating pdf files. And the pandas library is amazing for reading and writing tabular data sheets, can't say enough great things about pandas. Worth the time. Hope you enjoyed these Lightning Scripts :)</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/lightning-scripts-%e2%9a%a1.html">posted at 06:27</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-pandas-productivity-programming-scripts.html" rel="tag">automation, coding, pandas, productivity, programming, Scripts</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/alicia-keys.html" class="tags">alicia keys</a>
+                    &nbsp;<a href="https://lofipython.com/tag/code.html" class="tags">code</a>
+                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://lofipython.com/tag/hamilton.html" class="tags">hamilton</a>
+                    &nbsp;<a href="https://lofipython.com/tag/lightning-scripts.html" class="tags">lightning scripts</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>            <h4 class="date">Nov 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/automated-python-with-windows-task-scheduler.html" rel="bookmark" title="Permanent Link to &quot;Automated Python With Windows Task Scheduler&quot;">Automated Python With Windows Task Scheduler</a>
+                </h2>
+
+                
+                
+
+                <p><strong>So you want to run your Python scripts automatically, but how?</strong></p>
+<p>I had heard of several popular scheduling libraries in Python like <a class="reference external" href="http://www.celeryproject.org/">celery</a>, <a class="reference external" href="https://www.pyinvoke.org/">Invoke</a>, and&nbsp;<a class="reference external" href="https://github.com/dbader/schedule">schedule</a>. One of my requirements is to run the python file &quot;in the background&quot;, not in command prompt or an open window.</p>
+<p>Enter Windows Task Scheduler, the de facto scheduler on Windows 7 computers. I have&nbsp; scheduled a few scripts and it is working like a charm. In this post, I will schedule an example script to clean up my desktop at the beginning of each day. I have a habit of accumulating many Excel files there throughout the workday. This example automatically moves them into a folder.</p>
+<p>Other Windows scheduling alternatives worth mentioning include <a class="reference external" href="http://thepythoncorner.com/dev/how-to-create-a-windows-service-in-python/">creating a Windows service</a>, or using <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks">schtasks</a> if you prefer the command line.</p>
+<p><strong>Here's how to schedule a Python script to run:</strong></p>
+<ol class="arabic simple">
+<li>Search for Windows Task Scheduler in the start menu. Then select &quot;Task Scheduler Library&quot; to see all of the tasks Windows is running automatically.</li>
+<li>In the right toolbar, select &quot;Create Basic Task&quot; and give it a name and description. Note: I selected &quot;Configure for: Windows 7, Windows Server 2008 R2&quot;.</li>
+</ol>
+<img alt="general" class="wp-image-1577 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/general.png" style="width: 481px; height: 361px;" />
+<ol class="arabic simple" start="3">
+<li>Set the time and frequency that the program will run in the &quot;Triggers&quot; tab.</li>
+<li>Under the &quot;Actions&quot; tab, select &quot;Start a Program&quot; from the dropdown. Under &quot;Program/Script&quot;, enter the path to your Python.exe file. I set mine to a Python executable located within my <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, but yours might be found wherever you have Python installed.</li>
+</ol>
+<pre class="literal-block">
+C:\Users\your_username\Desktop\36env\Scripts\python.exe
+</pre>
+<ol class="arabic simple" start="5">
+<li>Under &quot;Add arguments (optional)&quot;, add the path to your .py script, within quotes:</li>
+</ol>
+<pre class="literal-block">
+&quot;C:\Users\your_username\Desktop\36env\clean_desktop_excels.py&quot;
+</pre>
+<img alt="actions" class="alignnone size-full wp-image-1578" src="http://pythonmarketer.files.wordpress.com/2018/11/bd0a9-actions-e1543177551739.png" style="width: 448px; height: 236px;" />
+<ol class="arabic simple" start="6">
+<li>Select additional conditions and settings as desired, such as &quot;Wake the computer to run this task&quot; and &quot;Run with highest privileges&quot;.</li>
+</ol>
+<p>I am enjoying this simple, easy and convenient scheduling manager for Windows. I figured most of this out thanks to <a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/analytics/scheduling-a-python-script-or-model-to-run-at-a-prescribed-time/?rmedium=redirect&amp;rsource=/esri/arcgis/2013/07/30/scheduling-a-scrip">this blog</a>. Below is my script to clean my desktop each morning by moving my Excel files into a folder, using Python's stock <a class="reference external" href="https://docs.python.org/3/library/shutil.html">shutil</a> and os libraries. Set it and forget it, ya know what i mean? :D</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">shutil</span> <span class="kn">import</span> <span class="n">move</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Desktop Spreadsheet File Cleaner - Python Marketer</span>
+<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2018/11/25/automated-python-with-windows-task-scheduler/</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Get all Desktop files and folders</span>
+<span class="n">src_directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop&#39;</span>
+<span class="n">dir_items</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">src_directory</span><span class="p">)</span>
+<span class="n">excel_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dir_items</span> \
+                <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">or</span> <span class="s1">&#39;.xls&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
+
+<span class="n">dst</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">Current_Month_Excels&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">xl</span> <span class="ow">in</span> <span class="n">excel_files</span><span class="p">:</span>
+    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">src_directory</span> <span class="o">+</span> <span class="n">xl</span>
+    <span class="n">move</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Additional Reading</strong></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc721846(v=ws.11)?redirectedfrom=MSDN">Troubleshooting Windows Task Scheduler</a> - Windows Documentation</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/automated-python-with-windows-task-scheduler.html">posted at 19:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-productivity-programming-python-windows.html" rel="tag">automation, productivity, programming, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/coding.html" class="tags">coding</a>
+                    &nbsp;<a href="https://lofipython.com/tag/organization.html" class="tags">organization</a>
+                </div>
+            </article>            <h4 class="date">Nov 20, 2018</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -86,7 +343,7 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">def</span> <span class="nf">resource_path</span><span class="p">(</span><span class="n">relative_path</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Get absolute path to resource, works for dev and for PyInstaller&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; Get absolute path to resource, works for dev and for PyInstaller&quot;&quot;&quot;</span>
     <span class="n">base_path</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_MEIPASS&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">relative_path</span><span class="p">)</span>
 
@@ -349,7 +606,7 @@ python -m pip install pyperclip
 
 <span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Demonstrating python&#39;s vars built-in to store arguments in a python dict.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Demonstrating python&#39;s vars built-in to store arguments in a python dict.&quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;A simple argument parser&#39;</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="s1">&#39;This is where you might put example usage&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option X&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option Y&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -393,7 +650,7 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
 
 <span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adding two argument groups, each accepting two arguments.</span>
+    <span class="sd">&quot;&quot;&quot;Adding two argument groups, each accepting two arguments.</span>
 <span class="sd">    Using gooey_options to set layout.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">GooeyParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Export campaign report spreadsheets and upload below.&#39;</span><span class="p">)</span>
@@ -473,6 +730,386 @@ with open('test.txt', 'r') as fhand:
                     &nbsp;&middot;
                     &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
                     &nbsp;<a href="https://lofipython.com/tag/regex.html" class="tags">regex</a>
+                </div>
+            </article>            <h4 class="date">May 12, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/pandas-pythons-excel-powerhouse.html" rel="bookmark" title="Permanent Link to &quot;A Stroll Through Pandas 1.0, Python’s Tabular Data Powerhouse&quot;">A Stroll Through Pandas 1.0, Python’s Tabular Data Powerhouse</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Introduction</strong></p>
+<p><a class="reference external image-reference" href="https://pandas.pydata.org/"><img alt="pandas" class="wp-image-2594 alignright" src="https://pythonmarketer.files.wordpress.com/2018/05/pandas.png" style="width: 301px; height: 122px;" /></a>Thanks to pandas, I have automated some data cleaning and file reading processes at my job.&nbsp;Here are some terms and code that have been useful or interesting to me after 2 years of exploration. I also checked out &quot;<a class="reference external" href="https://github.com/wesm/pydata-book">Python for Data Analysis</a>&quot; from the<a class="reference external" href="https://www.chipublib.org/">Chicago Public Library</a>.</p>
+<p>If I could suggest anything to be successful with pandas, it is repetition. I use it nearly every day at work. Dive into its <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html">API documentation.</a> There are tons of useful tools there, laid out with meticulous detail and examples. I began learning pandas with this PyCon 2015 <a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">tutorial from Brandon Rhodes</a>, it's informative and entertaining! (It's a little dated now but I still recommend it.) The <a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a> by Jake VanderPlas is also a great example of pandas-related workflows.</p>
+<p><strong>Table of Contents</strong></p>
+<ol class="arabic simple">
+<li>Pythonpandas Installation and Version Compatibility</li>
+<li>ACHIEVEMENT UNLOCKED: Welcome to pandas 1.0</li>
+<li>Data Wrangling, Exploration and Broadcasting<ul>
+<li><tt class="docutils literal">Series.str</tt> &amp; <tt class="docutils literal">Series.dt</tt> accessors</li>
+<li><tt class="docutils literal">apply</tt>, <tt class="docutils literal">applymap</tt>, <tt class="docutils literal">lambda</tt> and <tt class="docutils literal">map</tt></li>
+<li>featuring <tt class="docutils literal">pandas.to_markdown()</tt></li>
+<li>SQL operations with <tt class="docutils literal">df.merge()</tt> and <tt class="docutils literal">pandas.read_sql()</tt></li>
+<li><tt class="docutils literal">pandas.read_clipboard()</tt></li>
+<li>converting between Series and DataFrame</li>
+</ul>
+</li>
+<li>Turning json API responses into a dataframe with <tt class="docutils literal">pandas.json_normalize()</tt></li>
+<li>Plotting Visualizations with matplotlib</li>
+<li>Supplementary Resources and Links</li>
+</ol>
+<div class="section" id="pythonpandas-installation-and-version-compatibility">
+<h2>(1) Pythonpandas Installation and Version Compatibility</h2>
+<p>Python 3.6 and higher can <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html">install pandas 1.0</a>.</p>
+<p><strong>Installing Python 3.8 on Windows</strong></p>
+<p>For Windows installation, see the python docs for an installer, &quot;<a class="reference external" href="https://docs.python.org/3/using/windows.html">Using Python on Windows&quot;</a>.</p>
+<p><strong>Installing Python 3.8 on Ubuntu</strong></p>
+<p><a class="reference external" href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/">Follow these steps to download and install Python 3.8 in the Ubuntu terminal.</a> To upgrade to pandas 1.0, I installed Python 3.8, the <a class="reference external" href="https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=python+latest+stable+release&amp;ie=utf-8&amp;oe=utf-8">latest stable release</a>, &quot;<a class="reference external" href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/">from source</a>&quot; on Ubuntu 16.04.</p>
+<p><strong>If you intend to use</strong><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html">pandas.to_markdown()</a><strong>on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.</strong></p>
+<p>On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal: <tt class="docutils literal">sudo <span class="pre">apt-get</span> install <span class="pre">libbz2-dev</span></tt></p>
+<p>I also saw this message when completing install:</p>
+<blockquote>
+The necessary bits to build these optional modules were not found. To find the necessary bits, look in setup.py in detect-modules() for the module's name.</blockquote>
+<p><strong>If you need to re-build Python on Ubuntu, enter:</strong></p>
+<pre class="literal-block">
+cd /home/erick/Python-3.8.0/
+./configure --enable-loadable-sqlite-extensions &amp;&amp; make &amp;&amp; sudo make install
+</pre>
+<p>I installed missing&nbsp; _bz2 and _sqllite3 modules then re-built with these commands.</p>
+<p><strong>Installing Older pandas Versions on Ubuntu</strong></p>
+<p>The version downloaded with this command is about 6 months behind the current version. For me, this installed pandas 0.17 on Ubuntu:</p>
+<p><tt class="docutils literal">sudo <span class="pre">apt-get</span> install <span class="pre">python3-pandas</span></tt></p>
+<p>As of February 2020, this command <a class="reference external" href="https://docs.python.org/3/installing/index.html">installs pandas version 0.24 with pip</a> when used with Python 3.5 on Linux Ubuntu 16.04:</p>
+<p><tt class="docutils literal">python3.5 <span class="pre">-m</span> pip install pandas</tt></p>
+<img alt="successful_python_install" class="alignnone wp-image-2420" src="https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg" style="width: 676px; height: 186px;" />
+<p><strong>If pandas is already installed, you can upgrade with</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a><strong>:</strong></p>
+<p>[caption id=&quot;attachment_2572&quot; align=&quot;alignright&quot; width=&quot;179&quot;]<img alt="pip_list" class="alignnone wp-image-2572" src="http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg" style="width: 179px; height: 230px;" /> Enter pip list to see installed libraries.[/caption]</p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install <span class="pre">--upgrade</span> pandas</tt></p>
+<p>To check if pip is installed: <tt class="docutils literal">python <span class="pre">-m</span> pip list</tt></p>
+<p><strong>Consider following best practice and create a</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a><strong>with your new Python version.</strong><a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a><strong>wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:</strong></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip <span class="pre">--user</span> install virtualenv</tt></p>
+<p><strong>Let's create a new virtual environment. Enter in terminal or command prompt:</strong></p>
+<p><tt class="docutils literal">virtualenv <span class="pre">-p</span> python3.8 add_env_name_here</tt></p>
+<p><strong>Now, activate your new virtual environment on Linux:</strong></p>
+<p><tt class="docutils literal">cd add_env_name_here/bin &amp;&amp; source activate</tt></p>
+<p><strong>Or activate environment on Windows:</strong></p>
+<p><tt class="docutils literal">cd add_env_name_here\scripts &amp; activate</tt></p>
+<p><strong>&quot;ImportError: Missing optional dependency 'tabulate'. Use pip or conda to install tabulate:&quot; To use pd.to_markdown(), install Tabulate:</strong></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install tabulate</tt></p>
+<p><strong>To use pd.read_clipboard() on Linux, install</strong><a class="reference external" href="https://github.com/astrand/xclip">xclip</a><strong>or</strong><a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a></p>
+<p><tt class="docutils literal">sudo <span class="pre">apt-get</span> install xclip</tt>**
+**</p>
+<p><strong>I also saw a prompt to install pyperclip:</strong></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pyperclip</tt></p>
+<p><strong>Now install pandas 1.0 and</strong><a class="reference external" href="https://matplotlib.org/users/installing.html">matplotlib</a><strong>in your virtual environment.</strong></p>
+<pre class="literal-block">
+python3.8 -m pip install pandas
+python -m pip install -U matplotlib
+</pre>
+</div>
+<div class="section" id="welcome-to-pandas-1-0">
+<h2>(2)&nbsp;Welcome to pandas 1.0</h2>
+<p>You did it! Welcome to the good life. The basis of pandas is the &quot;<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">dataframe</a>&quot;, commonly abbreviated as df, which is similar to a spreadsheet. Another core pandas object is the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html">pandas.Series</a> object, which is similar to a Python list or <a class="reference external" href="http://cs231n.github.io/python-numpy-tutorial/">numpy</a> array. When imported, pandas is aliased as &quot;pd&quot;. The pd object allows you to access many useful pandas functions. I'll use it interchangeably with pandas in this post.</p>
+<blockquote>
+<p>The library’s name derives from&nbsp;<strong>pan</strong>el&nbsp;<strong>da</strong>ta, a common term for multidimensional data sets encountered in statistics and econometrics.</p>
+<p><a class="reference external" href="https://www.dlr.de/sc/Portaldata/15/Resources/dokumente/pyhpc2011/submissions/pyhpc2011_submission_9.pdf">pandas: a Foundational Python Library for Data Analysis and Statistics</a></p>
+<ul class="simple">
+<li>Wes McKinney</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="data-wrangling-exploration-and-broadcasting">
+<h2>(3) <a class="reference external" href="https://en.wikipedia.org/wiki/Data_wrangling">Data Wrangling</a>, Exploration and Broadcasting</h2>
+<p><strong>Data is commonly read in from file with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pd.read_csv()</a>**</p>
+<pre class="literal-block">
+import pandas as pd
+file_name = 'my_bank_statement.csv'
+# you may sometimes need to specify an alternate encoding: encoding = &quot;ISO-8859-1&quot;
+df = pd.read_csv(file_name, encoding='utf-8')
+print(df.head())
+print(df.shape) # returns a tuple: (# of rows, # of columns)
+print(df.dtypes)
+print(df.info())
+</pre>
+<p><strong>Create a dataframe from a list of Python lists, named movies below, with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pd.DataFrame</a><strong>:</strong></p>
+<pre class="literal-block">
+import pandas as pd
+
+column_names = [&quot;Title&quot;, &quot;Release Date&quot;, &quot;Character&quot;, &quot;Actor&quot;, &quot;Movie Budget&quot;, &quot;Worldwide Gross&quot;]
+movies = [[&quot;Ocean's 11&quot;, &quot;12/7/2001&quot;, &quot;Danny Ocean&quot;, &quot;George Clooney&quot;,&quot;$85,000,000&quot;,&quot; $450,728,529&quot;],
+[&quot;Ocean's 11&quot;, &quot;12/7/2001&quot;, &quot;Tess Ocean&quot;, &quot;Julia Roberts&quot;,&quot;$85,000,000&quot;,&quot; $450,728,529&quot;],
+[&quot;Runaway Bride&quot;, &quot;6/30/1999&quot;, &quot;Ike Graham&quot;, &quot;Richard Gere&quot;,&quot;$70,000,000&quot;,&quot;$309,457,509&quot;],
+[&quot;Runaway Bride&quot;, &quot;6/30/1999&quot;, &quot;Maggy Carpenter&quot;, &quot;Julia Roberts&quot;,&quot;$70,000,000&quot;,&quot;$309,457,509&quot;],
+[&quot;Bonnie and Clyde&quot;, &quot;9/1/1967&quot;, &quot;Clyde Barrow&quot;, &quot;Warren Beaty&quot;,&quot;$2,500,000&quot;, &quot;$70,000,000&quot;],
+[&quot;Bonnie and Clyde&quot;, &quot;9/1/1967&quot;, &quot;Bonnie Parker&quot;, &quot;Faye Dunaway&quot;,&quot;$2,500,000&quot;, &quot;$70,000,000&quot;]]
+
+df = pd.DataFrame(movies, columns=column_names)
+df = df[[&quot;Title&quot;,&quot;Character&quot;, &quot;Actor&quot;, &quot;Movie Budget&quot;, &quot;Worldwide Gross&quot;]]
+print(df.to_markdown(showindex=False, tablefmt=&quot;simple&quot;))
+</pre>
+<p><strong>Let's print the table to our terminal with</strong><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html">pd.to_markdown()</a><strong>, which is`new in pandas version 1.0.0 &lt;https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html&gt;`__:</strong></p>
+<img alt="simple_layout_markdown" class="alignnone size-full wp-image-2538" src="https://pythonmarketer.files.wordpress.com/2018/05/simple_layout_markdown.jpg" style="width: 847px; height: 189px;" />
+<p><strong>Slicing and sorting a dataframe, removing duplicates, and working with datetime objects</strong></p>
+<ol class="arabic simple">
+<li>Let's create a new dataframe slice with only two columns</li>
+<li>Drop duplicate movies</li>
+<li>Convert the dates to datetime objects</li>
+<li>Get the year from an array of datetime objects</li>
+<li>Set the year as the dataframe index</li>
+</ol>
+<pre class="literal-block">
+df = pd.DataFrame(movies, columns=column_names)
+date_df = df[['Title', 'Release Date']].drop_duplicates(subset=['Title'])
+date_df['Release Date'] = pd.to_datetime(date_df['Release Date'])
+# create year column using the pd.Series.dt datetime accessor:
+date_df['Release Year'] = df['Release Date'].dt.year
+date_df = date_df.sort_values(by=['Release Date'])
+date_df = date_df.set_index('Release Year')
+print(date_df.to_markdown(showindex=False, tablefmt='simple'))
+</pre>
+<div class="section" id="dates-of-movies">
+<h3><img alt="dates_of_movies" class="alignnone wp-image-2537" src="https://pythonmarketer.files.wordpress.com/2018/05/dates_of_movies.jpg" style="width: 662px; height: 148px;" /></h3>
+<p><strong>Applying Broadcasting in pandas</strong></p>
+<p>Broadcasting means to map a function or an arithmetic calculation over an over an array (using apply or map) or dataframe (applymap).</p>
+<blockquote>
+<p>&quot;Summing up, apply works on a row/column basis of a DataFrame, applymap works element-wise on a DataFrame, and map works element-wise on a Series.&quot;</p>
+<ul class="simple">
+<li>Stack Overflow [<a class="reference external" href="https://stackoverflow.com/questions/19798153/difference-between-map-applymap-and-apply-methods-in-pandas">Source</a>]</li>
+</ul>
+</blockquote>
+<p><strong>Applying a function to a pandas column</strong></p>
+<ul class="simple">
+<li>Convert columns to int and calculate the difference between two columns.</li>
+<li>Let's format those integers back to dollars with python's lambda and pandas' applymap for extra jazz.</li>
+</ul>
+<pre class="literal-block">
+def format_dollars_as_int(dollars):
+    &quot;&quot;&quot;Accepts a dollar formatted string, returns an int.&quot;&quot;&quot;
+    number = dollars.replace('$','').replace(',','')
+    return int(number)
+
+df = pd.DataFrame(movies, columns=column_names)
+df = df.drop_duplicates(subset=['Title'])
+df[['Movie Budget','Worldwide Gross']] = df[['Movie Budget','Worldwide Gross']].astype(str).applymap(format_dollars_as_int)
+df['Movie Net Income'] = df['Worldwide Gross'] - df['Movie Budget']
+money_columns = ['Movie Budget', 'Worldwide Gross','Movie Net Income']
+df[money_columns] = df[money_columns].applymap(lambda x:'${:,}'.format(x))
+</pre>
+<p><strong>Creating a new column and writing to a .csv file</strong></p>
+<ul class="simple">
+<li>Then add the IMDB ratings of our three films in a new column.</li>
+<li>Finally, write the result to markdown and a csv file.</li>
+</ul>
+<pre class="literal-block">
+# create a new column with the three movies' IMDB ratings
+df['IMDB Rating'] = list([7.8,5.5,7.8])
+print(df.to_markdown(showindex=False, tablefmt='simple'))
+df.to_csv('Movies.csv', index=False)
+</pre>
+<img alt="IMDB_movies" class="alignnone size-full wp-image-2540" src="https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg" style="width: 870px; height: 117px;" />
+<p><tt class="docutils literal"><span class="pre">print(df.Actor.value_counts().to_markdown(tablefmt=&quot;github&quot;))</span></tt></p>
+<p>[caption id=&quot;attachment_2539&quot; align=&quot;alignright&quot; width=&quot;189&quot;]<img alt="actor" class="alignnone wp-image-2539" src="https://pythonmarketer.files.wordpress.com/2018/05/actor.jpg" style="width: 189px; height: 111px;" /> Count the Actors with df.Actor.value_counts()[/caption]</p>
+<hr class="docutils" />
+<blockquote>
+<strong>I also must mention</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html">pandas.Series.value_counts()</a><strong>, because it's so darn handy :D</strong></blockquote>
+<hr class="docutils" />
+<p><strong>Notice for column names without spaces, you can use dot notation instead of brackets:</strong></p>
+<p><tt class="docutils literal">df.Actor</tt> <em>vs.</em> <tt class="docutils literal"><span class="pre">df['Actor']</span></tt></p>
+<p><strong>Lowercase column names Python's map function:</strong></p>
+<p><tt class="docutils literal">df.columns = map(str.lower, df.columns)</tt></p>
+<div class="line-block">
+<div class="line"><strong>Strip whitespace from a column of strings with the</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html">pandas.Series.str</a><strong>accessor:</strong></div>
+<div class="line"><tt class="docutils literal"><span class="pre">df['Character']</span> = <span class="pre">df['Character'].astype(str).str.strip()</span></tt></div>
+</div>
+<p><strong>Fix pesky leading zero zip codes with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html">str.zfill()</a><strong>:</strong></p>
+<p><tt class="docutils literal"><span class="pre">log_df['zip']</span> = <span class="pre">log_df['zip'].astype(str).str.zfill(5)</span></tt></p>
+<p><strong>Get a row by index number us</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">pandas.DataFrame.loc[]</a><strong>:</strong></p>
+<pre class="literal-block">
+first_row = df.loc[0, df.columns]
+third_row = df.loc[2, df.columns]
+</pre>
+<p><strong>Filter the df to get rows where the actor is 'Julia Roberts'.</strong></p>
+<pre class="literal-block">
+julia_roberts_movies = df[df.Actor=='Julia Roberts'].reset_index(drop=True)
+print(julia_roberts_movies.head())
+</pre>
+<p><strong>&quot;Get&quot; an item from a column of lists with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html">str.get()</a><strong>.</strong></p>
+<pre class="literal-block">
+# returns first item in each cell's list into new column
+df['first_item'] = df['items'].str.get(0)
+</pre>
+<p><strong>Execute SQL-like operations between dataframes with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html">df.merge()</a><strong>.</strong></p>
+<p>First, use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html">df.copy()</a> to create a new dataframe copy of our actors table above.&nbsp; By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':</p>
+<pre class="literal-block">
+actors = df.copy(deep=True)
+# slice only the columns we want to merge:
+date_df = date_df[['Title','Release Year']]
+joined_df = actors.merge(date_df, on='Title', how='inner')
+# You can pass the number of rows to see to head. It defaults to 5.
+print(joined_df.head(10))
+</pre>
+<p><strong>Execute database queries with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html">pd.read_sql()</a><strong>.</strong></p>
+<p>When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/">pyodbc</a> or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.</p>
+<blockquote>
+uses <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html">pd.Series.isin()</a> to check if each email is in the DB.</blockquote>
+<pre class="literal-block">
+import pandas as pd
+import pyodbc
+
+emails = ['email&#64;email.com', 'notanemail&#64;example.com', 'gmail&#64;gmail.com']
+connection_string = r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;'
+print(connection_string)
+conn = pyodbc.connect(connection_string)
+query = &quot;&quot;&quot;
+    SELECT *
+    FROM   ADD_TABLE_NAME
+    &quot;&quot;&quot;
+dfs = list()
+for i, db_chunk in enumerate(pd.read_sql(query, conn, chunksize=500000)):
+    emails_in_db = db_chunk[db_chunk['EmailAddress'].isin(emails)]
+    dfs.append(emails_in_db)
+    print(i)
+emails_in_db = pd.concat(dfs)
+emails_in_db.to_csv('DB_Email_Query_Results.csv', index=False)
+</pre>
+<!--  -->
+<blockquote>
+In case you are wondering, enumerate is a <a class="reference external" href="https://docs.python.org/3/library/functions.html">python built-in</a> for enumerating, or counting an iterable, e.g. list or generator, as you iterate through it.</blockquote>
+<p><strong>Using</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard():</a>**
+**</p>
+<pre class="literal-block">
+import pandas as pd
+clipboard_contents = pd.read_clipboard()
+print(clipboard_contents)
+</pre>
+<p><strong>Use</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html">pd.to_clipboard()</a><strong>to store a dataframe as clipboard text:</strong></p>
+<pre class="literal-block">
+import pandas as pd
+truths = ['pandas is great','I love pandas','pandas changed my life']
+df = pd.DataFrame([truths], columns=['Truths'])
+df = df.to_clipboard(index=False, sep='|')
+clipboard_contents = input('Press ctrl-v ')
+print(clipboard_contents)
+</pre>
+<p><strong>Convert the clipboard contents to df with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pd.DataFrame()</a><strong>:</strong></p>
+<pre class="literal-block">
+import pandas as pd
+clipboard_contents = list(input('Press ctrl-v '))
+df = pd.DataFrame([clipboard_contents])
+print(df.head())
+</pre>
+<p><strong>If the clipboard dataframe has one column, you could</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze">squeeze</a><strong>the clipboard contents into a</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html">pd.Series</a><strong>object:</strong></p>
+<pre class="literal-block">
+import pandas as pd
+clipboard_text = pd.read_clipboard()
+clipboard_contents = list(clipboard_text)
+df = pd.DataFrame([clipboard_contents], columns=['Clipboard Data'])
+clipboard_series = df.squeeze(axis='columns')
+print(type(clipboard_series))
+</pre>
+<p><strong>Inversely, consider using</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame">pandas.Series.to_frame()</a><strong>to convert a Series to a dataframe:</strong></p>
+<pre class="literal-block">
+import pandas as pd
+clipboard_contents = pd.Series(input('Press ctrl-v '))
+df = clipboard_contents.to_frame()
+print(df.head())
+</pre>
+</div>
+</div>
+<div class="section" id="turning-json-api-responses-into-a-dataframe-with-pd-json-normalize">
+<h2>(4) Turning json API responses into a dataframe with pd.json_normalize()</h2>
+<p><strong>For</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html">older pandas versions</a><strong>:</strong></p>
+<pre class="literal-block">
+from pandas.io.json import json_normalize
+import requests
+url = 'pseudo_API.com/endpoint/'
+parameters = {'page_size'=100, format='json', api_type='contact_sync' }
+response = requests.get(url=url, params=parameters)
+data = response.json() # decode response into json
+# turn subset of json into df
+df = json_normalize(data['any_key'])
+</pre>
+<p><strong>Update: beginning in pandas 1.0,</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html">json_normalize</a><strong>became a top-level pandas namespace.</strong></p>
+<pre class="literal-block">
+import pandas as pd
+import requests
+url = 'pseudo_API.com/endpoint/'
+parameters = {'page_size'=100, format='json', api_type='contact_sync' }
+response = requests.get(url=url, params=parameters)
+data = response.json() # decode response into json
+df = pd.json_normalize(data['any_key'])
+</pre>
+<!--  -->
+<blockquote>
+<p>pandas.json_normalize() is now exposed in the top-level namespace. Usage of json_normalize as pandas.io.json.json_normalize is now deprecated and it is recommended to use json_normalize as pandas.json_normalize() instead (GH27586).</p>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/whatsnew/v1.0.0.html">What's new in pandas 1.0.0</a></p>
+</blockquote>
+</div>
+<div class="section" id="plotting-visualizations-with-matplotlib">
+<h2>(5) Plotting Visualizations with matplotlib</h2>
+<p><strong>Make a bar plot of the movie release year counts using pandas and matplotlib formatting.</strong></p>
+<pre class="literal-block">
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
+import matplotlib.ticker as ticker
+
+column_names = [&quot;Title&quot;, &quot;Release Date&quot;, &quot;Character&quot;, &quot;Actor&quot;]
+rows = [[&quot;Ocean's 11&quot;, &quot;12/7/2001&quot;, &quot;Danny Ocean&quot;, &quot;George Clooney&quot;],
+[&quot;Ocean's 11&quot;, &quot;12/7/2001&quot;, &quot;Tess Ocean&quot;, &quot;Julia Roberts&quot;],
+[&quot;Runaway Bride&quot;, &quot;6/30/1999&quot;, &quot;Ike Graham&quot;, &quot;Richard Gere&quot;],
+[&quot;Runaway Bride&quot;, &quot;6/30/1999&quot;, &quot;Maggy Carpenter&quot;, &quot;Julia Roberts&quot;],
+[&quot;Bonnie and Clyde&quot;, &quot;9/1/1967&quot;, &quot;Clyde Barrow&quot;, &quot;Richard Gere&quot;],
+[&quot;Bonnie and Clyde&quot;, &quot;9/1/1967&quot;, &quot;Bonnie Parker&quot;, &quot;Julia Roberts&quot;]]
+df = pd.DataFrame(rows, columns=column_names)
+ax = df.Year.value_counts().plot(x='title', ylim=0, kind='bar', title='Release Year of Movies', rot=0)
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+fig = ax.get_figure()
+fig.tight_layout()
+fig.savefig('images/Movie_Plot.png')
+</pre>
+<p>Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">plotting with Jupyter/pandas/Python here</a>.</p>
+<p><strong>Plot George Clooney's movies over time in a line graph. [`Source &lt;https://www.youtube.com/watch?v=5JnMutdy6Fw&gt;`__]</strong></p>
+<pre class="literal-block">
+import matplotlib.pyplot as plt
+df = df[df.Actor=='George Clooney']
+df.groupby(['Year']).size().plot(ylim=0)
+fig = ax.get_figure()
+fig.savefig('/path/to/figure.pdf')
+</pre>
+</div>
+<div class="section" id="supplementary-resources-and-guides">
+<h2>(7) Supplementary Resources and Guides</h2>
+<p><strong>Popular Supporting Libraries and Tools</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.numpy.org/">NumPy (Arrays and math)</a></li>
+<li><a class="reference external" href="https://matplotlib.org/#">Matplotlib (Visualization)</a></li>
+<li><a class="reference external" href="https://seaborn.pydata.org/">Seaborn (Visualization)</a></li>
+<li><a class="reference external" href="https://bokeh.pydata.org/en/latest/docs/installation.html">Bokeh (Visualization)</a></li>
+<li><a class="reference external" href="https://jupyter.org/">Jupyter Notebook (Reproducible Sharing and Viz)</a></li>
+</ul>
+<p><strong>Supplementary Resources:</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">pandas from the Ground Up (Video)</a></li>
+<li><a class="reference external" href="https://colab.research.google.com/drive/1a4sbKG7jOJGn4oeonQPA8XjJm7OYgcdX">Google's Intro to pandas Jupyter Notebook</a> (Tutorial)</li>
+<li><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/10min.html">10 Minutes to pandas (Documentation)</a></li>
+<li><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html">Numpy's</a> <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html">r and c_ stacking helpers to concatenate arrays</a></li>
+<li><a class="reference external" href="http://rhodesmill.org/brandon/2014/pandas-payroll/">Calculating Taxes with pandas</a> (Blog)</li>
+</ul>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/pandas-pythons-excel-powerhouse.html">posted at 03:39</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-data-excel-pandas-python.html" rel="tag">coding, data, excel, pandas, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/data-analysis.html" class="tags">data analysis</a>
+                    &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
                 </div>
             </article>            <h4 class="date">Mar 24, 2018</h4>
 
@@ -707,153 +1344,6 @@ save_file.close()
                     &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
-                </div>
-            </article>            <h4 class="date">Aug 09, 2017</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html" rel="bookmark" title="Permanent Link to &quot;Creating A Simple Website and Server Environment with Node.js and Express.js&quot;">Creating A Simple Website and Server Environment with Node.js and Express.js</a>
-                </h2>
-
-                
-                
-
-                <p>Here is what I have deduced is the fastest way to get an app up and running with Node.js. This requires some familiarity with using the command line.&nbsp;I completed the Codeacademy course &quot;<a class="reference external" href="https://www.codecademy.com/learn/learn-the-command-line">Learn The Command Line</a>&quot; before beginning with Node.js. I think it helped me better understand what the commands are and what they do.</p>
-<ol class="arabic simple">
-<li>Download and install&nbsp;<a class="reference external" href="https://nodejs.org/en/">Node.JS</a></li>
-<li>Open the node command prompt. (This was on a windows machine.)</li>
-<li><tt class="docutils literal">mkdir node_apps</tt><ul>
-<li>creates a folder for your app(s)</li>
-</ul>
-</li>
-<li><tt class="docutils literal">cd \app_name</tt><ul>
-<li>changes command prompt directory to your app's folder</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm &nbsp;init</tt><ul>
-<li>Creates json file for your app</li>
-<li>fill out applicable info or just hit enter until the file is created</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm install express</tt><ul>
-<li>installs express.js module in node.js</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm install <span class="pre">express-generator</span> <span class="pre">-g</span></tt><ul>
-<li>installs express-generator module in node.js</li>
-<li>this module creates the web app's structure once the command in the next step is entered</li>
-</ul>
-</li>
-<li><tt class="docutils literal">express app_name</tt><ul>
-<li>creates the structure for your app and all necessary folders. (views, css, Javascript, routing, etc.)</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm install</tt><ul>
-<li>ensures all app module dependencies are installed</li>
-</ul>
-</li>
-<li><tt class="docutils literal">npm start</tt><ul>
-<li>starts your server and web app</li>
-</ul>
-</li>
-<li>Go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> in a browser. Port 3000 is the default port of Express.<ul>
-<li>Your app is live.</li>
-</ul>
-</li>
-</ol>
-<p><strong>Notes</strong></p>
-<ul class="simple">
-<li>I learned most of this from <a class="reference external" href="https://codeforgeek.com/2014/10/express-complete-tutorial-part-1/">this great blog post</a>.</li>
-<li>The above does not include a database integration. I integrated with a MongoDB database by <a class="reference external" href="https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-for-front-end-developers-to-getting-up-and-running-with-nodejs-express-and-mongodb">following the instructions in this post</a>.</li>
-<li>This <a class="reference external" href="https://www.youtube.com/watch?v=1uFY60CESlM">YouTube video</a> was also very helpful to me for figuring out MongoDB and Node.js integration.</li>
-<li>An HTML shorthand language called jade (aka pug) comes stock within Express.js.&nbsp; <a class="reference external" href="https://webapplog.com/jade/">Here's further reading</a> on the pros and cons.</li>
-<li>All of the above has been from my own studies. I do not claim anything listed as the most efficient or best way to use Node.js. This is what has worked for me over the past two days.</li>
-<li>It feels good to whip up a nimble app environment that is capable of producing and supporting world changing software; Node.js is used by Netflix, PayPal, Microsoft and Uber.</li>
-</ul>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html">posted at 21:16</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-javascript-programming-web-development.html" rel="tag">coding, javascript, programming, web development</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
-                    &nbsp;<a href="https://lofipython.com/tag/creating-websites.html" class="tags">creating websites</a>
-                    &nbsp;<a href="https://lofipython.com/tag/expressjs.html" class="tags">express.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/mongodb.html" class="tags">mongodb</a>
-                    &nbsp;<a href="https://lofipython.com/tag/nodejs.html" class="tags">Node.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web-dev.html" class="tags">web dev</a>
-                    &nbsp;<a href="https://lofipython.com/tag/website.html" class="tags">website</a>
-                </div>
-            </article>            <h4 class="date">Aug 05, 2017</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/oversimplified-javascript-terms.html" rel="bookmark" title="Permanent Link to &quot;Oversimplified Javascript Terms&quot;">Oversimplified Javascript Terms</a>
-                </h2>
-
-                
-                
-
-                <p>I'm finally coming around in my understanding of Javascript. Here are a few quick explanations to help you if you are new to it.</p>
-<p><strong>Javascript</strong> = The language of the web. Most commonly used as a complement to HTML and CSS to create an interactive website.</p>
-<p><strong>JQuery</strong> = A popular Javascript library with many powerful commands that are quick and easy to call.</p>
-<p><strong>Node.JS</strong> = Software that allows you to run Javascript from the command line without being connected to the internet.</p>
-<p><strong>Express.JS</strong> = A popular Node.JS framework.</p>
-<p><strong>Angular</strong> = A popular front-end Javascript web framework. There are many out there but this seems to be the one I've heard of the most.</p>
-<div class="line-block">
-<div class="line"><strong>I've begun to see a pattern with programming languages:</strong></div>
-<div class="line">1) Learn to execute the core building blocks. (using variables, loops, functions, etc.)</div>
-<div class="line">2) Learn more advanced libraries, documentation and uses.</div>
-<div class="line">3) Consider using and learning web frameworks depending on what you're trying to do with the language.</div>
-<div class="line">4) Practice to hone your knowledge. Build things you like.</div>
-</div>
-<p>I've also noticed that Javascript has been easier to learn than Python was for me, because it's not my first programming language. The concepts are the same. The syntax can trip me up at times, but I'm currently flying through <a class="reference external" href="https://www.codecademy.com/learn/learn-javascript">Codeacademy's Javascript courses</a>. Sometimes it even seems fun!</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/oversimplified-javascript-terms.html">posted at 18:37</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-javascript-programming.html" rel="tag">coding, javascript, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/angular.html" class="tags">angular</a>
-                    &nbsp;<a href="https://lofipython.com/tag/expressjs.html" class="tags">express.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/javascript-terms.html" class="tags">javascript terms</a>
-                    &nbsp;<a href="https://lofipython.com/tag/jquery.html" class="tags">JQuery</a>
-                    &nbsp;<a href="https://lofipython.com/tag/nodejs.html" class="tags">Node.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
-                    &nbsp;<a href="https://lofipython.com/tag/understanding-javascript.html" class="tags">understanding javascript</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web-frameworks.html" class="tags">web frameworks.</a>
-                </div>
-            </article>            <h4 class="date">Aug 01, 2017</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/algorithms-will-decide-the-future.html" rel="bookmark" title="Permanent Link to &quot;Algorithms Will Decide The Future&quot;">Algorithms Will Decide The Future</a>
-                </h2>
-
-                
-                
-
-                <p><strong>Algorithm: a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.</strong></p>
-<p>I recently read &quot;<a class="reference external" href="https://www.amazon.com/Homo-Deus-Brief-History-Tomorrow/dp/0062464310">Homo Deus</a>&quot;, a book by Yuval Noah Harari. It explores the idea that humans may simply be algorithmic decision making systems.&nbsp;AKA self-aware, self-learning algorithms. There are many parallels between a human and a computer algorithm.</p>
-<p>The author says there are organic (human) and non-organic (machine) algorithms. Non-organic algorithms will someday have far more capability than organic algorithms. In some cases, such as diagnosing medical conditions, they already do.</p>
-<p>He also recaps the history of humanity, which was a trend towards Humanism, the misguided notion that humans can know themselves. The reality is that algorithms will likely know us better than we could ever know ourselves in the future, according to the author. Note: he is very well credentialed in his studies of human history.</p>
-<p>Going forward, he predicts a shift from humanism towards dataism or techno-humanism. Basically, algorithms and data will know us better than we know ourselves. Therefore, machine algorithms will be better qualified to make decisions for us than ourselves. And many (if not all) of our choices will be made by powerful non-organic algorithms.</p>
-<p>Everything we do, decided by a machine to maximize health, happiness, and optimal living. The idea of a human's entire life being driven by algorithms sounds dystopian to me, but the author makes a convincing case.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/algorithms-will-decide-the-future.html">posted at 17:13</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/books-coding-life-programming.html" rel="tag">books, coding, life, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/algorithms.html" class="tags">algorithms</a>
-                    &nbsp;<a href="https://lofipython.com/tag/dataism.html" class="tags">dataism</a>
-                    &nbsp;<a href="https://lofipython.com/tag/dystopia.html" class="tags">dystopia</a>
-                    &nbsp;<a href="https://lofipython.com/tag/future.html" class="tags">future</a>
-                    &nbsp;<a href="https://lofipython.com/tag/homo-deus.html" class="tags">Homo Deus</a>
-                    &nbsp;<a href="https://lofipython.com/tag/technohumanism.html" class="tags">technohumanism</a>
                 </div>
             </article>
 

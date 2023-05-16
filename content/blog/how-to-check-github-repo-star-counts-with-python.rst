@@ -41,7 +41,7 @@ I drafted the code below after noticing the `repo.stargazer_count <https://pygit
        return repo.stargazers_count
 
 
-   # static site repos: http://pythonmarketer.com/2021/07/lc28/a-brief-summary-of-promising-python-static-site-generators/
+   # static site repos: http://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/
    urls = [
        "https://github.com/getpelican/pelican",
        "https://github.com/lektor/lektor",

@@ -109,7 +109,368 @@
 &lt;p&gt;Write the proposed solution down. Hammock time is important &amp;quot;mind's eye time&amp;quot;. We switch from &amp;quot;input mode&amp;quot; to &amp;quot;recall mode&amp;quot; during hammock time. Wait overnight, or sometimes months, to think about your problem, sleep sober for best results! Eventually coding is required, and your feedback loop is important, but &amp;quot;don't lean on it too much&amp;quot;. You will be wrong, facts and requirements will change. Mistakes happen. That's fine, do not be afraid of being wrong. /rant&lt;/p&gt;
 &lt;p&gt;The notes in this blog post are paraphrased from &lt;a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc"&gt;this rant&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="coding, programming, talks"></category><category term="learning"></category><category term="problem solving"></category><category term="software"></category></entry><entry><title>How to Install Libraries and Enable the pip Installer in Python</title><link href="https://lofipython.com/how-to-python-pip-install-new-libraries.html" rel="alternate"></link><published>2018-01-20T17:50:00-06:00</published><updated>2018-01-20T17:50:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-01-20:/how-to-python-pip-install-new-libraries.html</id><summary type="html">&lt;p&gt;Python comes with a bunch of &lt;a class="reference external" href="https://docs.python.org/3/py-modindex.html"&gt;standard modules&lt;/a&gt;. My favorites are shutil, glob, datetime, time, os (operating system), re (regular expressions) and webbrowser. The standard library is loaded.&lt;/p&gt;
+</content><category term="coding, programming, talks"></category><category term="learning"></category><category term="problem solving"></category><category term="software"></category></entry><entry><title>A Stroll Through Pandas 1.0, Python’s Tabular Data Powerhouse</title><link href="https://lofipython.com/pandas-pythons-excel-powerhouse.html" rel="alternate"></link><published>2018-05-12T03:39:00-05:00</published><updated>2018-05-12T03:39:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-05-12:/pandas-pythons-excel-powerhouse.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://pandas.pydata.org/"&gt;&lt;img alt="pandas" class="wp-image-2594 alignright" src="https://pythonmarketer.files.wordpress.com/2018/05/pandas.png" style="width: 301px; height: 122px;" /&gt;&lt;/a&gt;Thanks to pandas, I have automated some data cleaning and file reading processes at my job.&amp;nbsp;Here are some terms and code that have been useful or interesting to me after 2 years of exploration. I also checked out &amp;quot;&lt;a class="reference external" href="https://github.com/wesm/pydata-book"&gt;Python for Data Analysis&lt;/a&gt;&amp;quot; from the&lt;a class="reference external" href="https://www.chipublib.org/"&gt;Chicago Public Library&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://pandas.pydata.org/"&gt;&lt;img alt="pandas" class="wp-image-2594 alignright" src="https://pythonmarketer.files.wordpress.com/2018/05/pandas.png" style="width: 301px; height: 122px;" /&gt;&lt;/a&gt;Thanks to pandas, I have automated some data cleaning and file reading processes at my job.&amp;nbsp;Here are some terms and code that have been useful or interesting to me after 2 years of exploration. I also checked out &amp;quot;&lt;a class="reference external" href="https://github.com/wesm/pydata-book"&gt;Python for Data Analysis&lt;/a&gt;&amp;quot; from the&lt;a class="reference external" href="https://www.chipublib.org/"&gt;Chicago Public Library&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If I could suggest anything to be successful with pandas, it is repetition. I use it nearly every day at work. Dive into its &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html"&gt;API documentation.&lt;/a&gt; There are tons of useful tools there, laid out with meticulous detail and examples. I began learning pandas with this PyCon 2015 &lt;a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;tutorial from Brandon Rhodes&lt;/a&gt;, it's informative and entertaining! (It's a little dated now but I still recommend it.) The &lt;a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM"&gt;Reproducible Data Analysis in Jupyter video series&lt;/a&gt; by Jake VanderPlas is also a great example of pandas-related workflows.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Pythonpandas Installation and Version Compatibility&lt;/li&gt;
+&lt;li&gt;ACHIEVEMENT UNLOCKED: Welcome to pandas 1.0&lt;/li&gt;
+&lt;li&gt;Data Wrangling, Exploration and Broadcasting&lt;ul&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;Series.str&lt;/tt&gt; &amp;amp; &lt;tt class="docutils literal"&gt;Series.dt&lt;/tt&gt; accessors&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;apply&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;applymap&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;lambda&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;map&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;featuring &lt;tt class="docutils literal"&gt;pandas.to_markdown()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;SQL operations with &lt;tt class="docutils literal"&gt;df.merge()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;pandas.read_sql()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;pandas.read_clipboard()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;converting between Series and DataFrame&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Turning json API responses into a dataframe with &lt;tt class="docutils literal"&gt;pandas.json_normalize()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;Plotting Visualizations with matplotlib&lt;/li&gt;
+&lt;li&gt;Supplementary Resources and Links&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="section" id="pythonpandas-installation-and-version-compatibility"&gt;
+&lt;h2&gt;(1) Pythonpandas Installation and Version Compatibility&lt;/h2&gt;
+&lt;p&gt;Python 3.6 and higher can &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html"&gt;install pandas 1.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installing Python 3.8 on Windows&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For Windows installation, see the python docs for an installer, &amp;quot;&lt;a class="reference external" href="https://docs.python.org/3/using/windows.html"&gt;Using Python on Windows&amp;quot;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installing Python 3.8 on Ubuntu&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/"&gt;Follow these steps to download and install Python 3.8 in the Ubuntu terminal.&lt;/a&gt; To upgrade to pandas 1.0, I installed Python 3.8, the &lt;a class="reference external" href="https://www.google.com/search?client=ubuntu&amp;amp;channel=fs&amp;amp;q=python+latest+stable+release&amp;amp;ie=utf-8&amp;amp;oe=utf-8"&gt;latest stable release&lt;/a&gt;, &amp;quot;&lt;a class="reference external" href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/"&gt;from source&lt;/a&gt;&amp;quot; on Ubuntu 16.04.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;If you intend to use&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html"&gt;pandas.to_markdown()&lt;/a&gt;&lt;strong&gt;on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal: &lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install &lt;span class="pre"&gt;libbz2-dev&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;I also saw this message when completing install:&lt;/p&gt;
+&lt;blockquote&gt;
+The necessary bits to build these optional modules were not found. To find the necessary bits, look in setup.py in detect-modules() for the module's name.&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;If you need to re-build Python on Ubuntu, enter:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+cd /home/erick/Python-3.8.0/
+./configure --enable-loadable-sqlite-extensions &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo make install
+&lt;/pre&gt;
+&lt;p&gt;I installed missing&amp;nbsp; _bz2 and _sqllite3 modules then re-built with these commands.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installing Older pandas Versions on Ubuntu&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The version downloaded with this command is about 6 months behind the current version. For me, this installed pandas 0.17 on Ubuntu:&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install &lt;span class="pre"&gt;python3-pandas&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;As of February 2020, this command &lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;installs pandas version 0.24 with pip&lt;/a&gt; when used with Python 3.5 on Linux Ubuntu 16.04:&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;python3.5 &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/p&gt;
+&lt;img alt="successful_python_install" class="alignnone wp-image-2420" src="https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg" style="width: 676px; height: 186px;" /&gt;
+&lt;p&gt;&lt;strong&gt;If pandas is already installed, you can upgrade with&lt;/strong&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[caption id=&amp;quot;attachment_2572&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;179&amp;quot;]&lt;img alt="pip_list" class="alignnone wp-image-2572" src="http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg" style="width: 179px; height: 230px;" /&gt; Enter pip list to see installed libraries.[/caption]&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install &lt;span class="pre"&gt;--upgrade&lt;/span&gt; pandas&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;To check if pip is installed: &lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip list&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Consider following best practice and create a&lt;/strong&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtual environment&lt;/a&gt;&lt;strong&gt;with your new Python version.&lt;/strong&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/venv.html"&gt;venv&lt;/a&gt;&lt;strong&gt;wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip &lt;span class="pre"&gt;--user&lt;/span&gt; install virtualenv&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Let's create a new virtual environment. Enter in terminal or command prompt:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;virtualenv &lt;span class="pre"&gt;-p&lt;/span&gt; python3.8 add_env_name_here&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Now, activate your new virtual environment on Linux:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;cd add_env_name_here/bin &amp;amp;&amp;amp; source activate&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Or activate environment on Windows:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;cd add_env_name_here\scripts &amp;amp; activate&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;ImportError: Missing optional dependency 'tabulate'. Use pip or conda to install tabulate:&amp;quot; To use pd.to_markdown(), install Tabulate:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install tabulate&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To use pd.read_clipboard() on Linux, install&lt;/strong&gt;&lt;a class="reference external" href="https://github.com/astrand/xclip"&gt;xclip&lt;/a&gt;&lt;strong&gt;or&lt;/strong&gt;&lt;a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel"&gt;xsel:&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install xclip&lt;/tt&gt;**
+**&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I also saw a prompt to install pyperclip:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pyperclip&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Now install pandas 1.0 and&lt;/strong&gt;&lt;a class="reference external" href="https://matplotlib.org/users/installing.html"&gt;matplotlib&lt;/a&gt;&lt;strong&gt;in your virtual environment.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python3.8 -m pip install pandas
+python -m pip install -U matplotlib
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="welcome-to-pandas-1-0"&gt;
+&lt;h2&gt;(2)&amp;nbsp;Welcome to pandas 1.0&lt;/h2&gt;
+&lt;p&gt;You did it! Welcome to the good life. The basis of pandas is the &amp;quot;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html"&gt;dataframe&lt;/a&gt;&amp;quot;, commonly abbreviated as df, which is similar to a spreadsheet. Another core pandas object is the &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html"&gt;pandas.Series&lt;/a&gt; object, which is similar to a Python list or &lt;a class="reference external" href="http://cs231n.github.io/python-numpy-tutorial/"&gt;numpy&lt;/a&gt; array. When imported, pandas is aliased as &amp;quot;pd&amp;quot;. The pd object allows you to access many useful pandas functions. I'll use it interchangeably with pandas in this post.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The library’s name derives from&amp;nbsp;&lt;strong&gt;pan&lt;/strong&gt;el&amp;nbsp;&lt;strong&gt;da&lt;/strong&gt;ta, a common term for multidimensional data sets encountered in statistics and econometrics.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.dlr.de/sc/Portaldata/15/Resources/dokumente/pyhpc2011/submissions/pyhpc2011_submission_9.pdf"&gt;pandas: a Foundational Python Library for Data Analysis and Statistics&lt;/a&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Wes McKinney&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="data-wrangling-exploration-and-broadcasting"&gt;
+&lt;h2&gt;(3) &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Data_wrangling"&gt;Data Wrangling&lt;/a&gt;, Exploration and Broadcasting&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Data is commonly read in from file with&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html"&gt;pd.read_csv()&lt;/a&gt;**&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+file_name = 'my_bank_statement.csv'
+# you may sometimes need to specify an alternate encoding: encoding = &amp;quot;ISO-8859-1&amp;quot;
+df = pd.read_csv(file_name, encoding='utf-8')
+print(df.head())
+print(df.shape) # returns a tuple: (# of rows, # of columns)
+print(df.dtypes)
+print(df.info())
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Create a dataframe from a list of Python lists, named movies below, with&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html"&gt;pd.DataFrame&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+
+column_names = [&amp;quot;Title&amp;quot;, &amp;quot;Release Date&amp;quot;, &amp;quot;Character&amp;quot;, &amp;quot;Actor&amp;quot;, &amp;quot;Movie Budget&amp;quot;, &amp;quot;Worldwide Gross&amp;quot;]
+movies = [[&amp;quot;Ocean's 11&amp;quot;, &amp;quot;12/7/2001&amp;quot;, &amp;quot;Danny Ocean&amp;quot;, &amp;quot;George Clooney&amp;quot;,&amp;quot;$85,000,000&amp;quot;,&amp;quot; $450,728,529&amp;quot;],
+[&amp;quot;Ocean's 11&amp;quot;, &amp;quot;12/7/2001&amp;quot;, &amp;quot;Tess Ocean&amp;quot;, &amp;quot;Julia Roberts&amp;quot;,&amp;quot;$85,000,000&amp;quot;,&amp;quot; $450,728,529&amp;quot;],
+[&amp;quot;Runaway Bride&amp;quot;, &amp;quot;6/30/1999&amp;quot;, &amp;quot;Ike Graham&amp;quot;, &amp;quot;Richard Gere&amp;quot;,&amp;quot;$70,000,000&amp;quot;,&amp;quot;$309,457,509&amp;quot;],
+[&amp;quot;Runaway Bride&amp;quot;, &amp;quot;6/30/1999&amp;quot;, &amp;quot;Maggy Carpenter&amp;quot;, &amp;quot;Julia Roberts&amp;quot;,&amp;quot;$70,000,000&amp;quot;,&amp;quot;$309,457,509&amp;quot;],
+[&amp;quot;Bonnie and Clyde&amp;quot;, &amp;quot;9/1/1967&amp;quot;, &amp;quot;Clyde Barrow&amp;quot;, &amp;quot;Warren Beaty&amp;quot;,&amp;quot;$2,500,000&amp;quot;, &amp;quot;$70,000,000&amp;quot;],
+[&amp;quot;Bonnie and Clyde&amp;quot;, &amp;quot;9/1/1967&amp;quot;, &amp;quot;Bonnie Parker&amp;quot;, &amp;quot;Faye Dunaway&amp;quot;,&amp;quot;$2,500,000&amp;quot;, &amp;quot;$70,000,000&amp;quot;]]
+
+df = pd.DataFrame(movies, columns=column_names)
+df = df[[&amp;quot;Title&amp;quot;,&amp;quot;Character&amp;quot;, &amp;quot;Actor&amp;quot;, &amp;quot;Movie Budget&amp;quot;, &amp;quot;Worldwide Gross&amp;quot;]]
+print(df.to_markdown(showindex=False, tablefmt=&amp;quot;simple&amp;quot;))
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Let's print the table to our terminal with&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html"&gt;pd.to_markdown()&lt;/a&gt;&lt;strong&gt;, which is`new in pandas version 1.0.0 &amp;lt;https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html&amp;gt;`__:&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="simple_layout_markdown" class="alignnone size-full wp-image-2538" src="https://pythonmarketer.files.wordpress.com/2018/05/simple_layout_markdown.jpg" style="width: 847px; height: 189px;" /&gt;
+&lt;p&gt;&lt;strong&gt;Slicing and sorting a dataframe, removing duplicates, and working with datetime objects&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Let's create a new dataframe slice with only two columns&lt;/li&gt;
+&lt;li&gt;Drop duplicate movies&lt;/li&gt;
+&lt;li&gt;Convert the dates to datetime objects&lt;/li&gt;
+&lt;li&gt;Get the year from an array of datetime objects&lt;/li&gt;
+&lt;li&gt;Set the year as the dataframe index&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
+df = pd.DataFrame(movies, columns=column_names)
+date_df = df[['Title', 'Release Date']].drop_duplicates(subset=['Title'])
+date_df['Release Date'] = pd.to_datetime(date_df['Release Date'])
+# create year column using the pd.Series.dt datetime accessor:
+date_df['Release Year'] = df['Release Date'].dt.year
+date_df = date_df.sort_values(by=['Release Date'])
+date_df = date_df.set_index('Release Year')
+print(date_df.to_markdown(showindex=False, tablefmt='simple'))
+&lt;/pre&gt;
+&lt;div class="section" id="dates-of-movies"&gt;
+&lt;h3&gt;&lt;img alt="dates_of_movies" class="alignnone wp-image-2537" src="https://pythonmarketer.files.wordpress.com/2018/05/dates_of_movies.jpg" style="width: 662px; height: 148px;" /&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Applying Broadcasting in pandas&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Broadcasting means to map a function or an arithmetic calculation over an over an array (using apply or map) or dataframe (applymap).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;Summing up, apply works on a row/column basis of a DataFrame, applymap works element-wise on a DataFrame, and map works element-wise on a Series.&amp;quot;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Stack Overflow [&lt;a class="reference external" href="https://stackoverflow.com/questions/19798153/difference-between-map-applymap-and-apply-methods-in-pandas"&gt;Source&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Applying a function to a pandas column&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Convert columns to int and calculate the difference between two columns.&lt;/li&gt;
+&lt;li&gt;Let's format those integers back to dollars with python's lambda and pandas' applymap for extra jazz.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="literal-block"&gt;
+def format_dollars_as_int(dollars):
+    &amp;quot;&amp;quot;&amp;quot;Accepts a dollar formatted string, returns an int.&amp;quot;&amp;quot;&amp;quot;
+    number = dollars.replace('$','').replace(',','')
+    return int(number)
+
+df = pd.DataFrame(movies, columns=column_names)
+df = df.drop_duplicates(subset=['Title'])
+df[['Movie Budget','Worldwide Gross']] = df[['Movie Budget','Worldwide Gross']].astype(str).applymap(format_dollars_as_int)
+df['Movie Net Income'] = df['Worldwide Gross'] - df['Movie Budget']
+money_columns = ['Movie Budget', 'Worldwide Gross','Movie Net Income']
+df[money_columns] = df[money_columns].applymap(lambda x:'${:,}'.format(x))
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Creating a new column and writing to a .csv file&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Then add the IMDB ratings of our three films in a new column.&lt;/li&gt;
+&lt;li&gt;Finally, write the result to markdown and a csv file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="literal-block"&gt;
+# create a new column with the three movies' IMDB ratings
+df['IMDB Rating'] = list([7.8,5.5,7.8])
+print(df.to_markdown(showindex=False, tablefmt='simple'))
+df.to_csv('Movies.csv', index=False)
+&lt;/pre&gt;
+&lt;img alt="IMDB_movies" class="alignnone size-full wp-image-2540" src="https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg" style="width: 870px; height: 117px;" /&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;print(df.Actor.value_counts().to_markdown(tablefmt=&amp;quot;github&amp;quot;))&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;[caption id=&amp;quot;attachment_2539&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;189&amp;quot;]&lt;img alt="actor" class="alignnone wp-image-2539" src="https://pythonmarketer.files.wordpress.com/2018/05/actor.jpg" style="width: 189px; height: 111px;" /&gt; Count the Actors with df.Actor.value_counts()[/caption]&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;blockquote&gt;
+&lt;strong&gt;I also must mention&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html"&gt;pandas.Series.value_counts()&lt;/a&gt;&lt;strong&gt;, because it's so darn handy :D&lt;/strong&gt;&lt;/blockquote&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;&lt;strong&gt;Notice for column names without spaces, you can use dot notation instead of brackets:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;df.Actor&lt;/tt&gt; &lt;em&gt;vs.&lt;/em&gt; &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;df['Actor']&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lowercase column names Python's map function:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;df.columns = map(str.lower, df.columns)&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;strong&gt;Strip whitespace from a column of strings with the&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html"&gt;pandas.Series.str&lt;/a&gt;&lt;strong&gt;accessor:&lt;/strong&gt;&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;df['Character']&lt;/span&gt; = &lt;span class="pre"&gt;df['Character'].astype(str).str.strip()&lt;/span&gt;&lt;/tt&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Fix pesky leading zero zip codes with&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html"&gt;str.zfill()&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;log_df['zip']&lt;/span&gt; = &lt;span class="pre"&gt;log_df['zip'].astype(str).str.zfill(5)&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Get a row by index number us&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html"&gt;pandas.DataFrame.loc[]&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+first_row = df.loc[0, df.columns]
+third_row = df.loc[2, df.columns]
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Filter the df to get rows where the actor is 'Julia Roberts'.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+julia_roberts_movies = df[df.Actor=='Julia Roberts'].reset_index(drop=True)
+print(julia_roberts_movies.head())
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;Get&amp;quot; an item from a column of lists with&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html"&gt;str.get()&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# returns first item in each cell's list into new column
+df['first_item'] = df['items'].str.get(0)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Execute SQL-like operations between dataframes with&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html"&gt;df.merge()&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;First, use &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html"&gt;df.copy()&lt;/a&gt; to create a new dataframe copy of our actors table above.&amp;nbsp; By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+actors = df.copy(deep=True)
+# slice only the columns we want to merge:
+date_df = date_df[['Title','Release Year']]
+joined_df = actors.merge(date_df, on='Title', how='inner')
+# You can pass the number of rows to see to head. It defaults to 5.
+print(joined_df.head(10))
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Execute database queries with&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html"&gt;pd.read_sql()&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/"&gt;pyodbc&lt;/a&gt; or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.&lt;/p&gt;
+&lt;blockquote&gt;
+uses &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html"&gt;pd.Series.isin()&lt;/a&gt; to check if each email is in the DB.&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+import pyodbc
+
+emails = ['email&amp;#64;email.com', 'notanemail&amp;#64;example.com', 'gmail&amp;#64;gmail.com']
+connection_string = r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;'
+print(connection_string)
+conn = pyodbc.connect(connection_string)
+query = &amp;quot;&amp;quot;&amp;quot;
+    SELECT *
+    FROM   ADD_TABLE_NAME
+    &amp;quot;&amp;quot;&amp;quot;
+dfs = list()
+for i, db_chunk in enumerate(pd.read_sql(query, conn, chunksize=500000)):
+    emails_in_db = db_chunk[db_chunk['EmailAddress'].isin(emails)]
+    dfs.append(emails_in_db)
+    print(i)
+emails_in_db = pd.concat(dfs)
+emails_in_db.to_csv('DB_Email_Query_Results.csv', index=False)
+&lt;/pre&gt;
+&lt;!--  --&gt;
+&lt;blockquote&gt;
+In case you are wondering, enumerate is a &lt;a class="reference external" href="https://docs.python.org/3/library/functions.html"&gt;python built-in&lt;/a&gt; for enumerating, or counting an iterable, e.g. list or generator, as you iterate through it.&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Using&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html"&gt;pd.read_clipboard():&lt;/a&gt;**
+**&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+clipboard_contents = pd.read_clipboard()
+print(clipboard_contents)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Use&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html"&gt;pd.to_clipboard()&lt;/a&gt;&lt;strong&gt;to store a dataframe as clipboard text:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+truths = ['pandas is great','I love pandas','pandas changed my life']
+df = pd.DataFrame([truths], columns=['Truths'])
+df = df.to_clipboard(index=False, sep='|')
+clipboard_contents = input('Press ctrl-v ')
+print(clipboard_contents)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Convert the clipboard contents to df with&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html"&gt;pd.DataFrame()&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+clipboard_contents = list(input('Press ctrl-v '))
+df = pd.DataFrame([clipboard_contents])
+print(df.head())
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;If the clipboard dataframe has one column, you could&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze"&gt;squeeze&lt;/a&gt;&lt;strong&gt;the clipboard contents into a&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html"&gt;pd.Series&lt;/a&gt;&lt;strong&gt;object:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+clipboard_text = pd.read_clipboard()
+clipboard_contents = list(clipboard_text)
+df = pd.DataFrame([clipboard_contents], columns=['Clipboard Data'])
+clipboard_series = df.squeeze(axis='columns')
+print(type(clipboard_series))
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Inversely, consider using&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame"&gt;pandas.Series.to_frame()&lt;/a&gt;&lt;strong&gt;to convert a Series to a dataframe:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+clipboard_contents = pd.Series(input('Press ctrl-v '))
+df = clipboard_contents.to_frame()
+print(df.head())
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="turning-json-api-responses-into-a-dataframe-with-pd-json-normalize"&gt;
+&lt;h2&gt;(4) Turning json API responses into a dataframe with pd.json_normalize()&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;For&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html"&gt;older pandas versions&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from pandas.io.json import json_normalize
+import requests
+url = 'pseudo_API.com/endpoint/'
+parameters = {'page_size'=100, format='json', api_type='contact_sync' }
+response = requests.get(url=url, params=parameters)
+data = response.json() # decode response into json
+# turn subset of json into df
+df = json_normalize(data['any_key'])
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Update: beginning in pandas 1.0,&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html"&gt;json_normalize&lt;/a&gt;&lt;strong&gt;became a top-level pandas namespace.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+import requests
+url = 'pseudo_API.com/endpoint/'
+parameters = {'page_size'=100, format='json', api_type='contact_sync' }
+response = requests.get(url=url, params=parameters)
+data = response.json() # decode response into json
+df = pd.json_normalize(data['any_key'])
+&lt;/pre&gt;
+&lt;!--  --&gt;
+&lt;blockquote&gt;
+&lt;p&gt;pandas.json_normalize() is now exposed in the top-level namespace. Usage of json_normalize as pandas.io.json.json_normalize is now deprecated and it is recommended to use json_normalize as pandas.json_normalize() instead (GH27586).&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/whatsnew/v1.0.0.html"&gt;What's new in pandas 1.0.0&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="plotting-visualizations-with-matplotlib"&gt;
+&lt;h2&gt;(5) Plotting Visualizations with matplotlib&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Make a bar plot of the movie release year counts using pandas and matplotlib formatting.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
+import matplotlib.ticker as ticker
+
+column_names = [&amp;quot;Title&amp;quot;, &amp;quot;Release Date&amp;quot;, &amp;quot;Character&amp;quot;, &amp;quot;Actor&amp;quot;]
+rows = [[&amp;quot;Ocean's 11&amp;quot;, &amp;quot;12/7/2001&amp;quot;, &amp;quot;Danny Ocean&amp;quot;, &amp;quot;George Clooney&amp;quot;],
+[&amp;quot;Ocean's 11&amp;quot;, &amp;quot;12/7/2001&amp;quot;, &amp;quot;Tess Ocean&amp;quot;, &amp;quot;Julia Roberts&amp;quot;],
+[&amp;quot;Runaway Bride&amp;quot;, &amp;quot;6/30/1999&amp;quot;, &amp;quot;Ike Graham&amp;quot;, &amp;quot;Richard Gere&amp;quot;],
+[&amp;quot;Runaway Bride&amp;quot;, &amp;quot;6/30/1999&amp;quot;, &amp;quot;Maggy Carpenter&amp;quot;, &amp;quot;Julia Roberts&amp;quot;],
+[&amp;quot;Bonnie and Clyde&amp;quot;, &amp;quot;9/1/1967&amp;quot;, &amp;quot;Clyde Barrow&amp;quot;, &amp;quot;Richard Gere&amp;quot;],
+[&amp;quot;Bonnie and Clyde&amp;quot;, &amp;quot;9/1/1967&amp;quot;, &amp;quot;Bonnie Parker&amp;quot;, &amp;quot;Julia Roberts&amp;quot;]]
+df = pd.DataFrame(rows, columns=column_names)
+ax = df.Year.value_counts().plot(x='title', ylim=0, kind='bar', title='Release Year of Movies', rot=0)
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+fig = ax.get_figure()
+fig.tight_layout()
+fig.savefig('images/Movie_Plot.png')
+&lt;/pre&gt;
+&lt;p&gt;Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/"&gt;plotting with Jupyter/pandas/Python here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Plot George Clooney's movies over time in a line graph. [`Source &amp;lt;https://www.youtube.com/watch?v=5JnMutdy6Fw&amp;gt;`__]&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import matplotlib.pyplot as plt
+df = df[df.Actor=='George Clooney']
+df.groupby(['Year']).size().plot(ylim=0)
+fig = ax.get_figure()
+fig.savefig('/path/to/figure.pdf')
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="supplementary-resources-and-guides"&gt;
+&lt;h2&gt;(7) Supplementary Resources and Guides&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Popular Supporting Libraries and Tools&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.numpy.org/"&gt;NumPy (Arrays and math)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://matplotlib.org/#"&gt;Matplotlib (Visualization)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://seaborn.pydata.org/"&gt;Seaborn (Visualization)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://bokeh.pydata.org/en/latest/docs/installation.html"&gt;Bokeh (Visualization)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://jupyter.org/"&gt;Jupyter Notebook (Reproducible Sharing and Viz)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Supplementary Resources:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;pandas from the Ground Up (Video)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://colab.research.google.com/drive/1a4sbKG7jOJGn4oeonQPA8XjJm7OYgcdX"&gt;Google's Intro to pandas Jupyter Notebook&lt;/a&gt; (Tutorial)&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/10min.html"&gt;10 Minutes to pandas (Documentation)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html"&gt;Numpy's&lt;/a&gt; &lt;a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html"&gt;r and c_ stacking helpers to concatenate arrays&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://rhodesmill.org/brandon/2014/pandas-payroll/"&gt;Calculating Taxes with pandas&lt;/a&gt; (Blog)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</content><category term="coding, data, excel, pandas, python"></category><category term="data analysis"></category><category term="programming"></category><category term="software"></category></entry><entry><title>How to Install Libraries and Enable the pip Installer in Python</title><link href="https://lofipython.com/how-to-python-pip-install-new-libraries.html" rel="alternate"></link><published>2018-01-20T17:50:00-06:00</published><updated>2018-01-20T17:50:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-01-20:/how-to-python-pip-install-new-libraries.html</id><summary type="html">&lt;p&gt;Python comes with a bunch of &lt;a class="reference external" href="https://docs.python.org/3/py-modindex.html"&gt;standard modules&lt;/a&gt;. My favorites are shutil, glob, datetime, time, os (operating system), re (regular expressions) and webbrowser. The standard library is loaded.&lt;/p&gt;
 &lt;p&gt;Inevitably, you'll want to install new libraries from Python's rich ecosystem of external modules. Enter pip, Python's handy package manager and people's …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python comes with a bunch of &lt;a class="reference external" href="https://docs.python.org/3/py-modindex.html"&gt;standard modules&lt;/a&gt;. My favorites are shutil, glob, datetime, time, os (operating system), re (regular expressions) and webbrowser. The standard library is loaded.&lt;/p&gt;
 &lt;p&gt;Inevitably, you'll want to install new libraries from Python's rich ecosystem of external modules. Enter pip, Python's handy package manager and people's champion.&lt;/p&gt;
 &lt;p&gt;This post will teach you some Python history, show how to install pandas, and help you troubleshoot problems if it's not working. You'll find Windows and Linux commands for venv setup (recommended). With pip, you'll feel like Neo when installing new modules. Any skill is at your fingertips. It's like learning kung fu. There's probably a library for that!&lt;/p&gt;
