@@ -9,7 +9,7 @@ Pelican Fix for "No valid files found in content"...
 
 Pelican is a popular `static site generator library <https://pythonmarketer.com/2021/07/28/a-brief-summary-of-promising-python-static-site-generators/>`__ in Python. I didn't know why my pelican blog was not working. I've used the "pelican content" command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    WARNING  No valid files found in content for the active         log.py:91
             readers:                                                        
@@ -25,7 +25,7 @@ Pelican is a popular `static site generator library <https://pythonmarketer.com/
 
 Install the markdown library, which is stated in the `pelican docs <https://docs.getpelican.com/en/3.6.3/install.html#optional-packages>`__. This `Github issue <https://github.com/getpelican/pelican/issues/1868>`__ also provides some background on this warning.
 
-.. code:: wp-block-code
+::
 
    pip install markdown
 
@@ -35,7 +35,7 @@ Install the markdown library, which is stated in the `pelican docs <https://docs
 
 Now my "pelican content" command works!
 
-.. code:: wp-block-code
+.. code-block:: python
 
    pelican content
 

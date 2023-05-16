@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Python Marketer | articles tagged "jq"</title>
-    <link rel="shortcut icon" type="image/png" href="../favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
-    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
-    <link href="https://pythonmarketer.com/feeds/jq.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Tags Atom Feed" />
-    <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" />
+    <title>Lo-Fi Python | articles tagged "jq"</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/jq.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Tags Atom Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="@erickbytes" />
@@ -19,16 +19,16 @@
     <header>
         <nav style="overflow: hidden;">
             <ul>
-                <li class="ephemeral selected"><a href="../tag/jq.html">jq</a></li>
-                <li><a href="../">Home</a></li>
+                <li class="ephemeral selected"><a href="https://lofipython.com/tag/jq.html">jq</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
                 <li><a href="feeds/all.rss.xml">RSS</a></li>
                 <li><a href="feeds/all.atom.xml">Atom</a></li>
-                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
             </ul>
         </nav>
         <div class="header_box" style="height: 50px">
-        <h1><a href="../">
-            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
             </a></h1></div>
         </div>
     </header>
@@ -37,91 +37,57 @@
 
             <article class="post">
                 <h2 class="title">
-                    <a href="../pretty-print-the-ea-sports-fifa-ultimate-team-json-with-jq-curl.html" rel="bookmark" title="Permanent Link to &quot;Analyzing Messi vs. Ronaldo with the FIFA API + jq + curl&quot;">Analyzing Messi vs. Ronaldo with the FIFA API + jq + curl</a>
+                    <a href="https://lofipython.com/pretty-print-the-ea-sports-fifa-ultimate-team-json-with-jq-curl.html" rel="bookmark" title="Permanent Link to &quot;Analyzing Messi vs. Ronaldo with the FIFA API + jq + curl&quot;">Analyzing Messi vs. Ronaldo with the FIFA API + jq + curl</a>
                 </h2>
 
                 
                 
 
-                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>Who is the world's greatest footballer, Messi or Ronaldo? EA Sports surely has calculated the answer to this question in their player ratings. They rate peak Crisitiano Ronaldo, Lionel Messi and Luka Modrić at 99 overall, with Neymar and Lewandowski at 98. Anecdotally, Messi has won 7 <a href="https://www.topendsports.com/sport/soccer/list-player-of-the-year-ballondor.htm">Ballon d'Or</a>, the highest individual football honor one can achieve each year. Ronaldo has won 5 B'allon d'Or. Modrić has won 1 Ballon d'Or. Lewandowski was runner up this year, but has never won the honor. Neymar has never won a Ballon d'Or.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>In <a href="https://www.ea.com/games/fifa/fifa-22">FIFA</a>, a player's video game representation is modeled intricately in a series of traits and specialties characterizing each player. The <a href="https://www.easports.com/fifa/ultimate-team/api/fut/item">"Ultimate Team" EA Sports API</a> is viewable as a plain json page or more cheekily with one line of <a href="https://curl.se/">curl</a> and <a href="https://github.com/stedolan/jq">jq, a "command line json processor"</a>:</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:preformatted --&gt;</code></p>
-<div class="highlight"><pre><span></span><code>curl &#39;https://www.easports.com/fifa/ultimate-team/api/fut/item&#39; | jq &#39;.&#39;
-</code></pre></div>
-
-<p><code>&lt;!-- /wp:preformatted --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>Enter this in a <a href="https://missing.csail.mit.edu/2020/shell-tools/">shell</a> or <a href="https://github.com/jlevy/the-art-of-command-line">command line</a>. The result is beautiful, readable, pretty printed json!</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:heading {"level":3} --&gt;</code></p>
-<h3 id="messi-left-vs-ronaldo-right-fifa-player-ratings">Messi (Left) Vs. Ronaldo (Right) FIFA Player Ratings</h3>
-<p><code>&lt;!-- /wp:heading --&gt;</code></p>
-<p><code>&lt;!-- wp:jetpack/tiled-gallery {"columnWidths":[["53.33045","46.66955"]],"ids":[6511,6514]} --&gt;</code></p>
-<p>::: {.wp-block-jetpack-tiled-gallery .aligncenter .is-style-rectangular}
-::: tiled-gallery__gallery
-::: tiled-gallery__row
-::: {.tiled-gallery__col style="flex-basis:53.33045%;"}
-<img alt="" amp-layout="responsive" data-height="923" data-id="6511" data-link="https://pythonmarketer.com/messi-fifa-attributes-cropped/" data-width="433" src="https://pythonmarketer.files.wordpress.com/2022/01/messi-fifa-attributes-cropped.png" url="https://pythonmarketer.files.wordpress.com/2022/01/messi-fifa-attributes-cropped.png?w=433">
-:::</p>
-<p>::: {.tiled-gallery__col style="flex-basis:46.66955%;"}
-<img alt="" amp-layout="responsive" data-height="955" data-id="6514" data-link="https://pythonmarketer.com/ronaldo-attributes-fifa/" data-width="392" src="https://pythonmarketer.files.wordpress.com/2022/01/ronaldo-attributes-fifa.png" url="https://pythonmarketer.files.wordpress.com/2022/01/ronaldo-attributes-fifa.png?w=392">
-:::
-:::
-:::
-:::</p>
-<p><code>&lt;!-- /wp:jetpack/tiled-gallery --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>These ratings represent the players at their peak of their careers. Messi is a better dribbler, while Ronaldo has more power and strength. Messi has the edge in free kicks, curve in his shot and "longshots" 99 to 98 over Cristiano. They are tied at "finishing", each with 99. Ronaldo has the "Power Free-Kick" trait, whereas Messi has "Chip Shot", "Finesse Shot" and "Playmaker" traits giving him an edge.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an "Aerial Threat" specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2" (187 cm) vs. Messi's 5' 7" (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is quite darty.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:embed {"url":"https://www.instagram.com/p/Cc59jtvjk_0/","type":"rich","providerNameSlug":"instagram","responsive":true} --&gt;</code></p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nx">figure</span><span class="w"> </span><span class="kd">class</span><span class="p">=</span><span class="s">&quot;wp-block-embed is-type-rich is-provider-instagram wp-block-embed-instagram&quot;</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>::: wp-block-embed__wrapper
-https://www.instagram.com/p/Cc59jtvjk_0/
-:::</p>
-<div class="highlight"><pre><span></span><code>&lt;figcaption&gt;
-</code></pre></div>
-
-<p>Messi has incredible accuracy from distance.</p>
-<div class="highlight"><pre><span></span><code>&lt;/figcaption&gt;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&lt;/figure&gt;
-</code></pre></div>
-
-<p><code>&lt;!-- /wp:embed --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>Messi is a better passer all around and has perfect "vision", great qualities for winning football games. Only in crossing does he have a lower passing rating. Ronaldo is also 10 points better at "penalties" or penalty kicks. The closer he gets to the goal, the more dangerous he is. Messi is more dangerous with the ball while dribbling, passing or shooting except when taking a PK.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>Advantages can be gained in many different aspects of soccer. EA has developed a fun dataset to model these all time greats across several football skill dimensions. In <a href="https://www.ea.com/en-gb/games/fifa/fifa-22/ratings/ratings-database">2022's version of the game</a>, Messi is rated a 93, with Cristiano 91. Clearly these two are worthy of top honors. Don't forget Robert Lewandowski, with a 92 rating, who consistently lights up the Champions League and Bundesliga.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+                <p>Who is the world's greatest footballer, Messi or Ronaldo? EA Sports surely has calculated the answer to this question in their player ratings. They rate peak Crisitiano Ronaldo, Lionel Messi and Luka Modrić at 99 overall, with Neymar and Lewandowski at 98. Anecdotally, Messi has won 7 <a class="reference external" href="https://www.topendsports.com/sport/soccer/list-player-of-the-year-ballondor.htm">Ballon d'Or</a>, the highest individual football honor one can achieve each year. Ronaldo has won 5 B'allon d'Or. Modrić has won 1 Ballon d'Or. Lewandowski was runner up this year, but has never won the honor. Neymar has never won a Ballon d'Or.</p>
+<p>In <a class="reference external" href="https://www.ea.com/games/fifa/fifa-22">FIFA</a>, a player's video game representation is modeled intricately in a series of traits and specialties characterizing each player. The <a class="reference external" href="https://www.easports.com/fifa/ultimate-team/api/fut/item">&quot;Ultimate Team&quot; EA Sports API</a> is viewable as a plain json page or more cheekily with one line of <a class="reference external" href="https://curl.se/">curl</a> and <a class="reference external" href="https://github.com/stedolan/jq">jq, a &quot;command line json processor&quot;</a>:</p>
+<pre class="literal-block">
+curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
+</pre>
+<p>Enter this in a <a class="reference external" href="https://missing.csail.mit.edu/2020/shell-tools/">shell</a> or <a class="reference external" href="https://github.com/jlevy/the-art-of-command-line">command line</a>. The result is beautiful, readable, pretty printed json!</p>
+<div class="section" id="messi-left-vs-ronaldo-right-fifa-player-ratings-1">
+<span id="messi-left-vs-ronaldo-right-fifa-player-ratings"></span><h2>Messi (Left) Vs. Ronaldo (Right) FIFA Player Ratings</h2>
+<div class="tiled-gallery-gallery docutils container">
+<div class="tiled-gallery-row docutils container">
+<div class="tiled-gallery-col docutils container">
+<div class="figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/01/messi-fifa-attributes-cropped.png" />
+</div>
+</div>
+<div class="tiled-gallery-col docutils container">
+<div class="figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/01/ronaldo-attributes-fifa.png" />
+</div>
+</div>
+</div>
+</div>
+<p>These ratings represent the players at their peak of their careers. Messi is a better dribbler, while Ronaldo has more power and strength. Messi has the edge in free kicks, curve in his shot and &quot;longshots&quot; 99 to 98 over Cristiano. They are tied at &quot;finishing&quot;, each with 99. Ronaldo has the &quot;Power Free-Kick&quot; trait, whereas Messi has &quot;Chip Shot&quot;, &quot;Finesse Shot&quot; and &quot;Playmaker&quot; traits giving him an edge.</p>
+<p>EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an &quot;Aerial Threat&quot; specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2&quot; (187 cm) vs. Messi's 5' 7&quot; (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is quite darty.</p>
+<figure class="wp-block-embed is-type-rich is-provider-instagram wp-block-embed-instagram"><div class="wp-block-embed-wrapper docutils container">
+<a class="reference external" href="https://www.instagram.com/p/Cc59jtvjk_0/">https://www.instagram.com/p/Cc59jtvjk_0/</a></div>
+<figcaption><p>Messi has incredible accuracy from distance.</p>
+</figcaption></figure><p>Messi is a better passer all around and has perfect &quot;vision&quot;, great qualities for winning football games. Only in crossing does he have a lower passing rating. Ronaldo is also 10 points better at &quot;penalties&quot; or penalty kicks. The closer he gets to the goal, the more dangerous he is. Messi is more dangerous with the ball while dribbling, passing or shooting except when taking a PK.</p>
+<p>Advantages can be gained in many different aspects of soccer. EA has developed a fun dataset to model these all time greats across several football skill dimensions. In <a class="reference external" href="https://www.ea.com/en-gb/games/fifa/fifa-22/ratings/ratings-database">2022's version of the game</a>, Messi is rated a 93, with Cristiano 91. Clearly these two are worthy of top honors. Don't forget Robert Lewandowski, with a 92 rating, who consistently lights up the Champions League and Bundesliga.</p>
 <p><strong>jq ftw</strong></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>I had never used jq before this. Really enjoyed the quick, stylish and practical view of some json. This cool terminal display and syntax highlighting was on my Chromebook shell. It's neat how easily you can pretty print json with jq. I rate it a 99 for json pretty printing on the FIFA scale. Read more in the <a href="https://stedolan.github.io/jq/tutorial/">jq documentation</a>!</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p>I had never used jq before this. Really enjoyed the quick, stylish and practical view of some json. This cool terminal display and syntax highlighting was on my Chromebook shell. It's neat how easily you can pretty print json with jq. I rate it a 99 for json pretty printing on the FIFA scale. Read more in the <a class="reference external" href="https://stedolan.github.io/jq/tutorial/">jq documentation</a>!</p>
+</div>
+
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="../pretty-print-the-ea-sports-fifa-ultimate-team-json-with-jq-curl.html">posted at 23:15</a>
-                    &nbsp;&middot;&nbsp;<a href="../category/command-prompt-productivity.html" rel="tag">command prompt, productivity</a>
+                    <a href="https://lofipython.com/pretty-print-the-ea-sports-fifa-ultimate-team-json-with-jq-curl.html">posted at 23:15</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/command-prompt-productivity.html" rel="tag">command prompt, productivity</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="../tag/command-line.html" class="tags">command line</a>
-                    &nbsp;<a href="../tag/data.html" class="tags">data</a>
-                    &nbsp;<a href="../tag/fifa.html" class="tags">fifa</a>
-                    &nbsp;<a href="../tag/football.html" class="tags">football</a>
-                    &nbsp;<a href="../tag/jq.html" class="tags selected">jq</a>
-                    &nbsp;<a href="../tag/json.html" class="tags">json</a>
+                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://lofipython.com/tag/fifa.html" class="tags">fifa</a>
+                    &nbsp;<a href="https://lofipython.com/tag/football.html" class="tags">football</a>
+                    &nbsp;<a href="https://lofipython.com/tag/jq.html" class="tags selected">jq</a>
+                    &nbsp;<a href="https://lofipython.com/tag/json.html" class="tags">json</a>
                 </div>
             </article>
 
@@ -132,9 +98,9 @@ https://www.instagram.com/p/Cc59jtvjk_0/
                 &middot;
                 Powered by <a href="http://getpelican.com">Pelican</a>
                 &middot;
-                <a href="../feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
                 &middot;
-                <a href="../feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
             </footer>
         </div>
         <div class="clear"></div>

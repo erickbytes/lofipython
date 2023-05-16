@@ -18,7 +18,7 @@ I recently automated the loading of data into a Microsoft Access database with `
 
 **Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:**
 
-::
+.. code-block:: python
 
    python
    >>> import pyodbc
@@ -38,7 +38,7 @@ I set all of the field data types to "Short Text" because I'm passing strings as
 
 **Inserting new rows into a Microsoft Access Database:**
 
-::
+.. code-block:: python
 
    import pandas as pd
    import pyodbc

@@ -18,7 +18,7 @@ The first 5 scripts use modules that ship with Python.
 
 **1 ⚡ Uppercase all of the file names in the current working directory.**
 
-::
+.. code-block:: python
 
    import os
    filenames = os.listdir(os.getcwd())
@@ -28,7 +28,7 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
 
 **2 ⚡ Get all filenames in the current directory and write to a text file.**
 
-::
+.. code-block:: python
 
    import os
    folder_contents = os.listdir(os.getcwd())
@@ -37,7 +37,7 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
 
 **3 ⚡ Check what day of the week is today.**
 
-::
+.. code-block:: python
 
    import calendar
    from datetime import date
@@ -51,7 +51,7 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
 
 **4 ⚡ Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.**
 
-::
+.. code-block:: python
 
    import glob
    import os
@@ -70,7 +70,7 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
 
 .. container::
 
-   ::
+.. code-block:: python
 
       import webbrowser
       webbrowser.open('https://www.luckyseat.com/hamilton-chi/', new=0)
@@ -88,7 +88,7 @@ I installed pandas and pdfkit with pip. `Psst... new to pip <https://pythonmarke
 
 **1 ⚡ Split a csv file into smaller excel files. **
 
-::
+.. code-block:: python
 
    import pandas as pd
    file_name = 'big_file.csv'
@@ -101,7 +101,7 @@ I installed pandas and pdfkit with pip. `Psst... new to pip <https://pythonmarke
 
 **2 ⚡ Convert a .xlsx to .csv**
 
-::
+.. code-block:: python
 
    import pandas as pd
    df = pd.read_excel("input.xlsx")
@@ -109,7 +109,7 @@ I installed pandas and pdfkit with pip. `Psst... new to pip <https://pythonmarke
 
 **3 ⚡ Convert a .xlsx to .html**
 
-::
+.. code-block:: python
 
    import pandas as pd
    file_name = "data.xlsx"
@@ -143,7 +143,7 @@ To use pdfkit on Windows, go to the link, choose your version to download. This 
 
    **For Windows, **\ `download wkhtmltopdf <https://wkhtmltopdf.org/downloads.html>`__\ ** and add this config patch for pdfkit:**
 
-::
+.. code-block:: python
 
    import pdfkit
    url = 'https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013'
@@ -152,28 +152,21 @@ To use pdfkit on Windows, go to the link, choose your version to download. This 
 
 **4 ⚡ Convert a .html file to .pdf. (Add config patch above for Windows.)**
 
-::
+.. code-block:: python
 
    import pdfkit
    pdfkit.from_file('data.html', 'report.pdf')
 
 **5 ⚡ Create a pdf snapshot of a webpage on Ubuntu below. (Add config patch above for Windows.)**
 
-::
+.. code-block:: python
 
    import pdfkit
    url = 'https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013'
    pdfkit.from_url(url, 'alicia_keys.pdf')
 
-.. container::
+`pdfkit documentation <https://pypi.org/project/pdfkit/>`__
 
-.. container::
-
-   `pdfkit documentation <https://pypi.org/project/pdfkit/>`__
-
-.. container::
-
-.. container::
 
 ⚡ **Final Thoughts**
 

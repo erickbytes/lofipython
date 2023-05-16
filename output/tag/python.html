@@ -444,6 +444,96 @@ Like static site generators? Check out <a class="reference external" href="https
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags selected">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/static-site-generator.html" class="tags">static site generator</a>
                 </div>
+            </article>            <h4 class="date">Apr 06, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/aggregating-tracebacks-from-python-log-files.html" rel="bookmark" title="Permanent Link to &quot;Aggregating A Python Error Summary from Log Files&quot;">Aggregating A Python Error Summary from Log Files</a>
+                </h2>
+
+                
+                
+
+                <p>Follow these steps to maintain more reliable scripts and catch more of your traceback errors:</p>
+<ol class="arabic simple">
+<li>automate your scripts to run daily, weekly, monthly, etc.</li>
+<li><a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/">Log all your traceback errors</a> with the <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging module</a>. I like dumping all of my logs into a single folder.</li>
+<li>automate aggregating the logs and parsing tracebacks</li>
+<li>start a feedback loop of fixing the tracebacks until 0 tracebacks remain</li>
+<li>re-run the script and confirm tracebacks disappeared</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;look in each log file, line by line for Python error keywords&quot;&quot;&quot;</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;Traceback&#39;</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">or</span> <span class="s1">&#39;Error&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="c1"># replace commas for csv</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">log</span><span class="p">,</span><span class="n">line</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">errors</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">parse traceback errors from log files in current working directory</span>
+<span class="sd">and write to them to a csv file</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.log&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+<span class="n">tracebacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">]</span>
+<span class="c1"># dedupe list of lists with itertools module + list comprehension</span>
+<span class="n">tracebacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">tracebacks</span><span class="p">)]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Log Traceback Errors.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
+    <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Log,Traceback&#39;</span><span class="p">)</span> <span class="c1"># csv header row</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tracebacks</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>This pure python script allows me to hone in on potential automation problem areas with my scheduled Python scripts. It doesn't catch the entire traceback. Rather, it shows the error type and the name of the log file that contains that error in a csv. I use this log aggregation script to monitor my daily or weekly scheduled python scripts, along with <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a>.</p>
+<p><strong>Noteworthy gains from aggregating my logs:</strong></p>
+<ul class="simple">
+<li>less fear of missing mistakes</li>
+<li>more freedom to improve the code</li>
+<li>catch the mistakes faster</li>
+</ul>
+<p>See also: <a class="reference external" href="https://docs.python.org/3/howto/logging.html">Python Documentation - Basic Logging Tutorial</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/aggregating-tracebacks-from-python-log-files.html">posted at 01:09</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-education-programming-scripts.html" rel="tag">automation, coding, education, programming, Scripts</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/productivity.html" class="tags">productivity</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags selected">python</a>
+                </div>
             </article>            <h4 class="date">Jan 16, 2021</h4>
 
             <article class="post">
@@ -513,140 +603,6 @@ Like static site generators? Check out <a class="reference external" href="https
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags selected">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/stock-formulas.html" class="tags">stock formulas</a>
                     &nbsp;<a href="https://lofipython.com/tag/stocks.html" class="tags">stocks</a>
-                </div>
-            </article>            <h4 class="date">Oct 04, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/post-a-photo-to-your-facebook-page-with-the-unsplash-facebook-apis.html" rel="bookmark" title="Permanent Link to &quot;Post an Unsplash Photo to Facebook Pages with Python&quot;">Post an Unsplash Photo to Facebook Pages with Python</a>
-                </h2>
-
-                
-                
-
-                <p>My goal was to automate posting positive photos and quotes to my Facebook page, &quot;<a class="reference external" href="https://www.facebook.com/positivedailythought">Positive Thoughts Daily</a>&quot;, with the Unsplash and Facebook APIs. Here's how I did it!</p>
-<p>This implementation relies on <a class="reference external" href="https://unsplash.com/&#64;erickbytes/likes">my own collection of photos on Unsplash</a>. I will manually select which photos I like to get added to my collection. Then my app will take the new photos and post one a day for me.</p>
-<blockquote>
-Side note: the free version of the Unsplash API is capped at 50 requests per week, which was enough for me.</blockquote>
-<div class="section" id="setting-up-the-facebook-api">
-<h2>Setting Up The Facebook API</h2>
-<ol class="arabic simple">
-<li>Sign up for a Facebook <a class="reference external" href="https://developers.facebook.com/">developer account</a></li>
-<li>Create a new Facebook app</li>
-<li>Add &quot;page_manage_posts&quot; and &quot;pages_read_user_content&quot; permissions to your app in the <a class="reference external" href="https://developers.facebook.com/tools/explorer">Graph API Explorer</a></li>
-<li>Get a &quot;short lived&quot; user access token from the Graph API explorer (optional: fetch a &quot;long lived&quot; user access token, which lasts up to 60 days)</li>
-<li>Use your user access token to a fetch your page's access token</li>
-</ol>
-<p><strong>Optional: fetch long lived access token with curl</strong></p>
-<pre class="code python literal-block">
-<span class="n">curl</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s2">&quot;https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&amp; client_id={app-id}&amp; client_secret={app-secret}&amp; fb_exchange_token={short-lived-user-access-token}&quot;</span>
-</pre>
-<p><strong>Fetch your Facebook page's access token</strong></p>
-<pre class="code python literal-block">
-<span class="n">curl</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s2">&quot;https://graph.facebook.com/{your-user-id}/accounts?access_token={user-access-token}</span>
-</pre>
-</div>
-<div class="section" id="setting-up-unsplash">
-<h2>Setting up Unsplash</h2>
-<ol class="arabic simple">
-<li>Sign up for an <a class="reference external" href="https://unsplash.com/documentation">Unsplash developer account</a></li>
-<li>Install the python-unsplash library. In the terminal enter:</li>
-</ol>
-<pre class="code python literal-block">
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">unsplash</span>
-</pre>
-<ol class="arabic simple" start="3">
-<li>Decide what photo you want to post. This example fetches a random photo from my <a class="reference external" href="https://unsplash.com/collections/66610223/positive-thoughts-daily">Unsplash collection</a>. You can also fetch any photo at random, or pass in a query to get a certain type of photo.</li>
-</ol>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">unsplash.api</span> <span class="kn">import</span> <span class="n">Api</span>
-<span class="kn">from</span> <span class="nn">unsplash.auth</span> <span class="kn">import</span> <span class="n">Auth</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Python-Unsplash library Github:</span>
-<span class="sd">https://github.com/yakupadakli/python-unsplash</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;add_your_client_id&quot;</span>
-<span class="n">client_secret</span> <span class="o">=</span> <span class="s2">&quot;add_your_client_secret&quot;</span>
-<span class="n">redirect_uri</span> <span class="o">=</span> <span class="s2">&quot;add_your_redirect_uri&quot;</span>
-<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="n">auth</span> <span class="o">=</span> <span class="n">Auth</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_secret</span><span class="p">,</span> <span class="n">redirect_uri</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">code</span><span class="p">)</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span>
-<span class="c1"># returns a python list containing a class</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">collections</span><span class="o">=</span><span class="mi">66610223</span><span class="p">)</span> <span class="c1"># my collection id</span>
-<span class="n">image_id</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Use image_id to get random photo&#39;s</span>
-<span class="sd">download link from a collection.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://api.unsplash.com/photos/</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">/download?client_id=</span><span class="si">{</span><span class="n">client_id</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<span class="n">download_link</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
-</pre></div></td></tr></table></div>
-</div>
-<div class="section" id="posting-the-unsplash-image-to-facebook">
-<h2>Posting the Unsplash Image to Facebook</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="sd">&quot;&quot;&quot;Use download link and post to page with Facebook API.&quot;&quot;&quot;</span>
-<span class="n">page_id</span> <span class="o">=</span> <span class="s2">&quot;add_page_id_from_about_section&quot;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://graph.facebook.com/</span><span class="si">{</span><span class="n">page_id</span><span class="si">}</span><span class="s2">/photos?access_token=</span><span class="si">{</span><span class="n">page_access_token</span><span class="si">}</span><span class="s2">&amp;url=</span><span class="si">{</span><span class="n">download_link</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">post_ids</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">post_ids</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>Post Project Reflections</strong></p>
-<p>This was my first time working with the Facebook API. Honestly, it's a little crazy trying to balance all the token types in your head. There are about 5 different types of tokens that are used for different things! Ultimately I was able to figure out how to to post a photo. So there is a bit of a learning curve. It's a good challenge to build your API skills. The Unsplash API requires no <a class="reference external" href="https://en.wikipedia.org/wiki/OAuth">Oauth</a> tokens and is easier to pick up.</p>
-<p>My Facebook page posts are now triggered by page loads on this <a class="reference external" href="https://positivethoughts.pythonanywhere.com/">website</a>! I am using a <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/">MySQL database</a> to track which images I post to make sure I don't duplicate any posts and to make sure I only post once every 24 hours. Ah, I love the smell of fresh automation in the morning. 😀</p>
-<p><strong>Supplementary Links</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://developers.facebook.com/docs/pages/getting-started">FB API &quot;Getting Started&quot;</a></li>
-<li><a class="reference external" href="https://developers.facebook.com/tools/explorer">FB API &quot;Explorer&quot;</a></li>
-<li><a class="reference external" href="https://developers.facebook.com/docs/permissions/reference">FB Permissions Reference</a></li>
-<li><a class="reference external" href="https://developers.facebook.com/docs/facebook-login/access-tokens/debugging-and-error-handling/">Debugging Tokens</a></li>
-<li><a class="reference external" href="https://developers.facebook.com/docs/pages/publishing/">FB API Publishing</a></li>
-<li><a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/">A Guide to Tackling APIs</a>, written by me!</li>
-</ul>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/post-a-photo-to-your-facebook-page-with-the-unsplash-facebook-apis.html">posted at 15:13</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-programming.html" rel="tag">APIs, coding, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/facebook-api.html" class="tags">Facebook API</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags selected">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/social-media.html" class="tags">social media</a>
-                    &nbsp;<a href="https://lofipython.com/tag/unsplash.html" class="tags">Unsplash</a>
                 </div>
             </article>
 

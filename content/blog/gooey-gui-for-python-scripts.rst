@@ -24,7 +24,7 @@ Argparse comes stock with Python. You can install Gooey via the `pip installer <
 
 Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).
 
-::
+.. code-block:: python
 
    from argparse import ArgumentParser
    from gooey import Gooey
@@ -54,7 +54,7 @@ The @Gooey() part of the code is an advanced function known as a `decorator in P
 
 Below is my script that uses the more advanced GooeyParser for its "FileChooser" widget. Gooey allows you to group widgets together and set how many widgets per line with the gooey_options={} parameter.
 
-::
+.. code-block:: python
 
    from gooey import Gooey, GooeyParser
     

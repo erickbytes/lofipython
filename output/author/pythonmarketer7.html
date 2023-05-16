@@ -33,7 +33,577 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Aug 05, 2017</h4>
+        <div id="content">            <h4 class="date">Nov 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/automated-python-with-windows-task-scheduler.html" rel="bookmark" title="Permanent Link to &quot;Automated Python With Windows Task Scheduler&quot;">Automated Python With Windows Task Scheduler</a>
+                </h2>
+
+                
+                
+
+                <p><strong>So you want to run your Python scripts automatically, but how?</strong></p>
+<p>I had heard of several popular scheduling libraries in Python like <a class="reference external" href="http://www.celeryproject.org/">celery</a>, <a class="reference external" href="https://www.pyinvoke.org/">Invoke</a>, and&nbsp;<a class="reference external" href="https://github.com/dbader/schedule">schedule</a>. One of my requirements is to run the python file &quot;in the background&quot;, not in command prompt or an open window.</p>
+<p>Enter Windows Task Scheduler, the de facto scheduler on Windows 7 computers. I have&nbsp; scheduled a few scripts and it is working like a charm. In this post, I will schedule an example script to clean up my desktop at the beginning of each day. I have a habit of accumulating many Excel files there throughout the workday. This example automatically moves them into a folder.</p>
+<p>Other Windows scheduling alternatives worth mentioning include <a class="reference external" href="http://thepythoncorner.com/dev/how-to-create-a-windows-service-in-python/">creating a Windows service</a>, or using <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks">schtasks</a> if you prefer the command line.</p>
+<p><strong>Here's how to schedule a Python script to run:</strong></p>
+<ol class="arabic simple">
+<li>Search for Windows Task Scheduler in the start menu. Then select &quot;Task Scheduler Library&quot; to see all of the tasks Windows is running automatically.</li>
+<li>In the right toolbar, select &quot;Create Basic Task&quot; and give it a name and description. Note: I selected &quot;Configure for: Windows 7, Windows Server 2008 R2&quot;.</li>
+</ol>
+<img alt="general" class="wp-image-1577 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/general.png" style="width: 481px; height: 361px;" />
+<ol class="arabic simple" start="3">
+<li>Set the time and frequency that the program will run in the &quot;Triggers&quot; tab.</li>
+<li>Under the &quot;Actions&quot; tab, select &quot;Start a Program&quot; from the dropdown. Under &quot;Program/Script&quot;, enter the path to your Python.exe file. I set mine to a Python executable located within my <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, but yours might be found wherever you have Python installed.</li>
+</ol>
+<pre class="literal-block">
+C:\Users\your_username\Desktop\36env\Scripts\python.exe
+</pre>
+<ol class="arabic simple" start="5">
+<li>Under &quot;Add arguments (optional)&quot;, add the path to your .py script, within quotes:</li>
+</ol>
+<pre class="literal-block">
+&quot;C:\Users\your_username\Desktop\36env\clean_desktop_excels.py&quot;
+</pre>
+<img alt="actions" class="alignnone size-full wp-image-1578" src="http://pythonmarketer.files.wordpress.com/2018/11/bd0a9-actions-e1543177551739.png" style="width: 448px; height: 236px;" />
+<ol class="arabic simple" start="6">
+<li>Select additional conditions and settings as desired, such as &quot;Wake the computer to run this task&quot; and &quot;Run with highest privileges&quot;.</li>
+</ol>
+<p>I am enjoying this simple, easy and convenient scheduling manager for Windows. I figured most of this out thanks to <a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/analytics/scheduling-a-python-script-or-model-to-run-at-a-prescribed-time/?rmedium=redirect&amp;rsource=/esri/arcgis/2013/07/30/scheduling-a-scrip">this blog</a>. Below is my script to clean my desktop each morning by moving my Excel files into a folder, using Python's stock <a class="reference external" href="https://docs.python.org/3/library/shutil.html">shutil</a> and os libraries. Set it and forget it, ya know what i mean? :D</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">shutil</span> <span class="kn">import</span> <span class="n">move</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Desktop Spreadsheet File Cleaner - Python Marketer</span>
+<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2018/11/25/automated-python-with-windows-task-scheduler/</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Get all Desktop files and folders</span>
+<span class="n">src_directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop&#39;</span>
+<span class="n">dir_items</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">src_directory</span><span class="p">)</span>
+<span class="n">excel_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dir_items</span> \
+                <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">or</span> <span class="s1">&#39;.xls&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
+
+<span class="n">dst</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">Current_Month_Excels&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">xl</span> <span class="ow">in</span> <span class="n">excel_files</span><span class="p">:</span>
+    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">src_directory</span> <span class="o">+</span> <span class="n">xl</span>
+    <span class="n">move</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Additional Reading</strong></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc721846(v=ws.11)?redirectedfrom=MSDN">Troubleshooting Windows Task Scheduler</a> - Windows Documentation</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/automated-python-with-windows-task-scheduler.html">posted at 19:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-productivity-programming-python-windows.html" rel="tag">automation, productivity, programming, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/coding.html" class="tags">coding</a>
+                    &nbsp;<a href="https://lofipython.com/tag/organization.html" class="tags">organization</a>
+                </div>
+            </article>            <h4 class="date">Aug 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/gooey-gui-for-python-scripts.html" rel="bookmark" title="Permanent Link to &quot;Gooey GUI for Python Scripts&quot;">Gooey GUI for Python Scripts</a>
+                </h2>
+
+                
+                
+
+                <p>GUI stands for &quot;Graphical User Interface&quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.</p>
+<p>There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, <a class="reference external" href="https://github.com/hoffstadt/DearPyGui">DearPyGui</a> and PySimpleGUI. I <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">explored Tkinter</a> back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.</p>
+<p>The <a class="reference external" href="https://github.com/chriskiehl/Gooey">Gooey Github page</a> was most useful to me and helped me to do what I needed. The script posted <a class="reference external" href="http://pbpython.com/pandas-gui.html">in this blog</a> helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:</p>
+<ol class="arabic simple">
+<li>some basic widgets piggyback off the <a class="reference external" href="https://www.blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/">argparse</a> library</li>
+<li>another part of the library uses a function called the GooeyParser. The GooeyParser offers more advanced widgets, like a file chooser. This was exactly what I was looking to use to pull in files for my script.</li>
+</ol>
+<p><strong>Installing Gooey</strong></p>
+<p>Argparse comes stock with Python. You can install Gooey via the <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>. Open command prompt or terminal and enter:</p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install Gooey</tt></p>
+<p>Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
+<span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span>
+
+<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Demonstrating python&#39;s vars built-in to store arguments in a python dict.&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;A simple argument parser&#39;</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="s1">&#39;This is where you might put example usage&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option X&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option Y&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign Number&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Help text for option Z&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign Segment&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;All&#39;</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+    <span class="n">user_inputs</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">user_inputs</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">user_inputs</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+    <span class="n">campaign_number</span> <span class="o">=</span> <span class="n">user_inputs</span><span class="p">[</span><span class="s1">&#39;Campaign Number&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">get_args</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+<!--  -->
+<blockquote>
+Side note: Check out Python's <a class="reference external" href="https://docs.python.org/3/library/functions.html#vars">vars() built-in</a> function above. It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!</blockquote>
+<p>The &#64;Gooey() part of the code is an advanced function known as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0318/">decorator in Python</a>. Put simply, decorators are functions that modify the function to which they are attached.</p>
+<p>Below is my script that uses the more advanced GooeyParser for its &quot;FileChooser&quot; widget. Gooey allows you to group widgets together and set how many widgets per line with the gooey_options={} parameter.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
+
+<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adding two argument groups, each accepting two arguments.</span>
+<span class="sd">    Using gooey_options to set layout.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">GooeyParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Export campaign report spreadsheets and upload below.&#39;</span><span class="p">)</span>
+    <span class="n">top_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">gooey_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;show_border&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span><span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+    <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Contact List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Send List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span>
+    <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Opens List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Opens List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span>
+    <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Unsubscribe List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Unsubscribe List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span>
+    <span class="n">bottom_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">gooey_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;show_border&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span><span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">})</span>
+    <span class="n">bottom_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign ID&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number found in the Campaign &#39;Reports&#39; tab&quot;</span><span class="p">)</span>
+    <span class="n">bottom_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Campaign Segment&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Enter A, B, or All. All lists supplied must match segment.&#39;</span><span class="p">)</span>
+    <span class="n">user_inputs</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">())</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">user_inputs</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">get_args</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+<p>Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:</p>
+<img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" />
+<p>Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D</p>
+<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&nbsp;<a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/gooey-gui-for-python-scripts.html">posted at 16:32</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-data-product-development-programming-software.html" rel="tag">coding, data, product development, programming, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/gooey.html" class="tags">gooey</a>
+                    &nbsp;<a href="https://lofipython.com/tag/gui.html" class="tags">gui</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/software-development.html" class="tags">software development</a>
+                </div>
+            </article>            <h4 class="date">Jul 15, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/findstr-aka-grep-for-windows.html" rel="bookmark" title="Permanent Link to &quot;Findstr, RegEx File Searches for Windows&quot;">Findstr, RegEx File Searches for Windows</a>
+                </h2>
+
+                
+                
+
+                <p>Findstr is the Windows alternative to GREP, which runs on the <a class="reference external" href="https://www.howtogeek.com/182649/htg-explains-what-is-unix/">Unix operating system</a>. Findstr searches files with <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> and seems useful for string matching within files and directories.&nbsp; It is one of over <a class="reference external" href="https://www.lifewire.com/list-of-command-prompt-commands-4092302">280 command prompt commands</a>. Here's the official&nbsp;<a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">Windows Documentation</a>&nbsp;and some&nbsp;<a class="reference external" href="https://www.mkyong.com/linux/grep-for-windows-findstr-example/">Linux vs. Windows Examples.</a></p>
+<p><strong>Update:</strong> Windows announced that <a class="reference external" href="https://hackaday.com/2019/06/10/windows-10-goes-to-shell/">Grep and several other Unix command line tools will be added to Windows 10</a>. This is a new alternative to findstr.</p>
+<p><strong>This findstr command returns all lines containing an '&#64;' in a text file.</strong></p>
+<pre class="literal-block">
+findstr &#64; test.txt
+</pre>
+<img alt="findstr Emails" class="alignnone size-full wp-image-1406" src="https://pythonmarketer.files.wordpress.com/2018/07/findstr-emails.png" style="width: 602px; height: 48px;" />
+<p><strong>I was happy to see Findstr's convenient help menu:</strong></p>
+<pre class="literal-block">
+findstr -?
+</pre>
+<img alt="findstr_help" class="alignnone size-full wp-image-1408" src="https://pythonmarketer.files.wordpress.com/2018/07/findstr_help.png" style="width: 657px; height: 603px;" />
+<p>Regular expressions are so powerful. It's nice to have this utility within the command prompt. I am hoping to get to know some of the other 280 command prompt commands.</p>
+<p><strong>I've previously explored regex with Python. This Python regex example finds all words in a text file containing '&#64;' symbols:</strong></p>
+<pre class="literal-block">
+import re
+
+
+# read the file to string + regex email search
+with open('test.txt', 'r') as fhand:
+    string = fhand.read()
+    # this regex returns a python list of emails:
+    emails = re.findall('(\S*&#64;\S+)', string)
+    print(emails)
+</pre>
+<img alt="findall_python" class="alignnone size-full wp-image-1405" src="https://pythonmarketer.files.wordpress.com/2018/07/findall_python.png" style="width: 633px; height: 173px;" />
+<p>For more command prompt nuggets, check out my more recent post: <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/">Exploring Windows Command Line Tools, Batch Files and Remote Desktop Connection</a>.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/findstr-aka-grep-for-windows.html">posted at 19:52</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/command-prompt-data-python-windows.html" rel="tag">command prompt, data, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
+                    &nbsp;<a href="https://lofipython.com/tag/regex.html" class="tags">regex</a>
+                </div>
+            </article>            <h4 class="date">Mar 24, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/blog_post-listcool_python_things.html" rel="bookmark" title="Permanent Link to &quot;list(cool_python_things)&quot;">list(cool_python_things)</a>
+                </h2>
+
+                
+                
+
+                <ol class="arabic simple">
+<li><a class="reference external" href="https://github.com/norvig/pytudes">pytudes</a> - &quot;This project contains&nbsp;<strong>pytudes</strong>—Python programs for perfecting programming skills.&quot;</li>
+<li><a class="reference external" href="https://www.makeartwithpython.com/blog/video-synthesizer-in-python/?utm_source=mybridge&amp;utm_medium=blog&amp;utm_campaign=read_more">Building a video synthesizer in Python</a></li>
+<li><a class="reference external" href="https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/overview">Running micropython on a microcontroller</a></li>
+<li><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> - Super awesome excel and data analysis library. The talk, &quot;<a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Pandas from the Ground Up</a>&quot; by Brandon Rhodes is great!</li>
+<li><a class="reference external" href="http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/">Fuzzy Wuzzy</a> - Fuzzy string matching python library, written by SeatGeek</li>
+<li><a class="reference external" href="https://soundcloud.com/talkpython">Talk Python to Me</a> - Python podcast</li>
+<li><a class="reference external" href="http://www.oreilly.com/programming/free/?imm_mid=0e20a9&amp;cmp=em-prog-na-na-afterp_triggered_email_programming_resources">Free Programming Books from O'Reilly</a></li>
+</ol>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/blog_post-listcool_python_things.html">posted at 19:38</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-programming.html" rel="tag">coding, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>            <h4 class="date">Jan 20, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-python-pip-install-new-libraries.html" rel="bookmark" title="Permanent Link to &quot;How to Install Libraries and Enable the pip Installer in Python&quot;">How to Install Libraries and Enable the pip Installer in Python</a>
+                </h2>
+
+                
+                
+
+                <p>Python comes with a bunch of <a class="reference external" href="https://docs.python.org/3/py-modindex.html">standard modules</a>. My favorites are shutil, glob, datetime, time, os (operating system), re (regular expressions) and webbrowser. The standard library is loaded.</p>
+<p>Inevitably, you'll want to install new libraries from Python's rich ecosystem of external modules. Enter pip, Python's handy package manager and people's champion.</p>
+<p>This post will teach you some Python history, show how to install pandas, and help you troubleshoot problems if it's not working. You'll find Windows and Linux commands for venv setup (recommended). With pip, you'll feel like Neo when installing new modules. Any skill is at your fingertips. It's like learning kung fu. There's probably a library for that!</p>
+<img alt="i know kung fu" class="alignnone size-full wp-image-1321" src="http://pythonmarketer.files.wordpress.com/2018/01/19c0c-i-know-kung-fu-e1516470914221.png" style="width: 1277px; height: 532px;" />
+<p>First, Some Python Version Caveats + History**
+**
+------------------------------------------------</p>
+<p><strong>Python 2 reached end of life on January 1st, 2020</strong>. <a class="reference external" href="https://www.python.org/doc/sunset-python-2/">Python 2 has officially been sunset</a>.</p>
+<p>Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.</p>
+<p><strong>In December 2021, Python 3.6 reached</strong><a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">&quot;end of life phase&quot;</a><strong>.</strong></p>
+<p>Python 3.6 is &quot;now effectively frozen&quot;. Read more in <a class="reference external" href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
+<p><strong>TLDR:</strong> use Python 3.7 to 3.11. This blog endorses using the lightning fast Python version <a class="reference external" href="https://www.python.org/downloads/release/python-3110/">3.11.</a></p>
+<div class="section" id="enter-this-in-your-terminal">
+<h2>Enter This in Your Terminal</h2>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></p>
+<p>Pandas is a super useful library for wrangling spreadsheet data, AKA &quot;tabular&quot; data. If successful, you should see activity that looks similar to the below screenshot, where I am installing <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>, an additional Python Excel library you'll likely want. You are good to go! This is the part where you get to feel like Neo! See <a class="reference external" href="https://docs.python.org/3/installing/index.html">Installing Python Modules</a> in the Python Documentation for more detailed instructions.</p>
+<img alt="neo_pip" class="alignnone size-full wp-image-1322" src="http://pythonmarketer.files.wordpress.com/2018/01/de9d6-neo_pip-e1587604013861.png" style="width: 650px; height: 340px;" />
+<p><strong>To view all your installed libraries, enter:</strong></p>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="nb">list</span>
+</pre>
+<p><strong>Write a &quot;requirements.txt&quot; of installed libraries:</strong></p>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="n">freeze</span> <span class="o">&gt;</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre>
+<p><strong>You can list your outdated packages with the --outdated argument:</strong></p>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="nb">list</span> <span class="o">--</span><span class="n">outdated</span>
+</pre>
+<p><strong>Use pip's -h help command line argument:</strong></p>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="o">-</span><span class="n">h</span>
+</pre>
+<p><strong>Supplementary Resources</strong></p>
+<ul class="simple">
+<li>Take a look at this <a class="reference external" href="https://pythontips.com/2013/07/30/20-python-libraries-you-cant-live-without/">list of 20 modules</a> to get started. Here is another <a class="reference external" href="https://github.com/vinta/awesome-python">more comprehensive list of libraries</a> you can now install.</li>
+<li>Swing by the pip documentation <a class="reference external" href="https://pip.pypa.io/en/stable/quickstart/">Quickstart</a>&nbsp;and <a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/">User Guide</a> to learn some helpful commands.</li>
+<li><a class="reference external" href="https://pypi.org/search/?q=time+travel">PyPI, the&nbsp;Python Package Index</a> is the official Python package repository.</li>
+<li><a class="reference external" href="https://snarky.ca/why-you-should-use-python-m-pip/">Why you should use 'python -m pip'</a></li>
+<li><a class="reference external" href="https://opensource.com/downloads/pip-cheat-sheet?utm_medium=Email&amp;utm_campaign=weekly&amp;sc_cid=7013a000002DAKPAA4">pip cheat sheet from opensource.com</a></li>
+</ul>
+<p>Congrats on figuring out how to install packages with pip, have fun!</p>
+</div>
+<div class="section" id="having-issues-try-upgrading-your-pip-version">
+<h2>Having issues? Try upgrading your pip version.</h2>
+<pre class="code python literal-block">
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre>
+</div>
+<div class="section" id="try-the-ensurepip-command">
+<h2>Try the ensurepip command.</h2>
+<p>This command will install and upgrade pip to the newest version. New in Python 3.4:</p>
+<div class="highlight-python3 notranslate docutils container">
+<div class="highlight docutils container">
+<div class="highlight-python3 notranslate docutils container">
+<div class="highlight docutils container">
+<pre class="literal-block">
+python -m ensurepip --upgrade
+</pre>
+</div>
+</div>
+</div>
+</div>
+<!--  -->
+<blockquote>
+<p>&quot;The&nbsp;<tt class="docutils literal">`ensurepip</tt> &lt;<a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">https://docs.python.org/3/library/ensurepip.html#module-ensurepip</a>&gt;`__&nbsp;package provides support for bootstrapping the&nbsp;<tt class="docutils literal">pip</tt>&nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&nbsp;<tt class="docutils literal">pip</tt> is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&quot;</p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.python.org/3/library/ensurepip.html">ensurepip Python Documentation</a></li>
+</ul>
+</blockquote>
+<p><strong>You should follow best practice and</strong> <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a> <strong>before installing libraries.</strong><a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a><strong>or</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a><strong>will help you out. To create with venv:</strong></p>
+<p><tt class="docutils literal">python3 <span class="pre">-m</span> venv add_env_name_here</tt></p>
+<p>After your environment is created, activate it with the first command below, then install a library on Ubuntu Linux:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">cd add_env_path_here/bin &amp; source activate</tt></li>
+<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
+</ol>
+<p>Alternatively, on Windows computers:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">cd add_env_path_here\scripts &amp; activate</tt></li>
+<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
+</ol>
+<p><strong>Know your OS.</strong></p>
+<p>If you're interested in installing pip on Linux, <a class="reference external" href="https://www.tecmint.com/install-pip-in-linux/">try here</a>. For Mac, <a class="reference external" href="https://www.shellhacks.com/python-install-pip-mac-ubuntu-centos/">try here</a>. Windows, Mac and Linux sometimes use different prefixes (e.g. python, py, python3) to run a python script. Which leads me to my next point...</p>
+<p><strong>Getting the prefix right can be tricky.</strong></p>
+<p>Since this was written, I moved to Python 3.8. When I first moved from Python 2 to 3 on Windows, I somehow accidentally configured the following behavior: entering <strong>python some_program.py</strong>&nbsp;ran a .py file with Python 2. Whereas, entering <strong>py some_program.py</strong>ran a .py file with Python 3.</p>
+<p>In the install command, the prefix is a reference to your Python executable. You may just need to alter your prefix to call it correctly. Here are some to try in place of &quot;python&quot;. Observe what happens when you run these command variations.Good luck!</p>
+<p><tt class="docutils literal">python3 <span class="pre">-m</span> pip install pandas</tt></p>
+<p><tt class="docutils literal">python3.11 <span class="pre">-m</span> pip install pandas</tt></p>
+<p><tt class="docutils literal">py <span class="pre">-m</span> pip install pandas</tt></p>
+<p><tt class="docutils literal">pip3 install pandas</tt></p>
+</div>
+<div class="section" id="how-to-manually-enable-the-pip-installer">
+<h2>How to Manually Enable the pip Installer</h2>
+<p><strong>The rest of this post may be useful to you if you are:</strong></p>
+<ol class="arabic simple">
+<li>Working on legacy Python 2 code or Python 3.3 or lower for which pip is not installed.</li>
+<li>Seeking to fix a faulty pip install that is not working properly.</li>
+<li>Curious to know how to manually set up pip.</li>
+</ol>
+<p><em>Assumes Python is already</em><a class="reference external" href="https://www.python.org/downloads/">installed</a><em>. If you're running Windows 10, I found it easy to install Python from the</em><a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab">Windows store</a><em>.</em></p>
+<p><strong>Download the</strong><a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py file</a><strong>.</strong></p>
+<p>Go to the link, right click the page and &quot;Save As&quot; a .py file to download. Then place the file where you want to access it. I placed mine in&nbsp;C:Python27Libsite-packages</p>
+<p>You could also download the file with <a class="reference external" href="https://curl.haxx.se/">curl</a>:</p>
+<p><tt class="docutils literal">curl <span class="pre">https://bootstrap.pypa.io/get-pip.py</span> <span class="pre">-o</span> <span class="pre">get-pip.pyt-pip.py</span></tt></p>
+<blockquote>
+If you are not sure where your site-packages folder is, type<tt class="docutils literal">`python <span class="pre">-m</span> site</tt> &lt;<a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory">https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory</a>&gt;`__into command prompt for file path ideas.</blockquote>
+<p><strong>Run the get-pip.py file.</strong></p>
+<p>Using command prompt's cd command with a Windows &quot;&amp;&quot; operator to run the Python file in a Windows command prompt:</p>
+<p><tt class="docutils literal">cd <span class="pre">c:\Python27\Lib\site-packages</span> &amp; python <span class="pre">get-pip.py</span></tt></p>
+<p>Or Linux terminal:</p>
+<p><tt class="docutils literal">cd <span class="pre">/Python27/Lib/site-packages</span> &amp;&amp; python <span class="pre">get-pip.py</span></tt></p>
+<p>You should see some activity in command prompt that shows installation/updating of &quot;setup&quot; and &quot;wheel&quot;. When it finishes, you have installed pip.</p>
+<p><strong>Type into command prompt at the same location:</strong></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install requests</tt></p>
+<p>This should install the Requests module into your Python libraries. Requests is an http module which is highly regarded almost universally by the Python community.</p>
+<p><strong>Thanks for reading! Check out these other posts with pip installed library examples:</strong></p>
+<p><a class="reference external" href="https://pythonmarketer.com/2022/01/30/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">Fix Grammar and Spelling with language_tool_python and textblob</a></p>
+<p><a class="reference external" href="http://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/">gooey</a> - GUI library</p>
+<p><a class="reference external" href="http://pythonmarketer.wordpress.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/">tweepy</a> - Twitter library</p>
+<p><a class="reference external" href="https://pythonmarketer.com/2020/05/18/how-to-make-json-requests-with-python/">A Guide to Making HTTP requests</a></p>
+<p><a class="reference external" href="http://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">Plotting Datasets Using Jupyter, Pandas and Matplotlib</a></p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-python-pip-install-new-libraries.html">posted at 17:50</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://lofipython.com/tag/matrix.html" class="tags">matrix</a>
+                    &nbsp;<a href="https://lofipython.com/tag/neo.html" class="tags">neo</a>
+                    &nbsp;<a href="https://lofipython.com/tag/pip.html" class="tags">pip</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-libraries.html" class="tags">python libraries</a>
+                    &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
+                </div>
+            </article>            <h4 class="date">Jan 14, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/python-file-handling-basics.html" rel="bookmark" title="Permanent Link to &quot;Python File Handling Basics&quot;">Python File Handling Basics</a>
+                </h2>
+
+                
+                
+
+                <p>The basis of many great programs revolve around a simple set of operations:</p>
+<ol class="arabic simple">
+<li>Open a file.</li>
+<li>Do something with the file contents.</li>
+<li>Save the new file for the user.</li>
+</ol>
+<p>Python is nice and simple for this.&nbsp;Paste the below lines into a <a class="reference external" href="https://www.google.com/search?q=text+editor&amp;oq=text+edit&amp;aqs=chrome.0.0j69i57j0l4.2054j0j7&amp;sourceid=chrome&amp;ie=UTF-8">text editor</a> and save as a .py file. <a class="reference external" href="https://github.com/BurntSushi/nfldb/wiki/Python-&amp;-pip-Windows-installation">You need to have Python 3 installed</a>. In the same folder as your .py file, save a .txt file with some words in it. Alright, let's write some code:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">file_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your file name. e.g. words.txt&quot;</span><span class="p">)</span>
+<span class="n">file_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<span class="n">file_handle</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+<p>In line 1, we ask the user to enter their file name with Python's raw_input function. When the program runs, the user enters their text file name with extension. This line stores the name in a variable called file_name.</p>
+<p><strong>In line 2,</strong> we open your text file and store it in a variable I have named file_handle. Think of the file handle as a bridge between your code and the text file. Quick point about the 'r' above: that tells the program to open the file in &quot;Read&quot; mode. There are several different file modes in programming. Some modes are just for reading an existing file, some are just for writing a new file, and some are capable of both. <a class="reference external" href="https://stackoverflow.com/questions/16208206/confused-by-python-file-mode-w/16208298">This Stack Overflow post</a> is well written and details the differences between file modes. Once established, the file handle allows you to read the file's contents or write new contents to the file.</p>
+<p><strong>In line 3,</strong>&nbsp;we are calling the .readlines() method on our file handle. This method takes the file contents and stores them, line by line, into a list named &quot;lines&quot;. An alternative method is .read(), which opens the file and stores its contents as one string. Try switching this out in place of&nbsp; .readlines() to check out the difference.</p>
+<p><strong>In line 4,</strong> we are printing the stored lines to show them to the user. We now have the file contents, ready to be used however we please.</p>
+<p><strong>In line 5</strong>, we are closing the file.</p>
+<p>Below, we are going to write a new file. Let's pretend we've done something worth saving with our lines and now want to save them to a new file. We will represent this as the variable &quot;output&quot; in the first line below.</p>
+<pre class="literal-block">
+file_name = input(&quot;Enter any file name.&quot;)
+save_file = open(file_name, &quot;w&quot;)
+save_file.write(&quot;Here is some text to save in a file.&quot;)
+save_file.close()
+</pre>
+<p>In line 1, we are using Python's input function to ask the user what to name the file and storing it in a variable named file_name.</p>
+<p>In line 2,&nbsp; we are calling the open function again that we used in the first example, but this time, notice the &quot;w&quot;. This indicates that we are opening the file in &quot;write&quot; mode.</p>
+<p>In line 3, we are calling the .write() method on our file handle, named save_file, and passing it our text to be saved in our new file.</p>
+<p><strong>In line 4</strong>, we are closing the file, completing the creation of our new file in the same folder as our .py program file.</p>
+<p>Your program is now ready to be run. Double-click your .py file to execute it.</p>
+<p>Before learning Python, file operations were a mystery to me. It took me a while to understand this clearly, and I wanted to share. Once you master these basic file operations, programming gets to be a lot more fun. Do try it out for yourself :D</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/python-file-handling-basics.html">posted at 18:53</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
+                </div>
+            </article>            <h4 class="date">Aug 09, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html" rel="bookmark" title="Permanent Link to &quot;Creating A Simple Website and Server Environment with Node.js and Express.js&quot;">Creating A Simple Website and Server Environment with Node.js and Express.js</a>
+                </h2>
+
+                
+                
+
+                <p>Here is what I have deduced is the fastest way to get an app up and running with Node.js. This requires some familiarity with using the command line.&nbsp;I completed the Codeacademy course &quot;<a class="reference external" href="https://www.codecademy.com/learn/learn-the-command-line">Learn The Command Line</a>&quot; before beginning with Node.js. I think it helped me better understand what the commands are and what they do.</p>
+<ol class="arabic simple">
+<li>Download and install&nbsp;<a class="reference external" href="https://nodejs.org/en/">Node.JS</a></li>
+<li>Open the node command prompt. (This was on a windows machine.)</li>
+<li><tt class="docutils literal">mkdir node_apps</tt><ul>
+<li>creates a folder for your app(s)</li>
+</ul>
+</li>
+<li><tt class="docutils literal">cd \app_name</tt><ul>
+<li>changes command prompt directory to your app's folder</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm &nbsp;init</tt><ul>
+<li>Creates json file for your app</li>
+<li>fill out applicable info or just hit enter until the file is created</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm install express</tt><ul>
+<li>installs express.js module in node.js</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm install <span class="pre">express-generator</span> <span class="pre">-g</span></tt><ul>
+<li>installs express-generator module in node.js</li>
+<li>this module creates the web app's structure once the command in the next step is entered</li>
+</ul>
+</li>
+<li><tt class="docutils literal">express app_name</tt><ul>
+<li>creates the structure for your app and all necessary folders. (views, css, Javascript, routing, etc.)</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm install</tt><ul>
+<li>ensures all app module dependencies are installed</li>
+</ul>
+</li>
+<li><tt class="docutils literal">npm start</tt><ul>
+<li>starts your server and web app</li>
+</ul>
+</li>
+<li>Go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> in a browser. Port 3000 is the default port of Express.<ul>
+<li>Your app is live.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>I learned most of this from <a class="reference external" href="https://codeforgeek.com/2014/10/express-complete-tutorial-part-1/">this great blog post</a>.</li>
+<li>The above does not include a database integration. I integrated with a MongoDB database by <a class="reference external" href="https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-for-front-end-developers-to-getting-up-and-running-with-nodejs-express-and-mongodb">following the instructions in this post</a>.</li>
+<li>This <a class="reference external" href="https://www.youtube.com/watch?v=1uFY60CESlM">YouTube video</a> was also very helpful to me for figuring out MongoDB and Node.js integration.</li>
+<li>An HTML shorthand language called jade (aka pug) comes stock within Express.js.&nbsp; <a class="reference external" href="https://webapplog.com/jade/">Here's further reading</a> on the pros and cons.</li>
+<li>All of the above has been from my own studies. I do not claim anything listed as the most efficient or best way to use Node.js. This is what has worked for me over the past two days.</li>
+<li>It feels good to whip up a nimble app environment that is capable of producing and supporting world changing software; Node.js is used by Netflix, PayPal, Microsoft and Uber.</li>
+</ul>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html">posted at 21:16</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-javascript-programming-web-development.html" rel="tag">coding, javascript, programming, web development</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/creating-websites.html" class="tags">creating websites</a>
+                    &nbsp;<a href="https://lofipython.com/tag/expressjs.html" class="tags">express.js</a>
+                    &nbsp;<a href="https://lofipython.com/tag/mongodb.html" class="tags">mongodb</a>
+                    &nbsp;<a href="https://lofipython.com/tag/nodejs.html" class="tags">Node.js</a>
+                    &nbsp;<a href="https://lofipython.com/tag/web-dev.html" class="tags">web dev</a>
+                    &nbsp;<a href="https://lofipython.com/tag/website.html" class="tags">website</a>
+                </div>
+            </article>            <h4 class="date">Aug 05, 2017</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -167,237 +737,6 @@
                     &nbsp;<a href="https://lofipython.com/tag/web-development.html" class="tags">web development</a>
                     &nbsp;<a href="https://lofipython.com/tag/website.html" class="tags">website</a>
                 </div>
-            </article>            <h4 class="date">Jul 28, 2017</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/cycles.html" rel="bookmark" title="Permanent Link to &quot;Cycles&quot;">Cycles</a>
-                </h2>
-
-                
-                
-
-                <p>We move in cycles. Work, rest, re-energize, play, repeat. The rhythm of life.</p>
-<p>I began my coding endeavors in the fall of 2015. After 6 months of steady <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/11/random-findings/">coding practice and studying</a>, I went from no knowledge to a basic hobbyist programmer capable of creating a website with the help of <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/03/starting-to-almost-kinda-think-about-creating-a-web-app/">a framework</a>. I published a few of my own primitive apps. Then I relapsed. Coding and my full-time job wore me out. I stayed away from coding for about 6 months.</p>
-<p>My ultimate goal to learn to code was to be able to build my own websites and apps. I've done that now. I've found ways to do it more efficiently, which I will share in future posts.</p>
-<p>Two of my recent moonshot projects were&nbsp;Social Queues, a social playlist builder for Spotify and Dropcycle, a bicycle on demand pick-up service. Neither went anywhere, or really were that good of ideas, but I was able to get to bare minimum viable product status, with little to no code. Sites like <a class="reference external" href="http://carrd.co">carrd.co</a> work well to build a quick landing page as proof of concept or landing page test. My favorite project might be my <a class="reference external" href="http://tameimpala.pythonanywhere.com">Tame Impala website</a>, which I used <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/29/getting-started-with-web2py/">web2py</a>&nbsp;to build the site and <a class="reference external" href="http://pythonanywhere,com">pythonanywhere</a> to host for free :)</p>
-<p>My aspirations have shifted. Instead of just building apps, I want to build apps that are useful to others and help me achieve financial freedom and the ability to own my time.</p>
-<p>I believe in cycles of learning. Similar to being in school: semester of study, then time off to rest, then semester of study, more rest, etc. The time away is as important as the time of study. Earlier this year, I returned to programming and web development. After a long time of not writing on this blog, I'm back at it. New cycle.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/cycles.html">posted at 18:32</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-work.html" rel="tag">coding, programming, work</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/web-apps.html" class="tags">web apps</a>
-                </div>
-            </article>            <h4 class="date">Apr 30, 2016</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/useful-links-for-web2py-beginners.html" rel="bookmark" title="Permanent Link to &quot;Useful Links for web2py Beginners&quot;">Useful Links for web2py Beginners</a>
-                </h2>
-
-                
-                
-
-                <p>As I've been grappling with&nbsp;web2py, I've found&nbsp;a lot of useful posts and sites that have helped me along the way:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://groups.google.com/forum/#!topic/web2py/IURWDAP2eTY">How to Deploy Your App to PythonAnywhere</a>: So easy it's amazing. I've already deployed an app to see if I could.</li>
-<li>For CSS - I found <a class="reference external" href="https://groups.google.com/forum/#!topic/web2py/cFc5NPQmmhc">this</a> and <a class="reference external" href="http://stackoverflow.com/questions/7184489/web2py-linking-to-css">this</a>&nbsp;useful. I've learned a tiny amount of CSS (<a class="reference external" href="https://www.coursera.org/learn/introcss/">Thanks to Colleen van Lent!</a>) but am now able to manipulate the layout of my apps.</li>
-<li>An Easy Way to <a class="reference external" href="http://web2py.com/book/default/chapter/07#Custom-forms">Customize&nbsp;Forms</a></li>
-<li><a class="reference external" href="http://web2py.com/examples/static/web2py_cheatsheet.pdf">web2py Cheat Sheet</a></li>
-<li><a class="reference external" href="https://joecodeswell.wordpress.com/2011/06/09/web2py-url-mapping/">URL Mapping Notes</a> - I'm still understanding how the URL function works in web2py but it's very&nbsp;powerful from what I have gathered.</li>
-<li><a class="reference external" href="https://joecodeswell.wordpress.com/2011/05/25/web2py-dal-quick-reference/">DAL Quick Reference Guide</a></li>
-</ul>
-<p><strong>Update:</strong> consider using <a class="reference external" href="https://github.com/web2py/py4web">py4web</a>, web2py's successor</p>
-<ul class="simple">
-<li>py4web documentation: <a class="reference external" href="https://py4web.com/_documentation/static/en/chapter-05.html">The database abstraction layer (DAL)</a></li>
-<li>py4web documentation: <a class="reference external" href="https://py4web.com/_documentation/static/en/chapter-01.html#">Installation and Startup</a></li>
-<li>Bonus: <a class="reference external" href="http://www.oreilly.com/programming/free/how-to-make-mistakes-in-python.csp">How to Make Mistakes in Python</a>&nbsp;- Free for download.</li>
-</ul>
-<p><strong>See also:</strong> <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/29/getting-started-with-web2py/">Getting Started With web2py</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/useful-links-for-web2py-beginners.html">posted at 20:03</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/programming-python-web-development-web2py.html" rel="tag">programming, python, web development, web2py</a>
-                </div>
-            </article>            <h4 class="date">Apr 05, 2016</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/on-learning-new-things.html" rel="bookmark" title="Permanent Link to &quot;On Learning New Things&quot;">On Learning New Things</a>
-                </h2>
-
-                
-                
-
-                <p>Most&nbsp;new skills&nbsp;I've tried to learn seem to follow a similar trajectory:</p>
-<ul class="simple">
-<li><strong>Stage One - Beginner's Thrill:</strong> A rapid growth and learning pace at the beginning, because I'm&nbsp;conquering a lot of small goals, diving into something new and there are rapid gains which feels great.</li>
-<li><strong>Stage Two - Amateur's Reality:</strong>&nbsp;The pace of learning and accomplishment levels off.&nbsp;I'm still&nbsp;learning, but&nbsp;the&nbsp;leaps forward start following a plateau trajectory. This stage is not as rewarding as the first. The key is to push through and jump to the next plateau and keep improving.</li>
-<li><strong>Stage Three - Mastery:</strong> This is the goal with most things I&nbsp;want to learn, and if I&nbsp;gain enough experience and skill, I'll have the ability to apply the&nbsp;new things I've learned to accomplish my&nbsp;goals.</li>
-</ul>
-<p>This is my own&nbsp;way of paraphrasing what I've read a million times on the internet - put in the hours, stay focused and don't stop trying. Right now I'm somewhere around&nbsp;stage one/two with Python. Gotta&nbsp;keep pushing forward. (This blog is also serving as a pep talk to myself.)</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/on-learning-new-things.html">posted at 00:36</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/life.html" rel="tag">life</a>
-                </div>
-            </article>            <h4 class="date">Mar 29, 2016</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/getting-started-with-web2py.html" rel="bookmark" title="Permanent Link to &quot;Getting Started With web2py&quot;">Getting Started With web2py</a>
-                </h2>
-
-                
-                
-
-                <p>Feeling really good about my progress with web2py. The tutorial videos are comprehensive, yet easy to understand. For a beginner, the &quot;batteries included&quot; philosophy that web2py has embraced is a godsend. This means&nbsp;everything you need to get creating comes stock. I <a class="reference external" href="http://www.web2py.com/init/default/download">downloaded the web2py program</a>, ran it, entered a password, and was immediately using&nbsp;a functional development interface.</p>
-<p>web2py follows the <a class="reference external" href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model - View - Controller software architecture</a>&nbsp;- which means it separates out the activities of programs into a few different layers (please forgive my oversimplified explanations):</p>
-<ul class="simple">
-<li>Model - Stores data / used&nbsp;in tutorial for database table creation (Written in Python)</li>
-<li>Controller - Used to define page functions (Python)</li>
-<li>Views - What the user sees (HTML/CSS/Javascript)</li>
-</ul>
-<img alt="en300" class="alignnone wp-image-479" src="https://pythonmarketer.files.wordpress.com/2016/03/en300.png" style="width: 460px; height: 307px;" />
-<p><em>(Image&nbsp;from web2py Documentation)</em></p>
-<p><strong>If you're thinking about trying web2py&nbsp;here's a few things that I've really liked so far:</strong></p>
-<ul class="simple">
-<li>I have minimal knowledge outside of&nbsp;a few basic concepts of server operations. web2py provides a few simple lines of code that allows quick creation of a table (done in model) and corresponding form (done in controller/view) to add entries to the table and display form submissions elsewhere on your site.</li>
-<li>Right now, I'm enjoying learning&nbsp;about the <a class="reference external" href="https://py4web.com/_documentation/static/en/chapter-05.html">Database Abstraction Layer (DAL),</a> which is pretty cool because you can rapidly run and test complex server queries within it.</li>
-<li>It's set up for multiple applications, so I can create and play with&nbsp;several projects at once, whether simple applications or more complex websites.</li>
-</ul>
-<p>There are 30 videos total on the web2py documentation page, and I've only watched 11 of them but have already learned a ton. The style of the Massimo Di Pierro is great because you often pick up on some golden nuggets of coding wisdom and programming&nbsp;tips while he walks you through the topic.</p>
-<p>It's pretty sweet&nbsp;to be able to create and manipulate a website so quickly; still need to learn more, such as pick up CSS to really make it my own. But for now I'm happy for the many small accomplishments&nbsp;that have been easier to reach thanks to web2py.</p>
-<blockquote>
-<strong>Update:</strong> consider using <a class="reference external" href="https://github.com/web2py/py4web">py4web</a>, web2py's successor</blockquote>
-<p><strong>See also:</strong> <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/04/30/useful-links-for-web2py-beginners/">Useful Links for web2py Beginners</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/getting-started-with-web2py.html">posted at 03:02</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-web-development-web2py.html" rel="tag">coding, programming, python, web development, web2py</a>
-                </div>
-            </article>            <h4 class="date">Mar 22, 2016</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/choosing-a-web-development-path.html" rel="bookmark" title="Permanent Link to &quot;Choosing a Web Development Path&quot;">Choosing a Web Development Path</a>
-                </h2>
-
-                
-                
-
-                <p>I have recently finished this <a class="reference external" href="https://www.coursera.org/learn/html">HTML course</a>, which recommends using cPanel to configure websites. So I bought a domain and registered with cPanel.</p>
-<ul class="simple">
-<li><strong>What I thought would happen in trying to create a website/app:</strong>&nbsp;Buy a domain and use cPanel and Python in perfect sync to create a website.</li>
-<li><strong>Reality:</strong>&nbsp;cPanel is configured mostly for PHP. You can run Python scripts with it, but it doesn't seem to be the most effective route from what I've read.</li>
-</ul>
-<p>So I went back to the drawing board and I've simplified this down to&nbsp;two basic paths:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="40%" />
-<col width="30%" />
-<col width="23%" />
-</colgroup>
-<tbody valign="top">
-<tr><td>Options</td>
-<td>Languages</td>
-<td>Hosting</td>
-<td>Framework / IDE</td>
-</tr>
-<tr><td><strong>Path 1</strong></td>
-<td>Build a website using Python + Python Web Frameworks and HTML</td>
-<td>PythonAnywhere or other Python friendly hosts</td>
-<td><a class="reference external" href="http://www.web2py.com/">web2py</a></td>
-</tr>
-<tr><td><strong>Path 2</strong></td>
-<td>Use a combo of HTML, Javascript + Python, other languages</td>
-<td>cPanel, many other hosts</td>
-<td>None (AKA I'm not sure)</td>
-</tr>
-</tbody>
-</table>
-<p>I'm going with Path 1 because the only language I know is Python. I hope to learn other&nbsp;languages like Javascript and CSS but would like to get building as fast as possible.</p>
-<p>I found a free web hosting service called PythonAnywhere. There are other <a class="reference external" href="https://wiki.python.org/moin/FreeHosts">free</a> and <a class="reference external" href="https://www.heroku.com/">paid</a> Python-friendly hosts that allow you to use Python.</p>
-<p>Instead of the <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/03/starting-to-almost-kinda-think-about-creating-a-web-app/">previously mentioned web frameworks</a>, I've chosen web2py as a starter because of its compatibility with PythonAnywhere,&nbsp;its simplicity, easy to read documentation and relative ease of use for beginners.</p>
-<ul class="simple">
-<li>A note on PythonAnywhere: they get 5 stars for the tutorial pictured below. It is very nice to see in the whirlwind of confusion of learning to deal with code and a new environment.</li>
-</ul>
-<img alt="PythonAnywhere Tutorial" class="alignnone size-full wp-image-286" src="https://pythonmarketer.files.wordpress.com/2016/03/pythonanywhere-tutorial.jpg" style="width: 1199px; height: 313px;" />
-<p>++ Love this opening quote from <a class="reference external" href="http://web2py.com/book">web2py Documentation</a>: &quot;I believe that the ability to easily build high quality web applications is of critical importance for the growth of a free and open society. This prevents the biggest players from monopolizing the flow of information.&quot;</p>
-<p>+++ A note on web2py so far: <a class="reference external" href="http://www.web2py.com/init/default/documentation">the videos from the creator</a>, Massimo Di Pierro, are super useful!</p>
-<blockquote>
-<strong>Update:</strong> consider using <a class="reference external" href="https://github.com/web2py/py4web">py4web</a>, web2py's successor</blockquote>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/choosing-a-web-development-path.html">posted at 03:45</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-web-development-web2py.html" rel="tag">coding, programming, python, web development, web2py</a>
-                </div>
-            </article>            <h4 class="date">Mar 11, 2016</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/random-findings.html" rel="bookmark" title="Permanent Link to &quot;Discoveries['Random']&quot;">Discoveries['Random']</a>
-                </h2>
-
-                
-                
-
-                <p><strong>Quote of Zen:</strong> &quot;Productivity isn’t about running faster or pushing yourself harder, but rather, about working smarter and paying a bit more attention to what is really going on.&quot; - <a class="reference external" href="http://well.blogs.nytimes.com/2016/03/10/how-asking-5-questions-allowed-me-to-eat-dinner-with-my-kids/?_r=0">New York Times Blog</a></p>
-<p><strong>Book I'm Reading Right Now:</strong> <a class="reference external" href="http://eloquentjavascript.net/">Eloquent Javascript</a></p>
-<p><strong>Recent Discovery:</strong> <a class="reference external" href="https://wiki.python.org/moin/IntegratedDevelopmentEnvironments">Integrated Development Environments</a> for Web Programming - another piece of the web development puzzle; software that contains the front and back end elements for writing code, compiling and testing. This article from Stack Overflow clarifies <a class="reference external" href="http://stackoverflow.com/questions/5255868/difference-between-ide-and-framework">the difference between an IDE and a web framework</a>.</p>
-<p><strong>Edit:</strong> Wanted to also mention this <a class="reference external" href="http://mashable.com/2010/10/06/ide-guide/#nIvAMfNr_uqx">counterpoint against IDEs for beginners</a>: &quot;Although many IDEs can handle more than one language, few do it well. Plus, it's likely overkill if you are just getting started.&quot;</p>
-<p>&quot;Finally, if you're just beginning Python, let me put in a plug for simple editors: it's best for you to learn the language and its libraries well writing it all yourself, and <em>then</em> if you think an IDE would speed your work along, use it. You'll find that you learn the language faster and more completely if you take this route.&quot; - <a class="reference external" href="http://pythoncentral.io/text-editors-vs-ides-for-python-development-selecting-the-right-tool/">Python Central</a></p>
-<p>Ultimately your approach and tools used for any coding project depends on what you're trying to build, which language(s) used, and your own knowledge - and I'm still learning.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/random-findings.html">posted at 15:56</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/books-productivity-programming.html" rel="tag">books, productivity, programming</a>
-                </div>
-            </article>            <h4 class="date">Mar 03, 2016</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app.html" rel="bookmark" title="Permanent Link to &quot;Starting to Almost Kinda Think About Creating a Web App&quot;">Starting to Almost Kinda Think About Creating a Web App</a>
-                </h2>
-
-                
-                
-
-                <p>One of my first goals when I started learning Python was to build a web application. Once you've gotten a basic grip on Python, you might be ready to&nbsp;learn about&nbsp;web frameworks. A web framework consists of software designed to aid in web development. They make it easier to create a website or web app - if you know how to use them. Unfortunately, there is a learning curve to using the frameworks but thankfully there is plenty o' documentation to go around to help you.</p>
-<p>Here are the two&nbsp;<a class="reference external" href="https://www.airpair.com/python/posts/django-flask-pyramid">Python Frameworks</a> I've chosen to investigate (there are many out here on the webs):</p>
-<ul class="simple">
-<li>Django - widely used, great community support, comes with just about everything built in. Can be used for smaller apps or multi-page/app websites.</li>
-<li>Flask - a &quot;microframework&quot; used for smaller apps. Possibly more manageable for someone beginning a smaller project (me!)</li>
-</ul>
-<p>So as a beginnerish-level coder, I've chosen to start with Flask; I also found <a class="reference external" href="http://opentechschool.github.io/python-flask/">this sweet guide</a> that I think will help. Maybe someday I will graduate to Django, it sounds like a great framework.&nbsp;I've also decided that first I need to <a class="reference external" href="https://www.coursera.org/specializations/web-design">brush up on my HTML</a> - And according to a lot of what I've read it doesn't hurt to know CSS/Javascript. So this whole &quot;build a web app&quot; idea will continue, albeit with some hurdles to clear first.</p>
-<p>Edit: I ended up choosing web2py, which I hadn't even considered when I wrote this originally! Here's a <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/22/choosing-a-web-development-path/">post about why I chose it</a>.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app.html">posted at 03:56</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-web-development.html" rel="tag">coding, programming, web development</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/django.html" class="tags">django</a>
-                    &nbsp;<a href="https://lofipython.com/tag/flask.html" class="tags">flask</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web-apps.html" class="tags">web apps</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -407,7 +746,7 @@
 
                     <a href="https://lofipython.com/author/pythonmarketer8.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 7 of 8</span>
+                    <span>Page 7 of 9</span>
                 </div>
 
             <div class="clear"></div>

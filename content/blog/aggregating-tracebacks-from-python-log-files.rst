@@ -15,7 +15,7 @@ Follow these steps to maintain more reliable scripts and catch more of your trac
 #. start a feedback loop of fixing the tracebacks until 0 tracebacks remain
 #. re-run the script and confirm tracebacks disappeared
 
-.. code:: wp-block-syntaxhighlighter-code
+.. code-block:: python
 
    import itertools
    import os

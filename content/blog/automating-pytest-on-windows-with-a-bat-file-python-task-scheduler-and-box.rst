@@ -23,7 +23,7 @@ It is a unit test framework in python. pytest expects you to write each test as 
 
 Let's use **test_file_date.py** as our test, which uses the `glob <https://docs.python.org/3/library/glob.html>`__ module and `os.getmtime <https://docs.python.org/2/library/os.path.html#os.path.getmtime>`__\  to get the csv with the most recent modification dateon my desktop. Then it tests if that date is today, in my case, for an expected daily file drop.
 
-::
+.. code-block:: python
 
    from datetime import datetime, date 
    import glob
@@ -103,7 +103,7 @@ Passing tests signal your scripts are running successfully. When things don't wo
 
 Let's set another task scheduler job to run **read_test_results.py,** to run a few minutes after the first job each day. See this `example of running Python with Task Scheduler <https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/>`__ if you haven't triggered a python script from Task Scheduler before.
 
-::
+.. code-block:: python
 
    from datetime import date
    import getpass

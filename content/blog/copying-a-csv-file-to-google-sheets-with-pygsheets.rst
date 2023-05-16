@@ -27,7 +27,7 @@ Copying a pandas Dataframe to Google Sheets with pygsheets
 
 **After completing the first 5 steps, import pygsheets and authorize your account with the client secret json file:**
 
-::
+.. code-block:: python
 
    import pygsheets
    gc = pygsheets.authorize(client_secret='path/to/client_secret[...].json') 
@@ -36,7 +36,7 @@ You will be prompted by the terminal to go to a hyperlink in a browser, get your
 
 **Now, import both libraries needed and switch to authorize with your service json file. Then, load the csv to a dataframe with pandas. Finally, copy it to an existing Google Sheet with pygsheets:**
 
-::
+.. code-block:: python
 
    import pygsheets
    import pandas as pd
@@ -54,7 +54,7 @@ You will be prompted by the terminal to go to a hyperlink in a browser, get your
 
 Google Sheets limits importing to 26 columns and 1,000 rows at a time. So you'll have to load the sheets in chunks if you have more than that. This approach uses numpy's `array_split <https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_split.html>`__:
 
-::
+.. code-block:: python
 
    import pygsheets 
    import pandas as pd

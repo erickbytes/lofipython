@@ -51,7 +51,7 @@ Other Windows scheduling alternatives worth mentioning include `creating a Windo
 
 I am enjoying this simple, easy and convenient scheduling manager for Windows. I figured most of this out thanks to `this blog <https://www.esri.com/arcgis-blog/products/product/analytics/scheduling-a-python-script-or-model-to-run-at-a-prescribed-time/?rmedium=redirect&rsource=/esri/arcgis/2013/07/30/scheduling-a-scrip>`__. Below is my script to clean my desktop each morning by moving my Excel files into a folder, using Python's stock `shutil <https://docs.python.org/3/library/shutil.html>`__ and os libraries. Set it and forget it, ya know what i mean? :D
 
-::
+.. code-block:: python
 
    from shutil import move
    import getpass

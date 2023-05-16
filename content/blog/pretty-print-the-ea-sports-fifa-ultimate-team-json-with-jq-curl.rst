@@ -11,7 +11,7 @@ Who is the world's greatest footballer, Messi or Ronaldo? EA Sports surely has c
 
 In `FIFA <https://www.ea.com/games/fifa/fifa-22>`__, a player's video game representation is modeled intricately in a series of traits and specialties characterizing each player. The `"Ultimate Team" EA Sports API <https://www.easports.com/fifa/ultimate-team/api/fut/item>`__ is viewable as a plain json page or more cheekily with one line of `curl <https://curl.se/>`__ and `jq, a "command line json processor" <https://github.com/stedolan/jq>`__:
 
-.. code:: wp-block-preformatted
+::
 
    curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 
@@ -21,10 +21,7 @@ Enter this in a `shell <https://missing.csail.mit.edu/2020/shell-tools/>`__ or `
 
 Messi (Left) Vs. Ronaldo (Right) FIFA Player Ratings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. container:: wp-block-jetpack-tiled-gallery aligncenter is-style-rectangular
-
-   .. container:: tiled-gallery__gallery
+.. container:: tiled-gallery__gallery
 
       .. container:: tiled-gallery__row
 

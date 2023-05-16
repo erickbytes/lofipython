@@ -36,7 +36,7 @@ Post Installation Setup
 
 **Open up the terminal once you're into your new Desktop OS** and enter the below commands.
 
-::
+.. code-block:: shell
 
    su - 
    apt-get install sudo -y usermod -aG sudo yourusername
@@ -52,7 +52,7 @@ Optional: Replacing Network-Manager With Wicd
 
 This Debian 9 package ships with Network-Manager. After logging in, I wasn't sure why wifi was not working, so I decided to remove Network-Manager and install Wicd. (This was before I realized what the error code displayed on boot-up meant.) Wicd is a Linux network managing alternative and it's built with Python, by the way. I followed `these instructions <https://help.ubuntu.com/community/WICD>`__ to execute the below commands.
 
-::
+.. code-block:: shell
 
    uninstall nm
    sudo apt-get install -d --reinstall network-manager network-manager-gnome

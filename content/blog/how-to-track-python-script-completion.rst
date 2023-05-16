@@ -11,7 +11,7 @@ Did your script run to completion? Sure, you might log some tracebacks along the
 
 **Another anecdotal way to track this is with the logging module:**
 
-.. code:: wp-block-preformatted
+.. code-block:: python
 
    import logging
 

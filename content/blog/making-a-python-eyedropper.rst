@@ -24,7 +24,7 @@ My first thought was to find the easiest solution, within the packages of my Ato
 | Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D
 | |color_picker_gui|
 
-.. code:: python
+.. code-block:: python
 
    import tkinter as tk
    import tkinter.ttk as ttk
@@ -76,7 +76,7 @@ Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I found `t
 
 **Alternatively, you could** `convert a hex code to RGB with python: <https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python>`__
 
-.. code:: python
+.. code-block:: python
 
    hex_code = input('Enter hex: ').lstrip('#')
    RGB_code = tuple(int(hex_code[i:i+2], 16) for i in (0, 2, 4))
@@ -95,7 +95,7 @@ Once eyedropper sends the color values to your system's clipboard, there are mul
 
 **Installing pandas and**\ `pyperclip <https://github.com/asweigart/pyperclip>`__\ **with pip:**
 
-.. code:: python
+::
 
    python -m pip install pandas
    python -m pip install pyperclip

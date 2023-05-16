@@ -397,6 +397,36 @@
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
                 </div>
+            </article>            <h4 class="date">Oct 18, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-find-and-open-a-public-wi-fi-login-page.html" rel="bookmark" title="Permanent Link to &quot;How to Find and Open a Public Wi-Fi Login Page&quot;">How to Find and Open a Public Wi-Fi Login Page</a>
+                </h2>
+
+                
+                
+
+                <p>Sometimes, we find ourselves on a public Wi-Fi connection that is &quot;connected&quot;, but unable to get to the login page. While the login page is triggered automatically on most mobile devices, computers may not connect so easily. As usual, I turned to Google to find a way to get to a public Wi-Fi login page.</p>
+<p><a class="reference external" href="https://zapier.com/blog/open-wifi-login-page/#:~:text=An%20easy%20trick%20is%20to,you're%20at%20home).">This helpful Zapier blog post</a> outlines a few different approaches you can take. My solution below is one of the IP addresses they suggested trying. Decide if you need to edit your computer's network settings. Alternatively, you may just need to find the public login page. I was able to load my public Wi-Fi login page with this IP address in my web browser:</p>
+<pre class="literal-block">
+192.168.1.11
+</pre>
+<div class="wp-image-7279 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image-6.png?w=727" />
+</div>
+<p>This is a fun little trick to keep in mind if you're having difficulty connecting to public Wi-Fi. Problem solved!</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-find-and-open-a-public-wi-fi-login-page.html">posted at 12:38</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/internet-network-productivity.html" rel="tag">internet, network, productivity</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/find-public-wi-fi-login-page.html" class="tags">find public wi-fi login page</a>
+                    &nbsp;<a href="https://lofipython.com/tag/open-wi-fi-login.html" class="tags">open wi-fi login</a>
+                    &nbsp;<a href="https://lofipython.com/tag/wifi-hack.html" class="tags">wifi hack</a>
+                </div>
             </article>            <h4 class="date">Oct 10, 2022</h4>
 
             <article class="post">
@@ -499,6 +529,55 @@
                     &nbsp;<a href="https://lofipython.com/tag/github-stars-python.html" class="tags">github stars python</a>
                     &nbsp;<a href="https://lofipython.com/tag/repo-star-counts.html" class="tags">repo star counts</a>
                 </div>
+            </article>            <h4 class="date">Oct 08, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html" rel="bookmark" title="Permanent Link to &quot;Pelican Fix for "No valid files found in content"...&quot;">Pelican Fix for &quot;No valid files found in content&quot;...</a>
+                </h2>
+
+                
+                
+
+                <p>Pelican is a popular <a class="reference external" href="https://pythonmarketer.com/2021/07/28/a-brief-summary-of-promising-python-static-site-generators/">static site generator library</a> in Python. I didn't know why my pelican blog was not working. I've used the &quot;pelican content&quot; command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">WARNING</span>  <span class="n">No</span> <span class="n">valid</span> <span class="n">files</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">content</span> <span class="k">for</span> <span class="n">the</span> <span class="n">active</span>         <span class="n">log</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">91</span>
+         <span class="n">readers</span><span class="p">:</span>
+           <span class="o">|</span> <span class="n">BaseReader</span> <span class="p">(</span><span class="n">static</span><span class="p">)</span>
+           <span class="o">|</span> <span class="n">HTMLReader</span> <span class="p">(</span><span class="n">htm</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+           <span class="o">|</span> <span class="n">RstReader</span> <span class="p">(</span><span class="n">rst</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7221 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image.png?w=665" />
+</div>
+<p><strong>Solution</strong></p>
+<p>Install the markdown library, which is stated in the <a class="reference external" href="https://docs.getpelican.com/en/3.6.3/install.html#optional-packages">pelican docs</a>. This <a class="reference external" href="https://github.com/getpelican/pelican/issues/1868">Github issue</a> also provides some background on this warning.</p>
+<pre class="literal-block">
+pip install markdown
+</pre>
+<div class="wp-image-7224 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image-1.png?w=672" />
+</div>
+<p>Now my &quot;pelican content&quot; command works!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">pelican</span> <span class="n">content</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7226 figure">
+<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/10/image-2.png?w=679" />
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html">posted at 13:43</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-writing.html" rel="tag">coding, python, writing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/markdown-library.html" class="tags">markdown library</a>
+                    &nbsp;<a href="https://lofipython.com/tag/pelican-blog.html" class="tags">pelican blog</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-fix.html" class="tags">python fix</a>
+                </div>
             </article>            <h4 class="date">Sep 15, 2022</h4>
 
             <article class="post">
@@ -546,121 +625,6 @@
                     &nbsp;<a href="https://lofipython.com/tag/random-module.html" class="tags">random module</a>
                     &nbsp;<a href="https://lofipython.com/tag/random-numbers-python.html" class="tags">random numbers python</a>
                 </div>
-            </article>            <h4 class="date">Sep 07, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/30-external-python-libraries-starter-pack.html" rel="bookmark" title="Permanent Link to &quot;Beyond the Standard Library, An External Python Modules Starter Pack&quot;">Beyond the Standard Library, An External Python Modules Starter Pack</a>
-                </h2>
-
-                
-                
-
-                <p>Here is a list of external Python modules you can install with <a class="reference external" href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. These are not included with your Python version and need to be installed separately. In some cases, other options may be suitable. To keep the list shorter, I picked libraries that were chosen based on having at least one of these qualities:</p>
-<ul class="simple">
-<li>most obvious library for its category</li>
-<li>a library I have experience using effectively</li>
-<li>provide a niche, useful functionality or tool</li>
-</ul>
-<p><strong>In alphabetical order:</strong></p>
-<div class="wp-block-columns docutils container">
-</p><div class="wp-block-column docutils container">
-</p><ol class="arabic simple">
-<li><a class="reference external" href="https://pypi.org/project/black/">black</a>: code formatting</li>
-<li><a class="reference external" href="https://pypi.org/project/chardet/">chardet</a>: detect file encoding (useful for reading CSVs)</li>
-<li><a class="reference external" href="https://pypi.org/project/diagrams/">diagrams</a>: make cloud architecture diagrams</li>
-<li><a class="reference external" href="https://pypi.org/project/Django/">Django</a>: web framework</li>
-<li><a class="reference external" href="https://fastapi.tiangolo.com/#installation">fastapi</a>: web framework for building APIs</li>
-<li><a class="reference external" href="https://pypi.org/project/ffn/">ffn</a>: financial function library</li>
-<li><a class="reference external" href="https://pypi.org/project/Flask/">Flask:</a> web framework</li>
-<li><a class="reference external" href="https://pypi.org/project/pygame/">ftfy</a>: fix mojibake in text</li>
-<li><a class="reference external" href="https://pypi.org/project/fuzzywuzzy/">fuzzywuzzy</a>: fuzzy matching library</li>
-<li><a class="reference external" href="https://pypi.org/project/matplotlib/">matplotlib</a>: data visualization</li>
-<li><a class="reference external" href="https://pypi.org/project/numpy/">numpy</a>: array operations</li>
-<li><a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a>: foundational Excel library</li>
-<li><a class="reference external" href="https://pypi.org/project/pandas/">pandas</a>: working with tabular data</li>
-<li><a class="reference external" href="https://pypi.org/project/pelican/">pelican</a>: static site generator</li>
-<li><a class="reference external" href="https://github.com/giampaolo/psutil/blob/master/INSTALL.rst">psutil</a>: process and system utilities</li>
-<li><a class="reference external" href="https://pypi.org/project/pygame/">pygame</a>: video game creation</li>
-<li><a class="reference external" href="https://pypi.org/project/pyodbc/">pyodbc</a>: Open Database Connection client</li>
-<li><a class="reference external" href="https://github.com/benfred/py-spy">py-spy</a>: sampling profiler to visualize your program</li>
-<li>pyheat: visualize code bottlenecks</li>
-<li><a class="reference external" href="https://pypi.org/project/pytest/">pytest</a>: testing framework</li>
-<li><a class="reference external" href="https://pypi.org/project/pytrends/">pytrends</a>: research trends in the Google Trends API</li>
-<li><a class="reference external" href="https://pypi.org/project/pytube3/">pytube3</a>: YouTube video downloading library</li>
-<li><a class="reference external" href="https://pypi.org/project/pywin32/">pywin32</a>: Python for Win32 Extensions</li>
-<li><a class="reference external" href="https://pypi.org/project/requests/">requests</a>: HTTP requests</li>
-<li><a class="reference external" href="https://pypi.org/project/scikit-learn/">scikit-learn</a>: machine learning</li>
-<li><a class="reference external" href="https://pypi.org/project/soltrack/">soltrack</a>: calculate the location of the sun</li>
-<li><a class="reference external" href="https://pypi.org/project/sqlfluff/">sqlfluff</a>: SQL linter</li>
-<li><a class="reference external" href="https://github.com/streamlit/streamlit">streamlit</a>: build data apps</li>
-<li><a class="reference external" href="https://pypi.org/project/tqdm/">tqdm</a>: add a progress bar to loops</li>
-<li><a class="reference external" href="https://wxpython.org/pages/downloads/index.html">wxPython</a>: Graphical User Interface</li>
-<li><a class="reference external" href="https://pypi.org/project/xlrd/">xlrd</a>: supplementary Excel library</li>
-<li><a class="reference external" href="https://pypi.org/project/xmltodict/">xmltodict</a>: convert XML to nested Python dicts</li>
-</ol>
-</div>
-</div>
-<p><a class="reference external" href="https://docs.python.org/3/installing/index.html">Python Documentation: Installing Python Modules</a></p>
-<div class="wp-image-7164 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/09/image.png?w=672" />
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/30-external-python-libraries-starter-pack.html">posted at 23:46</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/programming-python.html" rel="tag">programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/advanced-python-modules.html" class="tags">advanced python modules</a>
-                    &nbsp;<a href="https://lofipython.com/tag/coding.html" class="tags">coding</a>
-                    &nbsp;<a href="https://lofipython.com/tag/useful-python-libraries.html" class="tags">useful python libraries</a>
-                </div>
-            </article>            <h4 class="date">Jul 08, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages.html" rel="bookmark" title="Permanent Link to &quot;Launching a Live Static Site Blog via Pelican, Github and Cloudflare Pages&quot;">Launching a Live Static Site Blog via Pelican, Github and Cloudflare Pages</a>
-                </h2>
-
-                
-                
-
-                <p>Proud to announce my newest side project blog, Diversified Bullish, is live at <a class="reference external" href="http://divbull.com">divbull.com</a>. It is made with <a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html#">Pelican</a> and the <a class="reference external" href="https://github.com/jody-frankowski/blue-penguin/tree/311a5208c030ea62d85bbca952e31b6775a50c2c">Blue Penguin theme</a>. I'm planning to write about stocks and investing there moving forward in addition to this blog which focuses on Python programming.</p>
-<p>The <a class="reference external" href="https://github.com/erickbytes/divbull/tree/main/divbull.com">divbull.com Github repo</a> serves the static files generated by Pelican via <a class="reference external" href="https://pages.cloudflare.com/">Cloudflare pages</a>. It's free, unless you purchase a domain. I purchased my .com domain with <a class="reference external" href="https://www.namecheap.com/support/knowledgebase/article.aspx/9607/2210/how-to-set-up-dns-records-for-your-domain-in-cloudflare-account/">Namecheap</a> before I learned about Cloudflare pages. I followed <a class="reference external" href="https://developers.cloudflare.com/pages/get-started/">these instructions</a> to set up my new financial blog. If you're interested, you can subscribe to an <a class="reference external" href="https://divbull.com/feeds/all.atom.xml">RSS feed here</a> to follow when I post something new.</p>
-<blockquote>
-<p>The dashboard provides a number of framework-specific presets. These presets provide the default build command and build output directory values for the selected framework. If you are unsure what the correct values are for this section, refer to <a class="reference external" href="https://developers.cloudflare.com/pages/platform/build-configuration/">Build configuration</a>. <strong>If you do not need a build step, leave the Build command field blank.</strong></p>
-<p><a class="reference external" href="https://developers.cloudflare.com/pages/get-started/">https://developers.cloudflare.com/pages/get-started/</a></p>
-</blockquote>
-<div class="wp-image-7113 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/07/cloudflare-deployment-details-1.png?w=1024" />
-</div>
-<p>Working in the Cloudflare pages build dashboard is sweet. It took me about 5 failed Pelican <a class="reference external" href="https://developers.cloudflare.com/pages/platform/build-configuration/">build commands</a> to get the site to deploy. Finally, I was able to get the site build to complete by leaving the build command blank. Cloudflare was able to scoop up my Pelican &quot;output&quot; folder contents and render the blog. How cool. I feel like I've done the impossible, launching a passable quality blog with top shelf tools this quickly for under $10!</p>
-<p>Initially, I spent a few hours getting to know Pelican. Once I correctly installed a theme I liked, I banged out a few philosophical financial musings to give the blog some posts. Then I had the static files generated but no clue how to serve them. Enter Cloudflare pages, a free option to host a blog.</p>
-<p>Connecting the repo to Cloudflare pages, adding the files to the repo and finding the correct build command added a few more hours. In total, it took me about 1-2 days to make a live site since I did not know about Pelican or Cloudflare pages when I began playing with a Pelican blog in April. This was my first static site launch!</p>
-<div class="wp-image-7115 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/07/cloudflare-build-settings.png?w=528" />
-<p class="caption">Generating a Blue Penguin themed Pelican blog.</p>
-</div>
-<div class="wp-image-7086 figure">
-<img alt="" src="https://pythonmarketer.files.wordpress.com/2022/07/pelican-blog-dev.png?w=1024" />
-<p class="caption">Head over to <a class="reference external" href="https://divbull.com">divbull.com</a> to see this Pelican, Github and Cloudflare pages stack in action.</p>
-<div class="legend">
-Like static site generators? Check out <a class="reference external" href="https://pythonmarketer.com/2021/07/28/a-brief-summary-of-promising-python-static-site-generators/">this post about static site generator libraries in Python</a>.</div>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages.html">posted at 01:20</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/internet-investing-personal-finance-programming-writing.html" rel="tag">internet, investing, personal finance, programming, writing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/blog.html" class="tags">blog</a>
-                    &nbsp;<a href="https://lofipython.com/tag/cloudflare-pages.html" class="tags">cloudflare pages</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pelican.html" class="tags">pelican</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/static-site-generator.html" class="tags">static site generator</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -669,7 +633,7 @@ Like static site generators? Check out <a class="reference external" href="https
 
                     <a href="https://lofipython.com/author/pythonmarketer2.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 1 of 8</span>
+                    <span>Page 1 of 9</span>
                 </div>
 
             <div class="clear"></div>

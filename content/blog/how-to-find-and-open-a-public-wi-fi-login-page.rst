@@ -11,7 +11,7 @@ Sometimes, we find ourselves on a public Wi-Fi connection that is "connected", b
 
 `This helpful Zapier blog post <https://zapier.com/blog/open-wifi-login-page/#:~:text=An%20easy%20trick%20is%20to,you're%20at%20home).>`__ outlines a few different approaches you can take. My solution below is one of the IP addresses they suggested trying. Decide if you need to edit your computer's network settings. Alternatively, you may just need to find the public login page. I was able to load my public Wi-Fi login page with this IP address in my web browser:
 
-.. code:: wp-block-code
+::
 
    192.168.1.11
 

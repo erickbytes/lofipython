@@ -3,15 +3,15 @@
 <head>
         <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Python Marketer | Aggregating A Python Error Summary from Log Files</title>
-    <link rel="shortcut icon" type="image/png" href="./favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-    <link href="https://pythonmarketer.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Full Atom Feed" />
-    <link href="https://pythonmarketer.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Full RSS Feed" />
-    <link href="https://pythonmarketer.com/feeds/automation-coding-education-programming-scripts.atom.xml" type="application/atom+xml" rel="alternate" title="Python Marketer Categories Atom Feed" />
-    <link href="https://pythonmarketer.com/feeds/automation-coding-education-programming-scripts.rss.xml" type="application/rss+xml" rel="alternate" title="Python Marketer Categories RSS Feed" />
-    <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="./theme/css/pygments.css" type="text/css" />
+    <title>Lo-Fi Python | Aggregating A Python Error Summary from Log Files</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/automation-coding-education-programming-scripts.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
+    <link href="https://lofipython.com/feeds/automation-coding-education-programming-scripts.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="@erickbytes" />
@@ -22,15 +22,15 @@
     <header>
         <nav style="overflow: hidden;">
             <ul>
-                <li><a href="./">Home</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
                 <li><a href="feeds/all.rss.xml">RSS</a></li>
                 <li><a href="feeds/all.atom.xml">Atom</a></li>
-                <li><a href="https://github.com/erickbytes/divbull">Github</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
             </ul>
         </nav>
         <div class="header_box" style="height: 50px">
-        <h1><a href="./">
-            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Python Marketer</span>
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
             </a></h1></div>
         </div>
     </header>
@@ -39,26 +39,47 @@
 
             <article class="post">
                 <h2 class="title">
-                    <a href="./aggregating-tracebacks-from-python-log-files.html" rel="bookmark" title="Permanent Link to &quot;Aggregating A Python Error Summary from Log Files&quot;">Aggregating A Python Error Summary from Log Files</a>
+                    <a href="https://lofipython.com/aggregating-tracebacks-from-python-log-files.html" rel="bookmark" title="Permanent Link to &quot;Aggregating A Python Error Summary from Log Files&quot;">Aggregating A Python Error Summary from Log Files</a>
                 </h2>
 
                 
                 
 
-                <p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>Follow these steps to maintain more reliable scripts and catch more of your traceback errors:</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:list {"ordered":true} --&gt;</code></p>
-<ol>
+                <p>Follow these steps to maintain more reliable scripts and catch more of your traceback errors:</p>
+<ol class="arabic simple">
 <li>automate your scripts to run daily, weekly, monthly, etc.</li>
-<li><a href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/">Log all your traceback errors</a> with the <a href="https://docs.python.org/3/library/logging.html">logging module</a>. I like dumping all of my logs into a single folder.</li>
+<li><a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/">Log all your traceback errors</a> with the <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging module</a>. I like dumping all of my logs into a single folder.</li>
 <li>automate aggregating the logs and parsing tracebacks</li>
 <li>start a feedback loop of fixing the tracebacks until 0 tracebacks remain</li>
 <li>re-run the script and confirm tracebacks disappeared</li>
 </ol>
-<p><code>&lt;!-- /wp:list --&gt;</code></p>
-<p><code>&lt;!-- wp:syntaxhighlighter/code --&gt;</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">itertools</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
@@ -73,7 +94,7 @@
         <span class="k">return</span> <span class="n">errors</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">parse traceback errors from log files in current working directory </span>
+<span class="sd">parse traceback errors from log files in current working directory</span>
 <span class="sd">and write to them to a csv file</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.log&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
@@ -85,37 +106,24 @@
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tracebacks</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
             <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p><code>&lt;!-- /wp:syntaxhighlighter/code --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>This pure python script allows me to hone in on potential automation problem areas with my scheduled Python scripts. It doesn't catch the entire traceback. Rather, it shows the error type and the name of the log file that contains that error in a csv. I use this log aggregation script to monitor my daily or weekly scheduled python scripts, along with <a href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a>.</p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
+</pre></div></td></tr></table></div>
+<p>This pure python script allows me to hone in on potential automation problem areas with my scheduled Python scripts. It doesn't catch the entire traceback. Rather, it shows the error type and the name of the log file that contains that error in a csv. I use this log aggregation script to monitor my daily or weekly scheduled python scripts, along with <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a>.</p>
 <p><strong>Noteworthy gains from aggregating my logs:</strong></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:list --&gt;</code></p>
-<ul>
+<ul class="simple">
 <li>less fear of missing mistakes</li>
 <li>more freedom to improve the code</li>
 <li>catch the mistakes faster</li>
 </ul>
-<p><code>&lt;!-- /wp:list --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
-<p><code>&lt;!-- wp:paragraph --&gt;</code></p>
-<p>See also: <a href="https://docs.python.org/3/howto/logging.html">Python Documentation - Basic Logging Tutorial</a></p>
-<p><code>&lt;!-- /wp:paragraph --&gt;</code></p>
+<p>See also: <a class="reference external" href="https://docs.python.org/3/howto/logging.html">Python Documentation - Basic Logging Tutorial</a></p>
+
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="./aggregating-tracebacks-from-python-log-files.html">posted at 01:09</a>
-                    &nbsp;&middot;&nbsp;<a href="./category/automation-coding-education-programming-scripts.html" rel="tag">automation, coding, education, programming, Scripts</a>
+                    <a href="https://lofipython.com/aggregating-tracebacks-from-python-log-files.html">posted at 01:09</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-education-programming-scripts.html" rel="tag">automation, coding, education, programming, Scripts</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="./tag/productivity.html" class="tags">productivity</a>
-                    &nbsp;<a href="./tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/productivity.html" class="tags">productivity</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                 </div>
             </article>
             <div class="clear"></div>
@@ -125,9 +133,9 @@
                 &middot;
                 Powered by <a href="http://getpelican.com">Pelican</a>
                 &middot;
-                <a href="./feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
                 &middot;
-                <a href="./feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
             </footer>
         </div>
         <div class="clear"></div>

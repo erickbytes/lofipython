@@ -25,7 +25,7 @@ There are also downloads for Windows. A popular GUI is `SQLite Studio <https://s
 
 **create a new db + new table and import a csv file to the table, "Readers"**
 
-.. code:: wp-block-preformatted
+::
 
    sqlite3 PythonMarketer.db
    .mode csv Readers
