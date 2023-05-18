@@ -19,15 +19,13 @@ This post will teach you some Python history, show how to install pandas, and he
    :width: 1277px
    :height: 532px
 
-First, Some Python Version Caveats + History\ **
-**
-------------------------------------------------
+**First, Some Python Version Caveats + History**
 
 **Python 2 reached end of life on January 1st, 2020**. `Python 2 has officially been sunset <https://www.python.org/doc/sunset-python-2/>`__.
 
 Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.
 
-**In December 2021, Python 3.6 reached**\ `"end of life phase" <https://devguide.python.org/devcycle/#end-of-life-branches>`__\ **.**
+**In December 2021, Python 3.6 reached **\ `"end of life phase" <https://devguide.python.org/devcycle/#end-of-life-branches>`__\ **.**
 
 Python 3.6 is "now effectively frozen". Read more in `PEP 494 <https://www.python.org/dev/peps/pep-0494/>`__. (Released Oct. 2022)
 
@@ -70,6 +68,12 @@ Pandas is a super useful library for wrangling spreadsheet data, AKA "tabular" d
 
    pip -h
 
+**View your system and user pip config settings:**
+
+.. code:: python
+
+   pip config debug
+
 **Supplementary Resources**
 
 -  Take a look at this `list of 20 modules <https://pythontips.com/2013/07/30/20-python-libraries-you-cant-live-without/>`__ to get started. Here is another `more comprehensive list of libraries <https://github.com/vinta/awesome-python>`__ you can now install.
@@ -106,17 +110,17 @@ This command will install and upgrade pip to the newest version. New in Python 3
 
 ..
 
-   "The ```ensurepip`` <https://docs.python.org/3/library/ensurepip.html#module-ensurepip>`__ package provides support for bootstrapping the ``pip`` installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that ``pip`` is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter."
+   "The ensurepip ` <https://docs.python.org/3/library/ensurepip.html#module-ensurepip>`__ package provides support for bootstrapping the pip installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter."
 
-   - `ensurepip Python Documentation <https://docs.python.org/3/library/ensurepip.html>`__
+   \- `ensurepip Python Documentation <https://docs.python.org/3/library/ensurepip.html>`__
 
-**You should follow best practice and** `create a virtual environment <https://docs.python.org/3/library/venv.html>`__ **before installing libraries.**\ `venv <https://docs.python.org/3/library/venv.html>`__\ **or**\ `virtualenv <https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__\ **will help you out. To create with venv:**
+**You should follow best practice and** `create a virtual environment <https://docs.python.org/3/library/venv.html>`__ **before installing libraries. **\ `venv  <https://docs.python.org/3/library/venv.html>`__\ **or**\ `virtualenv  <https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__\ **will help you out. To create with venv:**
 
 ``python3 -m venv add_env_name_here``
 
 After your environment is created, activate it with the first command below, then install a library on Ubuntu Linux:
 
-#. ``cd add_env_path_here/bin & source activate``
+#. ``source add_env_path_here/bin activate``
 #. ``python -m pip install pandas``
 
 Alternatively, on Windows computers:
@@ -151,9 +155,9 @@ How to Manually Enable the pip Installer
 #. Seeking to fix a faulty pip install that is not working properly.
 #. Curious to know how to manually set up pip.
 
-*Assumes Python is already*\ `installed <https://www.python.org/downloads/>`__\ *. If you're running Windows 10, I found it easy to install Python from the*\ `Windows store <https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab>`__\ *.*
+*Assumes Python is already *\ `installed <https://www.python.org/downloads/>`__\ *. If you're running Windows 10, I found it easy to install Python from the *\ `Windows store <https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab>`__\ *.*
 
-**Download the**\ `get-pip.py file <https://bootstrap.pypa.io/get-pip.py>`__\ **.**
+**Download the **\ `get-pip.py file <https://bootstrap.pypa.io/get-pip.py>`__\ **.**
 
 Go to the link, right click the page and "Save As" a .py file to download. Then place the file where you want to access it. I placed mine in C:\Python27\Lib\site-packages
 
@@ -161,7 +165,7 @@ You could also download the file with `curl <https://curl.haxx.se/>`__:
 
 ``curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py``\  
 
-   If you are not sure where your site-packages folder is, type\ ```python -m site`` <https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory>`__\ into command prompt for file path ideas.
+   If you are not sure where your site-packages folder is, type\ `python -m site <https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory>`__\ into command prompt for file path ideas.
 
 **Run the get-pip.py file.**
 
@@ -183,12 +187,10 @@ This should install the Requests module into your Python libraries. Requests is 
 
 **Thanks for reading! Check out these other posts with pip installed library examples:**
 
-`Fix Grammar and Spelling with language_tool_python and textblob <https://pythonmarketer.com/2022/01/30/fix-spelling-and-grammar-with-language_tool_python-and-textblob/>`__
+`Fix Grammar and Spelling with language_tool_python and textblob <https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/>`__
 
-`gooey <http://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/>`__ - GUI library
+`gooey <https://lofipython.com/gooey-gui-for-python-scripts/>`__ - GUI library
 
-`tweepy <http://pythonmarketer.wordpress.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/>`__ - Twitter library
+`tweepy <https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api/>`__ - Twitter library
 
-`A Guide to Making HTTP requests <https://pythonmarketer.com/2020/05/18/how-to-make-json-requests-with-python/>`__
-
-`Plotting Datasets Using Jupyter, Pandas and Matplotlib <http://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/>`__
+`A Guide to Making HTTP requests <https://lofipython.com/how-to-make-json-requests-with-python/>`__

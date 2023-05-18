@@ -27,16 +27,19 @@ For tabular data, I often use ``pd.to_datetime()`` to convert a series of string
 
 .. code-block:: python
 
-   """install pandas with this command:
-   python -m pip install pandas
-   """
-   import pandas as pd
-   events = [['USA Born','1776-07-04'],['WTC Bombings','2001-09-11'],['Biden Inauguration','2021-01-20']]
-   df = pd.DataFrame(events, columns=['events','dates'])
-   # convert a pandas series of strings to datetime objects
-   df.dates = pd.to_datetime(df.dates)
-   print(df.dtypes)
-   print(df.head())
+    # install pandas with this command: python -m pip install pandas
+    import pandas as pd
+    events = [
+        ["USA Born", "1776-07-04"],
+        ["WTC Bombings", "2001-09-11"],
+        ["Biden Inauguration", "2021-01-20"],
+    ]
+    df = pd.DataFrame(events, columns=["events", "dates"])
+    # convert a pandas series of strings to datetime objects
+    df.dates = pd.to_datetime(df.dates)
+    print(df.dtypes)
+    print(df.head())
+
 
 `Go here <#%20convert%20a%20list%20of%20strings%20to%20a%20pandas%20series%20of%20datetime%20objects>`__ if you're having pip installation problems.
 

@@ -18,8 +18,9 @@ This command can be used to upgrade your Python `requests library <https://docs.
 
 **Install requests with this command:**
 
-:: 
-   python3.8 -m pip install requests --upgrade --user
+::
+
+    python3.8 -m pip install requests --upgrade --user
 
 Substitute in whatever your Python version is. This command upgrades the requests library on a PythonAnywhere app. If any libraries depend on a specific version of requests, a warning appears like this one I saw for the `python-unsplash <https://github.com/yakupadakli/python-unsplash>`__ library.
 

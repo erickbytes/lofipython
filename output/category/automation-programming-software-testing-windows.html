@@ -47,7 +47,7 @@
 
                 <p><strong>Automatic pytest Testing and Failure Alert Monitoring</strong></p>
 <p>This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.</p>
-<p><strong>Installing</strong><a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html">pytest</a><strong>, a python testing library:</strong></p>
+<p><strong>Installing **`pytest &lt;https://docs.pytest.org/en/latest/getting-started.html&gt;`__**, a python testing library:</strong></p>
 <p><tt class="docutils literal">python <span class="pre">-m</span> pip install pytest</tt></p>
 <p><strong>A Few Words on pytest</strong></p>
 <p>It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.</p>
@@ -66,20 +66,24 @@
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
 
 <span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;The dir_query format is for a Windows path with Unix style pattern matching.&quot;&quot;&quot;</span>
-    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">{getpass.getuser()}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
-    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+     <span class="c1"># specify csv extension and folder</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s1">/Desktop/*.csv&#39;</span>
+    <span class="c1"># get most recent file</span>
+    <span class="n">csv</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">csv_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">csv</span><span class="p">)</span>
+    <span class="n">csv_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">csv_timestamp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">csv_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+    <span class="k">assert</span> <span class="n">csv_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
 </pre></div></td></tr></table></div>
 <p><strong>Here's the pytest text output when the test is passing:</strong></p>
 <pre class="literal-block">
@@ -153,43 +157,35 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler - Python Marketer</span>
-<span class="sd">http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/</span>
-
-<span class="sd">Use Task Scheduler run a batch file.</span>
-<span class="sd">The batch file runs pytest and captures our pytest function results to sys.</span>
+<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler</span>
+<span class="sd">Use Task Scheduler run a batch file. The batch file runs pytest and captures our pytest function results to sys.</span>
 <span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;Automated_Testing_Alerts.log&#39;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;Automated_Testing_Alerts.log&quot;</span><span class="p">,</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%y %H:%M:%S&#39;</span>
-    <span class="p">)</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%b-%y %H:%M:%S&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for failed tests...&quot;</span><span class="p">)</span>
-<span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">test_results</span><span class="se">\\</span><span class="s1">&#39;</span>
-<span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.txt&#39;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">/Desktop/test_results/&quot;</span>
+<span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;.txt&quot;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">txt_file</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
     <span class="n">file_path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">+</span> <span class="n">txt_file</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">if</span> <span class="s1">&#39;FAILURES&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
-        <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">VM_Jobs</span><span class="se">\\</span><span class="s1">send_failure_alert</span><span class="se">\\</span><span class="s1">&#39;</span>
+    <span class="k">if</span> <span class="s2">&quot;FAILURES&quot;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="s2">/Desktop/send_failure_alert/&quot;</span>
         <span class="n">today</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
-        <span class="n">out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}{</span><span class="n">txt_file</span><span class="si">}</span><span class="s1">_Failed_Results_</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s1">.txt&#39;</span>
-        <span class="n">alert_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span><span class="s2">&quot;w+&quot;</span><span class="p">)</span>
-        <span class="n">alert_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">txt_file</span><span class="p">)</span>
-        <span class="n">alert_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-        <span class="n">alert_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directory</span><span class="si">}{</span><span class="n">txt_file</span><span class="si">}</span><span class="s2">_Failed_Results_</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No failed tests found in file:&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">txt_file</span><span class="p">)</span>

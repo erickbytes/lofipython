@@ -252,30 +252,18 @@ C:\Users\your_username\Desktop\36env\Scripts\python.exe
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">shutil</span> <span class="kn">import</span> <span class="n">move</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">shutil</span> <span class="kn">import</span> <span class="n">move</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Desktop Spreadsheet File Cleaner - Python Marketer</span>
-<span class="sd">https://atomic-temporary-107329037.wpcomstaging.com/2018/11/25/automated-python-with-windows-task-scheduler/</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="c1"># Get all Desktop files and folders</span>
-<span class="n">src_directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop&#39;</span>
-<span class="n">dir_items</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">src_directory</span><span class="p">)</span>
-<span class="n">excel_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dir_items</span> \
-                <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">or</span> <span class="s1">&#39;.xls&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
-
-<span class="n">dst</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">Current_Month_Excels&#39;</span>
+<span class="c1"># Desktop Spreadsheet File Cleaner: get all Desktop files and folders</span>
+<span class="n">src</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">/Desktop&quot;</span>
+<span class="n">dir_items</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+<span class="n">excel_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dir_items</span> <span class="k">if</span> <span class="s2">&quot;.csv&quot;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">or</span> <span class="s2">&quot;.xls&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
+<span class="n">dst</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">/Desktop/Excels&quot;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">xl</span> <span class="ow">in</span> <span class="n">excel_files</span><span class="p">:</span>
-    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">src_directory</span> <span class="o">+</span> <span class="n">xl</span>
+    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">src</span> <span class="o">+</span> <span class="n">xl</span>
     <span class="n">move</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p><strong>Additional Reading</strong></p>
@@ -1041,15 +1029,14 @@ uses <a class="reference external" href="https://pandas.pydata.org/pandas-docs/s
 <!--  -->
 <blockquote>
 In case you are wondering, enumerate is a <a class="reference external" href="https://docs.python.org/3/library/functions.html">python built-in</a> for enumerating, or counting an iterable, e.g. list or generator, as you iterate through it.</blockquote>
-<p><strong>Using</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard():</a>**
-**</p>
+<p>Using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard():</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">clipboard_contents</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_clipboard</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">clipboard_contents</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>Use</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html">pd.to_clipboard()</a><strong>to store a dataframe as clipboard text:</strong></p>
+<p>Use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html">pd.to_clipboard()</a> to store a dataframe as clipboard text:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1084,7 +1071,7 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 <span class="n">clipboard_series</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">clipboard_series</span><span class="p">))</span>
 </pre></div></td></tr></table></div>
-<p><strong>Inversely, consider using</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame">pandas.Series.to_frame()</a><strong>to convert a Series to a dataframe:</strong></p>
+<p><strong>Inversely, consider using **`pandas.Series.to_frame() &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame&gt;`__**to convert a Series to a dataframe:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1097,8 +1084,8 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 </div>
 <div class="section" id="turning-json-api-responses-into-a-dataframe-with-pd-json-normalize">
 <h2>(4) Turning json API responses into a dataframe with pd.json_normalize()</h2>
-<p><strong>For</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html">older pandas versions</a><strong>:</strong></p>
-<p><strong>Update: beginning in pandas 1.0,</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html">json_normalize</a><strong>became a top-level pandas namespace.</strong></p>
+<p><strong>For **`older pandas versions &lt;https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html&gt;`__**:</strong></p>
+<p><strong>Update: beginning in pandas 1.0, **`json_normalize &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html&gt;`__** became a top-level pandas namespace.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1244,12 +1231,10 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 <p>Inevitably, you'll want to install new libraries from Python's rich ecosystem of external modules. Enter pip, Python's handy package manager and people's champion.</p>
 <p>This post will teach you some Python history, show how to install pandas, and help you troubleshoot problems if it's not working. You'll find Windows and Linux commands for venv setup (recommended). With pip, you'll feel like Neo when installing new modules. Any skill is at your fingertips. It's like learning kung fu. There's probably a library for that!</p>
 <img alt="i know kung fu" class="alignnone size-full wp-image-1321" src="http://pythonmarketer.files.wordpress.com/2018/01/19c0c-i-know-kung-fu-e1516470914221.png" style="width: 1277px; height: 532px;" />
-<p>First, Some Python Version Caveats + History**
-**
-------------------------------------------------</p>
+<p><strong>First, Some Python Version Caveats + History</strong></p>
 <p><strong>Python 2 reached end of life on January 1st, 2020</strong>. <a class="reference external" href="https://www.python.org/doc/sunset-python-2/">Python 2 has officially been sunset</a>.</p>
 <p>Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.</p>
-<p><strong>In December 2021, Python 3.6 reached</strong><a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">&quot;end of life phase&quot;</a><strong>.</strong></p>
+<p><strong>In December 2021, Python 3.6 reached **`&quot;end of life phase&quot; &lt;https://devguide.python.org/devcycle/#end-of-life-branches&gt;`__**.</strong></p>
 <p>Python 3.6 is &quot;now effectively frozen&quot;. Read more in <a class="reference external" href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
 <p><strong>TLDR:</strong> use Python 3.7 to 3.11. This blog endorses using the lightning fast Python version <a class="reference external" href="https://www.python.org/downloads/release/python-3110/">3.11.</a></p>
 <div class="section" id="enter-this-in-your-terminal">
@@ -1272,6 +1257,10 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 <p><strong>Use pip's -h help command line argument:</strong></p>
 <pre class="code python literal-block">
 <span class="n">pip</span> <span class="o">-</span><span class="n">h</span>
+</pre>
+<p><strong>View your system and user pip config settings:</strong></p>
+<pre class="code python literal-block">
+<span class="n">pip</span> <span class="n">config</span> <span class="n">debug</span>
 </pre>
 <p><strong>Supplementary Resources</strong></p>
 <ul class="simple">
@@ -1305,16 +1294,14 @@ python -m ensurepip --upgrade
 </div>
 <!--  -->
 <blockquote>
-<p>&quot;The&nbsp;<tt class="docutils literal">`ensurepip</tt> &lt;<a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">https://docs.python.org/3/library/ensurepip.html#module-ensurepip</a>&gt;`__&nbsp;package provides support for bootstrapping the&nbsp;<tt class="docutils literal">pip</tt>&nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&nbsp;<tt class="docutils literal">pip</tt> is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&quot;</p>
-<ul class="simple">
-<li><a class="reference external" href="https://docs.python.org/3/library/ensurepip.html">ensurepip Python Documentation</a></li>
-</ul>
+<p>&quot;The&nbsp;ensurepip ` &lt;<a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">https://docs.python.org/3/library/ensurepip.html#module-ensurepip</a>&gt;`__&nbsp;package provides support for bootstrapping the&nbsp;pip&nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&nbsp;pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&quot;</p>
+<p>- <a class="reference external" href="https://docs.python.org/3/library/ensurepip.html">ensurepip Python Documentation</a></p>
 </blockquote>
-<p><strong>You should follow best practice and</strong> <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a> <strong>before installing libraries.</strong><a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a><strong>or</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a><strong>will help you out. To create with venv:</strong></p>
+<p><strong>You should follow best practice and</strong> <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a> <strong>before installing libraries. **`venv  &lt;https://docs.python.org/3/library/venv.html&gt;`__**or</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a><strong>will help you out. To create with venv:</strong></p>
 <p><tt class="docutils literal">python3 <span class="pre">-m</span> venv add_env_name_here</tt></p>
 <p>After your environment is created, activate it with the first command below, then install a library on Ubuntu Linux:</p>
 <ol class="arabic simple">
-<li><tt class="docutils literal">cd add_env_path_here/bin &amp; source activate</tt></li>
+<li><tt class="docutils literal">source add_env_path_here/bin activate</tt></li>
 <li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
 </ol>
 <p>Alternatively, on Windows computers:</p>
@@ -1340,13 +1327,13 @@ python -m ensurepip --upgrade
 <li>Seeking to fix a faulty pip install that is not working properly.</li>
 <li>Curious to know how to manually set up pip.</li>
 </ol>
-<p><em>Assumes Python is already</em><a class="reference external" href="https://www.python.org/downloads/">installed</a><em>. If you're running Windows 10, I found it easy to install Python from the</em><a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab">Windows store</a><em>.</em></p>
-<p><strong>Download the</strong><a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py file</a><strong>.</strong></p>
+<p><em>Assumes Python is already *`installed &lt;https://www.python.org/downloads/&gt;`__*. If you're running Windows 10, I found it easy to install Python from the *`Windows store &lt;https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab&gt;`__*.</em></p>
+<p><strong>Download the **`get-pip.py file &lt;https://bootstrap.pypa.io/get-pip.py&gt;`__**.</strong></p>
 <p>Go to the link, right click the page and &quot;Save As&quot; a .py file to download. Then place the file where you want to access it. I placed mine in&nbsp;C:Python27Libsite-packages</p>
 <p>You could also download the file with <a class="reference external" href="https://curl.haxx.se/">curl</a>:</p>
 <p><tt class="docutils literal">curl <span class="pre">https://bootstrap.pypa.io/get-pip.py</span> <span class="pre">-o</span> <span class="pre">get-pip.pyt-pip.py</span></tt></p>
 <blockquote>
-If you are not sure where your site-packages folder is, type<tt class="docutils literal">`python <span class="pre">-m</span> site</tt> &lt;<a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory">https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory</a>&gt;`__into command prompt for file path ideas.</blockquote>
+If you are not sure where your site-packages folder is, type<a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory">python -m site</a>into command prompt for file path ideas.</blockquote>
 <p><strong>Run the get-pip.py file.</strong></p>
 <p>Using command prompt's cd command with a Windows &quot;&amp;&quot; operator to run the Python file in a Windows command prompt:</p>
 <p><tt class="docutils literal">cd <span class="pre">c:\Python27\Lib\site-packages</span> &amp; python <span class="pre">get-pip.py</span></tt></p>
@@ -1357,11 +1344,10 @@ If you are not sure where your site-packages folder is, type<tt class="docutils 
 <p><tt class="docutils literal">python <span class="pre">-m</span> pip install requests</tt></p>
 <p>This should install the Requests module into your Python libraries. Requests is an http module which is highly regarded almost universally by the Python community.</p>
 <p><strong>Thanks for reading! Check out these other posts with pip installed library examples:</strong></p>
-<p><a class="reference external" href="https://pythonmarketer.com/2022/01/30/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">Fix Grammar and Spelling with language_tool_python and textblob</a></p>
-<p><a class="reference external" href="http://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/">gooey</a> - GUI library</p>
-<p><a class="reference external" href="http://pythonmarketer.wordpress.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/">tweepy</a> - Twitter library</p>
-<p><a class="reference external" href="https://pythonmarketer.com/2020/05/18/how-to-make-json-requests-with-python/">A Guide to Making HTTP requests</a></p>
-<p><a class="reference external" href="http://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">Plotting Datasets Using Jupyter, Pandas and Matplotlib</a></p>
+<p><a class="reference external" href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">Fix Grammar and Spelling with language_tool_python and textblob</a></p>
+<p><a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/">gooey</a> - GUI library</p>
+<p><a class="reference external" href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api/">tweepy</a> - Twitter library</p>
+<p><a class="reference external" href="https://lofipython.com/how-to-make-json-requests-with-python/">A Guide to Making HTTP requests</a></p>
 </div>
 
                 <div class="clear"></div>
@@ -1411,12 +1397,10 @@ If you are not sure where your site-packages folder is, type<tt class="docutils 
 <p><strong>In line 3,</strong>&nbsp;we are calling the .readlines() method on our file handle. This method takes the file contents and stores them, line by line, into a list named &quot;lines&quot;. An alternative method is .read(), which opens the file and stores its contents as one string. Try switching this out in place of&nbsp; .readlines() to check out the difference.</p>
 <p><strong>In line 4,</strong> we are printing the stored lines to show them to the user. We now have the file contents, ready to be used however we please.</p>
 <p><strong>In line 5</strong>, we are closing the file.</p>
-<p>Below, we are going to write a new file. Let's pretend we've done something worth saving with our lines and now want to save them to a new file. We will represent this as the variable &quot;output&quot; in the first line below.</p>
+<p>Below, we are going to write a new file using the with statement, which is generally accepted as the best way to read or write a file:</p>
 <pre class="literal-block">
-file_name = input(&quot;Enter any file name.&quot;)
-save_file = open(file_name, &quot;w&quot;)
-save_file.write(&quot;Here is some text to save in a file.&quot;)
-save_file.close()
+with open(&quot;Notes.txt&quot;, &quot;w&quot;) as fhand:
+    fhand.write(&quot;Did you know whales can live up to 90 years?&quot;)
 </pre>
 <p>In line 1, we are using Python's input function to ask the user what to name the file and storing it in a variable named file_name.</p>
 <p>In line 2,&nbsp; we are calling the open function again that we used in the first example, but this time, notice the &quot;w&quot;. This indicates that we are opening the file in &quot;write&quot; mode.</p>

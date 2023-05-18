@@ -58,11 +58,10 @@ Batch files can be run from command prompt or by double-clicking them. Here's an
 
 #. Save above as a .bat file.
 #. This uses `cmd <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29>`__ to open a new command prompt in a Windows batch file.
-#. `cd <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)>`__\ into my python virtual env then activate it by running a batch file.
+#. `cd  <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)>`__\ into my python virtual env then activate it by running a batch file.
 #. Then call dir to print directory contents.
 
-`Set <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)>`__\ 
- a custom system 'last_name' variable to be recalled later.
+`Set <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)>`__\  a custom system 'last_name' variable to be recalled later.
 
 ::
 
@@ -117,8 +116,7 @@ You may want to `ping <https://docs.microsoft.com/en-us/windows-server/administr
 
    mstsc RDP_File_Name.rdp
 
-`WinRM <https://docs.microsoft.com/en-us/windows/win32/winrm/portal>`__\ 
- and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:
+`WinRM <https://docs.microsoft.com/en-us/windows/win32/winrm/portal>`__ and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:
 
 ::
 

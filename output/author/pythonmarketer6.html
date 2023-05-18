@@ -425,7 +425,7 @@ sqlite3 PythonMarketer.db
 <li>Phase #1 Build (Hash Table)</li>
 <li>Phase #2 Probe</li>
 </ol>
-<p><strong>Use</strong><a class="reference external" href="https://en.wikipedia.org/wiki/Bloom_filter">Bloom Filter</a><strong>set operations for probe phase optimization</strong></p>
+<p><strong>Use **`Bloom Filter  &lt;https://en.wikipedia.org/wiki/Bloom_filter&gt;`__**set operations for probe phase optimization</strong></p>
 <ol class="arabic simple">
 <li>insert a key</li>
 <li>lookup a key</li>
@@ -943,7 +943,9 @@ python -m pip3.8 install --user pandas
 <span class="normal">79</span>
 <span class="normal">80</span>
 <span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">mysql.connector</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">mysql.connector</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
@@ -953,7 +955,8 @@ python -m pip3.8 install --user pandas
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Call database and return data from df. Then display homepage.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
@@ -962,7 +965,8 @@ python -m pip3.8 install --user pandas
         <span class="n">html_page</span> <span class="o">=</span> <span class="n">render_homepage</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">html_page</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Failed to connect to database.&#39;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Failed to connect to database.&quot;</span><span class="p">)</span>
+
 
 <span class="k">def</span> <span class="nf">render_homepage</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Note: you should use Flask&#39;s render_template to render HTML files.</span>
@@ -987,44 +991,44 @@ python -m pip3.8 install --user pandas
     <span class="sd">&quot;&quot;&quot;Connect to a table named &#39;Emails&#39;. Returns pandas dataframe.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-                            <span class="n">host</span><span class="o">=</span><span class="s1">&#39;username.mysql.pythonanywhere-services.com&#39;</span><span class="p">,</span>
-                            <span class="n">db</span><span class="o">=</span><span class="s1">&#39;username$DatabaseName&#39;</span><span class="p">,</span>
-                            <span class="n">user</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="p">,</span>
-                            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;password&#39;</span>
-                            <span class="p">)</span>
+            <span class="n">host</span><span class="o">=</span><span class="s2">&quot;username.mysql.pythonanywhere-services.com&quot;</span><span class="p">,</span>
+            <span class="n">db</span><span class="o">=</span><span class="s2">&quot;username$DatabaseName&quot;</span><span class="p">,</span>
+            <span class="n">user</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
 
-        <span class="n">email_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sql</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;SELECT * FROM Emails&quot;&quot;&quot;</span><span class="p">,</span>
-                               <span class="n">con</span><span class="o">=</span><span class="n">connection</span><span class="p">)</span>
+        <span class="n">email_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sql</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;SELECT * FROM Emails&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">connection</span><span class="p">)</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">email_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">email_df</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Failed to fetch dataframe from DB.&#39;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Failed to fetch dataframe from DB.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="s2">&quot;Oops!&quot;</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/add_signup_to_db&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/add_signup_to_db&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">add_signup_to_db</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Pass data as SQL parameters with mysql.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-                            <span class="n">host</span><span class="o">=</span><span class="s1">&#39;username.mysql.pythonanywhere-services.com&#39;</span><span class="p">,</span>
-                            <span class="n">db</span><span class="o">=</span><span class="s1">&#39;username$DatabaseName&#39;</span><span class="p">,</span>
-                            <span class="n">user</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="p">,</span>
-                            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;password&#39;</span>
-                            <span class="p">)</span>
+            <span class="n">host</span><span class="o">=</span><span class="s2">&quot;username.mysql.pythonanywhere-services.com&quot;</span><span class="p">,</span>
+            <span class="n">db</span><span class="o">=</span><span class="s2">&quot;username$DatabaseName&quot;</span><span class="p">,</span>
+            <span class="n">user</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;INSERT INTO Emails (message, date) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">) &quot;&quot;&quot;</span>
         <span class="n">record_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span>
-        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span><span class="n">record_tuple</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">record_tuple</span><span class="p">)</span>
         <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Failed to insert into MySQL table </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Error inserting records to DB.&#39;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Error inserting records to DB.&quot;</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">is_connected</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span>
             <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
             <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">return</span><span class="p">(</span><span class="s2">&quot;MySQL connection is closed&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;MySQL connection is closed&quot;</span>
 </pre></div></td></tr></table></div>
 <p><strong>Iterative Development</strong></p>
 <blockquote>
@@ -1365,7 +1369,8 @@ If you choose not to use Postman, you can use the json library. See the use of <
     <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p><strong>Dig deeper into requests by raising your HTTPConnection.debuglevel</strong></p>
-<p><strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <tt class="docutils literal">`debuglevel</tt> &lt;<a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel</a>&gt;`__ is greater than zero, messages will be printed to stdout as the response is read and parsed. <strong>-</strong><a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></p>
+<p><strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">debuglevel</a> is greater than zero, messages will be printed to stdout as the response is read and parsed.
+See also: <a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1459,10 +1464,7 @@ cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd
 <li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a>into my python virtual env then activate it by running a batch file.</li>
 <li>Then call dir to print directory contents.</li>
 </ol>
-<dl class="docutils">
-<dt><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a></dt>
-<dd>a custom system 'last_name' variable to be recalled later.</dd>
-</dl>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a> a custom system 'last_name' variable to be recalled later.</p>
 <pre class="literal-block">
 set /p last_name=Enter a last name:
 echo %last_name%
@@ -1504,10 +1506,7 @@ ping 01.10.10.01
 <pre class="literal-block">
 mstsc RDP_File_Name.rdp
 </pre>
-<dl class="docutils">
-<dt><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a></dt>
-<dd>and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</dd>
-</dl>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a> and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</p>
 <pre class="literal-block">
 winrm quickconfig
 </pre>

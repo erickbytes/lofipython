@@ -9,7 +9,7 @@ Pondering Join Algorithms
 
 Truly enjoying this `Intro to Database Systems course <https://www.youtube.com/playlist?list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi>`__ from Carnegie Mellon University. Some really great breakdowns of common join algorithms in this lecture. Here are my notes.
 
-   `Lecture 11- Join Algorithms <https://www.youtube.com/watch?v=nUwT7PEQ49o&list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&index=11>`__\ **(CMU Databases Systems / Fall 2019)**
+   `Lecture 11- Join Algorithms  <https://www.youtube.com/watch?v=nUwT7PEQ49o&list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&index=11>`__\ **(CMU Databases Systems / Fall 2019)**
 
    Prof. Andy Pavlo, Carnegie Mellon Database Group
 
@@ -56,7 +56,7 @@ Best performance. For large datasets.
 #. Phase #1 Build (Hash Table)
 #. Phase #2 Probe
 
-**Use**\ `Bloom Filter <https://en.wikipedia.org/wiki/Bloom_filter>`__\ **set operations for probe phase optimization**
+**Use **\ `Bloom Filter  <https://en.wikipedia.org/wiki/Bloom_filter>`__\ **set operations for probe phase optimization**
 
 #. insert a key
 #. lookup a key

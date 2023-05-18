@@ -37,7 +37,7 @@ Messi (Left) Vs. Ronaldo (Right) FIFA Player Ratings
 
 These ratings represent the players at their peak of their careers. Messi is a better dribbler, while Ronaldo has more power and strength. Messi has the edge in free kicks, curve in his shot and "longshots" 99 to 98 over Cristiano. They are tied at "finishing", each with 99. Ronaldo has the "Power Free-Kick" trait, whereas Messi has "Chip Shot", "Finesse Shot" and "Playmaker" traits giving him an edge.
 
-EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an "Aerial Threat" specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2" (187 cm) vs. Messi's 5' 7" (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is quite darty.
+EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an "Aerial Threat" specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2" (187 cm) vs. Messi's 5' 7" (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is `quite darty <https://www.ea.com/en-gb/games/fifa/fifa-22/ratings/ratings-database>`__.
 
 .. raw:: html
 
@@ -47,21 +47,7 @@ EA's ratings suggest that both are prominent goal scorers, with a slight edge to
 
    https://www.instagram.com/p/Cc59jtvjk_0/
 
-.. raw:: html
-
-   <figcaption>
-
-Messi has incredible accuracy from distance.
-
-.. raw:: html
-
-   </figcaption>
-
-.. raw:: html
-
-   </figure>
-
-Messi is a better passer all around and has perfect "vision", great qualities for winning football games. Only in crossing does he have a lower passing rating. Ronaldo is also 10 points better at "penalties" or penalty kicks. The closer he gets to the goal, the more dangerous he is. Messi is more dangerous with the ball while dribbling, passing or shooting except when taking a PK.
+Messi has incredible accuracy from distance. He's also a better passer all around and has perfect "vision", great qualities for winning football games. Only in crossing does he have a lower passing rating. Ronaldo is also 10 points better at "penalties" or penalty kicks. The closer he gets to the goal, the more dangerous he is. Messi is more dangerous with the ball while dribbling, passing or shooting except when taking a PK.
 
 Advantages can be gained in many different aspects of soccer. EA has developed a fun dataset to model these all time greats across several football skill dimensions. In `2022's version of the game <https://www.ea.com/en-gb/games/fifa/fifa-22/ratings/ratings-database>`__, Messi is rated a 93, with Cristiano 91. Clearly these two are worthy of top honors. Don't forget Robert Lewandowski, with a 92 rating, who consistently lights up the Champions League and Bundesliga.
 

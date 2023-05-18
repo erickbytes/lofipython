@@ -78,29 +78,30 @@ Now, let's check for enabled network interfaces. "wlan0" is usually the name of 
    sudo ifconfig
 
 ::
-   eth0: flags=4099<UP,BROADCAST,MULTICAST> mtu 1500
-   ether 00:25:a5:cf:38:7d txqueuelen 1000 (Ethernet)
-   RX packets 0 bytes 0 (0.0 B)
-   RX errors 0 dropped 0 overruns 0 frame 0
-   TX packets 0 bytes 0 (0.0 B)
-   TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
-   device interrupt 17 
-   lo: flags=73<UP,LOOPBACK,RUNNING> mtu 65536
-   inet 127.0.0.1 netmask 255.0.0.0
-   inet6 ::1 prefixlen 128 scopeid 0x10
-   loop txqueuelen 1 (Local Loopback)
-   RX packets 4 bytes 240 (240.0 B)
-   RX errors 0 dropped 0 overruns 0 frame 0
-   TX packets 4 bytes 240 (240.0 B)
-   TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
-   wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500
-   inet 191.142.1.297 netmask 255.255.255.0 broadcast 182.138.5.255
-   inet6 2601:241:8c00:50ea:21a:92ff:fe0d:7531 prefixlen 64 scopeid 0x0
-   inet6 fe80::22a:42tf:fe0d:7531 prefixlen 64 scopeid 0x20 ether 00:2a:92:2d:45:51 txqueuelen 1000 (Ethernet)
-   RX packets 8509 bytes 4639778 (4.4 MiB)
-   RX errors 0 dropped 0 overruns 0 frame 0
-   TX packets 6206 bytes 923792 (902.1 KiB)
-   TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+
+    eth0: flags=4099<UP,BROADCAST,MULTICAST> mtu 1500
+    ether 00:25:a5:cf:38:7d txqueuelen 1000 (Ethernet)
+    RX packets 0 bytes 0 (0.0 B)
+    RX errors 0 dropped 0 overruns 0 frame 0
+    TX packets 0 bytes 0 (0.0 B)
+    TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+    device interrupt 17 
+    lo: flags=73<UP,LOOPBACK,RUNNING> mtu 65536
+    inet 127.0.0.1 netmask 255.0.0.0
+    inet6 ::1 prefixlen 128 scopeid 0x10
+    loop txqueuelen 1 (Local Loopback)
+    RX packets 4 bytes 240 (240.0 B)
+    RX errors 0 dropped 0 overruns 0 frame 0
+    TX packets 4 bytes 240 (240.0 B)
+    TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+    wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500
+    inet 191.142.1.297 netmask 255.255.255.0 broadcast 182.138.5.255
+    inet6 2601:241:8c00:50ea:21a:92ff:fe0d:7531 prefixlen 64 scopeid 0x0
+    inet6 fe80::22a:42tf:fe0d:7531 prefixlen 64 scopeid 0x20 ether 00:2a:92:2d:45:51 txqueuelen 1000 (Ethernet)
+    RX packets 8509 bytes 4639778 (4.4 MiB)
+    RX errors 0 dropped 0 overruns 0 frame 0
+    TX packets 6206 bytes 923792 (902.1 KiB)
+    TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
 
 **Check wlan0 is not blocked on kill list.**
 
@@ -157,8 +158,6 @@ Some computers have a "kill switch" for wifi. This command lists any blocked int
 **Wrapping Up**
 
 I'd like to thank the awesome people who contributed to the Debian Installer-loader and all the help in Linux forums that enabled me figure this out. I'm new to the world of Linux but already enjoying diving into this operating system. Its ability to do just about anything from the command line are a lot of fun. I am now running two Linux systems, one on my Dell and another running Ubuntu that I installed on a Chromebook with `Crouton <https://www.howtogeek.com/162120/how-to-install-ubuntu-linux-on-your-chromebook-with-crouton/>`__. Both have been relatively painless to set up. It this case, it turned a sluggish laptop into a very capable machine. They should call it Lit-nux :)
-
-https://twitter.com/erickbytes/status/1120864722855825409
 
 **Full Disclosure**
 

@@ -99,11 +99,10 @@ curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
 </div>
 </div>
 <p>These ratings represent the players at their peak of their careers. Messi is a better dribbler, while Ronaldo has more power and strength. Messi has the edge in free kicks, curve in his shot and &quot;longshots&quot; 99 to 98 over Cristiano. They are tied at &quot;finishing&quot;, each with 99. Ronaldo has the &quot;Power Free-Kick&quot; trait, whereas Messi has &quot;Chip Shot&quot;, &quot;Finesse Shot&quot; and &quot;Playmaker&quot; traits giving him an edge.</p>
-<p>EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an &quot;Aerial Threat&quot; specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2&quot; (187 cm) vs. Messi's 5' 7&quot; (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is quite darty.</p>
+<p>EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an &quot;Aerial Threat&quot; specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2&quot; (187 cm) vs. Messi's 5' 7&quot; (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is <a class="reference external" href="https://www.ea.com/en-gb/games/fifa/fifa-22/ratings/ratings-database">quite darty</a>.</p>
 <figure class="wp-block-embed is-type-rich is-provider-instagram wp-block-embed-instagram"><div class="wp-block-embed-wrapper docutils container">
 <a class="reference external" href="https://www.instagram.com/p/Cc59jtvjk_0/">https://www.instagram.com/p/Cc59jtvjk_0/</a></div>
-<figcaption><p>Messi has incredible accuracy from distance.</p>
-</figcaption></figure><p>Messi is a better passer all around and has perfect &quot;vision&quot;, great qualities for winning football games. Only in crossing does he have a lower passing rating. Ronaldo is also 10 points better at &quot;penalties&quot; or penalty kicks. The closer he gets to the goal, the more dangerous he is. Messi is more dangerous with the ball while dribbling, passing or shooting except when taking a PK.</p>
+<p>Messi has incredible accuracy from distance. He's also a better passer all around and has perfect &quot;vision&quot;, great qualities for winning football games. Only in crossing does he have a lower passing rating. Ronaldo is also 10 points better at &quot;penalties&quot; or penalty kicks. The closer he gets to the goal, the more dangerous he is. Messi is more dangerous with the ball while dribbling, passing or shooting except when taking a PK.</p>
 <p>Advantages can be gained in many different aspects of soccer. EA has developed a fun dataset to model these all time greats across several football skill dimensions. In <a class="reference external" href="https://www.ea.com/en-gb/games/fifa/fifa-22/ratings/ratings-database">2022's version of the game</a>, Messi is rated a 93, with Cristiano 91. Clearly these two are worthy of top honors. Don't forget Robert Lewandowski, with a 92 rating, who consistently lights up the Champions League and Bundesliga.</p>
 <p><strong>jq ftw</strong></p>
 <p>I had never used jq before this. Really enjoyed the quick, stylish and practical view of some json. This cool terminal display and syntax highlighting was on my Chromebook shell. It's neat how easily you can pretty print json with jq. I rate it a 99 for json pretty printing on the FIFA scale. Read more in the <a class="reference external" href="https://stedolan.github.io/jq/tutorial/">jq documentation</a>!</p>
@@ -454,7 +453,8 @@ If you choose not to use Postman, you can use the json library. See the use of <
     <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p><strong>Dig deeper into requests by raising your HTTPConnection.debuglevel</strong></p>
-<p><strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <tt class="docutils literal">`debuglevel</tt> &lt;<a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel</a>&gt;`__ is greater than zero, messages will be printed to stdout as the response is read and parsed. <strong>-</strong><a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></p>
+<p><strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">debuglevel</a> is greater than zero, messages will be printed to stdout as the response is read and parsed.
+See also: <a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -527,12 +527,10 @@ If you choose not to use Postman, you can use the json library. See the use of <
 <p><strong>In line 3,</strong>&nbsp;we are calling the .readlines() method on our file handle. This method takes the file contents and stores them, line by line, into a list named &quot;lines&quot;. An alternative method is .read(), which opens the file and stores its contents as one string. Try switching this out in place of&nbsp; .readlines() to check out the difference.</p>
 <p><strong>In line 4,</strong> we are printing the stored lines to show them to the user. We now have the file contents, ready to be used however we please.</p>
 <p><strong>In line 5</strong>, we are closing the file.</p>
-<p>Below, we are going to write a new file. Let's pretend we've done something worth saving with our lines and now want to save them to a new file. We will represent this as the variable &quot;output&quot; in the first line below.</p>
+<p>Below, we are going to write a new file using the with statement, which is generally accepted as the best way to read or write a file:</p>
 <pre class="literal-block">
-file_name = input(&quot;Enter any file name.&quot;)
-save_file = open(file_name, &quot;w&quot;)
-save_file.write(&quot;Here is some text to save in a file.&quot;)
-save_file.close()
+with open(&quot;Notes.txt&quot;, &quot;w&quot;) as fhand:
+    fhand.write(&quot;Did you know whales can live up to 90 years?&quot;)
 </pre>
 <p>In line 1, we are using Python's input function to ask the user what to name the file and storing it in a variable named file_name.</p>
 <p>In line 2,&nbsp; we are calling the open function again that we used in the first example, but this time, notice the &quot;w&quot;. This indicates that we are opening the file in &quot;write&quot; mode.</p>

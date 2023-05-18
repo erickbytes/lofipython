@@ -40,8 +40,6 @@ These metrics are a way to monitor your system's performance over time.
 
 The name says it all. Go to the Start menu and search 'Disk Cleanup'. Running this freed up 40 GB of C: drive space for me.
 
-disk_cleanup
-
 --------------
 
 **Install OS patches and software updates withWindows Update.**
@@ -68,13 +66,7 @@ check_updates
 -  Go to your start menu and search for 'Windows Update'.
 -  I clicked 'Check online for updates from Windows Update' also.
 -  When you restart your computer, use a power cord for your laptop.
--  I found more new updates twice after installing new updates and restarting my system.  Some updates are required before another update may be installed.
-
-windowsuptodate
-
- 
-
- 
+-  I found more new updates twice after installing new updates and restarting my system.  Some updates are required before another update may be installed. 
 
 --------------
 

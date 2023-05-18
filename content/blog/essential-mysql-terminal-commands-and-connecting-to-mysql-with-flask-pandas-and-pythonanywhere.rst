@@ -134,88 +134,90 @@ Flask app with `mysql.connector API <https://dev.mysql.com/doc/connector-python/
 
 .. code-block:: python
 
-   import mysql.connector
-   from flask import Flask
-   import pandas as pd
-   from datetime import date
-   import logging
-   import sys
+    import mysql.connector
+    from flask import Flask
+    import pandas as pd
+    from datetime import date
+    import logging
+    import sys
 
-   app = Flask(__name__)
-   logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
-
-   @app.route('/') 
-   def hello_world(): 
-       """Call database and return data from df. Then display homepage."""
-       try: 
-           email_df = get_database_table_as_dataframe()
-           print(email_df.shape) 
-           html_page = render_homepage()
-           return html_page 
-       except: 
-           logging.exception('Failed to connect to database.')
-
-   def render_homepage():
-       """Note: you should use Flask's render_template to render HTML files. 
-       But here's a quick f-string HTML page that works:
-       """
-       html_page = f"""<html><head><link rel='stylesheet' href="/static/styles/some_file.css"><link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
-                       <Title>Support BLM</Title></head>
-                       <body><h2>Black Lives Matter</h2>
-                       <p>No to Systemic Racism!</p><br>
-                       <h6><b>Support BLM:</b></h6><br>
-                       <div class="form">
-                       <form action="/add_signup_to_db" method="post" style="width:420px;text-align:center;display:block;" >
-                       <input type="text" name="Signup Form">
-                       <input type="submit" value="Submit">
-                       </form></div><br><br>
-                       <p><b>Current Time:</b>
-                       {str(date.today())} </p></body></html>"""
-       return html_page
+    app = Flask(__name__)
+    logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 
 
-   def get_database_table_as_dataframe():
-       """Connect to a table named 'Emails'. Returns pandas dataframe."""
-       try:
-           connection = mysql.connector.connect(
-                               host='username.mysql.pythonanywhere-services.com', 
-                               db='username$DatabaseName', 
-                               user='username', 
-                               password='password'
-                               ) 
-                               
-           email_df = pd.read_sql(sql="""SELECT * FROM Emails""",
-                                  con=connection)
-           logging.info(email_df.head()) 
-           return email_df
-       except:
-           logging.exception('Failed to fetch dataframe from DB.')
-           return "Oops!" 
+    @app.route("/")
+    def hello_world():
+        """Call database and return data from df. Then display homepage."""
+        try:
+            email_df = get_database_table_as_dataframe()
+            print(email_df.shape)
+            html_page = render_homepage()
+            return html_page
+        except:
+            logging.exception("Failed to connect to database.")
 
-   @app.route("/add_signup_to_db", methods=["GET","POST"])
-   def add_signup_to_db(email, date):
-       """Pass data as SQL parameters with mysql."""
-       try:
-           connection = mysql.connector.connect(
-                               host='username.mysql.pythonanywhere-services.com', 
-                               db='username$DatabaseName', 
-                               user='username', 
-                               password='password'
-                               ) 
-           cursor = connection.cursor()
-           sql = """INSERT INTO Emails (message, date) VALUES (%s, %s) """
-           record_tuple = (email, date)
-           cursor.execute(sql,record_tuple)
-           connection.commit()
-       except mysql.connector.Error as error:
-           logging.info("Failed to insert into MySQL table {}".format(error))
-       except:
-           logging.exception('Error inserting records to DB.')
-       finally:
-           if (connection.is_connected()):
-               cursor.close()
-               connection.close()
-           return("MySQL connection is closed")
+
+    def render_homepage():
+        """Note: you should use Flask's render_template to render HTML files.
+        But here's a quick f-string HTML page that works:
+        """
+        html_page = f"""<html><head><link rel='stylesheet' href="/static/styles/some_file.css"><link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
+                        <Title>Support BLM</Title></head>
+                        <body><h2>Black Lives Matter</h2>
+                        <p>No to Systemic Racism!</p><br>
+                        <h6><b>Support BLM:</b></h6><br>
+                        <div class="form">
+                        <form action="/add_signup_to_db" method="post" style="width:420px;text-align:center;display:block;" >
+                        <input type="text" name="Signup Form">
+                        <input type="submit" value="Submit">
+                        </form></div><br><br>
+                        <p><b>Current Time:</b>
+                        {str(date.today())} </p></body></html>"""
+        return html_page
+
+
+    def get_database_table_as_dataframe():
+        """Connect to a table named 'Emails'. Returns pandas dataframe."""
+        try:
+            connection = mysql.connector.connect(
+                host="username.mysql.pythonanywhere-services.com",
+                db="username$DatabaseName",
+                user="username",
+                password="password",
+            )
+
+            email_df = pd.read_sql(sql="""SELECT * FROM Emails""", con=connection)
+            logging.info(email_df.head())
+            return email_df
+        except:
+            logging.exception("Failed to fetch dataframe from DB.")
+            return "Oops!"
+
+
+    @app.route("/add_signup_to_db", methods=["GET", "POST"])
+    def add_signup_to_db(email, date):
+        """Pass data as SQL parameters with mysql."""
+        try:
+            connection = mysql.connector.connect(
+                host="username.mysql.pythonanywhere-services.com",
+                db="username$DatabaseName",
+                user="username",
+                password="password",
+            )
+            cursor = connection.cursor()
+            sql = """INSERT INTO Emails (message, date) VALUES (%s, %s) """
+            record_tuple = (email, date)
+            cursor.execute(sql, record_tuple)
+            connection.commit()
+        except mysql.connector.Error as error:
+            logging.info("Failed to insert into MySQL table {}".format(error))
+        except:
+            logging.exception("Error inserting records to DB.")
+        finally:
+            if connection.is_connected():
+                cursor.close()
+                connection.close()
+            return "MySQL connection is closed"
 
 **Iterative Development**
 

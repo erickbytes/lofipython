@@ -32,10 +32,9 @@ ERROR: Cannot perform a '--user' install. User site-packages are not visible in 
 &lt;img alt="bash console python install" src="https://pythonmarketer.files.wordpress.com/2022/01/python-anywhere-bash-highlight-2.png?w=1024" /&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Install requests with this command:&lt;/strong&gt;&lt;/p&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;::&lt;/dt&gt;
-&lt;dd&gt;python3.8 -m pip install requests --upgrade --user&lt;/dd&gt;
-&lt;/dl&gt;
+&lt;pre class="literal-block"&gt;
+python3.8 -m pip install requests --upgrade --user
+&lt;/pre&gt;
 &lt;p&gt;Substitute in whatever your Python version is. This command upgrades the requests library on a PythonAnywhere app. If any libraries depend on a specific version of requests, a warning appears like this one I saw for the &lt;a class="reference external" href="https://github.com/yakupadakli/python-unsplash"&gt;python-unsplash&lt;/a&gt; library.&lt;/p&gt;
 &lt;blockquote&gt;
 ERROR: python-unsplash 1.1.0 has requirement requests==2.20.0, but you'll have requests 2.27.1 which is incompatible.&lt;/blockquote&gt;
@@ -47,12 +46,10 @@ ERROR: python-unsplash 1.1.0 has requirement requests==2.20.0, but you'll have r
 &lt;p&gt;Inevitably, you'll want to install new libraries from Python's rich ecosystem of external modules. Enter pip, Python's handy package manager and people's champion.&lt;/p&gt;
 &lt;p&gt;This post will teach you some Python history, show how to install pandas, and help you troubleshoot problems if it's not working. You'll find Windows and Linux commands for venv setup (recommended). With pip, you'll feel like Neo when installing new modules. Any skill is at your fingertips. It's like learning kung fu. There's probably a library for that!&lt;/p&gt;
 &lt;img alt="i know kung fu" class="alignnone size-full wp-image-1321" src="http://pythonmarketer.files.wordpress.com/2018/01/19c0c-i-know-kung-fu-e1516470914221.png" style="width: 1277px; height: 532px;" /&gt;
-&lt;p&gt;First, Some Python Version Caveats + History**
-**
-------------------------------------------------&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;First, Some Python Version Caveats + History&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Python 2 reached end of life on January 1st, 2020&lt;/strong&gt;. &lt;a class="reference external" href="https://www.python.org/doc/sunset-python-2/"&gt;Python 2 has officially been sunset&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;In December 2021, Python 3.6 reached&lt;/strong&gt;&lt;a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches"&gt;&amp;quot;end of life phase&amp;quot;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;In December 2021, Python 3.6 reached **`&amp;quot;end of life phase&amp;quot; &amp;lt;https://devguide.python.org/devcycle/#end-of-life-branches&amp;gt;`__**.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Python 3.6 is &amp;quot;now effectively frozen&amp;quot;. Read more in &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0494/"&gt;PEP 494&lt;/a&gt;. (Released Oct. 2022)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt; use Python 3.7 to 3.11. This blog endorses using the lightning fast Python version &lt;a class="reference external" href="https://www.python.org/downloads/release/python-3110/"&gt;3.11.&lt;/a&gt;&lt;/p&gt;
 &lt;div class="section" id="enter-this-in-your-terminal"&gt;
@@ -75,6 +72,10 @@ ERROR: python-unsplash 1.1.0 has requirement requests==2.20.0, but you'll have r
 &lt;p&gt;&lt;strong&gt;Use pip's -h help command line argument:&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
 &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;View your system and user pip config settings:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Supplementary Resources&lt;/strong&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -108,16 +109,14 @@ python -m ensurepip --upgrade
 &lt;/div&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&amp;quot;The&amp;nbsp;&lt;tt class="docutils literal"&gt;`ensurepip&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip"&gt;https://docs.python.org/3/library/ensurepip.html#module-ensurepip&lt;/a&gt;&amp;gt;`__&amp;nbsp;package provides support for bootstrapping the&amp;nbsp;&lt;tt class="docutils literal"&gt;pip&lt;/tt&gt;&amp;nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&amp;nbsp;&lt;tt class="docutils literal"&gt;pip&lt;/tt&gt; is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&amp;quot;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/ensurepip.html"&gt;ensurepip Python Documentation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&amp;quot;The&amp;nbsp;ensurepip ` &amp;lt;&lt;a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip"&gt;https://docs.python.org/3/library/ensurepip.html#module-ensurepip&lt;/a&gt;&amp;gt;`__&amp;nbsp;package provides support for bootstrapping the&amp;nbsp;pip&amp;nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&amp;nbsp;pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&amp;quot;&lt;/p&gt;
+&lt;p&gt;- &lt;a class="reference external" href="https://docs.python.org/3/library/ensurepip.html"&gt;ensurepip Python Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;You should follow best practice and&lt;/strong&gt; &lt;a class="reference external" href="https://docs.python.org/3/library/venv.html"&gt;create a virtual environment&lt;/a&gt; &lt;strong&gt;before installing libraries.&lt;/strong&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/venv.html"&gt;venv&lt;/a&gt;&lt;strong&gt;or&lt;/strong&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtualenv&lt;/a&gt;&lt;strong&gt;will help you out. To create with venv:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;You should follow best practice and&lt;/strong&gt; &lt;a class="reference external" href="https://docs.python.org/3/library/venv.html"&gt;create a virtual environment&lt;/a&gt; &lt;strong&gt;before installing libraries. **`venv  &amp;lt;https://docs.python.org/3/library/venv.html&amp;gt;`__**or&lt;/strong&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtualenv&lt;/a&gt;&lt;strong&gt;will help you out. To create with venv:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;python3 &lt;span class="pre"&gt;-m&lt;/span&gt; venv add_env_name_here&lt;/tt&gt;&lt;/p&gt;
 &lt;p&gt;After your environment is created, activate it with the first command below, then install a library on Ubuntu Linux:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;cd add_env_path_here/bin &amp;amp; source activate&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;source add_env_path_here/bin activate&lt;/tt&gt;&lt;/li&gt;
 &lt;li&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Alternatively, on Windows computers:&lt;/p&gt;
@@ -143,13 +142,13 @@ python -m ensurepip --upgrade
 &lt;li&gt;Seeking to fix a faulty pip install that is not working properly.&lt;/li&gt;
 &lt;li&gt;Curious to know how to manually set up pip.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;em&gt;Assumes Python is already&lt;/em&gt;&lt;a class="reference external" href="https://www.python.org/downloads/"&gt;installed&lt;/a&gt;&lt;em&gt;. If you're running Windows 10, I found it easy to install Python from the&lt;/em&gt;&lt;a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab"&gt;Windows store&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Download the&lt;/strong&gt;&lt;a class="reference external" href="https://bootstrap.pypa.io/get-pip.py"&gt;get-pip.py file&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Assumes Python is already *`installed &amp;lt;https://www.python.org/downloads/&amp;gt;`__*. If you're running Windows 10, I found it easy to install Python from the *`Windows store &amp;lt;https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab&amp;gt;`__*.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Download the **`get-pip.py file &amp;lt;https://bootstrap.pypa.io/get-pip.py&amp;gt;`__**.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Go to the link, right click the page and &amp;quot;Save As&amp;quot; a .py file to download. Then place the file where you want to access it. I placed mine in&amp;nbsp;C:Python27Libsite-packages&lt;/p&gt;
 &lt;p&gt;You could also download the file with &lt;a class="reference external" href="https://curl.haxx.se/"&gt;curl&lt;/a&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;curl &lt;span class="pre"&gt;https://bootstrap.pypa.io/get-pip.py&lt;/span&gt; &lt;span class="pre"&gt;-o&lt;/span&gt; &lt;span class="pre"&gt;get-pip.pyt-pip.py&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-If you are not sure where your site-packages folder is, type&lt;tt class="docutils literal"&gt;`python &lt;span class="pre"&gt;-m&lt;/span&gt; site&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory"&gt;https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory&lt;/a&gt;&amp;gt;`__into command prompt for file path ideas.&lt;/blockquote&gt;
+If you are not sure where your site-packages folder is, type&lt;a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory"&gt;python -m site&lt;/a&gt;into command prompt for file path ideas.&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Run the get-pip.py file.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Using command prompt's cd command with a Windows &amp;quot;&amp;amp;&amp;quot; operator to run the Python file in a Windows command prompt:&lt;/p&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;cd &lt;span class="pre"&gt;c:\Python27\Lib\site-packages&lt;/span&gt; &amp;amp; python &lt;span class="pre"&gt;get-pip.py&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
@@ -160,10 +159,9 @@ If you are not sure where your site-packages folder is, type&lt;tt class="docuti
 &lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install requests&lt;/tt&gt;&lt;/p&gt;
 &lt;p&gt;This should install the Requests module into your Python libraries. Requests is an http module which is highly regarded almost universally by the Python community.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Thanks for reading! Check out these other posts with pip installed library examples:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://pythonmarketer.com/2022/01/30/fix-spelling-and-grammar-with-language_tool_python-and-textblob/"&gt;Fix Grammar and Spelling with language_tool_python and textblob&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/"&gt;gooey&lt;/a&gt; - GUI library&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://pythonmarketer.wordpress.com/2020/09/13/delete-all-your-tweets-with-tweepy-and-the-twitter-api/"&gt;tweepy&lt;/a&gt; - Twitter library&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://pythonmarketer.com/2020/05/18/how-to-make-json-requests-with-python/"&gt;A Guide to Making HTTP requests&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/"&gt;Plotting Datasets Using Jupyter, Pandas and Matplotlib&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/"&gt;Fix Grammar and Spelling with language_tool_python and textblob&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/"&gt;gooey&lt;/a&gt; - GUI library&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api/"&gt;tweepy&lt;/a&gt; - Twitter library&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://lofipython.com/how-to-make-json-requests-with-python/"&gt;A Guide to Making HTTP requests&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="coding, programming"></category><category term="command line"></category><category term="computers"></category><category term="matrix"></category><category term="neo"></category><category term="pip"></category><category term="python"></category><category term="python libraries"></category><category term="software"></category></entry></feed>

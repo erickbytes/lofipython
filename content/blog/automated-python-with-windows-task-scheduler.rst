@@ -53,25 +53,19 @@ I am enjoying this simple, easy and convenient scheduling manager for Windows. I
 
 .. code-block:: python
 
-   from shutil import move
-   import getpass
-   import os
+    from shutil import move
+    import getpass
+    import os
 
-   """
-   Desktop Spreadsheet File Cleaner - Python Marketer
-   https://atomic-temporary-107329037.wpcomstaging.com/2018/11/25/automated-python-with-windows-task-scheduler/
-   """
-   # Get all Desktop files and folders
-   src_directory = f'C:\\Users\\{getpass.getuser()}\\Desktop'
-   dir_items = os.listdir(src_directory)
-   excel_files = [item for item in dir_items \
-                   if '.csv' in item or '.xls' in item]
-
-   dst = f'C:\\Users\\{getpass.getuser()}\\Desktop\\Current_Month_Excels'
-   os.makedirs(dst, exist_ok=True)
-   for xl in excel_files: 
-       path_to_file = src_directory + xl
-       move(path_to_file, dst)
+    # Desktop Spreadsheet File Cleaner: get all Desktop files and folders
+    src = f"C:/Users/{getpass.getuser()}/Desktop"
+    dir_items = os.listdir(src)
+    excel_files = [item for item in dir_items if ".csv" in item or ".xls" in item]
+    dst = f"C:/Users/{getpass.getuser()}/Desktop/Excels"
+    os.makedirs(dst, exist_ok=True)
+    for xl in excel_files:
+        path_to_file = src + xl
+        move(path_to_file, dst)
 
 **Additional Reading**
 

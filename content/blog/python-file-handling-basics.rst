@@ -33,14 +33,12 @@ In line 1, we ask the user to enter their file name with Python's raw_input func
 
 **In line 5**, we are closing the file.
 
-Below, we are going to write a new file. Let's pretend we've done something worth saving with our lines and now want to save them to a new file. We will represent this as the variable "output" in the first line below.
+Below, we are going to write a new file using the with statement, which is generally accepted as the best way to read or write a file:
 
 ::
 
-   file_name = input("Enter any file name.")
-   save_file = open(file_name, "w")
-   save_file.write("Here is some text to save in a file.")
-   save_file.close()
+   with open("Notes.txt", "w") as fhand:
+       fhand.write("Did you know whales can live up to 90 years?")
 
 In line 1, we are using Python's input function to ask the user what to name the file and storing it in a variable named file_name.
 

@@ -89,12 +89,16 @@
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="sd">&quot;&quot;&quot;install pandas with this command:</span>
-<span class="sd">python -m pip install pandas</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># install pandas with this command: python -m pip install pandas</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">events</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;USA Born&#39;</span><span class="p">,</span><span class="s1">&#39;1776-07-04&#39;</span><span class="p">],[</span><span class="s1">&#39;WTC Bombings&#39;</span><span class="p">,</span><span class="s1">&#39;2001-09-11&#39;</span><span class="p">],[</span><span class="s1">&#39;Biden Inauguration&#39;</span><span class="p">,</span><span class="s1">&#39;2021-01-20&#39;</span><span class="p">]]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;events&#39;</span><span class="p">,</span><span class="s1">&#39;dates&#39;</span><span class="p">])</span>
+<span class="n">events</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;USA Born&quot;</span><span class="p">,</span> <span class="s2">&quot;1776-07-04&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;WTC Bombings&quot;</span><span class="p">,</span> <span class="s2">&quot;2001-09-11&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Biden Inauguration&quot;</span><span class="p">,</span> <span class="s2">&quot;2021-01-20&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="s2">&quot;dates&quot;</span><span class="p">])</span>
 <span class="c1"># convert a pandas series of strings to datetime objects</span>
 <span class="n">df</span><span class="o">.</span><span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dates</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>

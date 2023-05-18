@@ -67,12 +67,10 @@
 <p><strong>In line 3,</strong>&nbsp;we are calling the .readlines() method on our file handle. This method takes the file contents and stores them, line by line, into a list named &quot;lines&quot;. An alternative method is .read(), which opens the file and stores its contents as one string. Try switching this out in place of&nbsp; .readlines() to check out the difference.</p>
 <p><strong>In line 4,</strong> we are printing the stored lines to show them to the user. We now have the file contents, ready to be used however we please.</p>
 <p><strong>In line 5</strong>, we are closing the file.</p>
-<p>Below, we are going to write a new file. Let's pretend we've done something worth saving with our lines and now want to save them to a new file. We will represent this as the variable &quot;output&quot; in the first line below.</p>
+<p>Below, we are going to write a new file using the with statement, which is generally accepted as the best way to read or write a file:</p>
 <pre class="literal-block">
-file_name = input(&quot;Enter any file name.&quot;)
-save_file = open(file_name, &quot;w&quot;)
-save_file.write(&quot;Here is some text to save in a file.&quot;)
-save_file.close()
+with open(&quot;Notes.txt&quot;, &quot;w&quot;) as fhand:
+    fhand.write(&quot;Did you know whales can live up to 90 years?&quot;)
 </pre>
 <p>In line 1, we are using Python's input function to ask the user what to name the file and storing it in a variable named file_name.</p>
 <p>In line 2,&nbsp; we are calling the open function again that we used in the first example, but this time, notice the &quot;w&quot;. This indicates that we are opening the file in &quot;write&quot; mode.</p>

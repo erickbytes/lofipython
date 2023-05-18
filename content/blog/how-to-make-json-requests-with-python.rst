@@ -266,7 +266,8 @@ You might be able to improve performance by using a requests `"session" object <
 
 **Dig deeper into requests by raising your HTTPConnection.debuglevel**
 
-**HTTPResponse.debuglevel:** A debugging hook. If ```debuglevel`` <https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel>`__ is greater than zero, messages will be printed to stdout as the response is read and parsed. **-**\ `http.client Python Docs <https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel>`__
+**HTTPResponse.debuglevel:** A debugging hook. If `debuglevel <https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel>`__ is greater than zero, messages will be printed to stdout as the response is read and parsed.
+See also: `http.client Python Docs <https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel>`__
 
 .. code-block:: python
 

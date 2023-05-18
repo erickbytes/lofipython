@@ -11,7 +11,7 @@ Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box
 
 This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.
 
-**Installing**\ `pytest <https://docs.pytest.org/en/latest/getting-started.html>`__\ **, a python testing library:**
+**Installing **\ `pytest <https://docs.pytest.org/en/latest/getting-started.html>`__\ **, a python testing library:**
 
 ``python -m pip install pytest``
 
@@ -25,20 +25,23 @@ Let's use **test_file_date.py** as our test, which uses the `glob <https://docs.
 
 .. code-block:: python
 
-   from datetime import datetime, date 
-   import glob
-   import os
-   import getpass
+    from datetime import datetime, date
+    import glob
+    import os
+    import getpass
 
-   def test_csv_date_equals_today():
-       """The dir_query format is for a Windows path with Unix style pattern matching."""
-       dir_query = 'C:\\Users\\{getpass.getuser()}\\Desktop\\*.csv' # specify csv extension and folder
-       file_path = sorted(glob.iglob(dir_query), key=os.path.getmtime)[-1] # get most recent file
-       file_timestamp = os.path.getmtime(file_path)
-       file_date = datetime.fromtimestamp(file_timestamp)
-       print(file_date.day)
-       print(date.today().day)
-       assert file_date.day == date.today().day
+    def test_csv_date_equals_today():
+        """The dir_query format is for a Windows path with Unix style pattern matching."""
+         # specify csv extension and folder
+        match = f'C:Users/{getpass.getuser()}/Desktop/*.csv'
+        # get most recent file
+        csv = sorted(glob.iglob(dir_query), key=os.path.getmtime)[-1]
+        csv_timestamp = os.path.getmtime(csv)
+        csv_date = datetime.fromtimestamp(csv_timestamp)
+        print(csv_date.day)
+        print(date.today().day)
+        assert csv_date.day == date.today().day
+        
 
 **Here's the pytest text output when the test is passing:**
 
@@ -105,42 +108,38 @@ Let's set another task scheduler job to run **read_test_results.py,** to run a f
 
 .. code-block:: python
 
-   from datetime import date
-   import getpass
-   import logging
-   import os
+    from datetime import date
+    import getpass
+    import logging
+    import os
 
-   """Automate pytest with Windows Task Scheduler - Python Marketer
-   http://atomic-temporary-107329037.wpcomstaging.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/
-
-   Use Task Scheduler run a batch file. 
-   The batch file runs pytest and captures our pytest function results to sys. 
-   If a text file contains a failure or error, write the test contents into a folder.
-   """
-   logging.basicConfig(
-       filename='Automated_Testing_Alerts.log',
-       level=logging.INFO,
-       format='%(asctime)s - %(message)s',
-       datefmt='%d-%b-%y %H:%M:%S'
-       )
-   logging.info("Checking for failed tests...")
-   directory = f'C:\\Users\\{user_name}\\Desktop\\VM_Jobs\\test_results\\'
-   test_results = [fname for fname in os.listdir(directory) if '.txt' in fname]
-   for txt_file in test_results:
-       file_path = directory + txt_file
-       with open(file_path) as f:
-           text = f.read()
-       if 'FAILURES' in text:
-           directory = f'C:\\Users\\{user_name}\\Desktop\\VM_Jobs\\send_failure_alert\\'
-           today = str(date.today())
-           out_file = f'{directory}{txt_file}_Failed_Results_{today}.txt'
-           alert_file = open(out_file,"w+")
-           alert_file.write(txt_file)
-           alert_file.write(text)
-           alert_file.close()
-       else:
-           print("No failed tests found in file:")
-           print(txt_file)
+    """Automate pytest with Windows Task Scheduler
+    Use Task Scheduler run a batch file. The batch file runs pytest and captures our pytest function results to sys.
+    If a text file contains a failure or error, write the test contents into a folder.
+    """
+    logging.basicConfig(
+        filename="Automated_Testing_Alerts.log",
+        level=logging.INFO,
+        format="%(asctime)s - %(message)s",
+        datefmt="%d-%b-%y %H:%M:%S",
+    )
+    logging.info("Checking for failed tests...")
+    directory = f"C:/Users/{getpass.getuser()}/Desktop/test_results/"
+    test_results = [fname for fname in os.listdir(directory) if ".txt" in fname]
+    for txt_file in test_results:
+        file_path = directory + txt_file
+        with open(file_path) as f:
+            text = f.read()
+        if "FAILURES" in text:
+            directory = f"C:/Users/{user_name}/Desktop/send_failure_alert/"
+            today = str(date.today())
+            name = f"{directory}{txt_file}_Failed_Results_{today}.txt"
+            with open(name, "w+") as f:
+                f.write(name)
+                f.write(text)
+        else:
+            print("No failed tests found in file:")
+            print(txt_file)
 
 **Setting up Email Alert Notifications on a Box Folder**
 

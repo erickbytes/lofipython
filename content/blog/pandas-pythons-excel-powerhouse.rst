@@ -331,8 +331,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 
    In case you are wondering, enumerate is a `python built-in <https://docs.python.org/3/library/functions.html>`__ for enumerating, or counting an iterable, e.g. list or generator, as you iterate through it.
 
-**Using**\ `pd.read_clipboard(): <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html>`__\ **
-**
+Using `pd.read_clipboard():  <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html>`__
 
 .. code-block:: python
 
@@ -340,7 +339,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
    clipboard_contents = pd.read_clipboard() 
    print(clipboard_contents)
 
-**Use**\ `pd.to_clipboard() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html>`__\ **to store a dataframe as clipboard text:**
+Use `pd.to_clipboard()  <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_clipboard.html>`__ to store a dataframe as clipboard text:
 
 .. code-block:: python
 
@@ -371,7 +370,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
    clipboard_series = df.squeeze(axis='columns')
    print(type(clipboard_series))
 
-**Inversely, consider using**\ `pandas.Series.to_frame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame>`__\ **to convert a Series to a dataframe:**
+**Inversely, consider using **\ `pandas.Series.to_frame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame>`__\ **to convert a Series to a dataframe:**
 
 .. code-block:: python
 
@@ -383,9 +382,9 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
 (4) Turning json API responses into a dataframe with pd.json_normalize()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**For**\ `older pandas versions <https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html>`__\ **:**
+**For **\ `older pandas versions <https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html>`__\ **:**
 
-**Update: beginning in pandas 1.0,**\ `json_normalize <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html>`__\ **became a top-level pandas namespace.**
+**Update: beginning in pandas 1.0, **\ `json_normalize <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html>`__\ ** became a top-level pandas namespace.**
 
 .. code-block:: python
 
