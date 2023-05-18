@@ -16,9 +16,11 @@ How to Fix Pip Install Site-Packages --user Error
     ERROR: Cannot perform a '--user' install. User site-packages are not visible in this virtualenv.
 
 
-I found a `Stack Overflow post <https://github.com/microsoft/vscode-python/issues/14327>`_ that fixed the problem! You need to update your pyvenv.cfg in order to resolve this conflict.
+I found a `Github thread <https://github.com/microsoft/vscode-python/issues/14327>`_ that fixed the problem! You need to update your pyvenv.cfg in order to resolve this conflict.
 
-**Here is the how to fix your Python environment from Github user jawalahe:**
+Here is the how to fix your Python environment from Github user `jawalahe <https://github.com/microsoft/vscode-python/issues/14327#issuecomment-757408341>`_ :
 
 1. Go to the pyvenv.cfg file in the Virtual environment folder
 2. Set include-system-site-packages to true and save the change.
+
+After completing this, my pip installs worked again and no longer returned the error.
