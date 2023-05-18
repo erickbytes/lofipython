@@ -7,7 +7,7 @@
 :slug: git-the-basics-a-git-version-control-cheat-sheet
 :status: published
 
-I am finally starting to understand `git version control! <https://en.wikipedia.org/wiki/Git>` It makes developing a project on different computers easy. Some of these notes were picked up from the super informative `Reproducible Data Analysis in Jupyter video series <https://www.youtube.com/watch?v=_ZEWDGpM-vM>`__ by Jake VanderPlas, author of the `Python Data Science Handbook <https://jakevdp.github.io/PythonDataScienceHandbook/>`__.
+I am finally starting to understand `git version control! <https://en.wikipedia.org/wiki/Git>`__ It makes developing a project on different computers easy. Some of these notes were picked up from the super informative `Reproducible Data Analysis in Jupyter video series <https://www.youtube.com/watch?v=_ZEWDGpM-vM>`__ by Jake VanderPlas, author of the `Python Data Science Handbook <https://jakevdp.github.io/PythonDataScienceHandbook/>`__.
 
 First, `go here <https://git-scm.com/downloads>`__, download and install git if you haven't yet. Alright, here are my go-to steps and commands for git:
 
