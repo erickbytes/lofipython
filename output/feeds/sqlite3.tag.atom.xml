@@ -7,7 +7,9 @@
 &lt;p&gt;I &lt;a class="reference external" href="https://linuxhint.com/install_sqlite_browser_ubuntu_1804/"&gt;installed SQLite from the terminal&lt;/a&gt; with apt on Ubuntu Linux.&lt;/p&gt;
 &lt;p&gt;There are also downloads for Windows. A popular GUI is &lt;a class="reference external" href="https://sqlitestudio.pl/"&gt;SQLite Studio&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;create a new database&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;sqlite3 PythonMarketer.db&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sqlite3 PythonMarketer.db``
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;create a new db + new table and import a csv file to the table, &amp;quot;Readers&amp;quot;&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 sqlite3 PythonMarketer.db
@@ -16,23 +18,39 @@ sqlite3 PythonMarketer.db
 &lt;/pre&gt;
 &lt;p&gt;[&lt;a class="reference external" href="https://tableplus.com/blog/2018/07/sqlite-how-to-import-csv-file-into-sqlite-table.html"&gt;source&lt;/a&gt;]&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;create a table&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;CREATE TABLE&lt;/tt&gt;Readers&lt;tt class="docutils literal"&gt;(Country TEXT,Visits INTEGER);&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Readers&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Country&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;TEXT&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Visits&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;INTEGER&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;add new column with a default value&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;ALTER TABLE Readers ADD&amp;nbsp; TEXT DEFAULT '0';&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Readers&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;ADD&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;TEXT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;DEFAULT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;show all help (and . syntax) options&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;.help&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.help
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;show all tables&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;.tables&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.tables
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;show table creation statement (table schema)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;.schema Readers&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.schema Readers
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;exit sqlite terminal&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;.exit&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.exit
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;show databases&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;.databases&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.databases
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;show all indexes&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;.indexes&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.indexes
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;&amp;quot;show&amp;quot; various DB settings&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;.show&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.show
+&lt;/pre&gt;
 &lt;div class="wp-block-image docutils container"&gt;
 &lt;div class="wp-image-4412 figure"&gt;
 &lt;img alt="explain a table in sqllite" src="https://pythonmarketer.files.wordpress.com/2020/09/show-explain-sqlite3.jpg?w=904" /&gt;

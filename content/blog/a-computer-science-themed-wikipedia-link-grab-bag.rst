@@ -29,9 +29,9 @@ Databases
 
 `Cache invalidation <https://en.wikipedia.org/wiki/Cache_invalidation>`_
 
-   caching is a common technique to store data so that it can be quickly fetched later with limited usage of database resources.
+   Caching is a common technique to store data so that it can be quickly fetched later with limited usage of database resources.
 
-Column-oriented DBMS: https://en.wikipedia.org/wiki/Column-oriented_DBMS
+`Column-oriented DBMS: <https://en.wikipedia.org/wiki/Column-oriented_DBMS>`_
 
 `Data definition language <https://en.wikipedia.org/wiki/Data_definition_language#:~:text=In%20the%20context%20of%20SQL,tables%2C%20indexes%2C%20and%20users.>`__
 

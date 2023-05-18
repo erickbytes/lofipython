@@ -23,7 +23,8 @@ The pymarketer package helps you do things like:
 -  splitting a CSV
 -  merging CSVs
 
-**Generating a Word Cloud with the pymarketer Package (via **\ `wordcloud <http://amueller.github.io/word_cloud/index.html>`__\ **)**
+Generating a Word Cloud with the pymarketer Package** 
+via `wordcloud <http://amueller.github.io/word_cloud/index.html>`__
 
 .. code-block:: python
 

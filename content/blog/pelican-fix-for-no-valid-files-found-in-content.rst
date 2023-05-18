@@ -35,7 +35,7 @@ Install the markdown library, which is stated in the `pelican docs <https://docs
 
 Now my "pelican content" command works!
 
-.. code-block:: python
+::
 
    pelican content
 

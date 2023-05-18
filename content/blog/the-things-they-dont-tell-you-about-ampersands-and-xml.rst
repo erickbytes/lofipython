@@ -25,6 +25,8 @@ These are the things they often don't tell you. Those little details you must so
    :width: 453px
    :height: 521px
 
-   `Image Source <https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml>`__
+.. class:: center
+
+`Image Source <https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml>`__
 
 Wanna read more on HTTP? Check out my guide on `making HTTP requests with Python <https://pythonmarketer.com/2020/05/18/how-to-make-json-requests-with-python/>`__ to read more about HTTP requests.

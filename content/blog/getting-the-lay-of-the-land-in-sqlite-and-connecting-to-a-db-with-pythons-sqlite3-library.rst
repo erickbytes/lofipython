@@ -21,7 +21,9 @@ There are also downloads for Windows. A popular GUI is `SQLite Studio <https://s
 
 **create a new database**
 
-``sqlite3 PythonMarketer.db``
+::
+    
+    sqlite3 PythonMarketer.db``
 
 **create a new db + new table and import a csv file to the table, "Readers"**
 
@@ -35,39 +37,57 @@ There are also downloads for Windows. A popular GUI is `SQLite Studio <https://s
 
 **create a table**
 
-``CREATE TABLE``\ Readers\ ``(Country TEXT,Visits INTEGER);``
+.. code-block:: sql
+
+    CREATE TABLE Readers (Country TEXT,Visits INTEGER);
 
 **add new column with a default value**
 
-``ALTER TABLE Readers ADD  TEXT DEFAULT '0';``
+.. code-block:: sql
+    
+    ALTER TABLE Readers ADD  TEXT DEFAULT '0';
 
 **show all help (and . syntax) options**
 
-``.help``
+::
+    
+    .help
 
 **show all tables**
 
-``.tables``
+::
+    
+    .tables
 
 **show table creation statement (table schema)**
 
-``.schema Readers``
+::
+    
+    .schema Readers
 
 **exit sqlite terminal**
 
-``.exit``
+::
+    
+    .exit
 
 **show databases**
 
-``.databases``
+::
+    
+    .databases
 
 **show all indexes**
 
-``.indexes``
+::
+
+    .indexes
 
 **"show" various DB settings**
 
-``.show``
+::
+
+    .show
 
 .. container:: wp-block-image
 

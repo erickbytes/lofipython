@@ -7,7 +7,7 @@ Pick Stocks Intelligently with ffn
 :slug: pick-stocks-like-a-pro-with-ffn
 :status: published
 
-**How do you calculate stock valuation metrics like**\ `Sharpe ratio <https://www.investopedia.com/terms/s/sharperatio.asp>`__\ **?**
+**How do you calculate stock valuation metrics like **\ `Sharpe ratio <https://www.investopedia.com/terms/s/sharperatio.asp>`__\ **?**
 
 Recently I've been reading about common `stock valuation metrics <https://www.suredividend.com/ratios-metrics/>`__ and wondered how I can apply them to my stock portfolio. I started reading about different metrics, sketching formulas and entertained writing a script to calculate these metrics. But Python has no shortage of finance-related libraries. After some furious googling I found `ffn <https://github.com/pmorissette/ffn>`__, a way better option than rolling my own formulas. It's a "financial function" library, installable with pip.
 
