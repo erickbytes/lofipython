@@ -146,5 +146,4 @@ Eventually I will try the more sophisticated way using machine learning, but at 
 
 Maybe in the future I will use this for posts on my Facebook page, but it's not quite ready yet! I really enjoyed the process of researching this challenge and hope this post helps you evaluate your own text generation possibilities. This was fun to learn about. And best of all, I achieved satisfying, albeit primitive results within one weekend. Thanks for reading and stay positive.
 
-Check out Markov chain in the wild `here <https://positivethoughts.pythonanywhere.com/>`__.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Check out the Markov chain in the wild `here <https://positivethoughts.pythonanywhere.com/>`__.

@@ -70,7 +70,7 @@ HTTP: you = client. API = way to communicate with server</blockquote>
 <p><strong>Representational State Transfer (REST)</strong></p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> is an architectural style of web APIs. It is the dominant architecture that many APIs use. Simple Object Access Protocol (<a class="reference external" href="https://smartbear.com/blog/test-and-monitor/soap-vs-rest-whats-the-difference/">SOAP</a>) is another style I've heard of, but it seems less common nowadays.</p>
 <p>A REST API is built for interoperability and has properties like: &quot;simplicity of a uniform interface&quot; and &quot;visibility of communication between components by service agents.&quot; [<a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">Wikipedia</a>] If an API follows REST, it has many good principles baked in.</p>
-<p><strong>``GET``, ``POST`` and ``PATCH``</strong></p>
+<p><strong>GET, POST and PATCH</strong></p>
 <p>These are three common types of request methods.</p>
 <ul class="simple">
 <li><cite>GET</cite>: &nbsp;Read data returned, such as all of your tweets in <a class="reference external" href="https://developer.twitter.com/en/docs">the Twitter API</a>.</li>
@@ -84,7 +84,7 @@ HTTP: you = client. API = way to communicate with server</blockquote>
 <p><strong>Body or &quot;payload&quot;</strong></p>
 <p>To make a request, you send a payload to the url. Often this is a JSON string with the API's URL parameters and values, AKA the request body. If the <a class="reference external" href="https://jira.readthedocs.io/">API is written specifically for Python</a>, it might accept an actual Python dictionary.</p>
 <p><strong>Javascript Object Notation (JSON)</strong></p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=KnAyziNnuI0">JSON</a> is the data interchange standard for all languages. Usually it is the default way to pass data into and receive data from an API. If making a&nbsp; <tt class="docutils literal">POST</tt>, you can check your json object is formatted correctly by using a <a class="reference external" href="https://jslint.com/">json linter</a>. Or try Python's <a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool">json.tool</a>! You can also pretty print your JSON or python dictionary with the <a class="reference external" href="https://docs.python.org/3/library/pprint.html">pprint</a> module. If you're using json.dumps remember it has <a class="reference external" href="https://docs.python.org/3/library/json.html">pretty printing accessible by keyword arguments</a>! These features are accessible in the standard library. Isn't Python great? See also: <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/09/15/python-101-an-intro-to-working-with-json/">Python 101 - An Intro to Working with JSON</a></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=KnAyziNnuI0">JSON</a> is the data interchange standard for all languages. Usually it is the default way to pass data into and receive data from an API. If making a POST, you can check your json object is formatted correctly by using a <a class="reference external" href="https://jslint.com/">json linter</a>. Or try Python's <a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool">json.tool</a>! You can also pretty print your JSON or python dictionary with the <a class="reference external" href="https://docs.python.org/3/library/pprint.html">pprint</a> module. If you're using json.dumps remember it has <a class="reference external" href="https://docs.python.org/3/library/json.html">pretty printing accessible by keyword arguments</a>! These features are accessible in the standard library. Isn't Python great? See also: <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/09/15/python-101-an-intro-to-working-with-json/">Python 101 - An Intro to Working with JSON</a></p>
 <p><strong>Headers</strong></p>
 <p>These usually contain website cookies and authorization info. They also may tell the API what kind of data you want back. JSON and XML are the two most common types of data to return. You can specify the return format in the <tt class="docutils literal"><span class="pre">content-type</span></tt> headers.</p>
 <blockquote>
@@ -244,8 +244,7 @@ If you choose not to use Postman, you can use the json library. See the use of <
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
@@ -276,7 +275,6 @@ If you choose not to use Postman, you can use the json library. See the use of <
         <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
         <span class="s2">&quot;cache-control&quot;</span><span class="p">:</span> <span class="s2">&quot;no-cache&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Postman-Token&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">postman_token</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">}</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
                          <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://SomeSoftwareAPI.com/contacts/&quot;</span><span class="p">,</span>

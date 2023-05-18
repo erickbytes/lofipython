@@ -47,7 +47,9 @@
 <p>I wanted to preserve my &quot;Starred&quot; emails, but delete old emails to free up space. I was able to delete 58,000 &quot;Promotions&quot; emails! I wrote this post because I feel it might save you a little time figuring it out yourself. I also included brief details on possible Python tools for Gmail and IMAP below if you are considering scripting your contact management.</p>
 <p>I didn't need Python in the end after reading some <a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">Gmail search operator examples</a>. For example, adding a hypen before a search in Gmail acts similar to a <a class="reference external" href="https://en.wikipedia.org/wiki/Bitwise_operation#NOT">&quot;bitwise&quot; or unary operator (~)</a> in Python. It excludes or inverses the criteria in a search rather than including it. I was able to use this to exclude my starred emails. You can also add a filter for &quot;has attachment&quot;. I used that to star any emails with attachments, then delete the rest and excluded &quot;starred&quot; emails.</p>
 <p><strong>Gmail search syntax to get &quot;Promotions&quot; minus &quot;Starred&quot; emails and filter on a date range</strong>:</p>
-<p><tt class="docutils literal">category:promotions <span class="pre">-is:starred</span> after:2019/12/31 before:2021/1/1</tt></p>
+<pre class="literal-block">
+category:promotions -is:starred after:2019/12/31 before:2021/1/1
+</pre>
 <p><strong>Selecting &quot;all&quot; emails in your search</strong></p>
 <div class="wp-image-5251 figure">
 <img alt="Filtering Gmail Emails" src="https://pythonmarketer.files.wordpress.com/2021/02/select-all-in-search.jpg?w=588" />

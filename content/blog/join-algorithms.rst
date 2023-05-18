@@ -56,7 +56,7 @@ Best performance. For large datasets.
 #. Phase #1 Build (Hash Table)
 #. Phase #2 Probe
 
-**Use **\ `Bloom Filter  <https://en.wikipedia.org/wiki/Bloom_filter>`__\ **set operations for probe phase optimization**
+Use a `Bloom Filter  <https://en.wikipedia.org/wiki/Bloom_filter>`__ set operations for probe phase optimization.
 
 #. insert a key
 #. lookup a key

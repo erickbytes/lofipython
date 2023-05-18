@@ -59,7 +59,9 @@ I first considered using pyfolio to pull stock data. It is not "out of the box" 
 
 `finsou.py <https://github.com/erickbytes/finsou.py>`__ (CLI written by me)
 
-see more: `awesome-quant <https://github.com/wilsonfreitas/awesome-quant>`__\ ` <https://github.com/bpsmith/tia#overview>`__
+`awesome-quant <https://github.com/wilsonfreitas/awesome-quant>`__ 
+
+`Tia <https://github.com/bpsmith/tia#overview>`__
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/01/top10financepackages-1200x675-1.png?w=1024
    :alt: Image credit, ActiveState: https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/

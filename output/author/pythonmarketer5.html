@@ -183,7 +183,7 @@
                 <p>Follow these steps to maintain more reliable scripts and catch more of your traceback errors:</p>
 <ol class="arabic simple">
 <li>automate your scripts to run daily, weekly, monthly, etc.</li>
-<li><a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/">Log all your traceback errors</a> with the <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging module</a>. I like dumping all of my logs into a single folder.</li>
+<li><a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/">Log your traceback errors</a> with the <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging module</a>. I tend to dump all of my logs into a single folder.</li>
 <li>automate aggregating the logs and parsing tracebacks</li>
 <li>start a feedback loop of fixing the tracebacks until 0 tracebacks remain</li>
 <li>re-run the script and confirm tracebacks disappeared</li>
@@ -211,9 +211,7 @@
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
@@ -227,9 +225,7 @@
                 <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">log</span><span class="p">,</span><span class="n">line</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">errors</span>
 
-<span class="sd">&quot;&quot;&quot;Parse traceback errors from log files in current working directory</span>
-<span class="sd">and write to them to a csv file.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Parse traceback errors from logs in working directory, then write to them to a csv file.</span>
 <span class="n">logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.log&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
 <span class="n">tracebacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">]</span>
 <span class="c1"># dedupe list of lists with itertools module + list comprehension</span>
@@ -276,7 +272,7 @@
 <li><a class="reference external" href="https://www.youtube.com/watch?v=C4Kc8xzcA68&amp;ab_channel=EugeneYarmash">The Mighty Dictionary</a>. Lists and tuples are useful too, but <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">dictionaries</a> are so handy with the ability to store and access key-value pairs.</li>
 <li><a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">List Comprehensions</a>. These allow you to perform transformations on lists in one line of code! I love the feeling when I apply a list comprehension that is concise, yet readable.</li>
 <li><a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions">Lambda Expressions</a>. These can be used to apply a function &quot;on the fly&quot;. I love their succinctness. It took me a few years to become comfortable with them. Sometimes it makes sense to use a lambda expression instead of a regular function to transform data.</li>
-<li><a class="reference external" href="https://docs.python.org/3/library/datetime.html#date-objects">Date Objects</a>. Wielding date objects and formatting them to your needs is a pivotal Python skill. Once you have it down, it unlocks a lot of automation and scripting abilities when combined with libraries like <a class="reference external" href="https://docs.python.org/3/library/pathlib.html">pathlib</a>, <a class="reference external" href="https://docs.python.org/3/library/os.html?highlight=os#module-os">os</a> or <a class="reference external" href="https://docs.python.org/3/library/glob.html?highlight=glob#module-glob">glob</a> for reading file metadata and then executing an action based on the date of the file, for example. I use <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date.today">date.today()</a> a lot when I want to fetch today's date and <a class="reference external" href="https://docs.python.org/3/library/datetime.html#available-types">timedelta</a> to compare two dates. The datetime module is your friend, dive in. Must know for custom date formatting: <tt class="docutils literal">`strftime()</tt>&nbsp;and&nbsp;<tt class="docutils literal">strptime()</tt>&nbsp;Format Codes &lt;<a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes">https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes</a>&gt;`__</li>
+<li><a class="reference external" href="https://docs.python.org/3/library/datetime.html#date-objects">Date Objects</a>. Wielding date objects and formatting them to your needs is a pivotal Python skill. Once you have it down, it unlocks a lot of automation and scripting abilities when combined with libraries like <a class="reference external" href="https://docs.python.org/3/library/pathlib.html">pathlib</a>, <a class="reference external" href="https://docs.python.org/3/library/os.html?highlight=os#module-os">os</a> or <a class="reference external" href="https://docs.python.org/3/library/glob.html?highlight=glob#module-glob">glob</a> for reading file metadata and then executing an action based on the date of the file, for example. I use <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date.today">date.today()</a> a lot when I want to fetch today's date and <a class="reference external" href="https://docs.python.org/3/library/datetime.html#available-types">timedelta</a> to compare two dates. The datetime module is your friend, dive in. Must know for custom date formatting: strftime()&nbsp;and&nbsp;strptime() `&nbsp;Format Codes &lt;<a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes">https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes</a>&gt;`__</li>
 </ol>
 <p>For tabular data, I often use <tt class="docutils literal">pd.to_datetime()</tt> to convert a series of strings to datetime objects:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
@@ -338,7 +334,9 @@
 <p>I wanted to preserve my &quot;Starred&quot; emails, but delete old emails to free up space. I was able to delete 58,000 &quot;Promotions&quot; emails! I wrote this post because I feel it might save you a little time figuring it out yourself. I also included brief details on possible Python tools for Gmail and IMAP below if you are considering scripting your contact management.</p>
 <p>I didn't need Python in the end after reading some <a class="reference external" href="https://support.google.com/mail/answer/7190?hl=en">Gmail search operator examples</a>. For example, adding a hypen before a search in Gmail acts similar to a <a class="reference external" href="https://en.wikipedia.org/wiki/Bitwise_operation#NOT">&quot;bitwise&quot; or unary operator (~)</a> in Python. It excludes or inverses the criteria in a search rather than including it. I was able to use this to exclude my starred emails. You can also add a filter for &quot;has attachment&quot;. I used that to star any emails with attachments, then delete the rest and excluded &quot;starred&quot; emails.</p>
 <p><strong>Gmail search syntax to get &quot;Promotions&quot; minus &quot;Starred&quot; emails and filter on a date range</strong>:</p>
-<p><tt class="docutils literal">category:promotions <span class="pre">-is:starred</span> after:2019/12/31 before:2021/1/1</tt></p>
+<pre class="literal-block">
+category:promotions -is:starred after:2019/12/31 before:2021/1/1
+</pre>
 <p><strong>Selecting &quot;all&quot; emails in your search</strong></p>
 <div class="wp-image-5251 figure">
 <img alt="Filtering Gmail Emails" src="https://pythonmarketer.files.wordpress.com/2021/02/select-all-in-search.jpg?w=588" />
@@ -422,7 +420,8 @@
 <p><a class="reference external" href="https://github.com/bpsmith/tia">tia: Toolkit for integration and analysis</a> - <a class="reference external" href="https://github.com/peerchemist/finta">FinTA (Financial Technical Analysis)</a></p>
 <p><a class="reference external" href="https://pydata.github.io/pandas-datareader/index.html">pandas-datareader</a> - <a class="reference external" href="https://github.com/matplotlib/mplfinance#usage">mplfinance</a> - <a class="reference external" href="https://github.com/robertmartin8/PyPortfolioOpt">PyPortfolioOpt</a> - <a class="reference external" href="https://github.com/mrjbq7/ta-lib">TA-Lib Python Port</a></p>
 <p><a class="reference external" href="https://github.com/erickbytes/finsou.py">finsou.py</a> (CLI written by me)</p>
-<p>see more: <a class="reference external" href="https://github.com/wilsonfreitas/awesome-quant">awesome-quant</a>` &lt;<a class="reference external" href="https://github.com/bpsmith/tia#overview">https://github.com/bpsmith/tia#overview</a>&gt;`__</p>
+<p><a class="reference external" href="https://github.com/wilsonfreitas/awesome-quant">awesome-quant</a></p>
+<p><a class="reference external" href="https://github.com/bpsmith/tia#overview">Tia</a></p>
 <div class="wp-image-5037 figure">
 <img alt="Image credit, ActiveState: https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/" src="https://pythonmarketer.files.wordpress.com/2021/01/top10financepackages-1200x675-1.png?w=1024" />
 <p class="caption">Image credit, ActiveState: <a class="reference external" href="https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/">https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/</a></p>
@@ -680,9 +679,7 @@ caching is a common technique to store data so that it can be quickly fetched la
 <img alt="Jupyter notebook Markovify example" src="https://pythonmarketer.files.wordpress.com/2020/10/generating_positive_thoughts.jpg?w=1024" />
 </div>
 <p>Maybe in the future I will use this for posts on my Facebook page, but it's not quite ready yet! I really enjoyed the process of researching this challenge and hope this post helps you evaluate your own text generation possibilities. This was fun to learn about. And best of all, I achieved satisfying, albeit primitive results within one weekend. Thanks for reading and stay positive.</p>
-</div>
-<div class="section" id="check-out-markov-chain-in-the-wild-here">
-<h2>Check out Markov chain in the wild <a class="reference external" href="https://positivethoughts.pythonanywhere.com/">here</a>.</h2>
+<p>Check out the Markov chain in the wild <a class="reference external" href="https://positivethoughts.pythonanywhere.com/">here</a>.</p>
 </div>
 
                 <div class="clear"></div>

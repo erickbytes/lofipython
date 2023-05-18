@@ -7,9 +7,9 @@ pymarketer: an HTTP + Spreadsheet Wrangling Python package
 :slug: pymarketer-http-spreadsheet-operations-python-package
 :status: published
 
-Typically, this blog reviews the other Python libraries in its vast ecosystem. This time, it's my own package I made for fun, pymarketer. This was created in a single day and can be installed from the `Github repo <https://github.com/erickbytes/pymarketer>`__. Have a go at `my most read post <https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__ if you need help with pip.
+Typically, this blog reviews the other Python libraries in its vast ecosystem. This time, it's my own package I made for fun, pymarketer. This was created in a single day and can be installed from the `Github repo <https://github.com/erickbytes/pymarketer>`__. Have a go at `my most read post <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__ if you need help with pip.
 
-**Install with pip from source **\ `Github repo <https://github.com/erickbytes/pymarketer>`__\ **:**
+Install with pip from the source `Github repo <https://github.com/erickbytes/pymarketer>`__:
 
 .. code:: python
 

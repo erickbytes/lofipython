@@ -10,7 +10,7 @@ Aggregating A Python Error Summary from Log Files
 Follow these steps to maintain more reliable scripts and catch more of your traceback errors:
 
 #. automate your scripts to run daily, weekly, monthly, etc.
-#. `Log all your traceback errors <https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/>`__ with the `logging module <https://docs.python.org/3/library/logging.html>`__. I like dumping all of my logs into a single folder.
+#. `Log your traceback errors <https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/>`__ with the `logging module <https://docs.python.org/3/library/logging.html>`__. I tend to dump all of my logs into a single folder.
 #. automate aggregating the logs and parsing tracebacks
 #. start a feedback loop of fixing the tracebacks until 0 tracebacks remain
 #. re-run the script and confirm tracebacks disappeared
@@ -31,9 +31,7 @@ Follow these steps to maintain more reliable scripts and catch more of your trac
                    errors.append([log,line])
            return errors
 
-   """Parse traceback errors from log files in current working directory 
-   and write to them to a csv file.
-   """
+   # Parse traceback errors from logs in working directory, then write to them to a csv file.
    logs = [f for f in os.listdir(os.getcwd()) if '.log' in f.lower()]
    tracebacks = [parse_errors(log) for log in logs]
    # dedupe list of lists with itertools module + list comprehension

@@ -42,7 +42,7 @@ Per `Mozilla <https://developer.mozilla.org/en-US/docs/Web/HTTP>`__,"Hypertext T
 
 A REST API is built for interoperability and has properties like: "simplicity of a uniform interface" and "visibility of communication between components by service agents." [`Wikipedia <https://en.wikipedia.org/wiki/Representational_state_transfer>`__] If an API follows REST, it has many good principles baked in.
 
-**``GET``, ``POST`` and ``PATCH``**
+**GET, POST and PATCH**
 
 These are three common types of request methods.
 
@@ -64,7 +64,7 @@ To make a request, you send a payload to the url. Often this is a JSON string wi
 
 **Javascript Object Notation (JSON)**
 
-`JSON <https://www.youtube.com/watch?v=KnAyziNnuI0>`__ is the data interchange standard for all languages. Usually it is the default way to pass data into and receive data from an API. If making a  ``POST``, you can check your json object is formatted correctly by using a `json linter <https://jslint.com/>`__. Or try Python's `json.tool <https://docs.python.org/3/library/json.html#module-json.tool>`__! You can also pretty print your JSON or python dictionary with the `pprint <https://docs.python.org/3/library/pprint.html>`__ module. If you're using json.dumps remember it has `pretty printing accessible by keyword arguments <https://docs.python.org/3/library/json.html>`__! These features are accessible in the standard library. Isn't Python great? See also: `Python 101 - An Intro to Working with JSON <https://www.blog.pythonlibrary.org/2020/09/15/python-101-an-intro-to-working-with-json/>`__
+`JSON <https://www.youtube.com/watch?v=KnAyziNnuI0>`__ is the data interchange standard for all languages. Usually it is the default way to pass data into and receive data from an API. If making a POST, you can check your json object is formatted correctly by using a `json linter <https://jslint.com/>`__. Or try Python's `json.tool <https://docs.python.org/3/library/json.html#module-json.tool>`__! You can also pretty print your JSON or python dictionary with the `pprint <https://docs.python.org/3/library/pprint.html>`__ module. If you're using json.dumps remember it has `pretty printing accessible by keyword arguments <https://docs.python.org/3/library/json.html>`__! These features are accessible in the standard library. Isn't Python great? See also: `Python 101 - An Intro to Working with JSON <https://www.blog.pythonlibrary.org/2020/09/15/python-101-an-intro-to-working-with-json/>`__
 
 **Headers**
 
@@ -216,7 +216,6 @@ Example #2: Encode a Python dictionary to json string and ``POST`` to a hypothet
            "Authorization": f"Bearer {token}",
            "Content-Type": "application/json",
            "cache-control": "no-cache",
-           "Postman-Token": f"{postman_token}"
            }
        r = requests.request(method="POST", 
                             url="https://SomeSoftwareAPI.com/contacts/", 

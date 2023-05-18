@@ -269,7 +269,7 @@ I previously created a `website <http://tameimpala.pythonanywhere.com/>`__with `
 
 Of these two diverse Python stacks, I favor MySQL and Flask. But I learned a lot from watching web2py's tutorial videos and it's less intimidating for beginners. And I barely scratched the surface of web2py's "pure Python" `pyDAL (Database Abstraction Layer) <https://github.com/web2py/pydal>`__, which seems pretty dope.
 
-web2py's `creator <https://www.youtube.com/watch?v=hcYUgNWvPtw>`__has a new framework in progress called `py4web <https://github.com/web2py/py4web>`__. It has the same `DAL <http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer>`__ and inherits many other web2py qualities. Definitely looking forward to exploring the DAL on my first py4web website. I'll likely use it to connect to PostgreSQL or SQLite. Maybe I'll `install pyDAL with pip <https://github.com/web2py/pydal>`__ in the meantime.
+web2py's `creator <https://www.youtube.com/watch?v=hcYUgNWvPtw>`__ has a new framework in progress called `py4web <https://github.com/web2py/py4web>`__. It has the same `DAL <http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer>`__ and inherits many other web2py qualities. Definitely looking forward to exploring the DAL on my first py4web website. I'll likely use it to connect to PostgreSQL or SQLite. Maybe I'll `install pyDAL with pip <https://github.com/web2py/pydal>`__ in the meantime.
 
 **Final Thoughts**
 

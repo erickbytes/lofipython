@@ -46,7 +46,7 @@
                 <p>Follow these steps to maintain more reliable scripts and catch more of your traceback errors:</p>
 <ol class="arabic simple">
 <li>automate your scripts to run daily, weekly, monthly, etc.</li>
-<li><a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/">Log all your traceback errors</a> with the <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging module</a>. I like dumping all of my logs into a single folder.</li>
+<li><a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/">Log your traceback errors</a> with the <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging module</a>. I tend to dump all of my logs into a single folder.</li>
 <li>automate aggregating the logs and parsing tracebacks</li>
 <li>start a feedback loop of fixing the tracebacks until 0 tracebacks remain</li>
 <li>re-run the script and confirm tracebacks disappeared</li>
@@ -74,9 +74,7 @@
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
@@ -90,9 +88,7 @@
                 <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">log</span><span class="p">,</span><span class="n">line</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">errors</span>
 
-<span class="sd">&quot;&quot;&quot;Parse traceback errors from log files in current working directory</span>
-<span class="sd">and write to them to a csv file.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Parse traceback errors from logs in working directory, then write to them to a csv file.</span>
 <span class="n">logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.log&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
 <span class="n">tracebacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">]</span>
 <span class="c1"># dedupe list of lists with itertools module + list comprehension</span>

@@ -34,7 +34,9 @@ Below are pieces of wisdom picked up from my experiences. They are the result of
 #. Train yourself to think in `data structure <https://docs.python.org/3/tutorial/datastructures.html>`__ conversions. The Python dictionary is very useful and can be converted to and from lists, tuples, sets, etc. I often find it more efficient to convert to a different structure to efficiently organize it. Usually I am googling things like "convert class object to python dictionary" because dictionaries are easy to work with or convert to other structures. The ``vars()`` built-in is great for converting objects to a dictionary. For example, once you have a dictionary, you might be able to solve your problem by `converting it to a dataframe <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.from_dict.html>`__.
 #. Use only the data you need. Reading in just the essential data helps avoid memory issues and hanging programs. In `pandas <https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__, the ``usecols`` argument in `pd.read_csv() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html>`__ is great for this. This creates a dataframe with 2 columns:
 
-``df = pd.read_csv('emails.csv', usecols=['name','email'])``
+.. code-block:: python
+
+    df = pd.read_csv('emails.csv', usecols=['name','email'])
 
 15. Assume that if something is broken, it's because of something you've done. Start from the assumption that your code contains the bug and work outward by eliminating possibilities. Avoid jumping to quick conclusions. Instead, carefully consider possible reasons for why something is happening. Many times, I find my 2nd or 3rd hypothesis is actually true.
 

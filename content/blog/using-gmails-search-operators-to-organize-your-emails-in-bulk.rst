@@ -15,7 +15,9 @@ I didn't need Python in the end after reading some `Gmail search operator exampl
 
 **Gmail search syntax to get "Promotions" minus "Starred" emails and filter on a date range**:
 
-``category:promotions -is:starred after:2019/12/31 before:2021/1/1``
+::
+    
+    category:promotions -is:starred after:2019/12/31 before:2021/1/1
 
 **Selecting "all" emails in your search**
 

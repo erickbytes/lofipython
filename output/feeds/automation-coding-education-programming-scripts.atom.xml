@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - automation, coding, education, programming, Scripts</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/automation-coding-education-programming-scripts.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2021-04-06T01:09:00-05:00</updated><entry><title>Aggregating A Python Error Summary from Log Files</title><link href="https://lofipython.com/aggregating-tracebacks-from-python-log-files.html" rel="alternate"></link><published>2021-04-06T01:09:00-05:00</published><updated>2021-04-06T01:09:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2021-04-06:/aggregating-tracebacks-from-python-log-files.html</id><summary type="html">&lt;p&gt;Follow these steps to maintain more reliable scripts and catch more of your traceback errors:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;automate your scripts to run daily, weekly, monthly, etc.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/"&gt;Log all your traceback errors&lt;/a&gt; with the &lt;a class="reference external" href="https://docs.python.org/3/library/logging.html"&gt;logging module&lt;/a&gt;. I like dumping all of my logs into a single folder.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/"&gt;Log your traceback errors&lt;/a&gt; with the &lt;a class="reference external" href="https://docs.python.org/3/library/logging.html"&gt;logging module&lt;/a&gt;. I tend to dump all of my logs into a single folder.&lt;/li&gt;
 &lt;li&gt;automate aggregating the logs and parsing …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;Follow these steps to maintain more reliable scripts and catch more of your traceback errors:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;automate your scripts to run daily, weekly, monthly, etc.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/"&gt;Log all your traceback errors&lt;/a&gt; with the &lt;a class="reference external" href="https://docs.python.org/3/library/logging.html"&gt;logging module&lt;/a&gt;. I like dumping all of my logs into a single folder.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/"&gt;Log your traceback errors&lt;/a&gt; with the &lt;a class="reference external" href="https://docs.python.org/3/library/logging.html"&gt;logging module&lt;/a&gt;. I tend to dump all of my logs into a single folder.&lt;/li&gt;
 &lt;li&gt;automate aggregating the logs and parsing tracebacks&lt;/li&gt;
 &lt;li&gt;start a feedback loop of fixing the tracebacks until 0 tracebacks remain&lt;/li&gt;
 &lt;li&gt;re-run the script and confirm tracebacks disappeared&lt;/li&gt;
@@ -34,9 +34,7 @@
 &lt;span class="normal"&gt;21&lt;/span&gt;
 &lt;span class="normal"&gt;22&lt;/span&gt;
 &lt;span class="normal"&gt;23&lt;/span&gt;
-&lt;span class="normal"&gt;24&lt;/span&gt;
-&lt;span class="normal"&gt;25&lt;/span&gt;
-&lt;span class="normal"&gt;26&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_errors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -50,9 +48,7 @@
                 &lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt;
 
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Parse traceback errors from log files in current working directory&lt;/span&gt;
-&lt;span class="sd"&gt;and write to them to a csv file.&lt;/span&gt;
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;# Parse traceback errors from logs in working directory, then write to them to a csv file.&lt;/span&gt;
 &lt;span class="n"&gt;logs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getcwd&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.log&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt;
 &lt;span class="n"&gt;tracebacks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;parse_errors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;logs&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="c1"&gt;# dedupe list of lists with itertools module + list comprehension&lt;/span&gt;
