@@ -1400,11 +1400,11 @@ pandas source code: &lt;a class="reference external" href="https://github.com/pa
 </content><category term="coding, programming"></category><category term="errors"></category><category term="solutions"></category></entry><entry><title>Aggregating A Python Error Summary from Log Files</title><link href="https://lofipython.com/aggregating-tracebacks-from-python-log-files.html" rel="alternate"></link><published>2021-04-06T01:09:00-05:00</published><updated>2021-04-06T01:09:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2021-04-06:/aggregating-tracebacks-from-python-log-files.html</id><summary type="html">&lt;p&gt;Follow these steps to maintain more reliable scripts and catch more of your traceback errors:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;automate your scripts to run daily, weekly, monthly, etc.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/"&gt;Log your traceback errors&lt;/a&gt; with the &lt;a class="reference external" href="https://docs.python.org/3/library/logging.html"&gt;logging module&lt;/a&gt;. I tend to dump all of my logs into a single folder.&lt;/li&gt;
+&lt;li&gt;Log your traceback errors with the &lt;a class="reference external" href="https://docs.python.org/3/library/logging.html"&gt;logging module&lt;/a&gt;. I tend to dump all of my logs into a single folder.&lt;/li&gt;
 &lt;li&gt;automate aggregating the logs and parsing …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;Follow these steps to maintain more reliable scripts and catch more of your traceback errors:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;automate your scripts to run daily, weekly, monthly, etc.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/02/02/the-joy-of-logging-with-python/"&gt;Log your traceback errors&lt;/a&gt; with the &lt;a class="reference external" href="https://docs.python.org/3/library/logging.html"&gt;logging module&lt;/a&gt;. I tend to dump all of my logs into a single folder.&lt;/li&gt;
+&lt;li&gt;Log your traceback errors with the &lt;a class="reference external" href="https://docs.python.org/3/library/logging.html"&gt;logging module&lt;/a&gt;. I tend to dump all of my logs into a single folder.&lt;/li&gt;
 &lt;li&gt;automate aggregating the logs and parsing tracebacks&lt;/li&gt;
 &lt;li&gt;start a feedback loop of fixing the tracebacks until 0 tracebacks remain&lt;/li&gt;
 &lt;li&gt;re-run the script and confirm tracebacks disappeared&lt;/li&gt;
@@ -1457,7 +1457,7 @@ pandas source code: &lt;a class="reference external" href="https://github.com/pa
         &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;fhand&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;This pure python script allows me to hone in on potential automation problem areas with my scheduled Python scripts. It doesn't catch the entire traceback. Rather, it shows the error type and the name of the log file that contains that error in a csv. I use this log aggregation script to monitor my daily or weekly scheduled python scripts, along with &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2020/03/21/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/"&gt;pytest tests&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This pure python script allows me to hone in on potential automation problem areas with my scheduled Python scripts. It doesn't catch the entire traceback. Rather, it shows the error type and the name of the log file that contains that error in a csv. I use this log aggregation script to monitor my daily or weekly scheduled python scripts, along with &lt;a class="reference external" href="https://lofipython.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/"&gt;pytest tests&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Noteworthy gains from aggregating my logs:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;less fear of missing mistakes&lt;/li&gt;
@@ -3196,7 +3196,7 @@ mstsc RDP_File_Name.rdp
 &lt;pre class="literal-block"&gt;
 winrm quickconfig
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Log into a remote computer with&lt;/strong&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs"&gt;winrs&lt;/a&gt;**&amp;nbsp;and run ipconfig:**&lt;/p&gt;
+&lt;p&gt;Log into a remote computer with &lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs"&gt;winrs&lt;/a&gt; and run ipconfig:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
 &lt;/pre&gt;
@@ -3343,15 +3343,15 @@ python -m pip install pywin32
 &lt;p&gt;The name says it all. Go to the Start menu and search 'Disk Cleanup'. Running this freed up 40 GB of C: drive space for me.&lt;/p&gt;
 &lt;/div&gt;
 &lt;hr class="docutils" /&gt;
-&lt;div class="section" id="install-os-patches-and-software-updates-withwindows-update"&gt;
-&lt;h2&gt;&lt;strong&gt;Install OS patches and software updates withWindows Update.&lt;/strong&gt;&lt;/h2&gt;
+&lt;div class="section" id="install-os-patches-and-software-updates-with-windows-update"&gt;
+&lt;h2&gt;&lt;strong&gt;Install OS patches and software updates with Windows Update.&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;First, troubleshoot Windows Update to fix any errors.&lt;/strong&gt;&lt;/p&gt;
 &lt;img alt="tdhotingtrpot2" class="wp-image-2790 alignright" src="http://pythonmarketer.files.wordpress.com/2020/03/83836-tdhotingtrpot2-e1584941263675.jpg" style="width: 357px; height: 274px;" /&gt;
-&lt;p&gt;The &lt;a class="reference external" href="https://support.microsoft.com/en-us/help/4027322/windows-update-troubleshooter"&gt;Windows Update Troubleshooter&lt;/a&gt;is supported by Windows and may help&amp;nbsp;with updates that fail. I downloaded the troubleshooter forWindows Update and BITS, Windows'&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal"&gt;Background Intelligence Transfer System.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://support.microsoft.com/en-us/help/4027322/windows-update-troubleshooter"&gt;Windows Update Troubleshooter&lt;/a&gt;is supported by Windows and may help&amp;nbsp;with updates that fail. I downloaded the troubleshooter for Windows Update and BITS, the Windows &lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal"&gt;Background Intelligence Transfer System.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The troubleshooter analyzes Windows Update and tries to fix the errors it finds. After running, it provides a status update on the issues it finds.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Run Windows Update to upgrade your software.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Windows Update usually updates your software reliably. However, some updates may fail or are not triggered automatically. Installing updates, especially security patches for your operating system is typically a good idea.In my case, several Windows 7 OS security patches had not auto-updated, some from 6 months ago.&lt;/p&gt;
-&lt;p&gt;check_updates&lt;/p&gt;
+&lt;p&gt;Checking for Software Updates&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Go to your start menu and search for 'Windows Update'.&lt;/li&gt;
 &lt;li&gt;I clicked 'Check online for updates from Windows Update' also.&lt;/li&gt;
@@ -5275,13 +5275,14 @@ In case you are wondering, enumerate is a &lt;a class="reference external" href=
 &lt;p&gt;&lt;strong&gt;First, Some Python Version Caveats + History&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Python 2 reached end of life on January 1st, 2020&lt;/strong&gt;. &lt;a class="reference external" href="https://www.python.org/doc/sunset-python-2/"&gt;Python 2 has officially been sunset&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.&lt;/p&gt;
-&lt;p&gt;In December 2021, Python 3.6 reached &amp;quot;end of life phase&amp;quot; &amp;lt;&lt;a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches"&gt;https://devguide.python.org/devcycle/#end-of-life-branches&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
+&lt;p&gt;In December 2021, Python 3.6 reached &lt;a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches"&gt;&amp;quot;end of life phase&amp;quot;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Python 3.6 is &amp;quot;now effectively frozen&amp;quot;. Read more in &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0494/"&gt;PEP 494&lt;/a&gt;. (Released Oct. 2022)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt; use Python 3.7 to 3.11. This blog endorses using the lightning fast Python version &lt;a class="reference external" href="https://www.python.org/downloads/release/python-3110/"&gt;3.11.&lt;/a&gt;&lt;/p&gt;
 &lt;div class="section" id="enter-this-in-your-terminal"&gt;
 &lt;h2&gt;Enter This in Your Terminal&lt;/h2&gt;
-&lt;p&gt;For &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html"&gt;older pandas versions&lt;/a&gt;:
-python -m pip install pandas``&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install pandas
+&lt;/pre&gt;
 &lt;p&gt;Pandas is a super useful library for wrangling spreadsheet data, AKA &amp;quot;tabular&amp;quot; data. If successful, you should see activity that looks similar to the below screenshot, where I am installing &lt;a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/"&gt;openpyxl&lt;/a&gt;, an additional Python Excel library you'll likely want. You are good to go! This is the part where you get to feel like Neo! See &lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;Installing Python Modules&lt;/a&gt; in the Python Documentation for more detailed instructions.&lt;/p&gt;
 &lt;img alt="neo_pip" class="alignnone size-full wp-image-1322" src="http://pythonmarketer.files.wordpress.com/2018/01/de9d6-neo_pip-e1587604013861.png" style="width: 650px; height: 340px;" /&gt;
 &lt;p&gt;&lt;strong&gt;To view all your installed libraries, enter:&lt;/strong&gt;&lt;/p&gt;
@@ -5323,17 +5324,9 @@ python -m pip install pandas``&lt;/p&gt;
 &lt;div class="section" id="try-the-ensurepip-command"&gt;
 &lt;h2&gt;Try the ensurepip command.&lt;/h2&gt;
 &lt;p&gt;This command will install and upgrade pip to the newest version. New in Python 3.4:&lt;/p&gt;
-&lt;div class="highlight-python3 notranslate docutils container"&gt;
-&lt;div class="highlight docutils container"&gt;
-&lt;div class="highlight-python3 notranslate docutils container"&gt;
-&lt;div class="highlight docutils container"&gt;
 &lt;pre class="literal-block"&gt;
 python -m ensurepip --upgrade
 &lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&amp;quot;The&amp;nbsp;ensurepip ` &amp;lt;&lt;a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip"&gt;https://docs.python.org/3/library/ensurepip.html#module-ensurepip&lt;/a&gt;&amp;gt;`__&amp;nbsp;package provides support for bootstrapping the&amp;nbsp;pip&amp;nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&amp;nbsp;pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&amp;quot;&lt;/p&gt;
@@ -5353,10 +5346,8 @@ python -m pip install pandas
 cd add_env_path_here\scripts &amp;amp; activate
 python -m pip install pandas
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Know your OS.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;If you're interested in installing pip on Linux, &lt;a class="reference external" href="https://www.tecmint.com/install-pip-in-linux/"&gt;try here&lt;/a&gt;. For Mac, &lt;a class="reference external" href="https://www.shellhacks.com/python-install-pip-mac-ubuntu-centos/"&gt;try here&lt;/a&gt;. Windows, Mac and Linux sometimes use different prefixes (e.g. python, py, python3) to run a python script. Which leads me to my next point...&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Getting the prefix right can be tricky.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Since this was written, I moved to Python 3.8. When I first moved from Python 2 to 3 on Windows, I somehow accidentally configured the following behavior: entering &lt;strong&gt;python some_program.py&lt;/strong&gt;&amp;nbsp;ran a .py file with Python 2. Whereas, entering &lt;strong&gt;py some_program.py&lt;/strong&gt;ran a .py file with Python 3.&lt;/p&gt;
+&lt;p&gt;Since this was written, I moved to Python 3.11. When I first moved from Python 2 to 3 on Windows, I somehow accidentally configured the following behavior: entering &lt;strong&gt;python some_program.py&lt;/strong&gt;&amp;nbsp;ran a .py file with Python 2. Whereas, entering &lt;strong&gt;py some_program.py&lt;/strong&gt;ran a .py file with Python 3.&lt;/p&gt;
 &lt;p&gt;In the install command, the prefix is a reference to your Python executable. You may just need to alter your prefix to call it correctly. Here are some to try in place of &amp;quot;python&amp;quot;. Observe what happens when you run these command variations.Good luck!&lt;/p&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;python3 &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/p&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;python3.11 &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/p&gt;
@@ -5371,15 +5362,13 @@ python -m pip install pandas
 &lt;li&gt;Seeking to fix a faulty pip install that is not working properly.&lt;/li&gt;
 &lt;li&gt;Curious to know how to manually set up pip.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Assumes Python is already &lt;a class="reference external" href="https://www.python.org/downloads/"&gt;installed&lt;/a&gt;. If you're running Windows 10, I found it easy to install Python from the &lt;a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab"&gt;Windows store&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Download the &lt;a class="reference external" href="https://bootstrap.pypa.io/get-pip.py"&gt;get-pip.py file&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Go to the link, right click the page and &amp;quot;Save As&amp;quot; a .py file to download. Then place the file where you want to access it. I placed mine in&amp;nbsp;C:Python27Libsite-packages&lt;/p&gt;
+&lt;p&gt;Assumes Python is already &lt;a class="reference external" href="https://www.python.org/downloads/"&gt;installed&lt;/a&gt;. If you're running Windows 10, I found it easy to install Python from the &lt;a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab"&gt;Windows store&lt;/a&gt;. Download the &lt;a class="reference external" href="https://bootstrap.pypa.io/get-pip.py"&gt;get-pip.py file&lt;/a&gt;. Go to the link, right click the page and &amp;quot;Save As&amp;quot; a .py file to download. Then place the file where you want to access it. I placed mine in&amp;nbsp;C:Python27Libsite-packages&lt;/p&gt;
 &lt;p&gt;You could also download the file with &lt;a class="reference external" href="https://curl.haxx.se/"&gt;curl&lt;/a&gt;:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
- curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py
-
-If you are not sure where your site-packages folder is, type `python -m site &amp;lt;https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory&amp;gt;`__ into command prompt for file path ideas.
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py
 &lt;/pre&gt;
+&lt;p&gt;If you are not sure where your site-packages folder is, type
+&lt;a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory"&gt;python -m site&lt;/a&gt; into command prompt for file path ideas.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Run the get-pip.py file.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Using command prompt's cd command with a Windows &amp;quot;&amp;amp;&amp;quot; operator to run the Python file in a Windows command prompt:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;

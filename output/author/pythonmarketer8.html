@@ -1273,13 +1273,14 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 <p><strong>First, Some Python Version Caveats + History</strong></p>
 <p><strong>Python 2 reached end of life on January 1st, 2020</strong>. <a class="reference external" href="https://www.python.org/doc/sunset-python-2/">Python 2 has officially been sunset</a>.</p>
 <p>Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.</p>
-<p>In December 2021, Python 3.6 reached &quot;end of life phase&quot; &lt;<a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">https://devguide.python.org/devcycle/#end-of-life-branches</a>&gt;`__.</p>
+<p>In December 2021, Python 3.6 reached <a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">&quot;end of life phase&quot;</a>.</p>
 <p>Python 3.6 is &quot;now effectively frozen&quot;. Read more in <a class="reference external" href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
 <p><strong>TLDR:</strong> use Python 3.7 to 3.11. This blog endorses using the lightning fast Python version <a class="reference external" href="https://www.python.org/downloads/release/python-3110/">3.11.</a></p>
 <div class="section" id="enter-this-in-your-terminal">
 <h2>Enter This in Your Terminal</h2>
-<p>For <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html">older pandas versions</a>:
-python -m pip install pandas``</p>
+<pre class="literal-block">
+python -m pip install pandas
+</pre>
 <p>Pandas is a super useful library for wrangling spreadsheet data, AKA &quot;tabular&quot; data. If successful, you should see activity that looks similar to the below screenshot, where I am installing <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>, an additional Python Excel library you'll likely want. You are good to go! This is the part where you get to feel like Neo! See <a class="reference external" href="https://docs.python.org/3/installing/index.html">Installing Python Modules</a> in the Python Documentation for more detailed instructions.</p>
 <img alt="neo_pip" class="alignnone size-full wp-image-1322" src="http://pythonmarketer.files.wordpress.com/2018/01/de9d6-neo_pip-e1587604013861.png" style="width: 650px; height: 340px;" />
 <p><strong>To view all your installed libraries, enter:</strong></p>
@@ -1321,17 +1322,9 @@ python -m pip install pandas``</p>
 <div class="section" id="try-the-ensurepip-command">
 <h2>Try the ensurepip command.</h2>
 <p>This command will install and upgrade pip to the newest version. New in Python 3.4:</p>
-<div class="highlight-python3 notranslate docutils container">
-<div class="highlight docutils container">
-<div class="highlight-python3 notranslate docutils container">
-<div class="highlight docutils container">
 <pre class="literal-block">
 python -m ensurepip --upgrade
 </pre>
-</div>
-</div>
-</div>
-</div>
 <!--  -->
 <blockquote>
 <p>&quot;The&nbsp;ensurepip ` &lt;<a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">https://docs.python.org/3/library/ensurepip.html#module-ensurepip</a>&gt;`__&nbsp;package provides support for bootstrapping the&nbsp;pip&nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&nbsp;pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&quot;</p>
@@ -1351,10 +1344,8 @@ python -m pip install pandas
 cd add_env_path_here\scripts &amp; activate
 python -m pip install pandas
 </pre>
-<p><strong>Know your OS.</strong></p>
-<p>If you're interested in installing pip on Linux, <a class="reference external" href="https://www.tecmint.com/install-pip-in-linux/">try here</a>. For Mac, <a class="reference external" href="https://www.shellhacks.com/python-install-pip-mac-ubuntu-centos/">try here</a>. Windows, Mac and Linux sometimes use different prefixes (e.g. python, py, python3) to run a python script. Which leads me to my next point...</p>
 <p><strong>Getting the prefix right can be tricky.</strong></p>
-<p>Since this was written, I moved to Python 3.8. When I first moved from Python 2 to 3 on Windows, I somehow accidentally configured the following behavior: entering <strong>python some_program.py</strong>&nbsp;ran a .py file with Python 2. Whereas, entering <strong>py some_program.py</strong>ran a .py file with Python 3.</p>
+<p>Since this was written, I moved to Python 3.11. When I first moved from Python 2 to 3 on Windows, I somehow accidentally configured the following behavior: entering <strong>python some_program.py</strong>&nbsp;ran a .py file with Python 2. Whereas, entering <strong>py some_program.py</strong>ran a .py file with Python 3.</p>
 <p>In the install command, the prefix is a reference to your Python executable. You may just need to alter your prefix to call it correctly. Here are some to try in place of &quot;python&quot;. Observe what happens when you run these command variations.Good luck!</p>
 <p><tt class="docutils literal">python3 <span class="pre">-m</span> pip install pandas</tt></p>
 <p><tt class="docutils literal">python3.11 <span class="pre">-m</span> pip install pandas</tt></p>
@@ -1369,15 +1360,13 @@ python -m pip install pandas
 <li>Seeking to fix a faulty pip install that is not working properly.</li>
 <li>Curious to know how to manually set up pip.</li>
 </ol>
-<p>Assumes Python is already <a class="reference external" href="https://www.python.org/downloads/">installed</a>. If you're running Windows 10, I found it easy to install Python from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab">Windows store</a>.</p>
-<p>Download the <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py file</a>.</p>
-<p>Go to the link, right click the page and &quot;Save As&quot; a .py file to download. Then place the file where you want to access it. I placed mine in&nbsp;C:Python27Libsite-packages</p>
+<p>Assumes Python is already <a class="reference external" href="https://www.python.org/downloads/">installed</a>. If you're running Windows 10, I found it easy to install Python from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab">Windows store</a>. Download the <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py file</a>. Go to the link, right click the page and &quot;Save As&quot; a .py file to download. Then place the file where you want to access it. I placed mine in&nbsp;C:Python27Libsite-packages</p>
 <p>You could also download the file with <a class="reference external" href="https://curl.haxx.se/">curl</a>:</p>
 <pre class="literal-block">
- curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py
-
-If you are not sure where your site-packages folder is, type `python -m site &lt;https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory&gt;`__ into command prompt for file path ideas.
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py
 </pre>
+<p>If you are not sure where your site-packages folder is, type
+<a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory">python -m site</a> into command prompt for file path ideas.</p>
 <p><strong>Run the get-pip.py file.</strong></p>
 <p>Using command prompt's cd command with a Windows &quot;&amp;&quot; operator to run the Python file in a Windows command prompt:</p>
 <pre class="literal-block">

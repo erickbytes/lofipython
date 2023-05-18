@@ -58,7 +58,7 @@ Batch files can be run from command prompt or by double-clicking them. Here's an
 
 #. Save above as a .bat file.
 #. This uses `cmd <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29>`__ to open a new command prompt in a Windows batch file.
-#. `cd  <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)>`__\ into my python virtual env then activate it by running a batch file.
+#. `cd   <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)>`__\ into my python virtual env then activate it by running a batch file.
 #. Then call dir to print directory contents.
 
 `Set <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)>`__\  a custom system 'last_name' variable to be recalled later.
@@ -122,7 +122,7 @@ You may want to `ping <https://docs.microsoft.com/en-us/windows-server/administr
 
    winrm quickconfig
 
-**Log into a remote computer with**\ `winrs <https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs>`__\ ** and run ipconfig:**
+Log into a remote computer with `winrs <https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs>`__ and run ipconfig:
 
 ::
 

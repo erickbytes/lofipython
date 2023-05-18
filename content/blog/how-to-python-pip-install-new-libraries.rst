@@ -25,7 +25,7 @@ This post will teach you some Python history, show how to install pandas, and he
 
 Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.
 
-In December 2021, Python 3.6 reached "end of life phase" <https://devguide.python.org/devcycle/#end-of-life-branches>`__.
+In December 2021, Python 3.6 reached `"end of life phase" <https://devguide.python.org/devcycle/#end-of-life-branches>`__.
 
 Python 3.6 is "now effectively frozen". Read more in `PEP 494 <https://www.python.org/dev/peps/pep-0494/>`__. (Released Oct. 2022)
 
@@ -34,8 +34,9 @@ Python 3.6 is "now effectively frozen". Read more in `PEP 494 <https://www.pytho
 Enter This in Your Terminal
 ---------------------------
 
-For `older pandas versions <https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html>`__:
-python -m pip install pandas``
+::
+
+    python -m pip install pandas
 
 Pandas is a super useful library for wrangling spreadsheet data, AKA "tabular" data. If successful, you should see activity that looks similar to the below screenshot, where I am installing `openpyxl <https://openpyxl.readthedocs.io/en/stable/>`__, an additional Python Excel library you'll likely want. You are good to go! This is the part where you get to feel like Neo! See `Installing Python Modules <https://docs.python.org/3/installing/index.html>`__ in the Python Documentation for more detailed instructions.
 
@@ -97,17 +98,9 @@ Try the ensurepip command.
 
 This command will install and upgrade pip to the newest version. New in Python 3.4:
 
-.. container:: highlight-python3 notranslate
+::
 
-   .. container:: highlight
-
-      .. container:: highlight-python3 notranslate
-
-         .. container:: highlight
-
-            ::
-
-               python -m ensurepip --upgrade
+    python -m ensurepip --upgrade
 
 ..
 
@@ -135,13 +128,10 @@ Alternatively, on Windows computers:
     cd add_env_path_here\scripts & activate
     python -m pip install pandas
 
-**Know your OS.**
-
-If you're interested in installing pip on Linux, `try here <https://www.tecmint.com/install-pip-in-linux/>`__. For Mac, `try here <https://www.shellhacks.com/python-install-pip-mac-ubuntu-centos/>`__. Windows, Mac and Linux sometimes use different prefixes (e.g. python, py, python3) to run a python script. Which leads me to my next point...
 
 **Getting the prefix right can be tricky.**
 
-Since this was written, I moved to Python 3.8. When I first moved from Python 2 to 3 on Windows, I somehow accidentally configured the following behavior: entering **python some_program.py**\  ran a .py file with Python 2. Whereas, entering **py some_program.py**\ ran a .py file with Python 3.
+Since this was written, I moved to Python 3.11. When I first moved from Python 2 to 3 on Windows, I somehow accidentally configured the following behavior: entering **python some_program.py**\  ran a .py file with Python 2. Whereas, entering **py some_program.py**\ ran a .py file with Python 3.
 
 In the install command, the prefix is a reference to your Python executable. You may just need to alter your prefix to call it correctly. Here are some to try in place of "python". Observe what happens when you run these command variations.Good luck!
 
@@ -162,11 +152,7 @@ How to Manually Enable the pip Installer
 #. Seeking to fix a faulty pip install that is not working properly.
 #. Curious to know how to manually set up pip.
 
-Assumes Python is already `installed <https://www.python.org/downloads/>`__. If you're running Windows 10, I found it easy to install Python from the `Windows store <https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab>`__.
-
-Download the `get-pip.py file <https://bootstrap.pypa.io/get-pip.py>`__.
-
-Go to the link, right click the page and "Save As" a .py file to download. Then place the file where you want to access it. I placed mine in C:\Python27\Lib\site-packages
+Assumes Python is already `installed <https://www.python.org/downloads/>`__. If you're running Windows 10, I found it easy to install Python from the `Windows store <https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab>`__. Download the `get-pip.py file <https://bootstrap.pypa.io/get-pip.py>`__. Go to the link, right click the page and "Save As" a .py file to download. Then place the file where you want to access it. I placed mine in C:\Python27\Lib\site-packages
 
 You could also download the file with `curl <https://curl.haxx.se/>`__:
 
@@ -174,7 +160,9 @@ You could also download the file with `curl <https://curl.haxx.se/>`__:
 
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py 
 
-   If you are not sure where your site-packages folder is, type `python -m site <https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory>`__ into command prompt for file path ideas.
+
+If you are not sure where your site-packages folder is, type 
+`python -m site <https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory>`__ into command prompt for file path ideas.
 
 **Run the get-pip.py file.**
 

@@ -42,8 +42,8 @@ The name says it all. Go to the Start menu and search 'Disk Cleanup'. Running th
 
 --------------
 
-**Install OS patches and software updates withWindows Update.**
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Install OS patches and software updates with Windows Update.**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **First, troubleshoot Windows Update to fix any errors.**
 
@@ -53,7 +53,7 @@ The name says it all. Go to the Start menu and search 'Disk Cleanup'. Running th
    :width: 357px
    :height: 274px
 
-The `Windows Update Troubleshooter <https://support.microsoft.com/en-us/help/4027322/windows-update-troubleshooter>`__\ is supported by Windows and may help with updates that fail. I downloaded the troubleshooter forWindows Update and BITS, Windows'\ `Background Intelligence Transfer System. <https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal>`__
+The `Windows Update Troubleshooter <https://support.microsoft.com/en-us/help/4027322/windows-update-troubleshooter>`__\ is supported by Windows and may help with updates that fail. I downloaded the troubleshooter for Windows Update and BITS, the Windows `Background Intelligence Transfer System. <https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal>`__
 
 The troubleshooter analyzes Windows Update and tries to fix the errors it finds. After running, it provides a status update on the issues it finds.
 
@@ -61,7 +61,7 @@ The troubleshooter analyzes Windows Update and tries to fix the errors it finds.
 
 Windows Update usually updates your software reliably. However, some updates may fail or are not triggered automatically. Installing updates, especially security patches for your operating system is typically a good idea.In my case, several Windows 7 OS security patches had not auto-updated, some from 6 months ago.
 
-check_updates
+Checking for Software Updates
 
 -  Go to your start menu and search for 'Windows Update'.
 -  I clicked 'Check online for updates from Windows Update' also.
