@@ -47,23 +47,43 @@ cd /home/erick/Python-3.8.0/
 &lt;img alt="successful_python_install" class="alignnone wp-image-2420" src="https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg" style="width: 676px; height: 186px;" /&gt;
 &lt;p&gt;&lt;strong&gt;If pandas is already installed, you can upgrade with&lt;/strong&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;[caption id=&amp;quot;attachment_2572&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;179&amp;quot;]&lt;img alt="pip_list" class="alignnone wp-image-2572" src="http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg" style="width: 179px; height: 230px;" /&gt; Enter pip list to see installed libraries.[/caption]&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install &lt;span class="pre"&gt;--upgrade&lt;/span&gt; pandas&lt;/tt&gt;&lt;/p&gt;
-&lt;p&gt;To check if pip is installed: &lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip list&lt;/tt&gt;&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;::&lt;/dt&gt;
+&lt;dd&gt;python -m pip install --upgrade pandas&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;To check if pip is installed:&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;::&lt;/dt&gt;
+&lt;dd&gt;python -m pip list&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;p&gt;&lt;strong&gt;Consider following best practice and create a&lt;/strong&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtual environment&lt;/a&gt;&lt;strong&gt;with your new Python version.&lt;/strong&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/venv.html"&gt;venv&lt;/a&gt;&lt;strong&gt;wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip &lt;span class="pre"&gt;--user&lt;/span&gt; install virtualenv&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip --user install virtualenv
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Let's create a new virtual environment. Enter in terminal or command prompt:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;virtualenv &lt;span class="pre"&gt;-p&lt;/span&gt; python3.8 add_env_name_here&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+virtualenv -p python3.8 add_env_name_here
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Now, activate your new virtual environment on Linux:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;cd add_env_name_here/bin &amp;amp;&amp;amp; source activate&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+source add_env_name_here/bin/activate
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Or activate environment on Windows:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;cd add_env_name_here\scripts &amp;amp; activate&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+cd add_env_name_here\scripts &amp;amp; activate
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;&amp;quot;ImportError: Missing optional dependency 'tabulate'. Use pip or conda to install tabulate:&amp;quot; To use pd.to_markdown(), install Tabulate:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install tabulate&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install tabulate
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;To use pd.read_clipboard() on Linux, install&lt;/strong&gt;&lt;a class="reference external" href="https://github.com/astrand/xclip"&gt;xclip&lt;/a&gt;&lt;strong&gt;or&lt;/strong&gt;&lt;a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel"&gt;xsel:&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install xclip&lt;/tt&gt;**
-**&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sudo apt-get install xclip
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;I also saw a prompt to install pyperclip:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pyperclip&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install pyperclip
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Now install pandas 1.0 and&lt;/strong&gt;&lt;a class="reference external" href="https://matplotlib.org/users/installing.html"&gt;matplotlib&lt;/a&gt;&lt;strong&gt;in your virtual environment.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 python3.8 -m pip install pandas
@@ -209,21 +229,26 @@ python -m pip install -U matplotlib
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Actor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_markdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tablefmt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;github&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;img alt="IMDB_movies" class="alignnone size-full wp-image-2540" src="https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg" style="width: 870px; height: 117px;" /&gt;
-&lt;p&gt;[caption id=&amp;quot;attachment_2539&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;189&amp;quot;]&lt;img alt="actor" class="alignnone wp-image-2539" src="https://pythonmarketer.files.wordpress.com/2018/05/actor.jpg" style="width: 189px; height: 111px;" /&gt; Count the Actors with df.Actor.value_counts()[/caption]&lt;/p&gt;
-&lt;hr class="docutils" /&gt;
-&lt;blockquote&gt;
-&lt;strong&gt;I also must mention&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html"&gt;pandas.Series.value_counts()&lt;/a&gt;&lt;strong&gt;, because it's so darn handy :D&lt;/strong&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html"&gt;pandas.Series.value_counts()&lt;/a&gt; is so darn handy :D**&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
 &lt;p&gt;&lt;strong&gt;Notice for column names without spaces, you can use dot notation instead of brackets:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;df.Actor&lt;/tt&gt; &lt;em&gt;vs.&lt;/em&gt; &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;df['Actor']&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# both valid ways to access column by name&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Actor&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Actor&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Lowercase column names Python's map function:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;df.columns = map(str.lower, df.columns)&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;strong&gt;Strip whitespace from a column of strings with the&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html"&gt;pandas.Series.str&lt;/a&gt;&lt;strong&gt;accessor:&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;df['Character']&lt;/span&gt; = &lt;span class="pre"&gt;df['Character'].astype(str).str.strip()&lt;/span&gt;&lt;/tt&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Character&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Character&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Fix pesky leading zero zip codes with&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html"&gt;str.zfill()&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;log_df['zip']&lt;/span&gt; = &lt;span class="pre"&gt;log_df['zip'].astype(str).str.zfill(5)&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;log_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;zip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;log_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;zip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zfill&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Get a row by index number us&lt;/strong&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html"&gt;pandas.DataFrame.loc[]&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;first_row&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -278,7 +303,7 @@ uses &lt;a class="reference external" href="https://pandas.pydata.org/pandas-doc
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pyodbc&lt;/span&gt;
 
 &lt;span class="n"&gt;emails&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;email@email.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;notanemail@example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;gmail@gmail.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;connection_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;connection_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\emails_database.accb;&amp;#39;&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;connection_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;conn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pyodbc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;connection_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
@@ -287,7 +312,7 @@ uses &lt;a class="reference external" href="https://pandas.pydata.org/pandas-doc
 &lt;span class="s2"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;dfs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;db_chunk&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_sql&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;chunksize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;500000&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
-    &lt;span class="n"&gt;emails_in_db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;db_chunk&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;db_chunk&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;EmailAddress&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;emails&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+    &lt;span class="n"&gt;emails_in_db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;db_chunk&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;db_chunk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Email&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;emails&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
     &lt;span class="n"&gt;dfs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;emails_in_db&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;emails_in_db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dfs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -351,8 +376,7 @@ In case you are wondering, enumerate is a &lt;a class="reference external" href=
 &lt;/div&gt;
 &lt;div class="section" id="turning-json-api-responses-into-a-dataframe-with-pd-json-normalize"&gt;
 &lt;h2&gt;(4) Turning json API responses into a dataframe with pd.json_normalize()&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;For **`older pandas versions &amp;lt;https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html&amp;gt;`__**:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update: beginning in pandas 1.0, **`json_normalize &amp;lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html&amp;gt;`__** became a top-level pandas namespace.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Update: beginning in pandas 1.0, &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html"&gt;json_normalize&lt;/a&gt; became a top-level pandas namespace. For &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html"&gt;older pandas versions&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
@@ -413,7 +437,7 @@ In case you are wondering, enumerate is a &lt;a class="reference external" href=
 &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;savefig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;images/Movie_Plot.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/"&gt;plotting with Jupyter/pandas/Python here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Plot George Clooney's movies over time in a line graph. [`Source &amp;lt;https://www.youtube.com/watch?v=5JnMutdy6Fw&amp;gt;`__]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Plot George Clooney's movies over time in a line graph. [&lt;a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;Source&lt;/a&gt;]&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;

@@ -167,7 +167,11 @@ sudo modprobe b43
 &lt;p&gt;&lt;strong&gt;Installation:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;To install, enter this into command your command prompt or terminal:&lt;/div&gt;
-&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pyinstaller&lt;/tt&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install pyinstaller
+&lt;/pre&gt;
+&lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;em&gt;At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5.&lt;/em&gt;&lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;Go here&lt;/a&gt;&lt;em&gt;for a refresher on setting up pip if you need it.&lt;/em&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Using the build.spec file and starting Pyinstaller:&lt;/strong&gt;&lt;/p&gt;
@@ -176,13 +180,15 @@ sudo modprobe b43
 pyinstaller (run mode options) (.spec file)&lt;/blockquote&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;strong&gt;Basic start compiler command to build.spec:&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;pyinstaller build.spec&lt;/tt&gt;&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Establishing a debugging loop with Pyinstaller:&lt;/strong&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Debug mode can be set from the command line:&lt;/div&gt;
-&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;pyinstaller &lt;span class="pre"&gt;-debug&lt;/span&gt; build.spec&lt;/tt&gt;&lt;/div&gt;
-&lt;/div&gt;
+&lt;pre class="literal-block"&gt;
+pyinstaller build.spec
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Establishing a debugging loop with Pyinstaller&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Debug mode can be set from the command line:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+pyinstaller -debug build.spec
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;OR&lt;/strong&gt;
 by passing debug=True to the EXE() function of the build.spec. I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;To see your app's error message, run the resulting your_app.exe from the command line.&lt;/em&gt;
@@ -240,9 +246,12 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 &lt;li&gt;Windows 7 is proven to work with Pyinstaller, per the documentation. It's also what I am running on. Other Windows systems older than Windows 10 may be less reliable.&lt;/li&gt;
 &lt;li&gt;I experienced trouble when passing arguments from the command line to pyinstaller and have so far been unable to get the console window to hide. Neither the -w, --windowed, --noconsole arguments seemed to work. I will update if I am able to find a solution.&lt;/li&gt;
 &lt;li&gt;Now that I am testing my compiled app, I am seeing 10x performance slowdowns when running as the final .exe vs. the original .py file. But at least the program runs correctly and still does so relatively quickly.&lt;/li&gt;
-&lt;li&gt;I also received the error: &amp;quot;Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform.&amp;quot; I fixed this by upgrading to the latest version of Pyinstaller: &lt;tt class="docutils literal"&gt;pip3 install &lt;span class="pre"&gt;--upgrade&lt;/span&gt; pyinstaller&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;I also received the error: &amp;quot;Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform.&amp;quot; I fixed this by upgrading to the latest version of Pyinstaller:&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;My full build.spec file, modified from&lt;/strong&gt;&lt;a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/"&gt;here&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+pip3 install --upgrade pyinstaller
+&lt;/pre&gt;
+&lt;p&gt;My full build.spec file, modified from &lt;a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/"&gt;here&lt;/a&gt; :&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;

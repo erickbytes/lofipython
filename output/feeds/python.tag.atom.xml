@@ -1232,10 +1232,12 @@ See also: &lt;a class="reference external" href="https://docs.python.org/3/libra
 &lt;/div&gt;
 </content><category term="Chicago, coding, HTTP, json, pandas, programming"></category><category term="api"></category><category term="data"></category><category term="python"></category><category term="requests"></category><category term="sandwiches"></category><category term="web"></category></entry><entry><title>Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box</title><link href="https://lofipython.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html" rel="alternate"></link><published>2020-03-21T01:47:00-05:00</published><updated>2020-03-21T01:47:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-03-21:/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Installing **`pytest &amp;lt;https://docs.pytest.org …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Installing &lt;a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt; , a python testing library …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Installing **`pytest &amp;lt;https://docs.pytest.org/en/latest/getting-started.html&amp;gt;`__**, a python testing library:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pytest&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;Installing &lt;a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt; , a python testing library:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install pytest
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;A Few Words on pytest&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Writing a Test&lt;/strong&gt;&lt;/p&gt;
@@ -1261,11 +1263,11 @@ See also: &lt;a class="reference external" href="https://docs.python.org/3/libra
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getpass&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_csv_date_equals_today&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;The dir_query format is for a Windows path with Unix style pattern matching.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;The match format is for a Windows path with Unix style pattern matching.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
      &lt;span class="c1"&gt;# specify csv extension and folder&lt;/span&gt;
     &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C:Users/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;getpass&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getuser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;/Desktop/*.csv&amp;#39;&lt;/span&gt;
     &lt;span class="c1"&gt;# get most recent file&lt;/span&gt;
-    &lt;span class="n"&gt;csv&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iglob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dir_query&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;csv&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iglob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="n"&gt;csv_timestamp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;csv_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromtimestamp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv_timestamp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv_date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1279,35 +1281,39 @@ platform win32 -- Python 3.8.1, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
 rootdir: C:\
 collected 1 item
 
-..\..\Users\martech\Desktop\test_file_date.py . [ 14%]
+..\..\Users\erick\Desktop\test_file_date.py . [ 14%]
                                                                    [100%]
 
 ============================== 1 passed in 0.28s ==============================
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Creating a Task with Windows Task Scheduler&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;If you haven't used python with Windows Task Scheduler before, &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/"&gt;my previous post&lt;/a&gt; on creating a task may help you. We'll create two of them for our testing system.&lt;/p&gt;
+&lt;p&gt;If you haven't used python with Windows Task Scheduler before, &lt;a class="reference external" href="https://lofipython.com/automated-python-with-windows-task-scheduler/"&gt;my previous post&lt;/a&gt; on creating a task may help you. We'll create two of them for our testing system.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Adding Your Task Scheduler Program: a Windows .bat file&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Add your username to the text below and adjust the paths to your system. Then save a &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Batch_file"&gt;Windows .bat file&lt;/a&gt; with this text, which points to your pytest.exe file:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 cmd /c &amp;quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&amp;quot; ^
-C:\Users\your_username\Desktop\test_file_date.py &amp;gt; C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
+C:\Users\your_username\Desktop\test_file_date.py &amp;gt; C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 &lt;/pre&gt;
-&lt;p&gt;This example is referencing an .exe within a hypothetical &amp;quot;VM_Jobs&amp;quot; &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtual environment&lt;/a&gt;, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)&lt;/p&gt;
+&lt;p&gt;This example is referencing an .exe within a hypothetical &amp;quot;sandbox&amp;quot; virtual environment, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Breaking this out, there are five .bat files parts:&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-cmd /c &amp;quot;C:Usersyour_usernameDesktopVM_JobsScriptspytest.exe --capture=sys&amp;quot;&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+cmd /c &amp;quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&amp;quot;
+&lt;/pre&gt;
 &lt;p&gt;Windows' &lt;a class="reference external" href="https://ss64.com/nt/cmd.html"&gt;cmd command&lt;/a&gt; takes a program, so we're passing pytest. &lt;a class="reference external" href="https://docs.pytest.org/en/latest/capture.html"&gt;The --capture=sys argument&lt;/a&gt; tells pytest to capture the test results. &lt;strong&gt;Note:&lt;/strong&gt; switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.&lt;/p&gt;
-&lt;blockquote&gt;
-^&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+^
+&lt;/pre&gt;
 &lt;p&gt;circumflex represents a line continuation in Windows batch files for better readability&lt;/p&gt;
-&lt;blockquote&gt;
-C:Usersyour_usernameDesktoptest_file_date.py&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+C:\Users\your_username\Desktop\test_file_date.py
+&lt;/pre&gt;
 &lt;p&gt;Next we're passing our python file as an argument to pytest, testing our file's modified date matches today's date.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;strong&gt;&amp;gt;&lt;/strong&gt;&lt;/blockquote&gt;
 &lt;p&gt;This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:&lt;/p&gt;
-&lt;blockquote&gt;
-C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Browse to select your .bat file for your Windows Task Scheduler task:&lt;/strong&gt;&lt;/p&gt;
 &lt;img alt="bat_task" class="alignnone size-full wp-image-2669" src="https://pythonmarketer.files.wordpress.com/2020/03/bat_task.jpg" style="width: 1032px; height: 590px;" /&gt;
 &lt;p&gt;&lt;strong&gt;Reading the Tests and Triggering Alerts&lt;/strong&gt;&lt;/p&gt;
@@ -1343,8 +1349,7 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt&lt;/blockquote&gt
 &lt;span class="normal"&gt;28&lt;/span&gt;
 &lt;span class="normal"&gt;29&lt;/span&gt;
 &lt;span class="normal"&gt;30&lt;/span&gt;
-&lt;span class="normal"&gt;31&lt;/span&gt;
-&lt;span class="normal"&gt;32&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getpass&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
@@ -1367,9 +1372,8 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt&lt;/blockquote&gt
     &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;FAILURES&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;C:/Users/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;user_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/Desktop/send_failure_alert/&amp;quot;&lt;/span&gt;
-        &lt;span class="n"&gt;today&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-        &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;txt_file&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;_Failed_Results_&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.txt&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;C:/Users/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;getpass&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getuser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/Desktop/send_failure_alert/&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;txt_file&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;_Failed_Results_&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.txt&amp;quot;&lt;/span&gt;
         &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;w+&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1651,14 +1655,16 @@ recreate my resume in the dark Atom text editor theme (background and fonts).
 &lt;strong&gt;Sub-goal:&lt;/strong&gt;
 find a color eyedropper to grab the actual color values of the Atom layout.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Approach #1: find an Atom eyedropper package to grab the colors.&lt;/strong&gt;
-My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: &lt;a class="reference external" href="https://atom.io/packages/an-color-picker"&gt;https://atom.io/packages/an-color-picker&lt;/a&gt; and color picker: &lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;https://atom.io/packages/color-picker&lt;/a&gt;&amp;gt;. The an-color-eyedropper description sounds perfect: &amp;quot;A simple &amp;quot;real&amp;quot; color picker. By &amp;quot;real&amp;quot; I mean it's able to pick colors anywhere on any screen.&amp;quot;&lt;/p&gt;
+My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: &lt;a class="reference external" href="https://atom.io/packages/an-color-picker"&gt;https://atom.io/packages/an-color-picker&lt;/a&gt; and color picker: &lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;https://atom.io/packages/color-picker&lt;/a&gt;. The an-color-eyedropper description sounds perfect: &amp;quot;A simple &amp;quot;real&amp;quot; color picker. By &amp;quot;real&amp;quot; I mean it's able to pick colors anywhere on any screen.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Unfortunately it failed to install and displayed the error, &amp;quot;Unable to download 400 Bad Request Repository inaccessible&amp;quot;. It seems to rely on the &amp;quot;python&amp;quot; Atom package which is now deprecated. I was unable to find a repo anywhere by googling.&lt;/p&gt;
 &lt;p&gt;Color picker: &lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;https://atom.io/packages/color-picker&lt;/a&gt; has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Approach #2: Use the python tkcolorpicker package to grab the colors.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;The first thing I found on Google was &lt;a class="reference external" href="https://pypi.org/project/tkcolorpicker/"&gt;tkcolorpicker&lt;/a&gt;, a package that uses the &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/"&gt;tkinter&lt;/a&gt; library. I couldn't tell exactly what it was, so let's find out. First, install via &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;:&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install tkcolorpicker&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install tkcolorpicker
+&lt;/pre&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D&lt;/div&gt;
 &lt;div class="line"&gt;&lt;img alt="color_picker_gui" class="wp-image-1462 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="width: 301px; height: 315px;" /&gt;&lt;/div&gt;
@@ -1685,7 +1691,10 @@ My first thought was to find the easiest solution, within the packages of my Ato
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;askcolor()&lt;/tt&gt; returns a tuple with both the RGB and hex codes selected by the user. Above, we are unpacking that tuple into the &lt;tt class="docutils literal"&gt;hex_code&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;RGB_code&lt;/tt&gt; variables.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Approach #3: Use the Python eyedropper package to grab the colors.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I then found &lt;a class="reference external" href="https://github.com/umluizlima/eyedropper"&gt;eyedropper&lt;/a&gt; for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;: &lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install eyedropper&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;I then found &lt;a class="reference external" href="https://github.com/umluizlima/eyedropper"&gt;eyedropper&lt;/a&gt; for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install eyedropper
+&lt;/pre&gt;
 &lt;img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" style="width: 239px; height: 140px;" /&gt;
 &lt;p&gt;Hover your mouse over the object you want to grab the color from (in my case, the Atom text editor background). Then &lt;a class="reference external" href="https://github.com/umluizlima/eyedropper"&gt;following these instructions&lt;/a&gt;:&lt;/p&gt;
 &lt;p&gt;Alternatively, I was able to run eyedropper from the command line by entering: &lt;tt class="docutils literal"&gt;py &lt;span class="pre"&gt;-m&lt;/span&gt; eyedropper&lt;/tt&gt;&lt;/p&gt;
@@ -1696,7 +1705,7 @@ My first thought was to find the easiest solution, within the packages of my Ato
 &lt;div class="section" id="why-not-use-python-to-convert-hex-to-rgb"&gt;
 &lt;h2&gt;Why not &lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;use Python to convert hex to RGB?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I found &lt;a class="reference external" href="https://www.webpagefx.com/web-design/hex-to-rgb/"&gt;this website&lt;/a&gt; practical and quick.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Alternatively, you could&lt;/strong&gt; &lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;convert a hex code to RGB with python:&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Alternatively, you could &lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;convert a hex code to RGB with python:&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;hex_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Enter hex: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lstrip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1708,12 +1717,15 @@ My first thought was to find the easiest solution, within the packages of my Ato
 &lt;div class="section" id="what-the-hay-let-s-use-pd-read-clipboard-to-get-the-hex-codes"&gt;
 &lt;h2&gt;What the hay, let's use &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html"&gt;pd.read_clipboard()&lt;/a&gt; to get the hex codes.&lt;/h2&gt;
 &lt;p&gt;Once eyedropper sends the color values to your system's clipboard, there are multiple ways to access them. This alternative uses pandas.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Installing pandas and&lt;/strong&gt;&lt;a class="reference external" href="https://github.com/asweigart/pyperclip"&gt;pyperclip&lt;/a&gt;&lt;strong&gt;with pip:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Installing pandas and &lt;a class="reference external" href="https://github.com/asweigart/pyperclip"&gt;pyperclip&lt;/a&gt; with pip:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 python -m pip install pandas
 python -m pip install pyperclip
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;On Linux, install&lt;/strong&gt;&lt;a class="reference external" href="https://github.com/astrand/xclip"&gt;xclip&lt;/a&gt;&lt;strong&gt;or&lt;/strong&gt;&lt;a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel"&gt;xsel:&lt;/a&gt; &lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install xclip&lt;/tt&gt;**&lt;/p&gt;
+&lt;p&gt;On Linux, install  &lt;a class="reference external" href="https://github.com/astrand/xclip"&gt;xclip&lt;/a&gt; or &lt;a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel"&gt;xsel:&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sudo apt-get install xclip
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;To get the clipboard contents with pandas:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
@@ -1741,7 +1753,9 @@ python -m pip install pyperclip
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Installing Gooey&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Argparse comes stock with Python. You can install Gooey via the &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip installer&lt;/a&gt;. Open command prompt or terminal and enter:&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install Gooey&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install Gooey
+&lt;/pre&gt;
 &lt;p&gt;Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
@@ -1764,7 +1778,7 @@ python -m pip install pyperclip
 &lt;span class="normal"&gt;19&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ArgumentParser&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gooey&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gooey&lt;/span&gt;
 
-&lt;span class="nd"&gt;@Gooey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;program_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Email Campaign Reporting Generator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;575&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nd"&gt;@Gooey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;program_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Report Generator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;575&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_args&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Demonstrating python&amp;#39;s vars built-in to store arguments in a python dict.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A simple argument parser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;epilog&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is where you might put example usage&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1804,15 +1818,11 @@ Side note: Check out Python's &lt;a class="reference external" href="https://doc
 &lt;span class="normal"&gt;16&lt;/span&gt;
 &lt;span class="normal"&gt;17&lt;/span&gt;
 &lt;span class="normal"&gt;18&lt;/span&gt;
-&lt;span class="normal"&gt;19&lt;/span&gt;
-&lt;span class="normal"&gt;20&lt;/span&gt;
-&lt;span class="normal"&gt;21&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gooey&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gooey&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GooeyParser&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gooey&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gooey&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GooeyParser&lt;/span&gt;
 
 &lt;span class="nd"&gt;@Gooey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;program_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Email Campaign Reporting Generator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;575&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_args&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Adding two argument groups, each accepting two arguments.&lt;/span&gt;
-&lt;span class="sd"&gt;    Using gooey_options to set layout.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Adding two argument groups, each accepting two arguments. Using gooey_options to set layout.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GooeyParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Export campaign report spreadsheets and upload below.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;top_group&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument_group&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gooey_options&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;show_border&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;columns&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
     &lt;span class="n"&gt;top_group&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Contact List&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Upload Send List (.xlsx)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;widget&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;FileChooser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1831,7 +1841,7 @@ Side note: Check out Python's &lt;a class="reference external" href="https://doc
 &lt;p&gt;Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:&lt;/p&gt;
 &lt;img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" /&gt;
 &lt;p&gt;Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&amp;nbsp;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/"&gt;read more on how I did it here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&amp;nbsp;&lt;a class="reference external" href="https://lofipython.com/packaging-python-as-a-windows-app/"&gt;read more on how I did it here&lt;/a&gt;.&lt;/p&gt;
 </content><category term="coding, data, product development, programming, software"></category><category term="gooey"></category><category term="gui"></category><category term="python"></category><category term="software development"></category></entry><entry><title>list(cool_python_things)</title><link href="https://lofipython.com/blog_post-listcool_python_things.html" rel="alternate"></link><published>2018-03-24T19:38:00-05:00</published><updated>2018-03-24T19:38:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-03-24:/blog_post-listcool_python_things.html</id><summary type="html">&lt;ol class="arabic simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/norvig/pytudes"&gt;pytudes&lt;/a&gt; - &amp;quot;This project contains&amp;nbsp;&lt;strong&gt;pytudes&lt;/strong&gt;—Python programs for perfecting programming skills.&amp;quot;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://www.makeartwithpython.com/blog/video-synthesizer-in-python/?utm_source=mybridge&amp;amp;utm_medium=blog&amp;amp;utm_campaign=read_more"&gt;Building a video synthesizer in Python&lt;/a&gt;&lt;/li&gt;
@@ -1854,12 +1864,13 @@ Side note: Check out Python's &lt;a class="reference external" href="https://doc
 &lt;p&gt;&lt;strong&gt;First, Some Python Version Caveats + History&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Python 2 reached end of life on January 1st, 2020&lt;/strong&gt;. &lt;a class="reference external" href="https://www.python.org/doc/sunset-python-2/"&gt;Python 2 has officially been sunset&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;In December 2021, Python 3.6 reached **`&amp;quot;end of life phase&amp;quot; &amp;lt;https://devguide.python.org/devcycle/#end-of-life-branches&amp;gt;`__**.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In December 2021, Python 3.6 reached &amp;quot;end of life phase&amp;quot; &amp;lt;&lt;a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches"&gt;https://devguide.python.org/devcycle/#end-of-life-branches&lt;/a&gt;&amp;gt;`__.&lt;/p&gt;
 &lt;p&gt;Python 3.6 is &amp;quot;now effectively frozen&amp;quot;. Read more in &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0494/"&gt;PEP 494&lt;/a&gt;. (Released Oct. 2022)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt; use Python 3.7 to 3.11. This blog endorses using the lightning fast Python version &lt;a class="reference external" href="https://www.python.org/downloads/release/python-3110/"&gt;3.11.&lt;/a&gt;&lt;/p&gt;
 &lt;div class="section" id="enter-this-in-your-terminal"&gt;
 &lt;h2&gt;Enter This in Your Terminal&lt;/h2&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;For &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html"&gt;older pandas versions&lt;/a&gt;:
+python -m pip install pandas``&lt;/p&gt;
 &lt;p&gt;Pandas is a super useful library for wrangling spreadsheet data, AKA &amp;quot;tabular&amp;quot; data. If successful, you should see activity that looks similar to the below screenshot, where I am installing &lt;a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/"&gt;openpyxl&lt;/a&gt;, an additional Python Excel library you'll likely want. You are good to go! This is the part where you get to feel like Neo! See &lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;Installing Python Modules&lt;/a&gt; in the Python Documentation for more detailed instructions.&lt;/p&gt;
 &lt;img alt="neo_pip" class="alignnone size-full wp-image-1322" src="http://pythonmarketer.files.wordpress.com/2018/01/de9d6-neo_pip-e1587604013861.png" style="width: 650px; height: 340px;" /&gt;
 &lt;p&gt;&lt;strong&gt;To view all your installed libraries, enter:&lt;/strong&gt;&lt;/p&gt;
@@ -1917,18 +1928,20 @@ python -m ensurepip --upgrade
 &lt;p&gt;&amp;quot;The&amp;nbsp;ensurepip ` &amp;lt;&lt;a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip"&gt;https://docs.python.org/3/library/ensurepip.html#module-ensurepip&lt;/a&gt;&amp;gt;`__&amp;nbsp;package provides support for bootstrapping the&amp;nbsp;pip&amp;nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&amp;nbsp;pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&amp;quot;&lt;/p&gt;
 &lt;p&gt;- &lt;a class="reference external" href="https://docs.python.org/3/library/ensurepip.html"&gt;ensurepip Python Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;You should follow best practice and&lt;/strong&gt; &lt;a class="reference external" href="https://docs.python.org/3/library/venv.html"&gt;create a virtual environment&lt;/a&gt; &lt;strong&gt;before installing libraries. **`venv  &amp;lt;https://docs.python.org/3/library/venv.html&amp;gt;`__**or&lt;/strong&gt;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtualenv&lt;/a&gt;&lt;strong&gt;will help you out. To create with venv:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python3 &lt;span class="pre"&gt;-m&lt;/span&gt; venv add_env_name_here&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;You should follow best practice and &lt;a class="reference external" href="https://docs.python.org/3/library/venv.html"&gt;create a virtual environment&lt;/a&gt;  before installing libraries. &lt;a class="reference external" href="https://docs.python.org/3/library/venv.html"&gt;venv&lt;/a&gt; or &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtualenv&lt;/a&gt; will help you out. To create with venv:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python3 -m venv add_env_name_here
+&lt;/pre&gt;
 &lt;p&gt;After your environment is created, activate it with the first command below, then install a library on Ubuntu Linux:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;source add_env_path_here/bin activate&lt;/tt&gt;&lt;/li&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
+source add_env_path_here/bin activate
+python -m pip install pandas
+&lt;/pre&gt;
 &lt;p&gt;Alternatively, on Windows computers:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;cd add_env_path_here\scripts &amp;amp; activate&lt;/tt&gt;&lt;/li&gt;
-&lt;li&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
+cd add_env_path_here\scripts &amp;amp; activate
+python -m pip install pandas
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Know your OS.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;If you're interested in installing pip on Linux, &lt;a class="reference external" href="https://www.tecmint.com/install-pip-in-linux/"&gt;try here&lt;/a&gt;. For Mac, &lt;a class="reference external" href="https://www.shellhacks.com/python-install-pip-mac-ubuntu-centos/"&gt;try here&lt;/a&gt;. Windows, Mac and Linux sometimes use different prefixes (e.g. python, py, python3) to run a python script. Which leads me to my next point...&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Getting the prefix right can be tricky.&lt;/strong&gt;&lt;/p&gt;
@@ -1947,21 +1960,29 @@ python -m ensurepip --upgrade
 &lt;li&gt;Seeking to fix a faulty pip install that is not working properly.&lt;/li&gt;
 &lt;li&gt;Curious to know how to manually set up pip.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;em&gt;Assumes Python is already *`installed &amp;lt;https://www.python.org/downloads/&amp;gt;`__*. If you're running Windows 10, I found it easy to install Python from the *`Windows store &amp;lt;https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab&amp;gt;`__*.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Download the **`get-pip.py file &amp;lt;https://bootstrap.pypa.io/get-pip.py&amp;gt;`__**.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Assumes Python is already &lt;a class="reference external" href="https://www.python.org/downloads/"&gt;installed&lt;/a&gt;. If you're running Windows 10, I found it easy to install Python from the &lt;a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab"&gt;Windows store&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Download the &lt;a class="reference external" href="https://bootstrap.pypa.io/get-pip.py"&gt;get-pip.py file&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Go to the link, right click the page and &amp;quot;Save As&amp;quot; a .py file to download. Then place the file where you want to access it. I placed mine in&amp;nbsp;C:Python27Libsite-packages&lt;/p&gt;
 &lt;p&gt;You could also download the file with &lt;a class="reference external" href="https://curl.haxx.se/"&gt;curl&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;curl &lt;span class="pre"&gt;https://bootstrap.pypa.io/get-pip.py&lt;/span&gt; &lt;span class="pre"&gt;-o&lt;/span&gt; &lt;span class="pre"&gt;get-pip.pyt-pip.py&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-If you are not sure where your site-packages folder is, type&lt;a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory"&gt;python -m site&lt;/a&gt;into command prompt for file path ideas.&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py
+
+If you are not sure where your site-packages folder is, type `python -m site &amp;lt;https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory&amp;gt;`__ into command prompt for file path ideas.
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Run the get-pip.py file.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Using command prompt's cd command with a Windows &amp;quot;&amp;amp;&amp;quot; operator to run the Python file in a Windows command prompt:&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;cd &lt;span class="pre"&gt;c:\Python27\Lib\site-packages&lt;/span&gt; &amp;amp; python &lt;span class="pre"&gt;get-pip.py&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+cd c:\Python27\Lib\site-packages &amp;amp; python get-pip.py
+&lt;/pre&gt;
 &lt;p&gt;Or Linux terminal:&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;cd &lt;span class="pre"&gt;/Python27/Lib/site-packages&lt;/span&gt; &amp;amp;&amp;amp; python &lt;span class="pre"&gt;get-pip.py&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+cd /Python27/Lib/site-packages &amp;amp;&amp;amp; python get-pip.py``
+&lt;/pre&gt;
 &lt;p&gt;You should see some activity in command prompt that shows installation/updating of &amp;quot;setup&amp;quot; and &amp;quot;wheel&amp;quot;. When it finishes, you have installed pip.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Type into command prompt at the same location:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install requests&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install requests
+&lt;/pre&gt;
 &lt;p&gt;This should install the Requests module into your Python libraries. Requests is an http module which is highly regarded almost universally by the Python community.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Thanks for reading! Check out these other posts with pip installed library examples:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/"&gt;Fix Grammar and Spelling with language_tool_python and textblob&lt;/a&gt;&lt;/p&gt;

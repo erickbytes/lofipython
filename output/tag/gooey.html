@@ -52,7 +52,9 @@
 </ol>
 <p><strong>Installing Gooey</strong></p>
 <p>Argparse comes stock with Python. You can install Gooey via the <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>. Open command prompt or terminal and enter:</p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install Gooey</tt></p>
+<pre class="literal-block">
+python -m pip install Gooey
+</pre>
 <p>Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -75,7 +77,7 @@
 <span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
 <span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span>
 
-<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Report Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Demonstrating python&#39;s vars built-in to store arguments in a python dict.&quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;A simple argument parser&#39;</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="s1">&#39;This is where you might put example usage&#39;</span><span class="p">)</span>
@@ -115,15 +117,11 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
 
 <span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Adding two argument groups, each accepting two arguments.</span>
-<span class="sd">    Using gooey_options to set layout.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Adding two argument groups, each accepting two arguments. Using gooey_options to set layout.&quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">GooeyParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Export campaign report spreadsheets and upload below.&#39;</span><span class="p">)</span>
     <span class="n">top_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">gooey_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;show_border&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span><span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
     <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Contact List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Send List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span>
@@ -142,7 +140,7 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
 <p>Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:</p>
 <img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" />
 <p>Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D</p>
-<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&nbsp;<a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
+<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&nbsp;<a class="reference external" href="https://lofipython.com/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
 
                 <div class="clear"></div>
 

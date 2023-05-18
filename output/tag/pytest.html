@@ -45,8 +45,10 @@
 
                 <p><strong>Automatic pytest Testing and Failure Alert Monitoring</strong></p>
 <p>This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.</p>
-<p><strong>Installing **`pytest &lt;https://docs.pytest.org/en/latest/getting-started.html&gt;`__**, a python testing library:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pytest</tt></p>
+<p>Installing <a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html">pytest</a> , a python testing library:</p>
+<pre class="literal-block">
+python -m pip install pytest
+</pre>
 <p><strong>A Few Words on pytest</strong></p>
 <p>It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.</p>
 <p><strong>Writing a Test</strong></p>
@@ -72,11 +74,11 @@
 <span class="kn">import</span> <span class="nn">getpass</span>
 
 <span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;The dir_query format is for a Windows path with Unix style pattern matching.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;The match format is for a Windows path with Unix style pattern matching.&quot;&quot;&quot;</span>
      <span class="c1"># specify csv extension and folder</span>
     <span class="n">match</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s1">/Desktop/*.csv&#39;</span>
     <span class="c1"># get most recent file</span>
-    <span class="n">csv</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">csv</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">match</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">csv_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">csv</span><span class="p">)</span>
     <span class="n">csv_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">csv_timestamp</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">csv_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
@@ -90,35 +92,39 @@ platform win32 -- Python 3.8.1, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
 rootdir: C:\
 collected 1 item
 
-..\..\Users\martech\Desktop\test_file_date.py . [ 14%]
+..\..\Users\erick\Desktop\test_file_date.py . [ 14%]
                                                                    [100%]
 
 ============================== 1 passed in 0.28s ==============================
 </pre>
 <p><strong>Creating a Task with Windows Task Scheduler</strong></p>
-<p>If you haven't used python with Windows Task Scheduler before, <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">my previous post</a> on creating a task may help you. We'll create two of them for our testing system.</p>
+<p>If you haven't used python with Windows Task Scheduler before, <a class="reference external" href="https://lofipython.com/automated-python-with-windows-task-scheduler/">my previous post</a> on creating a task may help you. We'll create two of them for our testing system.</p>
 <p><strong>Adding Your Task Scheduler Program: a Windows .bat file</strong></p>
 <p>Add your username to the text below and adjust the paths to your system. Then save a <a class="reference external" href="https://en.wikipedia.org/wiki/Batch_file">Windows .bat file</a> with this text, which points to your pytest.exe file:</p>
 <pre class="literal-block">
 cmd /c &quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&quot; ^
-C:\Users\your_username\Desktop\test_file_date.py &gt; C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
+C:\Users\your_username\Desktop\test_file_date.py &gt; C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 </pre>
-<p>This example is referencing an .exe within a hypothetical &quot;VM_Jobs&quot; <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)</p>
+<p>This example is referencing an .exe within a hypothetical &quot;sandbox&quot; virtual environment, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)</p>
 <p><strong>Breaking this out, there are five .bat files parts:</strong></p>
-<blockquote>
-cmd /c &quot;C:Usersyour_usernameDesktopVM_JobsScriptspytest.exe --capture=sys&quot;</blockquote>
+<pre class="literal-block">
+cmd /c &quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&quot;
+</pre>
 <p>Windows' <a class="reference external" href="https://ss64.com/nt/cmd.html">cmd command</a> takes a program, so we're passing pytest. <a class="reference external" href="https://docs.pytest.org/en/latest/capture.html">The --capture=sys argument</a> tells pytest to capture the test results. <strong>Note:</strong> switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.</p>
-<blockquote>
-^</blockquote>
+<pre class="literal-block">
+^
+</pre>
 <p>circumflex represents a line continuation in Windows batch files for better readability</p>
-<blockquote>
-C:Usersyour_usernameDesktoptest_file_date.py</blockquote>
+<pre class="literal-block">
+C:\Users\your_username\Desktop\test_file_date.py
+</pre>
 <p>Next we're passing our python file as an argument to pytest, testing our file's modified date matches today's date.</p>
 <blockquote>
 <strong>&gt;</strong></blockquote>
 <p>This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:</p>
-<blockquote>
-C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
+<pre class="literal-block">
+C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
+</pre>
 <p><strong>Browse to select your .bat file for your Windows Task Scheduler task:</strong></p>
 <img alt="bat_task" class="alignnone size-full wp-image-2669" src="https://pythonmarketer.files.wordpress.com/2020/03/bat_task.jpg" style="width: 1032px; height: 590px;" />
 <p><strong>Reading the Tests and Triggering Alerts</strong></p>
@@ -154,8 +160,7 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -178,9 +183,8 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt</blockquote>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="k">if</span> <span class="s2">&quot;FAILURES&quot;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
-        <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="s2">/Desktop/send_failure_alert/&quot;</span>
-        <span class="n">today</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directory</span><span class="si">}{</span><span class="n">txt_file</span><span class="si">}</span><span class="s2">_Failed_Results_</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+        <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">/Desktop/send_failure_alert/&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directory</span><span class="si">}{</span><span class="n">txt_file</span><span class="si">}</span><span class="s2">_Failed_Results_</span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="si">}</span><span class="s2">.txt&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>

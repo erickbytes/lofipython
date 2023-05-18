@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - software development</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/software-development.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2020-03-21T01:47:00-05:00</updated><entry><title>Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box</title><link href="https://lofipython.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html" rel="alternate"></link><published>2020-03-21T01:47:00-05:00</published><updated>2020-03-21T01:47:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-03-21:/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Installing **`pytest &amp;lt;https://docs.pytest.org …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Installing &lt;a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt; , a python testing library …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Installing **`pytest &amp;lt;https://docs.pytest.org/en/latest/getting-started.html&amp;gt;`__**, a python testing library:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pytest&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;Installing &lt;a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt; , a python testing library:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install pytest
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;A Few Words on pytest&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Writing a Test&lt;/strong&gt;&lt;/p&gt;
@@ -30,11 +32,11 @@
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getpass&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_csv_date_equals_today&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;The dir_query format is for a Windows path with Unix style pattern matching.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;The match format is for a Windows path with Unix style pattern matching.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
      &lt;span class="c1"&gt;# specify csv extension and folder&lt;/span&gt;
     &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C:Users/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;getpass&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getuser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;/Desktop/*.csv&amp;#39;&lt;/span&gt;
     &lt;span class="c1"&gt;# get most recent file&lt;/span&gt;
-    &lt;span class="n"&gt;csv&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iglob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dir_query&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;csv&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iglob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="n"&gt;csv_timestamp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;csv_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromtimestamp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv_timestamp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv_date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -48,35 +50,39 @@ platform win32 -- Python 3.8.1, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
 rootdir: C:\
 collected 1 item
 
-..\..\Users\martech\Desktop\test_file_date.py . [ 14%]
+..\..\Users\erick\Desktop\test_file_date.py . [ 14%]
                                                                    [100%]
 
 ============================== 1 passed in 0.28s ==============================
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Creating a Task with Windows Task Scheduler&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;If you haven't used python with Windows Task Scheduler before, &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/"&gt;my previous post&lt;/a&gt; on creating a task may help you. We'll create two of them for our testing system.&lt;/p&gt;
+&lt;p&gt;If you haven't used python with Windows Task Scheduler before, &lt;a class="reference external" href="https://lofipython.com/automated-python-with-windows-task-scheduler/"&gt;my previous post&lt;/a&gt; on creating a task may help you. We'll create two of them for our testing system.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Adding Your Task Scheduler Program: a Windows .bat file&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Add your username to the text below and adjust the paths to your system. Then save a &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Batch_file"&gt;Windows .bat file&lt;/a&gt; with this text, which points to your pytest.exe file:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 cmd /c &amp;quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&amp;quot; ^
-C:\Users\your_username\Desktop\test_file_date.py &amp;gt; C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
+C:\Users\your_username\Desktop\test_file_date.py &amp;gt; C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 &lt;/pre&gt;
-&lt;p&gt;This example is referencing an .exe within a hypothetical &amp;quot;VM_Jobs&amp;quot; &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtual environment&lt;/a&gt;, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)&lt;/p&gt;
+&lt;p&gt;This example is referencing an .exe within a hypothetical &amp;quot;sandbox&amp;quot; virtual environment, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Breaking this out, there are five .bat files parts:&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-cmd /c &amp;quot;C:Usersyour_usernameDesktopVM_JobsScriptspytest.exe --capture=sys&amp;quot;&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+cmd /c &amp;quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&amp;quot;
+&lt;/pre&gt;
 &lt;p&gt;Windows' &lt;a class="reference external" href="https://ss64.com/nt/cmd.html"&gt;cmd command&lt;/a&gt; takes a program, so we're passing pytest. &lt;a class="reference external" href="https://docs.pytest.org/en/latest/capture.html"&gt;The --capture=sys argument&lt;/a&gt; tells pytest to capture the test results. &lt;strong&gt;Note:&lt;/strong&gt; switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.&lt;/p&gt;
-&lt;blockquote&gt;
-^&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+^
+&lt;/pre&gt;
 &lt;p&gt;circumflex represents a line continuation in Windows batch files for better readability&lt;/p&gt;
-&lt;blockquote&gt;
-C:Usersyour_usernameDesktoptest_file_date.py&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+C:\Users\your_username\Desktop\test_file_date.py
+&lt;/pre&gt;
 &lt;p&gt;Next we're passing our python file as an argument to pytest, testing our file's modified date matches today's date.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;strong&gt;&amp;gt;&lt;/strong&gt;&lt;/blockquote&gt;
 &lt;p&gt;This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:&lt;/p&gt;
-&lt;blockquote&gt;
-C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt&lt;/blockquote&gt;
+&lt;pre class="literal-block"&gt;
+C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Browse to select your .bat file for your Windows Task Scheduler task:&lt;/strong&gt;&lt;/p&gt;
 &lt;img alt="bat_task" class="alignnone size-full wp-image-2669" src="https://pythonmarketer.files.wordpress.com/2020/03/bat_task.jpg" style="width: 1032px; height: 590px;" /&gt;
 &lt;p&gt;&lt;strong&gt;Reading the Tests and Triggering Alerts&lt;/strong&gt;&lt;/p&gt;
@@ -112,8 +118,7 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt&lt;/blockquote&gt
 &lt;span class="normal"&gt;28&lt;/span&gt;
 &lt;span class="normal"&gt;29&lt;/span&gt;
 &lt;span class="normal"&gt;30&lt;/span&gt;
-&lt;span class="normal"&gt;31&lt;/span&gt;
-&lt;span class="normal"&gt;32&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getpass&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
@@ -136,9 +141,8 @@ C:Usersyour_usernameDesktopVM_JobsTest_ResultsTest_Results.txt&lt;/blockquote&gt
     &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;FAILURES&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;C:/Users/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;user_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/Desktop/send_failure_alert/&amp;quot;&lt;/span&gt;
-        &lt;span class="n"&gt;today&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-        &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;txt_file&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;_Failed_Results_&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.txt&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;C:/Users/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;getpass&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getuser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/Desktop/send_failure_alert/&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;txt_file&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;_Failed_Results_&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.txt&amp;quot;&lt;/span&gt;
         &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;w+&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -370,7 +374,9 @@ Tests start to lose signal when &lt;a class="reference external" href="https://d
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Installing Gooey&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Argparse comes stock with Python. You can install Gooey via the &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip installer&lt;/a&gt;. Open command prompt or terminal and enter:&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install Gooey&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install Gooey
+&lt;/pre&gt;
 &lt;p&gt;Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
@@ -393,7 +399,7 @@ Tests start to lose signal when &lt;a class="reference external" href="https://d
 &lt;span class="normal"&gt;19&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ArgumentParser&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gooey&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gooey&lt;/span&gt;
 
-&lt;span class="nd"&gt;@Gooey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;program_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Email Campaign Reporting Generator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;575&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nd"&gt;@Gooey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;program_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Report Generator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;575&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_args&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Demonstrating python&amp;#39;s vars built-in to store arguments in a python dict.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A simple argument parser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;epilog&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is where you might put example usage&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -433,15 +439,11 @@ Side note: Check out Python's &lt;a class="reference external" href="https://doc
 &lt;span class="normal"&gt;16&lt;/span&gt;
 &lt;span class="normal"&gt;17&lt;/span&gt;
 &lt;span class="normal"&gt;18&lt;/span&gt;
-&lt;span class="normal"&gt;19&lt;/span&gt;
-&lt;span class="normal"&gt;20&lt;/span&gt;
-&lt;span class="normal"&gt;21&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gooey&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gooey&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GooeyParser&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gooey&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gooey&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GooeyParser&lt;/span&gt;
 
 &lt;span class="nd"&gt;@Gooey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;program_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Email Campaign Reporting Generator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;575&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_args&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Adding two argument groups, each accepting two arguments.&lt;/span&gt;
-&lt;span class="sd"&gt;    Using gooey_options to set layout.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Adding two argument groups, each accepting two arguments. Using gooey_options to set layout.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GooeyParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Export campaign report spreadsheets and upload below.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;top_group&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument_group&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gooey_options&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;show_border&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;columns&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
     &lt;span class="n"&gt;top_group&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Contact List&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Upload Send List (.xlsx)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;widget&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;FileChooser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -460,5 +462,5 @@ Side note: Check out Python's &lt;a class="reference external" href="https://doc
 &lt;p&gt;Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:&lt;/p&gt;
 &lt;img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" /&gt;
 &lt;p&gt;Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&amp;nbsp;&lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/"&gt;read more on how I did it here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&amp;nbsp;&lt;a class="reference external" href="https://lofipython.com/packaging-python-as-a-windows-app/"&gt;read more on how I did it here&lt;/a&gt;.&lt;/p&gt;
 </content><category term="coding, data, product development, programming, software"></category><category term="gooey"></category><category term="gui"></category><category term="python"></category><category term="software development"></category></entry></feed>

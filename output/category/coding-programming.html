@@ -130,12 +130,13 @@
 <p><strong>First, Some Python Version Caveats + History</strong></p>
 <p><strong>Python 2 reached end of life on January 1st, 2020</strong>. <a class="reference external" href="https://www.python.org/doc/sunset-python-2/">Python 2 has officially been sunset</a>.</p>
 <p>Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.</p>
-<p><strong>In December 2021, Python 3.6 reached **`&quot;end of life phase&quot; &lt;https://devguide.python.org/devcycle/#end-of-life-branches&gt;`__**.</strong></p>
+<p>In December 2021, Python 3.6 reached &quot;end of life phase&quot; &lt;<a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">https://devguide.python.org/devcycle/#end-of-life-branches</a>&gt;`__.</p>
 <p>Python 3.6 is &quot;now effectively frozen&quot;. Read more in <a class="reference external" href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
 <p><strong>TLDR:</strong> use Python 3.7 to 3.11. This blog endorses using the lightning fast Python version <a class="reference external" href="https://www.python.org/downloads/release/python-3110/">3.11.</a></p>
 <div class="section" id="enter-this-in-your-terminal">
 <h2>Enter This in Your Terminal</h2>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></p>
+<p>For <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html">older pandas versions</a>:
+python -m pip install pandas``</p>
 <p>Pandas is a super useful library for wrangling spreadsheet data, AKA &quot;tabular&quot; data. If successful, you should see activity that looks similar to the below screenshot, where I am installing <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>, an additional Python Excel library you'll likely want. You are good to go! This is the part where you get to feel like Neo! See <a class="reference external" href="https://docs.python.org/3/installing/index.html">Installing Python Modules</a> in the Python Documentation for more detailed instructions.</p>
 <img alt="neo_pip" class="alignnone size-full wp-image-1322" src="http://pythonmarketer.files.wordpress.com/2018/01/de9d6-neo_pip-e1587604013861.png" style="width: 650px; height: 340px;" />
 <p><strong>To view all your installed libraries, enter:</strong></p>
@@ -193,18 +194,20 @@ python -m ensurepip --upgrade
 <p>&quot;The&nbsp;ensurepip ` &lt;<a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">https://docs.python.org/3/library/ensurepip.html#module-ensurepip</a>&gt;`__&nbsp;package provides support for bootstrapping the&nbsp;pip&nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&nbsp;pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&quot;</p>
 <p>- <a class="reference external" href="https://docs.python.org/3/library/ensurepip.html">ensurepip Python Documentation</a></p>
 </blockquote>
-<p><strong>You should follow best practice and</strong> <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a> <strong>before installing libraries. **`venv  &lt;https://docs.python.org/3/library/venv.html&gt;`__**or</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a><strong>will help you out. To create with venv:</strong></p>
-<p><tt class="docutils literal">python3 <span class="pre">-m</span> venv add_env_name_here</tt></p>
+<p>You should follow best practice and <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a>  before installing libraries. <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a> will help you out. To create with venv:</p>
+<pre class="literal-block">
+python3 -m venv add_env_name_here
+</pre>
 <p>After your environment is created, activate it with the first command below, then install a library on Ubuntu Linux:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">source add_env_path_here/bin activate</tt></li>
-<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
-</ol>
+<pre class="literal-block">
+source add_env_path_here/bin activate
+python -m pip install pandas
+</pre>
 <p>Alternatively, on Windows computers:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">cd add_env_path_here\scripts &amp; activate</tt></li>
-<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
-</ol>
+<pre class="literal-block">
+cd add_env_path_here\scripts &amp; activate
+python -m pip install pandas
+</pre>
 <p><strong>Know your OS.</strong></p>
 <p>If you're interested in installing pip on Linux, <a class="reference external" href="https://www.tecmint.com/install-pip-in-linux/">try here</a>. For Mac, <a class="reference external" href="https://www.shellhacks.com/python-install-pip-mac-ubuntu-centos/">try here</a>. Windows, Mac and Linux sometimes use different prefixes (e.g. python, py, python3) to run a python script. Which leads me to my next point...</p>
 <p><strong>Getting the prefix right can be tricky.</strong></p>
@@ -223,21 +226,29 @@ python -m ensurepip --upgrade
 <li>Seeking to fix a faulty pip install that is not working properly.</li>
 <li>Curious to know how to manually set up pip.</li>
 </ol>
-<p><em>Assumes Python is already *`installed &lt;https://www.python.org/downloads/&gt;`__*. If you're running Windows 10, I found it easy to install Python from the *`Windows store &lt;https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab&gt;`__*.</em></p>
-<p><strong>Download the **`get-pip.py file &lt;https://bootstrap.pypa.io/get-pip.py&gt;`__**.</strong></p>
+<p>Assumes Python is already <a class="reference external" href="https://www.python.org/downloads/">installed</a>. If you're running Windows 10, I found it easy to install Python from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab">Windows store</a>.</p>
+<p>Download the <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py file</a>.</p>
 <p>Go to the link, right click the page and &quot;Save As&quot; a .py file to download. Then place the file where you want to access it. I placed mine in&nbsp;C:Python27Libsite-packages</p>
 <p>You could also download the file with <a class="reference external" href="https://curl.haxx.se/">curl</a>:</p>
-<p><tt class="docutils literal">curl <span class="pre">https://bootstrap.pypa.io/get-pip.py</span> <span class="pre">-o</span> <span class="pre">get-pip.pyt-pip.py</span></tt></p>
-<blockquote>
-If you are not sure where your site-packages folder is, type<a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory">python -m site</a>into command prompt for file path ideas.</blockquote>
+<pre class="literal-block">
+ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py
+
+If you are not sure where your site-packages folder is, type `python -m site &lt;https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory&gt;`__ into command prompt for file path ideas.
+</pre>
 <p><strong>Run the get-pip.py file.</strong></p>
 <p>Using command prompt's cd command with a Windows &quot;&amp;&quot; operator to run the Python file in a Windows command prompt:</p>
-<p><tt class="docutils literal">cd <span class="pre">c:\Python27\Lib\site-packages</span> &amp; python <span class="pre">get-pip.py</span></tt></p>
+<pre class="literal-block">
+cd c:\Python27\Lib\site-packages &amp; python get-pip.py
+</pre>
 <p>Or Linux terminal:</p>
-<p><tt class="docutils literal">cd <span class="pre">/Python27/Lib/site-packages</span> &amp;&amp; python <span class="pre">get-pip.py</span></tt></p>
+<pre class="literal-block">
+cd /Python27/Lib/site-packages &amp;&amp; python get-pip.py``
+</pre>
 <p>You should see some activity in command prompt that shows installation/updating of &quot;setup&quot; and &quot;wheel&quot;. When it finishes, you have installed pip.</p>
 <p><strong>Type into command prompt at the same location:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install requests</tt></p>
+<pre class="literal-block">
+python -m pip install requests
+</pre>
 <p>This should install the Requests module into your Python libraries. Requests is an http module which is highly regarded almost universally by the Python community.</p>
 <p><strong>Thanks for reading! Check out these other posts with pip installed library examples:</strong></p>
 <p><a class="reference external" href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">Fix Grammar and Spelling with language_tool_python and textblob</a></p>

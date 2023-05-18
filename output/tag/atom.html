@@ -153,14 +153,16 @@ recreate my resume in the dark Atom text editor theme (background and fonts).
 <strong>Sub-goal:</strong>
 find a color eyedropper to grab the actual color values of the Atom layout.</p>
 <p><strong>Approach #1: find an Atom eyedropper package to grab the colors.</strong>
-My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: <a class="reference external" href="https://atom.io/packages/an-color-picker">https://atom.io/packages/an-color-picker</a> and color picker: <a class="reference external" href="https://atom.io/packages/color-picker">https://atom.io/packages/color-picker</a>&gt;. The an-color-eyedropper description sounds perfect: &quot;A simple &quot;real&quot; color picker. By &quot;real&quot; I mean it's able to pick colors anywhere on any screen.&quot;</p>
+My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: <a class="reference external" href="https://atom.io/packages/an-color-picker">https://atom.io/packages/an-color-picker</a> and color picker: <a class="reference external" href="https://atom.io/packages/color-picker">https://atom.io/packages/color-picker</a>. The an-color-eyedropper description sounds perfect: &quot;A simple &quot;real&quot; color picker. By &quot;real&quot; I mean it's able to pick colors anywhere on any screen.&quot;</p>
 <p>Unfortunately it failed to install and displayed the error, &quot;Unable to download 400 Bad Request Repository inaccessible&quot;. It seems to rely on the &quot;python&quot; Atom package which is now deprecated. I was unable to find a repo anywhere by googling.</p>
 <p>Color picker: <a class="reference external" href="https://atom.io/packages/color-picker">https://atom.io/packages/color-picker</a> has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.</p>
 <p><strong>Approach #2: Use the python tkcolorpicker package to grab the colors.</strong></p>
 <div class="line-block">
 <div class="line">The first thing I found on Google was <a class="reference external" href="https://pypi.org/project/tkcolorpicker/">tkcolorpicker</a>, a package that uses the <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">tkinter</a> library. I couldn't tell exactly what it was, so let's find out. First, install via <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</div>
 </div>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install tkcolorpicker</tt></p>
+<pre class="literal-block">
+python -m pip install tkcolorpicker
+</pre>
 <div class="line-block">
 <div class="line">Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D</div>
 <div class="line"><img alt="color_picker_gui" class="wp-image-1462 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="width: 301px; height: 315px;" /></div>
@@ -187,7 +189,10 @@ My first thought was to find the easiest solution, within the packages of my Ato
 </pre></div></td></tr></table></div>
 <p><tt class="docutils literal">askcolor()</tt> returns a tuple with both the RGB and hex codes selected by the user. Above, we are unpacking that tuple into the <tt class="docutils literal">hex_code</tt> and <tt class="docutils literal">RGB_code</tt> variables.</p>
 <p><strong>Approach #3: Use the Python eyedropper package to grab the colors.</strong></p>
-<p>I then found <a class="reference external" href="https://github.com/umluizlima/eyedropper">eyedropper</a> for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>: <tt class="docutils literal">python <span class="pre">-m</span> pip install eyedropper</tt></p>
+<p>I then found <a class="reference external" href="https://github.com/umluizlima/eyedropper">eyedropper</a> for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
+<pre class="literal-block">
+python -m pip install eyedropper
+</pre>
 <img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" style="width: 239px; height: 140px;" />
 <p>Hover your mouse over the object you want to grab the color from (in my case, the Atom text editor background). Then <a class="reference external" href="https://github.com/umluizlima/eyedropper">following these instructions</a>:</p>
 <p>Alternatively, I was able to run eyedropper from the command line by entering: <tt class="docutils literal">py <span class="pre">-m</span> eyedropper</tt></p>
@@ -198,7 +203,7 @@ My first thought was to find the easiest solution, within the packages of my Ato
 <div class="section" id="why-not-use-python-to-convert-hex-to-rgb">
 <h2>Why not <a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">use Python to convert hex to RGB?</a></h2>
 <p>Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I found <a class="reference external" href="https://www.webpagefx.com/web-design/hex-to-rgb/">this website</a> practical and quick.</p>
-<p><strong>Alternatively, you could</strong> <a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">convert a hex code to RGB with python:</a></p>
+<p>Alternatively, you could <a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">convert a hex code to RGB with python:</a>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">hex_code</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter hex: &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
@@ -210,12 +215,15 @@ My first thought was to find the easiest solution, within the packages of my Ato
 <div class="section" id="what-the-hay-let-s-use-pd-read-clipboard-to-get-the-hex-codes">
 <h2>What the hay, let's use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard()</a> to get the hex codes.</h2>
 <p>Once eyedropper sends the color values to your system's clipboard, there are multiple ways to access them. This alternative uses pandas.</p>
-<p><strong>Installing pandas and</strong><a class="reference external" href="https://github.com/asweigart/pyperclip">pyperclip</a><strong>with pip:</strong></p>
+<p>Installing pandas and <a class="reference external" href="https://github.com/asweigart/pyperclip">pyperclip</a> with pip:</p>
 <pre class="literal-block">
 python -m pip install pandas
 python -m pip install pyperclip
 </pre>
-<p><strong>On Linux, install</strong><a class="reference external" href="https://github.com/astrand/xclip">xclip</a><strong>or</strong><a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a> <tt class="docutils literal">sudo <span class="pre">apt-get</span> install xclip</tt>**</p>
+<p>On Linux, install  <a class="reference external" href="https://github.com/astrand/xclip">xclip</a> or <a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a></p>
+<pre class="literal-block">
+sudo apt-get install xclip
+</pre>
 <p><strong>To get the clipboard contents with pandas:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>

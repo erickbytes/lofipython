@@ -12,7 +12,11 @@ My research found that for creating a single-file Windows executable from a .py 
 **Installation:**
 
 | To install, enter this into command your command prompt or terminal:
-| ``python -m pip install pyinstaller``
+
+::
+
+    python -m pip install pyinstaller
+    
 | *At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5.*\ `Go here <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__\ *for a refresher on setting up pip if you need it.*
 
 **Using the build.spec file and starting Pyinstaller:**
@@ -22,11 +26,18 @@ Most examples I found used a build.spec file. Think of this as the blueprint by 
    pyinstaller (run mode options) (.spec file)
 
 | **Basic start compiler command to build.spec:**
-| ``pyinstaller build.spec``
-| **Establishing a debugging loop with Pyinstaller:**
 
-| Debug mode can be set from the command line:
-| ``pyinstaller -debug build.spec``
+::
+
+    pyinstaller build.spec
+
+**Establishing a debugging loop with Pyinstaller**
+
+Debug mode can be set from the command line:
+
+::
+    
+    pyinstaller -debug build.spec
 
 **OR** 
 by passing debug=True to the EXE() function of the build.spec. I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.
@@ -93,9 +104,13 @@ Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn'
 #. Windows 7 is proven to work with Pyinstaller, per the documentation. It's also what I am running on. Other Windows systems older than Windows 10 may be less reliable.
 #. I experienced trouble when passing arguments from the command line to pyinstaller and have so far been unable to get the console window to hide. Neither the -w, --windowed, --noconsole arguments seemed to work. I will update if I am able to find a solution.
 #. Now that I am testing my compiled app, I am seeing 10x performance slowdowns when running as the final .exe vs. the original .py file. But at least the program runs correctly and still does so relatively quickly.
-#. I also received the error: "Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform." I fixed this by upgrading to the latest version of Pyinstaller: ``pip3 install --upgrade pyinstaller``
+#. I also received the error: "Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform." I fixed this by upgrading to the latest version of Pyinstaller: 
 
-**My full build.spec file, modified from**\ `here <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__\ **:**
+::
+
+    pip3 install --upgrade pyinstaller
+
+My full build.spec file, modified from `here <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__ :
 
 .. code-block:: python
 

@@ -25,7 +25,7 @@ This post will teach you some Python history, show how to install pandas, and he
 
 Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.
 
-**In December 2021, Python 3.6 reached **\ `"end of life phase" <https://devguide.python.org/devcycle/#end-of-life-branches>`__\ **.**
+In December 2021, Python 3.6 reached "end of life phase" <https://devguide.python.org/devcycle/#end-of-life-branches>`__.
 
 Python 3.6 is "now effectively frozen". Read more in `PEP 494 <https://www.python.org/dev/peps/pep-0494/>`__. (Released Oct. 2022)
 
@@ -34,7 +34,8 @@ Python 3.6 is "now effectively frozen". Read more in `PEP 494 <https://www.pytho
 Enter This in Your Terminal
 ---------------------------
 
-``python -m pip install pandas``
+For `older pandas versions <https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html>`__:
+python -m pip install pandas``
 
 Pandas is a super useful library for wrangling spreadsheet data, AKA "tabular" data. If successful, you should see activity that looks similar to the below screenshot, where I am installing `openpyxl <https://openpyxl.readthedocs.io/en/stable/>`__, an additional Python Excel library you'll likely want. You are good to go! This is the part where you get to feel like Neo! See `Installing Python Modules <https://docs.python.org/3/installing/index.html>`__ in the Python Documentation for more detailed instructions.
 
@@ -110,23 +111,29 @@ This command will install and upgrade pip to the newest version. New in Python 3
 
 ..
 
-   "The ensurepip ` <https://docs.python.org/3/library/ensurepip.html#module-ensurepip>`__ package provides support for bootstrapping the pip installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter."
+   \"The ensurepip ` <https://docs.python.org/3/library/ensurepip.html#module-ensurepip>`__ package provides support for bootstrapping the pip installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter."
 
    \- `ensurepip Python Documentation <https://docs.python.org/3/library/ensurepip.html>`__
 
-**You should follow best practice and** `create a virtual environment <https://docs.python.org/3/library/venv.html>`__ **before installing libraries. **\ `venv  <https://docs.python.org/3/library/venv.html>`__\ **or**\ `virtualenv  <https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__\ **will help you out. To create with venv:**
+You should follow best practice and `create a virtual environment <https://docs.python.org/3/library/venv.html>`__  before installing libraries. `venv  <https://docs.python.org/3/library/venv.html>`__ or `virtualenv  <https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__ will help you out. To create with venv:
 
-``python3 -m venv add_env_name_here``
+::
+
+    python3 -m venv add_env_name_here
 
 After your environment is created, activate it with the first command below, then install a library on Ubuntu Linux:
 
-#. ``source add_env_path_here/bin activate``
-#. ``python -m pip install pandas``
+::
+
+    source add_env_path_here/bin activate
+    python -m pip install pandas
 
 Alternatively, on Windows computers:
 
-#. ``cd add_env_path_here\scripts & activate``
-#. ``python -m pip install pandas``
+::
+
+    cd add_env_path_here\scripts & activate
+    python -m pip install pandas
 
 **Know your OS.**
 
@@ -155,33 +162,41 @@ How to Manually Enable the pip Installer
 #. Seeking to fix a faulty pip install that is not working properly.
 #. Curious to know how to manually set up pip.
 
-*Assumes Python is already *\ `installed <https://www.python.org/downloads/>`__\ *. If you're running Windows 10, I found it easy to install Python from the *\ `Windows store <https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab>`__\ *.*
+Assumes Python is already `installed <https://www.python.org/downloads/>`__. If you're running Windows 10, I found it easy to install Python from the `Windows store <https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab>`__.
 
-**Download the **\ `get-pip.py file <https://bootstrap.pypa.io/get-pip.py>`__\ **.**
+Download the `get-pip.py file <https://bootstrap.pypa.io/get-pip.py>`__.
 
 Go to the link, right click the page and "Save As" a .py file to download. Then place the file where you want to access it. I placed mine in C:\Python27\Lib\site-packages
 
 You could also download the file with `curl <https://curl.haxx.se/>`__:
 
-``curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py``\  
+::
 
-   If you are not sure where your site-packages folder is, type\ `python -m site <https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory>`__\ into command prompt for file path ideas.
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py 
+
+   If you are not sure where your site-packages folder is, type `python -m site <https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory>`__ into command prompt for file path ideas.
 
 **Run the get-pip.py file.**
 
 Using command prompt's cd command with a Windows "&" operator to run the Python file in a Windows command prompt:
 
-``cd c:\Python27\Lib\site-packages & python get-pip.py``
+::
+
+    cd c:\Python27\Lib\site-packages & python get-pip.py
 
 Or Linux terminal:
 
-``cd /Python27/Lib/site-packages && python get-pip.py``
+::
+    
+    cd /Python27/Lib/site-packages && python get-pip.py``
 
 You should see some activity in command prompt that shows installation/updating of "setup" and "wheel". When it finishes, you have installed pip.
 
 **Type into command prompt at the same location:**
 
-``python -m pip install requests``\  
+::
+
+    python -m pip install requests
 
 This should install the Requests module into your Python libraries. Requests is an http module which is highly regarded almost universally by the Python community.
 

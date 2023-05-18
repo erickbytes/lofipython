@@ -20,7 +20,9 @@ The `Gooey Github page <https://github.com/chriskiehl/Gooey>`__ was most useful 
 
 Argparse comes stock with Python. You can install Gooey via the `pip installer <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__. Open command prompt or terminal and enter:
 
-``python -m pip install Gooey``
+::
+
+    python -m pip install Gooey
 
 Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).
 
@@ -29,7 +31,7 @@ Below is a basic argparse/Gooey combination script. The argparse version offers 
    from argparse import ArgumentParser
    from gooey import Gooey
 
-   @Gooey(program_name='Email Campaign Reporting Generator', default_size=(575, 600))
+   @Gooey(program_name='Report Generator', default_size=(575, 600))
    def get_args():
        """Demonstrating python's vars built-in to store arguments in a python dict."""
        parser = ArgumentParser(description='A simple argument parser', epilog='This is where you might put example usage')
@@ -60,9 +62,7 @@ Below is my script that uses the more advanced GooeyParser for its "FileChooser"
     
    @Gooey(program_name='Email Campaign Reporting Generator', default_size=(575, 600))
    def get_args():
-       """Adding two argument groups, each accepting two arguments. 
-       Using gooey_options to set layout.
-       """
+       """Adding two argument groups, each accepting two arguments. Using gooey_options to set layout."""
        parser = GooeyParser(description='Export campaign report spreadsheets and upload below.')
        top_group = parser.add_argument_group(gooey_options={'show_border': False,'columns': 1})
        top_group.add_argument('Contact List', help='Upload Send List (.xlsx)', widget='FileChooser') 
@@ -88,4 +88,4 @@ Overall, Gooey knows what it wants to be, an easy to use GUI framework for Pytho
 
 Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D
 
-**Update:** I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can `read more on how I did it here <https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/>`__.
+**Update:** I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can `read more on how I did it here <https://lofipython.com/packaging-python-as-a-windows-app/>`__.

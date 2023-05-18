@@ -89,23 +89,43 @@ cd /home/erick/Python-3.8.0/
 <img alt="successful_python_install" class="alignnone wp-image-2420" src="https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg" style="width: 676px; height: 186px;" />
 <p><strong>If pandas is already installed, you can upgrade with</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a><strong>:</strong></p>
 <p>[caption id=&quot;attachment_2572&quot; align=&quot;alignright&quot; width=&quot;179&quot;]<img alt="pip_list" class="alignnone wp-image-2572" src="http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg" style="width: 179px; height: 230px;" /> Enter pip list to see installed libraries.[/caption]</p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install <span class="pre">--upgrade</span> pandas</tt></p>
-<p>To check if pip is installed: <tt class="docutils literal">python <span class="pre">-m</span> pip list</tt></p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>python -m pip install --upgrade pandas</dd>
+</dl>
+<p>To check if pip is installed:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>python -m pip list</dd>
+</dl>
 <p><strong>Consider following best practice and create a</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a><strong>with your new Python version.</strong><a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a><strong>wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip <span class="pre">--user</span> install virtualenv</tt></p>
+<pre class="literal-block">
+python -m pip --user install virtualenv
+</pre>
 <p><strong>Let's create a new virtual environment. Enter in terminal or command prompt:</strong></p>
-<p><tt class="docutils literal">virtualenv <span class="pre">-p</span> python3.8 add_env_name_here</tt></p>
+<pre class="literal-block">
+virtualenv -p python3.8 add_env_name_here
+</pre>
 <p><strong>Now, activate your new virtual environment on Linux:</strong></p>
-<p><tt class="docutils literal">cd add_env_name_here/bin &amp;&amp; source activate</tt></p>
+<pre class="literal-block">
+source add_env_name_here/bin/activate
+</pre>
 <p><strong>Or activate environment on Windows:</strong></p>
-<p><tt class="docutils literal">cd add_env_name_here\scripts &amp; activate</tt></p>
+<pre class="literal-block">
+cd add_env_name_here\scripts &amp; activate
+</pre>
 <p><strong>&quot;ImportError: Missing optional dependency 'tabulate'. Use pip or conda to install tabulate:&quot; To use pd.to_markdown(), install Tabulate:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install tabulate</tt></p>
+<pre class="literal-block">
+python -m pip install tabulate
+</pre>
 <p><strong>To use pd.read_clipboard() on Linux, install</strong><a class="reference external" href="https://github.com/astrand/xclip">xclip</a><strong>or</strong><a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a></p>
-<p><tt class="docutils literal">sudo <span class="pre">apt-get</span> install xclip</tt>**
-**</p>
+<pre class="literal-block">
+sudo apt-get install xclip
+</pre>
 <p><strong>I also saw a prompt to install pyperclip:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pyperclip</tt></p>
+<pre class="literal-block">
+python -m pip install pyperclip
+</pre>
 <p><strong>Now install pandas 1.0 and</strong><a class="reference external" href="https://matplotlib.org/users/installing.html">matplotlib</a><strong>in your virtual environment.</strong></p>
 <pre class="literal-block">
 python3.8 -m pip install pandas
@@ -251,21 +271,26 @@ python -m pip install -U matplotlib
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Actor</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;github&quot;</span><span class="p">))</span>
 </pre></div></td></tr></table></div>
 <img alt="IMDB_movies" class="alignnone size-full wp-image-2540" src="https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg" style="width: 870px; height: 117px;" />
-<p>[caption id=&quot;attachment_2539&quot; align=&quot;alignright&quot; width=&quot;189&quot;]<img alt="actor" class="alignnone wp-image-2539" src="https://pythonmarketer.files.wordpress.com/2018/05/actor.jpg" style="width: 189px; height: 111px;" /> Count the Actors with df.Actor.value_counts()[/caption]</p>
-<hr class="docutils" />
-<blockquote>
-<strong>I also must mention</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html">pandas.Series.value_counts()</a><strong>, because it's so darn handy :D</strong></blockquote>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html">pandas.Series.value_counts()</a> is so darn handy :D**</p>
 <hr class="docutils" />
 <p><strong>Notice for column names without spaces, you can use dot notation instead of brackets:</strong></p>
-<p><tt class="docutils literal">df.Actor</tt> <em>vs.</em> <tt class="docutils literal"><span class="pre">df['Actor']</span></tt></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># both valid ways to access column by name</span>
+<span class="n">df</span><span class="o">.</span><span class="n">Actor</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Actor&#39;</span><span class="p">]</span>
+</pre></div></td></tr></table></div>
 <p><strong>Lowercase column names Python's map function:</strong></p>
-<p><tt class="docutils literal">df.columns = map(str.lower, df.columns)</tt></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <div class="line-block">
 <div class="line"><strong>Strip whitespace from a column of strings with the</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html">pandas.Series.str</a><strong>accessor:</strong></div>
-<div class="line"><tt class="docutils literal"><span class="pre">df['Character']</span> = <span class="pre">df['Character'].astype(str).str.strip()</span></tt></div>
 </div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Character&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Character&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
 <p><strong>Fix pesky leading zero zip codes with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html">str.zfill()</a><strong>:</strong></p>
-<p><tt class="docutils literal"><span class="pre">log_df['zip']</span> = <span class="pre">log_df['zip'].astype(str).str.zfill(5)</span></tt></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">log_df</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_df</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Get a row by index number us</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">pandas.DataFrame.loc[]</a><strong>:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">first_row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
@@ -320,7 +345,7 @@ uses <a class="reference external" href="https://pandas.pydata.org/pandas-docs/s
 <span class="kn">import</span> <span class="nn">pyodbc</span>
 
 <span class="n">emails</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;email@email.com&#39;</span><span class="p">,</span> <span class="s1">&#39;notanemail@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;gmail@gmail.com&#39;</span><span class="p">]</span>
-<span class="n">connection_string</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;&#39;</span>
+<span class="n">connection_string</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\emails_database.accb;&#39;</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">connection_string</span><span class="p">)</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">connection_string</span><span class="p">)</span>
 <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -329,7 +354,7 @@ uses <a class="reference external" href="https://pandas.pydata.org/pandas-docs/s
 <span class="s2">    &quot;&quot;&quot;</span>
 <span class="n">dfs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">db_chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">500000</span><span class="p">)):</span>
-    <span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">db_chunk</span><span class="p">[</span><span class="n">db_chunk</span><span class="p">[</span><span class="s1">&#39;EmailAddress&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">emails</span><span class="p">)]</span>
+    <span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">db_chunk</span><span class="p">[</span><span class="n">db_chunk</span><span class="o">.</span><span class="n">Email</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">emails</span><span class="p">)]</span>
     <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">emails_in_db</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
@@ -393,8 +418,7 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 </div>
 <div class="section" id="turning-json-api-responses-into-a-dataframe-with-pd-json-normalize">
 <h2>(4) Turning json API responses into a dataframe with pd.json_normalize()</h2>
-<p><strong>For **`older pandas versions &lt;https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html&gt;`__**:</strong></p>
-<p><strong>Update: beginning in pandas 1.0, **`json_normalize &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html&gt;`__** became a top-level pandas namespace.</strong></p>
+<p>Update: beginning in pandas 1.0, <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html">json_normalize</a> became a top-level pandas namespace. For <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html">older pandas versions</a>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -455,7 +479,7 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;images/Movie_Plot.png&#39;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p>Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">plotting with Jupyter/pandas/Python here</a>.</p>
-<p><strong>Plot George Clooney's movies over time in a line graph. [`Source &lt;https://www.youtube.com/watch?v=5JnMutdy6Fw&gt;`__]</strong></p>
+<p>Plot George Clooney's movies over time in a line graph. [<a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Source</a>]</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>

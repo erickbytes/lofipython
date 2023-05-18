@@ -423,7 +423,11 @@ C:\Users\your_username\Desktop\36env\Scripts\python.exe
 <p><strong>Installation:</strong></p>
 <div class="line-block">
 <div class="line">To install, enter this into command your command prompt or terminal:</div>
-<div class="line"><tt class="docutils literal">python <span class="pre">-m</span> pip install pyinstaller</tt></div>
+</div>
+<pre class="literal-block">
+python -m pip install pyinstaller
+</pre>
+<div class="line-block">
 <div class="line"><em>At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5.</em><a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">Go here</a><em>for a refresher on setting up pip if you need it.</em></div>
 </div>
 <p><strong>Using the build.spec file and starting Pyinstaller:</strong></p>
@@ -432,13 +436,15 @@ C:\Users\your_username\Desktop\36env\Scripts\python.exe
 pyinstaller (run mode options) (.spec file)</blockquote>
 <div class="line-block">
 <div class="line"><strong>Basic start compiler command to build.spec:</strong></div>
-<div class="line"><tt class="docutils literal">pyinstaller build.spec</tt></div>
-<div class="line"><strong>Establishing a debugging loop with Pyinstaller:</strong></div>
 </div>
-<div class="line-block">
-<div class="line">Debug mode can be set from the command line:</div>
-<div class="line"><tt class="docutils literal">pyinstaller <span class="pre">-debug</span> build.spec</tt></div>
-</div>
+<pre class="literal-block">
+pyinstaller build.spec
+</pre>
+<p><strong>Establishing a debugging loop with Pyinstaller</strong></p>
+<p>Debug mode can be set from the command line:</p>
+<pre class="literal-block">
+pyinstaller -debug build.spec
+</pre>
 <p><strong>OR</strong>
 by passing debug=True to the EXE() function of the build.spec. I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.</p>
 <p><em>To see your app's error message, run the resulting your_app.exe from the command line.</em>
@@ -496,9 +502,12 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 <li>Windows 7 is proven to work with Pyinstaller, per the documentation. It's also what I am running on. Other Windows systems older than Windows 10 may be less reliable.</li>
 <li>I experienced trouble when passing arguments from the command line to pyinstaller and have so far been unable to get the console window to hide. Neither the -w, --windowed, --noconsole arguments seemed to work. I will update if I am able to find a solution.</li>
 <li>Now that I am testing my compiled app, I am seeing 10x performance slowdowns when running as the final .exe vs. the original .py file. But at least the program runs correctly and still does so relatively quickly.</li>
-<li>I also received the error: &quot;Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform.&quot; I fixed this by upgrading to the latest version of Pyinstaller: <tt class="docutils literal">pip3 install <span class="pre">--upgrade</span> pyinstaller</tt></li>
+<li>I also received the error: &quot;Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform.&quot; I fixed this by upgrading to the latest version of Pyinstaller:</li>
 </ol>
-<p><strong>My full build.spec file, modified from</strong><a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">here</a><strong>:</strong></p>
+<pre class="literal-block">
+pip3 install --upgrade pyinstaller
+</pre>
+<p>My full build.spec file, modified from <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">here</a> :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -588,14 +597,16 @@ recreate my resume in the dark Atom text editor theme (background and fonts).
 <strong>Sub-goal:</strong>
 find a color eyedropper to grab the actual color values of the Atom layout.</p>
 <p><strong>Approach #1: find an Atom eyedropper package to grab the colors.</strong>
-My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: <a class="reference external" href="https://atom.io/packages/an-color-picker">https://atom.io/packages/an-color-picker</a> and color picker: <a class="reference external" href="https://atom.io/packages/color-picker">https://atom.io/packages/color-picker</a>&gt;. The an-color-eyedropper description sounds perfect: &quot;A simple &quot;real&quot; color picker. By &quot;real&quot; I mean it's able to pick colors anywhere on any screen.&quot;</p>
+My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: <a class="reference external" href="https://atom.io/packages/an-color-picker">https://atom.io/packages/an-color-picker</a> and color picker: <a class="reference external" href="https://atom.io/packages/color-picker">https://atom.io/packages/color-picker</a>. The an-color-eyedropper description sounds perfect: &quot;A simple &quot;real&quot; color picker. By &quot;real&quot; I mean it's able to pick colors anywhere on any screen.&quot;</p>
 <p>Unfortunately it failed to install and displayed the error, &quot;Unable to download 400 Bad Request Repository inaccessible&quot;. It seems to rely on the &quot;python&quot; Atom package which is now deprecated. I was unable to find a repo anywhere by googling.</p>
 <p>Color picker: <a class="reference external" href="https://atom.io/packages/color-picker">https://atom.io/packages/color-picker</a> has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.</p>
 <p><strong>Approach #2: Use the python tkcolorpicker package to grab the colors.</strong></p>
 <div class="line-block">
 <div class="line">The first thing I found on Google was <a class="reference external" href="https://pypi.org/project/tkcolorpicker/">tkcolorpicker</a>, a package that uses the <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">tkinter</a> library. I couldn't tell exactly what it was, so let's find out. First, install via <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</div>
 </div>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install tkcolorpicker</tt></p>
+<pre class="literal-block">
+python -m pip install tkcolorpicker
+</pre>
 <div class="line-block">
 <div class="line">Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D</div>
 <div class="line"><img alt="color_picker_gui" class="wp-image-1462 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="width: 301px; height: 315px;" /></div>
@@ -622,7 +633,10 @@ My first thought was to find the easiest solution, within the packages of my Ato
 </pre></div></td></tr></table></div>
 <p><tt class="docutils literal">askcolor()</tt> returns a tuple with both the RGB and hex codes selected by the user. Above, we are unpacking that tuple into the <tt class="docutils literal">hex_code</tt> and <tt class="docutils literal">RGB_code</tt> variables.</p>
 <p><strong>Approach #3: Use the Python eyedropper package to grab the colors.</strong></p>
-<p>I then found <a class="reference external" href="https://github.com/umluizlima/eyedropper">eyedropper</a> for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>: <tt class="docutils literal">python <span class="pre">-m</span> pip install eyedropper</tt></p>
+<p>I then found <a class="reference external" href="https://github.com/umluizlima/eyedropper">eyedropper</a> for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
+<pre class="literal-block">
+python -m pip install eyedropper
+</pre>
 <img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" style="width: 239px; height: 140px;" />
 <p>Hover your mouse over the object you want to grab the color from (in my case, the Atom text editor background). Then <a class="reference external" href="https://github.com/umluizlima/eyedropper">following these instructions</a>:</p>
 <p>Alternatively, I was able to run eyedropper from the command line by entering: <tt class="docutils literal">py <span class="pre">-m</span> eyedropper</tt></p>
@@ -633,7 +647,7 @@ My first thought was to find the easiest solution, within the packages of my Ato
 <div class="section" id="why-not-use-python-to-convert-hex-to-rgb">
 <h2>Why not <a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">use Python to convert hex to RGB?</a></h2>
 <p>Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I found <a class="reference external" href="https://www.webpagefx.com/web-design/hex-to-rgb/">this website</a> practical and quick.</p>
-<p><strong>Alternatively, you could</strong> <a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">convert a hex code to RGB with python:</a></p>
+<p>Alternatively, you could <a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">convert a hex code to RGB with python:</a>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">hex_code</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter hex: &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
@@ -645,12 +659,15 @@ My first thought was to find the easiest solution, within the packages of my Ato
 <div class="section" id="what-the-hay-let-s-use-pd-read-clipboard-to-get-the-hex-codes">
 <h2>What the hay, let's use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">pd.read_clipboard()</a> to get the hex codes.</h2>
 <p>Once eyedropper sends the color values to your system's clipboard, there are multiple ways to access them. This alternative uses pandas.</p>
-<p><strong>Installing pandas and</strong><a class="reference external" href="https://github.com/asweigart/pyperclip">pyperclip</a><strong>with pip:</strong></p>
+<p>Installing pandas and <a class="reference external" href="https://github.com/asweigart/pyperclip">pyperclip</a> with pip:</p>
 <pre class="literal-block">
 python -m pip install pandas
 python -m pip install pyperclip
 </pre>
-<p><strong>On Linux, install</strong><a class="reference external" href="https://github.com/astrand/xclip">xclip</a><strong>or</strong><a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a> <tt class="docutils literal">sudo <span class="pre">apt-get</span> install xclip</tt>**</p>
+<p>On Linux, install  <a class="reference external" href="https://github.com/astrand/xclip">xclip</a> or <a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a></p>
+<pre class="literal-block">
+sudo apt-get install xclip
+</pre>
 <p><strong>To get the clipboard contents with pandas:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
@@ -700,7 +717,9 @@ python -m pip install pyperclip
 </ol>
 <p><strong>Installing Gooey</strong></p>
 <p>Argparse comes stock with Python. You can install Gooey via the <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>. Open command prompt or terminal and enter:</p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install Gooey</tt></p>
+<pre class="literal-block">
+python -m pip install Gooey
+</pre>
 <p>Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -723,7 +742,7 @@ python -m pip install pyperclip
 <span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
 <span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span>
 
-<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Report Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Demonstrating python&#39;s vars built-in to store arguments in a python dict.&quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;A simple argument parser&#39;</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="s1">&#39;This is where you might put example usage&#39;</span><span class="p">)</span>
@@ -763,15 +782,11 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">gooey</span> <span class="kn">import</span> <span class="n">Gooey</span><span class="p">,</span> <span class="n">GooeyParser</span>
 
 <span class="nd">@Gooey</span><span class="p">(</span><span class="n">program_name</span><span class="o">=</span><span class="s1">&#39;Email Campaign Reporting Generator&#39;</span><span class="p">,</span> <span class="n">default_size</span><span class="o">=</span><span class="p">(</span><span class="mi">575</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Adding two argument groups, each accepting two arguments.</span>
-<span class="sd">    Using gooey_options to set layout.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Adding two argument groups, each accepting two arguments. Using gooey_options to set layout.&quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">GooeyParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Export campaign report spreadsheets and upload below.&#39;</span><span class="p">)</span>
     <span class="n">top_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">gooey_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;show_border&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span><span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
     <span class="n">top_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;Contact List&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload Send List (.xlsx)&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="s1">&#39;FileChooser&#39;</span><span class="p">)</span>
@@ -790,7 +805,7 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
 <p>Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:</p>
 <img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" />
 <p>Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D</p>
-<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&nbsp;<a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/20/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
+<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&nbsp;<a class="reference external" href="https://lofipython.com/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
 
                 <div class="clear"></div>
 
@@ -911,23 +926,43 @@ cd /home/erick/Python-3.8.0/
 <img alt="successful_python_install" class="alignnone wp-image-2420" src="https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg" style="width: 676px; height: 186px;" />
 <p><strong>If pandas is already installed, you can upgrade with</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a><strong>:</strong></p>
 <p>[caption id=&quot;attachment_2572&quot; align=&quot;alignright&quot; width=&quot;179&quot;]<img alt="pip_list" class="alignnone wp-image-2572" src="http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg" style="width: 179px; height: 230px;" /> Enter pip list to see installed libraries.[/caption]</p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install <span class="pre">--upgrade</span> pandas</tt></p>
-<p>To check if pip is installed: <tt class="docutils literal">python <span class="pre">-m</span> pip list</tt></p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>python -m pip install --upgrade pandas</dd>
+</dl>
+<p>To check if pip is installed:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>python -m pip list</dd>
+</dl>
 <p><strong>Consider following best practice and create a</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a><strong>with your new Python version.</strong><a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a><strong>wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip <span class="pre">--user</span> install virtualenv</tt></p>
+<pre class="literal-block">
+python -m pip --user install virtualenv
+</pre>
 <p><strong>Let's create a new virtual environment. Enter in terminal or command prompt:</strong></p>
-<p><tt class="docutils literal">virtualenv <span class="pre">-p</span> python3.8 add_env_name_here</tt></p>
+<pre class="literal-block">
+virtualenv -p python3.8 add_env_name_here
+</pre>
 <p><strong>Now, activate your new virtual environment on Linux:</strong></p>
-<p><tt class="docutils literal">cd add_env_name_here/bin &amp;&amp; source activate</tt></p>
+<pre class="literal-block">
+source add_env_name_here/bin/activate
+</pre>
 <p><strong>Or activate environment on Windows:</strong></p>
-<p><tt class="docutils literal">cd add_env_name_here\scripts &amp; activate</tt></p>
+<pre class="literal-block">
+cd add_env_name_here\scripts &amp; activate
+</pre>
 <p><strong>&quot;ImportError: Missing optional dependency 'tabulate'. Use pip or conda to install tabulate:&quot; To use pd.to_markdown(), install Tabulate:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install tabulate</tt></p>
+<pre class="literal-block">
+python -m pip install tabulate
+</pre>
 <p><strong>To use pd.read_clipboard() on Linux, install</strong><a class="reference external" href="https://github.com/astrand/xclip">xclip</a><strong>or</strong><a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel:</a></p>
-<p><tt class="docutils literal">sudo <span class="pre">apt-get</span> install xclip</tt>**
-**</p>
+<pre class="literal-block">
+sudo apt-get install xclip
+</pre>
 <p><strong>I also saw a prompt to install pyperclip:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pyperclip</tt></p>
+<pre class="literal-block">
+python -m pip install pyperclip
+</pre>
 <p><strong>Now install pandas 1.0 and</strong><a class="reference external" href="https://matplotlib.org/users/installing.html">matplotlib</a><strong>in your virtual environment.</strong></p>
 <pre class="literal-block">
 python3.8 -m pip install pandas
@@ -1073,21 +1108,26 @@ python -m pip install -U matplotlib
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Actor</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;github&quot;</span><span class="p">))</span>
 </pre></div></td></tr></table></div>
 <img alt="IMDB_movies" class="alignnone size-full wp-image-2540" src="https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg" style="width: 870px; height: 117px;" />
-<p>[caption id=&quot;attachment_2539&quot; align=&quot;alignright&quot; width=&quot;189&quot;]<img alt="actor" class="alignnone wp-image-2539" src="https://pythonmarketer.files.wordpress.com/2018/05/actor.jpg" style="width: 189px; height: 111px;" /> Count the Actors with df.Actor.value_counts()[/caption]</p>
-<hr class="docutils" />
-<blockquote>
-<strong>I also must mention</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html">pandas.Series.value_counts()</a><strong>, because it's so darn handy :D</strong></blockquote>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html">pandas.Series.value_counts()</a> is so darn handy :D**</p>
 <hr class="docutils" />
 <p><strong>Notice for column names without spaces, you can use dot notation instead of brackets:</strong></p>
-<p><tt class="docutils literal">df.Actor</tt> <em>vs.</em> <tt class="docutils literal"><span class="pre">df['Actor']</span></tt></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># both valid ways to access column by name</span>
+<span class="n">df</span><span class="o">.</span><span class="n">Actor</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Actor&#39;</span><span class="p">]</span>
+</pre></div></td></tr></table></div>
 <p><strong>Lowercase column names Python's map function:</strong></p>
-<p><tt class="docutils literal">df.columns = map(str.lower, df.columns)</tt></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <div class="line-block">
 <div class="line"><strong>Strip whitespace from a column of strings with the</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html">pandas.Series.str</a><strong>accessor:</strong></div>
-<div class="line"><tt class="docutils literal"><span class="pre">df['Character']</span> = <span class="pre">df['Character'].astype(str).str.strip()</span></tt></div>
 </div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Character&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Character&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
 <p><strong>Fix pesky leading zero zip codes with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html">str.zfill()</a><strong>:</strong></p>
-<p><tt class="docutils literal"><span class="pre">log_df['zip']</span> = <span class="pre">log_df['zip'].astype(str).str.zfill(5)</span></tt></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">log_df</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_df</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
 <p><strong>Get a row by index number us</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">pandas.DataFrame.loc[]</a><strong>:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">first_row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
@@ -1142,7 +1182,7 @@ uses <a class="reference external" href="https://pandas.pydata.org/pandas-docs/s
 <span class="kn">import</span> <span class="nn">pyodbc</span>
 
 <span class="n">emails</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;email@email.com&#39;</span><span class="p">,</span> <span class="s1">&#39;notanemail@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;gmail@gmail.com&#39;</span><span class="p">]</span>
-<span class="n">connection_string</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;&#39;</span>
+<span class="n">connection_string</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\emails_database.accb;&#39;</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">connection_string</span><span class="p">)</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">connection_string</span><span class="p">)</span>
 <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -1151,7 +1191,7 @@ uses <a class="reference external" href="https://pandas.pydata.org/pandas-docs/s
 <span class="s2">    &quot;&quot;&quot;</span>
 <span class="n">dfs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">db_chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">500000</span><span class="p">)):</span>
-    <span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">db_chunk</span><span class="p">[</span><span class="n">db_chunk</span><span class="p">[</span><span class="s1">&#39;EmailAddress&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">emails</span><span class="p">)]</span>
+    <span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">db_chunk</span><span class="p">[</span><span class="n">db_chunk</span><span class="o">.</span><span class="n">Email</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">emails</span><span class="p">)]</span>
     <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">emails_in_db</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="n">emails_in_db</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
@@ -1215,8 +1255,7 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 </div>
 <div class="section" id="turning-json-api-responses-into-a-dataframe-with-pd-json-normalize">
 <h2>(4) Turning json API responses into a dataframe with pd.json_normalize()</h2>
-<p><strong>For **`older pandas versions &lt;https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html&gt;`__**:</strong></p>
-<p><strong>Update: beginning in pandas 1.0, **`json_normalize &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html&gt;`__** became a top-level pandas namespace.</strong></p>
+<p>Update: beginning in pandas 1.0, <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html">json_normalize</a> became a top-level pandas namespace. For <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html">older pandas versions</a>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1277,7 +1316,7 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;images/Movie_Plot.png&#39;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p>Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">plotting with Jupyter/pandas/Python here</a>.</p>
-<p><strong>Plot George Clooney's movies over time in a line graph. [`Source &lt;https://www.youtube.com/watch?v=5JnMutdy6Fw&gt;`__]</strong></p>
+<p>Plot George Clooney's movies over time in a line graph. [<a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Source</a>]</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1365,12 +1404,13 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 <p><strong>First, Some Python Version Caveats + History</strong></p>
 <p><strong>Python 2 reached end of life on January 1st, 2020</strong>. <a class="reference external" href="https://www.python.org/doc/sunset-python-2/">Python 2 has officially been sunset</a>.</p>
 <p>Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.</p>
-<p><strong>In December 2021, Python 3.6 reached **`&quot;end of life phase&quot; &lt;https://devguide.python.org/devcycle/#end-of-life-branches&gt;`__**.</strong></p>
+<p>In December 2021, Python 3.6 reached &quot;end of life phase&quot; &lt;<a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">https://devguide.python.org/devcycle/#end-of-life-branches</a>&gt;`__.</p>
 <p>Python 3.6 is &quot;now effectively frozen&quot;. Read more in <a class="reference external" href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
 <p><strong>TLDR:</strong> use Python 3.7 to 3.11. This blog endorses using the lightning fast Python version <a class="reference external" href="https://www.python.org/downloads/release/python-3110/">3.11.</a></p>
 <div class="section" id="enter-this-in-your-terminal">
 <h2>Enter This in Your Terminal</h2>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></p>
+<p>For <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html">older pandas versions</a>:
+python -m pip install pandas``</p>
 <p>Pandas is a super useful library for wrangling spreadsheet data, AKA &quot;tabular&quot; data. If successful, you should see activity that looks similar to the below screenshot, where I am installing <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>, an additional Python Excel library you'll likely want. You are good to go! This is the part where you get to feel like Neo! See <a class="reference external" href="https://docs.python.org/3/installing/index.html">Installing Python Modules</a> in the Python Documentation for more detailed instructions.</p>
 <img alt="neo_pip" class="alignnone size-full wp-image-1322" src="http://pythonmarketer.files.wordpress.com/2018/01/de9d6-neo_pip-e1587604013861.png" style="width: 650px; height: 340px;" />
 <p><strong>To view all your installed libraries, enter:</strong></p>
@@ -1428,18 +1468,20 @@ python -m ensurepip --upgrade
 <p>&quot;The&nbsp;ensurepip ` &lt;<a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">https://docs.python.org/3/library/ensurepip.html#module-ensurepip</a>&gt;`__&nbsp;package provides support for bootstrapping the&nbsp;pip&nbsp;installer into an existing Python installation or virtual environment. This bootstrapping approach reflects the fact that&nbsp;pip is an independent project with its own release cycle, and the latest available stable version is bundled with maintenance and feature releases of the CPython reference interpreter.&quot;</p>
 <p>- <a class="reference external" href="https://docs.python.org/3/library/ensurepip.html">ensurepip Python Documentation</a></p>
 </blockquote>
-<p><strong>You should follow best practice and</strong> <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a> <strong>before installing libraries. **`venv  &lt;https://docs.python.org/3/library/venv.html&gt;`__**or</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a><strong>will help you out. To create with venv:</strong></p>
-<p><tt class="docutils literal">python3 <span class="pre">-m</span> venv add_env_name_here</tt></p>
+<p>You should follow best practice and <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a>  before installing libraries. <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a> will help you out. To create with venv:</p>
+<pre class="literal-block">
+python3 -m venv add_env_name_here
+</pre>
 <p>After your environment is created, activate it with the first command below, then install a library on Ubuntu Linux:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">source add_env_path_here/bin activate</tt></li>
-<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
-</ol>
+<pre class="literal-block">
+source add_env_path_here/bin activate
+python -m pip install pandas
+</pre>
 <p>Alternatively, on Windows computers:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">cd add_env_path_here\scripts &amp; activate</tt></li>
-<li><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></li>
-</ol>
+<pre class="literal-block">
+cd add_env_path_here\scripts &amp; activate
+python -m pip install pandas
+</pre>
 <p><strong>Know your OS.</strong></p>
 <p>If you're interested in installing pip on Linux, <a class="reference external" href="https://www.tecmint.com/install-pip-in-linux/">try here</a>. For Mac, <a class="reference external" href="https://www.shellhacks.com/python-install-pip-mac-ubuntu-centos/">try here</a>. Windows, Mac and Linux sometimes use different prefixes (e.g. python, py, python3) to run a python script. Which leads me to my next point...</p>
 <p><strong>Getting the prefix right can be tricky.</strong></p>
@@ -1458,21 +1500,29 @@ python -m ensurepip --upgrade
 <li>Seeking to fix a faulty pip install that is not working properly.</li>
 <li>Curious to know how to manually set up pip.</li>
 </ol>
-<p><em>Assumes Python is already *`installed &lt;https://www.python.org/downloads/&gt;`__*. If you're running Windows 10, I found it easy to install Python from the *`Windows store &lt;https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab&gt;`__*.</em></p>
-<p><strong>Download the **`get-pip.py file &lt;https://bootstrap.pypa.io/get-pip.py&gt;`__**.</strong></p>
+<p>Assumes Python is already <a class="reference external" href="https://www.python.org/downloads/">installed</a>. If you're running Windows 10, I found it easy to install Python from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab">Windows store</a>.</p>
+<p>Download the <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py file</a>.</p>
 <p>Go to the link, right click the page and &quot;Save As&quot; a .py file to download. Then place the file where you want to access it. I placed mine in&nbsp;C:Python27Libsite-packages</p>
 <p>You could also download the file with <a class="reference external" href="https://curl.haxx.se/">curl</a>:</p>
-<p><tt class="docutils literal">curl <span class="pre">https://bootstrap.pypa.io/get-pip.py</span> <span class="pre">-o</span> <span class="pre">get-pip.pyt-pip.py</span></tt></p>
-<blockquote>
-If you are not sure where your site-packages folder is, type<a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory">python -m site</a>into command prompt for file path ideas.</blockquote>
+<pre class="literal-block">
+ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py
+
+If you are not sure where your site-packages folder is, type `python -m site &lt;https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory&gt;`__ into command prompt for file path ideas.
+</pre>
 <p><strong>Run the get-pip.py file.</strong></p>
 <p>Using command prompt's cd command with a Windows &quot;&amp;&quot; operator to run the Python file in a Windows command prompt:</p>
-<p><tt class="docutils literal">cd <span class="pre">c:\Python27\Lib\site-packages</span> &amp; python <span class="pre">get-pip.py</span></tt></p>
+<pre class="literal-block">
+cd c:\Python27\Lib\site-packages &amp; python get-pip.py
+</pre>
 <p>Or Linux terminal:</p>
-<p><tt class="docutils literal">cd <span class="pre">/Python27/Lib/site-packages</span> &amp;&amp; python <span class="pre">get-pip.py</span></tt></p>
+<pre class="literal-block">
+cd /Python27/Lib/site-packages &amp;&amp; python get-pip.py``
+</pre>
 <p>You should see some activity in command prompt that shows installation/updating of &quot;setup&quot; and &quot;wheel&quot;. When it finishes, you have installed pip.</p>
 <p><strong>Type into command prompt at the same location:</strong></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install requests</tt></p>
+<pre class="literal-block">
+python -m pip install requests
+</pre>
 <p>This should install the Requests module into your Python libraries. Requests is an http module which is highly regarded almost universally by the Python community.</p>
 <p><strong>Thanks for reading! Check out these other posts with pip installed library examples:</strong></p>
 <p><a class="reference external" href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">Fix Grammar and Spelling with language_tool_python and textblob</a></p>

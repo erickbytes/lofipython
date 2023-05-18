@@ -80,38 +80,55 @@ As of February 2020, this command `installs pandas version 0.24 with pip <https:
 
 [caption id="attachment_2572" align="alignright" width="179"]\ |pip_list| Enter pip list to see installed libraries.[/caption]
 
-``python -m pip install --upgrade pandas``
+::
+    python -m pip install --upgrade pandas
 
-To check if pip is installed: ``python -m pip list``
+To check if pip is installed:
+
+::
+    python -m pip list
 
 **Consider following best practice and create a**\ `virtual environment <https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__\ **with your new Python version.**\ `venv <https://docs.python.org/3/library/venv.html>`__\ **wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:**
 
-``python -m pip --user install virtualenv``
+::
+
+    python -m pip --user install virtualenv
 
 **Let's create a new virtual environment. Enter in terminal or command prompt:**
 
-``virtualenv -p python3.8 add_env_name_here``
+::
+
+    virtualenv -p python3.8 add_env_name_here
 
 **Now, activate your new virtual environment on Linux:**
 
-``cd add_env_name_here/bin && source activate``
+::
+    
+    source add_env_name_here/bin/activate
 
 **Or activate environment on Windows:**
 
-``cd add_env_name_here\scripts & activate``
+::
+    
+    cd add_env_name_here\scripts & activate
 
 **"ImportError: Missing optional dependency 'tabulate'. Use pip or conda to install tabulate:" To use pd.to_markdown(), install Tabulate:**
 
-``python -m pip install tabulate``
+::
+
+    python -m pip install tabulate
 
 **To use pd.read_clipboard() on Linux, install**\ `xclip <https://github.com/astrand/xclip>`__\ **or**\ `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__\  
 
-``sudo apt-get install xclip``\ **
-**
+::
+    
+    sudo apt-get install xclip
 
 **I also saw a prompt to install pyperclip:**
 
-``python -m pip install pyperclip``
+::
+
+    python -m pip install pyperclip
 
 **Now install pandas 1.0 and**\ `matplotlib <https://matplotlib.org/users/installing.html>`__\ **in your virtual environment.**
 
@@ -243,28 +260,35 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
    :width: 870px
    :height: 117px
 
-[caption id="attachment_2539" align="alignright" width="189"]\ |actor| Count the Actors with df.Actor.value_counts()[/caption]
-
---------------
-
-   **I also must mention**\ `pandas.Series.value_counts() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html>`__\ **, because it's so darn handy :D**
+`pandas.Series.value_counts() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html>`__ is so darn handy :D**
 
 --------------
 
 **Notice for column names without spaces, you can use dot notation instead of brackets:**
 
-``df.Actor`` *vs.* ``df['Actor']``
+.. code-block:: python
+    
+    # both valid ways to access column by name
+    df.Actor
+    df['Actor']
 
 **Lowercase column names Python's map function:**
 
-``df.columns = map(str.lower, df.columns)``
+.. code-block:: python
+
+    df.columns = map(str.lower, df.columns)
 
 | **Strip whitespace from a column of strings with the**\ `pandas.Series.str <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html>`__\ **accessor:**
-| ``df['Character'] = df['Character'].astype(str).str.strip()``
+
+.. code-block:: python
+
+    df['Character'] = df['Character'].astype(str).str.strip()
 
 **Fix pesky leading zero zip codes with**\ `str.zfill() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html>`__\ **:**
 
-``log_df['zip'] = log_df['zip'].astype(str).str.zfill(5)``
+.. code-block:: python
+    
+    log_df['zip'] = log_df['zip'].astype(str).str.zfill(5)
 
 **Get a row by index number us**\ `pandas.DataFrame.loc[] <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html>`__\ **:**
 
@@ -312,7 +336,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
    import pyodbc
 
    emails = ['email@email.com', 'notanemail@example.com', 'gmail@gmail.com']
-   connection_string = r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\Email_DB.accb;'
+   connection_string = r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\path_to_db\emails_database.accb;'
    print(connection_string)
    conn = pyodbc.connect(connection_string)
    query = """
@@ -321,7 +345,7 @@ When the chunksize argument is passed, pd.read_sql() returns an iterator. We can
        """
    dfs = list()
    for i, db_chunk in enumerate(pd.read_sql(query, conn, chunksize=500000)):
-       emails_in_db = db_chunk[db_chunk['EmailAddress'].isin(emails)]
+       emails_in_db = db_chunk[db_chunk.Email.isin(emails)]
        dfs.append(emails_in_db)
        print(i)
    emails_in_db = pd.concat(dfs)
@@ -382,9 +406,8 @@ Use `pd.to_clipboard()  <https://pandas.pydata.org/pandas-docs/stable/reference/
 (4) Turning json API responses into a dataframe with pd.json_normalize()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**For **\ `older pandas versions <https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html>`__\ **:**
 
-**Update: beginning in pandas 1.0, **\ `json_normalize <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html>`__\ ** became a top-level pandas namespace.**
+Update: beginning in pandas 1.0, `json_normalize <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html>`__ became a top-level pandas namespace. For `older pandas versions <https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.io.json.json_normalize.html>`__:
 
 .. code-block:: python
 
@@ -430,7 +453,7 @@ Use `pd.to_clipboard()  <https://pandas.pydata.org/pandas-docs/stable/reference/
 
 Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about `plotting with Jupyter/pandas/Python here <https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/>`__.
 
-**Plot George Clooney's movies over time in a line graph. [\ `Source <https://www.youtube.com/watch?v=5JnMutdy6Fw>`__\ ]**
+Plot George Clooney's movies over time in a line graph. [\ `Source <https://www.youtube.com/watch?v=5JnMutdy6Fw>`__\ ]
 
 .. code-block:: python
 

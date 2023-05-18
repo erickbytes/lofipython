@@ -13,7 +13,7 @@ recreate my resume in the dark Atom text editor theme (background and fonts).
 find a color eyedropper to grab the actual color values of the Atom layout.
 
 **Approach #1: find an Atom eyedropper package to grab the colors.**
-My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: https://atom.io/packages/an-color-picker and color picker: https://atom.io/packages/color-picker>. The an-color-eyedropper description sounds perfect: "A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." 
+My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: https://atom.io/packages/an-color-picker and color picker: https://atom.io/packages/color-picker. The an-color-eyedropper description sounds perfect: "A simple "real" color picker. By "real" I mean it's able to pick colors anywhere on any screen." 
 
 Unfortunately it failed to install and displayed the error, "Unable to download 400 Bad Request Repository inaccessible". It seems to rely on the "python" Atom package which is now deprecated. I was unable to find a repo anywhere by googling.
 
@@ -23,7 +23,9 @@ Color picker: https://atom.io/packages/color-picker has easy-to-follow instructi
 
 | The first thing I found on Google was `tkcolorpicker <https://pypi.org/project/tkcolorpicker/>`__, a package that uses the `tkinter <https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/>`__ library. I couldn't tell exactly what it was, so let's find out. First, install via `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
 
-``python -m pip install tkcolorpicker``
+::
+
+    python -m pip install tkcolorpicker
 
 | Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D
 | |color_picker_gui|
@@ -45,7 +47,11 @@ Color picker: https://atom.io/packages/color-picker has easy-to-follow instructi
 
 **Approach #3: Use the Python eyedropper package to grab the colors.**
 
-I then found `eyedropper <https://github.com/umluizlima/eyedropper>`__ for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__: ``python -m pip install eyedropper``
+I then found `eyedropper <https://github.com/umluizlima/eyedropper>`__ for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
+
+::
+
+    python -m pip install eyedropper
 
 .. image:: https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png
    :alt: pyeyedropper_start
@@ -78,7 +84,7 @@ Why not `use Python to convert hex to RGB? <https://stackoverflow.com/questions/
 
 Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I found `this website <https://www.webpagefx.com/web-design/hex-to-rgb/>`__ practical and quick.
 
-**Alternatively, you could** `convert a hex code to RGB with python: <https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python>`__
+Alternatively, you could `convert a hex code to RGB with python: <https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python>`__:
 
 .. code-block:: python
 
@@ -97,14 +103,18 @@ What the hay, let's use `pd.read_clipboard() <https://pandas.pydata.org/pandas-d
 
 Once eyedropper sends the color values to your system's clipboard, there are multiple ways to access them. This alternative uses pandas.
 
-**Installing pandas and**\ `pyperclip <https://github.com/asweigart/pyperclip>`__\ **with pip:**
+Installing pandas and `pyperclip <https://github.com/asweigart/pyperclip>`__ with pip:
 
 ::
 
    python -m pip install pandas
    python -m pip install pyperclip
 
-**On Linux, install**\ `xclip <https://github.com/astrand/xclip>`__\ **or**\ `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__\  ``sudo apt-get install xclip``\ **
+On Linux, install  `xclip <https://github.com/astrand/xclip>`__ or `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__
+
+::
+
+    sudo apt-get install xclip
 
 **To get the clipboard contents with pandas:**
 

@@ -19,7 +19,7 @@ Enter this in a `shell <https://missing.csail.mit.edu/2020/shell-tools/>`__ or `
 
 .. _messi-left-vs-ronaldo-right-fifa-player-ratings:
 
-Messi (Left) Vs. Ronaldo (Right) FIFA Player Ratings
+Messi (Top) Vs. Ronaldo (Bottom) FIFA Player Ratings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. container:: tiled-gallery__gallery
 
@@ -37,15 +37,7 @@ Messi (Left) Vs. Ronaldo (Right) FIFA Player Ratings
 
 These ratings represent the players at their peak of their careers. Messi is a better dribbler, while Ronaldo has more power and strength. Messi has the edge in free kicks, curve in his shot and "longshots" 99 to 98 over Cristiano. They are tied at "finishing", each with 99. Ronaldo has the "Power Free-Kick" trait, whereas Messi has "Chip Shot", "Finesse Shot" and "Playmaker" traits giving him an edge.
 
-EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an "Aerial Threat" specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2" (187 cm) vs. Messi's 5' 7" (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is `quite darty <https://www.ea.com/en-gb/games/fifa/fifa-22/ratings/ratings-database>`__.
-
-.. raw:: html
-
-   <figure class="wp-block-embed is-type-rich is-provider-instagram wp-block-embed-instagram">
-
-.. container:: wp-block-embed__wrapper
-
-   https://www.instagram.com/p/Cc59jtvjk_0/
+EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an "Aerial Threat" specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2" (187 cm) vs. Messi's 5' 7" (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is `quite darty <ttps://www.instagram.com/p/Cc59jtvjk_0/>`__.
 
 Messi has incredible accuracy from distance. He's also a better passer all around and has perfect "vision", great qualities for winning football games. Only in crossing does he have a lower passing rating. Ronaldo is also 10 points better at "penalties" or penalty kicks. The closer he gets to the goal, the more dangerous he is. Messi is more dangerous with the ball while dribbling, passing or shooting except when taking a PK.
 
@@ -53,4 +45,4 @@ Advantages can be gained in many different aspects of soccer. EA has developed a
 
 **jq ftw**
 
-I had never used jq before this. Really enjoyed the quick, stylish and practical view of some json. This cool terminal display and syntax highlighting was on my Chromebook shell. It's neat how easily you can pretty print json with jq. I rate it a 99 for json pretty printing on the FIFA scale. Read more in the `jq documentation <https://stedolan.github.io/jq/tutorial/>`__!
+I had never used jq before this. Really enjoyed the quick, stylish and practical view of some json. This cool terminal display and syntax highlighting was on my Chromebook shell. It's neat how easily you can pretty print json with jq. I rate it a 99 for json pretty processing and pretty printing on the FIFA scale. Read more in the `jq documentation <https://stedolan.github.io/jq/tutorial/>`__!

@@ -90,14 +90,16 @@ recreate my resume in the dark Atom text editor theme (background and fonts).
 &lt;strong&gt;Sub-goal:&lt;/strong&gt;
 find a color eyedropper to grab the actual color values of the Atom layout.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Approach #1: find an Atom eyedropper package to grab the colors.&lt;/strong&gt;
-My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: &lt;a class="reference external" href="https://atom.io/packages/an-color-picker"&gt;https://atom.io/packages/an-color-picker&lt;/a&gt; and color picker: &lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;https://atom.io/packages/color-picker&lt;/a&gt;&amp;gt;. The an-color-eyedropper description sounds perfect: &amp;quot;A simple &amp;quot;real&amp;quot; color picker. By &amp;quot;real&amp;quot; I mean it's able to pick colors anywhere on any screen.&amp;quot;&lt;/p&gt;
+My first thought was to find the easiest solution, within the packages of my Atom text editor. After searching Atom's packages, the two best potential solutions were an-color-eyedropper: &lt;a class="reference external" href="https://atom.io/packages/an-color-picker"&gt;https://atom.io/packages/an-color-picker&lt;/a&gt; and color picker: &lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;https://atom.io/packages/color-picker&lt;/a&gt;. The an-color-eyedropper description sounds perfect: &amp;quot;A simple &amp;quot;real&amp;quot; color picker. By &amp;quot;real&amp;quot; I mean it's able to pick colors anywhere on any screen.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Unfortunately it failed to install and displayed the error, &amp;quot;Unable to download 400 Bad Request Repository inaccessible&amp;quot;. It seems to rely on the &amp;quot;python&amp;quot; Atom package which is now deprecated. I was unable to find a repo anywhere by googling.&lt;/p&gt;
 &lt;p&gt;Color picker: &lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;https://atom.io/packages/color-picker&lt;/a&gt; has easy-to-follow instructions and installed with no problem. It allows you to quickly select any color visually with sliders. Then the RGB or Hexadecimal values of your color are added as text in the editor in proper format. However, we are looking for a color grabber to pull colors from a screen object. This is more of a productivity enhancing and color exploration tool for programmers. On to Python options.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Approach #2: Use the python tkcolorpicker package to grab the colors.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;The first thing I found on Google was &lt;a class="reference external" href="https://pypi.org/project/tkcolorpicker/"&gt;tkcolorpicker&lt;/a&gt;, a package that uses the &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/"&gt;tkinter&lt;/a&gt; library. I couldn't tell exactly what it was, so let's find out. First, install via &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;:&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install tkcolorpicker&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install tkcolorpicker
+&lt;/pre&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;Then run the below script. Cool gadget for sure, but also not quite what I was looking to use. It allows selection of a color with sliders or input values, similar to Atom's color picker, but for user input rather than color picking. Nice little tool. :D&lt;/div&gt;
 &lt;div class="line"&gt;&lt;img alt="color_picker_gui" class="wp-image-1462 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="width: 301px; height: 315px;" /&gt;&lt;/div&gt;
@@ -124,7 +126,10 @@ My first thought was to find the easiest solution, within the packages of my Ato
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;askcolor()&lt;/tt&gt; returns a tuple with both the RGB and hex codes selected by the user. Above, we are unpacking that tuple into the &lt;tt class="docutils literal"&gt;hex_code&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;RGB_code&lt;/tt&gt; variables.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Approach #3: Use the Python eyedropper package to grab the colors.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I then found &lt;a class="reference external" href="https://github.com/umluizlima/eyedropper"&gt;eyedropper&lt;/a&gt; for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;: &lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install eyedropper&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;I then found &lt;a class="reference external" href="https://github.com/umluizlima/eyedropper"&gt;eyedropper&lt;/a&gt; for Windows, which has a minimalist repository and offers a simple approach to desktop eyedropper functionality. Install eyedropper via &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install eyedropper
+&lt;/pre&gt;
 &lt;img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" style="width: 239px; height: 140px;" /&gt;
 &lt;p&gt;Hover your mouse over the object you want to grab the color from (in my case, the Atom text editor background). Then &lt;a class="reference external" href="https://github.com/umluizlima/eyedropper"&gt;following these instructions&lt;/a&gt;:&lt;/p&gt;
 &lt;p&gt;Alternatively, I was able to run eyedropper from the command line by entering: &lt;tt class="docutils literal"&gt;py &lt;span class="pre"&gt;-m&lt;/span&gt; eyedropper&lt;/tt&gt;&lt;/p&gt;
@@ -135,7 +140,7 @@ My first thought was to find the easiest solution, within the packages of my Ato
 &lt;div class="section" id="why-not-use-python-to-convert-hex-to-rgb"&gt;
 &lt;h2&gt;Why not &lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;use Python to convert hex to RGB?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I found &lt;a class="reference external" href="https://www.webpagefx.com/web-design/hex-to-rgb/"&gt;this website&lt;/a&gt; practical and quick.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Alternatively, you could&lt;/strong&gt; &lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;convert a hex code to RGB with python:&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Alternatively, you could &lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;convert a hex code to RGB with python:&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;hex_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Enter hex: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lstrip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -147,12 +152,15 @@ My first thought was to find the easiest solution, within the packages of my Ato
 &lt;div class="section" id="what-the-hay-let-s-use-pd-read-clipboard-to-get-the-hex-codes"&gt;
 &lt;h2&gt;What the hay, let's use &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html"&gt;pd.read_clipboard()&lt;/a&gt; to get the hex codes.&lt;/h2&gt;
 &lt;p&gt;Once eyedropper sends the color values to your system's clipboard, there are multiple ways to access them. This alternative uses pandas.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Installing pandas and&lt;/strong&gt;&lt;a class="reference external" href="https://github.com/asweigart/pyperclip"&gt;pyperclip&lt;/a&gt;&lt;strong&gt;with pip:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Installing pandas and &lt;a class="reference external" href="https://github.com/asweigart/pyperclip"&gt;pyperclip&lt;/a&gt; with pip:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 python -m pip install pandas
 python -m pip install pyperclip
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;On Linux, install&lt;/strong&gt;&lt;a class="reference external" href="https://github.com/astrand/xclip"&gt;xclip&lt;/a&gt;&lt;strong&gt;or&lt;/strong&gt;&lt;a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel"&gt;xsel:&lt;/a&gt; &lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install xclip&lt;/tt&gt;**&lt;/p&gt;
+&lt;p&gt;On Linux, install  &lt;a class="reference external" href="https://github.com/astrand/xclip"&gt;xclip&lt;/a&gt; or &lt;a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel"&gt;xsel:&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sudo apt-get install xclip
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;To get the clipboard contents with pandas:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;

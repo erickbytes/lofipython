@@ -11,9 +11,11 @@ Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box
 
 This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.
 
-**Installing **\ `pytest <https://docs.pytest.org/en/latest/getting-started.html>`__\ **, a python testing library:**
+Installing `pytest <https://docs.pytest.org/en/latest/getting-started.html>`__ , a python testing library:
 
-``python -m pip install pytest``
+::
+    
+    python -m pip install pytest
 
 **A Few Words on pytest**
 
@@ -31,11 +33,11 @@ Let's use **test_file_date.py** as our test, which uses the `glob <https://docs.
     import getpass
 
     def test_csv_date_equals_today():
-        """The dir_query format is for a Windows path with Unix style pattern matching."""
+        """The match format is for a Windows path with Unix style pattern matching."""
          # specify csv extension and folder
         match = f'C:Users/{getpass.getuser()}/Desktop/*.csv'
         # get most recent file
-        csv = sorted(glob.iglob(dir_query), key=os.path.getmtime)[-1]
+        csv = sorted(glob.iglob(match), key=os.path.getmtime)[-1]
         csv_timestamp = os.path.getmtime(csv)
         csv_date = datetime.fromtimestamp(csv_timestamp)
         print(csv_date.day)
@@ -52,14 +54,14 @@ Let's use **test_file_date.py** as our test, which uses the `glob <https://docs.
    rootdir: C:\
    collected 1 item
 
-   ..\..\Users\martech\Desktop\test_file_date.py . [ 14%]
+   ..\..\Users\erick\Desktop\test_file_date.py . [ 14%]
                                                                       [100%]
 
    ============================== 1 passed in 0.28s ==============================
 
 **Creating a Task with Windows Task Scheduler**
 
-If you haven't used python with Windows Task Scheduler before, `my previous post <https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/>`__ on creating a task may help you. We'll create two of them for our testing system.
+If you haven't used python with Windows Task Scheduler before, `my previous post <https://lofipython.com/automated-python-with-windows-task-scheduler/>`__ on creating a task may help you. We'll create two of them for our testing system.
 
 **Adding Your Task Scheduler Program: a Windows .bat file**
 
@@ -68,21 +70,26 @@ Add your username to the text below and adjust the paths to your system. Then sa
 ::
 
    cmd /c "C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys" ^
-   C:\Users\your_username\Desktop\test_file_date.py > C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
+   C:\Users\your_username\Desktop\test_file_date.py > C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 
-This example is referencing an .exe within a hypothetical "VM_Jobs" `virtual environment <https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)
+This example is referencing an .exe within a hypothetical "sandbox" virtual environment, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)
 
 **Breaking this out, there are five .bat files parts:**
-
-   cmd /c "C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys"
+::
+    
+    cmd /c "C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys"
 
 Windows' `cmd command <https://ss64.com/nt/cmd.html>`__ takes a program, so we're passing pytest. `The --capture=sys argument <https://docs.pytest.org/en/latest/capture.html>`__ tells pytest to capture the test results. **Note:** switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.
 
-   ^
+::
+    
+    ^
 
 circumflex represents a line continuation in Windows batch files for better readability
 
-   C:\Users\your_username\Desktop\test_file_date.py
+::
+
+    C:\Users\your_username\Desktop\test_file_date.py
 
 Next we're passing our python file as an argument to pytest, testing our file's modified date matches today's date.
 
@@ -90,7 +97,9 @@ Next we're passing our python file as an argument to pytest, testing our file's 
 
 This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:
 
-    C:\Users\your_username\Desktop\VM_Jobs\Test_Results\Test_Results.txt
+::
+
+    C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 
 **Browse to select your .bat file for your Windows Task Scheduler task:**
 
@@ -131,9 +140,8 @@ Let's set another task scheduler job to run **read_test_results.py,** to run a f
         with open(file_path) as f:
             text = f.read()
         if "FAILURES" in text:
-            directory = f"C:/Users/{user_name}/Desktop/send_failure_alert/"
-            today = str(date.today())
-            name = f"{directory}{txt_file}_Failed_Results_{today}.txt"
+            directory = f"C:/Users/{getpass.getuser()}/Desktop/send_failure_alert/"
+            name = f"{directory}{txt_file}_Failed_Results_{date.today()}.txt"
             with open(name, "w+") as f:
                 f.write(name)
                 f.write(text)
