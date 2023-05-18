@@ -86,7 +86,7 @@ As of February 2020, this command `installs pandas version 0.24 with pip <https:
 
 If pandas is already installed, you can upgrade with `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
 
-[caption id="attachment_2572" align="alignright" width="179"]\ |pip_list| Enter pip list to see installed libraries.[/caption]
+ |pip_list| 
 
 ::
    
@@ -176,7 +176,7 @@ Data is commonly read in from file with `pd.read_csv() <https://pandas.pydata.or
    print(df.dtypes)
    print(df.info())
 
-Create a dataframe from a list of Python lists, named movies below, with `pd.DataFrame <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`:
+Create a dataframe from a list of Python lists, named movies below, with `pd.DataFrame <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__:
 
 .. code-block:: python
 
@@ -195,7 +195,7 @@ Create a dataframe from a list of Python lists, named movies below, with `pd.Dat
    print(df.to_markdown(showindex=False, tablefmt="simple"))
 
 
-Let's print the table to our terminal with `pd.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__ `new in pandas version 1.0.0 <https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html>`__ :
+Let's print the table to our terminal with `pd.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__ `new in pandas version 1.0.0 <https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html>`__:
 
 .. image:: https://pythonmarketer.files.wordpress.com/2018/05/simple_layout_markdown.jpg
    :alt: simple_layout_markdown
@@ -271,7 +271,7 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
    :width: 870px
    :height: 117px
 
-See also: pandas.Series.value_counts() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html>`__ 
+See also: pandas.Series.value_counts() `<https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html>`__ 
 
 --------------
 
@@ -385,7 +385,7 @@ Use `pd.to_clipboard()  <https://pandas.pydata.org/pandas-docs/stable/reference/
    clipboard_contents = input('Press ctrl-v ')
    print(clipboard_contents)
 
-Convert the clipboard contents to df with pd.DataFrame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__:
+Convert the clipboard contents to df with pd.DataFrame() `<https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__:
 
 .. code-block:: python
 
@@ -472,7 +472,7 @@ Plot George Clooney's movies over time in a line graph. [\ `Source <https://www.
    df = df[df.Actor=='George Clooney']
    df.groupby(['Year']).size().plot(ylim=0)
    fig = ax.get_figure()
-   fig.savefig('/path/to/figure.pdf')
+   fig.savefig('figure.pdf')
 
 (7) Supplementary Resources and Guides
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
