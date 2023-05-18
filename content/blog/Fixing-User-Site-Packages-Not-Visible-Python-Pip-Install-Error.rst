@@ -8,7 +8,7 @@ How to Fix Pip Install Site-Packages --user Error
 :status: published
 
 
-| While running Python 3.11 today, out of the blue I saw this error attempting to pip install a package in my virtual environment:
+| While running Python version 3.8.10 today, out of the blue I saw this error attempting to pip install a package in my virtual environment:
 |
 
 ::
