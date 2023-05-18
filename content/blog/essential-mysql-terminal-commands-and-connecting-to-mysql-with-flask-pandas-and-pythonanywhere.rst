@@ -24,33 +24,33 @@ Essential MySQL Terminal Commands
 
 **Show MySQL Version**
 
-::
+.. code-block:: sql
 
    SELECT VERSION();
 
 **List tables in a database**
 
-::
+.. code-block:: sql
 
    SHOW TABLES;
 
 **Show All MySQL Variable Values**
 
-::
+.. code-block:: sql
 
    SHOW VARIABLES;
 
 **Creating a Table**
 
-::
+.. code-block:: sql
 
    CREATE TABLE Marijuana (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(350), date VARCHAR(350));
 
 `Create a Table with a JSON column <https://www.sitepoint.com/use-json-data-fields-mysql-databases/>`__
 
-::
+.. code-block:: sql
 
-   CREATE TABLE ​Marijuana (
+   CREATE TABLE Marijuana (
      `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
      `store` varchar(200) NOT NULL,
      `details` json DEFAULT NULL,
@@ -59,26 +59,26 @@ Essential MySQL Terminal Commands
 
 **Add New Column and specify column to insert AFTER**
 
-::
+.. code-block:: sql
 
    ALTER TABLE Marijuana
    ADD COLUMN date VARCHAR(100) AFTER other_column;
 
 **Alter Datatype of a Column**
 
-::
+.. code-block:: sql
 
    ALTER TABLE Marijuana MODIFY id INT AUTO_INCREMENT PRIMARY KEY;
 
 **Describe a Table**
 
-::
+.. code-block:: sql
 
    DESCRIBE Marijuana;
 
 **View All Records in a Table**
 
-::
+.. code-block:: sql
 
    SELECT * from Marijuana;
 
@@ -86,19 +86,19 @@ Essential MySQL Terminal Commands
 
 **Select 10 Newest Records**
 
-::
+.. code-block:: sql
 
    SELECT * from Marijuana ORDER BY id DESC LIMIT 10;
 
 **"Explaining" A Query**
 
-::
+.. code-block:: sql
 
    EXPLAIN SELECT * from Marijuana;
 
 **Using "ANALYZE TABLE" to**\ `optimize them <https://dev.mysql.com/doc/refman/8.0/en/statement-optimization.html>`__\ **is periodically recommended by MySQL:**
 
-::
+.. code-block:: sql
 
    ANALYZE TABLE Marijuana;
 

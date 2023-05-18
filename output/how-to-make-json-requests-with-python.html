@@ -134,8 +134,10 @@ If you choose not to use Postman, you can use the json library. See the use of <
 <div class="section" id="python-installation">
 <h2>Python Installation</h2>
 <p>You can install <tt class="docutils literal">requests</tt> with <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. Alternatively, <tt class="docutils literal">http.client</tt> is included within the Python standard library. If you want to convert HTTP response data to a dataframe or csv, install <tt class="docutils literal">pandas.</tt></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install requests</tt></p>
-<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pandas</tt></p>
+<pre class="literal-block">
+python -m pip install requests
+python -m pip install pandas
+</pre>
 </div>
 <div class="section" id="example-1-get-the-geolocation-details-of-any-public-location-with-the-google-api">
 <h2>Example #1: <tt class="docutils literal">GET</tt> the geolocation details of any public location with the Google API</h2>
@@ -302,7 +304,7 @@ If you choose not to use Postman, you can use the json library. See the use of <
 <li>Ensure you are defining the correct content-type. I had an experience where Postman defined two conflicting <tt class="docutils literal"><span class="pre">content-type</span></tt> headers and it <a class="reference external" href="https://github.com/postmanlabs/postman-code-generators/issues/215">caused my request to fail</a>. The server's error message indicated the problem was in my JSON, so it took me a while to figure out the headers were the problem.</li>
 <li>Sometimes it makes a difference if your url has <tt class="docutils literal"><span class="pre">http://</span></tt> vs. <tt class="docutils literal"><span class="pre">https://</span></tt> in it. Usually <tt class="docutils literal"><span class="pre">https://</span></tt> is preferred.**&nbsp;**</li>
 </ul>
-<p><strong>Sidebar:</strong><a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">requests.Session()</a></p>
+<p>Sidebar: <a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">requests.Session()</a></p>
 <p>You might be able to improve performance by using a requests <a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">&quot;session&quot; object</a>.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
@@ -310,11 +312,7 @@ If you choose not to use Postman, you can use the json library. See the use of <
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="sd">&quot;&quot;&quot;a session adds a &quot;keep-alive&quot; header to your HTTP connection.</span>
-<span class="sd">It can be used to store cookies across requests.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="sd">&quot;&quot;&quot;A session adds a &quot;keep-alive&quot; header to your HTTP connection. Used to store cookies across requests.&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>

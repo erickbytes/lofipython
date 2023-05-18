@@ -84,22 +84,16 @@ I recently deployed the `ThreadPoolExecutor <https://docs.python.org/3/library/c
    import shutil
    import os
 
-   """Move files concurrently from the 
-   current working directory to a new folder.
-
-   This script is adapted from the Python 
-   ThreadPoolExecutor documentation:
-   https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.shutdown
-
-   disclaimer: I am new to concurrency. Not 100% sure 
-   if I am using the ThreadPoolExecutor correctly 
-   but it seems to work, by moving my files concurrently and fast.
-   """
-   csvs = [f for f in os.listdir(os.getcwd()) if '.csv' in f]
-   split_num = len(csvs) / 4 + 1
-   file_batches = np.array_split(csvs, split_num)
-
    def main():
+       """Move files concurrently from the current working directory to a new folder.
+       This script is adapted from the Python ThreadPoolExecutor documentation:
+       https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.shutdown
+       """
+       csvs = [f for f in os.listdir(os.getcwd()) if '.csv' in f]
+       split_num = len(csvs) / 4 + 1
+       file_batches = np.array_split(csvs, split_num)
+       # write to local folder named "csvs"
+       dst_folder = "/csvs"
        with ThreadPoolExecutor(max_workers=4) as e:
            for i, files in enumerate(file_batches):
                csv_A, csv_B, csv_C, csv_D = files

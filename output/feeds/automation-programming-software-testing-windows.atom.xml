@@ -60,13 +60,13 @@ collected 1 item
 &lt;p&gt;&lt;strong&gt;Adding Your Task Scheduler Program: a Windows .bat file&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Add your username to the text below and adjust the paths to your system. Then save a &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Batch_file"&gt;Windows .bat file&lt;/a&gt; with this text, which points to your pytest.exe file:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-cmd /c &amp;quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&amp;quot; ^
+cmd /c &amp;quot;C:\Users\your_username\Desktop\sandbox\Scripts\pytest.exe --capture=sys&amp;quot; ^
 C:\Users\your_username\Desktop\test_file_date.py &amp;gt; C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 &lt;/pre&gt;
 &lt;p&gt;This example is referencing an .exe within a hypothetical &amp;quot;sandbox&amp;quot; virtual environment, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Breaking this out, there are five .bat files parts:&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-cmd /c &amp;quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&amp;quot;
+cmd /c &amp;quot;C:\Users\your_username\Desktop\sandbox\Scripts\pytest.exe --capture=sys&amp;quot;
 &lt;/pre&gt;
 &lt;p&gt;Windows' &lt;a class="reference external" href="https://ss64.com/nt/cmd.html"&gt;cmd command&lt;/a&gt; takes a program, so we're passing pytest. &lt;a class="reference external" href="https://docs.pytest.org/en/latest/capture.html"&gt;The --capture=sys argument&lt;/a&gt; tells pytest to capture the test results. &lt;strong&gt;Note:&lt;/strong&gt; switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
@@ -123,8 +123,8 @@ C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Automate pytest with Windows Task Scheduler&lt;/span&gt;
-&lt;span class="sd"&gt;Use Task Scheduler run a batch file. The batch file runs pytest and captures our pytest function results to sys.&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Automate pytest with Windows Task Scheduler. Use Task Scheduler run a batch file.&lt;/span&gt;
+&lt;span class="sd"&gt;The batch file runs pytest and captures our pytest function results to sys.&lt;/span&gt;
 &lt;span class="sd"&gt;If a text file contains a failure or error, write the test contents into a folder.&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;basicConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;

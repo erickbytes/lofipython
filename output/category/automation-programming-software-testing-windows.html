@@ -104,13 +104,13 @@ collected 1 item
 <p><strong>Adding Your Task Scheduler Program: a Windows .bat file</strong></p>
 <p>Add your username to the text below and adjust the paths to your system. Then save a <a class="reference external" href="https://en.wikipedia.org/wiki/Batch_file">Windows .bat file</a> with this text, which points to your pytest.exe file:</p>
 <pre class="literal-block">
-cmd /c &quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&quot; ^
+cmd /c &quot;C:\Users\your_username\Desktop\sandbox\Scripts\pytest.exe --capture=sys&quot; ^
 C:\Users\your_username\Desktop\test_file_date.py &gt; C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 </pre>
 <p>This example is referencing an .exe within a hypothetical &quot;sandbox&quot; virtual environment, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)</p>
 <p><strong>Breaking this out, there are five .bat files parts:</strong></p>
 <pre class="literal-block">
-cmd /c &quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&quot;
+cmd /c &quot;C:\Users\your_username\Desktop\sandbox\Scripts\pytest.exe --capture=sys&quot;
 </pre>
 <p>Windows' <a class="reference external" href="https://ss64.com/nt/cmd.html">cmd command</a> takes a program, so we're passing pytest. <a class="reference external" href="https://docs.pytest.org/en/latest/capture.html">The --capture=sys argument</a> tells pytest to capture the test results. <strong>Note:</strong> switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.</p>
 <pre class="literal-block">
@@ -167,8 +167,8 @@ C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler</span>
-<span class="sd">Use Task Scheduler run a batch file. The batch file runs pytest and captures our pytest function results to sys.</span>
+<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler. Use Task Scheduler run a batch file.</span>
+<span class="sd">The batch file runs pytest and captures our pytest function results to sys.</span>
 <span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>

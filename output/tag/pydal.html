@@ -55,60 +55,54 @@
 <div class="section" id="essential-mysql-terminal-commands">
 <h2>Essential MySQL Terminal Commands</h2>
 <p><strong>Show MySQL Version</strong></p>
-<pre class="literal-block">
-SELECT VERSION();
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">VERSION</span><span class="p">();</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><strong>List tables in a database</strong></p>
-<pre class="literal-block">
-SHOW TABLES;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><strong>Show All MySQL Variable Values</strong></p>
-<pre class="literal-block">
-SHOW VARIABLES;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><strong>Creating a Table</strong></p>
-<pre class="literal-block">
-CREATE TABLE Marijuana (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(350), date VARCHAR(350));
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">350</span><span class="p">),</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">350</span><span class="p">));</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><a class="reference external" href="https://www.sitepoint.com/use-json-data-fields-mysql-databases/">Create a Table with a JSON column</a></p>
-<pre class="literal-block">
-CREATE TABLE ​Marijuana (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `store` varchar(200) NOT NULL,
-  `details` json DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="n">mediumint</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">`</span><span class="n">store</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">`</span><span class="n">details</span><span class="o">`</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><strong>Add New Column and specify column to insert AFTER</strong></p>
-<pre class="literal-block">
-ALTER TABLE Marijuana
-ADD COLUMN date VARCHAR(100) AFTER other_column;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"></span>
+<span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">AFTER</span><span class="w"> </span><span class="n">other_column</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><strong>Alter Datatype of a Column</strong></p>
-<pre class="literal-block">
-ALTER TABLE Marijuana MODIFY id INT AUTO_INCREMENT PRIMARY KEY;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><strong>Describe a Table</strong></p>
-<pre class="literal-block">
-DESCRIBE Marijuana;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><strong>View All Records in a Table</strong></p>
-<pre class="literal-block">
-SELECT * from Marijuana;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><a class="reference external" href="https://www.mysqltutorial.org/mysql-like/">Using LIKE in MySQL</a></p>
 <p><strong>Select 10 Newest Records</strong></p>
-<pre class="literal-block">
-SELECT * from Marijuana ORDER BY id DESC LIMIT 10;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><strong>&quot;Explaining&quot; A Query</strong></p>
-<pre class="literal-block">
-EXPLAIN SELECT * from Marijuana;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <p><strong>Using &quot;ANALYZE TABLE&quot; to</strong><a class="reference external" href="https://dev.mysql.com/doc/refman/8.0/en/statement-optimization.html">optimize them</a><strong>is periodically recommended by MySQL:</strong></p>
-<pre class="literal-block">
-ANALYZE TABLE Marijuana;
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ANALYZE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span><span class="w"></span>
+</pre></div></td></tr></table></div>
 <figure></figure><div class="wp-image-3418 figure">
 <img alt="mysql commands in shell" src="https://pythonmarketer.files.wordpress.com/2020/05/mysql_commands-1.png" />
 </div>

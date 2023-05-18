@@ -29,9 +29,11 @@ First, `go here <https://git-scm.com/downloads>`__, download and install git if 
 
 Let's say you did some work on your computer and want to push the changes to GitHub. Enter these commands in terminal:
 
-#. ``git add .``
-#. ``git commit -m "Add your commit note here"``
-#. ``git push origin master``
+.. code-block:: console
+
+    git add .
+    git commit -m "Add your commit note here"
+    git push origin master
 
 \*Above: ``git add .`` = stage all files in project directory for master
 
@@ -41,27 +43,36 @@ Let's say you did some work on your computer and want to push the changes to Git
 
 I like to update my local computer with any master branch changes before beginning work on it. Enter these commands in terminal:
 
-#. ``git fetch``
-#. ``git pull origin master``
+.. code-block:: console
+
+    git fetch
+    git pull origin master
 
 **Review Merge Conflicts**
 
 Sometimes, your code may conflict with changes in the master branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use "git status" to locate the files with the conflicts. Enter in your terminal:
 
-#. ``git status``
+.. code-block:: console
+
+    git status
+
 #. Then `follow these instructions <https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line>`__ to review the merge conflicts.
 
 See also: `Resolving Conflicts - Virtualenv Documentation <https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/conflicts.html>`__
 
 **Or maybe you want to discard any local changes, then merge:**
 
-#. ``git fetch``
-#. ``git checkout .``
-#. ``git pull origin master``
+.. code-block:: console
+
+    git fetch
+    git checkout
+    git pull origin master
 
 **Recovering from a Corrupted Repository**
 
-``git fsck --full --no-dangling``
+.. code-block:: console
+
+    git fsck --full --no-dangling
 
 `Additional Reading <https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html#recovering-from-repository-corruption>`__
 

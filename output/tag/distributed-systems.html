@@ -119,33 +119,21 @@
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="sd">&quot;&quot;&quot;Move files concurrently from the</span>
-<span class="sd">current working directory to a new folder.</span>
-
-<span class="sd">This script is adapted from the Python</span>
-<span class="sd">ThreadPoolExecutor documentation:</span>
-<span class="sd">https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.shutdown</span>
-
-<span class="sd">disclaimer: I am new to concurrency. Not 100% sure</span>
-<span class="sd">if I am using the ThreadPoolExecutor correctly</span>
-<span class="sd">but it seems to work, by moving my files concurrently and fast.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">csvs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
-<span class="n">split_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">csvs</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="n">file_batches</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">csvs</span><span class="p">,</span> <span class="n">split_num</span><span class="p">)</span>
-
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Move files concurrently from the current working directory to a new folder.</span>
+<span class="sd">    This script is adapted from the Python ThreadPoolExecutor documentation:</span>
+<span class="sd">    https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.shutdown</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">csvs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+    <span class="n">split_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">csvs</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">file_batches</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">csvs</span><span class="p">,</span> <span class="n">split_num</span><span class="p">)</span>
+    <span class="c1"># write to local folder named &quot;csvs&quot;</span>
+    <span class="n">dst_folder</span> <span class="o">=</span> <span class="s2">&quot;/csvs&quot;</span>
     <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file_batches</span><span class="p">):</span>
             <span class="n">csv_A</span><span class="p">,</span> <span class="n">csv_B</span><span class="p">,</span> <span class="n">csv_C</span><span class="p">,</span> <span class="n">csv_D</span> <span class="o">=</span> <span class="n">files</span>

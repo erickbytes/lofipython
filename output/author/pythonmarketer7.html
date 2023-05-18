@@ -287,13 +287,13 @@ collected 1 item
 <p><strong>Adding Your Task Scheduler Program: a Windows .bat file</strong></p>
 <p>Add your username to the text below and adjust the paths to your system. Then save a <a class="reference external" href="https://en.wikipedia.org/wiki/Batch_file">Windows .bat file</a> with this text, which points to your pytest.exe file:</p>
 <pre class="literal-block">
-cmd /c &quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&quot; ^
+cmd /c &quot;C:\Users\your_username\Desktop\sandbox\Scripts\pytest.exe --capture=sys&quot; ^
 C:\Users\your_username\Desktop\test_file_date.py &gt; C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 </pre>
 <p>This example is referencing an .exe within a hypothetical &quot;sandbox&quot; virtual environment, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)</p>
 <p><strong>Breaking this out, there are five .bat files parts:</strong></p>
 <pre class="literal-block">
-cmd /c &quot;C:\Users\your_username\Desktop\VM_Jobs\Scripts\pytest.exe --capture=sys&quot;
+cmd /c &quot;C:\Users\your_username\Desktop\sandbox\Scripts\pytest.exe --capture=sys&quot;
 </pre>
 <p>Windows' <a class="reference external" href="https://ss64.com/nt/cmd.html">cmd command</a> takes a program, so we're passing pytest. <a class="reference external" href="https://docs.pytest.org/en/latest/capture.html">The --capture=sys argument</a> tells pytest to capture the test results. <strong>Note:</strong> switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.</p>
 <pre class="literal-block">
@@ -350,8 +350,8 @@ C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler</span>
-<span class="sd">Use Task Scheduler run a batch file. The batch file runs pytest and captures our pytest function results to sys.</span>
+<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler. Use Task Scheduler run a batch file.</span>
+<span class="sd">The batch file runs pytest and captures our pytest function results to sys.</span>
 <span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
@@ -483,34 +483,38 @@ C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 </ol>
 <p><strong>Push Your Local Computer Changes to the Master Repository</strong></p>
 <p>Let's say you did some work on your computer and want to push the changes to GitHub. Enter these commands in terminal:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">git add .</tt></li>
-<li><tt class="docutils literal">git commit <span class="pre">-m</span> &quot;Add your commit note here&quot;</tt></li>
-<li><tt class="docutils literal">git push origin master</tt></li>
-</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git add .</span>
+<span class="go">git commit -m &quot;Add your commit note here&quot;</span>
+<span class="go">git push origin master</span>
+</pre></div></td></tr></table></div>
 <p>*Above: <tt class="docutils literal">git add .</tt> = stage all files in project directory for master</p>
 <p>**Substitute <tt class="docutils literal">git add path\to\file\here</tt> to stage only a single file to add to your master repository.</p>
 <p><strong>Fetch Changes From Master Branch to Your Local Computer</strong></p>
 <p>I like to update my local computer with any master branch changes before beginning work on it. Enter these commands in terminal:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">git fetch</tt></li>
-<li><tt class="docutils literal">git pull origin master</tt></li>
-</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git fetch</span>
+<span class="go">git pull origin master</span>
+</pre></div></td></tr></table></div>
 <p><strong>Review Merge Conflicts</strong></p>
 <p>Sometimes, your code may conflict with changes in the master branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use &quot;git status&quot; to locate the files with the conflicts. Enter in your terminal:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git status</span>
+</pre></div></td></tr></table></div>
 <ol class="arabic simple">
-<li><tt class="docutils literal">git status</tt></li>
 <li>Then <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line">follow these instructions</a> to review the merge conflicts.</li>
 </ol>
 <p>See also: <a class="reference external" href="https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/conflicts.html">Resolving Conflicts - Virtualenv Documentation</a></p>
 <p><strong>Or maybe you want to discard any local changes, then merge:</strong></p>
-<ol class="arabic simple">
-<li><tt class="docutils literal">git fetch</tt></li>
-<li><tt class="docutils literal">git checkout .</tt></li>
-<li><tt class="docutils literal">git pull origin master</tt></li>
-</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git fetch</span>
+<span class="go">git checkout</span>
+<span class="go">git pull origin master</span>
+</pre></div></td></tr></table></div>
 <p><strong>Recovering from a Corrupted Repository</strong></p>
-<p><tt class="docutils literal">git fsck <span class="pre">--full</span> <span class="pre">--no-dangling</span></tt></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git fsck --full --no-dangling</span>
+</pre></div></td></tr></table></div>
 <p><a class="reference external" href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html#recovering-from-repository-corruption">Additional Reading</a></p>
 <p><strong>Supplementary Reading</strong></p>
 <p><a class="reference external" href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a></p>

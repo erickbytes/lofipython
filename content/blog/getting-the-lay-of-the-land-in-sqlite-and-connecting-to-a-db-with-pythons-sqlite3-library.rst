@@ -23,7 +23,7 @@ There are also downloads for Windows. A popular GUI is `SQLite Studio <https://s
 
 ::
     
-    sqlite3 PythonMarketer.db``
+    sqlite3 PythonMarketer.db
 
 **create a new db + new table and import a csv file to the table, "Readers"**
 

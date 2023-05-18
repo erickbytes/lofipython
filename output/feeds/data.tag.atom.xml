@@ -155,8 +155,10 @@ If you choose not to use Postman, you can use the json library. See the use of &
 &lt;div class="section" id="python-installation"&gt;
 &lt;h2&gt;Python Installation&lt;/h2&gt;
 &lt;p&gt;You can install &lt;tt class="docutils literal"&gt;requests&lt;/tt&gt; with &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;. Alternatively, &lt;tt class="docutils literal"&gt;http.client&lt;/tt&gt; is included within the Python standard library. If you want to convert HTTP response data to a dataframe or csv, install &lt;tt class="docutils literal"&gt;pandas.&lt;/tt&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install requests&lt;/tt&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;python &lt;span class="pre"&gt;-m&lt;/span&gt; pip install pandas&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m pip install requests
+python -m pip install pandas
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-1-get-the-geolocation-details-of-any-public-location-with-the-google-api"&gt;
 &lt;h2&gt;Example #1: &lt;tt class="docutils literal"&gt;GET&lt;/tt&gt; the geolocation details of any public location with the Google API&lt;/h2&gt;
@@ -323,7 +325,7 @@ If you choose not to use Postman, you can use the json library. See the use of &
 &lt;li&gt;Ensure you are defining the correct content-type. I had an experience where Postman defined two conflicting &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;content-type&lt;/span&gt;&lt;/tt&gt; headers and it &lt;a class="reference external" href="https://github.com/postmanlabs/postman-code-generators/issues/215"&gt;caused my request to fail&lt;/a&gt;. The server's error message indicated the problem was in my JSON, so it took me a while to figure out the headers were the problem.&lt;/li&gt;
 &lt;li&gt;Sometimes it makes a difference if your url has &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;http://&lt;/span&gt;&lt;/tt&gt; vs. &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;https://&lt;/span&gt;&lt;/tt&gt; in it. Usually &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;https://&lt;/span&gt;&lt;/tt&gt; is preferred.**&amp;nbsp;**&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Sidebar:&lt;/strong&gt;&lt;a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/"&gt;requests.Session()&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Sidebar: &lt;a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/"&gt;requests.Session()&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;You might be able to improve performance by using a requests &lt;a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/"&gt;&amp;quot;session&amp;quot; object&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
@@ -331,11 +333,7 @@ If you choose not to use Postman, you can use the json library. See the use of &
 &lt;span class="normal"&gt;4&lt;/span&gt;
 &lt;span class="normal"&gt;5&lt;/span&gt;
 &lt;span class="normal"&gt;6&lt;/span&gt;
-&lt;span class="normal"&gt;7&lt;/span&gt;
-&lt;span class="normal"&gt;8&lt;/span&gt;
-&lt;span class="normal"&gt;9&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;a session adds a &amp;quot;keep-alive&amp;quot; header to your HTTP connection.&lt;/span&gt;
-&lt;span class="sd"&gt;It can be used to store cookies across requests.&lt;/span&gt;
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;A session adds a &amp;quot;keep-alive&amp;quot; header to your HTTP connection. Used to store cookies across requests.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Session&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;

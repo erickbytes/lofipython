@@ -134,9 +134,10 @@ Python Installation
 
 You can install ``requests`` with `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__. Alternatively, ``http.client`` is included within the Python standard library. If you want to convert HTTP response data to a dataframe or csv, install ``pandas.``
 
-``python -m pip install requests``
+::
 
-``python -m pip install pandas``
+    python -m pip install requests
+    python -m pip install pandas
 
 Example #1: ``GET`` the geolocation details of any public location with the Google API
 --------------------------------------------------------------------------------------
@@ -247,15 +248,13 @@ Example #2: Encode a Python dictionary to json string and ``POST`` to a hypothet
 -  Ensure you are defining the correct content-type. I had an experience where Postman defined two conflicting ``content-type`` headers and it `caused my request to fail <https://github.com/postmanlabs/postman-code-generators/issues/215>`__. The server's error message indicated the problem was in my JSON, so it took me a while to figure out the headers were the problem.
 -  Sometimes it makes a difference if your url has ``http://`` vs. ``https://`` in it. Usually ``https://`` is preferred.\ ** **
 
-**Sidebar:**\ `requests.Session() <https://requests.readthedocs.io/en/master/user/advanced/>`__
+Sidebar: `requests.Session() <https://requests.readthedocs.io/en/master/user/advanced/>`__
 
 You might be able to improve performance by using a requests `"session" object <https://requests.readthedocs.io/en/master/user/advanced/>`__.
 
 .. code-block:: python
 
-   """a session adds a "keep-alive" header to your HTTP connection.
-   It can be used to store cookies across requests.
-   """
+   """A session adds a "keep-alive" header to your HTTP connection. Used to store cookies across requests."""
    import requests
    s = requests.Session()
    for page in range(0, 2):

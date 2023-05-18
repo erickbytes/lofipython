@@ -33,7 +33,7 @@ Workload Characterization
 Storage Models
 --------------
 
-*screenshots from the*\ `lecture <https://www.youtube.com/watch?v=YWRYEXNy6IE&list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&index=4>`__
+screenshots from the `lecture <https://www.youtube.com/watch?v=YWRYEXNy6IE&list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&index=4>`__
 
 .. image:: https://pythonmarketer.files.wordpress.com/2020/06/n-ary-model.png
    :alt: n-ary model
