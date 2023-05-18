@@ -15,6 +15,8 @@ There's only one problem. People's default setting is to not want to use your so
    :alt: `Image Source <https://community.spiceworks.com/topic/2181519-what-s-the-deal-with-open-source-software>`__
    :figclass: wp-image-7404
 
+.. class:: center
+
    `Image Source <https://community.spiceworks.com/topic/2181519-what-s-the-deal-with-open-source-software>`__
 
 Getting humans to put in the time and effort to learn how to use your tools is really tough. It has to be excellent. The bar is high. You have to understand your users' needs and perceptions intimately. And even then, you'll probably still fail. Regardless, we keep trying because we are obsessed with solving a problem or simply paid to keep trying to solve the problem.
