@@ -43,7 +43,7 @@ For Windows installation, see the python docs for an installer, "`Using Python o
 
 `Follow these steps to download and install Python 3.8 in the Ubuntu terminal. <https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/>`__ To upgrade to pandas 1.0, I installed Python 3.8, the `latest stable release <https://www.google.com/search?client=ubuntu&channel=fs&q=python+latest+stable+release&ie=utf-8&oe=utf-8>`__, "`from source <https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/>`__" on Ubuntu 16.04.
 
-**If you intend to use **\ `pandas.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__\ ** on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.**
+If you intend to use `pandas.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__ on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.
 
 On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal:
 
@@ -84,7 +84,7 @@ As of February 2020, this command `installs pandas version 0.24 with pip <https:
    :width: 676px
    :height: 186px
 
-**If pandas is already installed, you can upgrade with**\ `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__\ **:**
+If pandas is already installed, you can upgrade with `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
 
 [caption id="attachment_2572" align="alignright" width="179"]\ |pip_list| Enter pip list to see installed libraries.[/caption]
 
@@ -142,7 +142,7 @@ To use pd.read_clipboard() on Linux, install `xclip <https://github.com/astrand/
 
     python -m pip install pyperclip
 
-**Now install pandas 1.0 and **\ `matplotlib <https://matplotlib.org/users/installing.html>`__\ ** in your virtual environment.**
+Now install pandas 1.0 and `matplotlib <https://matplotlib.org/users/installing.html>`__ in your virtual environment for visualizations.
 
 ::
 
@@ -176,7 +176,7 @@ Data is commonly read in from file with `pd.read_csv() <https://pandas.pydata.or
    print(df.dtypes)
    print(df.info())
 
-**Create a dataframe from a list of Python lists, named movies below, with **\ `pd.DataFrame <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__\ **:**
+Create a dataframe from a list of Python lists, named movies below, with `pd.DataFrame <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`:
 
 .. code-block:: python
 
@@ -271,7 +271,7 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
    :width: 870px
    :height: 117px
 
-`pandas.Series.value_counts() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html>`__ is so darn handy :D**
+See also: pandas.Series.value_counts() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html>`__ 
 
 --------------
 
@@ -289,19 +289,19 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
 
     df.columns = map(str.lower, df.columns)
 
-| **Strip whitespace from a column of strings with the**\ `pandas.Series.str <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html>`__\ **accessor:**
+Strip whitespace from a column of strings with the `pandas.Series.str <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html>`__ accessor:
 
 .. code-block:: python
 
     df['Character'] = df['Character'].astype(str).str.strip()
 
-**Fix pesky leading zero zip codes with**\ `str.zfill() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html>`__\ **:**
+Fix pesky leading zero zip codes with `str.zfill() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html>`__:
 
 .. code-block:: python
     
     log_df['zip'] = log_df['zip'].astype(str).str.zfill(5)
 
-**Get a row by index number us**\ `pandas.DataFrame.loc[] <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html>`__\ **:**
+Get a row by index number `pandas.DataFrame.loc[] <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html>`__:
 
 .. code-block:: python
 
@@ -315,14 +315,14 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
    julia_roberts_movies = df[df.Actor=='Julia Roberts'].reset_index(drop=True) 
    print(julia_roberts_movies.head())
 
-**"Get" an item from a column of lists with **\ `str.get() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html>`__\ **.**
+"Get" an item from a column of lists with `str.get() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html>`__.
 
 .. code-block:: python
 
    # returns first item in each cell's list into new column
    df['first_item'] = df['items'].str.get(0)
 
-**Execute SQL-like operations between dataframes with **\ `df.merge() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html>`__\ **.**
+Execute SQL-like operations between dataframes with `df.merge() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html>`__.
 
 First, use `df.copy() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html>`__ to create a new dataframe copy of our actors table above.  By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':
 
@@ -335,7 +335,7 @@ First, use `df.copy() <https://pandas.pydata.org/pandas-docs/stable/reference/ap
    # You can pass the number of rows to see to head. It defaults to 5.
    print(joined_df.head(10))
 
-**Execute database queries with **\ `pd.read_sql() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html>`__\ **.**
+Execute database queries with `pd.read_sql() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html>`__.
 
 When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like `pyodbc <https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/>`__ or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.
 
@@ -385,7 +385,7 @@ Use `pd.to_clipboard()  <https://pandas.pydata.org/pandas-docs/stable/reference/
    clipboard_contents = input('Press ctrl-v ')
    print(clipboard_contents)
 
-**Convert the clipboard contents to df with**\ `pd.DataFrame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__\ **:**
+Convert the clipboard contents to df with pd.DataFrame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__:
 
 .. code-block:: python
 
@@ -462,7 +462,7 @@ Update: beginning in pandas 1.0, `json_normalize <https://pandas.pydata.org/pand
    fig.tight_layout()
    fig.savefig('images/Movie_Plot.png')
 
-Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about `plotting with Jupyter/pandas/Python here <https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/>`__.
+Use Jupyter Notebook to show plot, and/or download plot from command line.
 
 Plot George Clooney's movies over time in a line graph. [\ `Source <https://www.youtube.com/watch?v=5JnMutdy6Fw>`__\ ]
 

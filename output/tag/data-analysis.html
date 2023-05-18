@@ -70,7 +70,7 @@
 <p>For Windows installation, see the python docs for an installer, &quot;<a class="reference external" href="https://docs.python.org/3/using/windows.html">Using Python on Windows&quot;</a>.</p>
 <p><strong>Installing Python 3.8 on Ubuntu</strong></p>
 <p><a class="reference external" href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/">Follow these steps to download and install Python 3.8 in the Ubuntu terminal.</a> To upgrade to pandas 1.0, I installed Python 3.8, the <a class="reference external" href="https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=python+latest+stable+release&amp;ie=utf-8&amp;oe=utf-8">latest stable release</a>, &quot;<a class="reference external" href="https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/">from source</a>&quot; on Ubuntu 16.04.</p>
-<p><strong>If you intend to use **`pandas.to_markdown() &lt;https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html&gt;`__** on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.</strong></p>
+<p>If you intend to use <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html">pandas.to_markdown()</a> on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.</p>
 <p>On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal:</p>
 <pre class="literal-block">
 sudo apt-get install libbz2-dev
@@ -94,7 +94,7 @@ sudo apt-get install python3-pandas
 python3.5 -m pip install pandas
 </pre>
 <img alt="successful_python_install" class="alignnone wp-image-2420" src="https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg" style="width: 676px; height: 186px;" />
-<p><strong>If pandas is already installed, you can upgrade with</strong><a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a><strong>:</strong></p>
+<p>If pandas is already installed, you can upgrade with <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
 <p>[caption id=&quot;attachment_2572&quot; align=&quot;alignright&quot; width=&quot;179&quot;]<img alt="pip_list" class="alignnone wp-image-2572" src="http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg" style="width: 179px; height: 230px;" /> Enter pip list to see installed libraries.[/caption]</p>
 <pre class="literal-block">
 python -m pip install --upgrade pandas
@@ -132,7 +132,7 @@ sudo apt-get install xclip
 <pre class="literal-block">
 python -m pip install pyperclip
 </pre>
-<p><strong>Now install pandas 1.0 and **`matplotlib &lt;https://matplotlib.org/users/installing.html&gt;`__** in your virtual environment.</strong></p>
+<p>Now install pandas 1.0 and <a class="reference external" href="https://matplotlib.org/users/installing.html">matplotlib</a> in your virtual environment for visualizations.</p>
 <pre class="literal-block">
 python3.8 -m pip install pandas
 python -m pip install -U matplotlib
@@ -168,7 +168,7 @@ python -m pip install -U matplotlib
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div></td></tr></table></div>
-<p><strong>Create a dataframe from a list of Python lists, named movies below, with **`pd.DataFrame &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html&gt;`__**:</strong></p>
+<p>Create a dataframe from a list of Python lists, named movies below, with <cite>pd.DataFrame &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html&gt;</cite>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -274,7 +274,7 @@ python -m pip install -U matplotlib
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Actor</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;github&quot;</span><span class="p">))</span>
 </pre></div></td></tr></table></div>
 <img alt="IMDB_movies" class="alignnone size-full wp-image-2540" src="https://pythonmarketer.files.wordpress.com/2018/05/imdb_movies.jpeg" style="width: 870px; height: 117px;" />
-<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html">pandas.Series.value_counts()</a> is so darn handy :D**</p>
+<p>See also: pandas.Series.value_counts() &lt;<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html</a>&gt;`__</p>
 <hr class="docutils" />
 <p><strong>Notice for column names without spaces, you can use dot notation instead of brackets:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
@@ -286,15 +286,13 @@ python -m pip install -U matplotlib
 <p><strong>Lowercase column names Python's map function:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<div class="line-block">
-<div class="line"><strong>Strip whitespace from a column of strings with the</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html">pandas.Series.str</a><strong>accessor:</strong></div>
-</div>
+<p>Strip whitespace from a column of strings with the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html">pandas.Series.str</a> accessor:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Character&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Character&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 </pre></div></td></tr></table></div>
-<p><strong>Fix pesky leading zero zip codes with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.htmlhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html">str.zfill()</a><strong>:</strong></p>
+<p>Fix pesky leading zero zip codes with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.zfill.html">str.zfill()</a>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">log_df</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_df</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>Get a row by index number us</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">pandas.DataFrame.loc[]</a><strong>:</strong></p>
+<p>Get a row by index number <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">pandas.DataFrame.loc[]</a>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">first_row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
 <span class="n">third_row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
@@ -304,12 +302,12 @@ python -m pip install -U matplotlib
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">julia_roberts_movies</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Actor</span><span class="o">==</span><span class="s1">&#39;Julia Roberts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">julia_roberts_movies</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div></td></tr></table></div>
-<p><strong>&quot;Get&quot; an item from a column of lists with **`str.get() &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html&gt;`__**.</strong></p>
+<p>&quot;Get&quot; an item from a column of lists with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html">str.get()</a>.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># returns first item in each cell&#39;s list into new column</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;first_item&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>Execute SQL-like operations between dataframes with **`df.merge() &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html&gt;`__**.</strong></p>
+<p>Execute SQL-like operations between dataframes with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html">df.merge()</a>.</p>
 <p>First, use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html">df.copy()</a> to create a new dataframe copy of our actors table above.&nbsp; By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
@@ -323,7 +321,7 @@ python -m pip install -U matplotlib
 <span class="c1"># You can pass the number of rows to see to head. It defaults to 5.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">joined_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div></td></tr></table></div>
-<p><strong>Execute database queries with **`pd.read_sql() &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html&gt;`__**.</strong></p>
+<p>Execute database queries with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html">pd.read_sql()</a>.</p>
 <p>When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/">pyodbc</a> or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.</p>
 <blockquote>
 uses <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html">pd.Series.isin()</a> to check if each email is in the DB.</blockquote>
@@ -386,7 +384,7 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 <span class="n">clipboard_contents</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Press ctrl-v &#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">clipboard_contents</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>Convert the clipboard contents to df with</strong><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pd.DataFrame()</a><strong>:</strong></p>
+<p>Convert the clipboard contents to df with pd.DataFrame() &lt;<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html</a>&gt;`__:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -481,7 +479,7 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;images/Movie_Plot.png&#39;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p>Use Jupyter Notebook to show plot, and/or download plot from command line. Read more about <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/04/12/datasets-plotting-using-jupyter-pandas-and-matplotlib/">plotting with Jupyter/pandas/Python here</a>.</p>
+<p>Use Jupyter Notebook to show plot, and/or download plot from command line.</p>
 <p>Plot George Clooney's movies over time in a line graph. [<a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Source</a>]</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
