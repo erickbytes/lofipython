@@ -11,9 +11,11 @@ Copying a pandas Dataframe to Google Sheets with pygsheets
 
 **This was done on the Windows 7 OS.** **First,**\ `install libraries with pip <https://docs.python.org/3/installing/index.html>`__\ **. Enter in command prompt or terminal:**
 
-#. ``python -m pip install pandas``
-#. ``python -m pip install numpy``
-#. ``python -m pip install pygsheets``
+::
+
+   python -m pip install pandas
+   python -m pip install numpy
+   python -m pip install pygsheets
 
 **Then, following the** `steps documented by pygsheets: <https://pygsheets.readthedocs.io/en/stable/authorization.html>`__
 

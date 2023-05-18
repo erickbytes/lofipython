@@ -187,10 +187,10 @@ sqlite3 PythonMarketer.db
 </pre>
 <p>[<a class="reference external" href="https://tableplus.com/blog/2018/07/sqlite-how-to-import-csv-file-into-sqlite-table.html">source</a>]</p>
 <p><strong>create a table</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Readers</span><span class="w"> </span><span class="p">(</span><span class="n">Country</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="n">Visits</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Readers</span><span class="w"> </span><span class="p">(</span><span class="n">Country</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="n">Visits</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">);</span>
 </pre></div></td></tr></table></div>
 <p><strong>add new column with a default value</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Readers</span><span class="w"> </span><span class="k">ADD</span><span class="w">  </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Readers</span><span class="w"> </span><span class="k">ADD</span><span class="w">  </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><strong>show all help (and . syntax) options</strong></p>
 <pre class="literal-block">
@@ -347,7 +347,7 @@ sqlite3 PythonMarketer.db
 
 
 <span class="k">def</span> <span class="nf">oauth_login</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Authenticate with twitter using OAuth&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Authenticate with twitter using OAuth&quot;&quot;&quot;</span>
 
     <span class="n">auth</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">OAuthHandler</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">)</span>
     <span class="n">auth_url</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="n">get_authorization_url</span><span class="p">()</span>
@@ -578,7 +578,7 @@ sqlite3 PythonMarketer.db
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Move files concurrently from the current working directory to a new folder.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Move files concurrently from the current working directory to a new folder.</span>
 <span class="sd">    This script is adapted from the Python ThreadPoolExecutor documentation:</span>
 <span class="sd">    https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.shutdown</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -795,16 +795,16 @@ This is not a course for absolute beginners on how to program a computer. It is 
 <div class="section" id="essential-mysql-terminal-commands">
 <h2>Essential MySQL Terminal Commands</h2>
 <p><strong>Show MySQL Version</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">VERSION</span><span class="p">();</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">VERSION</span><span class="p">();</span>
 </pre></div></td></tr></table></div>
 <p><strong>List tables in a database</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><strong>Show All MySQL Variable Values</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><strong>Creating a Table</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">350</span><span class="p">),</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">350</span><span class="p">));</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">350</span><span class="p">),</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">350</span><span class="p">));</span>
 </pre></div></td></tr></table></div>
 <p><a class="reference external" href="https://www.sitepoint.com/use-json-data-fields-mysql-databases/">Create a Table with a JSON column</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
@@ -812,36 +812,36 @@ This is not a course for absolute beginners on how to program a computer. It is 
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="n">mediumint</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">store</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">`</span><span class="n">details</span><span class="o">`</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span><span class="w"></span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="n">mediumint</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">  </span><span class="o">`</span><span class="n">store</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="o">`</span><span class="n">details</span><span class="o">`</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><strong>Add New Column and specify column to insert AFTER</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"></span>
-<span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">AFTER</span><span class="w"> </span><span class="n">other_column</span><span class="p">;</span><span class="w"></span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span>
+<span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">AFTER</span><span class="w"> </span><span class="n">other_column</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><strong>Alter Datatype of a Column</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><strong>Describe a Table</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><strong>View All Records in a Table</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><a class="reference external" href="https://www.mysqltutorial.org/mysql-like/">Using LIKE in MySQL</a></p>
 <p><strong>Select 10 Newest Records</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><strong>&quot;Explaining&quot; A Query</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <p><strong>Using &quot;ANALYZE TABLE&quot; to</strong><a class="reference external" href="https://dev.mysql.com/doc/refman/8.0/en/statement-optimization.html">optimize them</a><strong>is periodically recommended by MySQL:</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ANALYZE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ANALYZE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span>
 </pre></div></td></tr></table></div>
 <figure></figure><div class="wp-image-3418 figure">
 <img alt="mysql commands in shell" src="https://pythonmarketer.files.wordpress.com/2020/05/mysql_commands-1.png" />
@@ -958,7 +958,7 @@ python -m pip3.8 install --user pandas
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Call database and return data from df. Then display homepage.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call database and return data from df. Then display homepage.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">email_df</span> <span class="o">=</span> <span class="n">get_database_table_as_dataframe</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">email_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -969,7 +969,7 @@ python -m pip3.8 install --user pandas
 
 
 <span class="k">def</span> <span class="nf">render_homepage</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Note: you should use Flask&#39;s render_template to render HTML files.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Note: you should use Flask&#39;s render_template to render HTML files.</span>
 <span class="sd">    But here&#39;s a quick f-string HTML page that works:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">html_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;html&gt;&lt;head&gt;&lt;link rel=&#39;stylesheet&#39; href=&quot;/static/styles/some_file.css&quot;&gt;&lt;link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;static/favicon.ico&quot;&gt;</span>
@@ -988,7 +988,7 @@ python -m pip3.8 install --user pandas
 
 
 <span class="k">def</span> <span class="nf">get_database_table_as_dataframe</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Connect to a table named &#39;Emails&#39;. Returns pandas dataframe.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Connect to a table named &#39;Emails&#39;. Returns pandas dataframe.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
             <span class="n">host</span><span class="o">=</span><span class="s2">&quot;username.mysql.pythonanywhere-services.com&quot;</span><span class="p">,</span>
@@ -1007,7 +1007,7 @@ python -m pip3.8 install --user pandas
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/add_signup_to_db&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">add_signup_to_db</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Pass data as SQL parameters with mysql.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pass data as SQL parameters with mysql.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
             <span class="n">host</span><span class="o">=</span><span class="s2">&quot;username.mysql.pythonanywhere-services.com&quot;</span><span class="p">,</span>
@@ -1053,7 +1053,7 @@ Below: making <a class="reference external" href="https://weedfiend.pythonanywhe
 <p><strong>Finding Your Flask Groove</strong></p>
 <p>Flask is a little scary at first, but reasonable once you get a grasp of the basic syntax. Using the logging module to establish access, error and server log feeds was a big step to finding my Python traceback fixing groove. It's a work in progress.</p>
 <p><strong>Recapping My Python Web Development and Database Experiences</strong></p>
-<p>I previously created a <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/29/getting-started-with-web2py/">website &lt;http://tameimpala.pythonanywhere.com/&gt;`__with `web2py</a>, another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then, I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.</p>
+<p>I previously created a <a class="reference external" href="http://tameimpala.pythonanywhere.com/">website</a> with <a class="reference external" href="https://lofipython.com/getting-started-with-web2py/">web2py</a>, another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then, I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.</p>
 <blockquote>
 <p><strong>My Python Web Development and Database Tools</strong></p>
 <p><strong>App #1</strong>          web2py + MongoDB</p>
@@ -1295,7 +1295,7 @@ python -m pip install pandas
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="k">def</span> <span class="nf">convert_dict_to_json_object</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;</span>
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;first_name&quot;</span><span class="p">:</span><span class="s2">&quot;P&quot;</span><span class="p">,</span>
         <span class="s2">&quot;last_name&quot;</span><span class="p">:</span><span class="s2">&quot;Sherman&quot;</span><span class="p">,</span>
@@ -1312,7 +1312,7 @@ python -m pip install pandas
     <span class="k">return</span> <span class="n">json_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">create_new_contact</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This is a fictional API request.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a fictional API request.</span>
 <span class="sd">    Passing a json object to requests.</span>
 <span class="sd">    Decoding server response with response.json(),</span>
 <span class="sd">    Returning a contact id by calling the data&#39;s keys.</span>

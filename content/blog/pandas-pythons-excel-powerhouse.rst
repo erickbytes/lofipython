@@ -16,7 +16,7 @@ If I could suggest anything to be successful with pandas, it is repetition. I us
 **Table of Contents**
 
 #. Python\pandas Installation and Version Compatibility
-#. ACHIEVEMENT UNLOCKED: Welcome to pandas 1.0
+#. Welcome to pandas 1.0
 #. Data Wrangling, Exploration and Broadcasting
 
    -  ``Series.str`` & ``Series.dt`` accessors
@@ -30,8 +30,8 @@ If I could suggest anything to be successful with pandas, it is repetition. I us
 #. Plotting Visualizations with matplotlib
 #. Supplementary Resources and Links
 
-(1) Python\pandas Installation and Version Compatibility
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(1) Python + pandas Installation and Version Compatibility
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Python 3.6 and higher can `install pandas 1.0 <https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html>`__.
 
@@ -43,9 +43,13 @@ For Windows installation, see the python docs for an installer, "`Using Python o
 
 `Follow these steps to download and install Python 3.8 in the Ubuntu terminal. <https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/>`__ To upgrade to pandas 1.0, I installed Python 3.8, the `latest stable release <https://www.google.com/search?client=ubuntu&channel=fs&q=python+latest+stable+release&ie=utf-8&oe=utf-8>`__, "`from source <https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/>`__" on Ubuntu 16.04.
 
-**If you intend to use**\ `pandas.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__\ **on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.**
+**If you intend to use **\ `pandas.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__\ ** on Ubuntu, it might save you trouble to pre-emptively install the '_bz2' library before you build your Python from source.**
 
-On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal: ``sudo apt-get install libbz2-dev``
+On Ubuntu, I ran into ModuleNotFoundError: No module named '_bz2' and fixed by entering in the terminal:
+
+::
+   
+   sudo apt-get install libbz2-dev
 
 I also saw this message when completing install:
 
@@ -64,11 +68,15 @@ I installed missing  \_bz2 and \_sqllite3 modules then re-built with these comm
 
 The version downloaded with this command is about 6 months behind the current version. For me, this installed pandas 0.17 on Ubuntu:
 
-``sudo apt-get install python3-pandas``
+::
+   
+   sudo apt-get install python3-pandas
 
 As of February 2020, this command `installs pandas version 0.24 with pip <https://docs.python.org/3/installing/index.html>`__ when used with Python 3.5 on Linux Ubuntu 16.04:
 
-``python3.5 -m pip install pandas``
+::
+
+   python3.5 -m pip install pandas
 
 .. image:: https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg
    :alt: successful_python_install
@@ -81,14 +89,18 @@ As of February 2020, this command `installs pandas version 0.24 with pip <https:
 [caption id="attachment_2572" align="alignright" width="179"]\ |pip_list| Enter pip list to see installed libraries.[/caption]
 
 ::
-    python -m pip install --upgrade pandas
+   
+   python -m pip install --upgrade pandas
 
 To check if pip is installed:
 
 ::
-    python -m pip list
 
-**Consider following best practice and create a**\ `virtual environment <https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__\ **with your new Python version.**\ `venv <https://docs.python.org/3/library/venv.html>`__\ **wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:**
+   python -m pip list
+
+**Best Practice: Virtual Environments**
+
+Create a `virtual environment <https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__ with your new Python version.  `venv <https://docs.python.org/3/library/venv.html>`__ wasn't included in my Python 3.8 installation on Ubuntu 16.04, so I installed virtualenv:
 
 ::
 
@@ -118,7 +130,7 @@ To check if pip is installed:
 
     python -m pip install tabulate
 
-**To use pd.read_clipboard() on Linux, install**\ `xclip <https://github.com/astrand/xclip>`__\ **or**\ `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__\  
+To use pd.read_clipboard() on Linux, install `xclip <https://github.com/astrand/xclip>`__ or  `xsel: <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__
 
 ::
     
@@ -130,14 +142,14 @@ To check if pip is installed:
 
     python -m pip install pyperclip
 
-**Now install pandas 1.0 and**\ `matplotlib <https://matplotlib.org/users/installing.html>`__\ **in your virtual environment.**
+**Now install pandas 1.0 and **\ `matplotlib <https://matplotlib.org/users/installing.html>`__\ ** in your virtual environment.**
 
 ::
 
    python3.8 -m pip install pandas
    python -m pip install -U matplotlib
 
-(2) Welcome to pandas 1.0
+(2) Welcome to pandas 1.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You did it! Welcome to the good life. The basis of pandas is the "`dataframe <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__", commonly abbreviated as df, which is similar to a spreadsheet. Another core pandas object is the `pandas.Series <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html>`__ object, which is similar to a Python list or `numpy <http://cs231n.github.io/python-numpy-tutorial/>`__ array. When imported, pandas is aliased as "pd". The pd object allows you to access many useful pandas functions. I'll use it interchangeably with pandas in this post.
@@ -151,8 +163,7 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
 (3) `Data Wrangling <https://en.wikipedia.org/wiki/Data_wrangling>`__, Exploration and Broadcasting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Data is commonly read in from file with** 
- `pd.read_csv() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html>`__
+Data is commonly read in from file with `pd.read_csv() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html>`__
 
 .. code-block:: python
 
@@ -165,7 +176,7 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
    print(df.dtypes)
    print(df.info())
 
-**Create a dataframe from a list of Python lists, named movies below, with**\ `pd.DataFrame <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__\ **:**
+**Create a dataframe from a list of Python lists, named movies below, with **\ `pd.DataFrame <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__\ **:**
 
 .. code-block:: python
 
@@ -183,8 +194,8 @@ You did it! Welcome to the good life. The basis of pandas is the "`dataframe <ht
    df = df[["Title","Character", "Actor", "Movie Budget", "Worldwide Gross"]]
    print(df.to_markdown(showindex=False, tablefmt="simple"))
 
-**Let's print the table to our terminal with **\ `pd.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__\ 
-**`new in pandas version 1.0.0 <https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html>`__ :**
+
+Let's print the table to our terminal with `pd.to_markdown() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_markdown.html>`__ `new in pandas version 1.0.0 <https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html>`__ :
 
 .. image:: https://pythonmarketer.files.wordpress.com/2018/05/simple_layout_markdown.jpg
    :alt: simple_layout_markdown
@@ -304,14 +315,14 @@ Broadcasting means to map a function or an arithmetic calculation over an over a
    julia_roberts_movies = df[df.Actor=='Julia Roberts'].reset_index(drop=True) 
    print(julia_roberts_movies.head())
 
-**"Get" an item from a column of lists with**\ `str.get() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html>`__\ **.**
+**"Get" an item from a column of lists with **\ `str.get() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html>`__\ **.**
 
 .. code-block:: python
 
    # returns first item in each cell's list into new column
    df['first_item'] = df['items'].str.get(0)
 
-**Execute SQL-like operations between dataframes with**\ `df.merge() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html>`__\ **.**
+**Execute SQL-like operations between dataframes with **\ `df.merge() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html>`__\ **.**
 
 First, use `df.copy() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html>`__ to create a new dataframe copy of our actors table above.  By default, df.merge() uses an inner join to merge two dfs on a common column. Let's add each film's release year from our date_df to our original actors table, with an inner join based on 'Title':
 
@@ -324,7 +335,7 @@ First, use `df.copy() <https://pandas.pydata.org/pandas-docs/stable/reference/ap
    # You can pass the number of rows to see to head. It defaults to 5.
    print(joined_df.head(10))
 
-**Execute database queries with**\ `pd.read_sql() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html>`__\ **.**
+**Execute database queries with **\ `pd.read_sql() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html>`__\ **.**
 
 When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like `pyodbc <https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/>`__ or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.
 
@@ -383,7 +394,7 @@ Use `pd.to_clipboard()  <https://pandas.pydata.org/pandas-docs/stable/reference/
    df = pd.DataFrame([clipboard_contents])
    print(df.head())
 
-**If the clipboard dataframe has one column, you could**\ `squeeze <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze>`__\ **the clipboard contents into a**\ `pd.Series <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html>`__\ **object:**
+If the clipboard dataframe has one column, you could `squeeze <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze>`__  the clipboard contents into a `pd.Series <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html>`__ object:
 
 .. code-block:: python
 
@@ -394,7 +405,7 @@ Use `pd.to_clipboard()  <https://pandas.pydata.org/pandas-docs/stable/reference/
    clipboard_series = df.squeeze(axis='columns')
    print(type(clipboard_series))
 
-**Inversely, consider using **\ `pandas.Series.to_frame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame>`__\ **to convert a Series to a dataframe:**
+Inversely, consider using `pandas.Series.to_frame() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame>`__ to convert a Series to a dataframe:
 
 .. code-block:: python
 

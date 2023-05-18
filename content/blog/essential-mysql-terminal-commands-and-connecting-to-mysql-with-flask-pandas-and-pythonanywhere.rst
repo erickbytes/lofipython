@@ -255,7 +255,7 @@ Flask is a little scary at first, but reasonable once you get a grasp of the bas
 
 **Recapping My Python Web Development and Database Experiences**
 
-I previously created a `website <http://tameimpala.pythonanywhere.com/>`__with `web2py <https://pythonmarketer.wordpress.com/2016/03/29/getting-started-with-web2py/>`__, another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then, I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.
+I previously created a `website <http://tameimpala.pythonanywhere.com/>`__ with `web2py <https://lofipython.com/getting-started-with-web2py/>`__, another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then, I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.
 
    **My Python Web Development and Database Tools**
 

@@ -33,7 +33,8 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
    import os
    folder_contents = os.listdir(os.getcwd())
    with open("list_of_dir_files.txt","w") as fhand:
-       [fhand.write('f{item}\n') for item in folder_contents]
+       for item in folder_contents:
+           fhand.write('f{item}\n')
 
 **3 Check what day of the week is today.**
 
@@ -54,14 +55,14 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
 .. code-block:: python
 
    import glob
+   import getpass
    import os
-   """
-   * means all, if need specific format then *.csv
-   getctime == by created date, getmtime == by date modified
-   """
-   list_of_files = glob.glob('C:\\Users\\your_username\\Desktop\\') # get all files, regardless of extension 
-   newest_file = sorted(glob.iglob('C:\\Users\\your_username\\Desktop\\*.csv'), key=os.path.getmtime)[-1]
-   second_newest_file = sorted(glob.iglob('C:\\Users\\your_username\\Desktop\\*.csv'), key=os.path.getmtime)[-2] 
+   # getctime == by created date, getmtime == by date modified
+   # get all files, regardless of extension
+   folder = f'C:/Users/{getpass.getuser()}/Desktop/'
+   list_of_files = glob.glob(folder)
+   newest_file = sorted(glob.iglob('C:/Users/your_username/Desktop/*.csv'), key=os.path.getmtime)[-1]
+   second_newest_file = sorted(glob.iglob('C:/Users/your_username/Desktop/*.csv'), key=os.path.getmtime)[-2] 
    print(newest_file, second_newest_file)
 
 glob module documentation: https://docs.python.org/3/library/glob.html#glob.iglob
@@ -87,10 +88,11 @@ To Run The Next 3 Scripts, install pandas:
 
    import pandas as pd
    file_name = 'big_file.csv'
-   src_file_minus_ext = file_name.split('.')[:-1] # slice off extension
-   for i, df in enumerate(pd.read_csv(file_name, chunksize=250000)):  # alt. encoding = "ISO-8859-1"
-       out_file = f'{src_file_minus_ext}{str(i)}.csv'
-       df.to_csv(out_file, index=False, header=df.columns)
+   # slice off extension
+   src_file_minus_ext = file_name.split('.')[:-1]
+   for i, df in enumerate(pd.read_csv(file_name, chunksize=250000)):
+       csv = f'{src_file_minus_ext}{str(i)}.csv'
+       df.to_csv(csv, index=False, header=df.columns)
 
 pandas beginner tutorial: https://www.youtube.com/watch?v=5JnMutdy6Fw
 
