@@ -69,7 +69,7 @@ install via `pip install
 
 |  |color_picker_gui|
 
-.. code:: python
+.. code-block:: python
 
    import tkinter as tk
    import tkinter.ttk as ttk
@@ -139,7 +139,7 @@ found `this website
 quick. Alternatively, you could `convert a hex code to RGB with python
 <https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python>`_:
 
-.. code:: python
+.. code-block:: python
 
    hex_code = input("Enter hex: ").lstrip("#")
    RGB_code = tuple(int(hex_code[i : i + 2], 16) for i in (0, 2, 4))
@@ -161,7 +161,7 @@ are multiple ways to access them. This alternative uses pandas.
 Installing pandas and `pyperclip
 <https://github.com/asweigart/pyperclip>`_ with pip:
 
-.. code::
+.. code-block:: python
 
    python -m pip install pandas
    python -m pip install pyperclip
@@ -169,13 +169,13 @@ Installing pandas and `pyperclip
 On Linux, install `xclip <https://github.com/astrand/xclip>`_ or `xsel
 <https://askubuntu.com/questions/705620/xclip-vs-xsel>`_
 
-.. code::
+::
 
    sudo apt-get install xclip
 
 **To get the clipboard contents with pandas:**
 
-.. code:: python
+.. code-block:: python
 
    import pandas as pd
 

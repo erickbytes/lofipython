@@ -56,4 +56,4 @@ Regular expressions are so powerful. It's nice to have this utility within the c
    :width: 633px
    :height: 173px
 
-For more command prompt nuggets, check out my more recent post: `Exploring Windows Command Line Tools, Batch Files and Remote Desktop Connection <https://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/>`__.
+For more command prompt nuggets, check out my more recent post: `Exploring Windows Command Line Tools, Batch Files and Remote Desktop Connection <https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/>`__.

@@ -10,4 +10,4 @@ Today's discovery is `Python Koans <https://github.com/gregmalcolm/python_koans>
 
 I was also curious what a "Koan" actually is: "a paradox to be meditated upon that is used to train Zen Buddhist monks to abandon ultimate dependence on reason and to force them into gaining sudden intuitive enlightenment" - Merriam-Webster
 
-Koans takes a little work to install. `Pygorithm <https://github.com/OmkarPathak/pygorithm>`__ is an similar package for learning advanced more algorithm theories with python, and can be more easily installed by `pip <https://github.com/OmkarPathak/pygorithm>`__.
+Koans takes a little work to install. `Pygorithm <https://github.com/OmkarPathak/pygorithm>`__ is a similar package for learning advanced more algorithm theories with python, and can be more easily installed by pip.

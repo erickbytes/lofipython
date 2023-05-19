@@ -40,7 +40,7 @@ Setting up Unsplash
 #. Sign up for an `Unsplash developer account <https://unsplash.com/documentation>`__
 #. Install the python-unsplash library. In the terminal enter:
 
-.. code:: python
+::
 
    python -m pip install python-unsplash
 
@@ -86,7 +86,7 @@ Posting the Unsplash Image to Facebook
 
 This was my first time working with the Facebook API. Honestly, it's a little crazy trying to balance all the token types in your head. There are about 5 different types of tokens that are used for different things! Ultimately I was able to figure out how to to post a photo. So there is a bit of a learning curve. It's a good challenge to build your API skills. The Unsplash API requires no `Oauth <https://en.wikipedia.org/wiki/OAuth>`__ tokens and is easier to pick up.
 
-My Facebook page posts are now triggered by page loads on this `website <https://positivethoughts.pythonanywhere.com/>`__! I am using a `MySQL database <https://pythonmarketer.wordpress.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/>`__ to track which images I post to make sure I don't duplicate any posts and to make sure I only post once every 24 hours. Ah, I love the smell of fresh automation in the morning. 😀
+My Facebook page posts are now triggered by page loads on this `website <https://positivethoughts.pythonanywhere.com/>`__! I am using a `MySQL database <https://lofipython.com/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/>`__ to track which images I post to make sure I don't duplicate any posts and to make sure I only post once every 24 hours. Ah, I love the smell of fresh automation in the morning. 😀
 
 **Supplementary Links**
 

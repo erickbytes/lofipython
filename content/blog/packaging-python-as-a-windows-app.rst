@@ -94,7 +94,7 @@ Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn'
 **Useful Resources:**
 
 #. Pyinstaller Github - `If Things Go Wrong <https://github.com/pyinstaller/pyinstaller/wiki/If-Things-Go-Wrong>`__
-#. Pyinstaller Documentation:`Using Pyinstaller/Useful Arguments <https://pyinstaller.readthedocs.io/en/stable/usage.html>`__
+#. Pyinstaller Documentation:`Using Pyinstaller Arguments <https://pyinstaller.readthedocs.io/en/stable/usage.html>`__
 #. `Gooey Pyinstaller Instructions <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__
 #. `Pandas hiddenimports Discussion <https://github.com/pyinstaller/pyinstaller/issues/3422>`__
 

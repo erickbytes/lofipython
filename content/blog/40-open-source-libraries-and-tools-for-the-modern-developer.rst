@@ -18,9 +18,9 @@ I enjoy finding and cataloging new packages as much as using them sometimes. Som
 #. `httptoolkit <https://httptoolkit.com/>`__: "HTTP Toolkit is a beautiful & open-source tool for debugging, testing and building with HTTP(S) on Windows, Linux & Mac"
 #. `curl <https://github.com/curl/curl>`__: ubiquitous command line tool for transferring data with URL syntax
 #. `curl-impersonate <https://github.com/lwthiker/curl-impersonate>`__: a special build of curl that can impersonate Chrome and Firefox browsers
-#. `jq <https://stedolan.github.io/jq/>`__: touted JSON command line tool
+#. `jq <https://stedolan.github.io/jq/>`__: touted JSON processor command line tool
 #. `jc <https://github.com/kellyjonbrazil/jc>`__: CLI tool and Python library that converts out of popular command line tools to other formats
-#. `JSONView <https://chrome.google.com/webstore/detail/jsonview/gmegofmjomhknnokphhckolhcffdaihd>`__: a Chrome web extension that applys XML-style code formatting to JSON in your browser, written in Typescript
+#. `JSONView <https://chrome.google.com/webstore/detail/jsonview/gmegofmjomhknnokphhckolhcffdaihd>`__: a Chrome web extension that applies syntax highlighting and folding to JSON in your browser, written in Typescript
 #. `thug <https://github.com/buffer/thug>`__: a Python based "honey client", used to mimic user behavior in a web browser in order to detect and emulate malicious content
 #. `OpenTelemetry <https://opentelemetry.io/docs/concepts/what-is-opentelemetry/>`__: open source tracing and monitoring app
 #. `nocodb <https://github.com/nocodb/nocodb>`__: an open source airtable alternative
@@ -42,7 +42,7 @@ I enjoy finding and cataloging new packages as much as using them sometimes. Som
 #. `Penpot <https://github.com/penpot/penpot>`__: the open source design & prototyping platform
 #. `pgcat <https://github.com/levkk/pgcat>`__: postgresQL pooler with sharding, load balancing and fail over support
 #. `pedalboard <https://github.com/spotify/pedalboard>`__: a Python library for working with audio from Spotify
-#. `OpenRPA <https://github.com/open-rpa/openrpa>`__: free open source enterprise grade robot process automation software. See also: `more free RPA tools <https://pythonmarketer.com/2021/08/15/how-to-open-firefox-with-webbrowser-on-ubuntu-linux/>`__
+#. `OpenRPA <https://github.com/open-rpa/openrpa>`__: free open source enterprise grade robot process automation software. See also: `more free RPA tools <https://lofipython.com/how-to-open-firefox-with-webbrowser-on-ubuntu-linux/>`__
 #. `hook-slinger <https://github.com/rednafi/hook-slinger>`__: manage webhooks with Python
 #. `vidcutter <https://github.com/ozmartian/vidcutter>`__: a modern video editing tool
 #. `XSSstrike <https://github.com/s0md3v/XSStrike>`__: most advanced Cross Site Scripting detector

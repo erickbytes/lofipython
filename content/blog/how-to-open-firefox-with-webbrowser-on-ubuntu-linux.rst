@@ -1,24 +1,43 @@
-Opening Firefox Via the webbrowser Module + RPA Tools
-#####################################################
-:date: 2021-08-15 23:13
-:author: pythonmarketer
-:category: automation, coding, gui, programming, python
-:tags: Firefox, RPA
-:slug: how-to-open-firefox-with-webbrowser-on-ubuntu-linux
-:status: published
+#######################################################
+ Opening Firefox Via the webbrowser Module + RPA Tools
+#######################################################
 
-webbrowser is a convenient Python standard library module. It opened my Firefox browser on my Ubuntu Linux operating system running on a Chromebook. This code is adapted from a `Python Examples blog post <https://pythonexamples.org/python-open-url-in-firefox-browser/>`__. Below is a list of other browsers you can open with webbrowser. At the bottom of this post, you'll find more tools to interact with browsers and GUIs programmatically.
+:date:
+   2021-08-15 23:13
 
-.. code-block:: python
+:author:
+   pythonmarketer
+
+:category:
+   automation, coding, gui, programming, python
+
+:tags:
+   Firefox, RPA
+
+:slug:
+   how-to-open-firefox-with-webbrowser-on-ubuntu-linux
+
+:status:
+   published
+
+webbrowser is a convenient Python standard library module. It opened my
+Firefox browser on my Ubuntu Linux operating system running on a
+Chromebook. This code is adapted from a `Python Examples blog post
+<https://pythonexamples.org/python-open-url-in-firefox-browser/>`__.
+Below is a list of other browsers you can open with webbrowser. At the
+bottom of this post, you'll find more tools to interact with browsers
+and GUIs programmatically.
+
+.. code:: python
 
    import webbrowser
-   firefox_sh = '/usr/lib/firefox/firefox.sh'
-   webbrowser.register('firefox',
-       None,
-       webbrowser.BackgroundBrowser(firefox_sh))
-   url = 'https://lofipython.com'
-   webbrowser.get('firefox').open_new_tab(url)
+
+   firefox_sh = "/usr/lib/firefox/firefox.sh"
+   webbrowser.register("firefox", None, webbrowser.BackgroundBrowser(firefox_sh))
+   url = "https://lofipython.com"
+   webbrowser.get("firefox").open_new_tab(url)
    print(webbrowser._browsers)
+
 
 .. raw:: html
 
@@ -56,7 +75,8 @@ Type Name              Class Name
 
    <figcaption>
 
-`webbrowser docs <https://docs.python.org/3/library/webbrowser.html#webbrowser.get>`__
+`webbrowser docs
+<https://docs.python.org/3/library/webbrowser.html#webbrowser.get>`__
 
 .. raw:: html
 
@@ -66,7 +86,7 @@ Type Name              Class Name
 
    </figure>
 
-**Check out these other browser\gui automation tools:**
+**Check out these other browsergui automation tools:**
 
 -  `pyautogui <https://pyautogui.readthedocs.io/en/latest/>`__
 -  `Selenium <https://www.selenium.dev/selenium/docs/api/py/>`__
@@ -80,4 +100,6 @@ Type Name              Class Name
 -  `PhantomJS <https://github.com/ariya/phantomjs>`__
 -  `SlimerJS <https://slimerjs.org/>`__
 
-*see* *also:* `Robot Process Automation <https://en.wikipedia.org/wiki/Robotic_process_automation>`__, `Things You Can Do With a Browser in 2020 <https://github.com/luruke/browser-2020>`__
+*see also:* 
+| `Robot Process Automation <https://en.wikipedia.org/wiki/Robotic_process_automation>`__
+| `Things You Can Do With a Browser in 2020 <https://github.com/luruke/browser-2020>`__

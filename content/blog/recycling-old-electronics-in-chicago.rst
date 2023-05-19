@@ -9,13 +9,13 @@ Recycling Old Electronics in Chicago
 
 Though we feel powerless at times, our individual choices can have ripple effects which can help us preserve Earth's precious materials. Here is how to recycle your old electronics in Chicago. Definitely check out if your city has a similar program for recycling electronics.
 
-**Look up the schedule for any Chicago address here:** https://www.recyclebycity.com/chicago/schedule
+Look up the schedule for any Chicago address here: https://www.recyclebycity.com/chicago/schedule
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/08/screenshot-2022-08-14-1.32.53-pm.png?w=931
    :alt: Chicago Recycling Schedule Website
    :figclass: wp-image-7143
 
-I was able to look up my address, see the recycling pickup schedule for my street, and see collection events for old electronics and waste. I scheduled an email reminder for the day before an upcoming event near me. I have a graveyard of broken phones and a busted Macbook that I want to dispose of.
+I was able to look up my address, see the recycling pickup schedule for my street, and see collection events for old electronics and waste. I scheduled an email reminder for the day before an upcoming event near me. I have a graveyard of broken phones and a busted Macbook to dispose of.
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2022/08/send-reminder-recycling.png?w=928
    :alt: Sign up for a reminder to recycle.
@@ -45,6 +45,6 @@ The website also has an option for Spanish language speakers. You can sign up fo
 
 **Additional Resources**
 
--  `"Getting Started" with recycling at a new building guide <https://www.recyclebycity.com/chicago/brief/recycling-in-chicago-apartments-and-condos>`__
+-  `Getting Started with recycling at a new building guide <https://www.recyclebycity.com/chicago/brief/recycling-in-chicago-apartments-and-condos>`__
 -  `Chicago electronics recycling events <https://www.recyclebycity.com/chicago/brief/new-residential-electronics-recycling-program>`__
 -  `Recycling quiz <https://www.recyclebycity.com/chicago/quiz>`__
