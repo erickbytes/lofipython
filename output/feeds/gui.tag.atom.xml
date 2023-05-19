@@ -1,5 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - gui</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/gui.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2018-08-25T16:32:00-05:00</updated><entry><title>Gooey GUI for Python Scripts</title><link href="https://lofipython.com/gooey-gui-for-python-scripts.html" rel="alternate"></link><published>2018-08-25T16:32:00-05:00</published><updated>2018-08-25T16:32:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-08-25:/gooey-gui-for-python-scripts.html</id><summary type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - gui</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/gui.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2018-09-14T05:45:00-05:00</updated><entry><title>Making A Desktop Color Eyedropper in Python to Grab Color Values</title><link href="https://lofipython.com/making-a-python-eyedropper.html" rel="alternate"></link><published>2018-09-14T05:45:00-05:00</published><updated>2018-09-14T05:45:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-09-14:/making-a-python-eyedropper.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Goal:&lt;/strong&gt; recreate my resume in the dark Atom text editor theme
+(background and fonts). &lt;strong&gt;Sub-goal:&lt;/strong&gt; find a color eyedropper to grab
+the actual color values of the Atom layout.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach #1: find an Atom eyedropper package to grab the colors.&lt;/strong&gt; My
+first thought was to find the easiest solution, within …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Goal:&lt;/strong&gt; recreate my resume in the dark Atom text editor theme
+(background and fonts). &lt;strong&gt;Sub-goal:&lt;/strong&gt; find a color eyedropper to grab
+the actual color values of the Atom layout.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach #1: find an Atom eyedropper package to grab the colors.&lt;/strong&gt; My
+first thought was to find the easiest solution, within the packages of
+my Atom text editor. After searching Atom's packages, the two best
+potential solutions were &amp;quot;an-color-eyedropper&amp;quot; and &amp;quot;color picker&amp;quot; . The an-color-eyedropper
+description sounds perfect: &amp;quot;A simple &amp;quot;real&amp;quot; color picker. By &amp;quot;real&amp;quot; I
+mean it's able to pick colors anywhere on any screen.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;Color picker&lt;/a&gt;
+&lt;a class="reference external" href="https://atom.io/packages/an-color-picker"&gt;an color eyedropper&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Unfortunately it failed to install and displayed the error, &amp;quot;Unable to
+download 400 Bad Request Repository inaccessible&amp;quot;. It seems to rely on
+the &amp;quot;python&amp;quot; Atom package which is now deprecated. I was unable to find
+a repo anywhere by googling.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;Color picker&lt;/a&gt; has
+easy-to-follow instructions and installed with no problem. It allows you
+to quickly select any color visually with sliders. Then the RGB or
+Hexadecimal values of your color are added as text in the editor in
+proper format. However, we are looking for a color grabber to pull
+colors from a screen object. This is more of a productivity enhancing
+and color exploration tool for programmers. On to Python options.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach #2: Use the python tkcolorpicker package to grab the
+colors.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The first thing I found on Google was &lt;a class="reference external" href="https://pypi.org/project/tkcolorpicker/"&gt;tkcolorpicker&lt;/a&gt;, a package that uses the
+&lt;a class="reference external" href="https://lofipython.com/2016/02/29/tkinter-and-python-libraries/"&gt;tkinter&lt;/a&gt;
+library. I couldn't tell exactly what it was, so let's find out. First,
+install via &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip install&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+python -m pip install tkcolorpicker
+&lt;/pre&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Then run the below script. Cool gadget for sure, but also not quite
+what I was looking to use. It allows selection of a color with
+sliders or input values, similar to Atom's color picker, but for user
+input rather than color picking. Nice little tool. :D&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;img alt="color_picker_gui" class="wp-image-1462 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="width: 301px; height: 315px;" /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tkinter&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;tk&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tkinter.ttk&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;ttk&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tkcolorpicker&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;askcolor&lt;/span&gt;&lt;span class="w"&gt;
+
+&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Tk&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ttk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Style&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;theme_use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;clam&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;hex_code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RGB_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;askcolor&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hex_code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RGB_code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mainloop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;askcolor() returns a tuple with both the RGB and hex codes selected by
+the user. Above, we are unpacking that tuple into the hex_code and
+RGB_code variables.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach #3: Use the Python eyedropper package to grab the colors.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I then found &lt;a class="reference external" href="https://github.com/umluizlima/eyedropper"&gt;eyedropper&lt;/a&gt;
+for Windows, which has a minimalist repository and offers a simple
+approach to desktop eyedropper functionality. Install eyedropper via
+pip:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+python -m pip install eyedropper
+&lt;/pre&gt;
+&lt;img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" style="width: 239px; height: 140px;" /&gt;
+&lt;p&gt;Hover your mouse over the object you want to grab the color from (in my
+case, the Atom text editor background). Alternatively, I was able to run
+eyedropper from the command line by entering:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+py -m eyedropper
+&lt;/pre&gt;
+&lt;img alt="pasted_hex2" class="alignnone size-full wp-image-1461" src="https://pythonmarketer.files.wordpress.com/2018/09/pasted_hex2.png" style="width: 766px; height: 74px;" /&gt;
+&lt;img alt="CCvOYFiUgAA4DJd" class="alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/ccvoyfiugaa4djd.jpg" style="width: 151px; height: 116px;" /&gt;
+&lt;p&gt;&lt;strong&gt;Mission possible.&lt;/strong&gt; Then I hit ctrl+v in a text file and there was the
+hex code for my Atom background. Some of the colors that eyedropper
+grabbed were nearly identical to those in the Atom text editor dark
+theme. Others were not quite the same. I made slight eyeball adjustments
+to the colors for some of the fonts.&lt;/p&gt;
+&lt;div class="section" id="using-python-to-convert-hex-to-rgb-1"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;Using Python to convert hex to RGB&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I
+found &lt;a class="reference external" href="https://www.webpagefx.com/web-design/hex-to-rgb/"&gt;this website&lt;/a&gt; practical and
+quick. Alternatively, you could &lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;convert a hex code to RGB with python&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="n"&gt;hex_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Enter hex: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lstrip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;RGB_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hex_code&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;RGB =&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RGB_code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="rgb_to_hex" class="alignnone size-full wp-image-2308" src="http://pythonmarketer.files.wordpress.com/2018/09/e084c-rgb_to_hex-e1581286493172.jpg" style="width: 805px; height: 83px;" /&gt;
+&lt;p&gt;Bonus: use pd.read_clipboard()
+&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html"&gt;docs&lt;/a&gt;
+to get the hex codes.&lt;/p&gt;
+&lt;p&gt;Once eyedropper sends the color values to your system's clipboard, there
+are multiple ways to access them. This alternative uses pandas.&lt;/p&gt;
+&lt;p&gt;Installing pandas and &lt;a class="reference external" href="https://github.com/asweigart/pyperclip"&gt;pyperclip&lt;/a&gt; with pip:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+python -m pip install pandas
+python -m pip install pyperclip
+&lt;/pre&gt;
+&lt;p&gt;On Linux, install &lt;a class="reference external" href="https://github.com/astrand/xclip"&gt;xclip&lt;/a&gt; or &lt;a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel"&gt;xsel&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+sudo apt-get install xclip
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;To get the clipboard contents with pandas:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;&lt;span class="w"&gt;
+
+&lt;/span&gt;&lt;span class="n"&gt;hex_code_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_clipboard&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hex_code_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Supplementary Notes and Links&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Here's a Python &lt;a class="reference external" href="https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py"&gt;eyedropper script&lt;/a&gt;
+featuring the &lt;a class="reference external" href="https://pillow.readthedocs.io/en/5.2.x/index.html"&gt;pillow&lt;/a&gt; and &lt;a class="reference external" href="https://github.com/python-xlib/python-xlib"&gt;xlib&lt;/a&gt; libraries that I was
+unable to get working.&lt;/li&gt;
+&lt;li&gt;I didn't try &lt;a class="reference external" href="http://colorcop.net/"&gt;ColorCop for Windows&lt;/a&gt;, but it
+may be a non-Python alternative.&lt;/li&gt;
+&lt;li&gt;Did you know? Python 2 had a &lt;a class="reference external" href="https://docs.python.org/2/library/colorpicker.html"&gt;ColorPicker&lt;/a&gt; module that
+is not in Python 3.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://dev.to/espoir/how-pandas-readclipboard-method-works-ake"&gt;How pandas read_clipboard method works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/io/clipboards.py#L10-L76"&gt;pandas to_clipboard and read_clipboard source code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;This &lt;a class="reference external" href="https://github.com/Toinane/colorpicker"&gt;desktop tool&lt;/a&gt; has
+great U/X and an eyedropper feature. It runs on Electron, a
+Javascript based framework. Coincidentally, Electron was used to
+build Atom.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</content><category term="coding, Colors, pandas, programming"></category><category term="atom"></category><category term="color"></category><category term="eyedropper"></category><category term="gui"></category><category term="python"></category></entry><entry><title>Gooey GUI for Python Scripts</title><link href="https://lofipython.com/gooey-gui-for-python-scripts.html" rel="alternate"></link><published>2018-08-25T16:32:00-05:00</published><updated>2018-08-25T16:32:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-08-25:/gooey-gui-for-python-scripts.html</id><summary type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
 &lt;p&gt;There are several GUI libraries in Python. A few I have heard of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
 &lt;p&gt;There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, &lt;a class="reference external" href="https://github.com/hoffstadt/DearPyGui"&gt;DearPyGui&lt;/a&gt; and PySimpleGUI. I &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/"&gt;explored Tkinter&lt;/a&gt; back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.&lt;/p&gt;
 &lt;p&gt;The &lt;a class="reference external" href="https://github.com/chriskiehl/Gooey"&gt;Gooey Github page&lt;/a&gt; was most useful to me and helped me to do what I needed. The script posted &lt;a class="reference external" href="http://pbpython.com/pandas-gui.html"&gt;in this blog&lt;/a&gt; helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:&lt;/p&gt;

@@ -50,15 +50,17 @@
 <p>If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.</p>
 <div class="section" id="the-first-5-scripts-use-modules-that-ship-with-python">
 <h2>The first 5 scripts use modules that ship with Python.</h2>
-<p><strong>1 Uppercase all of the file names in the current working directory.</strong></p>
+<p><strong>(1) Uppercase all of the file names in the current working directory.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 </pre></div></td></tr></table></div>
 <p>os module <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rename">documentation</a></p>
-<p><strong>2 Get all filenames in the current directory and write to a text file.</strong></p>
+<p><strong>(2) Get all filenames in the current directory and write to a text file.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -69,7 +71,7 @@
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">folder_contents</span><span class="p">:</span>
         <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;f</span><span class="si">{item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>3 Check what day of the week is today.</strong></p>
+<p><strong>(3) Check what day of the week is today.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -85,7 +87,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is not Friday.&quot;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p><a class="reference external" href="https://docs.python.org/3/library/calendar.html">calendar documentation</a></p>
-<p><strong>4 Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
+<p><strong>(4) Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -107,7 +109,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">newest_file</span><span class="p">,</span> <span class="n">second_newest_file</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p>glob module documentation: <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.iglob">https://docs.python.org/3/library/glob.html#glob.iglob</a></p>
-<p><strong>5  Auto-Hamilton Ticket Lottery</strong></p>
+<p><strong>(5)  Auto-Hamilton Ticket Lottery</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
 <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;https://www.luckyseat.com/hamilton-chi/&#39;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -119,7 +121,7 @@
 <pre class="literal-block">
 python -m pip install pandas
 </pre>
-<p><strong>1 Split a csv file into smaller excel files.</strong></p>
+<p><strong>(6) Split a csv file into smaller excel files.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -135,14 +137,14 @@ python -m pip install pandas
     <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p>pandas beginner tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">https://www.youtube.com/watch?v=5JnMutdy6Fw</a></p>
-<p><strong>2 Convert a .xlsx to .csv</strong></p>
+<p><strong>(7) Convert a .xlsx to .csv</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>3 Convert a .xlsx to .html</strong></p>
+<p><strong>(8) Convert a .xlsx to .html</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>

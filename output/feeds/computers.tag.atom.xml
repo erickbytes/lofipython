@@ -129,7 +129,7 @@ b43ssb0:0: firmware: failed to load b43/ucode5.fw (-2)
 b43ssb0:0: firmware: failed to load b43-open/ucode5.fw (-2)
 b43-phy0 ERROR: You must go to https://wireless.wiki.kernel.org/en/users/drivers/b43#devicefirmware and download the correct firmware for this driver version.
 &lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to&lt;/em&gt;&lt;a class="reference external" href="http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/"&gt;this page&lt;/a&gt;&lt;em&gt;, which is linked to from the link in the error message, and try the solution there first.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to *`this page &amp;lt;http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/&amp;gt;`__*, which is linked to from the link in the error message, and try the solution there first.&lt;/em&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="post-installation-setup"&gt;
 &lt;h2&gt;Post Installation Setup&lt;/h2&gt;
@@ -196,8 +196,10 @@ sudo rfkill list all
 &lt;pre class="literal-block"&gt;
 lspci -nn | grep -e 0200 -e 0280
 &lt;/pre&gt;
-&lt;p&gt;03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
-0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
+0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Find your system architecture. This determines which firmware you should download in the next step.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 sudo dpkg --print-architecture
@@ -227,15 +229,17 @@ sudo modprobe b43
 &lt;p&gt;If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.&lt;/p&gt;
 &lt;div class="section" id="the-first-5-scripts-use-modules-that-ship-with-python"&gt;
 &lt;h2&gt;The first 5 scripts use modules that ship with Python.&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;1 Uppercase all of the file names in the current working directory.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(1) Uppercase all of the file names in the current working directory.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
-&lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="n"&gt;filenames&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getcwd&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;filenames&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;filenames&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;os module &lt;a class="reference external" href="https://docs.python.org/3/library/os.html#os.rename"&gt;documentation&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2 Get all filenames in the current directory and write to a text file.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(2) Get all filenames in the current directory and write to a text file.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
@@ -246,7 +250,7 @@ sudo modprobe b43
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;folder_contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;fhand&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;f&lt;/span&gt;&lt;span class="si"&gt;{item}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;3 Check what day of the week is today.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(3) Check what day of the week is today.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
@@ -262,7 +266,7 @@ sudo modprobe b43
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Today is not Friday.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/calendar.html"&gt;calendar documentation&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;4 Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(4) Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -284,7 +288,7 @@ sudo modprobe b43
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;newest_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;second_newest_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;glob module documentation: &lt;a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.iglob"&gt;https://docs.python.org/3/library/glob.html#glob.iglob&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;5  Auto-Hamilton Ticket Lottery&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(5)  Auto-Hamilton Ticket Lottery&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;webbrowser&lt;/span&gt;
 &lt;span class="n"&gt;webbrowser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://www.luckyseat.com/hamilton-chi/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -296,7 +300,7 @@ sudo modprobe b43
 &lt;pre class="literal-block"&gt;
 python -m pip install pandas
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;1 Split a csv file into smaller excel files.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(6) Split a csv file into smaller excel files.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
@@ -312,14 +316,14 @@ python -m pip install pandas
     &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;pandas beginner tutorial: &lt;a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;https://www.youtube.com/watch?v=5JnMutdy6Fw&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2 Convert a .xlsx to .csv&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(7) Convert a .xlsx to .csv&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_excel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;input.xlsx&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;output.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;3 Convert a .xlsx to .html&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(8) Convert a .xlsx to .html&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
@@ -383,7 +387,7 @@ sudo apt-get install wkhtmltopdf
 python -m pip install pyinstaller
 &lt;/pre&gt;
 &lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;em&gt;At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5.&lt;/em&gt;&lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;Go here&lt;/a&gt;&lt;em&gt;for a refresher on setting up pip if you need it.&lt;/em&gt;&lt;/div&gt;
+&lt;div class="line"&gt;At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5. &lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;Go here&lt;/a&gt; for a refresher on setting up pip if you need it.&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Using the build.spec file and starting Pyinstaller:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Most examples I found used a build.spec file. Think of this as the blueprint by which your app will be constructed. It provides the compiling settings, images and any other data necessary for assembling your app. The format for passing the .spec file to Pyinstaller in pseudo-code:&lt;/p&gt;

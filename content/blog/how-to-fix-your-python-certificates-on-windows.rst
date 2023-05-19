@@ -13,7 +13,7 @@ I initially installed my Python version from the `Windows Store <https://www.mic
 
    requests.exceptions.SSLError: HTTPSConnectionPool(host='api.example.com', port=443): Max retries exceeded with url: /oauth/token?grant_type=client_credentials (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)')))
 
-Apparently my Python certificates were not valid or up to date on my computer. These are ".PEM" or ".cert" files that certify your connection for the `SSL protocol <https://www.ssl.com/faqs/faq-what-is-ssl/>`__. I googled this error until I found the `python-certifi-win32 <https://pypi.org/project/python-certifi-win32/>`__ library. I only needed to `pip install <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__ this library and it fixed the problem:
+Apparently my Python certificates were not valid or up to date on my computer. These are ".PEM" or ".cert" files that certify your connection for the `SSL protocol <https://www.ssl.com/faqs/faq-what-is-ssl/>`__. I googled this error until I found the `python-certifi-win32 <https://pypi.org/project/python-certifi-win32/>`__ library. I only needed to `pip install <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__ this library and it fixed the problem:
 
 ::
 

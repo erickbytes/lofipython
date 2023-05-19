@@ -9,7 +9,7 @@ Retrieve Random Numbers Via Python's random Module + range() Built-in
 
 There are usually many ways to do most things in Python. I've retrieved random numbers a few different ways at various times within the random module, often after reading a Stack Overflow post. This time in my most recent search for random digits, I discovered in the Python docs the `random.sample() <https://docs.python.org/3/library/random.html#random.sample>`__ function with its k parameter:
 
-   Return a *k* length list of unique elements chosen from the population sequence or set. Used for random sampling without replacement.
+   Return a *k* length list of unique elements chosen from the population sequence or set. Used for random sampling without replacement.
 
    https://docs.python.org/3/library/random.html#random.sample
 
@@ -29,10 +29,11 @@ When combined with the `range() built-in <https://docs.python.org/3.3/library/st
    :alt: Python Random Number Code
    :figclass: wp-image-7196
 
+..
    To choose a sample from a range of integers, use a `range() <https://docs.python.org/3/library/stdtypes.html#range>`__ object as an argument. 
    
-   This is especially fast and space efficient for sampling from a large population: 
-   
-   ``sample(range(10000000), k=60)``.
+   This is especially fast and space efficient for sampling from a large population:
+   ::
+      sample(range(10000000), k=60)
 
    https://docs.python.org/3/library/random.html#random.sample

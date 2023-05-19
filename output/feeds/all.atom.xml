@@ -507,7 +507,7 @@ pelican content
 &lt;/div&gt;
 </content><category term="coding, python, writing"></category><category term="markdown library"></category><category term="pelican blog"></category><category term="python fix"></category></entry><entry><title>Retrieve Random Numbers Via Python's random Module + range() Built-in</title><link href="https://lofipython.com/fetch-a-random-number-or-random-n-length-list-of-numbers-in-python-with-the-random-module.html" rel="alternate"></link><published>2022-09-15T23:09:00-05:00</published><updated>2022-09-15T23:09:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-09-15:/fetch-a-random-number-or-random-n-length-list-of-numbers-in-python-with-the-random-module.html</id><summary type="html">&lt;p&gt;There are usually many ways to do most things in Python. I've retrieved random numbers a few different ways at various times within the random module, often after reading a Stack Overflow post. This time in my most recent search for random digits, I discovered in the Python docs the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;There are usually many ways to do most things in Python. I've retrieved random numbers a few different ways at various times within the random module, often after reading a Stack Overflow post. This time in my most recent search for random digits, I discovered in the Python docs the &lt;a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample"&gt;random.sample()&lt;/a&gt; function with its k parameter:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Return a&amp;nbsp;&lt;em&gt;k&lt;/em&gt;&amp;nbsp;length list of unique elements chosen from the population sequence or set. Used for random sampling without replacement.&lt;/p&gt;
+&lt;p&gt;Return a &lt;em&gt;k&lt;/em&gt; length list of unique elements chosen from the population sequence or set. Used for random sampling without replacement.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample"&gt;https://docs.python.org/3/library/random.html#random.sample&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;When combined with the &lt;a class="reference external" href="https://docs.python.org/3.3/library/stdtypes.html?highlight=range#range"&gt;range() built-in&lt;/a&gt;, it makes doing this easy. Being able to specify a length and return a list of random numbers is mighty convenient. This function seems a Pythonic way to randomize to me. Have a look!&lt;/p&gt;
@@ -527,13 +527,14 @@ pelican content
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;div class="wp-image-7196 figure"&gt;
 &lt;img alt="Python Random Number Code" src="https://pythonmarketer.files.wordpress.com/2022/09/image-2.png?w=552" /&gt;
-&lt;p class="caption"&gt;To choose a sample from a range of integers, use a&amp;nbsp;&lt;a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#range"&gt;range()&lt;/a&gt;&amp;nbsp;object as an argument.&lt;/p&gt;
-&lt;div class="legend"&gt;
-&lt;p&gt;This is especially fast and space efficient for sampling from a large population:&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;sample(range(10000000),&amp;nbsp;k=60)&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample"&gt;https://docs.python.org/3/library/random.html#random.sample&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;!-- To choose a sample from a range of integers, use a `range() &lt;https://docs.python.org/3/library/stdtypes.html#range&gt;`__ object as an argument.
+
+This is especially fast and space efficient for sampling from a large population:
+::
+   sample(range(10000000), k=60)
+
+https://docs.python.org/3/library/random.html#random.sample --&gt;
 </content><category term="coding, programming, python"></category><category term="python random numbers list"></category><category term="random module"></category><category term="random numbers python"></category></entry><entry><title>Beyond the Standard Library, An External Python Modules Starter Pack</title><link href="https://lofipython.com/30-external-python-libraries-starter-pack.html" rel="alternate"></link><published>2022-09-07T23:46:00-05:00</published><updated>2022-09-07T23:46:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-09-07:/30-external-python-libraries-starter-pack.html</id><summary type="html">&lt;p&gt;Here is a list of external Python modules you can install with &lt;a class="reference external" href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;. These are not included with your Python version and need to be installed separately. In some cases, other options may be suitable. To keep the list shorter, I picked libraries that were chosen based on having at …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is a list of external Python modules you can install with &lt;a class="reference external" href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip&lt;/a&gt;. These are not included with your Python version and need to be installed separately. In some cases, other options may be suitable. To keep the list shorter, I picked libraries that were chosen based on having at least one of these qualities:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;most obvious library for its category&lt;/li&gt;
@@ -1329,7 +1330,7 @@ pandas source code: &lt;a class="reference external" href="https://github.com/pa
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exceptions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SSLError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;HTTPSConnectionPool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;api.example.com …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;I initially installed my Python version from the &lt;a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7"&gt;Windows Store&lt;/a&gt; and it worked fine for almost a year on my Windows 10 computer. Then I started getting this error message when trying to use the &lt;a class="reference external" href="https://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification"&gt;requests library&lt;/a&gt; on all HTTP requests:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exceptions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SSLError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;HTTPSConnectionPool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;api.example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;443&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;Max&lt;/span&gt; &lt;span class="n"&gt;retries&lt;/span&gt; &lt;span class="n"&gt;exceeded&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;oauth&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="err"&gt;?&lt;/span&gt;&lt;span class="n"&gt;grant_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;client_credentials&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Caused&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;SSLError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SSLCertVerificationError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;Apparently my Python certificates were not valid or up to date on my computer. These are &amp;quot;.PEM&amp;quot; or &amp;quot;.cert&amp;quot; files that certify your connection for the &lt;a class="reference external" href="https://www.ssl.com/faqs/faq-what-is-ssl/"&gt;SSL protocol&lt;/a&gt;. I googled this error until I found the &lt;a class="reference external" href="https://pypi.org/project/python-certifi-win32/"&gt;python-certifi-win32&lt;/a&gt; library. I only needed to &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip install&lt;/a&gt; this library and it fixed the problem:&lt;/p&gt;
+&lt;p&gt;Apparently my Python certificates were not valid or up to date on my computer. These are &amp;quot;.PEM&amp;quot; or &amp;quot;.cert&amp;quot; files that certify your connection for the &lt;a class="reference external" href="https://www.ssl.com/faqs/faq-what-is-ssl/"&gt;SSL protocol&lt;/a&gt;. I googled this error until I found the &lt;a class="reference external" href="https://pypi.org/project/python-certifi-win32/"&gt;python-certifi-win32&lt;/a&gt; library. I only needed to &lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;pip install&lt;/a&gt; this library and it fixed the problem:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 pip install python-certifi-win32
 &lt;/pre&gt;
@@ -1504,9 +1505,8 @@ pip install python-certifi-win32
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a class="reference external" href="#%20convert%20a%20list%20of%20strings%20to%20a%20pandas%20series%20of%20datetime%20objects"&gt;Go here&lt;/a&gt; if you're having pip installation problems.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Just the tip of the iceberg...&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The amazing part of Python is that its community has developed an astonishing plethora of external libraries which can be &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;installed by pip&lt;/a&gt;. Usually I'll learn how to use new libraries after googling to find a well-written README on Github or helpful documentation. The language comes with an impressive line-up of baked-in &lt;a class="reference external" href="https://docs.python.org/3/library/"&gt;tools and libraries&lt;/a&gt; way beyond what I've mentioned here. But I think this is a great start. Get to know these common Python language features and you'll be surprised how much you can do!&lt;/p&gt;
+&lt;p&gt;The amazing part of Python is that its community has developed an astonishing plethora of external libraries which can be &lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;installed by pip&lt;/a&gt;. Usually I'll learn how to use new libraries after googling to find a well-written README on Github or helpful documentation. The language comes with an impressive line-up of baked-in &lt;a class="reference external" href="https://docs.python.org/3/library/"&gt;tools and libraries&lt;/a&gt; way beyond what I've mentioned here. But I think this is a great start. Get to know these common Python language features and you'll be surprised how much you can do!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Additional Comprehensive Python Learning Resources&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://nedbatchelder.com/blog/202003/how_long_did_it_take_you_to_learn_python.html"&gt;How long did it take you to learn Python?&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://github.com/dabeaz-course/practical-python"&gt;Practical Python Programming&lt;/a&gt; (free course)&lt;/p&gt;
@@ -1574,7 +1574,7 @@ category:promotions -is:starred after:2019/12/31 before:2021/1/1
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;side note on the pyfolio library&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I first considered using pyfolio to pull stock data. It is not &amp;quot;out of the box&amp;quot; ready per se to deliver the results pictured in their &lt;a class="reference external" href="https://lofipython.com/pick-stocks-like-a-pro-with-pyfolio/"&gt;&amp;quot;single stock&amp;quot; example&lt;/a&gt; documentation. You'd need to find another way to fetch your market data or somehow patch the Yahoo Finance API within pyfolio. I preferred &lt;a class="reference external" href="http://pmorissette.github.io/ffn/quick.html"&gt;ffn&lt;/a&gt;, mostly because it worked right away after pip installing it and running the above code.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2023 Update:&lt;/strong&gt; ffn and pyfolio depend on the Yahoo Finance API, which changes sometimes break these libraries. Troubleshooting traceback errors may be required.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2023 Update:&lt;/strong&gt; ffn and pyfolio both depend on the Yahoo Finance API, which tends to change and break these libraries. Troubleshooting traceback errors may be required.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Try these other Python financial analysis libraries:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://financetrain.com/best-python-librariespackages-finance-financial-data-scientists/"&gt;Best Python Libraries/Packages for Finance and Financial Data Scientists&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/statistics.html"&gt;python's built-in statistics module&lt;/a&gt; - &lt;a class="reference external" href="https://github.com/mementum/backtrader"&gt;Backtrader&lt;/a&gt;&lt;/p&gt;
@@ -1582,7 +1582,6 @@ category:promotions -is:starred after:2019/12/31 before:2021/1/1
 &lt;p&gt;&lt;a class="reference external" href="https://pydata.github.io/pandas-datareader/index.html"&gt;pandas-datareader&lt;/a&gt; - &lt;a class="reference external" href="https://github.com/matplotlib/mplfinance#usage"&gt;mplfinance&lt;/a&gt; - &lt;a class="reference external" href="https://github.com/robertmartin8/PyPortfolioOpt"&gt;PyPortfolioOpt&lt;/a&gt; - &lt;a class="reference external" href="https://github.com/mrjbq7/ta-lib"&gt;TA-Lib Python Port&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://github.com/erickbytes/finsou.py"&gt;finsou.py&lt;/a&gt; (CLI written by me)&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://github.com/wilsonfreitas/awesome-quant"&gt;awesome-quant&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://github.com/bpsmith/tia#overview"&gt;Tia&lt;/a&gt;&lt;/p&gt;
 &lt;div class="wp-image-5037 figure"&gt;
 &lt;img alt="Image credit, ActiveState: https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/" src="https://pythonmarketer.files.wordpress.com/2021/01/top10financepackages-1200x675-1.png?w=1024" /&gt;
 &lt;p class="caption"&gt;Image credit, ActiveState: &lt;a class="reference external" href="https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/"&gt;https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/&lt;/a&gt;&lt;/p&gt;
@@ -2692,13 +2691,13 @@ python -m pip3.8 install --user pandas
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;render_homepage&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Note: you should use Flask&amp;#39;s render_template to render HTML files.&lt;/span&gt;
-&lt;span class="sd"&gt;    But here&amp;#39;s a quick f-string HTML page that works:&lt;/span&gt;
+&lt;span class="sd"&gt;    However, for example you can make a quick f-string HTML page that works in this code.&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;html_page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;link rel=&amp;#39;stylesheet&amp;#39; href=&amp;quot;/static/styles/some_file.css&amp;quot;&amp;gt;&amp;lt;link rel=&amp;quot;shortcut icon&amp;quot; type=&amp;quot;image/x-icon&amp;quot; href=&amp;quot;static/favicon.ico&amp;quot;&amp;gt;&lt;/span&gt;
-&lt;span class="s2"&gt;                    &amp;lt;Title&amp;gt;Support BLM&amp;lt;/Title&amp;gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-&lt;span class="s2"&gt;                    &amp;lt;body&amp;gt;&amp;lt;h2&amp;gt;Black Lives Matter&amp;lt;/h2&amp;gt;&lt;/span&gt;
-&lt;span class="s2"&gt;                    &amp;lt;p&amp;gt;No to Systemic Racism!&amp;lt;/p&amp;gt;&amp;lt;br&amp;gt;&lt;/span&gt;
-&lt;span class="s2"&gt;                    &amp;lt;h6&amp;gt;&amp;lt;b&amp;gt;Support BLM:&amp;lt;/b&amp;gt;&amp;lt;/h6&amp;gt;&amp;lt;br&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;                    &amp;lt;Title&amp;gt;Dispensary Alerts&amp;lt;/Title&amp;gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;                    &amp;lt;body&amp;gt;&amp;lt;h2&amp;gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;                    &amp;lt;p&amp;gt;Get alerts for your dope.&amp;lt;/p&amp;gt;&amp;lt;br&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;                    &amp;lt;h6&amp;gt;&amp;lt;b&amp;gt;Sign Up&amp;lt;/b&amp;gt;&amp;lt;/h6&amp;gt;&amp;lt;br&amp;gt;&lt;/span&gt;
 &lt;span class="s2"&gt;                    &amp;lt;div class=&amp;quot;form&amp;quot;&amp;gt;&lt;/span&gt;
 &lt;span class="s2"&gt;                    &amp;lt;form action=&amp;quot;/add_signup_to_db&amp;quot; method=&amp;quot;post&amp;quot; style=&amp;quot;width:420px;text-align:center;display:block;&amp;quot; &amp;gt;&lt;/span&gt;
 &lt;span class="s2"&gt;                    &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;Signup Form&amp;quot;&amp;gt;&lt;/span&gt;
@@ -2757,7 +2756,9 @@ python -m pip3.8 install --user pandas
 Below: making &lt;a class="reference external" href="https://weedfiend.pythonanywhere.com/"&gt;my website&lt;/a&gt; look less like a &amp;quot;my first HTML&amp;quot; website, experimenting with my app's messagename and adding a sign-up form connected to the database.&lt;/blockquote&gt;
 &lt;img alt="Screenshot_20200606-132252 (1)" class="alignnone size-full wp-image-3524" src="https://pythonmarketer.files.wordpress.com/2020/05/screenshot_20200606-132252-1-1.png" style="width: 344px; height: 566px;" /&gt;
 &lt;p&gt;&lt;strong&gt;Note: if you see this error when making a request in pythonanywhere:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;OSError: Tunnel connection failed: 403 Forbidden&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+OSError: Tunnel connection failed: 403 Forbidden
+&lt;/pre&gt;
 &lt;p&gt;It's likely because you are &amp;quot;whitelisted&amp;quot; on the free plan. Upgrading to the $5/month plan will fix it!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Scoping The Full Stack&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I'm really enjoying this web development stack. Here are all of the tools and library choices for this website:&lt;/p&gt;
@@ -2786,7 +2787,7 @@ Below: making &lt;a class="reference external" href="https://weedfiend.pythonany
 &lt;p&gt;Of these two diverse Python stacks, I favor MySQL and Flask. But I learned a lot from watching web2py's tutorial videos and it's less intimidating for beginners. And I barely scratched the surface of web2py's &amp;quot;pure Python&amp;quot; &lt;a class="reference external" href="https://github.com/web2py/pydal"&gt;pyDAL (Database Abstraction Layer)&lt;/a&gt;, which seems pretty dope.&lt;/p&gt;
 &lt;p&gt;web2py's &lt;a class="reference external" href="https://www.youtube.com/watch?v=hcYUgNWvPtw"&gt;creator&lt;/a&gt; has a new framework in progress called &lt;a class="reference external" href="https://github.com/web2py/py4web"&gt;py4web&lt;/a&gt;. It has the same &lt;a class="reference external" href="http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer"&gt;DAL&lt;/a&gt; and inherits many other web2py qualities. Definitely looking forward to exploring the DAL on my first py4web website. I'll likely use it to connect to PostgreSQL or SQLite. Maybe I'll &lt;a class="reference external" href="https://github.com/web2py/pydal"&gt;install pyDAL with pip&lt;/a&gt; in the meantime.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Final Thoughts&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Both of my websites are hosted with pythonanywhere, which gives you a text editor and&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"&gt;bash&lt;/a&gt;terminal to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience. 👍👍&lt;/p&gt;
+&lt;p&gt;Both of my websites are hosted with pythonanywhere, which gives you a text editor and &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"&gt;bash&lt;/a&gt; terminal to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience. 👍👍&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="data, Databases, ODBC, pandas, programming, SQL, web development, web2py"></category><category term="flask"></category><category term="mysql"></category><category term="py4web"></category><category term="pyDAL"></category><category term="python"></category></entry><entry><title>A Guide To Making HTTP Requests To APIs With JSON &amp; Python</title><link href="https://lofipython.com/how-to-make-json-requests-with-python.html" rel="alternate"></link><published>2020-05-18T05:41:00-05:00</published><updated>2020-05-18T05:41:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-05-18:/how-to-make-json-requests-with-python.html</id><summary type="html">&lt;p&gt;This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Here's what is covered:&lt;/strong&gt;&lt;/p&gt;
@@ -2808,7 +2809,7 @@ Below: making &lt;a class="reference external" href="https://weedfiend.pythonany
 &lt;div class="section" id="api-http-lingo-you-should-know"&gt;
 &lt;h2&gt;API &amp;amp; HTTP Lingo You Should Know&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Hypertext Transfer Protocol (HTTP)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Per &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP"&gt;Mozilla&lt;/a&gt;,&amp;quot;Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical&amp;nbsp;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model"&gt;client-server model&lt;/a&gt;, with a client opening a connection to make a request, then waiting until it receives a response.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Per &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP"&gt;Mozilla&lt;/a&gt;, &amp;quot;Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical&amp;nbsp;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model"&gt;client-server model&lt;/a&gt;, with a client opening a connection to make a request, then waiting until it receives a response.&amp;quot;&lt;/p&gt;
 &lt;blockquote&gt;
 HTTP: you = client. API = way to communicate with server&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Application Programming Interface (API)&lt;/strong&gt;&lt;/p&gt;
@@ -2852,7 +2853,7 @@ If you need to parse an XML response, check out Python's stock &lt;a class="refe
 &lt;p&gt;&lt;strong&gt;See also: Web Server Gateway Interface (WSGI, pronounced &amp;quot;Wis-Ghee&amp;quot;)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&amp;quot;As described in &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-3333/"&gt;PEP3333&lt;/a&gt;, the Python Web Server Gateway Interface (WSGI) is a way to make sure that web servers and python web applications can talk to each other.&amp;quot;&amp;nbsp; &lt;a class="reference external" href="https://docs.gunicorn.org/en/latest/install.html"&gt;Gunicorn&lt;/a&gt; is one of &lt;a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#uwsgi"&gt;a few Python WSGI clients&lt;/a&gt;. &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2016/04/30/useful-links-for-web2py-beginners/"&gt;web2py&lt;/a&gt; is another WSGI client and web framework I have used.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt; &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Nginx"&gt;Nginx&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete"&gt;Create, read, update and delete (CRUD)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;See also: &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete"&gt;Create, read, update and delete (CRUD)&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="creating-the-request-json"&gt;
 &lt;h2&gt;Creating the Request JSON&lt;/h2&gt;
@@ -3129,9 +3130,11 @@ find /C &amp;quot;FAIL&amp;quot; &amp;lt; &amp;quot;Test_Results.txt&amp;quot;
 # returns: 0 if no match or # of lines found, e.g. 2,50,100
 &lt;/pre&gt;
 &lt;p&gt;I wrote a post on &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/"&gt;findstr&lt;/a&gt;, which offers similar functionality.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;clip:&lt;/strong&gt; pipe commands &lt;a class="reference external" href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx"&gt;into the clipboard&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;If:&lt;/strong&gt; &lt;a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)"&gt;If&lt;/a&gt; Statements based on if files exist.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;List ip address-related info:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;clip:&lt;/strong&gt; pipe commands &lt;a class="reference external" href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx"&gt;into the clipboard&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If:&lt;/strong&gt; &lt;a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)"&gt;If&lt;/a&gt; Statements based on if files exist.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;List ip address-related info:&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre class="literal-block"&gt;
 ipconfig
 &lt;/pre&gt;
@@ -3185,7 +3188,7 @@ sfc /VERIFYONLY
 &lt;pre class="literal-block"&gt;
 ping 01.10.10.01
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Log into your Remote Desktop with&lt;/strong&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc"&gt;mstsc&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Log into your Remote Desktop with &lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc"&gt;mstsc&lt;/a&gt;:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.&lt;/li&gt;
 &lt;li&gt;You may need to &lt;a class="reference external" href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on"&gt;adjust your credentials on your local machine.&lt;/a&gt;&lt;/li&gt;
@@ -3277,7 +3280,7 @@ python -m pip install pywin32
 &lt;li&gt;Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.&lt;/li&gt;
 &lt;li&gt;Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a &lt;a class="reference external" href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10"&gt;Windows batch file&lt;/a&gt; to instantly activate my Python &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/"&gt;virtual environment&lt;/a&gt;. It took me a few years of tediously pasting the &lt;tt class="docutils literal"&gt;cd&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;activate&lt;/tt&gt; commands into command prompt every day to realize. Now it's a snap.&lt;/li&gt;
 &lt;li&gt;Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...&lt;/li&gt;
-&lt;li&gt;Read the documentation! An updated or more elegant solution might be there. I recently found &lt;tt class="docutils literal"&gt;os.makedirs(path, exist_ok=True)&lt;/tt&gt; in the &lt;a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs"&gt;os docs&lt;/a&gt;. I didn't know about the &lt;tt class="docutils literal"&gt;exist_ok&lt;/tt&gt; argument. I was creating folders with a more complicated alternative from &lt;a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory"&gt;Stack Overflow&lt;/a&gt; for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state &lt;tt class="docutils literal"&gt;`getpass.getuser()&lt;/tt&gt; &amp;lt;&lt;a class="reference external" href="https://docs.python.org/3.8/library/getpass.html"&gt;https://docs.python.org/3.8/library/getpass.html&lt;/a&gt;&amp;gt;`__ is preferred over &lt;tt class="docutils literal"&gt;os.getlogin()&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Read the documentation! An updated or more elegant solution might be there. I recently found &lt;tt class="docutils literal"&gt;os.makedirs(path, exist_ok=True)&lt;/tt&gt; in the &lt;a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs"&gt;os docs&lt;/a&gt;. I didn't know about the &lt;tt class="docutils literal"&gt;exist_ok&lt;/tt&gt; argument. I was creating folders with a more complicated alternative from &lt;a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory"&gt;Stack Overflow&lt;/a&gt; for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state &lt;a class="reference external" href="https://docs.python.org/3.8/library/getpass.html"&gt;getpass.getuser()&lt;/a&gt; is preferred over os.getlogin().&lt;/li&gt;
 &lt;li&gt;Write documentation explaining how to use your projects. Even if you can only muster a quick &lt;a class="reference external" href="https://en.wikipedia.org/wiki/README"&gt;README&lt;/a&gt; text file, that's better than nothing. Within your code, &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0257/"&gt;docstrings&lt;/a&gt; are a nice addition. I have yet to use &lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/"&gt;Sphinx&lt;/a&gt;, but it is a popular choice for generating documentation.&lt;/li&gt;
 &lt;li&gt;Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...&lt;/li&gt;
 &lt;li&gt;Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.&lt;/li&gt;
@@ -4112,7 +4115,7 @@ b43ssb0:0: firmware: failed to load b43/ucode5.fw (-2)
 b43ssb0:0: firmware: failed to load b43-open/ucode5.fw (-2)
 b43-phy0 ERROR: You must go to https://wireless.wiki.kernel.org/en/users/drivers/b43#devicefirmware and download the correct firmware for this driver version.
 &lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to&lt;/em&gt;&lt;a class="reference external" href="http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/"&gt;this page&lt;/a&gt;&lt;em&gt;, which is linked to from the link in the error message, and try the solution there first.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to *`this page &amp;lt;http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/&amp;gt;`__*, which is linked to from the link in the error message, and try the solution there first.&lt;/em&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="post-installation-setup"&gt;
 &lt;h2&gt;Post Installation Setup&lt;/h2&gt;
@@ -4179,8 +4182,10 @@ sudo rfkill list all
 &lt;pre class="literal-block"&gt;
 lspci -nn | grep -e 0200 -e 0280
 &lt;/pre&gt;
-&lt;p&gt;03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
-0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
+0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)
+&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Find your system architecture. This determines which firmware you should download in the next step.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 sudo dpkg --print-architecture
@@ -4210,15 +4215,17 @@ sudo modprobe b43
 &lt;p&gt;If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.&lt;/p&gt;
 &lt;div class="section" id="the-first-5-scripts-use-modules-that-ship-with-python"&gt;
 &lt;h2&gt;The first 5 scripts use modules that ship with Python.&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;1 Uppercase all of the file names in the current working directory.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(1) Uppercase all of the file names in the current working directory.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
-&lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="n"&gt;filenames&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getcwd&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;filenames&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;filenames&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;os module &lt;a class="reference external" href="https://docs.python.org/3/library/os.html#os.rename"&gt;documentation&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2 Get all filenames in the current directory and write to a text file.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(2) Get all filenames in the current directory and write to a text file.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
@@ -4229,7 +4236,7 @@ sudo modprobe b43
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;folder_contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;fhand&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;f&lt;/span&gt;&lt;span class="si"&gt;{item}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;3 Check what day of the week is today.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(3) Check what day of the week is today.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
@@ -4245,7 +4252,7 @@ sudo modprobe b43
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Today is not Friday.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/calendar.html"&gt;calendar documentation&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;4 Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(4) Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -4267,7 +4274,7 @@ sudo modprobe b43
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;newest_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;second_newest_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;glob module documentation: &lt;a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.iglob"&gt;https://docs.python.org/3/library/glob.html#glob.iglob&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;5  Auto-Hamilton Ticket Lottery&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(5)  Auto-Hamilton Ticket Lottery&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;webbrowser&lt;/span&gt;
 &lt;span class="n"&gt;webbrowser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://www.luckyseat.com/hamilton-chi/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -4279,7 +4286,7 @@ sudo modprobe b43
 &lt;pre class="literal-block"&gt;
 python -m pip install pandas
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;1 Split a csv file into smaller excel files.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(6) Split a csv file into smaller excel files.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
@@ -4295,14 +4302,14 @@ python -m pip install pandas
     &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;pandas beginner tutorial: &lt;a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;https://www.youtube.com/watch?v=5JnMutdy6Fw&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2 Convert a .xlsx to .csv&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(7) Convert a .xlsx to .csv&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_excel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;input.xlsx&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;output.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;3 Convert a .xlsx to .html&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(8) Convert a .xlsx to .html&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
@@ -4424,7 +4431,7 @@ C:\Users\your_username\Desktop\36env\Scripts\python.exe
 python -m pip install pyinstaller
 &lt;/pre&gt;
 &lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;em&gt;At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5.&lt;/em&gt;&lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;Go here&lt;/a&gt;&lt;em&gt;for a refresher on setting up pip if you need it.&lt;/em&gt;&lt;/div&gt;
+&lt;div class="line"&gt;At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5. &lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;Go here&lt;/a&gt; for a refresher on setting up pip if you need it.&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Using the build.spec file and starting Pyinstaller:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Most examples I found used a build.spec file. Think of this as the blueprint by which your app will be constructed. It provides the compiling settings, images and any other data necessary for assembling your app. The format for passing the .spec file to Pyinstaller in pseudo-code:&lt;/p&gt;
@@ -4566,7 +4573,137 @@ pip3 install --upgrade pyinstaller
           &lt;span class="n"&gt;console&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
           &lt;span class="n"&gt;icon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;program_icon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-</content><category term="coding, pandas, python, software"></category><category term="app development"></category><category term="computers"></category><category term="programming"></category><category term="Windows"></category></entry><entry><title>Gooey GUI for Python Scripts</title><link href="https://lofipython.com/gooey-gui-for-python-scripts.html" rel="alternate"></link><published>2018-08-25T16:32:00-05:00</published><updated>2018-08-25T16:32:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-08-25:/gooey-gui-for-python-scripts.html</id><summary type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
+</content><category term="coding, pandas, python, software"></category><category term="app development"></category><category term="computers"></category><category term="programming"></category><category term="Windows"></category></entry><entry><title>Making A Desktop Color Eyedropper in Python to Grab Color Values</title><link href="https://lofipython.com/making-a-python-eyedropper.html" rel="alternate"></link><published>2018-09-14T05:45:00-05:00</published><updated>2018-09-14T05:45:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-09-14:/making-a-python-eyedropper.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Goal:&lt;/strong&gt; recreate my resume in the dark Atom text editor theme
+(background and fonts). &lt;strong&gt;Sub-goal:&lt;/strong&gt; find a color eyedropper to grab
+the actual color values of the Atom layout.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach #1: find an Atom eyedropper package to grab the colors.&lt;/strong&gt; My
+first thought was to find the easiest solution, within …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Goal:&lt;/strong&gt; recreate my resume in the dark Atom text editor theme
+(background and fonts). &lt;strong&gt;Sub-goal:&lt;/strong&gt; find a color eyedropper to grab
+the actual color values of the Atom layout.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach #1: find an Atom eyedropper package to grab the colors.&lt;/strong&gt; My
+first thought was to find the easiest solution, within the packages of
+my Atom text editor. After searching Atom's packages, the two best
+potential solutions were &amp;quot;an-color-eyedropper&amp;quot; and &amp;quot;color picker&amp;quot; . The an-color-eyedropper
+description sounds perfect: &amp;quot;A simple &amp;quot;real&amp;quot; color picker. By &amp;quot;real&amp;quot; I
+mean it's able to pick colors anywhere on any screen.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;Color picker&lt;/a&gt;
+&lt;a class="reference external" href="https://atom.io/packages/an-color-picker"&gt;an color eyedropper&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Unfortunately it failed to install and displayed the error, &amp;quot;Unable to
+download 400 Bad Request Repository inaccessible&amp;quot;. It seems to rely on
+the &amp;quot;python&amp;quot; Atom package which is now deprecated. I was unable to find
+a repo anywhere by googling.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://atom.io/packages/color-picker"&gt;Color picker&lt;/a&gt; has
+easy-to-follow instructions and installed with no problem. It allows you
+to quickly select any color visually with sliders. Then the RGB or
+Hexadecimal values of your color are added as text in the editor in
+proper format. However, we are looking for a color grabber to pull
+colors from a screen object. This is more of a productivity enhancing
+and color exploration tool for programmers. On to Python options.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach #2: Use the python tkcolorpicker package to grab the
+colors.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The first thing I found on Google was &lt;a class="reference external" href="https://pypi.org/project/tkcolorpicker/"&gt;tkcolorpicker&lt;/a&gt;, a package that uses the
+&lt;a class="reference external" href="https://lofipython.com/2016/02/29/tkinter-and-python-libraries/"&gt;tkinter&lt;/a&gt;
+library. I couldn't tell exactly what it was, so let's find out. First,
+install via &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/"&gt;pip install&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+python -m pip install tkcolorpicker
+&lt;/pre&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Then run the below script. Cool gadget for sure, but also not quite
+what I was looking to use. It allows selection of a color with
+sliders or input values, similar to Atom's color picker, but for user
+input rather than color picking. Nice little tool. :D&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;img alt="color_picker_gui" class="wp-image-1462 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="width: 301px; height: 315px;" /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tkinter&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;tk&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tkinter.ttk&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;ttk&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tkcolorpicker&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;askcolor&lt;/span&gt;&lt;span class="w"&gt;
+
+&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Tk&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ttk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Style&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;theme_use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;clam&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;hex_code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RGB_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;askcolor&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hex_code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RGB_code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mainloop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;askcolor() returns a tuple with both the RGB and hex codes selected by
+the user. Above, we are unpacking that tuple into the hex_code and
+RGB_code variables.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach #3: Use the Python eyedropper package to grab the colors.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I then found &lt;a class="reference external" href="https://github.com/umluizlima/eyedropper"&gt;eyedropper&lt;/a&gt;
+for Windows, which has a minimalist repository and offers a simple
+approach to desktop eyedropper functionality. Install eyedropper via
+pip:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+python -m pip install eyedropper
+&lt;/pre&gt;
+&lt;img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" style="width: 239px; height: 140px;" /&gt;
+&lt;p&gt;Hover your mouse over the object you want to grab the color from (in my
+case, the Atom text editor background). Alternatively, I was able to run
+eyedropper from the command line by entering:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+py -m eyedropper
+&lt;/pre&gt;
+&lt;img alt="pasted_hex2" class="alignnone size-full wp-image-1461" src="https://pythonmarketer.files.wordpress.com/2018/09/pasted_hex2.png" style="width: 766px; height: 74px;" /&gt;
+&lt;img alt="CCvOYFiUgAA4DJd" class="alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/ccvoyfiugaa4djd.jpg" style="width: 151px; height: 116px;" /&gt;
+&lt;p&gt;&lt;strong&gt;Mission possible.&lt;/strong&gt; Then I hit ctrl+v in a text file and there was the
+hex code for my Atom background. Some of the colors that eyedropper
+grabbed were nearly identical to those in the Atom text editor dark
+theme. Others were not quite the same. I made slight eyeball adjustments
+to the colors for some of the fonts.&lt;/p&gt;
+&lt;div class="section" id="using-python-to-convert-hex-to-rgb-1"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;Using Python to convert hex to RGB&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I
+found &lt;a class="reference external" href="https://www.webpagefx.com/web-design/hex-to-rgb/"&gt;this website&lt;/a&gt; practical and
+quick. Alternatively, you could &lt;a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python"&gt;convert a hex code to RGB with python&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="n"&gt;hex_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Enter hex: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lstrip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="n"&gt;RGB_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hex_code&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;RGB =&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RGB_code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="rgb_to_hex" class="alignnone size-full wp-image-2308" src="http://pythonmarketer.files.wordpress.com/2018/09/e084c-rgb_to_hex-e1581286493172.jpg" style="width: 805px; height: 83px;" /&gt;
+&lt;p&gt;Bonus: use pd.read_clipboard()
+&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html"&gt;docs&lt;/a&gt;
+to get the hex codes.&lt;/p&gt;
+&lt;p&gt;Once eyedropper sends the color values to your system's clipboard, there
+are multiple ways to access them. This alternative uses pandas.&lt;/p&gt;
+&lt;p&gt;Installing pandas and &lt;a class="reference external" href="https://github.com/asweigart/pyperclip"&gt;pyperclip&lt;/a&gt; with pip:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+python -m pip install pandas
+python -m pip install pyperclip
+&lt;/pre&gt;
+&lt;p&gt;On Linux, install &lt;a class="reference external" href="https://github.com/astrand/xclip"&gt;xclip&lt;/a&gt; or &lt;a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel"&gt;xsel&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+sudo apt-get install xclip
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;To get the clipboard contents with pandas:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;&lt;span class="w"&gt;
+
+&lt;/span&gt;&lt;span class="n"&gt;hex_code_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_clipboard&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hex_code_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Supplementary Notes and Links&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Here's a Python &lt;a class="reference external" href="https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py"&gt;eyedropper script&lt;/a&gt;
+featuring the &lt;a class="reference external" href="https://pillow.readthedocs.io/en/5.2.x/index.html"&gt;pillow&lt;/a&gt; and &lt;a class="reference external" href="https://github.com/python-xlib/python-xlib"&gt;xlib&lt;/a&gt; libraries that I was
+unable to get working.&lt;/li&gt;
+&lt;li&gt;I didn't try &lt;a class="reference external" href="http://colorcop.net/"&gt;ColorCop for Windows&lt;/a&gt;, but it
+may be a non-Python alternative.&lt;/li&gt;
+&lt;li&gt;Did you know? Python 2 had a &lt;a class="reference external" href="https://docs.python.org/2/library/colorpicker.html"&gt;ColorPicker&lt;/a&gt; module that
+is not in Python 3.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://dev.to/espoir/how-pandas-readclipboard-method-works-ake"&gt;How pandas read_clipboard method works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/io/clipboards.py#L10-L76"&gt;pandas to_clipboard and read_clipboard source code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;This &lt;a class="reference external" href="https://github.com/Toinane/colorpicker"&gt;desktop tool&lt;/a&gt; has
+great U/X and an eyedropper feature. It runs on Electron, a
+Javascript based framework. Coincidentally, Electron was used to
+build Atom.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</content><category term="coding, Colors, pandas, programming"></category><category term="atom"></category><category term="color"></category><category term="eyedropper"></category><category term="gui"></category><category term="python"></category></entry><entry><title>Gooey GUI for Python Scripts</title><link href="https://lofipython.com/gooey-gui-for-python-scripts.html" rel="alternate"></link><published>2018-08-25T16:32:00-05:00</published><updated>2018-08-25T16:32:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-08-25:/gooey-gui-for-python-scripts.html</id><summary type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
 &lt;p&gt;There are several GUI libraries in Python. A few I have heard of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
 &lt;p&gt;There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, &lt;a class="reference external" href="https://github.com/hoffstadt/DearPyGui"&gt;DearPyGui&lt;/a&gt; and PySimpleGUI. I &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/"&gt;explored Tkinter&lt;/a&gt; back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.&lt;/p&gt;
 &lt;p&gt;The &lt;a class="reference external" href="https://github.com/chriskiehl/Gooey"&gt;Gooey Github page&lt;/a&gt; was most useful to me and helped me to do what I needed. The script posted &lt;a class="reference external" href="http://pbpython.com/pandas-gui.html"&gt;in this blog&lt;/a&gt; helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:&lt;/p&gt;
@@ -5588,14 +5725,14 @@ An SSL certificate is required for the domain by PythonAnywhere to control the A
 &lt;p&gt;&lt;strong&gt;Edit:&lt;/strong&gt; Wanted to also mention this &lt;a class="reference external" href="http://mashable.com/2010/10/06/ide-guide/#nIvAMfNr_uqx"&gt;counterpoint against IDEs for beginners&lt;/a&gt;: &amp;quot;Although many IDEs can handle more than one language, few do it well. Plus, it's likely overkill if you are just getting started.&amp;quot;&lt;/p&gt;
 &lt;p&gt;&amp;quot;Finally, if you're just beginning Python, let me put in a plug for simple editors: it's best for you to learn the language and its libraries well writing it all yourself, and &lt;em&gt;then&lt;/em&gt; if you think an IDE would speed your work along, use it. You'll find that you learn the language faster and more completely if you take this route.&amp;quot; - &lt;a class="reference external" href="http://pythoncentral.io/text-editors-vs-ides-for-python-development-selecting-the-right-tool/"&gt;Python Central&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Ultimately your approach and tools used for any coding project depends on what you're trying to build, which language(s) used, and your own knowledge - and I'm still learning.&lt;/p&gt;
-</content><category term="books, productivity, programming"></category></entry><entry><title>Starting to Almost Kinda Think About Creating a Web App</title><link href="https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app.html" rel="alternate"></link><published>2016-03-03T03:56:00-06:00</published><updated>2016-03-03T03:56:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2016-03-03:/starting-to-almost-kinda-think-about-creating-a-web-app.html</id><summary type="html">&lt;p&gt;One of my first goals when I started learning Python was to build a web application. Once you've gotten a basic grip on Python, you might be ready to&amp;nbsp;learn about&amp;nbsp;web frameworks. A web framework consists of software designed to aid in web development. They make it easier to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of my first goals when I started learning Python was to build a web application. Once you've gotten a basic grip on Python, you might be ready to&amp;nbsp;learn about&amp;nbsp;web frameworks. A web framework consists of software designed to aid in web development. They make it easier to create a website or web app - if you know how to use them. Unfortunately, there is a learning curve to using the frameworks but thankfully there is plenty o' documentation to go around to help you.&lt;/p&gt;
-&lt;p&gt;Here are the two&amp;nbsp;&lt;a class="reference external" href="https://www.airpair.com/python/posts/django-flask-pyramid"&gt;Python Frameworks&lt;/a&gt; I've chosen to investigate (there are many out here on the webs):&lt;/p&gt;
+</content><category term="books, productivity, programming"></category></entry><entry><title>Starting to Almost Kinda Think About Creating a Web App</title><link href="https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app.html" rel="alternate"></link><published>2016-03-03T03:56:00-06:00</published><updated>2016-03-03T03:56:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2016-03-03:/starting-to-almost-kinda-think-about-creating-a-web-app.html</id><summary type="html">&lt;p&gt;One of my first goals when I started learning Python was to build a web application. Once you've gotten a basic grip on Python, you might be ready to learn about web frameworks. A web framework consists of software designed to aid in web development. They make it easier to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of my first goals when I started learning Python was to build a web application. Once you've gotten a basic grip on Python, you might be ready to learn about web frameworks. A web framework consists of software designed to aid in web development. They make it easier to create a website or web app - if you know how to use them. Unfortunately, there is a learning curve to using the frameworks but thankfully there is plenty o' documentation to go around to help you.&lt;/p&gt;
+&lt;p&gt;Here are the two &lt;a class="reference external" href="https://www.airpair.com/python/posts/django-flask-pyramid"&gt;Python Frameworks&lt;/a&gt; I've chosen to investigate:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Django - widely used, great community support, comes with just about everything built in. Can be used for smaller apps or multi-page/app websites.&lt;/li&gt;
 &lt;li&gt;Flask - a &amp;quot;microframework&amp;quot; used for smaller apps. Possibly more manageable for someone beginning a smaller project (me!)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;So as a beginnerish-level coder, I've chosen to start with Flask; I also found &lt;a class="reference external" href="http://opentechschool.github.io/python-flask/"&gt;this sweet guide&lt;/a&gt; that I think will help. Maybe someday I will graduate to Django, it sounds like a great framework.&amp;nbsp;I've also decided that first I need to &lt;a class="reference external" href="https://www.coursera.org/specializations/web-design"&gt;brush up on my HTML&lt;/a&gt; - And according to a lot of what I've read it doesn't hurt to know CSS/Javascript. So this whole &amp;quot;build a web app&amp;quot; idea will continue, albeit with some hurdles to clear first.&lt;/p&gt;
-&lt;p&gt;Edit: I ended up choosing web2py, which I hadn't even considered when I wrote this originally! Here's a &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2016/03/22/choosing-a-web-development-path/"&gt;post about why I chose it&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So as a beginnerish-level coder, I've chosen to start with Flask; I also found &lt;a class="reference external" href="http://opentechschool.github.io/python-flask/"&gt;this sweet guide&lt;/a&gt; that I think will help. Maybe someday I will graduate to Django, it sounds like a great framework. I've also decided that first I need to &lt;a class="reference external" href="https://www.coursera.org/specializations/web-design"&gt;brush up on my HTML&lt;/a&gt; - And according to a lot of what I've read it doesn't hurt to know CSS/Javascript. So this whole &amp;quot;build a web app&amp;quot; idea will continue, albeit with some hurdles to clear first.&lt;/p&gt;
+&lt;p&gt;Edit: I ended up choosing web2py, which I hadn't even considered when I wrote this originally! Here's a &lt;a class="reference external" href="https://lofipython.com/choosing-a-web-development-path/"&gt;post about why I chose it&lt;/a&gt;.&lt;/p&gt;
 </content><category term="coding, programming, web development"></category><category term="django"></category><category term="flask"></category><category term="python"></category><category term="web apps"></category></entry><entry><title>Tkinter and Python Libraries</title><link href="https://lofipython.com/tkinter-and-python-libraries.html" rel="alternate"></link><published>2016-02-29T01:11:00-06:00</published><updated>2016-02-29T01:11:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2016-02-29:/tkinter-and-python-libraries.html</id><summary type="html">&lt;p&gt;Python's set of libraries are&amp;nbsp;fun to explore. They allow Python to work with many types of other coding languages, allow you to do cool stuff, and seem&amp;nbsp;to require&amp;nbsp;a minimal knowledge of the actual code. You can read the complete list of standard libraries &lt;a class="reference external" href="https://docs.python.org/2/library/"&gt;here&lt;/a&gt;. There are also …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's set of libraries are&amp;nbsp;fun to explore. They allow Python to work with many types of other coding languages, allow you to do cool stuff, and seem&amp;nbsp;to require&amp;nbsp;a minimal knowledge of the actual code. You can read the complete list of standard libraries &lt;a class="reference external" href="https://docs.python.org/2/library/"&gt;here&lt;/a&gt;. There are also others available that you can download and install for unique challenges or software such as &lt;a class="reference external" href="https://wiki.python.org/moin/Android"&gt;Android&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Currently, my favorite library is &lt;a class="reference external" href="http://thinkingtkinter.sourceforge.net/"&gt;Tkinter&lt;/a&gt;. Tkinter is a module that replicates &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Tcl"&gt;Tk/TCL&lt;/a&gt;&amp;nbsp;within Python and&amp;nbsp;allows you to create a quick Graphical User Interface (GUI) for your programs - great for trying to put together a prototype program with&amp;nbsp;basic aesthetic design control&amp;nbsp;for&amp;nbsp;things like buttons, entry boxes, text and other visual elements that make up the front end of a computer program.&lt;/p&gt;
 &lt;p&gt;+Pro Tip: When you're trying to use a new module, you can read how to use it in the module's documentation. &lt;a class="reference external" href="https://docs.python.org/3.8/library/tkinter.html"&gt;Here's Tkinter's documentation&lt;/a&gt;.&lt;/p&gt;

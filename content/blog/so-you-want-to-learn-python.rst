@@ -41,11 +41,9 @@ For tabular data, I often use ``pd.to_datetime()`` to convert a series of string
     print(df.head())
 
 
-`Go here <#%20convert%20a%20list%20of%20strings%20to%20a%20pandas%20series%20of%20datetime%20objects>`__ if you're having pip installation problems.
-
 **Just the tip of the iceberg...**
 
-The amazing part of Python is that its community has developed an astonishing plethora of external libraries which can be `installed by pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__. Usually I'll learn how to use new libraries after googling to find a well-written README on Github or helpful documentation. The language comes with an impressive line-up of baked-in `tools and libraries <https://docs.python.org/3/library/>`__ way beyond what I've mentioned here. But I think this is a great start. Get to know these common Python language features and you'll be surprised how much you can do!
+The amazing part of Python is that its community has developed an astonishing plethora of external libraries which can be `installed by pip <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__. Usually I'll learn how to use new libraries after googling to find a well-written README on Github or helpful documentation. The language comes with an impressive line-up of baked-in `tools and libraries <https://docs.python.org/3/library/>`__ way beyond what I've mentioned here. But I think this is a great start. Get to know these common Python language features and you'll be surprised how much you can do!
 
 **Additional Comprehensive Python Learning Resources**
 

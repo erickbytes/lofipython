@@ -32,7 +32,7 @@ Using The Debian Installer-Loader
    b43ssb0:0: firmware: failed to load b43-open/ucode5.fw (-2)
    b43-phy0 ERROR: You must go to https://wireless.wiki.kernel.org/en/users/drivers/b43#devicefirmware and download the correct firmware for this driver version.
 
-*It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to*\ `this page <http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/>`__\ *, which is linked to from the link in the error message, and try the solution there first.*
+*It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to *\ `this page <http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/>`__\ *, which is linked to from the link in the error message, and try the solution there first.*
 
 Post Installation Setup
 -----------------------
@@ -77,6 +77,7 @@ Now, let's check for enabled network interfaces. "wlan0" is usually the name of 
 
    sudo ifconfig
 
+
 ::
 
     eth0: flags=4099<UP,BROADCAST,MULTICAST> mtu 1500
@@ -117,8 +118,10 @@ Some computers have a "kill switch" for wifi. This command lists any blocked int
 
    lspci -nn | grep -e 0200 -e 0280
 
-03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
-0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)
+::
+
+   03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
+   0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)
 
 **Find your system architecture. This determines which firmware you should download in the next step.**
 

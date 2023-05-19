@@ -31,11 +31,11 @@ to look in a text file to count the lines matching a string:
 
 I wrote a post on `findstr <https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/>`__, which offers similar functionality.
 
-**clip:** pipe commands `into the clipboard <https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx>`__.
+- **clip:** pipe commands `into the clipboard <https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx>`__.
 
-**If:** `If <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)>`__ Statements based on if files exist.
+- **If:** `If <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)>`__ Statements based on if files exist.
 
-**List ip address-related info:**
+- **List ip address-related info:**
 
 ::
 
@@ -106,7 +106,7 @@ You may want to `ping <https://docs.microsoft.com/en-us/windows-server/administr
 
    ping 01.10.10.01
 
-**Log into your Remote Desktop with**\ `mstsc <https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc>`__\ **:**
+Log into your Remote Desktop with `mstsc <https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc>`__:
 
 #. Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.
 #. You may need to `adjust your credentials on your local machine. <https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on>`__

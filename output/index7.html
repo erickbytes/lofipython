@@ -61,9 +61,11 @@ find /C &quot;FAIL&quot; &lt; &quot;Test_Results.txt&quot;
 # returns: 0 if no match or # of lines found, e.g. 2,50,100
 </pre>
 <p>I wrote a post on <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/">findstr</a>, which offers similar functionality.</p>
-<p><strong>clip:</strong> pipe commands <a class="reference external" href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</p>
-<p><strong>If:</strong> <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</p>
-<p><strong>List ip address-related info:</strong></p>
+<ul class="simple">
+<li><strong>clip:</strong> pipe commands <a class="reference external" href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</li>
+<li><strong>If:</strong> <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</li>
+<li><strong>List ip address-related info:</strong></li>
+</ul>
 <pre class="literal-block">
 ipconfig
 </pre>
@@ -117,7 +119,7 @@ sfc /VERIFYONLY
 <pre class="literal-block">
 ping 01.10.10.01
 </pre>
-<p><strong>Log into your Remote Desktop with</strong><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a><strong>:</strong></p>
+<p>Log into your Remote Desktop with <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a>:</p>
 <ol class="arabic simple">
 <li>Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.</li>
 <li>You may need to <a class="reference external" href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on">adjust your credentials on your local machine.</a></li>
@@ -231,7 +233,7 @@ python -m pip install pywin32
 <li>Refactoring your code is a crucial step in making it better. Coming back to my code after a few weeks, months or years brings clarity, experience and a new perspective. It feels good to improve the quality of my old work.</li>
 <li>Consolidate your tasks. Bundling things can save you a bundle of time! Identify redundant patterns and remove if possible. Observe yourself while working. Any repetitive manual process can probably be automated away. Recently, I figured out how to use a <a class="reference external" href="https://www.windowscentral.com/how-create-and-run-batch-file-windows-10">Windows batch file</a> to instantly activate my Python <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>. It took me a few years of tediously pasting the <tt class="docutils literal">cd</tt> and <tt class="docutils literal">activate</tt> commands into command prompt every day to realize. Now it's a snap.</li>
 <li>Stack Overflow is a useful resource. But the top answers may be outdated. Check the other less popular answers sometimes. Or...</li>
-<li>Read the documentation! An updated or more elegant solution might be there. I recently found <tt class="docutils literal">os.makedirs(path, exist_ok=True)</tt> in the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <tt class="docutils literal">exist_ok</tt> argument. I was creating folders with a more complicated alternative from <a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <tt class="docutils literal">`getpass.getuser()</tt> &lt;<a class="reference external" href="https://docs.python.org/3.8/library/getpass.html">https://docs.python.org/3.8/library/getpass.html</a>&gt;`__ is preferred over <tt class="docutils literal">os.getlogin()</tt>.</li>
+<li>Read the documentation! An updated or more elegant solution might be there. I recently found <tt class="docutils literal">os.makedirs(path, exist_ok=True)</tt> in the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs">os docs</a>. I didn't know about the <tt class="docutils literal">exist_ok</tt> argument. I was creating folders with a more complicated alternative from <a class="reference external" href="https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory">Stack Overflow</a> for years. I use this way all the time now. In the same vein, if you need the local system username, the Python docs state <a class="reference external" href="https://docs.python.org/3.8/library/getpass.html">getpass.getuser()</a> is preferred over os.getlogin().</li>
 <li>Write documentation explaining how to use your projects. Even if you can only muster a quick <a class="reference external" href="https://en.wikipedia.org/wiki/README">README</a> text file, that's better than nothing. Within your code, <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> are a nice addition. I have yet to use <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, but it is a popular choice for generating documentation.</li>
 <li>Teaching others feels good and solidifies your knowledge. Writing and pair programming are great ways to improve your understanding and pass your skills along to other people. While we're on the subject of writing...</li>
 <li>Write everything down! Your head is not good at storing information in memory. Computers are. This frees your mind to come up with new ideas rather than expending energy to remember what you've already done. It also helps you plan. I use a Notepad text file to keep a running to-do list. You could also use services like Trello or Microsoft Planner. While writing code, use comments and docstrings conservatively for quick notes, clarifications or reminders. The important thing is to write it down somewhere.</li>

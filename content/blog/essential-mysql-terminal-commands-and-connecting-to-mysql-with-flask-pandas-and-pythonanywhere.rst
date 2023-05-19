@@ -159,13 +159,13 @@ Flask app with `mysql.connector API <https://dev.mysql.com/doc/connector-python/
 
     def render_homepage():
         """Note: you should use Flask's render_template to render HTML files.
-        But here's a quick f-string HTML page that works:
+        However, for example you can make a quick f-string HTML page that works in this code.
         """
         html_page = f"""<html><head><link rel='stylesheet' href="/static/styles/some_file.css"><link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
-                        <Title>Support BLM</Title></head>
-                        <body><h2>Black Lives Matter</h2>
-                        <p>No to Systemic Racism!</p><br>
-                        <h6><b>Support BLM:</b></h6><br>
+                        <Title>Dispensary Alerts</Title></head>
+                        <body><h2></h2>
+                        <p>Get alerts for your dope.</p><br>
+                        <h6><b>Sign Up</b></h6><br>
                         <div class="form">
                         <form action="/add_signup_to_db" method="post" style="width:420px;text-align:center;display:block;" >
                         <input type="text" name="Signup Form">
@@ -231,7 +231,9 @@ Flask app with `mysql.connector API <https://dev.mysql.com/doc/connector-python/
 
 **Note: if you see this error when making a request in pythonanywhere:**
 
-``OSError: Tunnel connection failed: 403 Forbidden``
+::
+
+    OSError: Tunnel connection failed: 403 Forbidden
 
 It's likely because you are "whitelisted" on the free plan. Upgrading to the $5/month plan will fix it!
 
@@ -273,4 +275,4 @@ web2py's `creator <https://www.youtube.com/watch?v=hcYUgNWvPtw>`__ has a new fra
 
 **Final Thoughts**
 
-Both of my websites are hosted with pythonanywhere, which gives you a text editor and\ `bash <https://en.wikipedia.org/wiki/Bash_(Unix_shell)>`__\ terminal to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience. 👍👍
+Both of my websites are hosted with pythonanywhere, which gives you a text editor and `bash <https://en.wikipedia.org/wiki/Bash_(Unix_shell)>`__ terminal to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience. 👍👍

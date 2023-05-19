@@ -189,7 +189,7 @@ b43ssb0:0: firmware: failed to load b43/ucode5.fw (-2)
 b43ssb0:0: firmware: failed to load b43-open/ucode5.fw (-2)
 b43-phy0 ERROR: You must go to https://wireless.wiki.kernel.org/en/users/drivers/b43#devicefirmware and download the correct firmware for this driver version.
 </pre>
-<p><em>It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to</em><a class="reference external" href="http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/">this page</a><em>, which is linked to from the link in the error message, and try the solution there first.</em></p>
+<p><em>It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to *`this page &lt;http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/&gt;`__*, which is linked to from the link in the error message, and try the solution there first.</em></p>
 </div>
 <div class="section" id="post-installation-setup">
 <h2>Post Installation Setup</h2>
@@ -256,8 +256,10 @@ sudo rfkill list all
 <pre class="literal-block">
 lspci -nn | grep -e 0200 -e 0280
 </pre>
-<p>03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
-0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)</p>
+<pre class="literal-block">
+03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
+0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)
+</pre>
 <p><strong>Find your system architecture. This determines which firmware you should download in the next step.</strong></p>
 <pre class="literal-block">
 sudo dpkg --print-architecture
@@ -310,15 +312,17 @@ sudo modprobe b43
 <p>If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.</p>
 <div class="section" id="the-first-5-scripts-use-modules-that-ship-with-python">
 <h2>The first 5 scripts use modules that ship with Python.</h2>
-<p><strong>1 Uppercase all of the file names in the current working directory.</strong></p>
+<p><strong>(1) Uppercase all of the file names in the current working directory.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 </pre></div></td></tr></table></div>
 <p>os module <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rename">documentation</a></p>
-<p><strong>2 Get all filenames in the current directory and write to a text file.</strong></p>
+<p><strong>(2) Get all filenames in the current directory and write to a text file.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -329,7 +333,7 @@ sudo modprobe b43
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">folder_contents</span><span class="p">:</span>
         <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;f</span><span class="si">{item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>3 Check what day of the week is today.</strong></p>
+<p><strong>(3) Check what day of the week is today.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -345,7 +349,7 @@ sudo modprobe b43
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is not Friday.&quot;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p><a class="reference external" href="https://docs.python.org/3/library/calendar.html">calendar documentation</a></p>
-<p><strong>4 Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
+<p><strong>(4) Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -367,7 +371,7 @@ sudo modprobe b43
 <span class="nb">print</span><span class="p">(</span><span class="n">newest_file</span><span class="p">,</span> <span class="n">second_newest_file</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p>glob module documentation: <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.iglob">https://docs.python.org/3/library/glob.html#glob.iglob</a></p>
-<p><strong>5  Auto-Hamilton Ticket Lottery</strong></p>
+<p><strong>(5)  Auto-Hamilton Ticket Lottery</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
 <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;https://www.luckyseat.com/hamilton-chi/&#39;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -379,7 +383,7 @@ sudo modprobe b43
 <pre class="literal-block">
 python -m pip install pandas
 </pre>
-<p><strong>1 Split a csv file into smaller excel files.</strong></p>
+<p><strong>(6) Split a csv file into smaller excel files.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -395,14 +399,14 @@ python -m pip install pandas
     <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p>pandas beginner tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">https://www.youtube.com/watch?v=5JnMutdy6Fw</a></p>
-<p><strong>2 Convert a .xlsx to .csv</strong></p>
+<p><strong>(7) Convert a .xlsx to .csv</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>3 Convert a .xlsx to .html</strong></p>
+<p><strong>(8) Convert a .xlsx to .html</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -487,7 +491,7 @@ sudo apt-get install wkhtmltopdf
 python -m pip install pyinstaller
 </pre>
 <div class="line-block">
-<div class="line"><em>At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5.</em><a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">Go here</a><em>for a refresher on setting up pip if you need it.</em></div>
+<div class="line">At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5. <a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">Go here</a> for a refresher on setting up pip if you need it.</div>
 </div>
 <p><strong>Using the build.spec file and starting Pyinstaller:</strong></p>
 <p>Most examples I found used a build.spec file. Think of this as the blueprint by which your app will be constructed. It provides the compiling settings, images and any other data necessary for assembling your app. The format for passing the .spec file to Pyinstaller in pseudo-code:</p>

@@ -16,17 +16,18 @@ If you have Python installed, paste the script into a text editor and run your .
 The first 5 scripts use modules that ship with Python.
 ------------------------------------------------------
 
-**1 Uppercase all of the file names in the current working directory.**
+**(1) Uppercase all of the file names in the current working directory.**
 
 .. code-block:: python
 
    import os
    filenames = os.listdir(os.getcwd())
-   [os.rename(filename, filename.upper()) for filename in filenames]
+   for filename in filenames:
+       os.rename(filename, filename.upper())
 
 os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`__
 
-**2 Get all filenames in the current directory and write to a text file.**
+**(2) Get all filenames in the current directory and write to a text file.**
 
 .. code-block:: python
 
@@ -36,7 +37,7 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
        for item in folder_contents:
            fhand.write('f{item}\n')
 
-**3 Check what day of the week is today.**
+**(3) Check what day of the week is today.**
 
 .. code-block:: python
 
@@ -50,7 +51,7 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
 
 `calendar documentation <https://docs.python.org/3/library/calendar.html>`__
 
-**4 Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.**
+**(4) Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.**
 
 .. code-block:: python
 
@@ -67,7 +68,7 @@ os module `documentation <https://docs.python.org/3/library/os.html#os.rename>`_
 
 glob module documentation: https://docs.python.org/3/library/glob.html#glob.iglob
 
-**5  Auto-Hamilton Ticket Lottery**
+**(5)  Auto-Hamilton Ticket Lottery**
 
 .. code-block:: python
 
@@ -82,7 +83,7 @@ To Run The Next 3 Scripts, install pandas:
 
    python -m pip install pandas
 
-**1 Split a csv file into smaller excel files.**
+**(6) Split a csv file into smaller excel files.**
 
 .. code-block:: python
 
@@ -96,7 +97,7 @@ To Run The Next 3 Scripts, install pandas:
 
 pandas beginner tutorial: https://www.youtube.com/watch?v=5JnMutdy6Fw
 
-**2 Convert a .xlsx to .csv**
+**(7) Convert a .xlsx to .csv**
 
 .. code-block:: python
 
@@ -104,7 +105,7 @@ pandas beginner tutorial: https://www.youtube.com/watch?v=5JnMutdy6Fw
    df = pd.read_excel("input.xlsx")
    df.to_csv("output.csv", index=False)
 
-**3 Convert a .xlsx to .html**
+**(8) Convert a .xlsx to .html**
 
 .. code-block:: python
 

@@ -28,7 +28,7 @@ API & HTTP Lingo You Should Know
 
 **Hypertext Transfer Protocol (HTTP)**
 
-Per `Mozilla <https://developer.mozilla.org/en-US/docs/Web/HTTP>`__,"Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical `client-server model <https://en.wikipedia.org/wiki/Client%E2%80%93server_model>`__, with a client opening a connection to make a request, then waiting until it receives a response."
+Per `Mozilla <https://developer.mozilla.org/en-US/docs/Web/HTTP>`__, "Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical `client-server model <https://en.wikipedia.org/wiki/Client%E2%80%93server_model>`__, with a client opening a connection to make a request, then waiting until it receives a response."
 
    HTTP: you = client. API = way to communicate with server
 
@@ -99,7 +99,7 @@ Each request usually gives you a `numeric code corresponding to happened <https:
 
 **See also:** `Nginx <https://en.wikipedia.org/wiki/Nginx>`__
 
-**See also:**\ `Create, read, update and delete (CRUD) <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__
+See also: `Create, read, update and delete (CRUD) <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__
 
 Creating the Request JSON
 -------------------------

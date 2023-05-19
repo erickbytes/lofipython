@@ -77,7 +77,7 @@
 </div>
 <p><strong>side note on the pyfolio library</strong></p>
 <p>I first considered using pyfolio to pull stock data. It is not &quot;out of the box&quot; ready per se to deliver the results pictured in their <a class="reference external" href="https://lofipython.com/pick-stocks-like-a-pro-with-pyfolio/">&quot;single stock&quot; example</a> documentation. You'd need to find another way to fetch your market data or somehow patch the Yahoo Finance API within pyfolio. I preferred <a class="reference external" href="http://pmorissette.github.io/ffn/quick.html">ffn</a>, mostly because it worked right away after pip installing it and running the above code.</p>
-<p><strong>2023 Update:</strong> ffn and pyfolio depend on the Yahoo Finance API, which changes sometimes break these libraries. Troubleshooting traceback errors may be required.</p>
+<p><strong>2023 Update:</strong> ffn and pyfolio both depend on the Yahoo Finance API, which tends to change and break these libraries. Troubleshooting traceback errors may be required.</p>
 <p><strong>Try these other Python financial analysis libraries:</strong></p>
 <p><a class="reference external" href="https://financetrain.com/best-python-librariespackages-finance-financial-data-scientists/">Best Python Libraries/Packages for Finance and Financial Data Scientists</a></p>
 <p><a class="reference external" href="https://docs.python.org/3/library/statistics.html">python's built-in statistics module</a> - <a class="reference external" href="https://github.com/mementum/backtrader">Backtrader</a></p>
@@ -85,7 +85,6 @@
 <p><a class="reference external" href="https://pydata.github.io/pandas-datareader/index.html">pandas-datareader</a> - <a class="reference external" href="https://github.com/matplotlib/mplfinance#usage">mplfinance</a> - <a class="reference external" href="https://github.com/robertmartin8/PyPortfolioOpt">PyPortfolioOpt</a> - <a class="reference external" href="https://github.com/mrjbq7/ta-lib">TA-Lib Python Port</a></p>
 <p><a class="reference external" href="https://github.com/erickbytes/finsou.py">finsou.py</a> (CLI written by me)</p>
 <p><a class="reference external" href="https://github.com/wilsonfreitas/awesome-quant">awesome-quant</a></p>
-<p><a class="reference external" href="https://github.com/bpsmith/tia#overview">Tia</a></p>
 <div class="wp-image-5037 figure">
 <img alt="Image credit, ActiveState: https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/" src="https://pythonmarketer.files.wordpress.com/2021/01/top10financepackages-1200x675-1.png?w=1024" />
 <p class="caption">Image credit, ActiveState: <a class="reference external" href="https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/">https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/</a></p>
@@ -555,13 +554,13 @@ python -m pip3.8 install --user pandas
 
 <span class="k">def</span> <span class="nf">render_homepage</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Note: you should use Flask&#39;s render_template to render HTML files.</span>
-<span class="sd">    But here&#39;s a quick f-string HTML page that works:</span>
+<span class="sd">    However, for example you can make a quick f-string HTML page that works in this code.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">html_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;html&gt;&lt;head&gt;&lt;link rel=&#39;stylesheet&#39; href=&quot;/static/styles/some_file.css&quot;&gt;&lt;link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;static/favicon.ico&quot;&gt;</span>
-<span class="s2">                    &lt;Title&gt;Support BLM&lt;/Title&gt;&lt;/head&gt;</span>
-<span class="s2">                    &lt;body&gt;&lt;h2&gt;Black Lives Matter&lt;/h2&gt;</span>
-<span class="s2">                    &lt;p&gt;No to Systemic Racism!&lt;/p&gt;&lt;br&gt;</span>
-<span class="s2">                    &lt;h6&gt;&lt;b&gt;Support BLM:&lt;/b&gt;&lt;/h6&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;Title&gt;Dispensary Alerts&lt;/Title&gt;&lt;/head&gt;</span>
+<span class="s2">                    &lt;body&gt;&lt;h2&gt;&lt;/h2&gt;</span>
+<span class="s2">                    &lt;p&gt;Get alerts for your dope.&lt;/p&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;h6&gt;&lt;b&gt;Sign Up&lt;/b&gt;&lt;/h6&gt;&lt;br&gt;</span>
 <span class="s2">                    &lt;div class=&quot;form&quot;&gt;</span>
 <span class="s2">                    &lt;form action=&quot;/add_signup_to_db&quot; method=&quot;post&quot; style=&quot;width:420px;text-align:center;display:block;&quot; &gt;</span>
 <span class="s2">                    &lt;input type=&quot;text&quot; name=&quot;Signup Form&quot;&gt;</span>
@@ -620,7 +619,9 @@ python -m pip3.8 install --user pandas
 Below: making <a class="reference external" href="https://weedfiend.pythonanywhere.com/">my website</a> look less like a &quot;my first HTML&quot; website, experimenting with my app's messagename and adding a sign-up form connected to the database.</blockquote>
 <img alt="Screenshot_20200606-132252 (1)" class="alignnone size-full wp-image-3524" src="https://pythonmarketer.files.wordpress.com/2020/05/screenshot_20200606-132252-1-1.png" style="width: 344px; height: 566px;" />
 <p><strong>Note: if you see this error when making a request in pythonanywhere:</strong></p>
-<p><tt class="docutils literal">OSError: Tunnel connection failed: 403 Forbidden</tt></p>
+<pre class="literal-block">
+OSError: Tunnel connection failed: 403 Forbidden
+</pre>
 <p>It's likely because you are &quot;whitelisted&quot; on the free plan. Upgrading to the $5/month plan will fix it!</p>
 <p><strong>Scoping The Full Stack</strong></p>
 <p>I'm really enjoying this web development stack. Here are all of the tools and library choices for this website:</p>
@@ -649,7 +650,7 @@ Below: making <a class="reference external" href="https://weedfiend.pythonanywhe
 <p>Of these two diverse Python stacks, I favor MySQL and Flask. But I learned a lot from watching web2py's tutorial videos and it's less intimidating for beginners. And I barely scratched the surface of web2py's &quot;pure Python&quot; <a class="reference external" href="https://github.com/web2py/pydal">pyDAL (Database Abstraction Layer)</a>, which seems pretty dope.</p>
 <p>web2py's <a class="reference external" href="https://www.youtube.com/watch?v=hcYUgNWvPtw">creator</a> has a new framework in progress called <a class="reference external" href="https://github.com/web2py/py4web">py4web</a>. It has the same <a class="reference external" href="http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer">DAL</a> and inherits many other web2py qualities. Definitely looking forward to exploring the DAL on my first py4web website. I'll likely use it to connect to PostgreSQL or SQLite. Maybe I'll <a class="reference external" href="https://github.com/web2py/pydal">install pyDAL with pip</a> in the meantime.</p>
 <p><strong>Final Thoughts</strong></p>
-<p>Both of my websites are hosted with pythonanywhere, which gives you a text editor and<a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a>terminal to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience. 👍👍</p>
+<p>Both of my websites are hosted with pythonanywhere, which gives you a text editor and <a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a> terminal to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience. 👍👍</p>
 </div>
 
                 <div class="clear"></div>
@@ -691,7 +692,7 @@ Below: making <a class="reference external" href="https://weedfiend.pythonanywhe
 <div class="section" id="api-http-lingo-you-should-know">
 <h2>API &amp; HTTP Lingo You Should Know</h2>
 <p><strong>Hypertext Transfer Protocol (HTTP)</strong></p>
-<p>Per <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Mozilla</a>,&quot;Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical&nbsp;<a class="reference external" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>, with a client opening a connection to make a request, then waiting until it receives a response.&quot;</p>
+<p>Per <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Mozilla</a>, &quot;Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical&nbsp;<a class="reference external" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>, with a client opening a connection to make a request, then waiting until it receives a response.&quot;</p>
 <blockquote>
 HTTP: you = client. API = way to communicate with server</blockquote>
 <p><strong>Application Programming Interface (API)</strong></p>
@@ -735,7 +736,7 @@ If you need to parse an XML response, check out Python's stock <a class="referen
 <p><strong>See also: Web Server Gateway Interface (WSGI, pronounced &quot;Wis-Ghee&quot;)</strong></p>
 <p>&quot;As described in <a class="reference external" href="https://www.python.org/dev/peps/pep-3333/">PEP3333</a>, the Python Web Server Gateway Interface (WSGI) is a way to make sure that web servers and python web applications can talk to each other.&quot;&nbsp; <a class="reference external" href="https://docs.gunicorn.org/en/latest/install.html">Gunicorn</a> is one of <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#uwsgi">a few Python WSGI clients</a>. <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/04/30/useful-links-for-web2py-beginners/">web2py</a> is another WSGI client and web framework I have used.</p>
 <p><strong>See also:</strong> <a class="reference external" href="https://en.wikipedia.org/wiki/Nginx">Nginx</a></p>
-<p><strong>See also:</strong><a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">Create, read, update and delete (CRUD)</a></p>
+<p>See also: <a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">Create, read, update and delete (CRUD)</a></p>
 </div>
 <div class="section" id="creating-the-request-json">
 <h2>Creating the Request JSON</h2>
@@ -1321,15 +1322,17 @@ python -m pip install pygsheets
 <p>If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.</p>
 <div class="section" id="the-first-5-scripts-use-modules-that-ship-with-python">
 <h2>The first 5 scripts use modules that ship with Python.</h2>
-<p><strong>1 Uppercase all of the file names in the current working directory.</strong></p>
+<p><strong>(1) Uppercase all of the file names in the current working directory.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 </pre></div></td></tr></table></div>
 <p>os module <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rename">documentation</a></p>
-<p><strong>2 Get all filenames in the current directory and write to a text file.</strong></p>
+<p><strong>(2) Get all filenames in the current directory and write to a text file.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1340,7 +1343,7 @@ python -m pip install pygsheets
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">folder_contents</span><span class="p">:</span>
         <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;f</span><span class="si">{item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>3 Check what day of the week is today.</strong></p>
+<p><strong>(3) Check what day of the week is today.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1356,7 +1359,7 @@ python -m pip install pygsheets
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is not Friday.&quot;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p><a class="reference external" href="https://docs.python.org/3/library/calendar.html">calendar documentation</a></p>
-<p><strong>4 Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
+<p><strong>(4) Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1378,7 +1381,7 @@ python -m pip install pygsheets
 <span class="nb">print</span><span class="p">(</span><span class="n">newest_file</span><span class="p">,</span> <span class="n">second_newest_file</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p>glob module documentation: <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.iglob">https://docs.python.org/3/library/glob.html#glob.iglob</a></p>
-<p><strong>5  Auto-Hamilton Ticket Lottery</strong></p>
+<p><strong>(5)  Auto-Hamilton Ticket Lottery</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
 <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;https://www.luckyseat.com/hamilton-chi/&#39;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1390,7 +1393,7 @@ python -m pip install pygsheets
 <pre class="literal-block">
 python -m pip install pandas
 </pre>
-<p><strong>1 Split a csv file into smaller excel files.</strong></p>
+<p><strong>(6) Split a csv file into smaller excel files.</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1406,14 +1409,14 @@ python -m pip install pandas
     <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p>pandas beginner tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">https://www.youtube.com/watch?v=5JnMutdy6Fw</a></p>
-<p><strong>2 Convert a .xlsx to .csv</strong></p>
+<p><strong>(7) Convert a .xlsx to .csv</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<p><strong>3 Convert a .xlsx to .html</strong></p>
+<p><strong>(8) Convert a .xlsx to .html</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1477,6 +1480,155 @@ sudo apt-get install wkhtmltopdf
                     &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
                     &nbsp;<a href="https://lofipython.com/tag/hamilton.html" class="tags">hamilton</a>
                     &nbsp;<a href="https://lofipython.com/tag/lightning-scripts.html" class="tags">lightning scripts</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags selected">python</a>
+                </div>
+            </article>            <h4 class="date">Sep 14, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/making-a-python-eyedropper.html" rel="bookmark" title="Permanent Link to &quot;Making A Desktop Color Eyedropper in Python to Grab Color Values&quot;">Making A Desktop Color Eyedropper in Python to Grab Color Values</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Goal:</strong> recreate my resume in the dark Atom text editor theme
+(background and fonts). <strong>Sub-goal:</strong> find a color eyedropper to grab
+the actual color values of the Atom layout.</p>
+<p><strong>Approach #1: find an Atom eyedropper package to grab the colors.</strong> My
+first thought was to find the easiest solution, within the packages of
+my Atom text editor. After searching Atom's packages, the two best
+potential solutions were &quot;an-color-eyedropper&quot; and &quot;color picker&quot; . The an-color-eyedropper
+description sounds perfect: &quot;A simple &quot;real&quot; color picker. By &quot;real&quot; I
+mean it's able to pick colors anywhere on any screen.&quot;</p>
+<p><a class="reference external" href="https://atom.io/packages/color-picker">Color picker</a>
+<a class="reference external" href="https://atom.io/packages/an-color-picker">an color eyedropper</a></p>
+<p>Unfortunately it failed to install and displayed the error, &quot;Unable to
+download 400 Bad Request Repository inaccessible&quot;. It seems to rely on
+the &quot;python&quot; Atom package which is now deprecated. I was unable to find
+a repo anywhere by googling.</p>
+<p><a class="reference external" href="https://atom.io/packages/color-picker">Color picker</a> has
+easy-to-follow instructions and installed with no problem. It allows you
+to quickly select any color visually with sliders. Then the RGB or
+Hexadecimal values of your color are added as text in the editor in
+proper format. However, we are looking for a color grabber to pull
+colors from a screen object. This is more of a productivity enhancing
+and color exploration tool for programmers. On to Python options.</p>
+<p><strong>Approach #2: Use the python tkcolorpicker package to grab the
+colors.</strong></p>
+<p>The first thing I found on Google was <a class="reference external" href="https://pypi.org/project/tkcolorpicker/">tkcolorpicker</a>, a package that uses the
+<a class="reference external" href="https://lofipython.com/2016/02/29/tkinter-and-python-libraries/">tkinter</a>
+library. I couldn't tell exactly what it was, so let's find out. First,
+install via <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip install</a>:</p>
+<pre class="code literal-block">
+python -m pip install tkcolorpicker
+</pre>
+<div class="line-block">
+<div class="line">Then run the below script. Cool gadget for sure, but also not quite
+what I was looking to use. It allows selection of a color with
+sliders or input values, similar to Atom's color picker, but for user
+input rather than color picking. Nice little tool. :D</div>
+</div>
+<div class="line-block">
+<div class="line"><img alt="color_picker_gui" class="wp-image-1462 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/color_picker_gui.png" style="width: 301px; height: 315px;" /></div>
+</div>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">tkcolorpicker</span> <span class="kn">import</span> <span class="n">askcolor</span><span class="w">
+
+</span><span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span><span class="w">
+</span><span class="n">style</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="w">
+</span><span class="n">style</span><span class="o">.</span><span class="n">theme_use</span><span class="p">(</span><span class="s2">&quot;clam&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">hex_code</span><span class="p">,</span> <span class="n">RGB_code</span> <span class="o">=</span> <span class="n">askcolor</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">root</span><span class="p">)</span><span class="w">
+</span><span class="nb">print</span><span class="p">(</span><span class="n">hex_code</span><span class="p">,</span> <span class="n">RGB_code</span><span class="p">)</span><span class="w">
+</span><span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre>
+<p>askcolor() returns a tuple with both the RGB and hex codes selected by
+the user. Above, we are unpacking that tuple into the hex_code and
+RGB_code variables.</p>
+<p><strong>Approach #3: Use the Python eyedropper package to grab the colors.</strong></p>
+<p>I then found <a class="reference external" href="https://github.com/umluizlima/eyedropper">eyedropper</a>
+for Windows, which has a minimalist repository and offers a simple
+approach to desktop eyedropper functionality. Install eyedropper via
+pip:</p>
+<pre class="code literal-block">
+python -m pip install eyedropper
+</pre>
+<img alt="pyeyedropper_start" class="size-full wp-image-1458 alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/pyeyedropper_start.png" style="width: 239px; height: 140px;" />
+<p>Hover your mouse over the object you want to grab the color from (in my
+case, the Atom text editor background). Alternatively, I was able to run
+eyedropper from the command line by entering:</p>
+<pre class="code literal-block">
+py -m eyedropper
+</pre>
+<img alt="pasted_hex2" class="alignnone size-full wp-image-1461" src="https://pythonmarketer.files.wordpress.com/2018/09/pasted_hex2.png" style="width: 766px; height: 74px;" />
+<img alt="CCvOYFiUgAA4DJd" class="alignright" src="https://pythonmarketer.files.wordpress.com/2018/09/ccvoyfiugaa4djd.jpg" style="width: 151px; height: 116px;" />
+<p><strong>Mission possible.</strong> Then I hit ctrl+v in a text file and there was the
+hex code for my Atom background. Some of the colors that eyedropper
+grabbed were nearly identical to those in the Atom text editor dark
+theme. Others were not quite the same. I made slight eyeball adjustments
+to the colors for some of the fonts.</p>
+<div class="section" id="using-python-to-convert-hex-to-rgb-1">
+<h2><a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">Using Python to convert hex to RGB</a></h2>
+<p>Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I
+found <a class="reference external" href="https://www.webpagefx.com/web-design/hex-to-rgb/">this website</a> practical and
+quick. Alternatively, you could <a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">convert a hex code to RGB with python</a>:</p>
+<pre class="code python literal-block">
+<span class="n">hex_code</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter hex: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">RGB_code</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hex_code</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span><span class="w">
+</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RGB =&quot;</span><span class="p">,</span> <span class="n">RGB_code</span><span class="p">)</span>
+</pre>
+<img alt="rgb_to_hex" class="alignnone size-full wp-image-2308" src="http://pythonmarketer.files.wordpress.com/2018/09/e084c-rgb_to_hex-e1581286493172.jpg" style="width: 805px; height: 83px;" />
+<p>Bonus: use pd.read_clipboard()
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">docs</a>
+to get the hex codes.</p>
+<p>Once eyedropper sends the color values to your system's clipboard, there
+are multiple ways to access them. This alternative uses pandas.</p>
+<p>Installing pandas and <a class="reference external" href="https://github.com/asweigart/pyperclip">pyperclip</a> with pip:</p>
+<pre class="code literal-block">
+python -m pip install pandas
+python -m pip install pyperclip
+</pre>
+<p>On Linux, install <a class="reference external" href="https://github.com/astrand/xclip">xclip</a> or <a class="reference external" href="https://askubuntu.com/questions/705620/xclip-vs-xsel">xsel</a></p>
+<pre class="code literal-block">
+sudo apt-get install xclip
+</pre>
+<p><strong>To get the clipboard contents with pandas:</strong></p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span><span class="w">
+
+</span><span class="n">hex_code_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_clipboard</span><span class="p">()</span><span class="w">
+</span><span class="nb">print</span><span class="p">(</span><span class="n">hex_code_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre>
+<p><strong>Supplementary Notes and Links</strong></p>
+<ul class="simple">
+<li>Here's a Python <a class="reference external" href="https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py">eyedropper script</a>
+featuring the <a class="reference external" href="https://pillow.readthedocs.io/en/5.2.x/index.html">pillow</a> and <a class="reference external" href="https://github.com/python-xlib/python-xlib">xlib</a> libraries that I was
+unable to get working.</li>
+<li>I didn't try <a class="reference external" href="http://colorcop.net/">ColorCop for Windows</a>, but it
+may be a non-Python alternative.</li>
+<li>Did you know? Python 2 had a <a class="reference external" href="https://docs.python.org/2/library/colorpicker.html">ColorPicker</a> module that
+is not in Python 3.</li>
+<li><a class="reference external" href="https://dev.to/espoir/how-pandas-readclipboard-method-works-ake">How pandas read_clipboard method works</a></li>
+<li><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/io/clipboards.py#L10-L76">pandas to_clipboard and read_clipboard source code</a></li>
+<li>This <a class="reference external" href="https://github.com/Toinane/colorpicker">desktop tool</a> has
+great U/X and an eyedropper feature. It runs on Electron, a
+Javascript based framework. Coincidentally, Electron was used to
+build Atom.</li>
+</ul>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/making-a-python-eyedropper.html">posted at 05:45</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-colors-pandas-programming.html" rel="tag">coding, Colors, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/atom.html" class="tags">atom</a>
+                    &nbsp;<a href="https://lofipython.com/tag/color.html" class="tags">color</a>
+                    &nbsp;<a href="https://lofipython.com/tag/eyedropper.html" class="tags">eyedropper</a>
+                    &nbsp;<a href="https://lofipython.com/tag/gui.html" class="tags">gui</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags selected">python</a>
                 </div>
             </article>            <h4 class="date">Aug 25, 2018</h4>
@@ -1598,35 +1750,6 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
                     &nbsp;<a href="https://lofipython.com/tag/gui.html" class="tags">gui</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags selected">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/software-development.html" class="tags">software development</a>
-                </div>
-            </article>            <h4 class="date">Mar 24, 2018</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/blog_post-listcool_python_things.html" rel="bookmark" title="Permanent Link to &quot;list(cool_python_things)&quot;">list(cool_python_things)</a>
-                </h2>
-
-                
-                
-
-                <ol class="arabic simple">
-<li><a class="reference external" href="https://github.com/norvig/pytudes">pytudes</a> - &quot;This project contains&nbsp;<strong>pytudes</strong>—Python programs for perfecting programming skills.&quot;</li>
-<li><a class="reference external" href="https://www.makeartwithpython.com/blog/video-synthesizer-in-python/?utm_source=mybridge&amp;utm_medium=blog&amp;utm_campaign=read_more">Building a video synthesizer in Python</a></li>
-<li><a class="reference external" href="https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/overview">Running micropython on a microcontroller</a></li>
-<li><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> - Super awesome excel and data analysis library. The talk, &quot;<a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Pandas from the Ground Up</a>&quot; by Brandon Rhodes is great!</li>
-<li><a class="reference external" href="http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/">Fuzzy Wuzzy</a> - Fuzzy string matching python library, written by SeatGeek</li>
-<li><a class="reference external" href="https://soundcloud.com/talkpython">Talk Python to Me</a> - Python podcast</li>
-<li><a class="reference external" href="http://www.oreilly.com/programming/free/?imm_mid=0e20a9&amp;cmp=em-prog-na-na-afterp_triggered_email_programming_resources">Free Programming Books from O'Reilly</a></li>
-</ol>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/blog_post-listcool_python_things.html">posted at 19:38</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-programming.html" rel="tag">coding, pandas, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags selected">python</a>
                 </div>
             </article>
 
