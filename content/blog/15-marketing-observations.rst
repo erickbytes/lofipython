@@ -26,8 +26,8 @@ Marketing. So here they are:
 #. Distribution = Very Important (Duh!)
 
 #. Marketing depends a lot on product quality - what can you do for the
-   user/customer? What problems can you solve?\ `Seth Godin
-   <http://sethgodin.typepad.com/seths_blog/2016/02/fit-and-finish.html>`__\ talks
+   user/customer? What problems can you solve? 
+   `Seth Godin <http://sethgodin.typepad.com/seths_blog/2016/02/fit-and-finish.html>`__ talks
    about this quite often.
 
 #. Design matters - in product, communications, and everything else in
