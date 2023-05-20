@@ -13,6 +13,7 @@ Download and install `Node.JS <https://nodejs.org/en/>`__
 Open the node command prompt. This was done on a windows machine.
 
 ::
+
    mkdir node_apps
 
 creates a folder for your app(s)
@@ -50,6 +51,7 @@ installs express.js module in node.js
 creates the structure for your app and all necessary folders. (views, css, Javascript, routing, etc.)
 
 ::
+
    npm install
 
 ensures all app module dependencies are installed
