@@ -37,6 +37,7 @@ First, create a folder for your app(s):
 
    mkdir node_apps
 
+|
 
 
 | Change the command prompt directory to your app's folder:
@@ -48,16 +49,14 @@ First, create a folder for your app(s):
 |
 
 
-|  creates json file for your app
-|  fill out applicable info or just hit enter until the file is created
+|  Creates json file for your app. Fill out applicable info or just hit enter until the file is created.
 
-|
 
 .. code::
 
    npm init
 
-installs express.js module in node.js
+Install express.js module in node.js:
 
 .. code::
 
@@ -67,9 +66,7 @@ installs express.js module in node.js
 |
 
 
-|  installs express-generator module in node.js
-|  this module creates the web app's structure once the command in the
-   next step is entered
+|  Install express-generator module in node.js:
 
 .. code::
 
@@ -77,7 +74,7 @@ installs express.js module in node.js
 
 
 
-creates the structure for your app and all necessary folders. (views,
+Create the structure for your app and all necessary folders. (views,
 css, Javascript, routing, etc.)
 
 .. code::
@@ -86,14 +83,14 @@ css, Javascript, routing, etc.)
 
 
 
-ensures all app module dependencies are installed
+Ensure all app module dependencies are installed:
 
 .. code::
 
    npm install
 
 
-starts your server and web app
+Start your server and web app:
 
 
 .. code::
