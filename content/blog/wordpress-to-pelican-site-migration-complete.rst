@@ -27,10 +27,10 @@ whatever Python projects are next!
 
 **The Next Chapter: Lo-Fi Python**
 
-> Lo-fi (also typeset as lofi or low-fi; short for low fidelity) is a
-music or production quality in which elements usually regarded as
-imperfections in the context of a recording or performance are present,
-sometimes as a deliberate choice. *Wikipedia*
+	Lo-fi (also typeset as lofi or low-fi; short for low fidelity) is a
+	music or production quality in which elements usually regarded as
+	imperfections in the context of a recording or performance are present,
+	sometimes as a deliberate choice. *Wikipedia*
 
 **The Spirit of Low Fidelity**
 
