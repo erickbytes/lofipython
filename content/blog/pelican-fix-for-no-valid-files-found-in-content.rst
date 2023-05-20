@@ -7,7 +7,7 @@ Pelican Fix for "No valid files found in content"...
 :slug: pelican-fix-for-no-valid-files-found-in-content
 :status: published
 
-Pelican is a popular `static site generator library <https://pythonmarketer.com/2021/07/28/a-brief-summary-of-promising-python-static-site-generators/>`__ in Python. I didn't know why my pelican blog was not working. I've used the "pelican content" command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:
+Pelican is a popular `static site generator library <https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/>`__ in Python. I didn't know why my pelican blog was not working. I've used the "pelican content" command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:
 
 .. code-block:: python
 

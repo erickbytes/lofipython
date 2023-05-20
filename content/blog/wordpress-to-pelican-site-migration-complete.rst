@@ -9,14 +9,13 @@ Wordpress to Pelican Blog Migration Complete Date
 
 This blog is formerly known as "Python Marketer" from 2016 to 2023. In
 May 2023, I've begun the migration from Wordpress's "Personal" plan to a
-free, Pythonic Pelican <https://docs.getpelican.com/en/latest/>__ static site. 
-100 posts are now hosted here exclusively on lofipython.com. 
+free, Pythonic `Pelican <https://docs.getpelican.com/en/latest/>`__ static site. 100 posts are now hosted here exclusively on lofipython.com. 
 I will be posting my projects, Python explorations and technical notes 
 here going forward. Thank you for reading and I hope you
 enjoy these Python musings. If you want to keep up with my writing, I
 recommend using an RSS reader to follow the RSS or Atom feeds.
 
-I’ve decided to continue blogging under a new brand related to Python
+I’ve decided to continue blogging under a new Python moniker
 which is more fitting of who I am as a Pythonista in 2023. WordPress
 gave me my start as a blogger before I had the capabilities to make my
 own. Now, I’ve switched from their “Personal” plan to a Pelican +
