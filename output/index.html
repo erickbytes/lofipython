@@ -76,10 +76,9 @@ ERROR: Cannot perform a '--user' install. User site-packages are not visible in 
                 
                 
 
-                <p>This blog is formerly known as "Python Marketer" from 2016 to 2023. In May 2023, I've begun the migration from Wordpress's "Personal" plan to a free Pelican static site via the Pelican Python library. 100 posts are now hosted here exclusively on lofipython.com. I will be posting my projects, Python explorations and technical notes here going forward. Thank you for reading and I hope you enjoy these Python musings. If you want to keep up with my writing, I recommend using an RSS reader to follow the RSS or Atom feeds.</p>
-<p>I’ve decided to continue blogging under a new brand related to Python which is more fitting of who I am as a Pythonista in 2023. WordPress gave me my start as a blogger before I had the capabilities to make my own. Now, I’ve switched from their “Personal” plan to a Pelican + Cloudlare Pages blog stack. It’s going great so far and will save me $48 per year vs. WordPress. Not to mention, I have a hard backup of all my content and host it on Github! I’m no longer dependent on a paid blogging platform to serve my blog. Huge win all around. Here’s to whatever Python projects are next!</p>
+                <p>This blog is formerly known as "Python Marketer" from 2016 to 2023. In May 2023, I've begun the migration from Wordpress's "Personal" plan to a free Pelican Python library static site. 100 posts are now hosted here exclusively on lofipython.com. I will be posting my projects, Python explorations and technical notes here going forward. Thank you for reading and I hope you enjoy these Python musings. If you want to keep up with my writing, I recommend using an RSS reader to follow the RSS or Atom feeds.</p>
+<p>I’ve decided to continue blogging under a new brand related to Python which is more fitting of who I am as a Pythonista in 2023. WordPress gave me my start as a blogger before I had the capabilities to make my own. Now, I’ve switched from their “Personal” plan to a Pelican + Cloudlare Pages free plan blog stack. It’s going great so far and will save me $48 per year vs. WordPress. Not to mention, I have a hard backup of all my content and host it on Github! I’m no longer dependent on a paid blogging platform to serve my blog. Huge win all around. Here’s to whatever Python projects are next!</p>
 <p><strong>The Next Chapter: Lo-Fi Python</strong></p>
-<p>A Python static site blog generated with the Pelican Python library and hosted with Cloudflare Pages.</p>
 <blockquote>
 <p>Lo-fi (also typeset as lofi or low-fi; short for low fidelity) is a music or production quality in which elements usually regarded as imperfections in the context of a recording or performance are present, sometimes as a deliberate choice. <em>Wikipedia</em></p>
 </blockquote>
@@ -570,19 +569,19 @@ ssh-keygen -t ed25519 -C &quot;youname&#64;example.com&quot;
 
 
 <span class="k">def</span> <span class="nf">post_name</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ask for the new post&#39;s name.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Ask for the new post&#39;s name.&quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the new post&#39;s title:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">name</span>
 
 
 <span class="k">def</span> <span class="nf">post_template</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return str, post draft&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Return str, post draft&quot;&quot;&quot;</span>
     <span class="n">post</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Title: </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">Date: </span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="si">}</span><span class="s2"> 4:20 </span><span class="se">\n</span><span class="s2">Category: Essay&quot;</span>
     <span class="k">return</span> <span class="n">post</span>
 
 
 <span class="k">def</span> <span class="nf">save_draft</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">post</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save new post draft to content folder.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Save new post draft to content folder.&quot;&quot;&quot;</span>
     <span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;/home/erickbytes/divbull/divbull.com/content&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
     <span class="n">md</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.md&quot;</span>
