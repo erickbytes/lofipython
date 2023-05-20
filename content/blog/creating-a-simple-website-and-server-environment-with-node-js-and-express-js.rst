@@ -31,34 +31,41 @@ what the commands are and what they do.
 Download and install `Node.JS <https://nodejs.org/en/>`__ Open the node
 command prompt. This was done on a windows machine.
 
+First, create a folder for your app(s):
+
 .. code::
 
    mkdir node_apps
 
-creates a folder for your app(s)
+
+
+| Change the command prompt directory to your app's folder:
 
 .. code::
 
    cd \app_name
 
-changes command prompt directory to your app's folder
+|
+
+
+|  creates json file for your app
+|  fill out applicable info or just hit enter until the file is created
+
+|
 
 .. code::
 
    npm init
 
-|  Creates json file for your app
-|  fill out applicable info or just hit enter until the file is created
+installs express.js module in node.js
 
 .. code::
 
    npm install express
 
-installs express.js module in node.js
 
-.. code::
+|
 
-   npm install express-generator -g
 
 |  installs express-generator module in node.js
 |  this module creates the web app's structure once the command in the
@@ -66,22 +73,33 @@ installs express.js module in node.js
 
 .. code::
 
-   express app_name
+   npm install express-generator -g
+
+
 
 creates the structure for your app and all necessary folders. (views,
 css, Javascript, routing, etc.)
 
 .. code::
 
-   npm install
+   express app_name
+
+
 
 ensures all app module dependencies are installed
 
 .. code::
 
-   npm start
+   npm install
+
 
 starts your server and web app
+
+
+.. code::
+
+   npm start
+
 
 Go to http://localhost:3000 in a browser. Port 3000 is the default port
 of Express. Your app is live in dev environment.
