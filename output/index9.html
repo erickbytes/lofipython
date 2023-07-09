@@ -31,7 +31,213 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jan 14, 2018</h4>
+        <div id="content">            <h4 class="date">Jan 20, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-python-pip-install-new-libraries.html" rel="bookmark" title="Permanent Link to &quot;How to Install Libraries and Enable the pip Installer in Python&quot;">How to Install Libraries and Enable the pip Installer in Python</a>
+                </h2>
+
+                
+                
+
+                <p>Python comes with a bunch of <a class="reference external" href="https://docs.python.org/3/py-modindex.html">standard modules</a>. My favorites are
+shutil, glob, datetime, time, os (operating system), re (regular
+expressions) and webbrowser. The standard library is loaded.</p>
+<p>Inevitably, you'll want to install new libraries from Python's rich
+ecosystem of external modules. Enter pip, Python's handy package manager
+and people's champion.</p>
+<p>This post will teach you some Python history, show how to install
+pandas, and help you troubleshoot problems if it's not working. You'll
+find Windows and Linux commands for venv setup (recommended). With pip,
+you'll feel like Neo when installing new modules. Any skill is at your
+fingertips. It's like learning kung fu. There's probably a library for
+that!</p>
+<img alt="I know kung fu" class="alignnone size-full wp-image-1321" src="http://pythonmarketer.files.wordpress.com/2018/01/19c0c-i-know-kung-fu-e1516470914221.png" style="width: 1277px; height: 532px;" />
+<p><strong>First, Some Python Version Caveats + History</strong></p>
+<p><strong>Python 2 reached end of life on January 1st, 2020</strong>.
+<a class="reference external" href="https://www.python.org/doc/sunset-python-2/">Python 2 has officially been sunset</a>.</p>
+<p>Python comes with pip now, no setup is required. But certain versions
+such as Python 3.2 or the Python 2.7 that came stock on my improbably
+still functioning 2008 black Macbook, for example, may not have it
+installed.</p>
+<p>In December 2021, Python 3.6 reached <a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">&quot;end of life phase&quot;</a>.</p>
+<p>Python 3.6 is &quot;now effectively frozen&quot;. Read more in <a class="reference external" href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
+<p><strong>TLDR:</strong> use Python 3.7 to 3.11. This blog endorses using the lightning
+fast Python version <a class="reference external" href="https://www.python.org/downloads/release/python-3110/">3.11.</a></p>
+<div class="section" id="enter-this-in-your-terminal">
+<h2>Enter This in Your Terminal</h2>
+<pre class="code literal-block">
+python -m pip install pandas
+</pre>
+<p>Pandas is a super useful library for wrangling spreadsheet data, AKA
+&quot;tabular&quot; data. If successful, you should see activity that looks
+similar to the below screenshot, where I am installing <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>, an additional Python
+Excel library you'll likely want. You are good to go! This is the part
+where you get to feel like Neo! See <a class="reference external" href="https://docs.python.org/3/installing/index.html">Installing Python Modules</a> in the Python
+Documentation for more detailed instructions.</p>
+<img alt="neo_pip" class="alignnone size-full wp-image-1322" src="http://pythonmarketer.files.wordpress.com/2018/01/de9d6-neo_pip-e1587604013861.png" style="width: 650px; height: 340px;" />
+<p><strong>To view all your installed libraries, enter:</strong></p>
+<pre class="literal-block">
+pip list
+</pre>
+<p><strong>Write a &quot;requirements.txt&quot; of installed libraries:</strong></p>
+<pre class="literal-block">
+pip freeze &gt; requirements.txt
+</pre>
+<p><strong>You can list your outdated packages with the --outdated argument:</strong></p>
+<pre class="literal-block">
+pip list --outdated
+</pre>
+<p><strong>Use pip's -h help command line argument:</strong></p>
+<pre class="literal-block">
+pip -h
+</pre>
+<p><strong>View your system and user pip config settings:</strong></p>
+<pre class="literal-block">
+pip config debug
+</pre>
+<p><strong>Supplementary Resources</strong></p>
+<ul class="simple">
+<li>Take a look at this <a class="reference external" href="https://pythontips.com/2013/07/30/20-python-libraries-you-cant-live-without/">list of 20 modules</a>
+to get started. Here is another <a class="reference external" href="https://github.com/vinta/awesome-python">more comprehensive list of libraries</a> you can now install.</li>
+<li>Swing by the pip documentation <a class="reference external" href="https://pip.pypa.io/en/stable/quickstart/">Quickstart</a>and <a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/">User Guide</a> to learn some helpful
+commands.</li>
+<li><a class="reference external" href="https://pypi.org/search/?q=time+travel">PyPI, the Python Package Index</a> is the official Python
+package repository.</li>
+<li><a class="reference external" href="https://snarky.ca/why-you-should-use-python-m-pip/">Why you should use 'python -m pip'</a></li>
+<li><a class="reference external" href="https://opensource.com/downloads/pip-cheat-sheet?utm_medium=Email&amp;utm_campaign=weekly&amp;sc_cid=7013a000002DAKPAA4">pip cheat sheet from opensource.com</a></li>
+</ul>
+<p>Congrats on figuring out how to install packages with pip, have fun!</p>
+</div>
+<div class="section" id="having-issues-try-upgrading-your-pip-version">
+<h2>Having issues? Try upgrading your pip version.</h2>
+<pre class="literal-block">
+python -m pip install --upgrade pip
+</pre>
+</div>
+<div class="section" id="try-the-ensurepip-command">
+<h2>Try the ensurepip command.</h2>
+<p>This command will install and upgrade pip to the newest version. New in
+Python 3.4:</p>
+<pre class="literal-block">
+python -m ensurepip --upgrade
+</pre>
+<!--  -->
+<blockquote>
+<p>&quot;The ensurepip `
+&lt;<a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">https://docs.python.org/3/library/ensurepip.html#module-ensurepip</a>&gt;`__
+package provides support for bootstrapping the pip installer into an
+existing Python installation or virtual environment. This
+bootstrapping approach reflects the fact that pip is an independent
+project with its own release cycle, and the latest available stable
+version is bundled with maintenance and feature releases of the
+CPython reference interpreter.&quot;</p>
+<p>- <a class="reference external" href="https://docs.python.org/3/library/ensurepip.html">ensurepip Python Documentation</a></p>
+</blockquote>
+<p>You should follow best practice and <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a> before installing
+libraries. <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or
+<a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a>
+will help you out. To create with venv:</p>
+<pre class="literal-block">
+python3 -m venv add_env_name_here
+</pre>
+<p>After your environment is created, activate it with the first command
+below, then install a library on Ubuntu Linux:</p>
+<pre class="literal-block">
+source add_env_path_here/bin activate
+python -m pip install pandas
+</pre>
+<p>Alternatively, on Windows computers:</p>
+<pre class="literal-block">
+cd add_env_path_here\scripts &amp; activate
+python -m pip install pandas
+</pre>
+<p><strong>Getting the prefix right can be tricky.</strong></p>
+<p>Since this was written, I moved to Python 3.11. When I first moved from
+Python 2 to 3 on Windows, I somehow accidentally configured the
+following behavior: entering <strong>python some_program.py</strong>ran a .py file
+with Python 2. Whereas, entering <strong>py some_program.py</strong>ran a .py file
+with Python 3.</p>
+<p>In the install command, the prefix is a reference to your Python
+executable. You may just need to alter your prefix to call it correctly.
+Here are some to try in place of &quot;python&quot;. Observe what happens when you
+run these command variations.Good luck!</p>
+<pre class="literal-block">
+python3 -m pip install pandas
+python3.11 -m pip install pandas
+py -m pip install pandas
+pip3 install pandas
+</pre>
+</div>
+<div class="section" id="how-to-manually-enable-the-pip-installer">
+<h2>How to Manually Enable the pip Installer</h2>
+<p><strong>The rest of this post may be useful to you if you are:</strong></p>
+<ol class="arabic simple">
+<li>Working on legacy Python 2 code or Python 3.3 or lower for which pip
+is not installed.</li>
+<li>Seeking to fix a faulty pip install that is not working properly.</li>
+<li>Curious to know how to manually set up pip.</li>
+</ol>
+<p>Assumes Python is already <a class="reference external" href="https://www.python.org/downloads/">installed</a>. If you're running Windows 10, I
+found it easy to install Python from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab">Windows store</a>.
+Download the <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py file</a>.
+Go to the link, right click the page and &quot;Save As&quot; a .py file to
+download. Then place the file where you want to access it. I placed mine
+in C:Python27Libsite-packages</p>
+<p>You could also download the file with <a class="reference external" href="https://curl.haxx.se/">curl</a>:</p>
+<pre class="literal-block">
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py
+</pre>
+<p>If you are not sure where your site-packages folder is, type <a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory">python -m
+site</a>
+into command prompt for file path ideas.</p>
+<p><strong>Run the get-pip.py file.</strong></p>
+<p>Using command prompt's cd command with a Windows &quot;&amp;&quot; operator to run the
+Python file in a Windows command prompt:</p>
+<pre class="literal-block">
+cd c:\Python27\Lib\site-packages &amp; python get-pip.py
+</pre>
+<p>Or Linux terminal:</p>
+<pre class="literal-block">
+cd /Python27/Lib/site-packages &amp;&amp; python get-pip.py
+</pre>
+<p>You should see some activity in command prompt that shows
+installation/updating of &quot;setup&quot; and &quot;wheel&quot;. When it finishes, you have
+installed pip.</p>
+<p><strong>Type into command prompt at the same location:</strong></p>
+<pre class="literal-block">
+python -m pip install requests
+</pre>
+<p>This should install the Requests module into your Python libraries.
+Requests is an http module which is highly regarded almost universally
+by the Python community.</p>
+<p><strong>Thanks for reading! Check out these other posts with pip installed
+library examples:</strong></p>
+<p><a class="reference external" href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">Fix Grammar and Spelling with language_tool_python and textblob</a></p>
+<p><a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/">gooey</a> - GUI
+library</p>
+<p><a class="reference external" href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api/">tweepy</a>
+- Twitter library</p>
+<p><a class="reference external" href="https://lofipython.com/how-to-make-json-requests-with-python/">A Guide to Making HTTP requests</a></p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-python-pip-install-new-libraries.html">posted at 17:50</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming.html" rel="tag">coding, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://lofipython.com/tag/matrix.html" class="tags">matrix</a>
+                    &nbsp;<a href="https://lofipython.com/tag/neo.html" class="tags">neo</a>
+                    &nbsp;<a href="https://lofipython.com/tag/pip.html" class="tags">pip</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-libraries.html" class="tags">python libraries</a>
+                    &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
+                </div>
+            </article>            <h4 class="date">Jan 14, 2018</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -482,41 +688,6 @@ Free for download.</li>
                     <a href="https://lofipython.com/useful-links-for-web2py-beginners.html">posted at 20:03</a>
                     &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/programming-python-web-development-web2py.html" rel="tag">programming, python, web development, web2py</a>
                 </div>
-            </article>            <h4 class="date">Apr 05, 2016</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/on-learning-new-things.html" rel="bookmark" title="Permanent Link to &quot;On Learning New Things&quot;">On Learning New Things</a>
-                </h2>
-
-                
-                
-
-                <p>Most new skills I've tried to learn seem to follow a similar trajectory:</p>
-<ul class="simple">
-<li><strong>Stage One - Beginner's Thrill:</strong> A rapid growth and learning pace
-at the beginning, because I'm conquering a lot of small goals, diving
-into something new and there are rapid gains which feels great.</li>
-<li><strong>Stage Two - Amateur's Reality:</strong>The pace of learning and
-accomplishment levels off. I'm still learning, but the leaps forward
-start following a plateau trajectory. This stage is not as rewarding
-as the first. The key is to push through and jump to the next plateau
-and keep improving.</li>
-<li><strong>Stage Three - Mastery:</strong> This is the goal with most things I want
-to learn, and if I gain enough experience and skill, I'll have the
-ability to apply the new things I've learned to accomplish my goals.</li>
-</ul>
-<p>This is my own way of paraphrasing what I've read a million times on the
-internet - put in the hours, stay focused and don't stop trying. Right
-now I'm somewhere around stage one/two with Python. Gotta keep pushing
-forward. (This blog is also serving as a pep talk to myself.)</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/on-learning-new-things.html">posted at 00:36</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/life.html" rel="tag">life</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -526,7 +697,7 @@ forward. (This blog is also serving as a pep talk to myself.)</p>
 
                     <a href="https://lofipython.com/index10.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 9 of 10</span>
+                    <span>Page 9 of 11</span>
                 </div>
 
             <div class="clear"></div>
