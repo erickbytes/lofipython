@@ -26,18 +26,22 @@ For example, you can activate the "bot fight mode", "browser integrity check" an
 
 .. image:: {static}/blog/images/botfightmode.png
   :alt: enable bot fight mode
+
 <center>*Enable bot flight mode.*</center>
 
 .. image:: {static}/blog/images/speedtest.png
   :alt: run a speed test on your blog
+
 <center>*Run a speed test on your blog.*</center>
 
 .. image:: {static}/blog/images/crawlerhints.png
   :alt: enable crawler hints
+
 <center>*Turn on search engine hints.*</center>
 
 .. image:: {static}/blog/images/topcrawlers.png
   :alt: see crawler traffic
+
 <center>*See which search engines are crawling your blog.*</center>
 
 Here are my Top Cloudflare Pages features:
