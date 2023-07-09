@@ -24,16 +24,20 @@ Recently, this blog switched to `Cloudflare Pages <https://pages.cloudflare.com/
 
 For example, you can activate the "bot fight mode", "browser integrity check" and "user agent blocking" settings to help you fend off bad actors.
 
-![botfightmode]({static}/images/botfightmode.png)
+.. image:: {static}/blog/images/botfightmode.png
+  :alt: enable bot fight mode
 <center>*Enable bot flight mode.*</center>
 
-![speedtest]({static}/images/speedtest.png)
+.. image:: {static}/blog/images/speedtest.png
+  :alt: run a speed test on your blog
 <center>*Run a speed test on your blog.*</center>
 
-![crawlerhints]({static}/images/crawlerhints.png)
+.. image:: {static}/blog/images/crawlerhints.png
+  :alt: enable crawler hints
 <center>*Turn on search engine hints.*</center>
 
-![topcrawlers]({static}/images/topcrawlers.png)
+.. image:: {static}/blog/images/topcrawlers.png
+  :alt: see crawler traffic
 <center>*See which search engines are crawling your blog.*</center>
 
 Here are my Top Cloudflare Pages features:
