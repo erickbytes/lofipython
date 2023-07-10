@@ -27,26 +27,22 @@ For example, you can activate the "bot fight mode", "browser integrity check" an
 .. image:: {static}/blog/images/botfightmode.png
   :alt: enable bot fight mode
 
-.. class:: center
-    *Enable bot flight mode.
+Enable bot flight mode.
 
 .. image:: {static}/blog/images/speedtest.png
   :alt: run a speed test on your blog
 
-.. class:: center
-    Run a speed test on your blog.
+Run a speed test on your blog.
 
 .. image:: {static}/blog/images/crawlerhints.png
   :alt: enable crawler hints
 
-.. class:: center
-    Turn on search engine hints.*</center>
+Turn on search engine hints.*</center>
 
 .. image:: {static}/blog/images/topcrawlers.png
   :alt: see crawler traffic
 
-.. class:: center
-    See which search engines are crawling your blog.
+See which search engines are crawling your blog.
 
 Here are my Top Cloudflare Pages features:
 
@@ -68,4 +64,4 @@ Here are my Top Cloudflare Pages features:
 
 These are all included in the free plan. Some are enabled out of the box and others need to be toggled on to activate. I'm really digging my two Cloudflare Pages blogs. It's taken some time to get used to writing in reStructured Text format. Using pelican for static site generation is working well. 
 
-One quirk of Cloudflare is that only the past 30 days of data is stored. Compared to Wordpress, which stores the entire history of a blog's traffic. Regardless, I'm very impressed at the level of configuration Cloudflare exposes out of the box!
+One quirk of Cloudflare is that only the past 30 days of data is stored. It's not as convenient as Wordpress, which stores the entire analytics history of a blog's traffic. Regardless, I'm very impressed at the level of configuration Cloudflare exposes out of the box!

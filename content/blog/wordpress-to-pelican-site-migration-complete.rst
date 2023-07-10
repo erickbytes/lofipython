@@ -1,5 +1,5 @@
-Wordpress to Pelican Blog Migration Complete Date
-#################################################
+Wordpress to Pelican Blog Migration Complete
+#############################################
 :date: 2023-05-15 17:45
 :author: pythonmarketer
 :category: coding, python, writing, meta
