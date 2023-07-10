@@ -37,7 +37,7 @@ Run a speed test on your blog.
 .. image:: {static}/blog/images/crawlerhints.png
   :alt: enable crawler hints
 
-Turn on search engine hints.*</center>
+Turn on search engine hints.
 
 .. image:: {static}/blog/images/topcrawlers.png
   :alt: see crawler traffic
@@ -47,7 +47,7 @@ See which search engines are crawling your blog.
 Here are my Top Cloudflare Pages features:
 
 1. Zone analytics: the primary analytics to view unique visitors count, requests, bandwidth and network error logging
-2. `crawler hints <https://developers.cloudflare.com/cache/advanced-configuration/crawler-hints/>`__: turn on hints to search engines crawlers 
+2. `crawler hints <https://developers.cloudflare.com/cache/advanced-configuration/crawler-hints/>`__: turn on hints to search engine crawlers and avoid wasteful compute
 3. `bot fight mode <https://developers.cloudflare.com/support/firewall/learn-more/understanding-cloudflare-tor-support-and-onion-routing/#onion-routing>`__: enabling this mode will stop malicious bots
 4. security center scan: validates your DNS configuration and tells you if anything needs fixed
 5. run a speed test: test your site's speed 
