@@ -27,7 +27,7 @@ For example, you can activate the "bot fight mode", "browser integrity check" an
 .. image:: {static}/blog/images/botfightmode.png
   :alt: enable bot fight mode
 
-Enable bot flight mode.
+Enable bot fight mode.
 
 .. image:: {static}/blog/images/speedtest.png
   :alt: run a speed test on your blog
