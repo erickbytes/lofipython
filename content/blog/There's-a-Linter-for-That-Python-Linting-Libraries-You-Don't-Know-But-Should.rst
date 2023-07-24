@@ -32,10 +32,11 @@ In this post, I'll highlight the typical players and some niche linters you migh
   :alt: sqlfluff SQL linting CLI tool
 
 
-* `sqlfluff <https://docs.sqlfluff.com/en/stable/index.html>`__: "The SQL linter for humans", sqlfluff is a linter and code reformatting tool to tidy up your database queries. sqlfluff does the little things like uppercase your keywords, add whitespace where appropriate, check syntax and in general clean up your scripts. The CLI is configurable for nearly all dialects, from DuckDB, T-SQL, Redshift, MySQL, to SQLlite and more. Check the `sqlfluff Github repo <https://github.com/sqlfluff/sqlfluff>`__ for all their supported SQL dialects or use the **sqlfluff dialects** command to list them in your shell. This is probably the one library I want to tell every Python programmer about right now. SQL is everywhere, we all use it. SQL linters are not something most people event know exist. Now you might enter into your shell the next time you need to fix a broken SQL script or clean up some legacy code:
+* `sqlfluff <https://docs.sqlfluff.com/en/stable/index.html>`__: "The SQL linter for humans", sqlfluff is a linter and code reformatting tool to tidy up your database queries. sqlfluff does the little things like uppercase your keywords, add whitespace where appropriate, check syntax and in general clean up your scripts. The CLI is configurable for nearly all dialects, from DuckDB, T-SQL, Redshift, MySQL, to SQLlite and more. Check the `sqlfluff Github repo <https://github.com/sqlfluff/sqlfluff>`__ for all their supported SQL dialects or use the **sqlfluff dialects** command to list them in your shell. This is probably the one library I want to tell every Python programmer about right now. SQL is everywhere, we all use it. SQL linters are not something most people even know exist. Next time you need to fix a broken SQL script or clean up some legacy code, enter this into your shell:
 
 .. code:: 
 
+    pip install sqlfluff
     # Lint your SQL code.
     sqlfluff lint stuff.sql
 
