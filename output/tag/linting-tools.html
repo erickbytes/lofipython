@@ -73,17 +73,16 @@ sqlfluff fix stuff.sql --dialect postgres
 # Check available SQL dialects.
 sqlfluff dialects
 </pre>
-<ul>
-<li><p class="first">rstfmt and restructuredtext-lint (<a class="reference external" href="https://pypi.org/project/restructuredtext-lint/">read more</a>): Both of these reStructuredText format linter libaries offer code reformatting and linting abilities for reStructuredText files (.rst). I favored restructuredtext-lint, due to its rst-lint CLI tool. I used it to fix and tested it on old posts from this blog. Beware that using a reformatter might surface buried errors found by linting the RST, which you'll need to resolve by reading somewhat cryptic RST error messages given by your linter like &quot;hyperlink mismatch, 1 reference but 0 targets&quot;.  At least the line number is provided so you have a relative scope of where the error is coming from. rstfmt is another <a class="reference external" href="https://pypi.org/project/rstfmt/">Python CLI tool</a> in this space. One note of using these tools is to watch out for unwanted changes. One effect I saw was having code blocks auto-coverted from Python formatting to regular code formatting.</p>
-<blockquote>
-<p>RST is one of two conversion options offered by the <a class="reference external" href="https://docs.getpelican.com/en/3.6.3/quickstart.html">Pelican</a> static site generator library, along with Markdown (.md). It's the format this blog is composed in. Pelican also offers some linting-like functionality when you run its <strong>pelican content</strong> command to compile your static site.</p>
-</blockquote>
-</li>
+<ul class="simple">
+<li>rstfmt and restructuredtext-lint (<a class="reference external" href="https://pypi.org/project/restructuredtext-lint/">read more</a>): Both of these reStructuredText format linter libaries offer code reformatting and linting abilities for reStructuredText files (.rst). I favored restructuredtext-lint, due to its rst-lint CLI tool. I used it to fix and tested it on old posts from this blog. Beware that using a reformatter might surface buried errors found by linting the RST, which you'll need to resolve by reading somewhat cryptic RST error messages given by your linter like &quot;hyperlink mismatch, 1 reference but 0 targets&quot;.  At least the line number is provided so you have a relative scope of where the error is coming from. rstfmt is another <a class="reference external" href="https://pypi.org/project/rstfmt/">Python CLI tool</a> in this space. One note of using these tools is to watch out for unwanted changes. One effect I saw was having code blocks auto-converted from Python formatting to regular code formatting.</li>
 </ul>
 <p><strong>Lint and reformat your .rst documents.</strong></p>
 <pre class="code literal-block">
 pip install restructuredtext-lint
 rst-lint post.rst
+
+
+RST is one of two conversion options offered by the `Pelican &lt;https://docs.getpelican.com/en/3.6.3/quickstart.html&gt;`__ static site generator library, along with Markdown (.md). RST is the format this blog is composed in. Pelican also offers some linting-like functionality when you run its **pelican content** command to compile your static site.
 </pre>
 <ul class="simple">
 <li><a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool">json.tool</a>: a Python standard library CLI tool with JSON validation abilities. If you're working with json, remember this stock Python tool.</li>

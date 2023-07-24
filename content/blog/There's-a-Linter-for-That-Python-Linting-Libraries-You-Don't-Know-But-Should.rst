@@ -53,10 +53,8 @@ In this post, I'll highlight the typical players and some niche linters you migh
     sqlfluff dialects
 
 
-* rstfmt and restructuredtext-lint (`read more <https://pypi.org/project/restructuredtext-lint/>`__): Both of these reStructuredText format linter libaries offer code reformatting and linting abilities for reStructuredText files (.rst). I favored restructuredtext-lint, due to its rst-lint CLI tool. I used it to fix and tested it on old posts from this blog. Beware that using a reformatter might surface buried errors found by linting the RST, which you'll need to resolve by reading somewhat cryptic RST error messages given by your linter like "hyperlink mismatch, 1 reference but 0 targets".  At least the line number is provided so you have a relative scope of where the error is coming from. rstfmt is another `Python CLI tool <https://pypi.org/project/rstfmt/>`__ in this space. One note of using these tools is to watch out for unwanted changes. One effect I saw was having code blocks auto-coverted from Python formatting to regular code formatting.
+* rstfmt and restructuredtext-lint (`read more <https://pypi.org/project/restructuredtext-lint/>`__): Both of these reStructuredText format linter libaries offer code reformatting and linting abilities for reStructuredText files (.rst). I favored restructuredtext-lint, due to its rst-lint CLI tool. I used it to fix and tested it on old posts from this blog. Beware that using a reformatter might surface buried errors found by linting the RST, which you'll need to resolve by reading somewhat cryptic RST error messages given by your linter like "hyperlink mismatch, 1 reference but 0 targets".  At least the line number is provided so you have a relative scope of where the error is coming from. rstfmt is another `Python CLI tool <https://pypi.org/project/rstfmt/>`__ in this space. One note of using these tools is to watch out for unwanted changes. One effect I saw was having code blocks auto-converted from Python formatting to regular code formatting.
 
-
-    RST is one of two conversion options offered by the `Pelican <https://docs.getpelican.com/en/3.6.3/quickstart.html>`__ static site generator library, along with Markdown (.md). It's the format this blog is composed in. Pelican also offers some linting-like functionality when you run its **pelican content** command to compile your static site.
 
 
 **Lint and reformat your .rst documents.**
@@ -65,6 +63,9 @@ In this post, I'll highlight the typical players and some niche linters you migh
 
     pip install restructuredtext-lint
     rst-lint post.rst
+
+
+    RST is one of two conversion options offered by the `Pelican <https://docs.getpelican.com/en/3.6.3/quickstart.html>`__ static site generator library, along with Markdown (.md). RST is the format this blog is composed in. Pelican also offers some linting-like functionality when you run its **pelican content** command to compile your static site.
 
 
 * `json.tool <https://docs.python.org/3/library/json.html#module-json.tool>`__: a Python standard library CLI tool with JSON validation abilities. If you're working with json, remember this stock Python tool.
