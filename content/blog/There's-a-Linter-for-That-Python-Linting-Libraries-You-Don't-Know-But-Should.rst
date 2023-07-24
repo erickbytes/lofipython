@@ -28,7 +28,7 @@ In this post, I'll highlight the typical players and some niche linters you migh
 
 
 
-.. image:: {static}/blog/images/sqlfluff-example.png
+.. image:: {static}/blog/images/sqlfluffexample.png
   :alt: sqlfluff SQL linting CLI tool
 
 
@@ -134,7 +134,7 @@ In this post, I'll highlight the typical players and some niche linters you migh
 
 
 
-.. image:: {static}/blog/images/yamllint-example.png
+.. image:: {static}/blog/images/yamllintexample.png
   :alt: yamllint YAML linting CLI tool
 
 
