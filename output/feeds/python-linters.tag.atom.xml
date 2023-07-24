@@ -15,7 +15,7 @@ ruff do_stuff.py --fix
 &lt;/pre&gt;
 &lt;img alt="sqlfluff SQL linting CLI tool" src="https://lofipython.com/blog/images/sqlfluffexample.png" /&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://docs.sqlfluff.com/en/stable/index.html"&gt;sqlfluff&lt;/a&gt;: &amp;quot;The SQL linter for humans&amp;quot;, sqlfluff is a linter and code reformatting tool to tidy up your database queries. sqlfluff does the little things like uppercase your keywords, add whitespace where appropriate, check syntax and in general clean up your scripts. The CLI is configurable for nearly all dialects, from DuckDB, T-SQL, Redshift, MySQL, to SQLlite and more. Check the &lt;a class="reference external" href="https://github.com/sqlfluff/sqlfluff"&gt;sqlfluff Github repo&lt;/a&gt; for all their supported SQL dialects or use the &lt;strong&gt;sqlfluff dialects&lt;/strong&gt; command to list them in your shell. This is probably the one library I want to tell every Python programmer about right now. SQL is everywhere, we all use it. SQL linters are not something most people even know exist. Next time you need to fix a broken SQL script or clean up some legacy code, enter this into your shell:&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://docs.sqlfluff.com/en/stable/index.html"&gt;sqlfluff&lt;/a&gt;: &amp;quot;The SQL linter for humans&amp;quot;, sqlfluff is a linter and code reformatting tool to tidy up your database queries. sqlfluff does the little things like uppercase your keywords, add whitespace where appropriate, check syntax and in general clean up your scripts. The CLI is configurable for nearly all dialects from DuckDB, T-SQL, Redshift, MySQL, to SQLlite and more. Check the &lt;a class="reference external" href="https://github.com/sqlfluff/sqlfluff"&gt;sqlfluff Github repo&lt;/a&gt; for all their supported SQL dialects or use the &lt;strong&gt;sqlfluff dialects&lt;/strong&gt; command to list them in your shell. This is the one library I want to tell every Python programmer about right now, along with ruff. SQL is everywhere, we all use it. SQL linters are not something most people even know exist. Next time you need to fix a broken SQL script or clean up some legacy code, enter this into your shell:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre class="code literal-block"&gt;
 pip install sqlfluff
@@ -29,17 +29,6 @@ sqlfluff fix stuff.sql --dialect postgres
 &lt;pre class="code literal-block"&gt;
 # Check available SQL dialects.
 sqlfluff dialects
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;rstfmt and restructuredtext-lint (&lt;a class="reference external" href="https://pypi.org/project/restructuredtext-lint/"&gt;read more&lt;/a&gt;): Both of these reStructuredText format linter libaries offer code reformatting and linting abilities for reStructuredText files (.rst). I favored restructuredtext-lint, due to its rst-lint CLI tool. I used it to fix and tested it on old posts from this blog. Beware that using a reformatter might surface buried errors found by linting the RST, which you'll need to resolve by reading somewhat cryptic RST error messages given by your linter like &amp;quot;hyperlink mismatch, 1 reference but 0 targets&amp;quot;.  At least the line number is provided so you have a relative scope of where the error is coming from. rstfmt is another &lt;a class="reference external" href="https://pypi.org/project/rstfmt/"&gt;Python CLI tool&lt;/a&gt; in this space. One note of using these tools is to watch out for unwanted changes. One effect I saw was having code blocks auto-converted from Python formatting to regular code formatting.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Lint and reformat your .rst documents.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-pip install restructuredtext-lint
-rst-lint post.rst
-
-
-RST is one of two conversion options offered by the `Pelican &amp;lt;https://docs.getpelican.com/en/3.6.3/quickstart.html&amp;gt;`__ static site generator library, along with Markdown (.md). RST is the format this blog is composed in. Pelican also offers some linting-like functionality when you run its **pelican content** command to compile your static site.
 &lt;/pre&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool"&gt;json.tool&lt;/a&gt;: a Python standard library CLI tool with JSON validation abilities. If you're working with json, remember this stock Python tool.&lt;/li&gt;
@@ -59,7 +48,7 @@ pylint do_stuff.py
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/black/"&gt;black&lt;/a&gt;: a must-mention, this Python code formatter that also offers some linting-like qualities. I now run it on every script I write.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Reformat your code with black and get hints problems in your code.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reformat your code with black.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install black
 python -m black do_stuff.py
@@ -72,6 +61,19 @@ python -m black do_stuff.py
 pip install --user yamllint
 yamllint config.yaml
 &lt;/pre&gt;
+&lt;img alt="yamllint YAML linting CLI tool" src="https://lofipython.com/blog/images/yamllintexample.png" /&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;rstfmt and restructuredtext-lint (&lt;a class="reference external" href="https://pypi.org/project/restructuredtext-lint/"&gt;read more&lt;/a&gt;): Both of these reStructuredText format linter libaries offer code reformatting and linting abilities for reStructuredText files (.rst). I favored restructuredtext-lint, due to its rst-lint CLI tool. I used it to fix and tested it on old posts from this blog. Beware that using a reformatter might surface buried errors found by linting the RST, which you'll need to resolve by reading somewhat cryptic RST error messages given by your linter like &amp;quot;hyperlink mismatch, 1 reference but 0 targets&amp;quot;. At least the line number is provided so you have a relative scope of where the error is coming from. rstfmt is another &lt;a class="reference external" href="https://pypi.org/project/rstfmt/"&gt;Python CLI tool&lt;/a&gt; in this space. One note of using these tools is to watch out for unwanted changes. One effect I saw was having code blocks auto-converted from Python formatting to regular code formatting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Lint and reformat your .rst documents.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+pip install restructuredtext-lint
+rst-lint post.rst
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Pelican + .rst or .md&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+RST is one of two conversion options offered by the &lt;a class="reference external" href="https://docs.getpelican.com/en/3.6.3/quickstart.html"&gt;Pelican&lt;/a&gt; static site generator library, along with Markdown (.md). RST is the format this blog is composed in. Pelican also offers some linting-like functionality when you run its &lt;strong&gt;pelican content&lt;/strong&gt; command to compile your static site.&lt;/blockquote&gt;
+&lt;p&gt;Although I haven't used them personally, it's worth mentioning popular libraries like &lt;a class="reference external" href="https://pypi.org/project/pyflakes/"&gt;pyflakes&lt;/a&gt; and &lt;a class="reference external" href="https://pypi.org/project/flake8/"&gt;flake8&lt;/a&gt;  for linting Python code. ruff supports some of these libraries also. Check out &lt;a class="reference external" href="https://pypi.org/project/pymarkdownlnt/"&gt;pymarkdownlint&lt;/a&gt; for linting Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool that exists. &lt;a class="reference external" href="https://pypi.org/project/html-linter/"&gt;html-linter&lt;/a&gt; offers a way to apply linting to your HTML code. Starting to think that behind every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, linters and auto-formatters go hand in hand as invaluable tools.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Lint your Markdown documents.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install pymarkdownlnt
@@ -82,8 +84,6 @@ pymarkdown scan example.md
 pip install html-linter
 html_lint.py filename.html
 &lt;/pre&gt;
-&lt;img alt="yamllint YAML linting CLI tool" src="https://lofipython.com/blog/images/yamllintexample.png" /&gt;
-&lt;p&gt;Although I haven't used them personally, it's worth mentioning popular libraries like &lt;a class="reference external" href="https://pypi.org/project/pyflakes/"&gt;pyflakes&lt;/a&gt; and &lt;a class="reference external" href="https://pypi.org/project/flake8/"&gt;flake8&lt;/a&gt;  for linting Python code. ruff supports some of these libraries also. Check out &lt;a class="reference external" href="https://pypi.org/project/pymarkdownlnt/"&gt;pymarkdownlint&lt;/a&gt; for linting Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool that exists. &lt;a class="reference external" href="https://pypi.org/project/html-linter/"&gt;html-linter&lt;/a&gt; offers a way to apply linting to your HTML code. Starting to think that behind every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, linters and auto-formatters go hand in hand as invaluable tools.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Supplementary Reading + Documentation&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://opensource.com/article/18/7/7-python-libraries-more-maintainable-code"&gt;7 Python libraries for more maintainable code&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://developer.twitter.com/en/docs/tutorials"&gt;reStructuredText-lint docs&lt;/a&gt;&lt;/p&gt;
