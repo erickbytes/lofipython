@@ -62,6 +62,6 @@ See which search engines are crawling your blog.
 14. DNS Analytics: see DNS traffic visualizations
 15. `Onion Routing <https://developers.cloudflare.com/support/firewall/learn-more/understanding-cloudflare-tor-support-and-onion-routing/#onion-routing>`__: serve your website's content in a tor-friendly way
 
-These are all included in the free plan. Some are enabled out of the box and others need to be toggled on to activate. I'm really digging my two Cloudflare Pages blogs. It's taken some time to get used to writing in `reStructuredText format <https://docutils.sourceforge.io/rst.html>`__ . Using pelican for static site generation is working well. 
+These are all included in the free plan. Some are enabled out of the box and others need to be toggled on to activate. I'm really digging my two Cloudflare Pages blogs. It's taken some time to get used to writing in `reStructuredText format <https://docutils.sourceforge.io/rst.html>`__. Using pelican for static site generation is working well. 
 
-One quirk of Cloudflare is that only the past 30 days of data is stored. It's not as convenient as Wordpress, which stores the entire analytics history of a blog's traffic. However, Cloudflare's GraphQL API is also an option for your data queying needs. Regardless, I'm very impressed at the level of configuration Cloudflare exposes out of the box!
+One quirk of Cloudflare is that only the past 30 days of data is stored. It's not as convenient as Wordpress, which stores the entire analytics history of a blog's traffic. However, Cloudflare's GraphQL API is also an option for your data querying needs. Regardless, I'm very impressed at the level of configuration Cloudflare exposes out of the box!
