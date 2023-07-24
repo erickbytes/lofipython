@@ -78,17 +78,18 @@ sqlfluff dialects
 <p>RST is one of two conversion options offered by the <a class="reference external" href="https://docs.getpelican.com/en/3.6.3/quickstart.html">Pelican</a> static site generator library, along with Markdown (.md). It's the format this blog is composed in. Pelican also offers some linting-like functionality when you run its <strong>pelican content</strong> command to compile your static site.</p>
 </blockquote>
 </li>
-<li><p class="first"><a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool">json.tool</a>: a Python standard library CLI tool with JSON validation abilities. If you're working with json, remember this stock Python tool.</p>
-</li>
 </ul>
-<p><strong>Validate JSON with a built-in python CLI tool.</strong></p>
-<pre class="code literal-block">
-echo '{1.2:3.4}' | python -m json.tool
-</pre>
 <p><strong>Lint and reformat your .rst documents.</strong></p>
 <pre class="code literal-block">
 pip install restructuredtext-lint
 rst-lint post.rst
+</pre>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool">json.tool</a>: a Python standard library CLI tool with JSON validation abilities. If you're working with json, remember this stock Python tool.</li>
+</ul>
+<p><strong>Validate JSON with a built-in python CLI tool.</strong></p>
+<pre class="code literal-block">
+echo '{1.2:3.4}' | python -m json.tool
 </pre>
 <ul class="simple">
 <li><a class="reference external" href="https://pypi.org/project/pylint/">pylint</a>: commonly used static code analyser that enforces PEP-8 and other rules in your code</li>
@@ -119,13 +120,13 @@ yamllint config.yaml
 pip install pymarkdownlnt
 pymarkdown scan example.md
 </pre>
-<p><strong>Lint your HMTL documents.</strong></p>
+<p><strong>Lint your HTML documents.</strong></p>
 <pre class="code literal-block">
 pip install html-linter
 html_lint.py filename.html
 </pre>
 <img alt="yamllint YAML linting CLI tool" src="https://lofipython.com/blog/images/yamllintexample.png" />
-<p>Although I haven't used them personally, it's worth mentioning popular libraries like <a class="reference external" href="https://pypi.org/project/pyflakes/">pyflakes</a> and <a class="reference external" href="https://pypi.org/project/flake8/">flake8</a>  for linting Python code. ruff supports for some of these libraries also. Check out <a class="reference external" href="https://pypi.org/project/pymarkdownlnt/">pymarkdownlint</a> for linting Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool exists in the Python ecosystem. <a class="reference external" href="https://pypi.org/project/html-linter/">html-linter</a> offers a way to apply linting to your HTML code. Starting to think that behind every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, linters and auto-formatters go hand in hand as invaluable tools.</p>
+<p>Although I haven't used them personally, it's worth mentioning popular libraries like <a class="reference external" href="https://pypi.org/project/pyflakes/">pyflakes</a> and <a class="reference external" href="https://pypi.org/project/flake8/">flake8</a>  for linting Python code. ruff supports some of these libraries also. Check out <a class="reference external" href="https://pypi.org/project/pymarkdownlnt/">pymarkdownlint</a> for linting Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool that exists. <a class="reference external" href="https://pypi.org/project/html-linter/">html-linter</a> offers a way to apply linting to your HTML code. Starting to think that behind every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, linters and auto-formatters go hand in hand as invaluable tools.</p>
 <p><strong>Supplementary Reading + Documentation</strong></p>
 <p><a class="reference external" href="https://opensource.com/article/18/7/7-python-libraries-more-maintainable-code">7 Python libraries for more maintainable code</a></p>
 <p><a class="reference external" href="https://developer.twitter.com/en/docs/tutorials">reStructuredText-lint docs</a></p>

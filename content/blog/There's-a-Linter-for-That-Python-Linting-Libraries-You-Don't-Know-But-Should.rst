@@ -58,6 +58,14 @@ In this post, I'll highlight the typical players and some niche linters you migh
     RST is one of two conversion options offered by the `Pelican <https://docs.getpelican.com/en/3.6.3/quickstart.html>`__ static site generator library, along with Markdown (.md). It's the format this blog is composed in. Pelican also offers some linting-like functionality when you run its **pelican content** command to compile your static site.
 
 
+**Lint and reformat your .rst documents.**
+
+.. code:: 
+
+    pip install restructuredtext-lint
+    rst-lint post.rst
+
+
 * `json.tool <https://docs.python.org/3/library/json.html#module-json.tool>`__: a Python standard library CLI tool with JSON validation abilities. If you're working with json, remember this stock Python tool.
 
 
@@ -68,14 +76,6 @@ In this post, I'll highlight the typical players and some niche linters you migh
 
     echo '{1.2:3.4}' | python -m json.tool
 
-
-
-**Lint and reformat your .rst documents.**
-
-.. code:: 
-
-    pip install restructuredtext-lint
-    rst-lint post.rst
 
 
 * `pylint <https://pypi.org/project/pylint/>`__: commonly used static code analyser that enforces PEP-8 and other rules in your code
@@ -124,7 +124,7 @@ In this post, I'll highlight the typical players and some niche linters you migh
     pymarkdown scan example.md
 
 
-**Lint your HMTL documents.**
+**Lint your HTML documents.**
 
 
 .. code:: 
@@ -139,7 +139,7 @@ In this post, I'll highlight the typical players and some niche linters you migh
 
 
 
-Although I haven't used them personally, it's worth mentioning popular libraries like `pyflakes <https://pypi.org/project/pyflakes/>`__ and `flake8 <https://pypi.org/project/flake8/>`__  for linting Python code. ruff supports for some of these libraries also. Check out `pymarkdownlint <https://pypi.org/project/pymarkdownlnt/>`__ for linting Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool exists in the Python ecosystem. `html-linter <https://pypi.org/project/html-linter/>`__ offers a way to apply linting to your HTML code. Starting to think that behind every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, linters and auto-formatters go hand in hand as invaluable tools.
+Although I haven't used them personally, it's worth mentioning popular libraries like `pyflakes <https://pypi.org/project/pyflakes/>`__ and `flake8 <https://pypi.org/project/flake8/>`__  for linting Python code. ruff supports some of these libraries also. Check out `pymarkdownlint <https://pypi.org/project/pymarkdownlnt/>`__ for linting Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool that exists. `html-linter <https://pypi.org/project/html-linter/>`__ offers a way to apply linting to your HTML code. Starting to think that behind every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, linters and auto-formatters go hand in hand as invaluable tools.
 
 
 **Supplementary Reading + Documentation**
