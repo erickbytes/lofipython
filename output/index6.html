@@ -31,7 +31,76 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Nov 28, 2020</h4>
+        <div id="content">            <h4 class="date">Jan 16, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/pick-stocks-like-a-pro-with-ffn.html" rel="bookmark" title="Permanent Link to &quot;Pick Stocks Intelligently with ffn&quot;">Pick Stocks Intelligently with ffn</a>
+                </h2>
+
+                
+                
+
+                <p>How do you calculate stock valuation metrics like <a class="reference external" href="https://www.investopedia.com/terms/s/sharperatio.asp">Sharpe ratio</a>. Recently I've been reading about common <a class="reference external" href="https://www.suredividend.com/ratios-metrics/">stock valuation metrics</a> and wondered how I can apply them to my stock portfolio. I started reading about different metrics, sketching formulas and entertained writing a script to calculate these metrics. But Python has no shortage of finance-related libraries. After some furious googling I found <a class="reference external" href="https://github.com/pmorissette/ffn">ffn</a>, a way better option than rolling my own formulas. It's a &quot;financial function&quot; library, installable with pip.</p>
+<p>It will be interesting to observe how these metrics vary in my portfolio and learn more of <a class="reference external" href="http://pmorissette.github.io/ffn/ffn.html">ffn's API</a>. I like that they use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas dataframes</a> within their library because I'm already familiar with them. At minimum, it's good to understand what stock formulas purport to measure and what it means if the measure is low or high. It makes sense to compare stocks in similar industries or competitors like <a class="reference external" href="https://finance.yahoo.com/quote/NKE/">NKE</a> and <a class="reference external" href="https://finance.yahoo.com/quote/ADDYY?p=ADDYY&amp;.tsrc=fin-srch">ADDYY</a>. This is a neat tool for stock nerds who want to level up their stock analysis, make smart decisions and ideally pad the portfolio!</p>
+<p>The funny thing is... my lowest university grade was a &quot;C&quot; in my only Finance class. It wasn't easy for me to grasp. But with Python it's a little more interesting and easier to apply. Anyone can level up their finance skills thanks to a cornucopia of finance calculation libraries in the Python ecosystem.</p>
+<p>Recommended Reading: <a class="reference external" href="https://pmorissette.github.io/ffn/index.html#a-brief-introduction">A Brief Introduction - ffn documentation</a></p>
+<p><strong>Install ffn with pip:</strong></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install ffn</tt></p>
+<p>Here's the code to get stock data with <a class="reference external" href="https://pmorissette.github.io/ffn/quick.html">ffn</a>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">ffn</span>
+
+<span class="c1"># ffn.get returns a pandas dataframe of market data.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ffn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s1">&#39;tsla,spot,nflx,nke,addyy&#39;</span><span class="p">,</span>
+    <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2019-01-01&#39;</span><span class="p">,</span>
+    <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2020-12-31&#39;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">calc_stats</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">display</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-5165 figure">
+<img alt="ffn stock report 2019-2021" src="https://pythonmarketer.files.wordpress.com/2021/01/2019-2020-top-stock.jpg?w=794" />
+</div>
+<p><strong>side note on the pyfolio library</strong></p>
+<p>I first considered using pyfolio to pull stock data. It is not &quot;out of the box&quot; ready per se to deliver the results pictured in their <a class="reference external" href="https://lofipython.com/pick-stocks-like-a-pro-with-pyfolio/">&quot;single stock&quot; example</a> documentation. You'd need to find another way to fetch your market data or somehow patch the Yahoo Finance API within pyfolio. I preferred <a class="reference external" href="http://pmorissette.github.io/ffn/quick.html">ffn</a>, mostly because it worked right away after pip installing it and running the above code.</p>
+<p><strong>2023 Update:</strong> ffn and pyfolio both depend on the Yahoo Finance API, which tends to change and break these libraries. Troubleshooting traceback errors may be required.</p>
+<p><strong>Try these other Python financial analysis libraries:</strong></p>
+<p><a class="reference external" href="https://financetrain.com/best-python-librariespackages-finance-financial-data-scientists/">Best Python Libraries/Packages for Finance and Financial Data Scientists</a></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/statistics.html">python's built-in statistics module</a> - <a class="reference external" href="https://github.com/mementum/backtrader">Backtrader</a></p>
+<p><a class="reference external" href="https://github.com/bpsmith/tia">tia: Toolkit for integration and analysis</a> - <a class="reference external" href="https://github.com/peerchemist/finta">FinTA (Financial Technical Analysis)</a></p>
+<p><a class="reference external" href="https://pydata.github.io/pandas-datareader/index.html">pandas-datareader</a> - <a class="reference external" href="https://github.com/matplotlib/mplfinance#usage">mplfinance</a> - <a class="reference external" href="https://github.com/robertmartin8/PyPortfolioOpt">PyPortfolioOpt</a> - <a class="reference external" href="https://github.com/mrjbq7/ta-lib">TA-Lib Python Port</a></p>
+<p><a class="reference external" href="https://github.com/erickbytes/finsou.py">finsou.py</a> (CLI written by me)</p>
+<p><a class="reference external" href="https://github.com/wilsonfreitas/awesome-quant">awesome-quant</a></p>
+<div class="wp-image-5037 figure">
+<img alt="Image credit, ActiveState: https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/" src="https://pythonmarketer.files.wordpress.com/2021/01/top10financepackages-1200x675-1.png?w=1024" />
+<p class="caption">Image credit, ActiveState: <a class="reference external" href="https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/">https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/</a></p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/pick-stocks-like-a-pro-with-ffn.html">posted at 23:21</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/investing.html" rel="tag">investing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/money.html" class="tags">money</a>
+                    &nbsp;<a href="https://lofipython.com/tag/personal-finance.html" class="tags">personal finance</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/stock-formulas.html" class="tags">stock formulas</a>
+                    &nbsp;<a href="https://lofipython.com/tag/stocks.html" class="tags">stocks</a>
+                </div>
+            </article>            <h4 class="date">Nov 28, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1045,102 +1114,6 @@ sqlite3 PythonMarketer.db
                     &nbsp;<a href="https://lofipython.com/tag/database-storage.html" class="tags">database storage</a>
                     &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
                     &nbsp;<a href="https://lofipython.com/tag/lectures-notes.html" class="tags">lectures notes</a>
-                </div>
-            </article>            <h4 class="date">Jun 23, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/my-favorite-free-educational-courses-and-talks-to-absorb.html" rel="bookmark" title="Permanent Link to &quot;Free Computer Science Courses and Talks To Absorb&quot;">Free Computer Science Courses and Talks To Absorb</a>
-                </h2>
-
-                
-                
-
-                <p>Below you'll find a balanced curriculum of juicy courses and videos that are available for free on the internet. I'll definitely be diving into most of these in the 2nd half of 2020. Stay curious!</p>
-<div class="section" id="university-cs-courses-for-free">
-<h2>University CS Courses For Free</h2>
-<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLhQjrBD2T382hIW-IsOVuXP1uMzEvmcE5">CS50's Web Programming with Python and JavaScript</a> | Harvard University</p>
-<p><a class="reference external" href="https://archive.org/details/ucberkeley_webcast_gJJeUFyuvvg">CS 61-C Great Ideas in Computer Architecture (Machine Structures)</a>, Spring 2015 | UC Berkeley</p>
-<p><a class="reference external" href="http://cs109.github.io/2015/">CS 109: Data Science</a>, 2015 | Harvard University</p>
-<p><a class="reference external" href="https://uppsala.instructure.com/courses/28112">Mathematical Modeling of Football</a>, Fall 2020 | Uppsala Universitet</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=hry_qqXLej8&amp;list=PLN_mP1uWIrL6d_brjVN3qgDBxoYEAE-hG&amp;index=2">CS 162 - Operating Systems and Systems Programming</a>, Fall 2013 | UC Berkeley</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=oeYBdghaIjc&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi">15-445/645 Intro to Database Systems</a>, Fall 2019&nbsp;| Carnegie Mellon University</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=SdW5RKUboKc&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=25&amp;t=0s">15-721 Advanced Database Systems</a>, Spring 2020 | Carnegie Mellon University</p>
-<p><a class="reference external" href="https://missing.csail.mit.edu/2020/">Missing Semester: Shell Tools &amp; Scripting</a>, Spring 2020 | MIT</p>
-<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB">6.824 Distributed Systems</a>, Spring 2020 | MIT</p>
-<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLOtl7M3yp-DX32N0fVIyvn7ipWKNGmwpp">CSE 373 - Analysis of Algorithms</a>, 2016 | Stony Brook University</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=9Btjg3I5-Wg">CS 4150 Algorithms</a>, Spring 2020 | University of Utah</p>
-<p>CS 241 System Programming, Spring 2020 [<a class="reference external" href="http://cs241.cs.illinois.edu/coursebook/index.html">course wiki</a>] |&nbsp;University of Illinois</p>
-<p><a class="reference external" href="https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/">CS 6120: Advanced Compilers: The Self-Guided Online Course</a> | Cornell University</p>
-</div>
-<div class="section" id="intriguing-coursera-classes">
-<h2>Intriguing Coursera Classes</h2>
-<p><a class="reference external" href="https://www.coursera.org/learn/devops-culture-and-mindset#syllabus">DevOps Culture and Mindset</a> | UC-Davis</p>
-<p><a class="reference external" href="https://www.coursera.org/specializations/data-structures-algorithms">Computer Science: Algorithms, Theory, and Machines</a> | Princeton University</p>
-<p><a class="reference external" href="https://www.coursera.org/learn/excel-data-analysis-fundamentals?courseSlug=excel-data-analysis-fundamentals&amp;showOnboardingModal=check">Excel Fundamentals for Data Analysis</a> | Macquarie University</p>
-<p><a class="reference external" href="https://www.coursera.org/projects/data-science-streamlit-python">Build a Data Science Web App with Streamlit and Python</a> | Guided Project [$10]</p>
-</div>
-<div class="section" id="programming-talks-tutorials">
-<h2>Programming Talks &amp; Tutorials</h2>
-<p>These programming talks piqued my interest, highly recommended.</p>
-<p><strong>David Beazley | Built in Super Heroes [</strong><a class="reference external" href="https://www.youtube.com/watch?v=lyDLAutA88s&amp;index=4&amp;list=LLzDUyPGFtbvCCztZLs8-rfw">YouTube</a><strong>]</strong></p>
-<p>Mr. Beazley shows how to use pure Python built-in functions to clean and analyze the City of Chicago's food inspection data. No pandas in this talk, behold the power of the Python standard library. Spoiler: Don't eat at O'hare airport. He also has a new course, available for free:</p>
-<p><strong>David Beazley | Practical Python Programming&nbsp;[</strong><a class="reference external" href="https://dabeaz-course.github.io/practical-python/">Course</a><strong>]</strong></p>
-<blockquote>
-This is not a course for absolute beginners on how to program a computer. It is assumed that you already have programming experience in some other programming language or Python itself.</blockquote>
-<p><strong>Sebastian Witowski | Modern Python Developer's Toolkit [</strong><a class="reference external" href="https://www.youtube.com/watch?v=WkUBx3g2QfQ">YouTube</a><strong>]</strong></p>
-<p>An overview covering editing tools and setup from <a class="reference external" href="https://www.youtube.com/channel/UCMjMBMGt0WJQLeluw6qNJuA/videos">PyCon 2020</a>. Honing your development environment is crucial to being an efficent coder. This example uses VS Code. I use Atom as my primary text editor. The most recommended linters are usually pylint, flake8 or pyflakes.</p>
-<p><strong>Jake VanderPlas | Reproducible Data Analysis in Jupyter [</strong><a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=138">YouTube</a><strong>]</strong></p>
-<p>This 10 video series is a must-watch for aspiring data scientists and analysts if you use Python. Includes a git workflow demonstration, working in Jupyter Notebooks and many other essentials.</p>
-<p><strong>Rich Hickey | Hammock Driven Development [</strong><a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">YouTube</a><strong>]</strong></p>
-<p>Sometimes, the best thing we can do is step away from the keyboard. I really enjoy this speaker's communication style.</p>
-<p><strong>Eric J. Ma | Demystifying Deep Learning for Data Scientists [</strong><a class="reference external" href="https://www.youtube.com/watch?v=gGu3pPC_fBM&amp;feature=youtu.be">YouTube</a><strong>]</strong></p>
-<p>Tutorial-style Pythonmachine learning walk-through from PyCon 2020.</p>
-<p><strong>Julie Michelman | Pandas, Pipelines, and Custom Transformers [</strong><a class="reference external" href="https://www.youtube.com/watch?v=BFaadIqWlAg&amp;index=6&amp;list=PLGVZCDnMOq0rxoq9Nx0B4tqtr891vaCn7">YouTube</a><strong>]</strong></p>
-<p>This video shows a deep dive into the world of sci-kit learn and machine learning. PyCon and PyData videos usually include some cutting edge tech. Machine learning moves so fast there are always new tools surfacing. But certain libraries like sci-kit learn, TensorFlow, keras and PyTorch have been constant.</p>
-<p><strong>Ville Tuuls | A Billion Rows per Second: Metaprogramming Python for Big Data [</strong><a class="reference external" href="https://www.youtube.com/watch?time_continue=1745&amp;v=rXj5nayS7Yg">YouTube</a><strong>]</strong></p>
-<p>Make your data dense by tactically re-arranging into efficient structures and compiling it down to lower-level bytes. This details a successful Python / Postgres / Numba / Multicorn big data implementation.</p>
-</div>
-<div class="section" id="video-course-grab-bag">
-<h2>Video &amp; Course Grab Bag</h2>
-<p><strong>Discover the role of Python in space exploration [</strong><a class="reference external" href="https://docs.microsoft.com/en-us/learn/paths/introduction-python-space-exploration-nasa/">course</a><strong>]</strong></p>
-<p>Microsoft and NASA made a free course about Python in space! 🤓</p>
-<p><strong>Ted Nelson | Computers for Cynics [</strong><a class="reference external" href="https://www.youtube.com/watch?v=hZ3gmh-d9oI&amp;list=LLzDUyPGFtbvCCztZLs8-rfw&amp;index=137&amp;t=0s">YouTube</a><strong>]</strong></p>
-<p>I find these videos to be an entertaining, thought-provoking take on software history. Recommended from Joe Armstrong, the creator of <a class="reference external" href="https://en.wikipedia.org/wiki/Erlang_(programming_language)">Erlang</a>.</p>
-<p><strong>GNU Typist [</strong><a class="reference external" href="https://www.gnu.org/savannah-checkouts/gnu/gtypist/gtypist.html">Tutorial</a><strong>]</strong></p>
-<p>You may be able to teach yourself to type more efficiently with this tutorial. I definitely need to do this. It's worth mentioning, per <a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">Rich Hickey:</a> with a proper design phase, you'll spend less time typing in the first place!</p>
-<p><strong>Extra Credit: Python Wikipedia Library</strong></p>
-<p>import wikipedia [<a class="reference external" href="https://github.com/goldsmith/Wikipedia">GitHub</a>]</p>
-</div>
-<div class="section" id="supplementary-resources">
-<h2>Supplementary Resources</h2>
-<ul class="simple">
-<li><a class="reference external" href="https://teachyourselfcs.com/">teachyourselfcs.com</a></li>
-<li><a class="reference external" href="https://github.com/chiphuyen/python-is-cool/blob/master/cool-python-tips.ipynb">Cool Python Tips Jupyter Notebook</a></li>
-<li><a class="reference external" href="https://github.com/google/styleguide/blob/gh-pages/pyguide.md">Google's Python Style Guide</a></li>
-<li><a class="reference external" href="https://github.com/gto76/python-cheatsheet">Python Cheat Sheet (Github)</a></li>
-<li><a class="reference external" href="https://nocomplexity.com/machine-learning-resources/">Free and Open Machine Learning</a></li>
-<li><a class="reference external" href="https://pages.dataiku.com/hubfs/PDF/Whitepaper/Importance_of_AutoML-for-Augmented-Analytics.pdf">AutoML and The Rise of the Citizen Data Scientist</a></li>
-<li><a class="reference external" href="https://docs.google.com/spreadsheets/d/1GOO4s1NcxCR8a44F0XnsErz5rYDxNbHAHznu4pJMRkw/edit#gid=0">Data Engineering Study Guide</a></li>
-<li><a class="reference external" href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a></li>
-<li><a class="reference external" href="https://github.com/ossu/computer-science#advanced-cs">Open Source University</a></li>
-<li><a class="reference external" href="https://drive.google.com/drive/u/0/folders/1ZS57_40tWuIB7tV4APVMmTZ-5PXDwX9w">Data Training Materials from the New York Times</a></li>
-<li><a class="reference external" href="https://www.freecodecamp.org/">freecodecamp.org</a></li>
-</ul>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/my-favorite-free-educational-courses-and-talks-to-absorb.html">posted at 03:35</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-data-databases-education-programming-python-software.html" rel="tag">coding, data, Databases, education, programming, python, software</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/free-education.html" class="tags">free education</a>
-                    &nbsp;<a href="https://lofipython.com/tag/harvard.html" class="tags">harvard</a>
-                    &nbsp;<a href="https://lofipython.com/tag/knowledge.html" class="tags">knowledge</a>
-                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
-                    &nbsp;<a href="https://lofipython.com/tag/mit.html" class="tags">MIT</a>
-                    &nbsp;<a href="https://lofipython.com/tag/university.html" class="tags">university</a>
                 </div>
             </article>
 
