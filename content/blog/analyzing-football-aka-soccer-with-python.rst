@@ -8,7 +8,7 @@ Analyzing Football AKA Soccer With Python
 :status: published
 
 
-The world's game is fun to watch. It's obvious when a team is dominant against a weaker opponent. What gives one team an edge over another? Is it short, crisp and reliable passing resulting in a high conversion percentage? Or shots on goal? Clinicality in the final third is what separates the Champions from the rest. Making the most of your chances.
+The world's game is fun to watch. It's obvious when a team is dominant against a weaker opponent. What gives one team an edge over another? Is it short, crisp and reliable passing resulting in a high conversion percentage? Or shots on goal? Quality touches. Clinicality in the final third is what separates the champions from the rest. Making the most of your chances. Apparently, some of the best teams `keep their passes on the ground <https://statsbomb.com/news/statsbomb-data-case-studies-passing-height-and-passing-footedness/>`__. All of these things contribute to victory in a sense.
 
 We all have our theories to what makes a great player or team. But how do we assess football performance from an analytics perspective? It is difficult to predict how teams with varying styles will match up. Fortunately, data is integrating with the football world. Extensive analytics resources and tactics now available for free online. 
 
@@ -114,14 +114,18 @@ Searching the internet, FC Python was the first thing I saw. They have some `fre
 .. image:: {static}/blog/images/pitchheatmap.png
   :alt: Analyzing football with Python
 
-This code is meant for a `Jupyter notebook <https://jupyter.org/install>`__. However, I can't find the "passes.csv" data referenced online to test it out. Still, impressive use of matplotlib and seaborn!
 
-Of course, in analytics data is king. Without it, you're the jester. If you need some data to chew on, check out statsbomb. Its a free footy dataset that's on display in this `Towards Data Science blog post <https://towardsdatascience.com/how-to-easily-get-football-data-with-a-python-package-without-web-scraping-c922e7ebfb41>`__. In another practical example of wrangling data, Tactics FC shows how to `calculate goal conversion rate with pandas <https://medium.com/@TacticsFC/analyzing-football-data-with-python-7b4e89c7abd8>`__. I'm guessing basic statskeeping and video is collected in great quantities by analytics teams during games for professional teams. At half time, typically on TV they will show both teams' shots, passes and time of possession. 
+Impressive use of matplotlib and seaborn! This code is meant for a `Jupyter notebook <https://jupyter.org/install>`__. I can't find the "passes.csv" data but suspect it is using `statsbomb <https://pypi.org/project/statsbomb/>`__. It's a free footy dataset that's on display in this `Towards Data Science blog post <https://towardsdatascience.com/how-to-easily-get-football-data-with-a-python-package-without-web-scraping-c922e7ebfb41>`__ also. 
 
-Another intriguing tactic is extensive tracking of individual player position and simulation on the pitch. Google hosted a `Kaggle competition with Manchester City <https://www.kaggle.com/competitions/google-football/code>`__ 3 years ago, where the goal was to train AI agents to play football. Formal courses are available like the `Mathematical Modeling of Football course at Uppsala University <https://www.uu.se/en/study/course?query=1RT001>`__. There's also the `football analytics topic <https://github.com/topics/football-analytics>`__ on Github that shows 100+ repos for those who want to dive into analytics tools. 
+
+In another practical example of wrangling data, Tactics FC shows how to `calculate goal conversion rate with pandas <https://medium.com/@TacticsFC/analyzing-football-data-with-python-7b4e89c7abd8>`__. I'm guessing basic statskeeping and video is collected in great quantities by analytics teams during games for professional teams. At half time, typically on TV they will show both teams' shots, passes and time of possession. 
+
+Another intriguing field of study is extensive simulation and tracking of individual player position on the pitch. Google hosted a `Kaggle competition with Manchester City <https://www.kaggle.com/competitions/google-football/code>`__ 3 years ago, where the goal was to train AI agents to play football. Formal courses are available like the `Mathematical Modeling of Football course at Uppsala University <https://www.uu.se/en/study/course?query=1RT001>`__. There's also the `football analytics topic <https://github.com/topics/football-analytics>`__ on Github that shows 100+ repos. 
 
 From that topic, I found `Awesome Football Analytics <https://github.com/diegopastor/awesome-football-analytics>`__, which is a long list of resources to browse through. It seems wise to stop through Jan Van Haren's `soccer analytics resources <https://github.com/JanVanHaaren/soccer-analytics-resources>`__. I'm really looking forward to checking out `Soccermatics for Python <https://github.com/Friends-of-Tracking-Data-FoTD/SoccermaticsForPython/>`__ also. There is a ton of stuff online about football analytics that is happening.
 
 I sense there is a passionate community pushing football analytics forward and innovating. There are many facets to consider from video optimization, data collection, drawing insights from established datasets, tracking game stats and codifying player movements. 
+
+Techniques like simulation and decoding live games into data could result in recommendations for players to uncover new advantages, adjust their positioning, conserve their energy or look for chances in a vulnerable spot on the field. The best teams are probably asking how they can leverage data to inform their strategy on the pitch and win more games.
 
 Watching football is so satisfying. Why not study it with Python? My prediction is that the beautiful game will progress and improve as teams develop a more sophisticated data strategy.
