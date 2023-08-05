@@ -42,7 +42,7 @@ On my Windows subsystem for Linux environment, I am now publishing new blog post
    pelican -l 
 
 
-5. Use git to stage, commit and push the files to a Github repo:
+6. Use git to stage, commit and push the files to a Github repo:
 
 ::
 

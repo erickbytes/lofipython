@@ -11,8 +11,11 @@ I recently automated the loading of data into a Microsoft Access database with `
 
 **First,** `install libraries with pip <https://docs.python.org/3/installing/index.html>`__\ **. Enter in terminal or command prompt:**
 
-``python -m pip install pyodbc``
-``python -m pip install pandas``
+::
+
+   python -m pip install pyodbc
+   python -m pip install pandas
+
 
 **Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:**
 
