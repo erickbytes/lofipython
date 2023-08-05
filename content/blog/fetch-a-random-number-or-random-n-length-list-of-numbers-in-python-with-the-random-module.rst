@@ -54,15 +54,15 @@ Pythonic way to randomize to me. Have a look!
    :alt: Python Random Number Code
    :figclass: wp-image-7196
 
-To choose a sample from a range of integers, use a\ `range()
-<https://docs.python.org/3/library/stdtypes.html#range>`__\ object as an
+To choose a sample from a range of integers, use a `range()
+<https://docs.python.org/3/library/stdtypes.html#range>`__ object as an
 argument.
 
-This is especially fast and space efficient for sampling from a large
-population:
+"This is especially fast and space efficient for sampling from a large
+population":
 
 .. code-block:: python
 
    sample(range(10000000), k=60)
 
-https://docs.python.org/3/library/random.html#random.sample
+\- Python Docs, https://docs.python.org/3/library/random.html#random.sample

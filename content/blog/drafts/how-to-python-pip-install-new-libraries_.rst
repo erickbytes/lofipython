@@ -45,21 +45,17 @@ that!
 
 **First, Some Python Version Caveats + History**
 
-**Python 2 reached end of life on January 1st, 2020**. 
-`Python 2 has officially been sunset <https://www.python.org/doc/sunset-python-2/>`__.
+- **Python 2 reached end of life on January 1st, 2020**. `Python 2 has officially been sunset <https://www.python.org/doc/sunset-python-2/>`__.
 
-Python comes with pip now, no setup is required. But certain versions
-such as Python 3.2 or the Python 2.7 that came stock on my improbably
-still functioning 2008 black Macbook, for example, may not have it
-installed.
+- Python comes with pip now, no setup is required. But certain versions such as Python 3.2 or the Python 2.7 
+   that came stock on my improbably still functioning 2008 black Macbook, for example, may not have it installed.
 
-In December 2021, Python 3.6 reached `"end of life phase"
-<https://devguide.python.org/devcycle/#end-of-life-branches>`__. Python 3.6 is "now effectively frozen". Read more in `PEP 494
-<https://www.python.org/dev/peps/pep-0494/>`__. (Released Oct. 2022)
+- In December 2021, Python 3.6 reached `\"end of life phase\"<https://devguide.python.org/devcycle/#end-of-life-branches>`__.
 
-**TLDR:** use Python 3.7 to 3.11. This blog endorses using the lightning
-fast Python version `3.11.
-<https://www.python.org/downloads/release/python-3110/>`__
+- Python 3.6 is "now effectively frozen". Read more in `PEP 494 <https://www.python.org/dev/peps/pep-0494/>`__. (Released Oct. 2022)
+
+- **TLDR:** use Python 3.7 to 3.11. This blog endorses using the lightning
+   fast Python version `3.11. <https://www.python.org/downloads/release/python-3110/>`__
 
 *****************************
  Enter This in Your Terminal
@@ -116,25 +112,19 @@ Documentation for more detailed instructions.
 
 **Supplementary Resources**
 
--  Take a look at this `list of 20 modules
-   <https://pythontips.com/2013/07/30/20-python-libraries-you-cant-live-without/>`__
-   to get started. Here is another `more comprehensive list of libraries
-   <https://github.com/vinta/awesome-python>`__ you can now install.
+-  Take a look at this `list of 20 modules <https://pythontips.com/2013/07/30/20-python-libraries-you-cant-live-without/>`__
+   to get started. Here is another `more comprehensive list of libraries <https://github.com/vinta/awesome-python>`__ you can now install.
 
--  Swing by the pip documentation `Quickstart
-   <https://pip.pypa.io/en/stable/quickstart/>`__\ and `User Guide
-   <https://pip.pypa.io/en/stable/user_guide/>`__ to learn some helpful
-   commands.
+-  Swing by the pip documentation `Quickstart <https://pip.pypa.io/en/stable/quickstart/>`__ and `User Guide <https://pip.pypa.io/en/stable/user_guide/>`__ 
+   to learn some helpful commands.
 
--  `PyPI, the Python Package Index
-   <https://pypi.org/search/?q=time+travel>`__ is the official Python
+-  `PyPI, the Python Package Index <https://pypi.org/search/?q=time+travel>`__ is the official Python
    package repository.
 
--  `Why you should use 'python -m pip'
-   <https://snarky.ca/why-you-should-use-python-m-pip/>`__
+-  `Why you should use 'python -m pip' <https://snarky.ca/why-you-should-use-python-m-pip/>`__
 
--  `pip cheat sheet from opensource.com
-   <https://opensource.com/downloads/pip-cheat-sheet?utm_medium=Email&utm_campaign=weekly&sc_cid=7013a000002DAKPAA4>`__
+-  `pip cheat sheet from opensource.com   <https://opensource.com/downloads/pip-cheat-sheet?utm_medium=Email&utm_campaign=weekly&sc_cid=7013a000002DAKPAA4>`__
+
 
 Congrats on figuring out how to install packages with pip, have fun!
 
@@ -159,7 +149,7 @@ Python 3.4:
 
 ..
 
-   \"The `ensurepip <https://docs.python.org/3/library/ensurepip.html#module-ensurepip>`__
+   "The `ensurepip <https://docs.python.org/3/library/ensurepip.html#module-ensurepip>`__
    package provides support for bootstrapping the pip installer into an
    existing Python installation or virtual environment. This
    bootstrapping approach reflects the fact that pip is an independent
@@ -172,7 +162,10 @@ Python 3.4:
 
 You should follow best practice and `create a virtual environment
 <https://docs.python.org/3/library/venv.html>`__ before installing
-libraries. `venv <https://docs.python.org/3/library/venv.html>`__ or virtualenv. To create with venv:
+libraries. `venv <https://docs.python.org/3/library/venv.html>`__ or
+`virtualenv
+<https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/>`__
+will help you out. To create with venv:
 
 ::
 
@@ -195,6 +188,12 @@ Alternatively, on Windows computers:
 
 **Getting the prefix right can be tricky.**
 
+Since this was written, I moved to Python 3.11. When I first moved from
+Python 2 to 3 on Windows, I somehow accidentally configured the
+following behavior: entering "python some_program.py" ran a .py file
+with Python 2. Whereas, entering "py some_program.py" ran a .py file
+with Python 3.
+
 In the install command, the prefix is a reference to your Python
 executable. You may just need to alter your prefix to call it correctly.
 Here are some to try in place of "python". Observe what happens when you
@@ -213,7 +212,8 @@ run these command variations. Good luck!
 
 **The rest of this post may be useful to you if you are:**
 
-#. Working on legacy Python 2 or < 3.3 for which pip is not installed.
+#. Working on legacy Python 2 code or Python 3.3 or lower for which pip
+   is not installed.
 #. Seeking to fix a faulty pip install that is not working properly.
 #. Curious to know how to manually set up pip.
 
@@ -262,20 +262,22 @@ installed pip.
 
    python -m pip install requests
 
-This installs the Requests module into your Python libraries.
+This should install the Requests module into your Python libraries.
 Requests is an http module which is highly regarded almost universally
 by the Python community.
 
-|
-| **Thanks for reading!**
-| Check out these other posts with pip installed library examples:
+**Thanks for reading! Check out these other posts with pip installed
+library examples:**
 
-`fix Grammar and Spelling with language_tool_python and textblob <https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/>`__
+`Fix Grammar and Spelling with language_tool_python and textblob
+<https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/>`__
 
-`static site generation with pelican <https://lofipython.com/an-example-pelican-git-blog-post-workflow/>`__
+`gooey <https://lofipython.com/gooey-gui-for-python-scripts/>`__ - GUI
+library
 
-`text mojibake mash fixing with ftfy <https://lofipython.com/ftfy-the-wonky-text-fixing-python-library/>`__ 
+`tweepy
+<https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api/>`__
+- Twitter library
 
-`a guide to making HTTP requests <https://lofipython.com/how-to-make-json-requests-with-python/>`__
-
-`simple GUI for scripts with gooey <https://lofipython.com/gooey-gui-for-python-scripts/>`__ 
+`A Guide to Making HTTP requests
+<https://lofipython.com/how-to-make-json-requests-with-python/>`__

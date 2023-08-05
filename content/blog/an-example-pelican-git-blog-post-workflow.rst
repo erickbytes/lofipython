@@ -9,30 +9,43 @@ An Example Pelican + Git Blog Post Workflow
 
 On my Windows subsystem for Linux environment, I am now publishing new blog posts following this `Pelican <https://docs.getpelican.com/en/latest/quickstart.html>`__-based workflow:
 
-::
-
-   1. Activate the Python environment: cd Your_Env/bin & source activate
+1. Activate the Python environment: 
 
 ::
 
-   2. Go to the project folder: cd /home/username/my_project
+   cd Your_Env/bin & source activate
+
+
+2. Go to the project folder: 
 
 ::
 
-   3. Run Python script to create new markdown file from a template:
+   cd /home/username/my_project
+
+3. Run Python script to create new markdown file from a template:
+
+::
+
    python new_post.py
 
+4. After writing the new post, update the Pelican content:
+
 ::
 
-   4. After writing the new post, update the Pelican content:
    pelican content
 
-   (Optional) preview the new post at local host http://127.0.0.1:8000/
-   pelican -l 
+
+5. Preview the new post at local host http://127.0.0.1:8000/
 
 ::
 
-   5. Use git to stage, commit and push the files to a Github repo:
+   pelican -l 
+
+
+5. Use git to stage, commit and push the files to a Github repo:
+
+::
+
    git add .
    git commit -m "new post edits and fixes"
    git push -u origin main

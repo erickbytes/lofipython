@@ -65,8 +65,7 @@ that!</p>
 such as Python 3.2 or the Python 2.7 that came stock on my improbably
 still functioning 2008 black Macbook, for example, may not have it
 installed.</p>
-<p>In December 2021, Python 3.6 reached <a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">&quot;end of life phase&quot;</a>.</p>
-<p>Python 3.6 is &quot;now effectively frozen&quot;. Read more in <a class="reference external" href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
+<p>In December 2021, Python 3.6 reached <a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">&quot;end of life phase&quot;</a>. Python 3.6 is &quot;now effectively frozen&quot;. Read more in <a class="reference external" href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
 <p><strong>TLDR:</strong> use Python 3.7 to 3.11. This blog endorses using the lightning
 fast Python version <a class="reference external" href="https://www.python.org/downloads/release/python-3110/">3.11.</a></p>
 <div class="section" id="enter-this-in-your-terminal">
@@ -129,8 +128,7 @@ python -m ensurepip --upgrade
 </pre>
 <!--  -->
 <blockquote>
-<p>&quot;The ensurepip `
-&lt;<a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">https://docs.python.org/3/library/ensurepip.html#module-ensurepip</a>&gt;`__
+<p>&quot;The <a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">ensurepip</a>
 package provides support for bootstrapping the pip installer into an
 existing Python installation or virtual environment. This
 bootstrapping approach reflects the fact that pip is an independent
@@ -140,9 +138,7 @@ CPython reference interpreter.&quot;</p>
 <p>- <a class="reference external" href="https://docs.python.org/3/library/ensurepip.html">ensurepip Python Documentation</a></p>
 </blockquote>
 <p>You should follow best practice and <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a> before installing
-libraries. <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or
-<a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtualenv</a>
-will help you out. To create with venv:</p>
+libraries. <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or virtualenv. To create with venv:</p>
 <pre class="literal-block">
 python3 -m venv add_env_name_here
 </pre>
@@ -158,15 +154,10 @@ cd add_env_path_here\scripts &amp; activate
 python -m pip install pandas
 </pre>
 <p><strong>Getting the prefix right can be tricky.</strong></p>
-<p>Since this was written, I moved to Python 3.11. When I first moved from
-Python 2 to 3 on Windows, I somehow accidentally configured the
-following behavior: entering <strong>python some_program.py</strong>ran a .py file
-with Python 2. Whereas, entering <strong>py some_program.py</strong>ran a .py file
-with Python 3.</p>
 <p>In the install command, the prefix is a reference to your Python
 executable. You may just need to alter your prefix to call it correctly.
 Here are some to try in place of &quot;python&quot;. Observe what happens when you
-run these command variations.Good luck!</p>
+run these command variations. Good luck!</p>
 <pre class="literal-block">
 python3 -m pip install pandas
 python3.11 -m pip install pandas
@@ -178,8 +169,7 @@ pip3 install pandas
 <h2>How to Manually Enable the pip Installer</h2>
 <p><strong>The rest of this post may be useful to you if you are:</strong></p>
 <ol class="arabic simple">
-<li>Working on legacy Python 2 code or Python 3.3 or lower for which pip
-is not installed.</li>
+<li>Working on legacy Python 2 or &lt; 3.3 for which pip is not installed.</li>
 <li>Seeking to fix a faulty pip install that is not working properly.</li>
 <li>Curious to know how to manually set up pip.</li>
 </ol>
@@ -213,17 +203,19 @@ installed pip.</p>
 <pre class="literal-block">
 python -m pip install requests
 </pre>
-<p>This should install the Requests module into your Python libraries.
+<p>This installs the Requests module into your Python libraries.
 Requests is an http module which is highly regarded almost universally
 by the Python community.</p>
-<p><strong>Thanks for reading! Check out these other posts with pip installed
-library examples:</strong></p>
-<p><a class="reference external" href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">Fix Grammar and Spelling with language_tool_python and textblob</a></p>
-<p><a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/">gooey</a> - GUI
-library</p>
-<p><a class="reference external" href="https://lofipython.com/delete-all-your-tweets-with-tweepy-and-the-twitter-api/">tweepy</a>
-- Twitter library</p>
-<p><a class="reference external" href="https://lofipython.com/how-to-make-json-requests-with-python/">A Guide to Making HTTP requests</a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><strong>Thanks for reading!</strong></div>
+<div class="line">Check out these other posts with pip installed library examples:</div>
+</div>
+<p><a class="reference external" href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">fix Grammar and Spelling with language_tool_python and textblob</a></p>
+<p><a class="reference external" href="https://lofipython.com/an-example-pelican-git-blog-post-workflow/">static site generation with pelican</a></p>
+<p><a class="reference external" href="https://lofipython.com/ftfy-the-wonky-text-fixing-python-library/">text mojibake mash fixing with ftfy</a></p>
+<p><a class="reference external" href="https://lofipython.com/how-to-make-json-requests-with-python/">a guide to making HTTP requests</a></p>
+<p><a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/">simple GUI for scripts with gooey</a></p>
 </div>
 
                 <div class="clear"></div>

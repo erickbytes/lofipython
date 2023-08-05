@@ -16,7 +16,7 @@ Key Ideas
 
    When was the last time you...
 
-   thought about some for a whole day?
+   thought about something for a whole day?
 
    thought about something for a whole month or year?
 
