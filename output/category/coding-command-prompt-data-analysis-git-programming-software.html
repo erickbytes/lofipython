@@ -45,57 +45,59 @@
                 
                 
 
-                <p>I am finally starting to understand <a class="reference external" href="https://en.wikipedia.org/wiki/Git">git version control!</a> It makes developing a project on different computers easy. Some of these notes were picked up from the super informative <a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a> by Jake VanderPlas, author of the <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a>.</p>
-<p>First, <a class="reference external" href="https://git-scm.com/downloads">go here</a>, download and install git if you haven't yet. Alright, here are my go-to steps and commands for git:</p>
+                <p>I am finally starting to understand <a class="reference external" href="https://en.wikipedia.org/wiki/Git">git version control</a>! It makes developing a project on different computers easy. Some of these notes were picked up from the super informative <a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a> by Jake VanderPlas, author of the <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a>.</p>
+<p>First, <a class="reference external" href="https://git-scm.com/downloads">go here</a> to download and install git if you haven't yet. Alright, here are my go-to steps and commands for git:</p>
 <p><strong>Beginning a New Project With Git</strong></p>
 <ol class="arabic simple">
 <li>Create new repository on GitHub</li>
 <li>Add a README</li>
 <li>Add a Python gitignore</li>
-<li>Add a license (Jake V. used an MIT license)</li>
+<li>Add a license. Jake V. used an MIT license.</li>
 </ol>
 <p><strong>Clone Any Repository from GitHub</strong></p>
 <ol class="arabic simple">
 <li>Visit your new project, or any GitHub project, click the green &quot;Clone or download&quot; button and copy the link.</li>
 <li>In your terminal or command prompt, navigate to the directory where you want to clone your project.</li>
-<li>In terminal, enter: <tt class="docutils literal">git clone PASTE_URL_HERE</tt></li>
+<li>In terminal, enter: git clone REPO_URL</li>
 <li>Now cd into your project folder.</li>
 </ol>
-<p><strong>Push Your Local Computer Changes to the Master Repository</strong></p>
+<p><strong>Push Your Local Computer Changes to the Remote Repository</strong></p>
 <p>Let's say you did some work on your computer and want to push the changes to GitHub. Enter these commands in terminal:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git add .</span>
 <span class="go">git commit -m &quot;Add your commit note here&quot;</span>
-<span class="go">git push origin master</span>
+<span class="go">git push origin main</span>
 </pre></div></td></tr></table></div>
-<p>*Above: <tt class="docutils literal">git add .</tt> = stage all files in project directory for master</p>
-<p>**Substitute <tt class="docutils literal">git add path\to\file\here</tt> to stage only a single file to add to your master repository.</p>
-<p><strong>Fetch Changes From Master Branch to Your Local Computer</strong></p>
-<p>I like to update my local computer with any master branch changes before beginning work on it. Enter these commands in terminal:</p>
+<p>Above: &quot;git add .&quot; stages all files in project directory for main. Add your commit message, then push your changes to the remote repo.</p>
+<p><strong>Fetch Changes From Main Branch to Your Local Computer</strong></p>
+<p>You might want to update your local computer with any main branch changes before beginning work on it. Enter these commands in terminal:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git fetch</span>
-<span class="go">git pull origin master</span>
+<span class="go">git pull origin main</span>
 </pre></div></td></tr></table></div>
 <p><strong>Review Merge Conflicts</strong></p>
-<p>Sometimes, your code may conflict with changes in the master branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use &quot;git status&quot; to locate the files with the conflicts. Enter in your terminal:</p>
+<p>Sometimes, your code may conflict with changes in the main branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use &quot;git status&quot; to locate the files with the conflicts. Enter in your terminal:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git status</span>
 </pre></div></td></tr></table></div>
-<ol class="arabic simple">
-<li>Then <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line">follow these instructions</a> to review the merge conflicts.</li>
-</ol>
+<p>Then <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line">follow these instructions</a> to review the merge conflicts.</p>
 <p>See also: <a class="reference external" href="https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/conflicts.html">Resolving Conflicts - Virtualenv Documentation</a></p>
 <p><strong>Or maybe you want to discard any local changes, then merge:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git fetch</span>
 <span class="go">git checkout</span>
-<span class="go">git pull origin master</span>
+<span class="go">git pull origin main</span>
 </pre></div></td></tr></table></div>
 <p><strong>Recovering from a Corrupted Repository</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git fsck --full --no-dangling</span>
 </pre></div></td></tr></table></div>
 <p><a class="reference external" href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html#recovering-from-repository-corruption">Additional Reading</a></p>
+<p><strong>Revert local repo to a previous commit, then push your repo to the remote.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git reset --hard rollback_commit_id</span>
+<span class="go">git push origin main</span>
+</pre></div></td></tr></table></div>
 <p><strong>Supplementary Reading</strong></p>
 <p><a class="reference external" href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a></p>
 <p><a class="reference external" href="https://lanraccoon.com/2018/8-git-commands-i-use-everyday/">8 Git Commands I Use Every Day</a></p>
