@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - spreadsheets</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/spreadsheets.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2019-12-21T18:58:00-06:00</updated><entry><title>Copying a pandas Dataframe to Google Sheets with pygsheets</title><link href="https://lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets.html" rel="alternate"></link><published>2019-12-21T18:58:00-06:00</published><updated>2019-12-21T18:58:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2019-12-21:/copying-a-csv-file-to-google-sheets-with-pygsheets.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;: This endeavor was before I discovered &lt;a class="reference external" href="https://developers.google.com/apps-script"&gt;AppScript&lt;/a&gt;, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;: This endeavor was before I discovered &lt;a class="reference external" href="https://developers.google.com/apps-script"&gt;AppScript&lt;/a&gt;, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by automating Google Sheet operations.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;This was done on the Windows 7 OS.&lt;/strong&gt; &lt;strong&gt;First,&lt;/strong&gt;&lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;install libraries with pip&lt;/a&gt;&lt;strong&gt;. Enter in command prompt or terminal:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This was done on the Windows 7 OS. First, &lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;install libraries with pip&lt;/a&gt;. Enter in command prompt or terminal:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 python -m pip install pandas
 python -m pip install numpy
 python -m pip install pygsheets
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Then, following the&lt;/strong&gt; &lt;a class="reference external" href="https://pygsheets.readthedocs.io/en/stable/authorization.html"&gt;steps documented by pygsheets:&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;After installing necessary libraries, follow the&lt;/strong&gt; &lt;a class="reference external" href="https://pygsheets.readthedocs.io/en/stable/authorization.html"&gt;steps documented by pygsheets:&lt;/a&gt;&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Create a Google Developer Account at &lt;a class="reference external" href="http://console.developers.google.com"&gt;console.developers.google.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://pygsheets.readthedocs.io/en/stable/authorization.html"&gt;Enable Sheets API&lt;/a&gt; to account&lt;/li&gt;
 &lt;li&gt;Enable Drive API to account. Same as last step, but search for Drive.&lt;/li&gt;
 &lt;li&gt;Create a Client Secret json file. Select &amp;quot;Credentials&amp;quot; tab, and &amp;quot;Create Credentials&amp;quot;. Select Client Secret from options. Export from console and place in same directory as your .py file.&lt;/li&gt;
 &lt;li&gt;Create a Service Account json file by selecting it instead of &amp;quot;Client Secret&amp;quot;.&lt;/li&gt;
-&lt;li&gt;Authorize pygsheets with your json files. (See below.)&lt;/li&gt;
-&lt;li&gt;Copy spreadsheet to Google Sheet with pandas and pygsheets. (See below.)&lt;/li&gt;
+&lt;li&gt;Authorize pygsheets with your json files. See below.&lt;/li&gt;
+&lt;li&gt;Copy spreadsheet to Google Sheet with pandas and pygsheets. See below.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;After completing the first 5 steps, import pygsheets and authorize your account with the client secret json file:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;After completing the first 5 steps, import pygsheets and authorize your account with the client secret json file:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pygsheets&lt;/span&gt;
 &lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pygsheets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;authorize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client_secret&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/to/client_secret[...].json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;You will be prompted by the terminal to go to a hyperlink in a browser, get your authorization code, and enter that authorization code into the terminal.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Now, import both libraries needed and switch to authorize with your service json file. Then, load the csv to a dataframe with pandas. Finally, copy it to an existing Google Sheet with pygsheets:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Now, import both libraries needed and switch to authorize with your service json file. Then, load the csv to a dataframe with pandas. Finally, copy it to an existing Google Sheet with pygsheets:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;

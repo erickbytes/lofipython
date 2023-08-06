@@ -9,7 +9,7 @@ Copying a pandas Dataframe to Google Sheets with pygsheets
 
 **Disclaimer**: This endeavor was before I discovered `AppScript <https://developers.google.com/apps-script>`__, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by automating Google Sheet operations.
 
-**This was done on the Windows 7 OS.** **First,**\ `install libraries with pip <https://docs.python.org/3/installing/index.html>`__\ **. Enter in command prompt or terminal:**
+This was done on the Windows 7 OS. First, `install libraries with pip <https://docs.python.org/3/installing/index.html>`__. Enter in command prompt or terminal:
 
 ::
 
@@ -17,17 +17,17 @@ Copying a pandas Dataframe to Google Sheets with pygsheets
    python -m pip install numpy
    python -m pip install pygsheets
 
-**Then, following the** `steps documented by pygsheets: <https://pygsheets.readthedocs.io/en/stable/authorization.html>`__
+**After installing necessary libraries, follow the** `steps documented by pygsheets: <https://pygsheets.readthedocs.io/en/stable/authorization.html>`__
 
 #. Create a Google Developer Account at `console.developers.google.com <http://console.developers.google.com>`__
 #. `Enable Sheets API <https://pygsheets.readthedocs.io/en/stable/authorization.html>`__ to account
 #. Enable Drive API to account. Same as last step, but search for Drive.
 #. Create a Client Secret json file. Select "Credentials" tab, and "Create Credentials". Select Client Secret from options. Export from console and place in same directory as your .py file.
 #. Create a Service Account json file by selecting it instead of "Client Secret".
-#. Authorize pygsheets with your json files. (See below.)
-#. Copy spreadsheet to Google Sheet with pandas and pygsheets. (See below.)
+#. Authorize pygsheets with your json files. See below.
+#. Copy spreadsheet to Google Sheet with pandas and pygsheets. See below.
 
-**After completing the first 5 steps, import pygsheets and authorize your account with the client secret json file:**
+After completing the first 5 steps, import pygsheets and authorize your account with the client secret json file:
 
 .. code-block:: python
 
@@ -36,7 +36,7 @@ Copying a pandas Dataframe to Google Sheets with pygsheets
 
 You will be prompted by the terminal to go to a hyperlink in a browser, get your authorization code, and enter that authorization code into the terminal.
 
-**Now, import both libraries needed and switch to authorize with your service json file. Then, load the csv to a dataframe with pandas. Finally, copy it to an existing Google Sheet with pygsheets:**
+Now, import both libraries needed and switch to authorize with your service json file. Then, load the csv to a dataframe with pandas. Finally, copy it to an existing Google Sheet with pygsheets:
 
 .. code-block:: python
 
