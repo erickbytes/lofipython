@@ -11,7 +11,7 @@ Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box
 
 This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.
 
-Installing `pytest <https://docs.pytest.org/en/latest/getting-started.html>`__ , a python testing library:
+Installing `pytest <https://docs.pytest.org/en/latest/getting-started.html>`__, a Python testing library:
 
 ::
     
@@ -32,11 +32,11 @@ Let's use **test_file_date.py** as our test, which uses the `glob <https://docs.
     import os
     import getpass
 
+
     def test_csv_date_equals_today():
         """The match format is for a Windows path with Unix style pattern matching."""
-         # specify csv extension and folder
-        match = f'C:Users/{getpass.getuser()}/Desktop/*.csv'
-        # get most recent file
+        match = f"C:Users/{getpass.getuser()}/Desktop/*.csv"
+        # Get the most recent csv from a folder.
         csv = sorted(glob.iglob(match), key=os.path.getmtime)[-1]
         csv_timestamp = os.path.getmtime(csv)
         csv_date = datetime.fromtimestamp(csv_timestamp)
@@ -81,11 +81,17 @@ This example is referencing an .exe within a hypothetical "sandbox" virtual envi
 
 Windows' `cmd command <https://ss64.com/nt/cmd.html>`__ takes a program, so we're passing pytest. `The --capture=sys argument <https://docs.pytest.org/en/latest/capture.html>`__ tells pytest to capture the test results. **Note:** switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.
 
+|
+|
+
 ::
     
     ^
 
 circumflex represents a line continuation in Windows batch files for better readability
+
+|
+|
 
 ::
 
@@ -113,7 +119,7 @@ This is a Windows redirect. It redirects the pytest output from sys to a text fi
 
 Passing tests signal your scripts are running successfully. When things don't work, email alerts of the failure help us respond quickly.
 
-Let's set another task scheduler job to run **read_test_results.py,** to run a few minutes after the first job each day. See this `example of running Python with Task Scheduler <https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/>`__ if you haven't triggered a python script from Task Scheduler before.
+Let's set another task scheduler job to run **read_test_results.py,** to run a few minutes after the first job each day. See this `example of running Python with Task Scheduler <https://lofipython.com/automated-python-with-windows-task-scheduler/>`__ if you haven't triggered a python script from Task Scheduler before.
 
 .. code-block:: python
 
@@ -151,13 +157,14 @@ Let's set another task scheduler job to run **read_test_results.py,** to run a f
 
 **Setting up Email Alert Notifications on a Box Folder**
 
-The above script checks the test results and creates a file with any failed tests in a different folder. I `edited the folder's settings <https://support.box.com/hc/en-us/articles/360044194073-Manage-Notifications-for-Enterprise-Users>`__ to email me when a new file is added, thanks to Box notifications. We use `Box <http://www.box.com>`__ for secure file sharing at my day current day job.
+The above script checks the test results and creates a file with any failed tests in a different folder. I `edited the folder's settings <https://support.box.com/hc/en-us/articles/360044194073-Manage-Notifications-for-Enterprise-Users>`__ to email me when a new file is added, thanks to Box notifications. We use 
+`Box <http://www.box.com>`__ for secure file sharing at my day current day job.
 
 Alternatively for those without Box, you could use 'ole trusty `smtplib <https://docs.python.org/3/library/smtplib.html>`__ to send the failure alerts with python. I chose the easier, ready to go option. Remember, "`Simple is better than complex <https://zen-of-python.info/simple-is-better-than-complex.html>`__."
 
-Or the `pywin32 module <https://github.com/mhammond/pywin32>`__ has an interface to Outlook that is very handy. For an example of sending a Windows Outlook email, check the very end of `this post I wrote on "Scripting Windows Like a Pro" <http://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/>`__.
+Also, the `pywin32 module <https://github.com/mhammond/pywin32>`__ has an interface to Outlook that is very handy. For an example of sending a Windows Outlook email, check the very end of `this post I wrote on "Scripting Windows Like a Pro" <http://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/>`__.
 
-**We now have an automated testing system with email monitoring alerts if our csv file date test fails, thanks to:**
+We now have email monitoring alerts if our csv file date test fails, thanks to:
 
 -  Windows Task Scheduler (two tasks running each day in succession)
 -  python/pytest
@@ -172,20 +179,14 @@ Or the `pywin32 module <https://github.com/mhammond/pywin32>`__ has an interface
 #. Creating a text file with any failing tests in a Box folder, if found
 #. Then Box emails me if any test fails.
 
-**Final Thoughts on the .bat**
-
 This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format of the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a "glue" piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.
 
-**Life is in the journey.**
-
-What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!
+What we learn along the way shapes us. Learning to use shell commands with Python scripts extends their abilities to help you get stuff done. I've benefitted from improving both my Windows and Ubuntu shell knowledge, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!
 
 **See also:**
 
-`pytest plugins <_wp_link_placeholder>`__
-
 `pytest-csv <https://pypi.org/project/pytest-csv/>`__: write test results to a csv with this plugin
 
-I wrote another post compiling peoples' thoughts on testing `here <https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/>`__.
+Read more about software testing in my post `here <https://lofipython.com/a-collection-of-software-testing-opinions-for-python-and-beyond/>`__.
 
 

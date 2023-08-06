@@ -1275,9 +1275,9 @@ Source: &lt;a class="reference external" href="https://docs.python.org/3/library
 &lt;/div&gt;
 </content><category term="Chicago, coding, HTTP, json, pandas, programming"></category><category term="api"></category><category term="data"></category><category term="python"></category><category term="requests"></category><category term="sandwiches"></category><category term="web"></category></entry><entry><title>Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box</title><link href="https://lofipython.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html" rel="alternate"></link><published>2020-03-21T01:47:00-05:00</published><updated>2020-03-21T01:47:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-03-21:/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.&lt;/p&gt;
-&lt;p&gt;Installing &lt;a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt; , a python testing library …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Installing &lt;a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt;, a Python testing library …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Automatic pytest Testing and Failure Alert Monitoring&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.&lt;/p&gt;
-&lt;p&gt;Installing &lt;a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt; , a python testing library:&lt;/p&gt;
+&lt;p&gt;Installing &lt;a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html"&gt;pytest&lt;/a&gt;, a Python testing library:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 python -m pip install pytest
 &lt;/pre&gt;
@@ -1305,11 +1305,11 @@ python -m pip install pytest
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getpass&lt;/span&gt;
 
+
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_csv_date_equals_today&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;The match format is for a Windows path with Unix style pattern matching.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-     &lt;span class="c1"&gt;# specify csv extension and folder&lt;/span&gt;
-    &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C:Users/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;getpass&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getuser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;/Desktop/*.csv&amp;#39;&lt;/span&gt;
-    &lt;span class="c1"&gt;# get most recent file&lt;/span&gt;
+    &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;C:Users/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;getpass&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getuser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/Desktop/*.csv&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;# Get the most recent csv from a folder.&lt;/span&gt;
     &lt;span class="n"&gt;csv&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iglob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="n"&gt;csv_timestamp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;csv_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromtimestamp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csv_timestamp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1343,10 +1343,18 @@ C:\Users\your_username\Desktop\test_file_date.py &amp;gt; C:\Users\your_username
 cmd /c &amp;quot;C:\Users\your_username\Desktop\sandbox\Scripts\pytest.exe --capture=sys&amp;quot;
 &lt;/pre&gt;
 &lt;p&gt;Windows' &lt;a class="reference external" href="https://ss64.com/nt/cmd.html"&gt;cmd command&lt;/a&gt; takes a program, so we're passing pytest. &lt;a class="reference external" href="https://docs.pytest.org/en/latest/capture.html"&gt;The --capture=sys argument&lt;/a&gt; tells pytest to capture the test results. &lt;strong&gt;Note:&lt;/strong&gt; switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 ^
 &lt;/pre&gt;
 &lt;p&gt;circumflex represents a line continuation in Windows batch files for better readability&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 C:\Users\your_username\Desktop\test_file_date.py
 &lt;/pre&gt;
@@ -1361,7 +1369,7 @@ C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 &lt;img alt="bat_task" class="alignnone size-full wp-image-2669" src="https://pythonmarketer.files.wordpress.com/2020/03/bat_task.jpg" style="width: 1032px; height: 590px;" /&gt;
 &lt;p&gt;&lt;strong&gt;Reading the Tests and Triggering Alerts&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Passing tests signal your scripts are running successfully. When things don't work, email alerts of the failure help us respond quickly.&lt;/p&gt;
-&lt;p&gt;Let's set another task scheduler job to run &lt;strong&gt;read_test_results.py,&lt;/strong&gt; to run a few minutes after the first job each day. See this &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/"&gt;example of running Python with Task Scheduler&lt;/a&gt; if you haven't triggered a python script from Task Scheduler before.&lt;/p&gt;
+&lt;p&gt;Let's set another task scheduler job to run &lt;strong&gt;read_test_results.py,&lt;/strong&gt; to run a few minutes after the first job each day. See this &lt;a class="reference external" href="https://lofipython.com/automated-python-with-windows-task-scheduler/"&gt;example of running Python with Task Scheduler&lt;/a&gt; if you haven't triggered a python script from Task Scheduler before.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -1425,10 +1433,11 @@ C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
         &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Setting up Email Alert Notifications on a Box Folder&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The above script checks the test results and creates a file with any failed tests in a different folder. I &lt;a class="reference external" href="https://support.box.com/hc/en-us/articles/360044194073-Manage-Notifications-for-Enterprise-Users"&gt;edited the folder's settings&lt;/a&gt; to email me when a new file is added, thanks to Box notifications. We use &lt;a class="reference external" href="http://www.box.com"&gt;Box&lt;/a&gt; for secure file sharing at my day current day job.&lt;/p&gt;
+&lt;p&gt;The above script checks the test results and creates a file with any failed tests in a different folder. I &lt;a class="reference external" href="https://support.box.com/hc/en-us/articles/360044194073-Manage-Notifications-for-Enterprise-Users"&gt;edited the folder's settings&lt;/a&gt; to email me when a new file is added, thanks to Box notifications. We use
+&lt;a class="reference external" href="http://www.box.com"&gt;Box&lt;/a&gt; for secure file sharing at my day current day job.&lt;/p&gt;
 &lt;p&gt;Alternatively for those without Box, you could use 'ole trusty &lt;a class="reference external" href="https://docs.python.org/3/library/smtplib.html"&gt;smtplib&lt;/a&gt; to send the failure alerts with python. I chose the easier, ready to go option. Remember, &amp;quot;&lt;a class="reference external" href="https://zen-of-python.info/simple-is-better-than-complex.html"&gt;Simple is better than complex&lt;/a&gt;.&amp;quot;&lt;/p&gt;
-&lt;p&gt;Or the &lt;a class="reference external" href="https://github.com/mhammond/pywin32"&gt;pywin32 module&lt;/a&gt; has an interface to Outlook that is very handy. For an example of sending a Windows Outlook email, check the very end of &lt;a class="reference external" href="http://pythonmarketer.wordpress.com/2020/05/06/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/"&gt;this post I wrote on &amp;quot;Scripting Windows Like a Pro&amp;quot;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;We now have an automated testing system with email monitoring alerts if our csv file date test fails, thanks to:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Also, the &lt;a class="reference external" href="https://github.com/mhammond/pywin32"&gt;pywin32 module&lt;/a&gt; has an interface to Outlook that is very handy. For an example of sending a Windows Outlook email, check the very end of &lt;a class="reference external" href="http://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/"&gt;this post I wrote on &amp;quot;Scripting Windows Like a Pro&amp;quot;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We now have email monitoring alerts if our csv file date test fails, thanks to:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Windows Task Scheduler (two tasks running each day in succession)&lt;/li&gt;
 &lt;li&gt;python/pytest&lt;/li&gt;
@@ -1443,14 +1452,11 @@ C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
 &lt;li&gt;Creating a text file with any failing tests in a Box folder, if found&lt;/li&gt;
 &lt;li&gt;Then Box emails me if any test fails.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Final Thoughts on the .bat&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format of the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &amp;quot;glue&amp;quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Life is in the journey.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;What we learn along the way shapes us. Learning to use these resources together has been a giant step towards writing more reliable python programs. It has improved my knowledge of Windows OS scripting, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!&lt;/p&gt;
+&lt;p&gt;What we learn along the way shapes us. Learning to use shell commands with Python scripts extends their abilities to help you get stuff done. I've benefitted from improving both my Windows and Ubuntu shell knowledge, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="_wp_link_placeholder"&gt;pytest plugins&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://pypi.org/project/pytest-csv/"&gt;pytest-csv&lt;/a&gt;: write test results to a csv with this plugin&lt;/p&gt;
-&lt;p&gt;I wrote another post compiling peoples' thoughts on testing &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2019/12/05/a-collection-of-software-testing-opinions-for-python-and-beyond/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Read more about software testing in my post &lt;a class="reference external" href="https://lofipython.com/a-collection-of-software-testing-opinions-for-python-and-beyond/"&gt;here&lt;/a&gt;.&lt;/p&gt;
 </content><category term="automation, programming, software testing, Windows"></category><category term="coding"></category><category term="pytest"></category><category term="python"></category><category term="software development"></category></entry><entry><title>Copying a pandas Dataframe to Google Sheets with pygsheets</title><link href="https://lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets.html" rel="alternate"></link><published>2019-12-21T18:58:00-06:00</published><updated>2019-12-21T18:58:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2019-12-21:/copying-a-csv-file-to-google-sheets-with-pygsheets.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;: This endeavor was before I discovered &lt;a class="reference external" href="https://developers.google.com/apps-script"&gt;AppScript&lt;/a&gt;, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;: This endeavor was before I discovered &lt;a class="reference external" href="https://developers.google.com/apps-script"&gt;AppScript&lt;/a&gt;, which may be an alternative solution to using pygsheets or other python libraries. pygsheets is interesting, but it could be a stretch to justify using it for something that could be done with AppScript. Both are ways to solve a problem by automating Google Sheet operations.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;This was done on the Windows 7 OS.&lt;/strong&gt; &lt;strong&gt;First,&lt;/strong&gt;&lt;a class="reference external" href="https://docs.python.org/3/installing/index.html"&gt;install libraries with pip&lt;/a&gt;&lt;strong&gt;. Enter in command prompt or terminal:&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
