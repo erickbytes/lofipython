@@ -7,22 +7,24 @@ An Example Pelican + Git Blog Post Workflow
 :slug: an-example-pelican-git-blog-post-workflow
 :status: published
 
-On my Windows subsystem for Linux environment, I am now publishing new blog posts following this `Pelican <https://docs.getpelican.com/en/latest/quickstart.html>`__-based workflow:
+In my Ubuntu Linux environment, I'm now publishing new blog posts following this `Pelican <https://docs.getpelican.com/en/latest/quickstart.html>`__-based workflow:
+
 
 1. Activate the Python environment: 
 
 ::
+   
+   # Create with a virtual env with venv: python -m venv env_name
+   source env_name/bin/activate
 
-   cd Your_Env/bin & source activate
 
-
-2. Go to the project folder: 
+2. Clone your repo and go to the project folder: 
 
 ::
 
-   cd /home/username/my_project
+   git clone https://github.com/erickbytes/lofipython.git && cd lofipython
 
-3. Run Python script to create new markdown file from a template:
+3. Run Python script to create new markdown or `.rst <https://github.com/erickbytes/lofipython/blob/main/new_rst_post.py>`__ file from a template:
 
 ::
 
@@ -35,11 +37,11 @@ On my Windows subsystem for Linux environment, I am now publishing new blog post
    pelican content
 
 
-5. Preview the new post at local host http://127.0.0.1:8000/
+5. Preview the new post with Pelican in development mode at local host 8000 in Firefox:
 
 ::
 
-   pelican -l 
+   pelican -l & firefox -new-tab http://127.0.0.1:8000
 
 
 6. Use git to stage, commit and push the files to a Github repo:
@@ -50,15 +52,37 @@ On my Windows subsystem for Linux environment, I am now publishing new blog post
    git commit -m "new post edits and fixes"
    git push -u origin main
 
-The new blog post is now live! This is my own workflow for my Pelican blog, `divbull.com <http://divbull.com>`__, which is hosted for free with `Cloudflare Pages <https://pages.cloudflare.com/>`__. You can read more about connecting Pelican and Cloudflare in `this past post I wrote <https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/>`__.
+
+The new blog post is now live! This is my own workflow for my Pelican blog, this blog which is hosted for free with `Cloudflare Pages <https://pages.cloudflare.com/>`__. You can read more about connecting Pelican and Cloudflare in `this past post I wrote <https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/>`__.
+
+|
+
+**An Ubuntu Shell One-Liner for Pelican Blog Preview**
+   - compile my Pelican static site
+   - serve development blog preview to port 8000
+   - wait to open the local host 8000 page in a Firefox browser
+
+When I'm editing an old post or write a new post and want to preview it, the workflow can be wrapped up in a single chain of commands if desired. For the sake of Linux one-liners, it had to be done:
+
+::
+
+   pelican content ; pelican -l & firefox -new-tab http://127.0.0.1:8000
+
+|
+
+**Github SSH Required**
 
 You will need to `create a SSH key and connect it to your Github account <https://docs.github.com/en/authentication/connecting-to-github-with-ssh>`__ to get this completely working, as it's required by Github now. Make sure you write down your passphrase! I was able to create an ssh key with this command:
 
 ::
 
-   ssh-keygen -t ed25519 -C "youname@example.com"
+   ssh-keygen -t ed25519 -C "yourname@example.com"
 
-Below is the short Python script I wrote for generating the markdown file for a new post. I've enjoyed working this out on my new blog and now can fire off posts rapidly with this command line based workflow.
+
+**Scripting New Post Creation**
+
+Below is the short Python script I wrote for generating the markdown file for a new post.
+
 
 .. code-block:: python
 
@@ -79,7 +103,7 @@ Below is the short Python script I wrote for generating the markdown file for a 
 
    def save_draft(name, post):
        """Save new post draft to content folder."""
-       content = "/home/erickbytes/divbull/divbull.com/content"
+       content = "~/projects/lofipython/content"
        name = name.replace(" ", "-")
        md = f"{content}/{name}.md"
        with open(md, "w") as fhand:
@@ -90,3 +114,6 @@ Below is the short Python script I wrote for generating the markdown file for a 
    name = post_name()
    post = post_template(name)
    save_draft(name, post)
+
+
+I've enjoyed working this out on my new blog. I can easily edit, improve and fire off blog posts rapidly with this command line based workflow.

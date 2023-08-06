@@ -1,7 +1,7 @@
 Delete All Your Tweets with Tweepy and the Twitter API
 ######################################################
 :date: 2020-09-13 21:07
-:author: pythonmarketer
+:author: lofipython
 :category: coding, programming, python
 :tags: api, tweepy, tweets, twitter
 :slug: delete-all-your-tweets-with-tweepy-and-the-twitter-api
