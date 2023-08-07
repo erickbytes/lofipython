@@ -30,7 +30,7 @@ less. Favoring the standard library. Lowest possible time to MVP
 (minimum viable product). Learning new libraries. Exploring the
 ecosystem with playful curiosity. Embrace helping others by helping
 yourself. This is the way.&lt;/p&gt;
-</content><category term="coding, python, writing, meta"></category><category term="wordpress pelican migration"></category><category term="pelican blog"></category><category term="python static site"></category></entry><entry><title>An Example Pelican + Git Blog Post Workflow</title><link href="https://lofipython.com/an-example-pelican-git-blog-post-workflow.html" rel="alternate"></link><published>2022-12-04T12:17:00-06:00</published><updated>2022-12-04T12:17:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-12-04:/an-example-pelican-git-blog-post-workflow.html</id><summary type="html">&lt;p&gt;In my Ubuntu Linux environment, I'm now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt;-based workflow:&lt;/p&gt;
+</content><category term="coding, python, writing, meta"></category><category term="wordpress pelican migration"></category><category term="pelican blog"></category><category term="python static site"></category></entry><entry><title>An Example Pelican + Git Blog Post Workflow</title><link href="https://lofipython.com/an-example-pelican-git-blog-post-workflow.html" rel="alternate"></link><published>2022-12-04T12:17:00-06:00</published><updated>2022-12-04T12:17:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-12-04:/an-example-pelican-git-blog-post-workflow.html</id><summary type="html">&lt;p&gt;In my Ubuntu Linux environment, I'm now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt; + Python + git workflow.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Activate the Python environment:&lt;/li&gt;
 &lt;/ol&gt;
@@ -42,7 +42,7 @@ source env_name/bin/activate
 &lt;li&gt;Clone your repo and go to the project folder:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="literal-block"&gt;
-git clone https://github.com/erickbytes …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;In my Ubuntu Linux environment, I'm now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt;-based workflow:&lt;/p&gt;
+git clone https://github.com …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;In my Ubuntu Linux environment, I'm now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt; + Python + git workflow.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Activate the Python environment:&lt;/li&gt;
 &lt;/ol&gt;
@@ -72,7 +72,7 @@ pelican content
 &lt;li&gt;Preview the new post with Pelican in development mode at local host 8000 in Firefox:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="literal-block"&gt;
-pelican -l &amp;amp; firefox -new-tab http://127.0.0.1:8000
+pelican -l ; firefox -new-tab http://127.0.0.1:8000
 &lt;/pre&gt;
 &lt;ol class="arabic simple" start="6"&gt;
 &lt;li&gt;Use git to stage, commit and push the files to a Github repo:&lt;/li&gt;
@@ -97,13 +97,13 @@ git push -u origin main
 &lt;/dl&gt;
 &lt;p&gt;When I'm editing an old post or write a new post and want to preview it, the workflow can be wrapped up in a single chain of commands if desired. For the sake of Linux one-liners, it had to be done:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-pelican content ; pelican -l &amp;amp; firefox -new-tab http://127.0.0.1:8000
+pelican content ; pelican -l ; firefox -new-tab http://127.0.0.1:8000
 &lt;/pre&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Github SSH Required&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;You will need to &lt;a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh"&gt;create a SSH key and connect it to your Github account&lt;/a&gt; to get this completely working, as it's required by Github now. Make sure you write down your passphrase! I was able to create an ssh key with this command:&lt;/p&gt;
+&lt;p&gt;You will need to &lt;a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh"&gt;create a SSH key and connect it to your Github account&lt;/a&gt; to get this working, as it's required by Github now. Make sure you write down your passphrase. I was able to create an ssh key with this command:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 ssh-keygen -t ed25519 -C &amp;quot;yourname&amp;#64;example.com&amp;quot;
 &lt;/pre&gt;
@@ -165,7 +165,7 @@ ssh-keygen -t ed25519 -C &amp;quot;yourname&amp;#64;example.com&amp;quot;
 &lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;post_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;save_draft&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;I've enjoyed working this out on my new blog. I can easily edit, improve and fire off blog posts rapidly with this command line based workflow.&lt;/p&gt;
+&lt;p&gt;I've enjoyed working this out on my new blog. I can easily edit, improve and fire off blog posts rapidly with this command line workflow.&lt;/p&gt;
 </content><category term="automation, git, pelican, programming, python, writing"></category><category term="pelican blog"></category><category term="pelican workflow"></category><category term="pelican writing example"></category></entry><entry><title>Pelican Fix for "No valid files found in content"...</title><link href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html" rel="alternate"></link><published>2022-10-08T13:43:00-05:00</published><updated>2022-10-08T13:43:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-10-08:/pelican-fix-for-no-valid-files-found-in-content.html</id><summary type="html">&lt;p&gt;Pelican is a popular &lt;a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/"&gt;static site generator library&lt;/a&gt; in Python. I didn't know why my pelican blog was not working. I've used the &amp;quot;pelican content&amp;quot; command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Pelican is a popular &lt;a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/"&gt;static site generator library&lt;/a&gt; in Python. I didn't know why my pelican blog was not working. I've used the &amp;quot;pelican content&amp;quot; command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;

@@ -7,7 +7,7 @@ An Example Pelican + Git Blog Post Workflow
 :slug: an-example-pelican-git-blog-post-workflow
 :status: published
 
-In my Ubuntu Linux environment, I'm now publishing new blog posts following this `Pelican <https://docs.getpelican.com/en/latest/quickstart.html>`__-based workflow:
+In my Ubuntu Linux environment, I'm now publishing new blog posts following this `Pelican <https://docs.getpelican.com/en/latest/quickstart.html>`__ + Python + git workflow.
 
 
 1. Activate the Python environment: 
@@ -41,7 +41,7 @@ In my Ubuntu Linux environment, I'm now publishing new blog posts following this
 
 ::
 
-   pelican -l & firefox -new-tab http://127.0.0.1:8000
+   pelican -l ; firefox -new-tab http://127.0.0.1:8000
 
 
 6. Use git to stage, commit and push the files to a Github repo:
@@ -66,13 +66,13 @@ When I'm editing an old post or write a new post and want to preview it, the wor
 
 ::
 
-   pelican content ; pelican -l & firefox -new-tab http://127.0.0.1:8000
+   pelican content ; pelican -l ; firefox -new-tab http://127.0.0.1:8000
 
 |
 
 **Github SSH Required**
 
-You will need to `create a SSH key and connect it to your Github account <https://docs.github.com/en/authentication/connecting-to-github-with-ssh>`__ to get this completely working, as it's required by Github now. Make sure you write down your passphrase! I was able to create an ssh key with this command:
+You will need to `create a SSH key and connect it to your Github account <https://docs.github.com/en/authentication/connecting-to-github-with-ssh>`__ to get this working, as it's required by Github now. Make sure you write down your passphrase. I was able to create an ssh key with this command:
 
 ::
 
@@ -116,4 +116,4 @@ Below is the short Python script I wrote for generating the markdown file for a 
    save_draft(name, post)
 
 
-I've enjoyed working this out on my new blog. I can easily edit, improve and fire off blog posts rapidly with this command line based workflow.
+I've enjoyed working this out on my new blog. I can easily edit, improve and fire off blog posts rapidly with this command line workflow.

@@ -655,7 +655,7 @@ via &lt;a class="reference external" href="http://amueller.github.io/word_cloud/
 &lt;li&gt;&lt;a class="reference external" href="https://changhsinlee.com/python-package/"&gt;How to Make an Internal Python Package&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/erickbytes/pymarketer/blob/main/pymarketer_examples.py"&gt;pymarketer Github Examples&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content><category term="coding, excel, HTTP"></category><category term="problem solving"></category><category term="programming"></category><category term="python"></category><category term="software"></category></entry><entry><title>An Example Pelican + Git Blog Post Workflow</title><link href="https://lofipython.com/an-example-pelican-git-blog-post-workflow.html" rel="alternate"></link><published>2022-12-04T12:17:00-06:00</published><updated>2022-12-04T12:17:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-12-04:/an-example-pelican-git-blog-post-workflow.html</id><summary type="html">&lt;p&gt;In my Ubuntu Linux environment, I'm now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt;-based workflow:&lt;/p&gt;
+</content><category term="coding, excel, HTTP"></category><category term="problem solving"></category><category term="programming"></category><category term="python"></category><category term="software"></category></entry><entry><title>An Example Pelican + Git Blog Post Workflow</title><link href="https://lofipython.com/an-example-pelican-git-blog-post-workflow.html" rel="alternate"></link><published>2022-12-04T12:17:00-06:00</published><updated>2022-12-04T12:17:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-12-04:/an-example-pelican-git-blog-post-workflow.html</id><summary type="html">&lt;p&gt;In my Ubuntu Linux environment, I'm now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt; + Python + git workflow.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Activate the Python environment:&lt;/li&gt;
 &lt;/ol&gt;
@@ -667,7 +667,7 @@ source env_name/bin/activate
 &lt;li&gt;Clone your repo and go to the project folder:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="literal-block"&gt;
-git clone https://github.com/erickbytes …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;In my Ubuntu Linux environment, I'm now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt;-based workflow:&lt;/p&gt;
+git clone https://github.com …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;In my Ubuntu Linux environment, I'm now publishing new blog posts following this &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html"&gt;Pelican&lt;/a&gt; + Python + git workflow.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Activate the Python environment:&lt;/li&gt;
 &lt;/ol&gt;
@@ -697,7 +697,7 @@ pelican content
 &lt;li&gt;Preview the new post with Pelican in development mode at local host 8000 in Firefox:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="literal-block"&gt;
-pelican -l &amp;amp; firefox -new-tab http://127.0.0.1:8000
+pelican -l ; firefox -new-tab http://127.0.0.1:8000
 &lt;/pre&gt;
 &lt;ol class="arabic simple" start="6"&gt;
 &lt;li&gt;Use git to stage, commit and push the files to a Github repo:&lt;/li&gt;
@@ -722,13 +722,13 @@ git push -u origin main
 &lt;/dl&gt;
 &lt;p&gt;When I'm editing an old post or write a new post and want to preview it, the workflow can be wrapped up in a single chain of commands if desired. For the sake of Linux one-liners, it had to be done:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-pelican content ; pelican -l &amp;amp; firefox -new-tab http://127.0.0.1:8000
+pelican content ; pelican -l ; firefox -new-tab http://127.0.0.1:8000
 &lt;/pre&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Github SSH Required&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;You will need to &lt;a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh"&gt;create a SSH key and connect it to your Github account&lt;/a&gt; to get this completely working, as it's required by Github now. Make sure you write down your passphrase! I was able to create an ssh key with this command:&lt;/p&gt;
+&lt;p&gt;You will need to &lt;a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh"&gt;create a SSH key and connect it to your Github account&lt;/a&gt; to get this working, as it's required by Github now. Make sure you write down your passphrase. I was able to create an ssh key with this command:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 ssh-keygen -t ed25519 -C &amp;quot;yourname&amp;#64;example.com&amp;quot;
 &lt;/pre&gt;
@@ -790,7 +790,7 @@ ssh-keygen -t ed25519 -C &amp;quot;yourname&amp;#64;example.com&amp;quot;
 &lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;post_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;save_draft&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;I've enjoyed working this out on my new blog. I can easily edit, improve and fire off blog posts rapidly with this command line based workflow.&lt;/p&gt;
+&lt;p&gt;I've enjoyed working this out on my new blog. I can easily edit, improve and fire off blog posts rapidly with this command line workflow.&lt;/p&gt;
 </content><category term="automation, git, pelican, programming, python, writing"></category><category term="pelican blog"></category><category term="pelican workflow"></category><category term="pelican writing example"></category></entry><entry><title>How to Find and Open a Public Wi-Fi Login Page</title><link href="https://lofipython.com/how-to-find-and-open-a-public-wi-fi-login-page.html" rel="alternate"></link><published>2022-10-18T12:38:00-05:00</published><updated>2022-10-18T12:38:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2022-10-18:/how-to-find-and-open-a-public-wi-fi-login-page.html</id><summary type="html">&lt;p&gt;Sometimes, we find ourselves on a public Wi-Fi connection that is &amp;quot;connected&amp;quot;, but unable to get to the login page. While the login page is triggered automatically on most mobile devices, computers may not connect so easily. As usual, I turned to Google to find a way to get to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sometimes, we find ourselves on a public Wi-Fi connection that is &amp;quot;connected&amp;quot;, but unable to get to the login page. While the login page is triggered automatically on most mobile devices, computers may not connect so easily. As usual, I turned to Google to find a way to get to a public Wi-Fi login page.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://zapier.com/blog/open-wifi-login-page/#:~:text=An%20easy%20trick%20is%20to,you're%20at%20home)."&gt;This helpful Zapier blog post&lt;/a&gt; outlines a few different approaches you can take. My solution below is one of the IP addresses they suggested trying. Decide if you need to edit your computer's network settings. Alternatively, you may just need to find the public login page. I was able to load my public Wi-Fi login page with this IP address in my web browser:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
