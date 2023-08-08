@@ -43,13 +43,13 @@ In my Ubuntu Linux environment, I'm now publishing new blog posts following this
 
    pelican -l 
 
-5. Preview your new post at localhost:8000 in Firefox:
+6. Preview your new post at localhost:8000 in Firefox:
 
 ::
 
    firefox -new-tab http://127.0.0.1:8000
 
-6. Use git to stage, commit and push the files to a Github repo:
+7. Use git to stage, commit and push the files to a Github repo:
 
 ::
 
