@@ -41,7 +41,8 @@ In my Ubuntu Linux environment, I'm now publishing new blog posts following this
 
 ::
 
-   pelican -l ; firefox -new-tab http://127.0.0.1:8000
+   pelican -l 
+   firefox -new-tab http://127.0.0.1:8000
 
 
 6. Use git to stage, commit and push the files to a Github repo:
@@ -56,20 +57,6 @@ In my Ubuntu Linux environment, I'm now publishing new blog posts following this
 The new blog post is now live! This is my own workflow for my Pelican blog, this blog which is hosted for free with `Cloudflare Pages <https://pages.cloudflare.com/>`__. You can read more about connecting Pelican and Cloudflare in `this past post I wrote <https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/>`__.
 
 |
-
-**An Ubuntu Shell One-Liner for Pelican Blog Preview**
-   - compile my Pelican static site
-   - serve development blog preview to port 8000
-   - wait to open the local host 8000 page in a Firefox browser
-
-When I'm editing an old post or write a new post and want to preview it, the workflow can be wrapped up in a single chain of commands if desired. For the sake of Linux one-liners, it had to be done:
-
-::
-
-   pelican content ; pelican -l ; firefox -new-tab http://127.0.0.1:8000
-
-|
-
 **Github SSH Required**
 
 You will need to `create a SSH key and connect it to your Github account <https://docs.github.com/en/authentication/connecting-to-github-with-ssh>`__ to get this working, as it's required by Github now. Make sure you write down your passphrase. I was able to create an ssh key with this command:
