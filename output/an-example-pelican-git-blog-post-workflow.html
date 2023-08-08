@@ -57,7 +57,7 @@ source env_name/bin/activate
 <li>Clone your repo and go to the project folder:</li>
 </ol>
 <pre class="literal-block">
-git clone https://github.com/erickbytes/lofipython.git &amp;&amp; cd lofipython
+git clone https://github.com/erickbytes/lofipython.git &amp;&amp; cd lofipython &amp;&amp; ls
 </pre>
 <ol class="arabic simple" start="3">
 <li>Run Python script to create new markdown or <a class="reference external" href="https://github.com/erickbytes/lofipython/blob/main/new_rst_post.py">.rst</a> file from a template:</li>
@@ -66,16 +66,21 @@ git clone https://github.com/erickbytes/lofipython.git &amp;&amp; cd lofipython
 python new_post.py
 </pre>
 <ol class="arabic simple" start="4">
-<li>After writing the new post, update the Pelican content:</li>
+<li>Compile the new post with the Pelican content command:</li>
 </ol>
 <pre class="literal-block">
 pelican content
 </pre>
 <ol class="arabic simple" start="5">
-<li>Preview the new post with Pelican in development mode at local host 8000 in Firefox:</li>
+<li>Use the Pelican listen command to serve blog to the default port 8000:</li>
 </ol>
 <pre class="literal-block">
 pelican -l
+</pre>
+<ol class="arabic simple" start="5">
+<li>Preview your new post at localhost:8000 in Firefox:</li>
+</ol>
+<pre class="literal-block">
 firefox -new-tab http://127.0.0.1:8000
 </pre>
 <ol class="arabic simple" start="6">
@@ -90,29 +95,13 @@ git push -u origin main
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<dl class="docutils">
-<dt><strong>An Ubuntu Shell One-Liner for Pelican Blog Preview</strong></dt>
-<dd><ul class="first last simple">
-<li>compile my Pelican static site</li>
-<li>serve development blog preview to port 8000</li>
-<li>wait to open the local host 8000 page in a Firefox browser</li>
-</ul>
-</dd>
-</dl>
-<p>When I'm editing an old post or write a new post and want to preview it, the workflow can be wrapped up in a single chain of commands if desired. For the sake of Linux one-liners, it had to be done:</p>
-<pre class="literal-block">
-pelican content ; pelican -l &amp; firefox -new-tab http://127.0.0.1:8000
-</pre>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <p><strong>Github SSH Required</strong></p>
 <p>You will need to <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh">create a SSH key and connect it to your Github account</a> to get this working, as it's required by Github now. Make sure you write down your passphrase. I was able to create an ssh key with this command:</p>
 <pre class="literal-block">
 ssh-keygen -t ed25519 -C &quot;yourname&#64;example.com&quot;
 </pre>
 <p><strong>Scripting New Post Creation</strong></p>
-<p>Below is the short Python script I wrote for generating the markdown file for a new post.</p>
+<p>Below is the short Python script I wrote for generating the markdown file for a new post, &quot;new_post.py&quot; in the above workflow.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>

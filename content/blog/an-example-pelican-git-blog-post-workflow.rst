@@ -22,7 +22,7 @@ In my Ubuntu Linux environment, I'm now publishing new blog posts following this
 
 ::
 
-   git clone https://github.com/erickbytes/lofipython.git && cd lofipython
+   git clone https://github.com/erickbytes/lofipython.git && cd lofipython && ls
 
 3. Run Python script to create new markdown or `.rst <https://github.com/erickbytes/lofipython/blob/main/new_rst_post.py>`__ file from a template:
 
@@ -30,20 +30,24 @@ In my Ubuntu Linux environment, I'm now publishing new blog posts following this
 
    python new_post.py
 
-4. After writing the new post, update the Pelican content:
+4. Compile the new post with the Pelican content command:
 
 ::
 
    pelican content
 
 
-5. Preview the new post with Pelican in development mode at local host 8000 in Firefox:
+5. Use the Pelican listen command to serve blog to the default port 8000:
 
 ::
 
    pelican -l 
-   firefox -new-tab http://127.0.0.1:8000
 
+5. Preview your new post at localhost:8000 in Firefox:
+
+::
+
+   firefox -new-tab http://127.0.0.1:8000
 
 6. Use git to stage, commit and push the files to a Github repo:
 
@@ -57,6 +61,7 @@ In my Ubuntu Linux environment, I'm now publishing new blog posts following this
 The new blog post is now live! This is my own workflow for my Pelican blog, this blog which is hosted for free with `Cloudflare Pages <https://pages.cloudflare.com/>`__. You can read more about connecting Pelican and Cloudflare in `this past post I wrote <https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/>`__.
 
 |
+
 **Github SSH Required**
 
 You will need to `create a SSH key and connect it to your Github account <https://docs.github.com/en/authentication/connecting-to-github-with-ssh>`__ to get this working, as it's required by Github now. Make sure you write down your passphrase. I was able to create an ssh key with this command:
@@ -68,7 +73,7 @@ You will need to `create a SSH key and connect it to your Github account <https:
 
 **Scripting New Post Creation**
 
-Below is the short Python script I wrote for generating the markdown file for a new post.
+Below is the short Python script I wrote for generating the markdown file for a new post, "new_post.py" in the above workflow.
 
 
 .. code-block:: python

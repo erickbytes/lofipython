@@ -54,7 +54,7 @@ source env_name/bin/activate
 &lt;li&gt;Clone your repo and go to the project folder:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="literal-block"&gt;
-git clone https://github.com/erickbytes/lofipython.git &amp;amp;&amp;amp; cd lofipython
+git clone https://github.com/erickbytes/lofipython.git &amp;amp;&amp;amp; cd lofipython &amp;amp;&amp;amp; ls
 &lt;/pre&gt;
 &lt;ol class="arabic simple" start="3"&gt;
 &lt;li&gt;Run Python script to create new markdown or &lt;a class="reference external" href="https://github.com/erickbytes/lofipython/blob/main/new_rst_post.py"&gt;.rst&lt;/a&gt; file from a template:&lt;/li&gt;
@@ -63,16 +63,21 @@ git clone https://github.com/erickbytes/lofipython.git &amp;amp;&amp;amp; cd lof
 python new_post.py
 &lt;/pre&gt;
 &lt;ol class="arabic simple" start="4"&gt;
-&lt;li&gt;After writing the new post, update the Pelican content:&lt;/li&gt;
+&lt;li&gt;Compile the new post with the Pelican content command:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="literal-block"&gt;
 pelican content
 &lt;/pre&gt;
 &lt;ol class="arabic simple" start="5"&gt;
-&lt;li&gt;Preview the new post with Pelican in development mode at local host 8000 in Firefox:&lt;/li&gt;
+&lt;li&gt;Use the Pelican listen command to serve blog to the default port 8000:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="literal-block"&gt;
 pelican -l
+&lt;/pre&gt;
+&lt;ol class="arabic simple" start="5"&gt;
+&lt;li&gt;Preview your new post at localhost:8000 in Firefox:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
 firefox -new-tab http://127.0.0.1:8000
 &lt;/pre&gt;
 &lt;ol class="arabic simple" start="6"&gt;
@@ -87,29 +92,13 @@ git push -u origin main
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;An Ubuntu Shell One-Liner for Pelican Blog Preview&lt;/strong&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;ul class="first last simple"&gt;
-&lt;li&gt;compile my Pelican static site&lt;/li&gt;
-&lt;li&gt;serve development blog preview to port 8000&lt;/li&gt;
-&lt;li&gt;wait to open the local host 8000 page in a Firefox browser&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;When I'm editing an old post or write a new post and want to preview it, the workflow can be wrapped up in a single chain of commands if desired. For the sake of Linux one-liners, it had to be done:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-pelican content ; pelican -l &amp;amp; firefox -new-tab http://127.0.0.1:8000
-&lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Github SSH Required&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;You will need to &lt;a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh"&gt;create a SSH key and connect it to your Github account&lt;/a&gt; to get this working, as it's required by Github now. Make sure you write down your passphrase. I was able to create an ssh key with this command:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 ssh-keygen -t ed25519 -C &amp;quot;yourname&amp;#64;example.com&amp;quot;
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Scripting New Post Creation&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Below is the short Python script I wrote for generating the markdown file for a new post.&lt;/p&gt;
+&lt;p&gt;Below is the short Python script I wrote for generating the markdown file for a new post, &amp;quot;new_post.py&amp;quot; in the above workflow.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
