@@ -8,14 +8,31 @@ Opening Files From The Terminal With Text Editor CLIs
 :status: published
 
 
-Many text editors have the ability to open files from a computer's shell. Here are a few text editor commands that I've learned for opening a file automatically from the command line:
+Most text editors can open files from a computer's shell. Here are a few text editor commands that I've learned for opening a file from the command line:
+
+
+**IDLE (Python's Built-in Editor)**
+
+.. code:: console
+
+   idle file.py
+
+
+.. image:: {static}/blog/images/idlecli.png
+  :alt: CLI help options for Python's IDLE text editor
+
+image source: `IDLE documentation <https://docs.python.org/3/library/idle.html#startup-and-code-execution>`__
 
 
 **Sublime**
 
 .. code:: console
 
-   subl file.txt
+   subl template.rst
+
+
+.. image:: {static}/blog/images/sublimeeditorexample.png
+  :alt: using subl CLI to open files in Sublime
 
 
 **VS Code**
@@ -40,16 +57,12 @@ source: `Stack Overflow user Anthon <https://unix.stackexchange.com/questions/16
 
 .. code:: console
 
-   start notepad++ file.rst
+   start notepad++ file.py
 
 
 source: `W3 Schools <https://www.w3schools.io/editor/notepad++-open/>`__
 
 
-.. image:: {static}/blog/images/sublimeeditorexample.png
-  :alt: using subl CLI to open files in Sublime
-
-
 The ability to quickly pop open and view a file is essential. Ubuntu has the cat command to print a file's contents to the terminal screen also if you don't need to edit it. Tools like `sed <https://www.gnu.org/software/sed/manual/sed.html>`__ and `awk <https://www.geeksforgeeks.org/awk-command-unixlinux-examples/>`__ are useful for command line file editing if you prefer to keep it in the terminal.
 
-Can't get enough text editors? Read more about text editors in my comparison of their file sizes `here <https://lofipython.com/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code>`__.
+Want to read more about text editors? Check out my text editor file size comparison `here <https://lofipython.com/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code>`__.
