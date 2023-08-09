@@ -8,7 +8,7 @@ Opening Files From The Terminal With Text Editor CLIs
 :status: published
 
 
-Most text editors can open files from a computer's shell. Here are a few text editor commands that I've learned for opening a file from the command line:
+Most text editors can open files from a computer's command line shell. Here are 6 different text editor commands for opening a file:
 
 
 **IDLE (Python's Built-in Editor)**
