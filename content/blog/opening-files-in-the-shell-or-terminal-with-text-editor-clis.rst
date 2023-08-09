@@ -43,6 +43,13 @@ image source: `IDLE documentation <https://docs.python.org/3/library/idle.html#s
    code file.py
 
 
+**Atom**
+
+.. code:: console
+
+   atom file.py
+
+
 **Emacs**
 
 
