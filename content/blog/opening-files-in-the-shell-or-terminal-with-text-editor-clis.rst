@@ -70,6 +70,27 @@ source: `Stack Overflow user Anthon <https://unix.stackexchange.com/questions/16
 source: `W3 Schools <https://www.w3schools.io/editor/notepad++-open/>`__
 
 
+**Text Edit**
+
+.. code:: console
+
+   open -a TextEdit filename
+
+
+source: `Stack OVerflow user robmathers <https://www.w3schools.io/editor/notepad++-open/>`__
+
+
+**Vim**
+
+.. code:: console
+
+   # Open file for editing.
+   :e file.txt
+
+
+source: `confirm blog <https://blog.confirm.ch/mastering-vim-opening-files/>`__
+
+
 The ability to quickly pop open and view a file is essential. Ubuntu has the cat command to print a file's contents to the terminal screen also if you don't need to edit it. Tools like `sed <https://www.gnu.org/software/sed/manual/sed.html>`__ and `awk <https://www.geeksforgeeks.org/awk-command-unixlinux-examples/>`__ are useful for command line file editing if you prefer to keep it in the terminal.
 
 Want to read more about text editors? Check out my text editor file size comparison `here <https://lofipython.com/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code>`__.
