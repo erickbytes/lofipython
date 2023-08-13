@@ -77,14 +77,13 @@ source: `W3 Schools <https://www.w3schools.io/editor/notepad++-open/>`__
    open -a TextEdit file.txt
 
 
-source: `Stack OVerflow user robmathers <https://www.w3schools.io/editor/notepad++-open/>`__
+source: `Stack Overflow user robmathers <https://www.w3schools.io/editor/notepad++-open/>`__
 
 
 **Vim**
 
 .. code:: console
 
-   # Open file for editing.
    :e file.txt
 
 
