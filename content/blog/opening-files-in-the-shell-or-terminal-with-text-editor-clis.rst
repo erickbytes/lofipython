@@ -8,7 +8,7 @@ Opening Files From The Terminal With Text Editor CLIs
 :status: published
 
 
-Most text editors can open files from a computer's command line shell. Here are 6 different text editor commands for opening a file:
+Most text editors can open files from a computer's command line shell. Here are 8 different text editor commands for opening a file:
 
 
 **IDLE (Python's Built-in Editor)**
@@ -70,11 +70,11 @@ source: `Stack Overflow user Anthon <https://unix.stackexchange.com/questions/16
 source: `W3 Schools <https://www.w3schools.io/editor/notepad++-open/>`__
 
 
-**Text Edit**
+**TextEdit**
 
 .. code:: console
 
-   open -a TextEdit filename
+   open -a TextEdit file.txt
 
 
 source: `Stack OVerflow user robmathers <https://www.w3schools.io/editor/notepad++-open/>`__
