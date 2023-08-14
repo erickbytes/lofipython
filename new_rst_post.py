@@ -9,11 +9,16 @@ def post_name():
 
 def copy_template(name):
     """Copy a reStructuredText template file for a new post."""
-    # content = "/home/erickbytes/lofipython/content/"
     content = "/home/erick/Desktop/Projects/lofipython/content"
     rst = f"{content}/blog/drafts/template.rst"
     dst = f"{content}/blog/{name}.rst"
-    copy(rst, dst)
+    try:
+        copy(rst, dst)
+    except FileNotFoundError:
+        content = "/home/erickbytes/lofipython/content/"
+        rst = f"{content}/blog/drafts/template.rst"
+        dst = f"{content}/blog/{name}.rst"
+        copy(rst, dst)
     return None
 
 

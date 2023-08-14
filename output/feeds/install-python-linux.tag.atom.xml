@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - install python linux</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/install-python-linux.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-08-13T22:45:00-05:00</updated><entry><title>How to Install Python 3.11 on a Linux Computer</title><link href="https://lofipython.com/installing-python-3.11-on-ubuntu-linux.html" rel="alternate"></link><published>2023-08-13T22:45:00-05:00</published><updated>2023-08-13T22:45:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-08-13:/installing-python-3.11-on-ubuntu-linux.html</id><summary type="html">&lt;p&gt;Below are the steps I followed to install Python 3.11 from my Ubuntu Linux shell. I downloaded the .tgz file from Python.org, not sure initially how to build Python from it. Once I unpacked the compressed files, I saw the build instructions in the README.rst to build …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below are the steps I followed to install Python 3.11 from my Ubuntu Linux shell. I downloaded the .tgz file from Python.org, not sure initially how to build Python from it. Once I unpacked the compressed files, I saw the build instructions in the README.rst to build a functional Python 3.11 on my Ubuntu computer. Here's how to install the speedier Python version 3.11.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How to Install Python 3.11&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Use curl to download the Python gzip file.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;curl https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz --output Python-3.11.0.tgz&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="download Python with curl" src="https://lofipython.com/blog/images/curl-python-install-command.png" /&gt;
+&lt;p&gt;Unpack gzip file to folder.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;tar -xvzf Python-3.11.0.tgz&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Change directory, read the README + find build commands.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;cd Python-3.11.0
+cat README.rst&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Build Python.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;# &lt;/span&gt;Build&lt;span class="w"&gt; &lt;/span&gt;Python&lt;span class="w"&gt; &lt;/span&gt;on&lt;span class="w"&gt; &lt;/span&gt;Unix,&lt;span class="w"&gt; &lt;/span&gt;Linux,&lt;span class="w"&gt; &lt;/span&gt;BSD,&lt;span class="w"&gt; &lt;/span&gt;macOS,&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;Cygwin:&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="go"&gt;./configure
+make
+make test
+sudo make install&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Building Python on Various Platforms&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This will install Python as &lt;tt class="docutils literal"&gt;python3&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;You can pass many options to the configure script; run &lt;tt class="docutils literal"&gt;./configure &lt;span class="pre"&gt;--help&lt;/span&gt;&lt;/tt&gt;
+to find out more.  On macOS case-insensitive file systems and on Cygwin,
+the executable is called &lt;tt class="docutils literal"&gt;python.exe&lt;/tt&gt;; elsewhere it's just &lt;tt class="docutils literal"&gt;python&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Building a complete Python installation requires the use of various
+additional third-party libraries, depending on your build platform and
+configure options.  Not all standard library modules are buildable or
+useable on all platforms.  Refer to the
+&lt;a class="reference external" href="https://devguide.python.org/setup/#install-dependencies"&gt;Install dependencies&lt;/a&gt;
+section of the Developer Guide for current detailed information on
+dependencies for various Linux distributions and macOS.&lt;/p&gt;
+&lt;p&gt;On macOS, there are additional configure and build options related
+to macOS framework and universal builds.  Refer to &lt;a class="reference external" href="https://github.com/python/cpython/blob/main/Mac/README.rst"&gt;Mac/README.rst&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;On Windows, see &lt;a class="reference external" href="https://github.com/python/cpython/blob/main/PCbuild/readme.txt"&gt;PCbuild/readme.txt&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;- Python 3.11 Linux README.rst&lt;/p&gt;
+&lt;/blockquote&gt;
+</content><category term="coding, programming, python"></category><category term="install python linux"></category><category term="installing Python 3.11"></category><category term="how to build Python 3.11"></category></entry></feed>
