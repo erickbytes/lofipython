@@ -31,7 +31,89 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jan 23, 2022</h4>
+        <div id="content">            <h4 class="date">Jan 30, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob.html" rel="bookmark" title="Permanent Link to &quot;Fix Spelling and Grammar with language_tool_python and textblob&quot;">Fix Spelling and Grammar with language_tool_python&nbsp;and textblob</a>
+                </h2>
+
+                
+                
+
+                <p>Below are two practical Python libraries for text processing. This function uses <a class="reference external" href="https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=correct#textblob.blob.TextBlob.correct">textblob's spelling correction</a> along with <a class="reference external" href="https://pypi.org/project/language-tool-python/">language_tool_python</a>, which applies grammatical corrections via the <a class="reference external" href="https://languagetool.org/http-api/swagger-ui/#!/default/post_check">Language Tool API</a>. I added these text processing transformations into my <a class="reference external" href="https://positivethoughts.pythonanywhere.com/">concept text generation app</a>. These are free, public APIs up to around 20 requests per second. You can send both text and receive back an improved version of your text, ideally altering and improving your writing.</p>
+<p>I found 2 errors when I piped the text of this post into the below code: the proper noun &quot;textblob&quot; corrected to &quot;text blow's&quot; and the word &quot;app&quot; corrected to &quot;pp&quot;. Be sure to proof your results. Regardless, I like having these two Python tools in my bag!</p>
+<p><strong>Install</strong></p>
+<p><a class="reference external" href="https://textblob.readthedocs.io/en/dev/install.html">textblob</a></p>
+<p><a class="reference external" href="https://pypi.org/project/language-tool-python/">language_tool_python</a></p>
+<p><a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">help with pip</a></p>
+<pre class="literal-block">
+pip install language-tool-python
+pip install -U textblob
+python -m textblob.download_corpora
+</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">language_tool_python</span>
+<span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">TextBlob</span>
+
+<span class="k">def</span> <span class="nf">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns str: text transformed by language tool and text blob</span>
+<span class="sd">    1) Apply language tool API correction</span>
+<span class="sd">    Language Tool Public API: https://dev.languagetool.org/public-http-api</span>
+<span class="sd">    https://languagetool.org/http-api/swagger-ui/#!/default/post_check</span>
+<span class="sd">    python library: https://pypi.org/project/language-tool-python/</span>
+
+<span class="sd">    2) Apply textblob&#39;s spell check to the text&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># use the public API, language English</span>
+        <span class="n">tool</span> <span class="o">=</span> <span class="n">language_tool_python</span><span class="o">.</span><span class="n">LanguageToolPublicAPI</span><span class="p">(</span><span class="s1">&#39;en-US&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span>  <span class="n">tool</span><span class="o">.</span><span class="n">correct</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">correct</span><span class="p">())</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Language is incredble. Fascinatng how hoomans have so many.&quot;</span>
+<span class="n">transformed_text</span> <span class="o">=</span> <span class="n">fix_spelling_and_grammar</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">transformed_text</span><span class="p">)</span>
+<span class="c1"># Result: Language is incredible. Fascinating how humans have so many.</span>
+</pre></div></td></tr></table></div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob.html">posted at 16:28</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-data-programming-writing.html" rel="tag">APIs, data, programming, writing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/language.html" class="tags">language</a>
+                    &nbsp;<a href="https://lofipython.com/tag/language-tool.html" class="tags">language tool</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/text.html" class="tags">text</a>
+                    &nbsp;<a href="https://lofipython.com/tag/textblob.html" class="tags">textblob</a>
+                </div>
+            </article>            <h4 class="date">Jan 23, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -460,27 +542,6 @@ pip install ftfy
                     &nbsp;<a href="https://lofipython.com/tag/documentation.html" class="tags">documentation</a>
                     &nbsp;<a href="https://lofipython.com/tag/research.html" class="tags">research</a>
                     &nbsp;<a href="https://lofipython.com/tag/tools.html" class="tags">tools</a>
-                </div>
-            </article>            <h4 class="date">Nov 06, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/what-is-your-circle-of-the-internet.html" rel="bookmark" title="Permanent Link to &quot;What is Your Circle of the Internet?&quot;">What is Your Circle of the Internet?</a>
-                </h2>
-
-                
-                
-
-                <p>This morning I'm meditating on my usual apps or websites I visit through the course of a typical day. I wonder how limited or expansive it could be in the span of all that's waiting to be consumed on the internet. I like reading online or physical books too and writing. Consider your own circle of the internet. What sites do you frequent? What do you consume? This is more rhetorical. It's good to pose the question and consider what you might be missing. I recently downloaded a bunch of nature and hiking apps. Maybe that means I want more of that in my life. <a class="reference external" href="https://www.youtube.com/watch?v=hgw_yprN_-w&amp;ab_channel=LiliDVLima">Happy trails</a>.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/what-is-your-circle-of-the-internet.html">posted at 11:29</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apps-internet-life.html" rel="tag">apps, internet, life</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/introspection.html" class="tags">introspection</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web-browsing.html" class="tags">web browsing</a>
                 </div>
             </article>
 
