@@ -1,9 +1,10 @@
+import os
 from datetime import datetime
 from shutil import copy
 
 
 def post_title():
-    """Ask for the new post's name."""
+    """Ask for the new post's title and create slug."""
     title = input("Enter the new post's title:\n")
     slug = title.replace(" ", "-").lower()
     return title, slug
@@ -11,27 +12,23 @@ def post_title():
 
 def copy_template(slug):
     """Copy a reStructuredText template file for a new post."""
-    content = "/home/erick/Desktop/Projects/lofipython/content"
+    content = f"{os.getcwd()}/content"
     rst = f"{content}/blog/drafts/template.rst"
     dst = f"{content}/blog/{slug}.rst"
-    try:
-        copy(rst, dst)
-    except FileNotFoundError:
-        content = "/home/erickbytes/lofipython/content/"
-        rst = f"{content}/blog/drafts/template.rst"
-        dst = f"{content}/blog/{slug}.rst"
-        copy(rst, dst)
+    copy(rst, dst)
     return dst
 
 
 def read_rst(rst):
+    """Returns string, text of .rst file."""
     with open(rst, "r") as file_handle:
         text = file_handle.read()
     return text
 
 
-def edit_text(text, title):
-    today = datetime.now().strftime("%Y-%d-%m %H:%M")
+def edit_text(text, title, slug):
+    """Set date to current time, add new slug and title."""
+    today = datetime.now().strftime("%Y-%m-%d %H:%M")
     old_slug = "delete-all-your-tweets-with-tweepy-and-the-twitter-api"
     old_title = "Delete All Your Tweets with Tweepy and the Twitter API"
     text = (
@@ -43,6 +40,7 @@ def edit_text(text, title):
 
 
 def save_rst(rst, text):
+    """Save new .rst file with updated text."""
     with open(rst, "w") as file_handle:
         file_handle.write(text)
     return None
@@ -51,5 +49,5 @@ def save_rst(rst, text):
 title, slug = post_title()
 rst = copy_template(slug)
 text = read_rst(rst)
-text = edit_text(text,title)
+text = edit_text(text, title, slug)
 save_rst(rst, text)
