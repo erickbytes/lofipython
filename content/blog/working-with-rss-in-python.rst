@@ -27,6 +27,7 @@ You'll often hear the term "aggregator" or "reader" when dealing with RSS, which
 .. image:: {static}/blog/images/rssicon.png
   :alt: RSS icon
 
+
 **A Few Benefits of RSS**
 
 - The personal data of your readers is not collected.
