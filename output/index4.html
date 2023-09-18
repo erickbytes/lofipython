@@ -31,7 +31,95 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jan 30, 2022</h4>
+        <div id="content">            <h4 class="date">Feb 09, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html" rel="bookmark" title="Permanent Link to &quot;How to Convert a Python Dictionary to and from a pandas DataFrame&quot;">How to Convert a Python Dictionary to and from a pandas DataFrame</a>
+                </h2>
+
+                
+                
+
+                <p>This is an example of how to cast a Python dict into a dataframe and vice versa. I picked up the df to dict part from this <a class="reference external" href="https://cmdlinetips.com/2021/04/convert-two-column-values-from-pandas-dataframe-to-a-dictionary/#:~:text=Another%20approach%20to%20convert%20two,all%20columns%20in%20the%20dataframe.">Python and R tips post</a> and the dict to df part from a <a class="reference external" href="https://stackoverflow.com/questions/18837262/convert-python-dict-into-a-dataframe">Stack Overflow post</a>. The below adaptation begins by converting an &quot;NFL quarterbacks&quot; Python dictionary into a dataframe and then back into a dict.</p>
+<p>Sometimes a dictionary is adequate to solve a problem with handy methods like get() and <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#looping-techniques">items()</a>. You can also do a ton with a <a class="reference external" href="https://www.python.org/dev/peps/pep-0274/">dict comprehension</a>. When more complex tabular data operations are needed, the pandas pd.DataFrame class is well equipped for the job. Dictionaries and dataframes are delightfully interoperable, like Tom Brady and any football team on the planet.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">qbs_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Matthew Stafford&quot;</span><span class="p">:</span><span class="s2">&quot;Los Angeles Rams&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Joe Burrow&quot;</span><span class="p">:</span><span class="s2">&quot;Cincinnati Bengals&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tom Brady&quot;</span><span class="p">:</span><span class="s2">&quot;Tampa Bay Buccaneers&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pat Mahomes&quot;</span><span class="p">:</span><span class="s2">&quot;Kansas City Chiefs&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tony Romo&quot;</span><span class="p">:</span><span class="s2">&quot;Dallas Cowboys&quot;</span>
+<span class="p">}</span>
+<span class="n">qbs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;team&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="n">qbs_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">team</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">qbs_df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qbs_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Tom Brady&quot;</span><span class="p">,</span> <span class="s2">&quot;Name not found.&quot;</span><span class="p">))</span>
+</pre></div></td></tr></table></div>
+<p><strong>Terminal Output</strong></p>
+<pre class="literal-block">
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype
+---  ------  --------------  -----
+ 0   name    5 non-null      object
+ 1   team    5 non-null      object
+dtypes: object(2)
+memory usage: 208.0+ bytes
+None
+
+{'Joe Burrow': 'Cincinnati Bengals',
+ 'Matthew Stafford': 'Los Angeles Rams',
+ 'Pat Mahomes': 'Kansas City Chiefs',
+ 'Tom Brady': 'Tampa Bay Buccaneers',
+ 'Tony Romo': 'Dallas Cowboys'}
+
+Tampa Bay Buccaneers
+</pre>
+<p><strong>Did you notice that pprint sorts dicts by default?</strong></p>
+<p>Here the printed dict is reordered alphabetically on the QB's names. Per the pprint docs, you can alter this behavior if desired via a keyword argument new in Python version 3.8:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">qbs_dict</span><span class="p">,</span> <span class="n">sort_dicts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>pandas</strong> <strong>Documentation</strong></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/getting_started/install.html">pandas installation documentation</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas.DataFrame</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">pandas.Series</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_dict.html">pandas.DataFrame.to_dict</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html">pandas.DataFrame.info</a></p>
+<p><strong>Python Standard Library Documentation</strong></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/pprint.html#pprint.pprint">pprint.pprint</a></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html?highlight=dict#mapping-types-dict">dict</a></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict.get">dict.get</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-convert-a-python-dictionary-to-and-from-a-pandas-dataframe.html">posted at 23:16</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-programming-python.html" rel="tag">coding, pandas, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/pandas-df-to-python-dict.html" class="tags">pandas df to Python dict</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-data-structure-conversion.html" class="tags">Python data structure conversion</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-dict-to-pandas-df.html" class="tags">Python dict to pandas df</a>
+                </div>
+            </article>            <h4 class="date">Jan 30, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -515,33 +603,6 @@ pip install ftfy
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/ram.html" class="tags">RAM</a>
                     &nbsp;<a href="https://lofipython.com/tag/windows.html" class="tags">Windows</a>
-                </div>
-            </article>            <h4 class="date">Dec 18, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/in-praise-of-resource-scoping.html" rel="bookmark" title="Permanent Link to &quot;In Praise of Resource Scoping&quot;">In Praise of Resource Scoping</a>
-                </h2>
-
-                
-                
-
-                <p>When assessing your environment, problem or your goal, meticulously scout the tools at your disposal. When you're learning a new job, a new project or a programming language's tools for example, it pays to have a grasp of your options. Researching what documentation, guides, tools or libraries are at your disposal will help you accomplish your goal. That sounds obvious but here's what I mean.</p>
-<p>Seek out resources. Bookmark links and support info in an Excel spreadsheet with a handful of columns, for example. Soon, you'll amass a collection tools and guides to get things done. Most companies or products have &quot;resource centers&quot;, mountains of internal documentation, tools and blogs. At many organizations, people have likely made tools for something they needed in the past then moved on. Often these tools can be leveraged for anyone who cares enough to seek out, read about and learn how to use them. Dig for these tools too. Find resources by googling products you use. Subscribe to their <a class="reference external" href="https://status.box.com/">status pages</a>. Look for other tools that may help you in a pinch like <a class="reference external" href="https://support.goto.com/webinar/system-check-attendee">GoToWebinar's system check</a> to help someone figure out what's wrong with their browser. I love these types of browser-based troubleshooting software. These are ways to gain a better understanding of technologies that might affect or improve your productivity or day to day goals.</p>
-<p>I think of &quot;resource scoping&quot; as crawling these types of resources for every tool, guide and support contact that might good to know. The effort you put in to scope available resources is worth the time spent. Check out the &quot;resource scoping&quot; I did in <a class="reference external" href="https://pythonmarketer.com/2021/05/29/python-libraries-tools-resources-for-creative-and-academic-writers/">this post I wrote focused on tools for writers</a>!</p>
-<div class="wp-image-6282 figure">
-<img alt="cartoon media types" src="https://pythonmarketer.files.wordpress.com/2021/12/pixel-cells-gce7fcdb43_640.png?w=640" />
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/in-praise-of-resource-scoping.html">posted at 11:09</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/productivity-work.html" rel="tag">productivity, work</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/documentation.html" class="tags">documentation</a>
-                    &nbsp;<a href="https://lofipython.com/tag/research.html" class="tags">research</a>
-                    &nbsp;<a href="https://lofipython.com/tag/tools.html" class="tags">tools</a>
                 </div>
             </article>
 

@@ -4,7 +4,6 @@ SITEURL = "https://lofipython.com"
 PATH = "content"
 TIMEZONE = "America/Chicago"
 DEFAULT_LANG = "en"
-# Site Logo
 SITELOGO = "images/python-powered-h-140x182.png"
 # Feed generation is usually not desired when developing
 TRANSLATION_FEED_ATOM = None
@@ -34,6 +33,5 @@ ARTICLE_EXCLUDES = ["blog/drafts"]
 # DARK_LIGHT_SWITCHING_OFF = False
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
-# HTML metadata
 # SITEDESCRIPTION = ""
 # LOAD_CONTENT_CACHE = False

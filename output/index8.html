@@ -31,7 +31,211 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jan 28, 2020</h4>
+        <div id="content">            <h4 class="date">Mar 21, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html" rel="bookmark" title="Permanent Link to &quot;Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box&quot;">Automating pytest on Windows with a .bat file, Python, Task Scheduler and Box</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Automatic pytest Testing and Failure Alert Monitoring</strong></p>
+<p>This is my solution to replace manually running pytest each day in command prompt. I want to automate running pytest every day, test if my automated python scripts ran smoothly and get notified if any tests fail.</p>
+<p>Installing <a class="reference external" href="https://docs.pytest.org/en/latest/getting-started.html">pytest</a>, a Python testing library:</p>
+<pre class="literal-block">
+python -m pip install pytest
+</pre>
+<p><strong>A Few Words on pytest</strong></p>
+<p>It is a unit test framework in python. pytest expects you to write each test as a self-contained function. One python file can contain many different test functions.</p>
+<p><strong>Writing a Test</strong></p>
+<p>Let's use <strong>test_file_date.py</strong> as our test, which uses the <a class="reference external" href="https://docs.python.org/3/library/glob.html">glob</a> module and <a class="reference external" href="https://docs.python.org/2/library/os.path.html#os.path.getmtime">os.getmtime</a> to get the csv with the most recent modification dateon my desktop. Then it tests if that date is today, in my case, for an expected daily file drop.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+
+
+<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The match format is for a Windows path with Unix style pattern matching.&quot;&quot;&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">/Desktop/*.csv&quot;</span>
+    <span class="c1"># Get the most recent csv from a folder.</span>
+    <span class="n">csv</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">match</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">csv_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">csv</span><span class="p">)</span>
+    <span class="n">csv_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">csv_timestamp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">csv_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">csv_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+</pre></div></td></tr></table></div>
+<p><strong>Here's the pytest text output when the test is passing:</strong></p>
+<pre class="literal-block">
+============================= test session starts =============================
+platform win32 -- Python 3.8.1, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
+rootdir: C:\
+collected 1 item
+
+..\..\Users\erick\Desktop\test_file_date.py . [ 14%]
+                                                                   [100%]
+
+============================== 1 passed in 0.28s ==============================
+</pre>
+<p><strong>Creating a Task with Windows Task Scheduler</strong></p>
+<p>If you haven't used python with Windows Task Scheduler before, <a class="reference external" href="https://lofipython.com/automated-python-with-windows-task-scheduler/">my previous post</a> on creating a task may help you. We'll create two of them for our testing system.</p>
+<p><strong>Adding Your Task Scheduler Program: a Windows .bat file</strong></p>
+<p>Add your username to the text below and adjust the paths to your system. Then save a <a class="reference external" href="https://en.wikipedia.org/wiki/Batch_file">Windows .bat file</a> with this text, which points to your pytest.exe file:</p>
+<pre class="literal-block">
+cmd /c &quot;C:\Users\your_username\Desktop\sandbox\Scripts\pytest.exe --capture=sys&quot; ^
+C:\Users\your_username\Desktop\test_file_date.py &gt; C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
+</pre>
+<p>This example is referencing an .exe within a hypothetical &quot;sandbox&quot; virtual environment, located on my Desktop. If you have a virtualenv or venv, check the Scripts folder. (Bin on Linux.)</p>
+<p><strong>Breaking this out, there are five .bat files parts:</strong></p>
+<pre class="literal-block">
+cmd /c &quot;C:\Users\your_username\Desktop\sandbox\Scripts\pytest.exe --capture=sys&quot;
+</pre>
+<p>Windows' <a class="reference external" href="https://ss64.com/nt/cmd.html">cmd command</a> takes a program, so we're passing pytest. <a class="reference external" href="https://docs.pytest.org/en/latest/capture.html">The --capture=sys argument</a> tells pytest to capture the test results. <strong>Note:</strong> switching cmd /c to cmd /k forces the terminal to stay open when you are testing your bat file. You can double-click your .bat file to test run it.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<pre class="literal-block">
+^
+</pre>
+<p>circumflex represents a line continuation in Windows batch files for better readability</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<pre class="literal-block">
+C:\Users\your_username\Desktop\test_file_date.py
+</pre>
+<p>Next we're passing our python file as an argument to pytest, testing our file's modified date matches today's date.</p>
+<blockquote>
+<strong>&gt;</strong></blockquote>
+<p>This is a Windows redirect. It redirects the pytest output from sys to a text file, which is the last argument in our .bat file:</p>
+<pre class="literal-block">
+C:\Users\your_username\Desktop\sandbox\Test_Results\Test_Results.txt
+</pre>
+<p><strong>Browse to select your .bat file for your Windows Task Scheduler task:</strong></p>
+<img alt="bat_task" class="alignnone size-full wp-image-2669" src="https://pythonmarketer.files.wordpress.com/2020/03/bat_task.jpg" style="width: 1032px; height: 590px;" />
+<p><strong>Reading the Tests and Triggering Alerts</strong></p>
+<p>Passing tests signal your scripts are running successfully. When things don't work, email alerts of the failure help us respond quickly.</p>
+<p>Let's set another task scheduler job to run <strong>read_test_results.py,</strong> to run a few minutes after the first job each day. See this <a class="reference external" href="https://lofipython.com/automated-python-with-windows-task-scheduler/">example of running Python with Task Scheduler</a> if you haven't triggered a python script from Task Scheduler before.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="sd">&quot;&quot;&quot;Automate pytest with Windows Task Scheduler. Use Task Scheduler run a batch file.</span>
+<span class="sd">The batch file runs pytest and captures our pytest function results to sys.</span>
+<span class="sd">If a text file contains a failure or error, write the test contents into a folder.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;Automated_Testing_Alerts.log&quot;</span><span class="p">,</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%b-%y %H:%M:%S&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for failed tests...&quot;</span><span class="p">)</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">/Desktop/test_results/&quot;</span>
+<span class="n">test_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">fname</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;.txt&quot;</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">txt_file</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">+</span> <span class="n">txt_file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s2">&quot;FAILURES&quot;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">/Desktop/send_failure_alert/&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directory</span><span class="si">}{</span><span class="n">txt_file</span><span class="si">}</span><span class="s2">_Failed_Results_</span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No failed tests found in file:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">txt_file</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Setting up Email Alert Notifications on a Box Folder</strong></p>
+<p>The above script checks the test results and creates a file with any failed tests in a different folder. I <a class="reference external" href="https://support.box.com/hc/en-us/articles/360044194073-Manage-Notifications-for-Enterprise-Users">edited the folder's settings</a> to email me when a new file is added, thanks to Box notifications. We use
+<a class="reference external" href="http://www.box.com">Box</a> for secure file sharing at my day current day job.</p>
+<p>Alternatively for those without Box, you could use 'ole trusty <a class="reference external" href="https://docs.python.org/3/library/smtplib.html">smtplib</a> to send the failure alerts with python. I chose the easier, ready to go option. Remember, &quot;<a class="reference external" href="https://zen-of-python.info/simple-is-better-than-complex.html">Simple is better than complex</a>.&quot;</p>
+<p>Also, the <a class="reference external" href="https://github.com/mhammond/pywin32">pywin32 module</a> has an interface to Outlook that is very handy. For an example of sending a Windows Outlook email, check the very end of <a class="reference external" href="http://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/">this post I wrote on &quot;Scripting Windows Like a Pro&quot;</a>.</p>
+<p>We now have email monitoring alerts if our csv file date test fails, thanks to:</p>
+<ul class="simple">
+<li>Windows Task Scheduler (two tasks running each day in succession)</li>
+<li>python/pytest</li>
+<li>a Windows .bat file</li>
+<li>Box (or smtplib or pywin32) email alerts</li>
+</ul>
+<p><strong>In Summation</strong></p>
+<ol class="arabic simple">
+<li>The first task runs a .bat file to run pytest and create a text file with daily automation test results.</li>
+<li>The second task runs a python file. Setting in motion:</li>
+<li>Checking the test result text files, looking for failed tests</li>
+<li>Creating a text file with any failing tests in a Box folder, if found</li>
+<li>Then Box emails me if any test fails.</li>
+</ol>
+<p>This was the first time I successfully deployed a Windows batch file. It took me many tries and googling to properly format of the .bat file. They are worth understanding and seem to open up many possibilities on Windows. In this case it was a &quot;glue&quot; piece that allowed me to accomplish my goal, automated testing and alerts for my python scripts.</p>
+<p>What we learn along the way shapes us. Learning to use shell commands with Python scripts extends their abilities to help you get stuff done. I've benefitted from improving both my Windows and Ubuntu shell knowledge, which can sometimes be a handy substitute or complement to python. Now, time to write more tests. Thanks for reading!</p>
+<p><strong>See also:</strong></p>
+<p><a class="reference external" href="https://pypi.org/project/pytest-csv/">pytest-csv</a>: write test results to a csv with this plugin</p>
+<p>Read more about software testing in my post <a class="reference external" href="https://lofipython.com/a-collection-of-software-testing-opinions-for-python-and-beyond/">here</a>.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box.html">posted at 01:47</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-programming-software-testing-windows.html" rel="tag">automation, programming, software testing, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/coding.html" class="tags">coding</a>
+                    &nbsp;<a href="https://lofipython.com/tag/pytest.html" class="tags">pytest</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/software-development.html" class="tags">software development</a>
+                </div>
+            </article>            <h4 class="date">Jan 28, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1112,179 +1316,6 @@ C:\Users\your_username\Desktop\36env\Scripts\python.exe
                     &nbsp;&middot;
                     &nbsp;<a href="https://lofipython.com/tag/coding.html" class="tags">coding</a>
                     &nbsp;<a href="https://lofipython.com/tag/organization.html" class="tags">organization</a>
-                </div>
-            </article>            <h4 class="date">Nov 20, 2018</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/packaging-python-as-a-windows-app.html" rel="bookmark" title="Permanent Link to &quot;Packaging Python as a Windows App via Pyinstaller&quot;">Packaging Python as a Windows App via Pyinstaller</a>
-                </h2>
-
-                
-                
-
-                <p>My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller. It worked on my Windows 7 PC. My program used a <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/">Gooey GUI</a>, but many of the popular Python GUI libraries work as well.</p>
-<p><strong>Installation:</strong></p>
-<div class="line-block">
-<div class="line">To install, enter this into command your command prompt or terminal:</div>
-</div>
-<pre class="literal-block">
-python -m pip install pyinstaller
-</pre>
-<div class="line-block">
-<div class="line">At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5. <a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">Go here</a> for a refresher on setting up pip if you need it.</div>
-</div>
-<p><strong>Using the build.spec file and starting Pyinstaller:</strong></p>
-<p>Most examples I found used a build.spec file. Think of this as the blueprint by which your app will be constructed. It provides the compiling settings, images and any other data necessary for assembling your app. The format for passing the .spec file to Pyinstaller in pseudo-code:</p>
-<blockquote>
-pyinstaller (run mode options) (.spec file)</blockquote>
-<div class="line-block">
-<div class="line"><strong>Basic start compiler command to build.spec:</strong></div>
-</div>
-<pre class="literal-block">
-pyinstaller build.spec
-</pre>
-<p><strong>Establishing a debugging loop with Pyinstaller</strong></p>
-<p>Debug mode can be set from the command line:</p>
-<pre class="literal-block">
-pyinstaller -debug build.spec
-</pre>
-<p><strong>OR</strong>
-by passing debug=True to the EXE() function of the build.spec. I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.</p>
-<p><em>To see your app's error message, run the resulting your_app.exe from the command line.</em>
-You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.</p>
-<p><strong>Flushing sys.stdout/Python printing for Windows:</strong></p>
-<p>Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen(). This was contrary to <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey's instructions</a>.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">nonbuffered_stdout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fdopen</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">nonbuffered_stdout</span>
-</pre></div></td></tr></table></div>
-<p><strong>Fetching the local user's system information:</strong></p>
-<p>In order to run on any user's system, we need to grab their local file paths. I accomplished this by referencing the sys._MEIPASS via the below code I found from a Stack Overflow post.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">def</span> <span class="nf">resource_path</span><span class="p">(</span><span class="n">relative_path</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Get absolute path to resource, works for dev and for PyInstaller&quot;&quot;&quot;</span>
-    <span class="n">base_path</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_MEIPASS&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
-    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">relative_path</span><span class="p">)</span>
-
-<span class="n">temp_folder_path</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_MEIPASS&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="n">relative_path</span> <span class="o">=</span> <span class="n">resource_path</span><span class="p">(</span><span class="n">temp_folder_path</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>Adding library-specific patches:</strong></p>
-<ol class="arabic simple">
-<li>Below is the <a class="reference external" href="https://github.com/pyinstaller/pyinstaller/issues/3422">fix</a> I found for the Pandas library, which I added to my build.spec:</li>
-</ol>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">hiddenimports</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pandas._libs.tslibs.timedeltas&#39;</span><span class="p">,</span><span class="s1">&#39;pandas._libs.tslibs.nattype&#39;</span><span class="p">,</span>
-<span class="s1">&#39;pandas._libs.tslibs.np_datetime&#39;</span><span class="p">,</span><span class="s1">&#39;pandas._libs.skiplist&#39;</span><span class="p">]</span>
-</pre></div></td></tr></table></div>
-<ol class="arabic simple" start="2">
-<li>The Gooey library needs some special code added to the build.spec for its images and languages data. More details are found in this <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">blog post</a>, written by the author of the Gooey library.</li>
-</ol>
-<img alt="Will Ferrell Old School" class="wp-image-1535 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/will_ferrell_composure.jpg" style="width: 293px; height: 216px;" />
-<p><strong>Last, but not least: don't panic.</strong></p>
-<p>Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn't nearly as complex as I feared. The folks behind Pyinstaller have done a great job of making it possible and, dare I say, simple. Stay calm, drink some coffee, dig in and welcome the challenge with a trial and error mentality. I was able to figure it out over the span of one Saturday. Good luck.</p>
-<p><strong>Useful Resources:</strong></p>
-<ol class="arabic simple">
-<li>Pyinstaller Github - <a class="reference external" href="https://github.com/pyinstaller/pyinstaller/wiki/If-Things-Go-Wrong">If Things Go Wrong</a></li>
-<li>Pyinstaller Documentation:<a class="reference external" href="https://pyinstaller.readthedocs.io/en/stable/usage.html">Using Pyinstaller Arguments</a></li>
-<li><a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey Pyinstaller Instructions</a></li>
-<li><a class="reference external" href="https://github.com/pyinstaller/pyinstaller/issues/3422">Pandas hiddenimports Discussion</a></li>
-</ol>
-<p><strong>Caveats:</strong></p>
-<ol class="arabic simple">
-<li>You should compile the program on the operating system it will be run on. There are options for creating a multi-os compatible package, but I did not attempt them.</li>
-<li>Windows 7 is proven to work with Pyinstaller, per the documentation. It's also what I am running on. Other Windows systems older than Windows 10 may be less reliable.</li>
-<li>I experienced trouble when passing arguments from the command line to pyinstaller and have so far been unable to get the console window to hide. Neither the -w, --windowed, --noconsole arguments seemed to work. I will update if I am able to find a solution.</li>
-<li>Now that I am testing my compiled app, I am seeing 10x performance slowdowns when running as the final .exe vs. the original .py file. But at least the program runs correctly and still does so relatively quickly.</li>
-<li>I also received the error: &quot;Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform.&quot; I fixed this by upgrading to the latest version of Pyinstaller:</li>
-</ol>
-<pre class="literal-block">
-pip3 install --upgrade pyinstaller
-</pre>
-<p>My full build.spec file, modified from <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">here</a> :</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># -*- mode: python -*-</span>
-<span class="kn">import</span> <span class="nn">gooey</span>
-<span class="n">gooey_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">gooey</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span>
-<span class="n">gooey_languages</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gooey_root</span><span class="p">,</span> <span class="s1">&#39;languages&#39;</span><span class="p">),</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;gooey/languages&#39;</span><span class="p">)</span>
-<span class="n">gooey_images</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gooey_root</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">),</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;gooey/images&#39;</span><span class="p">)</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">([</span><span class="s1">&#39;your_program.py&#39;</span><span class="p">],</span>
-             <span class="n">pathex</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Python36</span><span class="se">\\</span><span class="s1">Lib</span><span class="se">\\</span><span class="s1">site-packages</span><span class="se">\\</span><span class="s1">your_appdir&#39;</span><span class="p">],</span>
-             <span class="n">hiddenimports</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pandas._libs.tslibs.timedeltas&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas._libs.tslibs.np_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas._libs.tslibs.nattype&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas._libs.skiplist&#39;</span><span class="p">],</span>
-             <span class="n">hookspath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-             <span class="n">runtime_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-             <span class="p">)</span>
-<span class="n">options</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;OPTION&#39;</span><span class="p">)]</span>
-<span class="n">a</span><span class="o">.</span><span class="n">datas</span> <span class="o">+=</span> <span class="p">[(</span><span class="s1">&#39;program_icon.ico&#39;</span><span class="p">,</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Python36</span><span class="se">\\</span><span class="s1">Lib</span><span class="se">\\</span><span class="s1">site-packages</span><span class="se">\\</span><span class="s1">your_appdir</span><span class="se">\\</span><span class="s1">program_icon.ico&#39;</span><span class="p">,</span>  <span class="s1">&#39;DATA&#39;</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;config_icon.png&#39;</span><span class="p">,</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Python36</span><span class="se">\\</span><span class="s1">Lib</span><span class="se">\\</span><span class="s1">site-packages</span><span class="se">\\</span><span class="s1">your_appdir</span><span class="se">\\</span><span class="s1">config_icon.png&#39;</span><span class="p">,</span><span class="s1">&#39;DATA&#39;</span><span class="p">)]</span>
-
-<span class="n">pyz</span> <span class="o">=</span> <span class="n">PYZ</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">pure</span><span class="p">)</span>
-<span class="n">exe</span> <span class="o">=</span> <span class="n">EXE</span><span class="p">(</span><span class="n">pyz</span><span class="p">,</span>
-          <span class="n">a</span><span class="o">.</span><span class="n">scripts</span><span class="p">,</span>
-          <span class="n">a</span><span class="o">.</span><span class="n">binaries</span><span class="p">,</span>
-          <span class="n">a</span><span class="o">.</span><span class="n">zipfiles</span><span class="p">,</span>
-          <span class="n">a</span><span class="o">.</span><span class="n">datas</span><span class="p">,</span>
-          <span class="n">options</span><span class="p">,</span>
-          <span class="n">gooey_languages</span><span class="p">,</span>
-          <span class="n">gooey_images</span><span class="p">,</span>
-          <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ADD YOUR APP NAME HERE&#39;</span><span class="p">,</span>
-          <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-          <span class="n">strip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-          <span class="n">upx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-          <span class="n">console</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-          <span class="n">icon</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;program_icon.ico&#39;</span><span class="p">))</span>
-</pre></div></td></tr></table></div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/packaging-python-as-a-windows-app.html">posted at 02:59</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-python-software.html" rel="tag">coding, pandas, python, software</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/app-development.html" class="tags">app development</a>
-                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
-                    &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
-                    &nbsp;<a href="https://lofipython.com/tag/windows.html" class="tags">Windows</a>
                 </div>
             </article>
 

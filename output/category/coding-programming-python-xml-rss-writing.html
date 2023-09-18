@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lo-Fi Python | articles in the "coding, programming, python, XML, RSS, writing" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/coding-programming-python-xml-rss-writing.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
+    <link href="https://lofipython.com/feeds/coding-programming-python-xml-rss-writing.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://lofipython.com/category/coding-programming-python-xml-rss-writing.html">coding, programming, python, XML, RSS, writing</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Sep 18, 2023</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/working-with-rss-in-python.html" rel="bookmark" title="Permanent Link to &quot;RSS Is Thriving: Working With RSS Python Tools&quot;">RSS Is Thriving: Working With RSS Python Tools</a>
+                </h2>
+
+                
+                
+
+                <p>There have been countless obituaries about RSS on the internet, like when Dan McKinley wrote that <a class="reference external" href="https://mcfunley.com/google-reader-killed-rss">&quot;Google Reader Killed RSS&quot;</a>. For sure, the existence of Google Reader had an impact on other readers gaining a wider audience before it was shut down by Google. This likely did have a suppressive impact on the adoption of RSS.</p>
+<p>&quot;Whatever happened to RSS?&quot; is a question that murmurs thorugh the internet. The answer: it's still here and it's not going anywhere. I propose that RSS is not dead, but quietly regaining its strength and is on track to relevancy again. But did it actually fall off?</p>
+<blockquote>
+<strong>Did you know?</strong> RSS stands for &quot;Really Simple Syndication&quot;.</blockquote>
+<p>Some say with the rise of social media and email newsletters, RSS is not worth the time. That's precisely what the social media and search engine giants want so you'll stay in their walled garden platform. Google killed Google Reader because it is not in their interests to support a syndication format that cuts out their seach engine middleman role. Nonetheless, we only need to consciously choose to use RSS to bring it back to prominence. Who's with me?!</p>
+<blockquote>
+<p>&quot;RSS readers have not only survived in the era of social media,
+but are driving more and more attention back to themselves, as people are realizing the pitfalls&quot;</p>
+<p>- Brian Barrett. &quot;It's Time for an RSS Revival&quot;. Wired. <a class="reference external" href="https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader">https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader</a></p>
+</blockquote>
+<p>You'll often hear the term &quot;aggregator&quot; or &quot;reader&quot; when dealing with RSS, which both mean &quot;tool that collects multiple RSS feeds into single readable format&quot;. There are plenty of free RSS reader websites to keep up with new material from your favorite websites. Currently, I use <a class="reference external" href="https://feeder.co">Feeder</a> to keep up with the blogs I follow. Their free plan allows you to follow up to 200 RSS feeds for free. <a class="reference external" href="https://feedly.com">Feedly</a> is a commonly suggested RSS reader also.</p>
+<img alt="RSS icon" src="https://lofipython.com/blog/images/rssicon.png" />
+<p><strong>A Few Benefits of RSS</strong></p>
+<ul class="simple">
+<li>The personal data of your readers is not collected.</li>
+<li>Receive notice when a new post is published by your favorite websites and blogs.</li>
+<li>An RSS subscription is less intrusive compared to blasting into someone's email inbox.</li>
+<li>Diversify your website's traffic to be less dependent on search engines and social media platforms.</li>
+</ul>
+<div class="section" id="python-rss-tools">
+<h2>Python RSS Tools</h2>
+<p>The rest of this post will highlight some practical Python tools and resources for RSS. The code examples can be installed with pip. There are also some standard library Python tools mentioned. Enjoy!</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/kurtmckee/feedparser">feedparser</a>: Universal Feed Parser is a Python module for downloading and parsing syndicated feeds</li>
+</ul>
+<p><strong>Parse an RSS feed with feedparser.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">feedparser</span>
+
+<span class="n">feed</span> <span class="o">=</span> <span class="s2">&quot;https://feedparser.readthedocs.io/en/latest/examples/atom10.xml&quot;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;feed&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">feed</span><span class="o">.</span><span class="n">published</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Detect a malformed RSS feed with feedparser &quot;bozo&quot;.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">feedparser</span>
+
+<span class="c1"># https://feedparser.readthedocs.io/en/latest/bozo.html#detecting-a-non-well-formed-feed</span>
+<span class="n">feed</span> <span class="o">=</span> <span class="s2">&quot;https://feedparser.readthedocs.io/en/latest/examples/atom10.xml&quot;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
+<span class="c1"># d.bozo: An integer, either 1 or 0. Set to 1 if the feed is not well-formed XML, and 0 otherwise.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">bozo</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">bozo</span><span class="p">:</span>
+    <span class="n">exc</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">bozo_exception</span>
+    <span class="c1"># Print bozo error message.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">getMessage</span><span class="p">())</span>
+    <span class="c1"># Print line number where exception occurred.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">getLineNumber</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
+<ul class="simple">
+<li><a class="reference external" href="https://www.feedvalidator.org/">feedvalidator</a> and <a class="reference external" href="https://validator.w3.org/feed/">W3 RSS Validator</a>: check if your feed is valid RSS or Atom. Below shows how you can validate your feed using the webbrowser module with the Python CLI:</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="gp"># </span>Validate<span class="w"> </span>an<span class="w"> </span>RSS<span class="w"> </span>feed.
+<span class="go">python -m webbrowser -t &quot;https://validator.w3.org/feed/check.cgi?url=https://example.com/feeds/all.rss.xml&quot;</span>
+</pre></div></td></tr></table></div>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/NicolasLM/atoma">atoma</a>: an Atom, RSS and JSON feed parser</li>
+</ul>
+<p><strong>Parse an RSS feed with atoma.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">atoma</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://example.com/feed.atom&#39;</span><span class="p">)</span>
+<span class="n">feed</span> <span class="o">=</span> <span class="n">atoma</span><span class="o">.</span><span class="n">parse_atom_bytes</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feed</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Additional RSS Tools, Reads + Resources</strong></p>
+<p><a class="reference external" href="https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader/">It's Time for an RSS Revival, Wired</a></p>
+<p><a class="reference external" href="https://github.com/RSSerpent/RSSerpent">RSSerpent</a>: open source software to create RSS feeds for websites without them</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Mozilla_Thunderbird">Mozilla Thunderbird</a>: an open source RSS client</p>
+<p><a class="reference external" href="https://github.com/tuan3w/awesome-tech-rss">Awesome Tech RSS</a>: a list of tech RSS feeds you can follow</p>
+<p><a class="reference external" href="https://pypi.org/project/pelican-planet/">pelican-planet</a>: a Pelican static site generator plugin that allows generating a page aggregating blog articles from other web sites. The pelican static site generator Python library also has built-in support for RSS and Atom feed generation.</p>
+<p><a class="reference external" href="https://github.com/radiac/django-yarr">django-yarr</a>: a lightweight, customisable RSS reader for the Django web framework</p>
+<p><a class="reference external" href="http://offog.org/git/rawdog/README">rawdog</a>: an &quot;RSS aggregator without visions of grandeur&quot;,</p>
+<p><a class="reference external" href="https://github.com/lkiesow/python-feedgen">python-feedgen</a>: generates atom feeds, RSS feeds and Podcasts</p>
+<p><a class="reference external" href="https://realpython.com/python-xml-parser/">A Roadmap to XML Parsers in Python, Real Python</a></p>
+<p><a class="reference external" href="https://pypi.org/project/lxml/">lxml</a>: lxml is a Pythonic, mature binding for the libxml2 and libxslt libraries</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/xml.sax.handler.html">xml.sax</a> API: standard library XML validation option that is based on a Java API.</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/xml.html">Python Documentation, XML Processing Modules</a></p>
+<p><a class="reference external" href="https://github.com/ai6yr/rss2mastodon">RSS2mastodon</a>: a quick set of python scripts for auto-posting an RSS or Atom feed to Mastodon</p>
+<p><a class="reference external" href="https://github.com/anhqle/craigslist">Craigslist RSS Scraper Python Script</a></p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/working-with-rss-in-python.html">posted at 17:14</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-xml-rss-writing.html" rel="tag">coding, programming, python, XML, RSS, writing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/python-rss-tools.html" class="tags">python RSS tools</a>
+                    &nbsp;<a href="https://lofipython.com/tag/rss-aggregator.html" class="tags">RSS aggregator</a>
+                    &nbsp;<a href="https://lofipython.com/tag/rss-validation.html" class="tags">RSS validation</a>
+                    &nbsp;<a href="https://lofipython.com/tag/parsing-rss-python.html" class="tags">parsing RSS python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/rss-feeds.html" class="tags">RSS feeds</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-rss-readers.html" class="tags">python RSS readers</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
