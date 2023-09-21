@@ -34,14 +34,14 @@ You'll often hear the term "aggregator" or "reader" when dealing with RSS, which
 
 - Receive notice when a new post is published by your favorite websites and blogs.
 
-- An RSS subscription is less intrusive compared to blasting into someone's email inbox.
+- An RSS subscription is less intrusive compared to blasting into someone's email inbox. Plus you won't end up in the spam folder.
 
 - Diversify your website's traffic to be less dependent on search engines and social media platforms.    
 
 Python RSS Tools
 ----------------
 
-The rest of this post will highlight some practical Python tools and resources for RSS. The code examples can be installed with pip. There are also some standard library Python tools mentioned. Enjoy!
+The rest of this post will highlight some practical Python tools and resources for RSS. The libraries used in the below code examples can be installed with `pip <https://pip.pypa.io/en/stable/user_guide/>`__. There are also some standard library Python tools mentioned. Enjoy!
 
 - `feedparser <https://github.com/kurtmckee/feedparser>`__: Universal Feed Parser is a Python module for downloading and parsing syndicated feeds
 
@@ -111,7 +111,7 @@ The rest of this post will highlight some practical Python tools and resources f
 
 `django-yarr <https://github.com/radiac/django-yarr>`__: a lightweight, customisable RSS reader for the Django web framework
 
-`rawdog <http://offog.org/git/rawdog/README>`__: an "RSS aggregator without visions of grandeur", 
+`rawdog <http://offog.org/git/rawdog/README>`__: an "RSS aggregator without visions of grandeur"
 
 `python-feedgen <https://github.com/lkiesow/python-feedgen>`__: generates atom feeds, RSS feeds and Podcasts
 
