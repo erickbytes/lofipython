@@ -13,7 +13,7 @@ There have been countless obituaries about RSS on the internet, like when Dan Mc
 
     **Did you know?** RSS stands for "Really Simple Syndication".    
 
-Some say with the rise of social media and email newsletters, RSS is not worth the time. That's precisely what the social media and search engine giants want so you'll stay in their walled garden platform. Google killed Google Reader because it is not in their interests to support a syndication format that cuts out their seach engine middleman role. Nonetheless, we only need to consciously choose to use RSS to bring it back to prominence. Who's with me?!
+Some say with the rise of social media and email newsletters, RSS is not worth the time. That's precisely what the social media and search engine giants want so you'll stay in their walled garden platform. Google killed Google Reader because it is not in their interests to support a syndication format that cuts out their search engine middleman role. Nonetheless, we only need to consciously choose to use RSS to bring it back to prominence. Who's with me?!
 
     "RSS readers have not only survived in the era of social media, 
     but are driving more and more attention back to themselves, as people are realizing the pitfalls"
