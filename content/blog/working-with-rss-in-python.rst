@@ -75,6 +75,8 @@ The rest of this post will highlight some practical Python tools and resources f
         print(exc.getMessage())
         # Print line number where exception occurred.
         print(f"Error at line {exc.getLineNumber()}")
+    else:
+        print("Feed is well-formed RSS.")
     
 
 - `feedvalidator <https://www.feedvalidator.org/>`__ and `W3 RSS Validator <https://validator.w3.org/feed/>`__: check if your feed is valid RSS or Atom. Below shows how you can validate your feed using the webbrowser module with the Python CLI:
@@ -107,7 +109,7 @@ The rest of this post will highlight some practical Python tools and resources f
 
 `Awesome Tech RSS <https://github.com/tuan3w/awesome-tech-rss>`__: a list of tech RSS feeds you can follow
 
-`pelican-planet <https://pypi.org/project/pelican-planet/>`__: a Pelican static site generator plugin that allows generating a page aggregating blog articles from other web sites. The pelican static site generator Python library also has built-in support for RSS and Atom feed generation.
+`pelican-planet <https://pypi.org/project/pelican-planet/>`__: a Pelican static site generator plugin that allows generating a page aggregating blog articles from other web sites. The `pelican Python library <https://docs.getpelican.com/en/latest/>`__ also has built-in support for RSS and Atom feed generation.
 
 `Django Syndication Feed Framework <https://docs.djangoproject.com/en/4.2/ref/contrib/syndication/#module-django.contrib.syndication>`__: built-in RSS feed framework for Django websites
 
