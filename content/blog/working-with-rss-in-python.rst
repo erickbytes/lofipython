@@ -121,7 +121,7 @@ The rest of this post will highlight some practical Python tools and resources f
 
 `lxml <https://pypi.org/project/lxml/>`__: a Pythonic, mature binding for the libxml2 and libxslt libraries
 
-`xml.sax <https://docs.python.org/3/library/xml.sax.handler.html>`__ API: standard library XML validation option that is based on a Java API.
+`xml.sax <https://docs.python.org/3/library/xml.sax.handler.html>`__ API: standard library XML validation option that is based on a Java API
 
 `Python Documentation, XML Processing Modules <https://docs.python.org/3/library/xml.html>`__
 
