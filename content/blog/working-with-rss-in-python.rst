@@ -45,7 +45,7 @@ Python RSS Tools
 
 The rest of this post will highlight some practical Python tools and resources for RSS. The libraries used in the below code examples can be installed with `pip <https://pip.pypa.io/en/stable/user_guide/>`__. There are also some standard library Python tools mentioned. Enjoy!
 
-- `feedparser <https://github.com/kurtmckee/feedparser>`__: Universal Feed Parser is a Python module for downloading and parsing syndicated feeds
+`feedparser <https://github.com/kurtmckee/feedparser>`__: Universal Feed Parser is a Python module for downloading and parsing syndicated feeds
 
 **Parse an RSS feed with feedparser.**
 
@@ -79,7 +79,7 @@ The rest of this post will highlight some practical Python tools and resources f
         print("Feed is well-formed RSS.")
     
 
-- `feedvalidator <https://www.feedvalidator.org/>`__ and `W3 RSS Validator <https://validator.w3.org/feed/>`__: check if your feed is valid RSS or Atom. Below shows how you can validate your feed using the webbrowser module with the Python CLI:
+`feedvalidator <https://www.feedvalidator.org/>`__ and `W3 RSS Validator <https://validator.w3.org/feed/>`__: check if your feed is valid RSS or Atom. Below shows how you can validate your feed using the webbrowser module with the Python CLI:
 
 .. code-block:: console
 
@@ -87,7 +87,7 @@ The rest of this post will highlight some practical Python tools and resources f
     python -m webbrowser -t "https://validator.w3.org/feed/check.cgi?url=https://example.com/feeds/all.rss.xml"
     
     
-- `atoma <https://github.com/NicolasLM/atoma>`__: an Atom, RSS and JSON feed parser
+`atoma <https://github.com/NicolasLM/atoma>`__: an Atom, RSS and JSON feed parser
 
 **Parse an RSS feed with atoma.**
 
