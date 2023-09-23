@@ -30,13 +30,15 @@ You'll often hear the term "aggregator" or "reader" when dealing with RSS, which
 
 **A Few Benefits of RSS**
 
-- The personal data of your readers is not collected.
-
 - Receive notice when a new post is published by your favorite websites and blogs.
 
-- An RSS subscription is less intrusive compared to blasting into someone's email inbox. Plus you won't end up in the spam folder.
+- The personal data of your readers is not collected.
 
-- Diversify your website's traffic to be less dependent on search engines and social media platforms.    
+- An RSS subscription is less intrusive compared to blasting into someone's cluttered email inbox. Plus you won't end up in the spam folder.
+
+- Diversify your website's traffic to be less dependent on search engines and social media platforms. 
+
+    To know approximately how much RSS traffic you have, check how many HTTP requests have an XML content type. `This blog post <https://darekkay.com/blog/rss-subscriber-count/>`__ has a good breakdown of this HTTP based approach. Typically, 6% of total HTTP requests on my blog have XML content type, indicating RSS traffic.
 
 Python RSS Tools
 ----------------
@@ -101,27 +103,29 @@ The rest of this post will highlight some practical Python tools and resources f
 
 `It's Time for an RSS Revival, Wired <https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader/>`__
 
-`RSSerpent <https://github.com/RSSerpent/RSSerpent>`__: open source software to create RSS feeds for websites without them
-
 `Mozilla Thunderbird <https://en.wikipedia.org/wiki/Mozilla_Thunderbird>`__: an open source RSS client
 
 `Awesome Tech RSS <https://github.com/tuan3w/awesome-tech-rss>`__: a list of tech RSS feeds you can follow
 
 `pelican-planet <https://pypi.org/project/pelican-planet/>`__: a Pelican static site generator plugin that allows generating a page aggregating blog articles from other web sites. The pelican static site generator Python library also has built-in support for RSS and Atom feed generation.
 
+`Django Syndication Feed Framework <https://docs.djangoproject.com/en/4.2/ref/contrib/syndication/#module-django.contrib.syndication>`__: built-in RSS feed framework for Django websites
+
 `django-yarr <https://github.com/radiac/django-yarr>`__: a lightweight, customisable RSS reader for the Django web framework
 
-`rawdog <http://offog.org/git/rawdog/README>`__: an "RSS aggregator without visions of grandeur"
-
-`python-feedgen <https://github.com/lkiesow/python-feedgen>`__: generates atom feeds, RSS feeds and Podcasts
+`python-feedgen <https://github.com/lkiesow/python-feedgen>`__: generates atom feeds, RSS feeds and podcasts
 
 `A Roadmap to XML Parsers in Python, Real Python <https://realpython.com/python-xml-parser/>`__
 
-`lxml <https://pypi.org/project/lxml/>`__: lxml is a Pythonic, mature binding for the libxml2 and libxslt libraries
+`lxml <https://pypi.org/project/lxml/>`__: a Pythonic, mature binding for the libxml2 and libxslt libraries
 
 `xml.sax <https://docs.python.org/3/library/xml.sax.handler.html>`__ API: standard library XML validation option that is based on a Java API.
 
 `Python Documentation, XML Processing Modules <https://docs.python.org/3/library/xml.html>`__
+
+`RSSerpent <https://github.com/RSSerpent/RSSerpent>`__: open source software to create RSS feeds for websites without them
+
+`rawdog <http://offog.org/git/rawdog/README>`__: an "RSS aggregator without visions of grandeur"
 
 `RSS2mastodon <https://github.com/ai6yr/rss2mastodon>`__: a quick set of python scripts for auto-posting an RSS or Atom feed to Mastodon
 
