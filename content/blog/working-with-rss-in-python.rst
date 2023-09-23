@@ -65,7 +65,7 @@ The rest of this post will highlight some practical Python tools and resources f
     import feedparser
     
     # https://feedparser.readthedocs.io/en/latest/bozo.html#detecting-a-non-well-formed-feed
-    feed = "https://feedparser.readthedocs.io/en/latest/examples/atom10.xml"
+    feed = "http://feedparser.org/tests/illformed/rss/aaa_illformed.xml"
     d = feedparser.parse(feed)
     # d.bozo: An integer, either 1 or 0. Set to 1 if the feed is not well-formed XML, and 0 otherwise.
     print(d.bozo)
@@ -74,7 +74,7 @@ The rest of this post will highlight some practical Python tools and resources f
         # Print bozo error message.
         print(exc.getMessage())
         # Print line number where exception occurred.
-        print(exc.getLineNumber())
+        print(f"Error at line {exc.getLineNumber()}")
     
 
 - `feedvalidator <https://www.feedvalidator.org/>`__ and `W3 RSS Validator <https://validator.w3.org/feed/>`__: check if your feed is valid RSS or Atom. Below shows how you can validate your feed using the webbrowser module with the Python CLI:
@@ -94,7 +94,7 @@ The rest of this post will highlight some practical Python tools and resources f
    import atoma
    import requests
    
-   response = requests.get('https://example.com/feed.atom')
+   response = requests.get("https://example.com/feed.atom")
    feed = atoma.parse_atom_bytes(response.content)
    print(feed.title.value)
 
