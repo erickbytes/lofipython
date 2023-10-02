@@ -46,7 +46,7 @@ You'll also want to consider if you need to tune your own AI model, but beware t
 
 **An Example LLM Stack With LangChain**
 
-.. image:: {static}/blog/images/MozillaAssistantdiagram.jpeg
+.. image:: {static}/blog/images/MozillaAssistantdiagram.png
   :alt: Overview of an LLM stack from Mozilla
 
 
@@ -175,9 +175,7 @@ These examples are shown in `Analyzing Structured Data <https://python.langchain
     from langchain.agents.agent_types import AgentType
 
     db = SQLDatabase.from_uri("sqlite:///Chinook.db")
-    db = SQLDatabase.from_uri("sqlite:///Chinook.db")
     llm = OpenAI(temperature=0, verbose=True)
-
     agent_executor = create_sql_agent(
         llm=OpenAI(temperature=0),
         toolkit=SQLDatabaseToolkit(db=db, llm=OpenAI(temperature=0)),
@@ -222,7 +220,7 @@ These examples are shown in `Analyzing Structured Data <https://python.langchain
 
 **Versatile + Flexible for Your LLM Needs**
 
-If you prefer using the Meta's LLaMa model over OpenAI, more power to you. LangChain can do both and many more. At the time of this writing, the following models are documented: Anthropic, Anthropic Functions, Anyscale, Azure, Azure ML Chat Online Interface, Baidu Qianfan, Bedrock Chat, ERNIE-bot Chat, Fireworks, GCP Vertex API, JinaChat, Konko, LiteLLM, Llama API, MiniMax, Ollama, OpenAI, PromptLayer ChatOpenAI and vLLM Chat.
+If you prefer using the Meta's LLaMA model over OpenAI, more power to you. LangChain can do both and many more. At the time of this writing, the following models are documented: Anthropic, Anthropic Functions, Anyscale, Azure, Azure ML Chat Online Interface, Baidu Qianfan, Bedrock Chat, ERNIE-bot Chat, Fireworks, GCP Vertex API, JinaChat, Konko, LiteLLM, Llama API, MiniMax, Ollama, OpenAI, PromptLayer ChatOpenAI and vLLM Chat.
 
 **Wrapping Up With LangChain**
 

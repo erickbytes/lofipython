@@ -26,7 +26,7 @@ Composability is a system design principle that deals with the inter-relationshi
 &lt;p&gt;- Matthew Prince, James Governor, &lt;a class="reference external" href="https://redmonk.com/jgovernor/2023/07/17/cloudflare-as-an-ai-play-an-interview-with-ceo-matthew-prince"&gt;Cloudflare as an AI play. An Interview with Matthew Prince&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;An Example LLM Stack With LangChain&lt;/strong&gt;&lt;/p&gt;
-&lt;img alt="Overview of an LLM stack from Mozilla" src="https://lofipython.com/blog/images/MozillaAssistantdiagram.jpeg" /&gt;
+&lt;img alt="Overview of an LLM stack from Mozilla" src="https://lofipython.com/blog/images/MozillaAssistantdiagram.png" /&gt;
 &lt;p&gt;&lt;strong&gt;Installing the Python Libraries with pip&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;pip install langchain[all]&lt;/span&gt;
@@ -173,17 +173,13 @@ Composability is a system design principle that deals with the inter-relationshi
 &lt;span class="normal"&gt;11&lt;/span&gt;
 &lt;span class="normal"&gt;12&lt;/span&gt;
 &lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;langchain.agents&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;create_sql_agent&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;langchain.agents&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;create_sql_agent&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;langchain.agents.agent_toolkits&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SQLDatabaseToolkit&lt;/span&gt;
 &lt;span class="c1"&gt;# from langchain.agents import AgentExecutor&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;langchain.agents.agent_types&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AgentType&lt;/span&gt;
 
 &lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SQLDatabase&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_uri&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sqlite:///Chinook.db&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SQLDatabase&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_uri&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sqlite:///Chinook.db&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;llm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;OpenAI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temperature&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
 &lt;span class="n"&gt;agent_executor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_sql_agent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;OpenAI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temperature&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
     &lt;span class="n"&gt;toolkit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;SQLDatabaseToolkit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;OpenAI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temperature&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
@@ -251,7 +247,7 @@ Composability is a system design principle that deals with the inter-relationshi
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Versatile + Flexible for Your LLM Needs&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;If you prefer using the Meta's LLaMa model over OpenAI, more power to you. LangChain can do both and many more. At the time of this writing, the following models are documented: Anthropic, Anthropic Functions, Anyscale, Azure, Azure ML Chat Online Interface, Baidu Qianfan, Bedrock Chat, ERNIE-bot Chat, Fireworks, GCP Vertex API, JinaChat, Konko, LiteLLM, Llama API, MiniMax, Ollama, OpenAI, PromptLayer ChatOpenAI and vLLM Chat.&lt;/p&gt;
+&lt;p&gt;If you prefer using the Meta's LLaMA model over OpenAI, more power to you. LangChain can do both and many more. At the time of this writing, the following models are documented: Anthropic, Anthropic Functions, Anyscale, Azure, Azure ML Chat Online Interface, Baidu Qianfan, Bedrock Chat, ERNIE-bot Chat, Fireworks, GCP Vertex API, JinaChat, Konko, LiteLLM, Llama API, MiniMax, Ollama, OpenAI, PromptLayer ChatOpenAI and vLLM Chat.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Wrapping Up With LangChain&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;These examples represent a few things you can do with this popular Python library. You're now a step closer to creating your next AI-infused product or service. No one needs to know it's just a wrapper for OpenAI and LangChain! The library's name makes more sense once you understand a bit of its context as orchestrator. It chains together the pieces of your large language model's parts into a shiny, impressive AI solution.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Read More:&lt;/strong&gt;&lt;/p&gt;

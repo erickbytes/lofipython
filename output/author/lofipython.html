@@ -70,7 +70,7 @@ Composability is a system design principle that deals with the inter-relationshi
 <p>- Matthew Prince, James Governor, <a class="reference external" href="https://redmonk.com/jgovernor/2023/07/17/cloudflare-as-an-ai-play-an-interview-with-ceo-matthew-prince">Cloudflare as an AI play. An Interview with Matthew Prince</a></p>
 </blockquote>
 <p><strong>An Example LLM Stack With LangChain</strong></p>
-<img alt="Overview of an LLM stack from Mozilla" src="https://lofipython.com/blog/images/MozillaAssistantdiagram.jpeg" />
+<img alt="Overview of an LLM stack from Mozilla" src="https://lofipython.com/blog/images/MozillaAssistantdiagram.png" />
 <p><strong>Installing the Python Libraries with pip</strong></p>
 <pre class="code console literal-block">
 <span class="go">pip install langchain[all]</span>
@@ -217,17 +217,13 @@ Composability is a system design principle that deals with the inter-relationshi
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">create_sql_agent</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">create_sql_agent</span>
 <span class="kn">from</span> <span class="nn">langchain.agents.agent_toolkits</span> <span class="kn">import</span> <span class="n">SQLDatabaseToolkit</span>
 <span class="c1"># from langchain.agents import AgentExecutor</span>
 <span class="kn">from</span> <span class="nn">langchain.agents.agent_types</span> <span class="kn">import</span> <span class="n">AgentType</span>
 
 <span class="n">db</span> <span class="o">=</span> <span class="n">SQLDatabase</span><span class="o">.</span><span class="n">from_uri</span><span class="p">(</span><span class="s2">&quot;sqlite:///Chinook.db&quot;</span><span class="p">)</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">SQLDatabase</span><span class="o">.</span><span class="n">from_uri</span><span class="p">(</span><span class="s2">&quot;sqlite:///Chinook.db&quot;</span><span class="p">)</span>
 <span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
 <span class="n">agent_executor</span> <span class="o">=</span> <span class="n">create_sql_agent</span><span class="p">(</span>
     <span class="n">llm</span><span class="o">=</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
     <span class="n">toolkit</span><span class="o">=</span><span class="n">SQLDatabaseToolkit</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span>
@@ -295,7 +291,7 @@ Composability is a system design principle that deals with the inter-relationshi
 </pre></div></td></tr></table></div>
 </blockquote>
 <p><strong>Versatile + Flexible for Your LLM Needs</strong></p>
-<p>If you prefer using the Meta's LLaMa model over OpenAI, more power to you. LangChain can do both and many more. At the time of this writing, the following models are documented: Anthropic, Anthropic Functions, Anyscale, Azure, Azure ML Chat Online Interface, Baidu Qianfan, Bedrock Chat, ERNIE-bot Chat, Fireworks, GCP Vertex API, JinaChat, Konko, LiteLLM, Llama API, MiniMax, Ollama, OpenAI, PromptLayer ChatOpenAI and vLLM Chat.</p>
+<p>If you prefer using the Meta's LLaMA model over OpenAI, more power to you. LangChain can do both and many more. At the time of this writing, the following models are documented: Anthropic, Anthropic Functions, Anyscale, Azure, Azure ML Chat Online Interface, Baidu Qianfan, Bedrock Chat, ERNIE-bot Chat, Fireworks, GCP Vertex API, JinaChat, Konko, LiteLLM, Llama API, MiniMax, Ollama, OpenAI, PromptLayer ChatOpenAI and vLLM Chat.</p>
 <p><strong>Wrapping Up With LangChain</strong></p>
 <p>These examples represent a few things you can do with this popular Python library. You're now a step closer to creating your next AI-infused product or service. No one needs to know it's just a wrapper for OpenAI and LangChain! The library's name makes more sense once you understand a bit of its context as orchestrator. It chains together the pieces of your large language model's parts into a shiny, impressive AI solution.</p>
 <p><strong>Read More:</strong></p>
