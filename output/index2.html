@@ -31,7 +31,104 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Feb 25, 2023</h4>
+        <div id="content">            <h4 class="date">Feb 26, 2023</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/using-bing-chatgpt-to-write-a-python-script-for-windows-computer-maintenance.html" rel="bookmark" title="Permanent Link to &quot;Using Bing + GPT-4 to Write a Python Script for Windows Computer Maintenance&quot;">Using Bing + GPT-4 to Write a Python Script for Windows Computer Maintenance</a>
+                </h2>
+
+                
+                
+
+                <p>Today, I was granted access to Bing's large language model, the next generation GPT-4. Bing's chat is the &quot;more powerful&quot; successor to <a class="reference external" href="https://openai.com/">OpenAI</a>'s groundbreaking chat service that's generating heaps of hype in addition to its AI text generation abilities. I gained the new chat functionality a few weeks after joining the Bing waitlist.</p>
+<div class="wp-image-7521 figure">
+<img alt="chatting with Bing" src="https://pythonmarketer.files.wordpress.com/2023/02/screenshot_20230301-225703-397.png?w=704" />
+</div>
+<p>A guilty pleasure of mine is fixing up old Windows machines by installing updates and running command prompt tools like SFC and chkdsk. There's also GUI based tools like disk cleanup and the disk defragmenter.</p>
+<p>My HP computer on Windows 10 is running slow and steady. It's an old model, so I want to improve performance wherever possible and hopefully speed it up. Enter Bing.&nbsp;It did what I wanted and more, but I needed to rephrase my first question to get better results.</p>
+<p>First, I asked how to improve performance on a Windows computer. Bing offered generic windows maintenance tips, then followed up to ask my operating system version, which is Windows 10. When I informed Bing it offered more targeted advice after I rephrased my question to focus on command line commands.</p>
+<div class="wp-image-7473 figure">
+<img alt="Bing chat response" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image-214678727-1677463333126.png?w=618" />
+</div>
+<div class="wp-image-7500 figure">
+<img alt="Bing chat suggestions" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image845498026-1677473969816.png?w=884" />
+</div>
+<p>I then asked a new question in a fresh chat session. This time I included my OS and asked more specifically for Windows command prompt commands for improving performance. Bing listed a few options and gave a little context of what they do. Then I was presented options to show how to use powercfg or msconfig.</p>
+<div class="wp-image-7480 figure">
+<img alt="msconfig examples" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image1028440375-1677466609760.png?w=588" />
+</div>
+</figure><p><strong>How to use powercfg according to Bing:</strong></p>
+<div class="wp-image-7479 figure">
+<img alt="how to use powercfg" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image885862200-1677466557121.png?w=584" />
+</div>
+</figure><p>Bing chat helped me find and remember the <strong>SFC /scannow</strong> command. It caches copies of files, fixes corrupted files and may speed up your machine.</p>
+<p>You can even prompt Bing for detailed examples of how to use specific windows commands. To get this kind of result from a search engine is incredible. It's like Bing is your own personal tutor. As someone who is constantly googling how to do computer and programming related things, this feels impressive. This was my first time using this service and it has raised the bar for searching the web. I then prompted Bing for a Python script capable of running the SFC command and had my first &quot;wow&quot; moment.</p>
+<div class="wp-image-7467 figure">
+<img alt="Bing writing a Python script" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image885068823-1677461283407.png?w=559" />
+</div>
+<div class="wp-image-7468 figure">
+<img alt="Bing writes a Python script" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image774027644-1677461889456.png?w=849" />
+</div>
+<p>Then it asks if I want the Python code explained. I'm so chuffed at this point. It tapped the <a class="reference external" href="https://docs.python.org/3/library/subprocess.html">subprocess module</a> to write the script and capture its output. Simply stunning.</p>
+<p>SFC requires an administrator command prompt. You can start an admin command prompt from the start menu. I ran &quot;python run_sfc.py&quot; containing the below script on version Python 3.11. The command finished running approximately 20 minutes later. Additionally, if you get the error 'utf-8' bytes can't be decoded, you'll need to pass an encoding argument to decode(). Ok, here's <strong>the Python script</strong>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># Import the subprocess module</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="c1"># Define the SFC command as a list of arguments</span>
+<span class="n">sfc_command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sfc&quot;</span><span class="p">,</span> <span class="s2">&quot;/scannow&quot;</span><span class="p">]</span>
+
+<span class="c1"># Run the SFC command using subprocess.run and capture the output</span>
+<span class="n">sfc_output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sfc_command</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Print the output of the SFC command</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sfc_output</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7493 figure">
+<img alt="Bing Chat coding" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image63547969-1677469517174.png?w=911" />
+</div>
+<div class="wp-image-7491 figure">
+<img alt="Bing chat explains code" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image-324660109-1677469443109.png?w=527" />
+</div>
+<div class="wp-image-7517 figure">
+<img alt="Bing chat explains code" src="https://pythonmarketer.files.wordpress.com/2023/02/wp-1677631583420.png" />
+</div>
+<p>If your text is using a non-English character encoding, I found you may need to pass a different encoding besides the default utf-8. For example, I found this to work if your command prompt characters are in Spanish:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># en español</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sfc_output</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;latin-1&quot;</span><span class="p">))</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7475 figure">
+<img alt="Python encoding traceback" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image1620635696-1677463544366.png?w=632" />
+</div>
+<p>You could also use a Windows batch file of course:</p>
+<div class="wp-image-7524 figure">
+<img alt="Windows batch file instructions from Bing" src="https://pythonmarketer.files.wordpress.com/2023/02/screenshot_20230301-231228-130.png?w=494" />
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/using-bing-chatgpt-to-write-a-python-script-for-windows-computer-maintenance.html">posted at 22:05</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-command-prompt-performance-productivity-programming-python-scripts-software.html" rel="tag">automation, coding, command prompt, performance, productivity, programming, python, Scripts, software</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/ai-chat.html" class="tags">AI chat</a>
+                    &nbsp;<a href="https://lofipython.com/tag/bing-chatgpt-review.html" class="tags">Bing ChatGPT Review</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-code-bing-and-chatgpt.html" class="tags">Python code Bing and ChatGPT</a>
+                    &nbsp;<a href="https://lofipython.com/tag/windows-10-command-line.html" class="tags">Windows 10 Command Line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/windows-maintenance.html" class="tags">Windows Maintenance</a>
+                </div>
+            </article>            <h4 class="date">Feb 25, 2023</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -606,56 +703,6 @@ python github_stars.py
                     &nbsp;<a href="https://lofipython.com/tag/github-api.html" class="tags">github api</a>
                     &nbsp;<a href="https://lofipython.com/tag/github-stars-python.html" class="tags">github stars python</a>
                     &nbsp;<a href="https://lofipython.com/tag/repo-star-counts.html" class="tags">repo star counts</a>
-                </div>
-            </article>            <h4 class="date">Oct 08, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html" rel="bookmark" title="Permanent Link to &quot;Pelican Fix for "No valid files found in content"...&quot;">Pelican Fix for &quot;No valid files found in content&quot;...</a>
-                </h2>
-
-                
-                
-
-                <p>Pelican is a popular <a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/">static site generator library</a> in Python. I didn't know why my pelican blog was not working. I've used the &quot;pelican content&quot; command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">WARNING</span>  <span class="n">No</span> <span class="n">valid</span> <span class="n">files</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">content</span> <span class="k">for</span> <span class="n">the</span> <span class="n">active</span>         <span class="n">log</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">91</span>
-         <span class="n">readers</span><span class="p">:</span>
-           <span class="o">|</span> <span class="n">BaseReader</span> <span class="p">(</span><span class="n">static</span><span class="p">)</span>
-           <span class="o">|</span> <span class="n">HTMLReader</span> <span class="p">(</span><span class="n">htm</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
-           <span class="o">|</span> <span class="n">RstReader</span> <span class="p">(</span><span class="n">rst</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<div class="wp-image-7221 figure">
-<img alt="no valid files found in pelican content" src="https://pythonmarketer.files.wordpress.com/2022/10/image.png?w=665" />
-</div>
-<p><strong>Solution</strong></p>
-<p>Install the markdown library, which is stated in the <a class="reference external" href="https://docs.getpelican.com/en/3.6.3/install.html#optional-packages">pelican docs</a>. This <a class="reference external" href="https://github.com/getpelican/pelican/issues/1868">Github issue</a> also provides some background on this warning.</p>
-<pre class="literal-block">
-pip install markdown
-</pre>
-<div class="wp-image-7224 figure">
-<img alt="python pip installing markdown" src="https://pythonmarketer.files.wordpress.com/2022/10/image-1.png?w=672" />
-</div>
-<p>Now my &quot;pelican content&quot; command works!</p>
-<pre class="literal-block">
-pelican content
-</pre>
-<div class="wp-image-7226 figure">
-<img alt="successful pelican content build" src="https://pythonmarketer.files.wordpress.com/2022/10/image-2.png?w=679" />
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html">posted at 13:43</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-writing.html" rel="tag">coding, python, writing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/markdown-library.html" class="tags">markdown library</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pelican-blog.html" class="tags">pelican blog</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-fix.html" class="tags">python fix</a>
                 </div>
             </article>
 
