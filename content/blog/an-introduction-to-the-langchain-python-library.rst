@@ -49,6 +49,7 @@ You'll also want to consider if you need to tune your own AI model, but beware t
 .. image:: {static}/blog/images/MozillaAssistantdiagram.png
   :alt: Overview of an LLM stack from Mozilla
 
+source: `So you want to build your own open source chatbot… – Mozilla Hacks <https://hacks.mozilla.org/2023/07/so-you-want-to-build-your-own-open-source-chatbot>`__
 
 **Installing the Python Libraries with pip**
 
