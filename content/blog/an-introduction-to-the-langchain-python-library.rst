@@ -160,6 +160,7 @@ These examples are shown in `Analyzing Structured Data <https://python.langchain
     from langchain.chat_models import ChatOpenAI
     from langchain.chains import create_sql_query_chain
    
+    db = SQLDatabase.from_uri("sqlite:///Chinook.db")
     chain = create_sql_query_chain(ChatOpenAI(temperature=0), db)
     response = chain.invoke({"question":"How many employees are there"})
     print(response)
