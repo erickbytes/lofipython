@@ -31,7 +31,53 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Dec 19, 2021</h4>
+        <div id="content">            <h4 class="date">Dec 31, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/phone-number-cleaning-regex-pandas-series-example.html" rel="bookmark" title="Permanent Link to &quot;Phone Number Cleaning Regex + pandas Series Example&quot;">Phone Number Cleaning Regex + pandas Series Example</a>
+                </h2>
+
+                
+                
+
+                <p>This is a solution I worked out recently to strip phone numbers into a uniform format. To install <a class="reference external" href="https://pandas.pydata.org/docs/getting_started/install.html">pandas with pip</a>, enter in command prompt:</p>
+<pre class="code python literal-block">
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
+</pre>
+<p>The pandas library has regex built in and it's pretty neat! Behold the power of pandas and a <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">regular expression</a> to do trivial telephone tidying:</p>
+<div class="wp-image-6382 figure">
+<img alt="strip phone formatting with Python" src="https://pythonmarketer.files.wordpress.com/2021/12/pandas-example-7-3.41.12-pm.png?w=561" style="width: 767px; height: 150px;" />
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;(010) 001-1010&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Phone&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;str&quot;</span><span class="p">)</span>
+<span class="c1"># remove parentheses, hyphens and spaces with pandas + regex</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s2">&quot;\(|\)|-| &quot;</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="c1"># resulting number: &quot;0100011010&quot;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Regex is cool.</strong></p>
+<p>Grasping the intricacies of what this code is doing feels elegant when you connect the dots.. or pipes. The replace is done via a pandas <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/series.html#api-series-str">str accessor</a>. In the pat string, the parentheses are escaped with slashes and separated by pipes &quot;|&quot;. They act as an <a class="reference external" href="https://realpython.com/python-or-operator/">or operator</a>, succinctly chaining multiple characters together for matching and in this case replacing them with nothing. Pretty nifty. If you read the <a class="reference external" href="https://pandas.pydata.org/docs/">pandas docs</a>, you'll find regex is accessible in different parts of the API. Dive in, it's some of my favorite documentation to snoop. There is so much you can do with pandas. This example demonstrates how its flexible functions get the job done efficiently.</p>
+<p><strong>Further Reading:</strong></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">pandas.Series documentation</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.replace.html">pandas str.replace documentation</a></p>
+<p><a class="reference external" href="http://regex.info/blog/2006-09-15/247">Source of the famous “Now you have two problems” quote</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/phone-number-cleaning-regex-pandas-series-example.html">posted at 14:19</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-programming-python.html" rel="tag">coding, pandas, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/data-cleaning.html" class="tags">data cleaning</a>
+                    &nbsp;<a href="https://lofipython.com/tag/regex.html" class="tags">regex</a>
+                </div>
+            </article>            <h4 class="date">Dec 19, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -507,35 +553,6 @@ and GUIs programmatically.</p>
                     &nbsp;<a href="https://lofipython.com/tag/creating-your-own-blog.html" class="tags">creating your own blog</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/static-site-generator.html" class="tags">static site generator</a>
-                </div>
-            </article>            <h4 class="date">Jun 10, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/how-to-fix-your-python-certificates-on-windows.html" rel="bookmark" title="Permanent Link to &quot;Python Requests SSLCertVerificationError Solution for Windows&quot;">Python Requests SSLCertVerificationError Solution for Windows</a>
-                </h2>
-
-                
-                
-
-                <p>I initially installed my Python version from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7">Windows Store</a> and it worked fine for almost a year on my Windows 10 computer. Then I started getting this error message when trying to use the <a class="reference external" href="https://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification">requests library</a> on all HTTP requests:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">SSLError</span><span class="p">:</span> <span class="n">HTTPSConnectionPool</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;api.example.com&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">):</span> <span class="n">Max</span> <span class="n">retries</span> <span class="n">exceeded</span> <span class="k">with</span> <span class="n">url</span><span class="p">:</span> <span class="o">/</span><span class="n">oauth</span><span class="o">/</span><span class="n">token</span><span class="err">?</span><span class="n">grant_type</span><span class="o">=</span><span class="n">client_credentials</span> <span class="p">(</span><span class="n">Caused</span> <span class="n">by</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">SSLCertVerificationError</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1131)&#39;</span><span class="p">)))</span>
-</pre></div></td></tr></table></div>
-<p>Apparently my Python certificates were not valid or up to date on my computer. These are &quot;.PEM&quot; or &quot;.cert&quot; files that certify your connection for the <a class="reference external" href="https://www.ssl.com/faqs/faq-what-is-ssl/">SSL protocol</a>. I googled this error until I found the <a class="reference external" href="https://pypi.org/project/python-certifi-win32/">python-certifi-win32</a> library. I only needed to <a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">pip install</a> this library and it fixed the problem:</p>
-<pre class="literal-block">
-pip install python-certifi-win32
-</pre>
-<p>Huge thank you to <a class="reference external" href="https://pypi.org/user/andrewleech/">the maintainer</a> of this package. It solved my issues and now I can make HTTP requests again!</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/how-to-fix-your-python-certificates-on-windows.html">posted at 11:59</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-http-python-windows.html" rel="tag">coding, HTTP, python, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/pem-solution.html" class="tags">.PEM solution</a>
-                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
-                    &nbsp;<a href="https://lofipython.com/tag/windows-10.html" class="tags">Windows 10</a>
                 </div>
             </article>
 
