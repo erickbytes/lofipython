@@ -15,7 +15,7 @@ Here is `the Github repo with the code <https://github.com/erickbytes/finsou.py>
 
 The CLI currently works after the US stock market has closed normal market hours. Additionally, after hours prices for "over the counter" (OTC) traded stocks are not listed on Yahoo so an error is returned for those stocks.
 
-**Getting Started finsou.py**
+**Getting Started with finsou.py**
 
 1. First, install the necessary Python library dependencies:
 
