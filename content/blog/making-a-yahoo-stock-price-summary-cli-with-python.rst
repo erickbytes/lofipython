@@ -40,7 +40,7 @@ The CLI currently works after the US stock market has closed normal market hours
 
     cd finsou.py
 
-4. Query a stock price summary for Microsoft:
+4. Query a stock price summary for a stock:
 
 .. code:: console
     
