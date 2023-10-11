@@ -86,14 +86,14 @@ pip install tqdm</span>
 <span class="gp"># </span>Read<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>stocks<span class="w"> </span>from<span class="w"> </span>a<span class="w"> </span>text<span class="w"> </span>file<span class="w"> </span>with<span class="w"> </span>one<span class="w"> </span>ticker<span class="w"> </span>on<span class="w"> </span>each<span class="w"> </span>line.<span class="w">
 </span><span class="go">python finsou.py -s portfolio.txt -c &quot;Portfolio Prices.csv&quot;</span>
 </pre>
-<p><strong>Research + download media from investor relations websites.</strong>
-Note: currently the code needs to be modified depending on the HTML structure of the page.</p>
+<p><strong>Research + download media from investor relations websites.</strong></p>
+<p>Note: currently the code needs to be modified depending on the HTML structure of the page.</p>
 <pre class="code console literal-block">
 <span class="gp"># </span>Note:<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>experimental<span class="w"> </span>and<span class="w"> </span>results<span class="w"> </span>will<span class="w"> </span>vary.<span class="w"> </span>URLs<span class="w"> </span>are<span class="w"> </span>typically<span class="w"> </span>buried<span class="w"> </span><span class="k">in</span><span class="w"> </span>nested<span class="w"> </span>span<span class="w"> </span>and<span class="w"> </span>div<span class="w"> </span>tags.<span class="w">
 </span><span class="go">python finsou.py -s GRAB -r https://investors.grab.com/events-and-presentations</span>
 </pre>
-<p><strong>How It Works</strong></p>
-<p>Check out the <a class="reference external" href="https://github.com/erickbytes/finsou.py/blob/main/finsou.py">finsou.py Python script</a> to see the complete code for how this stock report is created. Here is a brief simplified example of the logic behind the code.</p>
+<p><strong>How It Works</strong>
+Check out the <a class="reference external" href="https://github.com/erickbytes/finsou.py/blob/main/finsou.py">finsou.py Python script</a> to see the complete code for how this stock report is created. Here is a brief simplified example of the logic behind the code.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -131,8 +131,8 @@ Note: currently the code needs to be modified depending on the HTML structure of
 <span class="nb">print</span><span class="p">(</span><span class="n">mkt_close_price</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p>First, an HTTP request is made and parsed by beautiful soup using Python's html.parser. We can then use bs4 and regex's <a class="reference external" href="https://docs.python.org/3/library/re.html#re.compile">re.compile function</a> to return the HTML tags with a specific CSS class. Then once we have the tags, beautiful soup gives us a &quot;.string&quot; attribute for each tag to return their contents as a string. This pattern was applied to return all of the data in the stock report. To find the css classes I wanted, I right-clicked the price or data on Yahoo's website in a Chrome browser and selected &quot;Inspect&quot;. Doing this opens Chrome's developer tools and drops you into that spot in the HTML code, where you can find the class you want to target.</p>
-<p><strong>No Official API, No Problem</strong></p>
-<p>It felt good to prove the concept that you don't need an official API to print stock data in your terminal! If you want to check in on your portfolio's daily moves, give this CLI a try.</p>
+<p><strong>No Official API, No Problem</strong>
+It felt good to prove the concept that you don't need an official API to print stock data in your terminal! If you want to check in on your portfolio's daily moves, give this CLI a try.</p>
 <p><a class="reference external" href="https://github.com/erickbytes/finsou.py">finsou.py Github Repo</a></p>
 
                 <div class="clear"></div>
