@@ -68,7 +68,6 @@ The CLI currently works after the US stock market has closed normal market hours
 
 
 **Research + download media from investor relations websites.**
-
 Note: currently the code needs to be modified depending on the HTML structure of the page.
 
 .. code:: console
