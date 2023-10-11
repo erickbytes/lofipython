@@ -78,6 +78,7 @@ Note: currently the code needs to be modified depending on the HTML structure of
 
 
 **How It Works**
+
 Check out the `finsou.py Python script <https://github.com/erickbytes/finsou.py/blob/main/finsou.py>`__ to see the complete code for how this stock report is created. Here is a brief simplified example of the logic behind the code. 
 
 
@@ -107,6 +108,7 @@ First, an HTTP request is made and parsed by beautiful soup using Python's html.
 
 
 **No Official API, No Problem**
+
 It felt good to prove the concept that you don't need an official API to print stock data in your terminal! If you want to check in on your portfolio's daily moves, give this CLI a try. 
 
 `finsou.py Github Repo <https://github.com/erickbytes/finsou.py>`__
