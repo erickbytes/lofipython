@@ -14,9 +14,12 @@
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;pyinstrument Results With Normal Pandas Import&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;GOOG, Google&lt;/p&gt;
-&lt;img alt="profiling a Python script with pyinstrument, before with GOOG" src="https://lofipython.com/blog/images/goog-no-pandas-import.png" /&gt;
+&lt;img alt="profiling a Python script with pyinstrument, before with GOOG" src="https://lofipython.com/blog/images/goog-pandas-import.png" /&gt;
 &lt;p&gt;MSFT, Microsoft&lt;/p&gt;
 &lt;img alt="profiling a Python script with pyinstrument, before with MSFT" src="https://lofipython.com/blog/images/msft-pandas-import.png" /&gt;
+&lt;p&gt;The line for the pandas module looks like this:&lt;/p&gt;
+&lt;blockquote&gt;
+0.946 &amp;lt;module&amp;gt;  pandas/__init__.py:1&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;pyinstrument Results With Pandas Import Only If Necessary&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;After changing the pandas module to only import if needed, it is no longer eating almost a second of time. As a result, the script runs about second faster each time!&lt;/p&gt;
 &lt;p&gt;Below are the pyinstrument reports for two different stocks after changing my pandas import to only be called if it was actually used:&lt;/p&gt;

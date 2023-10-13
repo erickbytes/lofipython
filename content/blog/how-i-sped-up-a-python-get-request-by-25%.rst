@@ -34,7 +34,7 @@ My CLI script accepts a stock ticker as an argument. The below command fetches a
 
 GOOG, Google
 
-.. image:: {static}/blog/images/goog-no-pandas-import.png
+.. image:: {static}/blog/images/goog-pandas-import.png
   :alt: profiling a Python script with pyinstrument, before with GOOG
 
 MSFT, Microsoft
@@ -42,6 +42,9 @@ MSFT, Microsoft
 .. image:: {static}/blog/images/msft-pandas-import.png
   :alt: profiling a Python script with pyinstrument, before with MSFT
 
+The line for the pandas module looks like this:
+
+    0.946 <module>  pandas/__init__.py:1
 
 **pyinstrument Results With Pandas Import Only If Necessary**
 
