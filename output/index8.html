@@ -31,7 +31,163 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Apr 11, 2020</h4>
+        <div id="content">            <h4 class="date">May 06, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html" rel="bookmark" title="Permanent Link to &quot;Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32&quot;">Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32</a>
+                </h2>
+
+                
+                
+
+                <p>Here are a few useful corners of the vast array of Windows scripting tools.</p>
+<div class="section" id="helpful-windows-command-line-documentation">
+<h2>Helpful Windows Command Line Documentation</h2>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key">Windows command line Documentation Syntax</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490890%28v%3dtechnet.10%29">Command-line reference A-Z</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490954%28v%3dtechnet.10%29">Command shell overview</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490982%28v%3dtechnet.10%29">Using command redirection operators</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/about-windows-remote-management">About Windows Remote Management</a></li>
+</ul>
+</div>
+<div class="section" id="a-few-general-windows-commands">
+<h2>A Few General Windows Commands</h2>
+<p>Use  <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a>
+to look in a text file to count the lines matching a string:</p>
+<pre class="literal-block">
+find /C &quot;FAIL&quot; &lt; &quot;Test_Results.txt&quot;
+# returns: 0 if no match or # of lines found, e.g. 2,50,100
+</pre>
+<p>I wrote a post on <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/">findstr</a>, which offers similar functionality.</p>
+<ul class="simple">
+<li><strong>clip:</strong> pipe commands <a class="reference external" href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</li>
+<li><strong>If:</strong> <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</li>
+<li><strong>List ip address-related info:</strong></li>
+</ul>
+<pre class="literal-block">
+ipconfig
+</pre>
+<p><strong>Check system bit (usually 64-bit or 32-bit):</strong></p>
+<pre class="literal-block">
+wmic os getosarchitecture
+</pre>
+</div>
+<div class="section" id="automate-windows-scripts-with-batch-files">
+<h2>Automate Windows Scripts with Batch Files</h2>
+<p>Batch files can be run from command prompt or by double-clicking them. Here's an example of text in a batch file that activates a python virtual environment. Swap in your username and environment if you've created it.</p>
+<pre class="literal-block">
+cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd .. &amp; dir&quot;
+</pre>
+<ol class="arabic simple">
+<li>Save above as a .bat file.</li>
+<li>This uses <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29">cmd</a> to open a new command prompt in a Windows batch file.</li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a>into my python virtual env then activate it by running a batch file.</li>
+<li>Then call dir to print directory contents.</li>
+</ol>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a> a custom system 'last_name' variable to be recalled later.</p>
+<pre class="literal-block">
+set /p last_name=Enter a last name:
+echo %last_name%
+pause
+</pre>
+<p>Here we print it out with <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490897(v=technet.10)">echo</a>. Then <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490965(v=technet.10)">pause</a>.</p>
+<p><strong>Line continuation in batch files:</strong> Use ^ to continue your batch file scripts on a new line.</p>
+</div>
+<div class="section" id="system-assessment-tools-powercfg-and-sfc">
+<h2>System Assessment Tools: powercfg and sfc</h2>
+<p><strong>Display system stats:</strong></p>
+<pre class="literal-block">
+systeminfo
+</pre>
+<p><strong>Use powercfg to assess power, sleep and system states</strong></p>
+<pre class="literal-block">
+powercfg /SLEEPSTUDY
+</pre>
+<p>Use sfc to perform a system file check:</p>
+<pre class="literal-block">
+# scan and repair
+sfc /SCANNOW
+# scan, but do not repair:
+sfc /VERIFYONLY
+</pre>
+</div>
+<div class="section" id="accessing-a-remote-computer-from-the-command-line">
+<h2>Accessing a Remote Computer From the Command Line</h2>
+<p>You may want to <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ping">ping</a> a remote computer to see if it's running. Add your ip address instead of the below 1s and 0s:</p>
+<pre class="literal-block">
+ping 01.10.10.01
+</pre>
+<p>Log into your Remote Desktop with <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a>:</p>
+<ol class="arabic simple">
+<li>Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.</li>
+<li>You may need to <a class="reference external" href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on">adjust your credentials on your local machine.</a></li>
+<li>Finally, trigger login to an active window from command prompt:</li>
+</ol>
+<pre class="literal-block">
+mstsc RDP_File_Name.rdp
+</pre>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a> and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</p>
+<pre class="literal-block">
+winrm quickconfig
+</pre>
+<p>Log into a remote computer with <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs">winrs</a> and run ipconfig:</p>
+<pre class="literal-block">
+winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
+</pre>
+</div>
+<div class="section" id="check-out-python-s-pywin32-module">
+<h2>Check Out Python's <a class="reference external" href="https://github.com/mhammond/pywin32">pywin32</a> Module</h2>
+<p>This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook and <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">Task Scheduler</a>. Install with <a class="reference external" href="http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
+<pre class="literal-block">
+python -m pip install pywin32
+</pre>
+<p><strong>Here's an example to send an Outlook email:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">win32com.client</span>
+
+<span class="n">outlook</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">&#39;outlook.application&#39;</span><span class="p">)</span>
+<span class="n">mail</span> <span class="o">=</span> <span class="n">outlook</span><span class="o">.</span><span class="n">CreateItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">To</span> <span class="o">=</span> <span class="s1">&#39;someone@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">CC</span> <span class="o">=</span> <span class="s1">&#39;name@example.com&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="s1">&#39;Moneyball Review&#39;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Moneyball is an inspiring movie, based on real events.</span>
+<span class="s2">            Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.</span>
+<span class="s2">            The trade deadline scene is delightful. Wow.</span>
+<span class="s2">            Chris Pratt as Hatteberg too. What a solid film.</span>
+<span class="s2">            Money isn&#39;t everything. Playing ball is.</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Attachments</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Baseball_Analysis.csv&#39;</span><span class="p">)</span>
+<span class="n">mail</span><span class="o">.</span><span class="n">Send</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html">posted at 14:11</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-command-prompt-scripts-windows.html" rel="tag">automation, command prompt, Scripts, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/remote-computer.html" class="tags">remote computer</a>
+                    &nbsp;<a href="https://lofipython.com/tag/scripting.html" class="tags">scripting</a>
+                    &nbsp;<a href="https://lofipython.com/tag/shell.html" class="tags">shell</a>
+                </div>
+            </article>            <h4 class="date">Apr 11, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1115,141 +1271,6 @@ python -m pip install pandas
                     &nbsp;<a href="https://lofipython.com/tag/microsoft.html" class="tags">Microsoft</a>
                     &nbsp;<a href="https://lofipython.com/tag/productivity.html" class="tags">productivity</a>
                     &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
-                </div>
-            </article>            <h4 class="date">Apr 25, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/installing-debian-9-stretch-linux-os-on-a-dell-inspiron-laptop-and-troubleshooting-wifi.html" rel="bookmark" title="Permanent Link to &quot;Installing Debian 9 Stretch Linux OS on a Dell Inspiron Laptop and Configuring the Wifi Network&quot;">Installing Debian 9 Stretch Linux OS on a Dell Inspiron Laptop and Configuring the Wifi Network</a>
-                </h2>
-
-                
-                
-
-                <p>Yesterday, I converted an 11-year old Dell Inspiron E1505 from Windows XP to Debian 9 Stretch. I may have overwrote my Windows XP OS. I do not care if I lost it since it's a vulnerable and outdated OS, which is no longer supported by Microsoft. I encountered difficulty with getting the wifi to work on Debian, but was able to find a solution using <a class="reference external" href="https://help.ubuntu.com/community/WICD">Wicd</a>. Here are the steps I followed to do it all.</p>
-<div class="section" id="using-the-debian-installer-loader">
-<h2>Using The Debian Installer-Loader</h2>
-<ol class="arabic simple">
-<li>First, back up your Windows computer files. Then download the <a class="reference external" href="https://wiki.debian.org/DebianInstaller/Loader">Debian-Installer Loader</a> Windows executable from the Debian wiki.</li>
-<li>Click the downloaded executable and <img alt="IMG_20190423_184816999" class="wp-image-1785 alignright" src="http://pythonmarketer.files.wordpress.com/2019/04/97878-img_20190423_184816999-e1556211269262.jpg" style="width: 311px; height: 196px;" />follow instructions. I followed the default settings all the way through.</li>
-<li>You may need to choose your own partitioning settings to ensure Windows is preserved if desired.</li>
-<li>During installation, choose your Linux collection. I chose Xfce because it <a class="reference external" href="https://www.slant.co/versus/1122/1124/~xfce_vs_gnome-3">seems to be highest ranked</a> among Linux users and &quot;not just helpful for older computers where few system resources are available, but also simply for those who want to get the most out of their systems.&quot; Gnome and KDE are other popular options.</li>
-</ol>
-<img alt="IMG_20190423_184023738" class="wp-image-1784 aligncenter" src="http://pythonmarketer.files.wordpress.com/2019/04/46248-img_20190423_184023738-e1556211291659.jpg" style="width: 564px; height: 375px;" />
-<p><strong>After completing installation, restart your computer and select your new OS on boot-up. The following error codes displayed for me while starting up, signaling missing wifi firmware.</strong></p>
-<pre class="literal-block">
-ERROR Failed to load firmware!
-b43ssb0:0: firmware: failed to load b43/ucode5.fw (-2)
-b43ssb0:0: firmware: failed to load b43-open/ucode5.fw (-2)
-b43-phy0 ERROR: You must go to https://wireless.wiki.kernel.org/en/users/drivers/b43#devicefirmware and download the correct firmware for this driver version.
-</pre>
-<p><em>It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to *`this page &lt;http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/&gt;`__*, which is linked to from the link in the error message, and try the solution there first.</em></p>
-</div>
-<div class="section" id="post-installation-setup">
-<h2>Post Installation Setup</h2>
-<p><strong>Open up the terminal once you're into your new Desktop OS</strong>&nbsp;and enter the below commands.</p>
-<pre class="literal-block">
-su -
-apt-get install sudo -y usermod -aG sudo yourusername
-</pre>
-<p><strong>1) Enable yourself as root user.</strong></p>
-<p><strong>2) Install sudo.</strong></p>
-<p><strong>3) Give yourself sudo user permission.</strong></p>
-</div>
-<div class="section" id="optional-replacing-network-manager-with-wicd">
-<h2>Optional: Replacing Network-Manager With Wicd</h2>
-<p>This Debian 9 package ships with Network-Manager. After logging in, I wasn't sure why wifi was not working, so I decided to remove Network-Manager and install Wicd. (This was before I realized what the error code displayed on boot-up meant.) Wicd is a Linux network managing alternative and it's built with Python, by the way. I followed <a class="reference external" href="https://help.ubuntu.com/community/WICD">these instructions</a> to execute the below commands.</p>
-<pre class="literal-block">
-uninstall nm
-sudo apt-get install -d --reinstall network-manager network-manager-gnome
-install wicd
-sudo apt-get install wicd-gtk
-</pre>
-<p><strong>After installing Wicd, my Ethernet connection was not working. This fixed it for me:</strong></p>
-<pre class="literal-block">
-sudo ifconfig eth0 up
-</pre>
-</div>
-<div class="section" id="troubleshooting-linux-wifi-inspecting-your-system">
-<h2>Troubleshooting Linux Wifi &amp; Inspecting Your System</h2>
-<p>Now, let's check for enabled network interfaces. &quot;wlan0&quot; is usually the name of the wireless interface. Does wlan0 show when you enter this command? If not, then you may need to update your wifi firmware. This was the case for me. Below is an output where wlan0 is correctly configured.</p>
-<pre class="literal-block">
-sudo ifconfig
-</pre>
-<pre class="literal-block">
-eth0: flags=4099&lt;UP,BROADCAST,MULTICAST&gt; mtu 1500
-ether 00:25:a5:cf:38:7d txqueuelen 1000 (Ethernet)
-RX packets 0 bytes 0 (0.0 B)
-RX errors 0 dropped 0 overruns 0 frame 0
-TX packets 0 bytes 0 (0.0 B)
-TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
-device interrupt 17
-lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt; mtu 65536
-inet 127.0.0.1 netmask 255.0.0.0
-inet6 ::1 prefixlen 128 scopeid 0x10
-loop txqueuelen 1 (Local Loopback)
-RX packets 4 bytes 240 (240.0 B)
-RX errors 0 dropped 0 overruns 0 frame 0
-TX packets 4 bytes 240 (240.0 B)
-TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
-wlan0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt; mtu 1500
-inet 191.142.1.297 netmask 255.255.255.0 broadcast 182.138.5.255
-inet6 2601:241:8c00:50ea:21a:92ff:fe0d:7531 prefixlen 64 scopeid 0x0
-inet6 fe80::22a:42tf:fe0d:7531 prefixlen 64 scopeid 0x20 ether 00:2a:92:2d:45:51 txqueuelen 1000 (Ethernet)
-RX packets 8509 bytes 4639778 (4.4 MiB)
-RX errors 0 dropped 0 overruns 0 frame 0
-TX packets 6206 bytes 923792 (902.1 KiB)
-TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
-</pre>
-<p><strong>Check wlan0 is not blocked on kill list.</strong></p>
-<pre class="literal-block">
-sudo rfkill list all
-</pre>
-<p>Some computers have a &quot;kill switch&quot; for wifi. This command lists any blocked interfaces. If it is blocked, <a class="reference external" href="https://ubuntuforums.org/showthread.php?t=2298330">this thread</a> might be useful. If nothing shows when you run this command, or if you see wlan0 is not blocked, carry on.</p>
-<p><strong>Check which wifi controller you have.</strong> <a class="reference external" href="https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers">This thread</a> <strong>provides more info on what this means.</strong></p>
-<pre class="literal-block">
-lspci -nn | grep -e 0200 -e 0280
-</pre>
-<pre class="literal-block">
-03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
-0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)
-</pre>
-<p><strong>Find your system architecture. This determines which firmware you should download in the next step.</strong></p>
-<pre class="literal-block">
-sudo dpkg --print-architecture
-</pre>
-<p><strong>First,</strong> <a class="reference external" href="https://wireless.wiki.kernel.org/en/users/drivers/b43/firmware">read here</a> <strong>to determine the right packages for your Linux system. Then download the appropriate missing wifi firmware. For Debian, I downloaded the two packages below.</strong></p>
-<ol class="arabic simple">
-<li><a class="reference external" href="https://packages.debian.org/stretch/b43-fwcutter">b43-fwcutter</a> 2) <a class="reference external" href="https://packages.debian.org/stretch/firmware-b43-installer">b43-installer</a></li>
-</ol>
-<p><strong>&quot;cd&quot; into the directory with .deb files. Run the below commands to install the new firmware, then reboot your computer. The last two commands are adapted from</strong> <a class="reference external" href="https://ubuntuforums.org/showthread.php?t=2203312&amp;page=4">this thread</a>.</p>
-<pre class="literal-block">
-sudo dpkg -i firmware-b43-installer_019-3_all.deb
-sudo dpkg -i firmware-b43-fwcutter_019-3_i386.deb
-sudo modprobe -r b43
-sudo modprobe b43
-</pre>
-<p><strong>Edit Wicd preferences to set wlan0 as the wireless interface if needed.</strong></p>
-<img alt="change_wicd_settings" class="alignnone wp-image-1779" src="https://pythonmarketer.files.wordpress.com/2019/04/change_wicd_settings.png" style="width: 380px; height: 357px;" />
-<p><strong>Success! Wireless networks are now showing.</strong></p>
-<img alt="wicd_success" class="alignnone wp-image-1780" src="https://pythonmarketer.files.wordpress.com/2019/04/wicd_success.png" style="width: 375px; height: 351px;" />
-<p><strong>Wrapping Up</strong></p>
-<p>I'd like to thank the awesome people who contributed to the Debian Installer-loader and all the help in Linux forums that enabled me figure this out. I'm new to the world of Linux but already enjoying diving into this operating system. Its ability to do just about anything from the command line are a lot of fun. I am now running two Linux systems, one on my Dell and another running Ubuntu that I installed on a Chromebook with <a class="reference external" href="https://www.howtogeek.com/162120/how-to-install-ubuntu-linux-on-your-chromebook-with-crouton/">Crouton</a>. Both have been relatively painless to set up. It this case, it turned a sluggish laptop into a very capable machine. They should call it Lit-nux :)</p>
-<p><strong>Full Disclosure</strong></p>
-<p>This worked on my computer for a few days before the keyboard stopped working correctly on my computer. Typing became impossible because the keys didn't work or entered the wrong letters when pressed. I'm not sure what the cause of it was, but consider that before attempting this on a machine. Be prepared to lose it. If you really need the machine to be functional, it may not be a great idea to try this. This was attempted on an old beat up computer. I would try this method of porting a Windows machine to Linux again as a salvage project or on a low-risk Windows machine if I had one lying around.</p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/installing-debian-9-stretch-linux-os-on-a-dell-inspiron-laptop-and-troubleshooting-wifi.html">posted at 14:14</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/linux-software.html" rel="tag">Linux, software</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
-                    &nbsp;<a href="https://lofipython.com/tag/debian.html" class="tags">debian</a>
-                    &nbsp;<a href="https://lofipython.com/tag/operating-system.html" class="tags">operating system</a>
-                    &nbsp;<a href="https://lofipython.com/tag/os-upgrade.html" class="tags">os upgrade</a>
-                    &nbsp;<a href="https://lofipython.com/tag/windows.html" class="tags">Windows</a>
                 </div>
             </article>
 

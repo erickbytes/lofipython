@@ -31,7 +31,61 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Dec 31, 2021</h4>
+        <div id="content">            <h4 class="date">Jan 05, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-track-python-script-completion.html" rel="bookmark" title="Permanent Link to &quot;How to Track Python Script Completion&quot;">How to Track Python Script Completion</a>
+                </h2>
+
+                
+                
+
+                <p>Did your script run to completion? Sure, you might log some tracebacks along the way or terminate the program early with <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exit">sys.exit()</a>. But did your script actually run completely to the end? I have yet to use the <a class="reference external" href="https://docs.python.org/3/library/trace.html">Trace module</a> but it seems worth checking out also. Visualization tools like <a class="reference external" href="https://github.com/alexmojaki/heartrate">heartrate</a> are worth mentioning too depending on how you are running your scripts. Task runners typically have run status tracking as well. I like having a visual confirmation by logging some sort of information when a script finishes as intended. It's nice to know when your scripts finished or not. Use logging and Trace to up your reliability of your scripts.</p>
+<p><strong>An easy way to track this is with the logging module:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="k">def</span> <span class="nf">improvise</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Improv Tutorial: https://www.youtube.com/watch?v=C6wY9OwqJ2A&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Boom! Detective Michael Scarn, I&#39;m with the FBI!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Error occurred during improv.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="n">FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(clientip)-15s</span><span class="s1"> </span><span class="si">%(user)-8s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;improvise.log&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">FORMAT</span><span class="p">)</span>
+<span class="n">improvise</span><span class="p">()</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Improvisation finished!&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-track-python-script-completion.html">posted at 11:49</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-scripts.html" rel="tag">coding, programming, python, Scripts</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/logging.html" class="tags">logging</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-scripts.html" class="tags">python scripts</a>
+                    &nbsp;<a href="https://lofipython.com/tag/reliability.html" class="tags">reliability</a>
+                    &nbsp;<a href="https://lofipython.com/tag/tracking.html" class="tags">tracking</a>
+                </div>
+            </article>            <h4 class="date">Dec 31, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -492,67 +546,6 @@ and GUIs programmatically.</p>
                     &nbsp;&middot;
                     &nbsp;<a href="https://lofipython.com/tag/firefox.html" class="tags">Firefox</a>
                     &nbsp;<a href="https://lofipython.com/tag/rpa.html" class="tags">RPA</a>
-                </div>
-            </article>            <h4 class="date">Jul 28, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators.html" rel="bookmark" title="Permanent Link to &quot;8 Promising Python Static Site Generators&quot;">8 Promising Python Static Site Generators</a>
-                </h2>
-
-                
-                
-
-                <p>A static site generator creates static HTML and markdown files to serve as a website. They're commonly used to host blogs but not exclusively. I recently researched my options to roll a static site in Python. I'm assessing a few of them as a potential future self-hosted blogging solution for this Wordpress blog. Or maybe I'll spin up a new one!</p>
-<blockquote>
-<p><strong>Why Statics?</strong></p>
-<p>Most &quot;modern&quot; websites are <em>dynamic</em> in the sense that the contents of the site live in a database, and are converted into presentation-ready HTML only when a user wants to see the page. That's great. However, it presents some minor issues that static site generators try to solve.</p>
-<p>In a static site, the whole site, every page, <em>everything</em>, is created before the first user even sees it and uploaded to the server as a simple folder full of HTML files (and images, CSS, etc).</p>
-<p>The Nikola Handbook - <a class="reference external" href="https://getnikola.com/handbook.html#why-static">https://getnikola.com/handbook.html#why-static</a></p>
-</blockquote>
-<div class="section" id="static-site-generator-python-libraries">
-<h2>Static Site Generator Python Libraries</h2>
-<p><em>listed in largest to smallest order by # of Github project stars</em></p>
-<p><strong>Pelican</strong> | <a class="reference external" href="https://github.com/getpelican/pelican">Github - 11K Stars</a></p>
-<p>Seems to be the front running static site generator in Python's ecosystem. It contains a convenient pelican-importer tool to import existing content from WordPress, Dotclear, or RSS feeds. Enjoying the modular nature of the <a class="reference external" href="https://github.com/pelican-plugins">pelican-plugins</a> and <a class="reference external" href="https://github.com/getpelican/pelican-themes">pelican-themes</a>!</p>
-<p><strong>Lektor</strong> | <a class="reference external" href="https://github.com/lektor/lektor">Github - 3.5K Stars</a></p>
-<p>Intriguing CMS project touting a &quot;Python API&quot;, <a class="reference external" href="https://www.getlektor.com/plugins/">plugins for tools like Webpack</a> and talented maintainers including the author of Flask.</p>
-<p><strong>Cactus</strong> | <a class="reference external" href="https://github.com/eudicots/Cactus">Github - 3.5K stars</a></p>
-<p>&quot;Simple but powerful <a class="reference external" href="http://mickgardner.com/2011/04/27/An-Introduction-To-Static-Site-Generators.html">static website generator</a> using Python and the <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/templates/">Django template system</a>... typical users would be designers that are tech-savvy, want to use templates, but don't like to mess with setting up django or S3.&quot; (Mac OS) <a class="reference external" href="https://vimeo.com/46999791">Demo Video</a></p>
-<p><strong>Nikola</strong> | <a class="reference external" href="https://github.com/getnikola/nikola">Github - 2.2K stars</a></p>
-<p>Viable option to host your site with the informative <a class="reference external" href="https://getnikola.com/handbook.html#why-static">Nikola Handbook</a> walking you through each step. <a class="reference external" href="https://plugins.getnikola.com/">Plugins</a> for <a class="reference external" href="https://plugins.getnikola.com/v7/notebook_shortcode/">Jupyter Notebooks</a>, <a class="reference external" href="https://getnikola.com/handbook.html#post-processing-filters">post processing filters</a>, a <a class="reference external" href="https://getnikola.com/handbook.html#importing-your-wordpress-site-into-nikola">Wordpress importer</a> command line tool and about <a class="reference external" href="https://themes.getnikola.com/">40 ready to go themes</a> to find the perfect style.</p>
-<p><strong>Makesite</strong> | <a class="reference external" href="https://github.com/sunainapai/makesite">Github - 1.6K Stars</a></p>
-<p>Offers less configuration, using only a single makesite.py file.</p>
-<p><strong>Hyde</strong> | <a class="reference external" href="https://github.com/hyde/hyde">Github - 1.6K stars</a></p>
-<p>Port from <a class="reference external" href="https://jekyllrb.com/">Jekyll</a>, a <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> static site generator. It has since formed its own &quot;evil twin&quot; identity.</p>
-<p><strong>Mynt</strong> | <a class="reference external" href="https://github.com/Anomareh/mynt">Github - 400 stars</a></p>
-<p>&quot;Designed to give you all the features of a CMS with none of the often rigid implementations of those features.&quot;</p>
-<p><strong>Staticjinja</strong> | <a class="reference external" href="https://github.com/staticjinja/staticjinja">Github - 250 Stars</a></p>
-<p>&quot;Minimalist Python library for building static websites with Jinja.&quot;</p>
-</div>
-<div class="section" id="additional-resources">
-<h2>Additional Resources</h2>
-<ul class="simple">
-<li><a class="reference external" href="http://PyLadies.com">PyLadies.com</a>, <a class="reference external" href="https://pyladies.com/">created with Mynt</a></li>
-<li>FullStackPython.com, <a class="reference external" href="https://github.com/mattmakai/fullstackpython.com">created with Pelican</a></li>
-<li>GetLektor.com, <a class="reference external" href="https://github.com/lektor/lektor-website">created with Lektor</a></li>
-<li><a class="reference external" href="https://github.com/gohugoio/hugo">Hugo</a>, a Go static site generator</li>
-<li><a class="reference external" href="https://solar.lowtechmagazine.com/2018/09/how-to-build-a-lowtech-website.html">How to Build a Low-tech&nbsp;Website?</a> (featuring Pelican)</li>
-<li>One convenient way to serve your static files up on the web is with a <a class="reference external" href="https://www.cloudflare.com/learning/cdn/what-is-a-cdn/#:~:text=A%20content%20delivery%20network%20(CDN,stylesheets%2C%20images%2C%20and%20videos.">CDN</a> like <a class="reference external" href="https://developers.cloudflare.com/pages/framework-guides/deploy-anything/">Cloudflare Pages</a>.</li>
-<li>You can research more projects on <a class="reference external" href="https://jamstack.org/generators/">Jamstack</a>, a site I found helpful for finding these libraries.</li>
-</ul>
-<p><strong>Update</strong>! I launched a Pelican blog about investing with Cloudflare pages. It's my first live static blog. Read more about it <a class="reference external" href="https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages/">here</a>.</p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators.html">posted at 23:31</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-web-development.html" rel="tag">coding, programming, web development</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/creating-your-own-blog.html" class="tags">creating your own blog</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/static-site-generator.html" class="tags">static site generator</a>
                 </div>
             </article>
 
