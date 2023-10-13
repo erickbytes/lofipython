@@ -122,7 +122,7 @@ You can find the actual script where I made this improvement `here on Github <ht
 
 That's how I sped up my Python CLI by 25%. This method bucks the convention of keeping your import statements at the top of your script. In my case, it's a hobby project so I feel ok with making the trade-off of less readable code for a snappier CLI experience. You could also consider using the standard library csv module instead of pandas. 
 
-**For Comparison: "import csv" pyinstrument Report**
+**For Comparison: import csv pyinstrument Report**
 
 .. image:: {static}/blog/images/test-csv-import.png
   :alt: profiling an import of the Python csv module

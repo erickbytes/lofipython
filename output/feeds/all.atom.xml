@@ -119,7 +119,7 @@ The time that the script runs fluctuates about half a second to a few seconds ba
 &amp;quot;Make it work, make it better, make it fast.&amp;quot;
 - &lt;a class="reference external" href="https://tidyfirst.substack.com/"&gt;Kent Beck&lt;/a&gt;&lt;/blockquote&gt;
 &lt;p&gt;That's how I sped up my Python CLI by 25%. This method bucks the convention of keeping your import statements at the top of your script. In my case, it's a hobby project so I feel ok with making the trade-off of less readable code for a snappier CLI experience. You could also consider using the standard library csv module instead of pandas.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;For Comparison: &amp;quot;import csv&amp;quot; pyinstrument Report&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For Comparison: import csv pyinstrument Report&lt;/strong&gt;&lt;/p&gt;
 &lt;img alt="profiling an import of the Python csv module" src="https://lofipython.com/blog/images/test-csv-import.png" /&gt;
 &lt;p&gt;I clocked the csv module import at 0.003 or three thousandths of a second with pyinstrument. That's insanely fast compared to pandas. I chose to make a quick fix by shifting the import but using the csv module could be a better long-term solution for speeding up your scripts.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Supplementary Reading&lt;/strong&gt;&lt;/p&gt;
