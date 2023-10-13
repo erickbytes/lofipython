@@ -134,4 +134,4 @@ I clocked the csv module import at 0.003 or three thousandths of a second with p
 
 `Stack Overflow Thread About Slow HTTP Requests <https://stackoverflow.com/questions/62599036/python-requests-is-slow-and-takes-very-long-to-complete-http-or-https-request>`__
 
-`An Overview of Python Profiling and Diagnostic Tools <tools-tips-to-beat-memoryerror-in-your-python-scripts>`__
+`An Overview of Python Profiling and Diagnostic Tools <https://lofipython.com/tools-tips-to-beat-memoryerror-in-your-python-scripts>`__
