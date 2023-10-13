@@ -32,12 +32,12 @@ My CLI script accepts a stock ticker as an argument. The below command fetches a
 
 **pyinstrument Results With Normal Pandas Import**
 
-GOOG, Google
+**GOOG, Google**
 
 .. image:: {static}/blog/images/goog-pandas-import.png
   :alt: profiling a Python script with pyinstrument, before with GOOG
 
-MSFT, Microsoft
+**MSFT, Microsoft**
 
 .. image:: {static}/blog/images/msft-pandas-import.png
   :alt: profiling a Python script with pyinstrument, before with MSFT
@@ -48,16 +48,14 @@ The line for the pandas module looks like this:
 
 **pyinstrument Results With Pandas Import Only If Necessary**
 
-After changing the pandas module to only import if needed, it is no longer eating almost a second of time. As a result, the script runs about second faster each time! 
+After changing the pandas module to only import if needed, it is no longer eating almost a second of time. As a result, the script runs about second faster each time! Below are the pyinstrument reports for two different stocks after changing my pandas import to only be called if it was actually used:
 
-Below are the pyinstrument reports for two different stocks after changing my pandas import to only be called if it was actually used:
-
-GOOG, Google
+**GOOG, Google**
 
 .. image:: {static}/blog/images/goog-no-pandas-import-fast.png
   :alt: profiling a Python script with pyinstrument, after with GOOG
 
-NVDA, Nvidia
+**NVDA, Nvidia**
  
 .. image:: {static}/blog/images/nvda-no-pandas-import.png
   :alt: profiling a Python script with pyinstrument, after with NVDA
