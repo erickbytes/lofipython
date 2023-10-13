@@ -60,16 +60,16 @@
 </pre>
 <p><strong>pyinstrument Results With Normal Pandas Import</strong></p>
 <p>GOOG, Google</p>
-<img alt="profiling a Python script with pyinstrument, before with GOOG" src="https://lofipython.com/blog/images/GOOG-no-pandas-import.png" />
+<img alt="profiling a Python script with pyinstrument, before with GOOG" src="https://lofipython.com/blog/images/goog-no-pandas-import.png" />
 <p>MSFT, Microsoft</p>
-<img alt="profiling a Python script with pyinstrument, before with MSFT" src="https://lofipython.com/blog/images/MSFT-pandas-import.png" />
+<img alt="profiling a Python script with pyinstrument, before with MSFT" src="https://lofipython.com/blog/images/msft-pandas-import.png" />
 <p><strong>pyinstrument Results With Pandas Import Only If Necessary</strong></p>
 <p>After changing the pandas module to only import if needed, it is no longer eating almost a second of time. As a result, the script runs about second faster each time!</p>
 <p>Below are the pyinstrument reports for two different stocks after changing my pandas import to only be called if it was actually used:</p>
 <p>GOOG, Google</p>
-<img alt="profiling a Python script with pyinstrument, after with GOOG" src="https://lofipython.com/blog/images/GOOG-no-pandas-import-fast.png" />
+<img alt="profiling a Python script with pyinstrument, after with GOOG" src="https://lofipython.com/blog/images/goog-no-pandas-import-fast.png" />
 <p>NVDA, Nvidia</p>
-<img alt="profiling a Python script with pyinstrument, after with NVDA" src="https://lofipython.com/blog/images/NVDA-no-pandas-import.png" />
+<img alt="profiling a Python script with pyinstrument, after with NVDA" src="https://lofipython.com/blog/images/nvda-no-pandas-import.png" />
 <p><strong>Sidebar: HTTP Request Volatility</strong></p>
 <blockquote>
 The time that the script runs fluctuates about half a second to a few seconds based on the HTTP get request. It lags even more if my internet connection is weaker or Yahoo throttles my request because I've made too many in a short period of time. My time savings weren't gained from tinkering with the HTTP request, even though that was a time-eater. I noticed my get request tends to fluctate quite a bit and sometimes causes an extra delay.</blockquote>

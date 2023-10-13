@@ -34,12 +34,12 @@ My CLI script accepts a stock ticker as an argument. The below command fetches a
 
 GOOG, Google
 
-.. image:: {static}/blog/images/GOOG-no-pandas-import.png
+.. image:: {static}/blog/images/goog-no-pandas-import.png
   :alt: profiling a Python script with pyinstrument, before with GOOG
 
 MSFT, Microsoft
 
-.. image:: {static}/blog/images/MSFT-pandas-import.png
+.. image:: {static}/blog/images/msft-pandas-import.png
   :alt: profiling a Python script with pyinstrument, before with MSFT
 
 
@@ -51,12 +51,12 @@ Below are the pyinstrument reports for two different stocks after changing my pa
 
 GOOG, Google
 
-.. image:: {static}/blog/images/GOOG-no-pandas-import-fast.png
+.. image:: {static}/blog/images/goog-no-pandas-import-fast.png
   :alt: profiling a Python script with pyinstrument, after with GOOG
 
 NVDA, Nvidia
  
-.. image:: {static}/blog/images/NVDA-no-pandas-import.png
+.. image:: {static}/blog/images/nvda-no-pandas-import.png
   :alt: profiling a Python script with pyinstrument, after with NVDA
   
 **Sidebar: HTTP Request Volatility**
