@@ -66,7 +66,7 @@ After changing the pandas module to only import if needed, it is no longer eatin
  
 **Simplified Python Example to Achieve Speed Gains**
 
-You can find the actual script where I made this improvement `here on Github <https://github.com/erickbytes/finsou.py/blob/main/finsou.py>`__. Below shows the method I used to achieve a faster CLI.
+Below shows the method I used to achieve a faster CLI. Heads up, this code will not work if you run it. It's only meant to explain how I my code faster. You can find the actual script where I made this improvement `here on Github <https://github.com/erickbytes/finsou.py/blob/main/finsou.py>`__. 
 
 .. code-block:: python
 
