@@ -17,9 +17,9 @@ First, I tried `cProfile <https://docs.python.org/3/library/profile.html#module-
 
    pip install pyinstrument
 
-I preferred the format in which pyinstrument presented the modules, functions and time they consumed in a tree structure. Scalene's percentage based diagnosis was useful also. Scalene showed the specific lines where code was bottlenecked, whereas pyinstrument showed the time spent in each module and function. I liked that I could see time of specific  functions from the external modules I was using with pyinstrument. For example, the beautiful soup and rich both consumed shockingly little time. However, the pandas module took a whole second.
+I preferred the format in which pyinstrument presented the modules, functions and time they consumed in a tree structure. Scalene's percentage-based diagnosis was useful also. Scalene showed the specific lines where code was bottlenecked, whereas pyinstrument showed the time spent in each module and function. I liked that I could see time of specific  functions from the external modules I was using with pyinstrument. For example, the beautiful soup and rich modules both consumed shockingly little time. However, the pandas module took a whole second.
 
-I saw that just importing the pandas module and doing nothing else was taking up to and sometimes over a second each time my CLI ran. On a script that takes about four seconds to execute, one second is 25% of the total run time! Once I realized this, I decided that I could only import the pandas module if my CLI's --csv argument was given. I was only using pandas to sort stocks and write a CSV. It wasn't critical functionality for my CLI.
+Just importing the pandas module and doing nothing else was taking up to and sometimes over a second each time my CLI ran. On a script that takes about four seconds to execute, one second is 25% of the total run time! Once I realized this, I decided to only import the pandas module if my CLI's --csv argument was given. I was only using pandas to sort stocks and write a CSV. It wasn't critical functionality for my CLI.
 
 My CLI script accepts a stock ticker as an argument. The below command fetches a stock report from Yahoo Finance and prints to the terminal. Swapping out "python" for pyinstrument runs the script and prints a pyinstrument report to your console.
 
@@ -74,7 +74,10 @@ Below shows the method I used to achieve a faster CLI. Heads up, this code will 
     from bs4 import BeautifulSoup
     from rich import print as rprint
     # Original import --> lazy import only if csv argument given: import pandas as pd
-
+    
+    def yahoo_finance_prices(url, stock):
+        return "Stonk went up."
+    
     parser = argparse.ArgumentParser(
         prog="finsou.py",
         description="Beautiful Financial Soup",
@@ -93,23 +96,6 @@ Below shows the method I used to achieve a faster CLI. Heads up, this code will 
         import pandas as pd
         cols = ["Stock", "Price_Summary", "URL", "AH_%_Change"]
         stock_prices = pd.DataFrame(prices, columns=cols)
-        stock_prices["Percent_Change"] = (
-            stock_prices["AH_%_Change"]
-            .str.replace("-", "")
-            .str.replace("%", "")
-            .str.replace("+", "")
-            .apply(lambda num: Decimal(num))
-        )
-        moving_up = stock_prices[
-            stock_prices["AH_%_Change"].str.contains("+", regex=False)
-        ].sort_values(by="Percent_Change", ascending=False)
-        flat = stock_prices[stock_prices["AH_%_Change"].str.contains("0.00", regex=False)]
-        moving_down = stock_prices[
-            stock_prices["AH_%_Change"].str.contains("-", regex=False)
-        ].sort_values(by="Percent_Change", ascending=True)
-        stock_prices = pd.concat([moving_up, flat, moving_down]).drop(
-            "Percent_Change", axis=1
-        )
         stock_prices.to_csv(args.csv, index=False)
 
 

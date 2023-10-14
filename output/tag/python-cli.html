@@ -49,8 +49,8 @@
 <pre class="code console literal-block">
 <span class="go">pip install pyinstrument</span>
 </pre>
-<p>I preferred the format in which pyinstrument presented the modules, functions and time they consumed in a tree structure. Scalene's percentage based diagnosis was useful also. Scalene showed the specific lines where code was bottlenecked, whereas pyinstrument showed the time spent in each module and function. I liked that I could see time of specific  functions from the external modules I was using with pyinstrument. For example, the beautiful soup and rich both consumed shockingly little time. However, the pandas module took a whole second.</p>
-<p>I saw that just importing the pandas module and doing nothing else was taking up to and sometimes over a second each time my CLI ran. On a script that takes about four seconds to execute, one second is 25% of the total run time! Once I realized this, I decided that I could only import the pandas module if my CLI's --csv argument was given. I was only using pandas to sort stocks and write a CSV. It wasn't critical functionality for my CLI.</p>
+<p>I preferred the format in which pyinstrument presented the modules, functions and time they consumed in a tree structure. Scalene's percentage-based diagnosis was useful also. Scalene showed the specific lines where code was bottlenecked, whereas pyinstrument showed the time spent in each module and function. I liked that I could see time of specific  functions from the external modules I was using with pyinstrument. For example, the beautiful soup and rich modules both consumed shockingly little time. However, the pandas module took a whole second.</p>
+<p>Just importing the pandas module and doing nothing else was taking up to and sometimes over a second each time my CLI ran. On a script that takes about four seconds to execute, one second is 25% of the total run time! Once I realized this, I decided to only import the pandas module if my CLI's --csv argument was given. I was only using pandas to sort stocks and write a CSV. It wasn't critical functionality for my CLI.</p>
 <p>My CLI script accepts a stock ticker as an argument. The below command fetches a stock report from Yahoo Finance and prints to the terminal. Swapping out &quot;python&quot; for pyinstrument runs the script and prints a pyinstrument report to your console.</p>
 <p><strong>Fetch a stock report from Yahoo.</strong></p>
 <pre class="code console literal-block">
@@ -101,24 +101,13 @@ The time that the script runs fluctuates about half a second to a few seconds ba
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 <span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">rprint</span>
 <span class="c1"># Original import --&gt; lazy import only if csv argument given: import pandas as pd</span>
+
+<span class="k">def</span> <span class="nf">yahoo_finance_prices</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stock</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;Stonk went up.&quot;</span>
 
 <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
     <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;finsou.py&quot;</span><span class="p">,</span>
@@ -138,23 +127,6 @@ The time that the script runs fluctuates about half a second to a few seconds ba
     <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
     <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Stock&quot;</span><span class="p">,</span> <span class="s2">&quot;Price_Summary&quot;</span><span class="p">,</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span> <span class="s2">&quot;AH_%_Change&quot;</span><span class="p">]</span>
     <span class="n">stock_prices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
-    <span class="n">stock_prices</span><span class="p">[</span><span class="s2">&quot;Percent_Change&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">stock_prices</span><span class="p">[</span><span class="s2">&quot;AH_%_Change&quot;</span><span class="p">]</span>
-        <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">num</span><span class="p">:</span> <span class="n">Decimal</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
-    <span class="p">)</span>
-    <span class="n">moving_up</span> <span class="o">=</span> <span class="n">stock_prices</span><span class="p">[</span>
-        <span class="n">stock_prices</span><span class="p">[</span><span class="s2">&quot;AH_%_Change&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Percent_Change&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">flat</span> <span class="o">=</span> <span class="n">stock_prices</span><span class="p">[</span><span class="n">stock_prices</span><span class="p">[</span><span class="s2">&quot;AH_%_Change&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;0.00&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
-    <span class="n">moving_down</span> <span class="o">=</span> <span class="n">stock_prices</span><span class="p">[</span>
-        <span class="n">stock_prices</span><span class="p">[</span><span class="s2">&quot;AH_%_Change&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Percent_Change&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">stock_prices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">moving_up</span><span class="p">,</span> <span class="n">flat</span><span class="p">,</span> <span class="n">moving_down</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
-        <span class="s2">&quot;Percent_Change&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-    <span class="p">)</span>
     <span class="n">stock_prices</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p><strong>Make It Fast</strong></p>
