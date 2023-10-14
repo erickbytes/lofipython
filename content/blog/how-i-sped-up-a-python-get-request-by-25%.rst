@@ -76,7 +76,7 @@ Below shows the method I used to achieve a faster CLI. Heads up, this code will 
     # Original import --> lazy import only if csv argument given: import pandas as pd
     
     def yahoo_finance_prices(url, stock):
-        return "Stonk went up."
+        return "Stonk went up.", "1000%"
     
     parser = argparse.ArgumentParser(
         prog="finsou.py",
