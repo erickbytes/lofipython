@@ -62,7 +62,7 @@ After changing the pandas module to only import if needed, it is no longer eatin
   
 **Sidebar: HTTP Request Volatility**
     
-    The time that the script runs fluctuates about half a second to a few seconds based on the HTTP get request. It lags even more if my internet connection is weaker or Yahoo throttles my request because I've made too many in a short period of time. My time savings weren't gained from tinkering with the HTTP request, even though that was a time-eater. I noticed my get request tends to fluctate quite a bit and sometimes causes an extra delay. 
+    The time that the script runs fluctuates about half a second to a few seconds based on the HTTP get request. It lags even more if my internet connection is weaker or Yahoo throttles my request because I've made too many in a short period of time. My time savings weren't gained from tinkering with the HTTP request, even though that was a time-eater. I noticed the requests module get request tends to fluctuate and sometimes causes an extra delay. 
  
 **Simplified Python Example to Achieve Speed Gains**
 
