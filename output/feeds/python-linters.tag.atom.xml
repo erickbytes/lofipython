@@ -4,7 +4,7 @@
 &lt;p&gt;In this post, I'll highlight the typical players and some niche linters you might not have heard of! The best quality of linters is their ability to find potential problems in your code by enforcing domain-specific rules. In return, you receive a list of hints for fixing anti-patterns, inconsistencies or unused code to remove. Many linters also offer document reformatting capabilities like the ubiquitous black library for Python code.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Python Linters and Formatters You Gotta Know&lt;/strong&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/astral-sh/ruff"&gt;ruff&lt;/a&gt;: the lean and fast linter library that's gotten a lot of people's attention. For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff has made me a more efficient Python programmer. The ruff CLI's &lt;strong&gt;--fix&lt;/strong&gt;  argument is a nice touch for automatically fixing up your code.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/astral-sh/ruff"&gt;ruff&lt;/a&gt;: the lean and fast linter library that's gotten a lot of people's attention. For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff has made me a more efficient Python programmer. The ruff CLI's &lt;strong&gt;--fix&lt;/strong&gt; argument is a nice touch for automatically fixing up your code. In addition to linting, ruff also now includes Python's fastest built-in formatter! ruff format is a high performance drop-in replacement for black.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Run ruff on your Python script for quick and easy linting.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
@@ -12,6 +12,18 @@ pip install ruff
 ruff do_stuff.py
 # Find Python code errors and fix them with ruff.
 ruff do_stuff.py --fix
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Run ruff format on your Python script for fast code formatting.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+ruff format do_stuff.py
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/black/"&gt;black&lt;/a&gt;: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors. Typically, I run it on every script I write, but might consider using ruff format instead!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Reformat your code with black.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+pip install black
+python -m black do_stuff.py
 &lt;/pre&gt;
 &lt;img alt="sqlfluff SQL linting CLI tool" src="https://lofipython.com/blog/images/sqlfluffexample.png" /&gt;
 &lt;ul class="simple"&gt;
@@ -44,14 +56,6 @@ echo '{1.2:3.4}' | python -m json.tool
 &lt;pre class="code literal-block"&gt;
 pip install pylint
 pylint do_stuff.py
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/black/"&gt;black&lt;/a&gt;: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors. I now run it on every script I write.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Reformat your code with black.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-pip install black
-python -m black do_stuff.py
 &lt;/pre&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/yamllint/"&gt;yamllint&lt;/a&gt;: YAML is unavoidable as a configration staple in tons of modern software. It gets heaps of praise for its readability. I appreciated yamllint's instrospective linter when trying to figure out why my YAML config was broken.&lt;/li&gt;

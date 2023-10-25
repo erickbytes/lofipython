@@ -13,8 +13,7 @@ In this post, I'll highlight the typical players and some niche linters you migh
 
 **Python Linters and Formatters You Gotta Know**
 
-* `ruff <https://github.com/astral-sh/ruff>`__: the lean and fast linter library that's gotten a lot of people's attention. For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff has made me a more efficient Python programmer. The ruff CLI's **--fix**  argument is a nice touch for automatically fixing up your code.
-
+* `ruff <https://github.com/astral-sh/ruff>`__: the lean and fast linter library that's gotten a lot of people's attention. For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff has made me a more efficient Python programmer. The ruff CLI's **--fix** argument is a nice touch for automatically fixing up your code. In addition to linting, ruff also now includes Python's fastest built-in formatter! ruff format is a high performance drop-in replacement for black.
 
 
 **Run ruff on your Python script for quick and easy linting.**
@@ -26,6 +25,24 @@ In this post, I'll highlight the typical players and some niche linters you migh
     # Find Python code errors and fix them with ruff.
     ruff do_stuff.py --fix
 
+
+**Run ruff format on your Python script for fast code formatting.**
+
+.. code::
+    
+    ruff format do_stuff.py
+
+
+* `black <https://pypi.org/project/black/>`__: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors. Typically, I run it on every script I write, but might consider using ruff format instead!
+
+
+**Reformat your code with black.**
+
+
+.. code:: 
+
+    pip install black
+    python -m black do_stuff.py
 
 
 .. image:: {static}/blog/images/sqlfluffexample.png
@@ -77,17 +94,6 @@ In this post, I'll highlight the typical players and some niche linters you migh
     pip install pylint
     pylint do_stuff.py
 
-
-
-* `black <https://pypi.org/project/black/>`__: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors. I now run it on every script I write.
-
-**Reformat your code with black.**
-
-
-.. code:: 
-
-    pip install black
-    python -m black do_stuff.py
 
 
 * `yamllint <https://pypi.org/project/yamllint/>`__: YAML is unavoidable as a configration staple in tons of modern software. It gets heaps of praise for its readability. I appreciated yamllint's instrospective linter when trying to figure out why my YAML config was broken. 

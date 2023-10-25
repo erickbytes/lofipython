@@ -1,5 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-10-13T17:25:00-05:00</updated><entry><title>How I Sped Up My Python CLI By 25%</title><link href="https://lofipython.com/how-i-sped-up-a-python-get-request-by-25%.html" rel="alternate"></link><published>2023-10-13T17:25:00-05:00</published><updated>2023-10-13T17:25:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-10-13:/how-i-sped-up-a-python-get-request-by-25%.html</id><summary type="html">&lt;p&gt;I recently noticed that the &lt;a class="reference external" href="https://github.com/erickbytes/finsou.py"&gt;Yahoo Finance stock summary command line interface (CLI)&lt;/a&gt; I made seemed to be slowing down. Seeking to understand what was happening in my code, I remembered Python has multiple profilers available like Scalene, line_profiler, cProfile and pyinstrument. In this case, I was running my code …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I recently noticed that the &lt;a class="reference external" href="https://github.com/erickbytes/finsou.py"&gt;Yahoo Finance stock summary command line interface (CLI)&lt;/a&gt; I made seemed to be slowing down. Seeking to understand what was happening in my code, I remembered Python has multiple profilers available like Scalene, line_profiler, cProfile and pyinstrument. In this case, I was running my code on Python version 3.11.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-10-25T15:42:00-05:00</updated><entry><title>Formatting URL Arguments in Python</title><link href="https://lofipython.com/formatting-url-arguments-in-python.html" rel="alternate"></link><published>2023-10-25T15:42:00-05:00</published><updated>2023-10-25T15:42:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-10-25:/formatting-url-arguments-in-python.html</id><summary type="html">&lt;p&gt;When I first started working with APIs, I had a bad habit of passing URL arguments
+as one long ugly string. Anything longer than 79 characters violates PEP-8.
+It's also hard to read and can be difficult to edit the code in your text editor if the URL is trailing …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When I first started working with APIs, I had a bad habit of passing URL arguments
+as one long ugly string. Anything longer than 79 characters violates PEP-8.
+It's also hard to read and can be difficult to edit the code in your text editor if the URL is trailing off the screen.
+In this post, you'll find some alternatives to the primitive &amp;quot;long ugly string&amp;quot; approach.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;strong&gt;Did you know?&lt;/strong&gt; URL stands for &amp;quot;uniform resource locator&amp;quot;.&lt;/blockquote&gt;
+&lt;p&gt;Below are two ways to neatly format your URLs so that they have parameters.
+Both involve using a Python dictionary. The requests API allows you to pass
+a dictionary or list of tuples to its params argument. Alternatively, if you want
+to see the full URL as a string, there's a sleek way to format URL arguments
+with urllib's &lt;a class="reference external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode"&gt;urlencode function&lt;/a&gt;.&lt;/p&gt;
+&lt;img alt="a visual breakdown of a url with parameters" src="https://lofipython.com/blog/images/url-structure.png" /&gt;
+&lt;p&gt;source: &lt;a class="reference external" href="https://www.geeksforgeeks.org/how-to-handle-missing-parameters-in-url-with-flask/"&gt;Geeks for Geeks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pass a dictionary to the requests params argument to include URL arguments.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+You often want to send some sort of data in the URL’s query string.
+If you were constructing the URL by hand, this data would be given as key/value pairs
+in the URL after a question mark, e.g. httpbin.org/get?key=val.
+Requests allows you to provide these arguments as a dictionary of strings, using the params keyword argument.
+- requests documentation, &lt;a class="reference external" href="https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls"&gt;Passing Parameters in URLs&lt;/a&gt;&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;
+&lt;span class="normal"&gt;8&lt;/span&gt;
+&lt;span class="normal"&gt;9&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+
+&lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;example@example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;This email is not real.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;status&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;inactive&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://httpbin.org/get&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Use urllib's urlencode function to dynamically construct URL from a dictionary.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;urllib.parse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;
+
+&lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;example@example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;This email is not real.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;status&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;inactive&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;# Returns str of URL encoded parameters.&lt;/span&gt;
+&lt;span class="n"&gt;url_parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;gt;&amp;gt;&amp;gt; url_parameters&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;quot;email=example%40example.com&amp;amp;message=This+email+is+not+real.&amp;amp;status=inactive&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://httpbin.org/get?&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;url_parameters&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Arguments can be a good thing.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This seemingly basic HTTP formatting was something that took me too long to realize.
+I hope it helps you keep your URLs tidy and your HTTP requests more readable.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Read More About URL Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls"&gt;Passing Parameters in URLS, requests Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/urllib.request.html#urllib-examples"&gt;urllib Examples, Python Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://requests.readthedocs.io/en/latest/api/#requests.request"&gt;requests API Documentation Reference&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/1233539/python-dictionary-to-url-parameters"&gt;Stack Overflow, Python Dictionary to URL Parameters&lt;/a&gt;&lt;/p&gt;
+</content><category term="http, urls, python, requests"></category><category term="url formatting"></category><category term="working with urls in APIs"></category><category term="python http url formatting"></category><category term="python url parameters"></category><category term="format python url arguments"></category></entry><entry><title>How I Sped Up My Python CLI By 25%</title><link href="https://lofipython.com/how-i-sped-up-a-python-get-request-by-25%.html" rel="alternate"></link><published>2023-10-13T17:25:00-05:00</published><updated>2023-10-13T17:25:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-10-13:/how-i-sped-up-a-python-get-request-by-25%.html</id><summary type="html">&lt;p&gt;I recently noticed that the &lt;a class="reference external" href="https://github.com/erickbytes/finsou.py"&gt;Yahoo Finance stock summary command line interface (CLI)&lt;/a&gt; I made seemed to be slowing down. Seeking to understand what was happening in my code, I remembered Python has multiple profilers available like Scalene, line_profiler, cProfile and pyinstrument. In this case, I was running my code …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I recently noticed that the &lt;a class="reference external" href="https://github.com/erickbytes/finsou.py"&gt;Yahoo Finance stock summary command line interface (CLI)&lt;/a&gt; I made seemed to be slowing down. Seeking to understand what was happening in my code, I remembered Python has multiple profilers available like Scalene, line_profiler, cProfile and pyinstrument. In this case, I was running my code on Python version 3.11.&lt;/p&gt;
 &lt;p&gt;First, I tried &lt;a class="reference external" href="https://docs.python.org/3/library/profile.html#module-cProfile"&gt;cProfile&lt;/a&gt; from the Python standard library. It is nice to have without any install required! However, I found its output to be tough to interpret. I also remembered I liked a &lt;a class="reference external" href="https://www.youtube.com/watch?v=5iEf-_7mM1k"&gt;talk I saw about Scalene&lt;/a&gt;, which gave a thorough overview of several Python profilers and how they're different. So next, I tried Scalene. Finally, I found pyinstrument and can safely say it is now my favorite Python profiler. This post will focus on how I used &lt;a class="reference external" href="https://pyinstrument.readthedocs.io/en/latest/guide.html"&gt;pyinstrument&lt;/a&gt; to make my command line tool faster.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Install pyinstrument with pip&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -893,7 +972,7 @@ to macOS framework and universal builds.  Refer to &lt;a class="reference extern
 &lt;p&gt;In this post, I'll highlight the typical players and some niche linters you might not have heard of! The best quality of linters is their ability to find potential problems in your code by enforcing domain-specific rules. In return, you receive a list of hints for fixing anti-patterns, inconsistencies or unused code to remove. Many linters also offer document reformatting capabilities like the ubiquitous black library for Python code.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Python Linters and Formatters You Gotta Know&lt;/strong&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/astral-sh/ruff"&gt;ruff&lt;/a&gt;: the lean and fast linter library that's gotten a lot of people's attention. For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff has made me a more efficient Python programmer. The ruff CLI's &lt;strong&gt;--fix&lt;/strong&gt;  argument is a nice touch for automatically fixing up your code.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/astral-sh/ruff"&gt;ruff&lt;/a&gt;: the lean and fast linter library that's gotten a lot of people's attention. For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff has made me a more efficient Python programmer. The ruff CLI's &lt;strong&gt;--fix&lt;/strong&gt; argument is a nice touch for automatically fixing up your code. In addition to linting, ruff also now includes Python's fastest built-in formatter! ruff format is a high performance drop-in replacement for black.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Run ruff on your Python script for quick and easy linting.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
@@ -901,6 +980,18 @@ pip install ruff
 ruff do_stuff.py
 # Find Python code errors and fix them with ruff.
 ruff do_stuff.py --fix
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Run ruff format on your Python script for fast code formatting.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+ruff format do_stuff.py
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/black/"&gt;black&lt;/a&gt;: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors. Typically, I run it on every script I write, but might consider using ruff format instead!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Reformat your code with black.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+pip install black
+python -m black do_stuff.py
 &lt;/pre&gt;
 &lt;img alt="sqlfluff SQL linting CLI tool" src="https://lofipython.com/blog/images/sqlfluffexample.png" /&gt;
 &lt;ul class="simple"&gt;
@@ -933,14 +1024,6 @@ echo '{1.2:3.4}' | python -m json.tool
 &lt;pre class="code literal-block"&gt;
 pip install pylint
 pylint do_stuff.py
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/black/"&gt;black&lt;/a&gt;: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors. I now run it on every script I write.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Reformat your code with black.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-pip install black
-python -m black do_stuff.py
 &lt;/pre&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/yamllint/"&gt;yamllint&lt;/a&gt;: YAML is unavoidable as a configration staple in tons of modern software. It gets heaps of praise for its readability. I appreciated yamllint's instrospective linter when trying to figure out why my YAML config was broken.&lt;/li&gt;

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - url formatting</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/url-formatting.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-10-25T15:42:00-05:00</updated><entry><title>Formatting URL Arguments in Python</title><link href="https://lofipython.com/formatting-url-arguments-in-python.html" rel="alternate"></link><published>2023-10-25T15:42:00-05:00</published><updated>2023-10-25T15:42:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-10-25:/formatting-url-arguments-in-python.html</id><summary type="html">&lt;p&gt;When I first started working with APIs, I had a bad habit of passing URL arguments
+as one long ugly string. Anything longer than 79 characters violates PEP-8.
+It's also hard to read and can be difficult to edit the code in your text editor if the URL is trailing …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When I first started working with APIs, I had a bad habit of passing URL arguments
+as one long ugly string. Anything longer than 79 characters violates PEP-8.
+It's also hard to read and can be difficult to edit the code in your text editor if the URL is trailing off the screen.
+In this post, you'll find some alternatives to the primitive &amp;quot;long ugly string&amp;quot; approach.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;strong&gt;Did you know?&lt;/strong&gt; URL stands for &amp;quot;uniform resource locator&amp;quot;.&lt;/blockquote&gt;
+&lt;p&gt;Below are two ways to neatly format your URLs so that they have parameters.
+Both involve using a Python dictionary. The requests API allows you to pass
+a dictionary or list of tuples to its params argument. Alternatively, if you want
+to see the full URL as a string, there's a sleek way to format URL arguments
+with urllib's &lt;a class="reference external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode"&gt;urlencode function&lt;/a&gt;.&lt;/p&gt;
+&lt;img alt="a visual breakdown of a url with parameters" src="https://lofipython.com/blog/images/url-structure.png" /&gt;
+&lt;p&gt;source: &lt;a class="reference external" href="https://www.geeksforgeeks.org/how-to-handle-missing-parameters-in-url-with-flask/"&gt;Geeks for Geeks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pass a dictionary to the requests params argument to include URL arguments.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+You often want to send some sort of data in the URL’s query string.
+If you were constructing the URL by hand, this data would be given as key/value pairs
+in the URL after a question mark, e.g. httpbin.org/get?key=val.
+Requests allows you to provide these arguments as a dictionary of strings, using the params keyword argument.
+- requests documentation, &lt;a class="reference external" href="https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls"&gt;Passing Parameters in URLs&lt;/a&gt;&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;
+&lt;span class="normal"&gt;8&lt;/span&gt;
+&lt;span class="normal"&gt;9&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+
+&lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;example@example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;This email is not real.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;status&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;inactive&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://httpbin.org/get&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Use urllib's urlencode function to dynamically construct URL from a dictionary.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;urllib.parse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;
+
+&lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;example@example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;This email is not real.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;status&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;inactive&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;# Returns str of URL encoded parameters.&lt;/span&gt;
+&lt;span class="n"&gt;url_parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;gt;&amp;gt;&amp;gt; url_parameters&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;quot;email=example%40example.com&amp;amp;message=This+email+is+not+real.&amp;amp;status=inactive&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://httpbin.org/get?&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;url_parameters&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Arguments can be a good thing.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This seemingly basic HTTP formatting was something that took me too long to realize.
+I hope it helps you keep your URLs tidy and your HTTP requests more readable.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Read More About URL Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls"&gt;Passing Parameters in URLS, requests Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/urllib.request.html#urllib-examples"&gt;urllib Examples, Python Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://requests.readthedocs.io/en/latest/api/#requests.request"&gt;requests API Documentation Reference&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/1233539/python-dictionary-to-url-parameters"&gt;Stack Overflow, Python Dictionary to URL Parameters&lt;/a&gt;&lt;/p&gt;
+</content><category term="http, urls, python, requests"></category><category term="url formatting"></category><category term="working with urls in APIs"></category><category term="python http url formatting"></category><category term="python url parameters"></category><category term="format python url arguments"></category></entry></feed>

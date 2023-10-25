@@ -33,7 +33,107 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Oct 13, 2023</h4>
+        <div id="content">            <h4 class="date">Oct 25, 2023</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/formatting-url-arguments-in-python.html" rel="bookmark" title="Permanent Link to &quot;Formatting URL Arguments in Python&quot;">Formatting URL Arguments in Python</a>
+                </h2>
+
+                
+                
+
+                <p>When I first started working with APIs, I had a bad habit of passing URL arguments
+as one long ugly string. Anything longer than 79 characters violates PEP-8.
+It's also hard to read and can be difficult to edit the code in your text editor if the URL is trailing off the screen.
+In this post, you'll find some alternatives to the primitive &quot;long ugly string&quot; approach.</p>
+<blockquote>
+<strong>Did you know?</strong> URL stands for &quot;uniform resource locator&quot;.</blockquote>
+<p>Below are two ways to neatly format your URLs so that they have parameters.
+Both involve using a Python dictionary. The requests API allows you to pass
+a dictionary or list of tuples to its params argument. Alternatively, if you want
+to see the full URL as a string, there's a sleek way to format URL arguments
+with urllib's <a class="reference external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode">urlencode function</a>.</p>
+<img alt="a visual breakdown of a url with parameters" src="https://lofipython.com/blog/images/url-structure.png" />
+<p>source: <a class="reference external" href="https://www.geeksforgeeks.org/how-to-handle-missing-parameters-in-url-with-flask/">Geeks for Geeks</a>.</p>
+<p><strong>Pass a dictionary to the requests params argument to include URL arguments.</strong></p>
+<blockquote>
+You often want to send some sort of data in the URL’s query string.
+If you were constructing the URL by hand, this data would be given as key/value pairs
+in the URL after a question mark, e.g. httpbin.org/get?key=val.
+Requests allows you to provide these arguments as a dictionary of strings, using the params keyword argument.
+- requests documentation, <a class="reference external" href="https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls">Passing Parameters in URLs</a></blockquote>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;example@example.com&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;This email is not real.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;inactive&quot;</span>
+<span class="p">}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://httpbin.org/get&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Use urllib's urlencode function to dynamically construct URL from a dictionary.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;example@example.com&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;This email is not real.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;inactive&quot;</span>
+<span class="p">}</span>
+<span class="c1"># Returns str of URL encoded parameters.</span>
+<span class="n">url_parameters</span> <span class="o">=</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; url_parameters</span>
+<span class="c1"># &quot;email=example%40example.com&amp;message=This+email+is+not+real.&amp;status=inactive&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://httpbin.org/get?</span><span class="si">{</span><span class="n">url_parameters</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Arguments can be a good thing.</strong></p>
+<p>This seemingly basic HTTP formatting was something that took me too long to realize.
+I hope it helps you keep your URLs tidy and your HTTP requests more readable.</p>
+<p><strong>Read More About URL Parameters</strong></p>
+<p><a class="reference external" href="https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls">Passing Parameters in URLS, requests Documentation</a></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/urllib.request.html#urllib-examples">urllib Examples, Python Documentation</a></p>
+<p><a class="reference external" href="https://requests.readthedocs.io/en/latest/api/#requests.request">requests API Documentation Reference</a></p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/1233539/python-dictionary-to-url-parameters">Stack Overflow, Python Dictionary to URL Parameters</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/formatting-url-arguments-in-python.html">posted at 15:42</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/http-urls-python-requests.html" rel="tag">http, urls, python, requests</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/url-formatting.html" class="tags">url formatting</a>
+                    &nbsp;<a href="https://lofipython.com/tag/working-with-urls-in-apis.html" class="tags">working with urls in APIs</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-http-url-formatting.html" class="tags">python http url formatting</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-url-parameters.html" class="tags">python url parameters</a>
+                    &nbsp;<a href="https://lofipython.com/tag/format-python-url-arguments.html" class="tags">format python url arguments</a>
+                </div>
+            </article>            <h4 class="date">Oct 13, 2023</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1088,7 +1188,7 @@ to macOS framework and universal builds.  Refer to <a class="reference external"
 <p>In this post, I'll highlight the typical players and some niche linters you might not have heard of! The best quality of linters is their ability to find potential problems in your code by enforcing domain-specific rules. In return, you receive a list of hints for fixing anti-patterns, inconsistencies or unused code to remove. Many linters also offer document reformatting capabilities like the ubiquitous black library for Python code.</p>
 <p><strong>Python Linters and Formatters You Gotta Know</strong></p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/astral-sh/ruff">ruff</a>: the lean and fast linter library that's gotten a lot of people's attention. For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff has made me a more efficient Python programmer. The ruff CLI's <strong>--fix</strong>  argument is a nice touch for automatically fixing up your code.</li>
+<li><a class="reference external" href="https://github.com/astral-sh/ruff">ruff</a>: the lean and fast linter library that's gotten a lot of people's attention. For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff has made me a more efficient Python programmer. The ruff CLI's <strong>--fix</strong> argument is a nice touch for automatically fixing up your code. In addition to linting, ruff also now includes Python's fastest built-in formatter! ruff format is a high performance drop-in replacement for black.</li>
 </ul>
 <p><strong>Run ruff on your Python script for quick and easy linting.</strong></p>
 <pre class="code literal-block">
@@ -1096,6 +1196,18 @@ pip install ruff
 ruff do_stuff.py
 # Find Python code errors and fix them with ruff.
 ruff do_stuff.py --fix
+</pre>
+<p><strong>Run ruff format on your Python script for fast code formatting.</strong></p>
+<pre class="code literal-block">
+ruff format do_stuff.py
+</pre>
+<ul class="simple">
+<li><a class="reference external" href="https://pypi.org/project/black/">black</a>: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors. Typically, I run it on every script I write, but might consider using ruff format instead!</li>
+</ul>
+<p><strong>Reformat your code with black.</strong></p>
+<pre class="code literal-block">
+pip install black
+python -m black do_stuff.py
 </pre>
 <img alt="sqlfluff SQL linting CLI tool" src="https://lofipython.com/blog/images/sqlfluffexample.png" />
 <ul class="simple">
@@ -1128,14 +1240,6 @@ echo '{1.2:3.4}' | python -m json.tool
 <pre class="code literal-block">
 pip install pylint
 pylint do_stuff.py
-</pre>
-<ul class="simple">
-<li><a class="reference external" href="https://pypi.org/project/black/">black</a>: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors. I now run it on every script I write.</li>
-</ul>
-<p><strong>Reformat your code with black.</strong></p>
-<pre class="code literal-block">
-pip install black
-python -m black do_stuff.py
 </pre>
 <ul class="simple">
 <li><a class="reference external" href="https://pypi.org/project/yamllint/">yamllint</a>: YAML is unavoidable as a configration staple in tons of modern software. It gets heaps of praise for its readability. I appreciated yamllint's instrospective linter when trying to figure out why my YAML config was broken.</li>
@@ -1187,58 +1291,16 @@ html_lint.py filename.html
                     &nbsp;<a href="https://lofipython.com/tag/html-linter.html" class="tags">HTML linter</a>
                     &nbsp;<a href="https://lofipython.com/tag/markdown-linter.html" class="tags">Markdown linter</a>
                 </div>
-            </article>            <h4 class="date">Jul 09, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/15-Cloudflare-Pages-Free-Plan-Features.html" rel="bookmark" title="Permanent Link to &quot;15 Cloudflare Pages Free Plan Features&quot;">15 Cloudflare Pages Free Plan Features</a>
-                </h2>
-
-                
-                
-
-                <p>Recently, this blog switched to <a class="reference external" href="https://pages.cloudflare.com/">Cloudflare Pages</a> after years of hosting on WordPress. I'm now using the free plan and enjoying the various settings that allow you control aspects of security at a level not found in WordPress.</p>
-<p>For example, you can activate the &quot;bot fight mode&quot;, &quot;browser integrity check&quot; and &quot;user agent blocking&quot; settings to help you fend off bad actors.</p>
-<img alt="enable bot fight mode" src="https://lofipython.com/blog/images/botfightmode.png" />
-<p>Enable bot fight mode.</p>
-<img alt="run a speed test on your blog" src="https://lofipython.com/blog/images/speedtest.png" />
-<p>Run a speed test on your blog.</p>
-<img alt="enable crawler hints" src="https://lofipython.com/blog/images/crawlerhints.png" />
-<p>Turn on search engine hints.</p>
-<img alt="see crawler traffic" src="https://lofipython.com/blog/images/topcrawlers.png" />
-<p>See which search engines are crawling your blog.</p>
-<p><strong>Here are my top Cloudflare Pages features:</strong></p>
-<ol class="arabic simple">
-<li>Zone analytics: the primary analytics to view unique visitors count, requests, bandwidth and network error logging</li>
-<li><a class="reference external" href="https://developers.cloudflare.com/cache/advanced-configuration/crawler-hints/">crawler hints</a>: turn on hints to search engine crawlers and avoid wasteful compute</li>
-<li><a class="reference external" href="https://developers.cloudflare.com/support/firewall/learn-more/understanding-cloudflare-tor-support-and-onion-routing/#onion-routing">bot fight mode</a>: enabling this mode will stop malicious bots</li>
-<li>security center scan: validates your DNS configuration and tells you if anything needs fixed</li>
-<li>run a speed test: test your site's speed</li>
-<li>enable IP geolocation: includes the country code for each blog visitor</li>
-<li>GraphQL API: extensible analytics HTTP API</li>
-<li>AMP real url: ask Google to show your site's actual url in AMP</li>
-<li>notifications: set email alerts to monitor your website</li>
-<li>security events log: monitor managed challenges and bots</li>
-<li><a class="reference external" href="https://developers.cloudflare.com/fundamentals/security/browser-integrity-check/">browser integrity check</a>: looks for common http headers abused by spammers</li>
-<li>user agent blocking: blocks users with malicious user agent</li>
-<li><a class="reference external" href="0-RTTConnectionResumption">0-RTT Connection Resumption</a>: enable &quot;0-Round Trip Time&quot;, optimized DNS for your blog</li>
-<li>DNS Analytics: see DNS traffic visualizations</li>
-<li><a class="reference external" href="https://developers.cloudflare.com/support/firewall/learn-more/understanding-cloudflare-tor-support-and-onion-routing/#onion-routing">Onion Routing</a>: serve your website's content in a tor-friendly way</li>
-</ol>
-<p>These are all included in the free plan. Some are enabled out of the box and others need to be toggled on to activate. I'm really digging my two Cloudflare Pages blogs. It's taken some time to get used to writing in <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText format</a>. Using pelican for static site generation is working well.</p>
-<p>One quirk of Cloudflare is that only the past 30 days of data is stored. It's not as convenient as Wordpress, which stores the entire analytics history of a blog's traffic. However, Cloudflare's GraphQL API is also an option for your data querying needs. Regardless, I'm very impressed at the level of configuration Cloudflare exposes out of the box!</p>
+            </article>
 
                 <div class="clear"></div>
+                <div class="pages">
 
-                <div class="info">
-                    <a href="https://lofipython.com/15-Cloudflare-Pages-Free-Plan-Features.html">posted at 21:16</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-blogging-web-hosting.html" rel="tag">coding, programming, blogging, web hosting</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/cloudflare-pages-blog.html" class="tags">Cloudflare Pages blog</a>
-                    &nbsp;<a href="https://lofipython.com/tag/best-cloudflare-website-features.html" class="tags">best Cloudflare website features</a>
-                    &nbsp;<a href="https://lofipython.com/tag/cloudflare-blog-hosting-features.html" class="tags">Cloudflare blog hosting features</a>
+
+                    <a href="https://lofipython.com/author/lofipython2.html" class="next_page">Next&nbsp;&rarr;</a>
+
+                    <span>Page 1 of 2</span>
                 </div>
-            </article>
 
             <div class="clear"></div>
             <footer>
