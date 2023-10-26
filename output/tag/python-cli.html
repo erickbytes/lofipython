@@ -28,7 +28,7 @@
         </nav>
         <div class="header_box" style="height: 50px">
         <h1><a href="https://lofipython.com/">
-            <image src='blog/images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
             </a></h1></div>
         </div>
     </header>
@@ -58,18 +58,18 @@
 </pre>
 <p><strong>pyinstrument Results With Normal Pandas Import</strong></p>
 <p><strong>GOOG, Google</strong></p>
-<img alt="profiling a Python script with pyinstrument, before with GOOG" src="https://lofipython.com/blog/images/goog-pandas-import.png" />
+<img alt="profiling a Python script with pyinstrument, before with GOOG" src="https://lofipython.com/images/goog-pandas-import.png" />
 <p><strong>MSFT, Microsoft</strong></p>
-<img alt="profiling a Python script with pyinstrument, before with MSFT" src="https://lofipython.com/blog/images/msft-pandas-import.png" />
+<img alt="profiling a Python script with pyinstrument, before with MSFT" src="https://lofipython.com/images/msft-pandas-import.png" />
 <p>The line for the pandas module looks like this:</p>
 <blockquote>
 0.946 &lt;module&gt;  pandas/__init__.py:1</blockquote>
 <p><strong>pyinstrument Results With Pandas Import Only If Necessary</strong></p>
 <p>After changing the pandas module to only import if needed, it is no longer eating almost a second of time. As a result, the script runs about second faster each time! Below are the pyinstrument reports for two different stocks after changing my pandas import to only be called if it was actually used:</p>
 <p><strong>GOOG, Google</strong></p>
-<img alt="profiling a Python script with pyinstrument, after with GOOG" src="https://lofipython.com/blog/images/goog-no-pandas-import-fast.png" />
+<img alt="profiling a Python script with pyinstrument, after with GOOG" src="https://lofipython.com/images/goog-no-pandas-import-fast.png" />
 <p><strong>NVDA, Nvidia</strong></p>
-<img alt="profiling a Python script with pyinstrument, after with NVDA" src="https://lofipython.com/blog/images/nvda-no-pandas-import.png" />
+<img alt="profiling a Python script with pyinstrument, after with NVDA" src="https://lofipython.com/images/nvda-no-pandas-import.png" />
 <p><strong>Sidebar: HTTP Request Volatility</strong></p>
 <blockquote>
 The time that the script runs fluctuates about half a second to a few seconds based on the HTTP get request. It lags even more if my internet connection is weaker or Yahoo throttles my request because I've made too many in a short period of time. My time savings weren't gained from tinkering with the HTTP request, even though that was a time-eater. I noticed the requests module get request tends to fluctuate and sometimes causes an extra delay.</blockquote>
@@ -135,7 +135,7 @@ The time that the script runs fluctuates about half a second to a few seconds ba
 - <a class="reference external" href="https://tidyfirst.substack.com/">Kent Beck</a></blockquote>
 <p>That's how I sped up my Python CLI by 25%. This method bucks the convention of keeping your import statements at the top of your script. In my case, it's a hobby project so I feel ok with making the trade-off of less readable code for a snappier CLI experience. You could also consider using the standard library csv module instead of pandas.</p>
 <p><strong>For Comparison, An import csv pyinstrument Report</strong></p>
-<img alt="profiling an import of the Python csv module" src="https://lofipython.com/blog/images/csv-module-import.png" />
+<img alt="profiling an import of the Python csv module" src="https://lofipython.com/images/csv-module-import.png" />
 <p>I clocked the csv module import at 0.003 or three thousandths of a second with pyinstrument. That's insanely fast compared to pandas. I chose to make a quick fix by shifting the import but using the csv module could be a better long-term solution for speeding up your scripts.</p>
 <p><strong>Supplementary Reading</strong></p>
 <p><a class="reference external" href="https://lofipython.com/making-a-yahoo-stock-price-summary-cli-with-python">Making a Yahoo Stock Price CLI With Python</a></p>
@@ -197,7 +197,7 @@ pip install tqdm</span>
 <span class="gp"># </span>Print<span class="w"> </span>a<span class="w"> </span>daily<span class="w"> </span>stock<span class="w"> </span>summary<span class="w"> </span><span class="k">for</span><span class="w"> </span>Virgin<span class="w"> </span>Galactic<span class="w"> </span><span class="o">(</span>SPCE<span class="o">)</span>.<span class="w">
 </span><span class="go">python finsou.py -s SPCE</span>
 </pre>
-<img alt="example stock summary report" src="https://lofipython.com/blog/images/finsoupy-stock-summary.png" />
+<img alt="example stock summary report" src="https://lofipython.com/images/finsoupy-stock-summary.png" />
 <p><strong>Fetch a stock summary for multiple companies.</strong></p>
 <pre class="code console literal-block">
 <span class="gp"># </span>Summarize<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>stocks.<span class="w">

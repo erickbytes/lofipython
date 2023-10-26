@@ -18,7 +18,7 @@ Most text editors can open files from a computer's command line shell. Here are 
    idle file.py
 
 
-.. image:: {static}/blog/images/idlecli.png
+.. image:: {static}/images/idlecli.png
   :alt: CLI help options for Python's IDLE text editor
 
 image source: `IDLE documentation <https://docs.python.org/3/library/idle.html#startup-and-code-execution>`__
@@ -31,7 +31,7 @@ image source: `IDLE documentation <https://docs.python.org/3/library/idle.html#s
    subl template.rst
 
 
-.. image:: {static}/blog/images/sublimeeditorexample.png
+.. image:: {static}/images/sublimeeditorexample.png
   :alt: using subl CLI to open files in Sublime
 
 

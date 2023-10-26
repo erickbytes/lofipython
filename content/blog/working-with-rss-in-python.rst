@@ -24,7 +24,7 @@ Some say with the rise of social media and email newsletters, RSS is not worth t
 You'll often hear the term "aggregator" or "reader" when dealing with RSS, which both mean "tool that collects multiple RSS feeds into single readable format". There are plenty of free RSS reader websites to keep up with new material from your favorite websites. Currently, I use `Feeder <https://feeder.co>`__ to keep up with the blogs I follow. Their free plan allows you to follow up to 200 RSS feeds for free. `Feedly <https://feedly.com>`__ is a commonly suggested RSS reader also. 
  
 
-.. image:: {static}/blog/images/rssicon.png
+.. image:: {static}/images/rssicon.png
   :alt: RSS icon
 
 

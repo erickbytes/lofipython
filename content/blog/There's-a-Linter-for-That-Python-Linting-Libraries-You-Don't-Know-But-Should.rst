@@ -45,7 +45,7 @@ In this post, I'll highlight the typical players and some niche linters you migh
     python -m black do_stuff.py
 
 
-.. image:: {static}/blog/images/sqlfluffexample.png
+.. image:: {static}/images/sqlfluffexample.png
   :alt: sqlfluff SQL linting CLI tool
 
 
@@ -110,7 +110,7 @@ In this post, I'll highlight the typical players and some niche linters you migh
 
 
 
-.. image:: {static}/blog/images/yamllintexample.png
+.. image:: {static}/images/yamllintexample.png
   :alt: yamllint YAML linting CLI tool
 
 

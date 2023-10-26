@@ -111,7 +111,7 @@ Searching the internet, FC Python was the first thing I saw. They have some `fre
     plt.show()
 
 
-.. image:: {static}/blog/images/pitchheatmap.png
+.. image:: {static}/images/pitchheatmap.png
   :alt: Analyzing football with Python
 
 

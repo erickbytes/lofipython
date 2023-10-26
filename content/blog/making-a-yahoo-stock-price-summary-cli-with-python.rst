@@ -48,7 +48,7 @@ The CLI currently works after the US stock market has closed normal market hours
     python finsou.py -s SPCE
 
 
-.. image:: {static}/blog/images/finsoupy-stock-summary.png
+.. image:: {static}/images/finsoupy-stock-summary.png
   :alt: example stock summary report
 
 **Fetch a stock summary for multiple companies.**

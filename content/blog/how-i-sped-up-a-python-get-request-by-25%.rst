@@ -34,12 +34,12 @@ My CLI script accepts a stock ticker as an argument. The below command fetches a
 
 **GOOG, Google**
 
-.. image:: {static}/blog/images/goog-pandas-import.png
+.. image:: {static}/images/goog-pandas-import.png
   :alt: profiling a Python script with pyinstrument, before with GOOG
 
 **MSFT, Microsoft**
 
-.. image:: {static}/blog/images/msft-pandas-import.png
+.. image:: {static}/images/msft-pandas-import.png
   :alt: profiling a Python script with pyinstrument, before with MSFT
 
 The line for the pandas module looks like this:
@@ -52,12 +52,12 @@ After changing the pandas module to only import if needed, it is no longer eatin
 
 **GOOG, Google**
 
-.. image:: {static}/blog/images/goog-no-pandas-import-fast.png
+.. image:: {static}/images/goog-no-pandas-import-fast.png
   :alt: profiling a Python script with pyinstrument, after with GOOG
 
 **NVDA, Nvidia**
  
-.. image:: {static}/blog/images/nvda-no-pandas-import.png
+.. image:: {static}/images/nvda-no-pandas-import.png
   :alt: profiling a Python script with pyinstrument, after with NVDA
   
 **Sidebar: HTTP Request Volatility**
@@ -108,7 +108,7 @@ That's how I sped up my Python CLI by 25%. This method bucks the convention of k
 
 **For Comparison, An import csv pyinstrument Report**
 
-.. image:: {static}/blog/images/csv-module-import.png
+.. image:: {static}/images/csv-module-import.png
   :alt: profiling an import of the Python csv module
 
 I clocked the csv module import at 0.003 or three thousandths of a second with pyinstrument. That's insanely fast compared to pandas. I chose to make a quick fix by shifting the import but using the csv module could be a better long-term solution for speeding up your scripts.

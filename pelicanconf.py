@@ -4,7 +4,7 @@ SITEURL = "https://lofipython.com"
 PATH = "content"
 TIMEZONE = "America/Chicago"
 DEFAULT_LANG = "en"
-SITELOGO = "blog/images/python-powered-h-140x182.png"
+SITELOGO = "images/python-powered-h-140x182.png"
 # Feed generation is usually not desired when developing
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
@@ -22,8 +22,8 @@ MENUITEMS = [
 DEFAULT_PAGINATION = 10
 THEME = "blue-penguin-dark"
 GITHUB_URL = "https://github.com/erickbytes/lofipython.com"
-STATIC_PATHS = ["blog", "theme", "static", "extra", "blog/images"]
-ARTICLE_PATHS = ["blog", "theme", "static", "extra", "blog/images"]
+STATIC_PATHS = ["blog", "theme", "static", "extra", "images"]
+ARTICLE_PATHS = ["blog", "theme", "static", "extra", "images"]
 EXTRA_PATH_METADATA = {
     "extra/robots.txt": {"path": "robots.txt"},
     "extra/favicon.ico": {"path": "favicon.ico"},

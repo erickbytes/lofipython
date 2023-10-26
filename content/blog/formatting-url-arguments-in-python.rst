@@ -20,7 +20,7 @@ a dictionary or list of tuples to its params argument. Alternatively, if you wan
 to see the full URL as a string, there's a sleek way to format URL arguments
 with urllib's `urlencode function <https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode>`__.
 
-.. image:: {static}/blog/images/url-structure.png
+.. image:: {static}/images/url-structure.png
   :alt: a visual breakdown of a url with parameters
 
 source: `Geeks for Geeks <https://www.geeksforgeeks.org/how-to-handle-missing-parameters-in-url-with-flask/>`__.

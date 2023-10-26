@@ -26,7 +26,7 @@
         </nav>
         <div class="header_box" style="height: 50px">
         <h1><a href="https://lofipython.com/">
-            <image src='blog/images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
             </a></h1></div>
         </div>
     </header>
@@ -52,7 +52,7 @@ Both involve using a Python dictionary. The requests API allows you to pass
 a dictionary or list of tuples to its params argument. Alternatively, if you want
 to see the full URL as a string, there's a sleek way to format URL arguments
 with urllib's <a class="reference external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode">urlencode function</a>.</p>
-<img alt="a visual breakdown of a url with parameters" src="https://lofipython.com/blog/images/url-structure.png" />
+<img alt="a visual breakdown of a url with parameters" src="https://lofipython.com/images/url-structure.png" />
 <p>source: <a class="reference external" href="https://www.geeksforgeeks.org/how-to-handle-missing-parameters-in-url-with-flask/">Geeks for Geeks</a>.</p>
 <p><strong>Pass a dictionary to the requests params argument to include URL arguments.</strong></p>
 <blockquote>
@@ -156,18 +156,18 @@ I hope it helps you keep your URLs tidy and your HTTP requests more readable.</p
 </pre>
 <p><strong>pyinstrument Results With Normal Pandas Import</strong></p>
 <p><strong>GOOG, Google</strong></p>
-<img alt="profiling a Python script with pyinstrument, before with GOOG" src="https://lofipython.com/blog/images/goog-pandas-import.png" />
+<img alt="profiling a Python script with pyinstrument, before with GOOG" src="https://lofipython.com/images/goog-pandas-import.png" />
 <p><strong>MSFT, Microsoft</strong></p>
-<img alt="profiling a Python script with pyinstrument, before with MSFT" src="https://lofipython.com/blog/images/msft-pandas-import.png" />
+<img alt="profiling a Python script with pyinstrument, before with MSFT" src="https://lofipython.com/images/msft-pandas-import.png" />
 <p>The line for the pandas module looks like this:</p>
 <blockquote>
 0.946 &lt;module&gt;  pandas/__init__.py:1</blockquote>
 <p><strong>pyinstrument Results With Pandas Import Only If Necessary</strong></p>
 <p>After changing the pandas module to only import if needed, it is no longer eating almost a second of time. As a result, the script runs about second faster each time! Below are the pyinstrument reports for two different stocks after changing my pandas import to only be called if it was actually used:</p>
 <p><strong>GOOG, Google</strong></p>
-<img alt="profiling a Python script with pyinstrument, after with GOOG" src="https://lofipython.com/blog/images/goog-no-pandas-import-fast.png" />
+<img alt="profiling a Python script with pyinstrument, after with GOOG" src="https://lofipython.com/images/goog-no-pandas-import-fast.png" />
 <p><strong>NVDA, Nvidia</strong></p>
-<img alt="profiling a Python script with pyinstrument, after with NVDA" src="https://lofipython.com/blog/images/nvda-no-pandas-import.png" />
+<img alt="profiling a Python script with pyinstrument, after with NVDA" src="https://lofipython.com/images/nvda-no-pandas-import.png" />
 <p><strong>Sidebar: HTTP Request Volatility</strong></p>
 <blockquote>
 The time that the script runs fluctuates about half a second to a few seconds based on the HTTP get request. It lags even more if my internet connection is weaker or Yahoo throttles my request because I've made too many in a short period of time. My time savings weren't gained from tinkering with the HTTP request, even though that was a time-eater. I noticed the requests module get request tends to fluctuate and sometimes causes an extra delay.</blockquote>
@@ -233,7 +233,7 @@ The time that the script runs fluctuates about half a second to a few seconds ba
 - <a class="reference external" href="https://tidyfirst.substack.com/">Kent Beck</a></blockquote>
 <p>That's how I sped up my Python CLI by 25%. This method bucks the convention of keeping your import statements at the top of your script. In my case, it's a hobby project so I feel ok with making the trade-off of less readable code for a snappier CLI experience. You could also consider using the standard library csv module instead of pandas.</p>
 <p><strong>For Comparison, An import csv pyinstrument Report</strong></p>
-<img alt="profiling an import of the Python csv module" src="https://lofipython.com/blog/images/csv-module-import.png" />
+<img alt="profiling an import of the Python csv module" src="https://lofipython.com/images/csv-module-import.png" />
 <p>I clocked the csv module import at 0.003 or three thousandths of a second with pyinstrument. That's insanely fast compared to pandas. I chose to make a quick fix by shifting the import but using the csv module could be a better long-term solution for speeding up your scripts.</p>
 <p><strong>Supplementary Reading</strong></p>
 <p><a class="reference external" href="https://lofipython.com/making-a-yahoo-stock-price-summary-cli-with-python">Making a Yahoo Stock Price CLI With Python</a></p>
@@ -295,7 +295,7 @@ pip install tqdm</span>
 <span class="gp"># </span>Print<span class="w"> </span>a<span class="w"> </span>daily<span class="w"> </span>stock<span class="w"> </span>summary<span class="w"> </span><span class="k">for</span><span class="w"> </span>Virgin<span class="w"> </span>Galactic<span class="w"> </span><span class="o">(</span>SPCE<span class="o">)</span>.<span class="w">
 </span><span class="go">python finsou.py -s SPCE</span>
 </pre>
-<img alt="example stock summary report" src="https://lofipython.com/blog/images/finsoupy-stock-summary.png" />
+<img alt="example stock summary report" src="https://lofipython.com/images/finsoupy-stock-summary.png" />
 <p><strong>Fetch a stock summary for multiple companies.</strong></p>
 <pre class="code console literal-block">
 <span class="gp"># </span>Summarize<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>stocks.<span class="w">
@@ -402,7 +402,7 @@ Composability is a system design principle that deals with the inter-relationshi
 <p>- Matthew Prince, James Governor, <a class="reference external" href="https://redmonk.com/jgovernor/2023/07/17/cloudflare-as-an-ai-play-an-interview-with-ceo-matthew-prince">Cloudflare as an AI play. An Interview with Matthew Prince</a></p>
 </blockquote>
 <p><strong>An Example LLM Stack With LangChain</strong></p>
-<img alt="Overview of an LLM stack from Mozilla" src="https://lofipython.com/blog/images/MozillaAssistantdiagram.png" />
+<img alt="Overview of an LLM stack from Mozilla" src="https://lofipython.com/images/MozillaAssistantdiagram.png" />
 <p>source: <a class="reference external" href="https://hacks.mozilla.org/2023/07/so-you-want-to-build-your-own-open-source-chatbot">So you want to build your own open source chatbot… – Mozilla Hacks</a></p>
 <p><strong>Installing the Python Libraries with pip</strong></p>
 <pre class="code console literal-block">
@@ -665,7 +665,7 @@ but are driving more and more attention back to themselves, as people are realiz
 <p>- Brian Barrett. &quot;It's Time for an RSS Revival&quot;. Wired. <a class="reference external" href="https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader">https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader</a></p>
 </blockquote>
 <p>You'll often hear the term &quot;aggregator&quot; or &quot;reader&quot; when dealing with RSS, which both mean &quot;tool that collects multiple RSS feeds into single readable format&quot;. There are plenty of free RSS reader websites to keep up with new material from your favorite websites. Currently, I use <a class="reference external" href="https://feeder.co">Feeder</a> to keep up with the blogs I follow. Their free plan allows you to follow up to 200 RSS feeds for free. <a class="reference external" href="https://feedly.com">Feedly</a> is a commonly suggested RSS reader also.</p>
-<img alt="RSS icon" src="https://lofipython.com/blog/images/rssicon.png" />
+<img alt="RSS icon" src="https://lofipython.com/images/rssicon.png" />
 <p><strong>A Few Benefits of RSS</strong></p>
 <ul>
 <li><p class="first">Receive notice when a new post is published by your favorite websites and blogs.</p>
@@ -848,7 +848,7 @@ but are driving more and more attention back to themselves, as people are realiz
 <pre class="code console literal-block">
 <span class="go">curl https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz --output Python-3.11.0.tgz</span>
 </pre>
-<img alt="download Python with curl" src="https://lofipython.com/blog/images/curl-python-install-command.png" />
+<img alt="download Python with curl" src="https://lofipython.com/images/curl-python-install-command.png" />
 <p>Unpack gzip file to folder.</p>
 <pre class="code console literal-block">
 <span class="go">tar -xvzf Python-3.11.0.tgz</span>
@@ -910,13 +910,13 @@ to macOS framework and universal builds.  Refer to <a class="reference external"
 <pre class="code console literal-block">
 <span class="go">idle file.py</span>
 </pre>
-<img alt="CLI help options for Python's IDLE text editor" src="https://lofipython.com/blog/images/idlecli.png" />
+<img alt="CLI help options for Python's IDLE text editor" src="https://lofipython.com/images/idlecli.png" />
 <p>image source: <a class="reference external" href="https://docs.python.org/3/library/idle.html#startup-and-code-execution">IDLE documentation</a></p>
 <p><strong>Sublime</strong></p>
 <pre class="code console literal-block">
 <span class="go">subl template.rst</span>
 </pre>
-<img alt="using subl CLI to open files in Sublime" src="https://lofipython.com/blog/images/sublimeeditorexample.png" />
+<img alt="using subl CLI to open files in Sublime" src="https://lofipython.com/images/sublimeeditorexample.png" />
 <p><strong>VS Code</strong></p>
 <pre class="code console literal-block">
 <span class="go">code file.py</span>
@@ -1153,7 +1153,7 @@ to macOS framework and universal builds.  Refer to <a class="reference external"
 <span class="c1"># Display Pitch</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div></td></tr></table></div>
-<img alt="Analyzing football with Python" src="https://lofipython.com/blog/images/pitchheatmap.png" />
+<img alt="Analyzing football with Python" src="https://lofipython.com/images/pitchheatmap.png" />
 <p>Impressive use of matplotlib and seaborn! This code is meant for a <a class="reference external" href="https://jupyter.org/install">Jupyter notebook</a>. I can't find the &quot;passes.csv&quot; data but suspect it is using <a class="reference external" href="https://pypi.org/project/statsbomb/">statsbomb</a>. It's a free footy dataset that's on display in this <a class="reference external" href="https://towardsdatascience.com/how-to-easily-get-football-data-with-a-python-package-without-web-scraping-c922e7ebfb41">Towards Data Science blog post</a> also.</p>
 <p>In another practical example of wrangling data, Tactics FC shows how to <a class="reference external" href="https://medium.com/&#64;TacticsFC/analyzing-football-data-with-python-7b4e89c7abd8">calculate goal conversion rate with pandas</a>. I'm guessing basic statskeeping and video is collected in great quantities by analytics teams during games for professional teams. At half time, typically on TV they will show both teams' shots, passes and time of possession.</p>
 <p>Another intriguing field of study is extensive simulation and tracking of individual player position on the pitch. Google hosted a <a class="reference external" href="https://www.kaggle.com/competitions/google-football/code">Kaggle competition with Manchester City</a> 3 years ago, where the goal was to train AI agents to play football. Formal courses are available like the <a class="reference external" href="https://www.uu.se/en/study/course?query=1RT001">Mathematical Modeling of Football course at Uppsala University</a>. There's also the <a class="reference external" href="https://github.com/topics/football-analytics">football analytics topic</a> on Github that shows 100+ repos.</p>
@@ -1207,7 +1207,7 @@ ruff format do_stuff.py
 pip install black
 python -m black do_stuff.py
 </pre>
-<img alt="sqlfluff SQL linting CLI tool" src="https://lofipython.com/blog/images/sqlfluffexample.png" />
+<img alt="sqlfluff SQL linting CLI tool" src="https://lofipython.com/images/sqlfluffexample.png" />
 <ul class="simple">
 <li><a class="reference external" href="https://docs.sqlfluff.com/en/stable/index.html">sqlfluff</a>: &quot;The SQL linter for humans&quot;, sqlfluff is a linter and code reformatting tool to tidy up your database queries. sqlfluff does the little things like uppercase your keywords, add whitespace where appropriate, check syntax and in general clean up your scripts. The CLI is configurable for nearly all dialects from DuckDB, T-SQL, Redshift, MySQL, to SQLlite and more. Check the <a class="reference external" href="https://github.com/sqlfluff/sqlfluff">sqlfluff Github repo</a> for all their supported SQL dialects or use the <strong>sqlfluff dialects</strong> command to list them in your shell. This is the library I want to tell every Python programmer about right now, along with ruff. SQL is everywhere, we all use it. SQL linters are not something most people even know exist. Next time you need to fix a broken SQL script or clean up some legacy code, enter this into your shell:</li>
 </ul>
@@ -1247,7 +1247,7 @@ pylint do_stuff.py
 pip install --user yamllint
 yamllint config.yaml
 </pre>
-<img alt="yamllint YAML linting CLI tool" src="https://lofipython.com/blog/images/yamllintexample.png" />
+<img alt="yamllint YAML linting CLI tool" src="https://lofipython.com/images/yamllintexample.png" />
 <ul class="simple">
 <li>rstfmt and restructuredtext-lint (<a class="reference external" href="https://pypi.org/project/restructuredtext-lint/">read more</a>): Both of these reStructuredText format linter libaries offer code reformatting and linting abilities for reStructuredText files (.rst). I favored restructuredtext-lint, due to its rst-lint CLI tool. I used it to fix and tested it on old posts from this blog. Beware that using a reformatter might surface buried errors found by linting the RST, which you'll need to resolve by reading somewhat cryptic RST error messages given by your linter like &quot;hyperlink mismatch, 1 reference but 0 targets&quot;. At least the line number is provided so you have a relative scope of where the error is coming from. rstfmt is another <a class="reference external" href="https://pypi.org/project/rstfmt/">Python CLI tool</a> in this space. One note of using these tools is to watch out for unwanted changes. One effect I saw was having code blocks auto-converted from Python formatting to regular code formatting.</li>
 </ul>

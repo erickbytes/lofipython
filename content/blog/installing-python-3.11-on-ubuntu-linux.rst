@@ -19,7 +19,7 @@ Use curl to download the Python gzip file.
    curl https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz --output Python-3.11.0.tgz 
 
 
-.. image:: {static}/blog/images/curl-python-install-command.png
+.. image:: {static}/images/curl-python-install-command.png
   :alt: download Python with curl
 
 
