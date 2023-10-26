@@ -4,7 +4,7 @@ SITEURL = "https://lofipython.com"
 PATH = "content"
 TIMEZONE = "America/Chicago"
 DEFAULT_LANG = "en"
-SITELOGO = "images/python-powered-h-140x182.png"
+SITELOGO = "blog/images/python-powered-h-140x182.png"
 # Feed generation is usually not desired when developing
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
