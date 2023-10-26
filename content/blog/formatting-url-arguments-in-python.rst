@@ -23,7 +23,7 @@ with urllib's `urlencode function <https://docs.python.org/3/library/urllib.pars
 .. image:: {static}/images/url-structure.png
   :alt: a visual breakdown of a url with parameters
 
-source: `Geeks for Geeks <https://www.geeksforgeeks.org/how-to-handle-missing-parameters-in-url-with-flask/>`__.
+source: `Geeks for Geeks <https://www.geeksforgeeks.org/how-to-handle-missing-parameters-in-url-with-flask/>`__
 
 **Pass a dictionary to the requests params argument to include URL arguments.**
 
