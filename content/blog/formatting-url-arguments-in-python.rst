@@ -1,5 +1,5 @@
-Formatting URL Arguments in Python
-##################################
+Formatting URL Parameters in Python
+###################################
 :date: 2023-10-25 15:42
 :author: lofipython
 :category: http, urls, python, requests
@@ -7,7 +7,7 @@ Formatting URL Arguments in Python
 :slug: formatting-url-arguments-in-python
 :status: published
 
-When I first started working with APIs, I had a bad habit of passing URL arguments
+When I first started working with APIs, I had a bad habit of passing URL parameters
 as one long ugly string. Anything longer than 79 characters violates PEP-8.
 It's also hard to read and can be difficult to edit the code in your text editor if the URL is trailing off the screen.
 In this post, you'll find some alternatives to the primitive "long ugly string" approach.
