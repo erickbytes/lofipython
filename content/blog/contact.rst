@@ -5,8 +5,9 @@ about
 :slug: contact
 :status: published
 
-Python developer who automates tasks, builds apps and writes about coding. Send me your project \\ event \\ questions. Collaborative inquiries welcome.
-erickrumbold[at]gmail
+Python developer who automates tasks, builds apps and writes about coding.
+Send me your project, event or questions. Collaborative inquiries welcome.
+erickbuildsstuff[at]outlook[dot]com
 
 **Projects**
 
