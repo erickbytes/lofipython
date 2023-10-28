@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - coding, programming, python, QR code</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/coding-programming-python-qr-code.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-10-27T17:33:00-05:00</updated><entry><title>How to Make a Wi-Fi QR Code With Python</title><link href="https://lofipython.com/how-to-make-a-wi-fi-qr-code-with-python.html" rel="alternate"></link><published>2023-10-27T17:33:00-05:00</published><updated>2023-10-27T17:33:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-10-27:/how-to-make-a-wi-fi-qr-code-with-python.html</id><summary type="html">&lt;p&gt;If you own a public space with shared Wi-Fi, you can skip the tedious process of
+sharing. This is nice to have as an alternative to asking people to manually enter
+an auto-generated, cryptic, error-prone 16 character string password.
+Here's how to create a QR code for your Wi-Fi network …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you own a public space with shared Wi-Fi, you can skip the tedious process of
+sharing. This is nice to have as an alternative to asking people to manually enter
+an auto-generated, cryptic, error-prone 16 character string password.
+Here's how to create a QR code for your Wi-Fi network.&lt;/p&gt;
+&lt;p&gt;To accomplish this task, I found the &lt;a class="reference external" href="https://pypi.org/project/wifi-qrcode-generator/"&gt;wifi-qr-code-generator library on pypi&lt;/a&gt;.
+It makes creating a Wi-Fi QR code very simple with help from the pillow and qrcode modules.
+It is a great example of a library that has a very specific purpose and does it well.&lt;/p&gt;
+&lt;p&gt;The library has two ways to create a QR code:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Run a Python script to with the network details.&lt;/li&gt;
+&lt;li&gt;Use wifi-qr-code-generator's CLI.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Install wifi-qrcode-generator on Python3.11&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip install wifi-qrcode-generator&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Generating a QR Code Python Script&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This code snippet prints the qr code to the terminal screen, then saves it as a png image.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/env python3&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;wifi_qrcode_generator.generator&lt;/span&gt;
+
+&lt;span class="n"&gt;qr_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wifi_qrcode_generator&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;generator&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wifi_qrcode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;ssid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;add_wi-fi_network_name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;hidden&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;authentication_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WPA&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;add_wi-fi_password&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;qr_code&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_ascii&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;qr_code&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make_image&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;wifi-qr-code.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;img alt="create value with an API" src="https://lofipython.com/images/qr-code-example.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Generating a QR Code With CLI Command&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;wifi-qrcode-generator&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Supplementary Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://docs.tweepy.org/en/latest/getting_started.html"&gt;Tweepy Documentation Tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://developer.twitter.com/en/docs/tutorials"&gt;Twitter's API Tutorials&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://developer.twitter.com/en/docs/tutorials/postman-getting-started"&gt;Twitter Postman Tutorial&lt;/a&gt;&lt;/p&gt;
+</content><category term="coding, programming, python, QR code"></category><category term="making a wi-fi QR code"></category><category term="how to create a QR code for internet password"></category></entry></feed>

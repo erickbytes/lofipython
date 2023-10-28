@@ -31,7 +31,215 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Nov 30, 2019</h4>
+        <div id="content">            <h4 class="date">Dec 05, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/a-collection-of-software-testing-opinions-for-python-and-beyond.html" rel="bookmark" title="Permanent Link to &quot;A Collection of Software Testing Opinions for Python and Beyond&quot;">A Collection of Software Testing Opinions for Python and Beyond</a>
+                </h2>
+
+                
+                
+
+                <p>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</p>
+<p><strong>An Introductory Rant on Testing</strong></p>
+<p>Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?</p>
+<blockquote>
+<p>Yeah. And the worst thing that happens is that you get people that just stop&nbsp;<em>thinking</em>&nbsp;about what they’re doing. “This is the principle, to always write unit tests, so I’m always going to write unit tests,” and then they’re just not thinking about how they’re spending their time, and they wind up wasting a lot of it.</p>
+<p>Joel Spolsky, <a class="reference external" href="https://www.joelonsoftware.com/2009/01/">Stack Overflow Podcast #38</a></p>
+</blockquote>
+<p>Implementing software tests is a best practice for maintaining code, but seems ambiguous to someone who has not tested any code before. I guess the best way is to <a class="reference external" href="https://github.com/iodide-project/pyodide/tree/master/test">read open source projects with test suites</a>, but those can be tough to find. How do you know <a class="reference external" href="https://docs.python-guide.org/writing/reading/">a good test suite</a> when you see it? Maybe the maintainers went rogue and off the deep end with tests. Online, everybody says you should test your code, <a class="reference external" href="https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes">is the emperor wearing any clothes?</a></p>
+<p>As a beginner stumbling across articles on testing, these questions were tough to answer. As with most things in programming, figuring out the right question to ask is a challenge in itself. <a class="reference external" href="https://www.codecademy.com/learn/learn-python-3">Codeacademy</a> and <a class="reference external" href="https://www.coursera.org/specializations/python">Coursera</a> never mentioned anything about writing tests. On the other hand, <a class="reference external" href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django</a> includes testing in its tutorial and documentation. Also, most languages come with built-in testing tools. Python has the <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> library.</p>
+<p><strong>Why test at all? First, some solid benefits of software testing:</strong></p>
+<ul class="simple">
+<li>With tests on your code in place, you can implement changes and have confidence the code still works if the tests pass. This gives developers more confidence to iterate and improve an application.</li>
+<li>Detect problems faster. Passing tests are a good indicator that your programs are actually doing what they're supposed to do. If they don't pass, you likely found a bug you might have missed otherwise.</li>
+<li>When you find a bug, you either need to amend your code, or your tests. write a test for that bug and then fix it. Either that, or you need to be amend your tests. You've just improved the quality of your test suite.</li>
+<li><a class="reference external" href="https://daedtech.com/dont-learn-to-code-learn-to-automate/">Automation</a>. If you are writing tests, those tests can be automated. If you are manually checking the results of your program, you're missing a chance to automate those checks away. I haven't applied it yet, but have heard the <a class="reference external" href="https://tox.readthedocs.io/en/latest/">Tox library</a> may be useful to automate tests related to Python packaging. For more on automating tests, see this PyCon talk, <a class="reference external" href="https://www.youtube.com/watch?v=-BHverY7IwU">Three Excellent Python Tools to Automate Repetitive Tasks</a>.</li>
+<li>Test Driven Development can decrease the time spent debugging code. This claim sometimes lacks empirical evidence, supporting evidence tends to be anecdotal.</li>
+</ul>
+<!--  -->
+<blockquote>
+<p>A good unit test, therefore, is one that helps enforce the contract to which the function is committed.</p>
+<p>If a good unit test breaks, the contract is violated and should be either explicitly amended (by changing the documentation and tests), or fixed (by fixing the code and leaving the tests as is).</p>
+<p>A good unit test is also&nbsp;<em>strict</em>. It does its best to ensure the output is valid. This helps it catch more bugs.</p>
+<ul class="simple">
+<li>Moshe Zadka, <a class="reference external" href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></li>
+</ul>
+</blockquote>
+<p><strong>Pytest and Unit Testing in Python</strong></p>
+<p>This is where the Python hits the pavement. Unit tests are generally liked, although some prefer property tests or integration tests because they think the scope of unit tests is too narrow. The <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> library is Python's default testing framework. However nowadays, <a class="reference external" href="https://docs.pytest.org/en/latest/contents.html">pytest</a> seems to be the preferred unit testing framework for Python. <a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">Hypothesis</a> is another popular framework I've read about.</p>
+<p><strong>Pytest Testing</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://realpython.com/interview-brian-okken/">Interview with the author of Pytest</a></li>
+<li><a class="reference external" href="https://docs.pytest.org/en/latest/">Pytest Documentation</a></li>
+<li><a class="reference external" href="https://martinheinz.dev/blog/7">Pytest Features That You Need In Your Life</a></li>
+<li><a class="reference external" href="http://love-python.blogspot.com/2017/10/table-driven-unit-test-in-python.html">Table Driven Unit Testing With pytest</a></li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=Pf1ADyUKOrE">Reproducible Data Analysis in Jupyter, Part 6/10: Unit Testing with PyTest</a> [YouTube]</li>
+</ul>
+<!--  -->
+<blockquote>
+Tests start to lose signal when <a class="reference external" href="https://docs.python.org/3/library/unittest.mock.html">Mock</a> becomes routine instead of a reluctant workaround. - Brandon Rhodes, <a class="reference external" href="http://S0No2zSJmks">When Python Practices Go Wrong</a></blockquote>
+<p><strong>Testing in Python \ General Unit Testing Ideas</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/pandas-dev/pandas/wiki/Testing">Testing Conventions for the Pandas Library</a></li>
+<li><a class="reference external" href="https://kanoki.org/2019/11/18/how-to-create-dataframe-for-testing/">How to Create a Dataframe for Testing</a></li>
+<li><a class="reference external" href="https://jeffknupp.com/blog/2013/12/09/improve-your-python-understanding-unit-testing//">Improve Your Python: Understanding Unit Testing</a></li>
+<li><a class="reference external" href="http://kbroman.org/blog/2015/12/07/write-unit-tests/">Write Unit Tests</a></li>
+<li><a class="reference external" href="https://henrikwarne.com/2013/12/08/tdd-unit-tests-and-the-passage-of-time/">Writing Unit Tests for Time</a></li>
+<li><a class="reference external" href="https://henrikwarne.com/2014/02/19/5-unit-testing-mistakes/">5 Unit Testing Mistakes</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/unit-tests-are-not-tests/">Unit Tests Are Not Tests</a></li>
+<li><a class="reference external" href="https://hakibenita.com/the-best-new-feature-in-unittest-you-didnt-know-you-need">The Best New Feature in unittest You Didn't Know You Need</a></li>
+<li><a class="reference external" href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></li>
+<li><a class="reference external" href="https://michaelfeathers.typepad.com/michael_feathers_blog/2008/06/the-flawed-theo.html">The Flawed Theory Behind Unit Testing</a></li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django Introduction to Automated Testing</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/python-doctests/">Python Doc Tests</a> Turn docstrings into tests, unique to Python.</li>
+</ul>
+<!--  -->
+<blockquote>
+<p>I think&nbsp;<a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">hypothesis</a>&nbsp;is probably underrated—some libraries are hesitant to incorporate it into their testing frameworks, but I think the property-based testing has real potential to catch scenarios humans would have a hard time anticipating, or at least that would take a long time to properly plan for. I find that hypothesis almost always adds a few useful test cases I hadn’t thought of that will require special error handling, for example.</p>
+<p><a class="reference external" href="http://www.blog.pythonlibrary.org/2020/01/13/pydev-of-the-week-tyler-reddy/">Tyler Reddy</a>, SciPy Release Manager</p>
+</blockquote>
+<p><strong>Integration \ Property Tests</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://blog.juliobiason.me/books/things-i-learnt/integration-tests/">Unit Tests Are Good, Integration Tests Are Gooder</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/pbt-contracts/">PROPERTY TESTS + CONTRACTS = INTEGRATION TESTS</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/contract-examples/">Finding Property Tests</a></li>
+<li><a class="reference external" href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-Based Testing</a></li>
+<li><a class="reference external" href="https://hillelwayne.com/post/contracts/">Contracts</a></li>
+</ul>
+<!--  -->
+<blockquote>
+<p>Traditional, or example-based, testing specifies the behavior of your software by writing examples of it—each test sets up a single concrete scenario and asserts how the software should behave in that scenario. Property-based tests take these concrete scenarios and generalize them by focusing on which features of the scenario are essential and which are allowed to vary. This results in cleaner tests that better specify the software’s behavior—and that better uncover bugs missed by traditional&nbsp;testing.</p>
+<ul class="simple">
+<li>David Maciver, <a class="reference external" href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-based Testing</a></li>
+</ul>
+</blockquote>
+<p><strong>Assertions</strong></p>
+<p>Assertions are generally accepted as welcome additions to your code.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://blog.regehr.org/archives/1091">Use of Assertions</a></li>
+<li><a class="reference external" href="http://www.squarefree.com/2014/02/03/fuzzers-love-assertions/">Fuzzers Love Assertions</a></li>
+<li><a class="reference external" href="http://pgbovine.net/code-carabiners.htm">Code Carabiners</a></li>
+<li><a class="reference external" href="https://docs.pytest.org/en/latest/assert.html#assert">pytest Assertions</a></li>
+</ul>
+<!--  -->
+<blockquote>
+<p>In reality, the safety and restraints that these code carabiners provide actually give you <strong>more freedom</strong> to take risks in your coding. If you want to try out some risky feature, refactoring, or external library, you know something is wrong as soon as one of your assertions or tests fail and can undo back to an earlier working state.</p>
+<p>Phillip J. Guo, <a class="reference external" href="http://pgbovine.net/code-carabiners.htm">Code Carabiners</a></p>
+</blockquote>
+<p><strong>Test Driven Development</strong></p>
+<p>Eventually, you'll discover the evangelists preaching Test Driven Development. There are certain discussions which polarize us in the software development world, such as the appropriate scenarios to deploy this system of development.</p>
+<p>Opinions vary widely on the merits and appropriate application of TDD. I'm admittedly skeptical but do see the merits of TDD. But which flavor? Where do unit tests and integration tests fit in? How many tests should I write? What exactly should I be testing? <a class="reference external" href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">This essay</a> claims anyone pair programming software with an expected life of 3 or more years should use Test Driven Development.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://henrikwarne.com/2019/09/29/when-tdd-is-not-a-good-fit/">When TDD is Not a Good Fit</a></li>
+<li><a class="reference external" href="http://neverworkintheory.org/2016/10/05/test-driven-development.html">Test Driven Development vs. Test Last Development</a> [Study]</li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=DQBf6li1hww">Why TDD Is Crap</a> [YouTube]</li>
+<li><a class="reference external" href="https://hillelwayne.com/post/why-tdd-isnt-crap/">Why TDD Isn't Crap</a> [Response Blog to Video]</li>
+<li><a class="reference external" href="https://www.arp242.net/testing.html">Testing Isn't Everything</a></li>
+<li><a class="reference external" href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">Is Pair Programming + TDD worth it?</a></li>
+</ul>
+<!--  -->
+<blockquote>
+<p>&quot;Test Driven Development is a tool for continuously evaluating hypotheses.&quot;</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?time_continue=170&amp;v=UOOuW5tqT8M&amp;feature=emb_logo">James Shore, Assert(JS) Con 2019</a></li>
+</ul>
+</blockquote>
+<p><strong>General Testing Ideas and Principles</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.python-guide.org/writing/tests/">Testing Your Code</a>, The Hitchhiker's Guide to Python</li>
+<li><a class="reference external" href="https://blog.liw.fi/posts/2019/06/29/dijkstra_was_only_partially_correct_about_testing/">The Point of Software Testing</a></li>
+<li><a class="reference external" href="https://rachelbythebay.com/w/2013/01/30/test/">Connecting Bug Fixing to Automated Testing</a></li>
+<li><a class="reference external" href="https://www.jamesshore.com/In-the-News/Thinking-In-Tests.html">Thinking in Tests</a> [YouTube]</li>
+<li><a class="reference external" href="https://www.drmaciver.com/2015/04/some-empirically-derived-testing-principles/">Some empirically derived testing principles</a></li>
+<li><a class="reference external" href="https://danluu.com/tests-v-reason/">Testing Vs. Informal Reasoning</a></li>
+<li><a class="reference external" href="https://blog.nelhage.com/2016/12/how-i-test/">How I Write Tests</a></li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=Xu5EhKVZdV8">Stop Mocking, Start Testing</a> [YouTube]</li>
+<li>&quot;<a class="reference external" href="https://python-guide-es.readthedocs.io/es/latest/writing/reading.html">Each one of these projects is a paragon of Python coding.</a>&quot;</li>
+<li><a class="reference external" href="https://increment.com/development/what-its-like-to-be-a-developer-at/">What it's Like to Be a Developer at...</a>&nbsp;[Testing Practices Described]</li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">Hammock Driven Development</a> [YouTube] Not so much testing focused, but including because I really enjoyed this talk.</li>
+</ul>
+<p><strong>Other common tests types:</strong></p>
+<blockquote>
+<p>Unit test: when it fails, it tells you what piece of your code needs to be fixed.</p>
+<p>Integration test: when it fails, it tells you that the pieces of your application are not working together as expected.</p>
+<p>Acceptance test: when it fails, it tells you that the application is not doing what the customer expects it to do.</p>
+<p>Regression test: when it fails, it tells you that the application no longer behaves the way it used to.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://stackoverflow.com/questions/7672511/unit-test-integration-test-regression-test-acceptance-test">Mathias, Stack Overflow Answer</a></li>
+</ul>
+</blockquote>
+<p><strong>Testing maturity level progression:</strong></p>
+<ol class="arabic simple">
+<li>No tests</li>
+<li>Occasional, slow, unreliable tests</li>
+<li>Semi-comprehensive integration tests</li>
+<li>Fast, comprehensive unit tests comprise the bulk of testing<ul>
+<li>Dependency injection</li>
+<li>Composable subsystem design</li>
+</ul>
+</li>
+<li>Real-time test feedback (ideally integrated into the editor)</li>
+<li>Tests are extremely reliable or&nbsp;<a class="reference external" href="http://andyfriesen.com/2015/06/17/testable-io-in-haskell.html">guaranteed reliable by the type system</a><ul>
+<li>With tooling that tracks the reliability of tests and provides that feedback to authors.</li>
+</ul>
+</li>
+<li>Fuzzing, statistically automated microbenchmarking, rich testing frameworks for every language and every platform, and a company culture of writing the appropriate number of unit tests and high-value integration tests.</li>
+</ol>
+<ul class="simple">
+<li><a class="reference external" href="https://chadaustin.me/2019/11/two-years-at-dropbox/">ChadAustin.me</a></li>
+</ul>
+<p><strong>I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:</strong></p>
+<p><tt class="docutils literal">python <span class="pre">-m</span> pip install pytest</tt></p>
+<p><strong>test_file_date.py</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
+
+<span class="c1"># The dir_query format is for a Windows path with Unix style pattern matching.</span>
+<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
+    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
+    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+</pre></div></td></tr></table></div>
+<div class="line-block">
+<div class="line"><strong>Run the test with pytest by entering:</strong></div>
+<div class="line"><tt class="docutils literal">pytest test_file_date.py</tt></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Conclusion</strong></div>
+<div class="line">I write programs for personal productivity and to <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/">automate processes</a> at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.</div>
+</div>
+<p>It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/a-collection-of-software-testing-opinions-for-python-and-beyond.html">posted at 03:06</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-productivity-programming-python-software-testing.html" rel="tag">coding, productivity, programming, python, software testing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/pytest.html" class="tags">pytest</a>
+                    &nbsp;<a href="https://lofipython.com/tag/software-development.html" class="tags">software development</a>
+                    &nbsp;<a href="https://lofipython.com/tag/test-driven-development.html" class="tags">test driven development</a>
+                </div>
+            </article>            <h4 class="date">Nov 30, 2019</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1518,41 +1726,6 @@ In case you are wondering, enumerate is a <a class="reference external" href="ht
                     &nbsp;<a href="https://lofipython.com/tag/data-analysis.html" class="tags">data analysis</a>
                     &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
                     &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
-                </div>
-            </article>            <h4 class="date">Mar 24, 2018</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/blog_post-listcool_python_things.html" rel="bookmark" title="Permanent Link to &quot;list(cool_python_things)&quot;">list(cool_python_things)</a>
-                </h2>
-
-                
-                
-
-                <ol class="arabic simple">
-<li><a class="reference external" href="https://github.com/norvig/pytudes">pytudes</a> - &quot;This project
-contains<strong>pytudes</strong>—Python programs for perfecting programming
-skills.&quot;</li>
-<li><a class="reference external" href="https://www.makeartwithpython.com/blog/video-synthesizer-in-python/?utm_source=mybridge&amp;utm_medium=blog&amp;utm_campaign=read_more">Building a video synthesizer in Python</a></li>
-<li><a class="reference external" href="https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/overview">Running micropython on a microcontroller</a></li>
-<li><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> - Super awesome excel and
-data analysis library. The talk, &quot;<a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">Pandas from the Ground Up</a>&quot; by Brandon Rhodes
-is great!</li>
-<li><a class="reference external" href="http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/">Fuzzy Wuzzy</a>
-- Fuzzy string matching python library, written by SeatGeek</li>
-<li><a class="reference external" href="https://soundcloud.com/talkpython">Talk Python to Me</a> - Python
-podcast</li>
-<li><a class="reference external" href="http://www.oreilly.com/programming/free/?imm_mid=0e20a9&amp;cmp=em-prog-na-na-afterp_triggered_email_programming_resources">Free Programming Books from O'Reilly</a></li>
-</ol>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/blog_post-listcool_python_things.html">posted at 19:38</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-pandas-programming.html" rel="tag">coding, pandas, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                 </div>
             </article>
 

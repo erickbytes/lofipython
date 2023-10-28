@@ -3,13 +3,13 @@ Delete All Your Tweets with Tweepy and the Twitter API
 :date: 2020-09-13 21:07
 :author: lofipython
 :category: coding, programming, python
-:tags: api, tweepy, tweets, twitter
+:tags: api, making stuff with python, hacking
 :slug: delete-all-your-tweets-with-tweepy-and-the-twitter-api
 :status: published
 
 You may want to `download an archive <https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive>`__ of your tweets before deleting them. I did this and it took about a day to get my archive download.
 
-**How To Purge Your Tweet History with Python**
+**How to Do the Thing with Foo*
 
 #. First Step
 
@@ -28,7 +28,7 @@ You may want to `download an archive <https://help.twitter.com/en/managing-your-
 
 **Foo Command Output**
 
-.. image:: {static}/blog/images/example.png
+.. image:: {static}/images/example.png
   :alt: create value with an API
 
 

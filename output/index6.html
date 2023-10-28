@@ -31,7 +31,84 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Aug 15, 2021</h4>
+        <div id="content">            <h4 class="date">Sep 06, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/yoast-api-python-example-with-requests-pandas.html" rel="bookmark" title="Permanent Link to &quot;Yoast SEO API Python Example With requests + pandas&quot;">Yoast SEO API Python Example With requests + pandas</a>
+                </h2>
+
+                
+                
+
+                <p>Lately I've been checking out the <a class="reference external" href="https://yoast.com/wordpress/plugins/seo/">Yoast SEO plug-in</a> and their <a class="reference external" href="https://developer.yoast.com/customization/apis/rest-api">REST API</a>. The API returns all of the SEO metadata, meta tags, schema.org data, etc. for your Wordpress blog posts. Here's a Yoast API Python example script to fetch post metadata via requests and pandas:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">fetch_metadata</span><span class="p">(</span><span class="n">post_url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the Yoast API response as pandas dataframe.&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://atomic-temporary-107329037.wpcomstaging.com/wp-json/yoast/v1/get_head?url=</span><span class="si">{</span><span class="n">post_url</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+    <span class="n">response_dict</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">metadata_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">response_dict</span><span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">metadata_df</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/erickbytes/Python-Marketer-Reader-Analytics/blob/master/dataset/2020_pythonmarketer.com_post_views.xlsx?raw=true.xlsx&#39;</span>
+<span class="n">posts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="c1"># update url domain with pandas .str accessor</span>
+<span class="n">posts</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s1">&#39;.wordpress&#39;</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">posts</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fetch_metadata</span><span class="p">)</span>
+<span class="n">metadata_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">posts</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]))</span>
+<span class="n">metadata_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Wordpress Blog Post Yoast API Metadata.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>What this script is doing:</strong></p>
+<ol class="arabic simple">
+<li>Read a list of my blog posts from Github into a <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas dataframe</a>.</li>
+<li>Use <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.apply.html">pandas .apply</a> to fetch the metadata for each post url.</li>
+<li>Deserialize + normalize the JSON response.</li>
+<li>Convert to a pandas dataframe and store in a pandas Series named 'metadata'.</li>
+<li>Merge the series and write the metadata to a csv file.</li>
+</ol>
+<p><strong>The Payoff</strong>:</p>
+<p>You'll end up with blobs of JSON formatted metadata to sift through or wrangle to your liking! Check out the <a class="reference external" href="https://developer.yoast.com/">Yoast documentation</a> if you're interested in finding out more about their APIs.</p>
+<p><strong>New to APIs?</strong></p>
+<p>It's ok if so, we all were once. Check out my <a class="reference external" href="https://lofipython.com/how-to-make-json-requests-with-python/">guide to making HTTP requests with Python</a> if you want to see more API examples.</p>
+<div class="wp-image-5922 figure">
+<img alt="SEO Overview" src="https://pythonmarketer.files.wordpress.com/2021/10/e5f7c-image.png" style="width: 640px; height: 451px;" />
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/yoast-api-python-example-with-requests-pandas.html">posted at 14:12</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-http-programming-python.html" rel="tag">APIs, coding, HTTP, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/python-wordpress-blog-seo.html" class="tags">Python Wordpress Blog SEO</a>
+                    &nbsp;<a href="https://lofipython.com/tag/seo.html" class="tags">SEO</a>
+                    &nbsp;<a href="https://lofipython.com/tag/yoast-api.html" class="tags">Yoast API</a>
+                </div>
+            </article>            <h4 class="date">Aug 15, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -628,76 +705,6 @@ category:promotions -is:starred after:2019/12/31 before:2021/1/1
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/stock-formulas.html" class="tags">stock formulas</a>
                     &nbsp;<a href="https://lofipython.com/tag/stocks.html" class="tags">stocks</a>
-                </div>
-            </article>            <h4 class="date">Nov 28, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/a-computer-science-themed-wikipedia-link-grab-bag.html" rel="bookmark" title="Permanent Link to &quot;20 Eclectic Computer Science Wikipedia Articles&quot;">20 Eclectic Computer Science Wikipedia Articles</a>
-                </h2>
-
-                
-                
-
-                <p>Here are 20 random technology-oriented Wikipedia links I recently collected after re-organizing troves of bookmarked links accumulated over the past few years. These articles peek into the wide variety of things to learn about that exist in Computer Science. ABL. Always. Be. Learning. Curiosity and well organized browser bookmarks are your friend.</p>
-<p>I support Wikipedia with a donation nearly every year. It's an amazing resource to learn about everything and I'm very grateful for it. Thank you for existing, Wikipedia. It's is a great jumping off point to learn about something I don't understand, which is much of this list here.</p>
-<div class="section" id="algorithms-theories">
-<h2>Algorithms &amp; Theories</h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Deterministic_algorithm">Deterministic algorithm</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Column-oriented_DBMS">Greater fool theory</a> (economics)</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Man_or_boy_test">Man or boy test</a> - compiler theory from Donald Knuth</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Recursion">Recursion</a> - the most common algorithm I read about in passing</p>
-</div>
-<div class="section" id="databases">
-<h2>Databases</h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Cache_(computing)">Cache</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Cache_invalidation">Cache invalidation</a></p>
-<blockquote>
-Caching is a common technique to store data so that it can be quickly fetched later with limited usage of database resources.</blockquote>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Column-oriented_DBMS">Column-oriented DBMS:</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Data_definition_language#:~:text=In%20the%20context%20of%20SQL,tables%2C%20indexes%2C%20and%20users.">Data definition language</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Database_normalization">Database normalization</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Lock_(computer_science)">Lock</a> (mutex)</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing">Hybrid transactional/analytical processing</a> (HTAP)</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Online_transaction_processing">Online transaction processing</a> (OLTP) - Making lots of writes to the database.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Online_analytical_processing">Online analytical processing</a> (OLAP) - Reading the database. Lots of joins.</p>
-</div>
-<div class="section" id="developer">
-<h2>Developer</h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)">Asynchrony</a> Used for performing operations in parallel.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads.">Event-driven programming</a></p>
-<blockquote>
-<p>Async is always event-driven, but not the other way round.</p>
-<p><a class="reference external" href="https://stackoverflow.com/questions/5844955/whats-the-difference-between-event-driven-and-asynchronous-between-epoll-and-a#:~:text=Asynchronous%20is%20basically%20multitasking.,in%20an%20easy%20responsive%20manner.">Stephen Chung - Stack Overflow</a></p>
-</blockquote>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Functional_programming">Functional Programming</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">Garbage collection</a> - automatic memory management</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Parallel_computing#:~:text=Parallel%20computers%20can%20be%20roughly,work%20on%20the%20same%20task.">Parallel Computing</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement learning</a> - one paradigm of machine learning</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Remote_procedure_call">Remote procedure call</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Runbook#:~:text=In%20a%20computer%20system%20or,or%20in%20physical%20book%20form.">List of Lists of Lists</a> - check out the &quot;Technology&quot; section</p>
-</div>
-<div class="section" id="final-reminders">
-<h2>Final Reminders</h2>
-<ul class="simple">
-<li>check out the <a class="reference external" href="https://pypi.org/project/wikipedia/">Wikipedia python library</a> (import wikipedia)</li>
-<li><a class="reference external" href="https://en.wikipedia.org/wiki/Special:Random">Random</a> - Wikipedia's Random Article Button</li>
-<li>And now for something completely different: <a class="reference external" href="https://github.com/yuandongzhong/useful-links-for-javascript">Useful Links for Javascript Developers</a></li>
-</ul>
-<p>Thank you for reading, hope you found something you liked! Here's another post with more <a class="reference external" href="https://pythonmarketer.wordpress.com/2020/06/23/my-favorite-free-educational-courses-and-talks-to-absorb/">free resources for learning computer science online</a>.</p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/a-computer-science-themed-wikipedia-link-grab-bag.html">posted at 12:55</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/databases-programming.html" rel="tag">Databases, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/algorithms.html" class="tags">algorithms</a>
-                    &nbsp;<a href="https://lofipython.com/tag/articles.html" class="tags">articles</a>
-                    &nbsp;<a href="https://lofipython.com/tag/computer-science.html" class="tags">computer science</a>
-                    &nbsp;<a href="https://lofipython.com/tag/wikipedia.html" class="tags">Wikipedia</a>
                 </div>
             </article>
 
