@@ -21,9 +21,9 @@ The connection will only be automatic is your password is correct, so make sure 
 
 The library has two ways to create a QR code:
 
-#. Run a Python script to with the network details.
+#. Run a Python script with the network details.
 
-#. Use wifi-qr-code-generator's CLI.
+#. Use wifi-qr-code-generator's CLI and respond to prompts for Wi-Fi details.
 
 
 **Install wifi-qrcode-generator**
