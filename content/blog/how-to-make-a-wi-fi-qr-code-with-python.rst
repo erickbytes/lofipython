@@ -17,7 +17,7 @@ or you could try a QR code. Here's how to create a QR code for your Wi-Fi networ
 To accomplish this task, I found the `wifi-qr-code-generator library on pypi <https://pypi.org/project/wifi-qrcode-generator/>`__.
 It makes creating a Wi-Fi QR code very simple with help from the `pillow <https://pypi.org/project/Pillow/>`__ and `qrcode <https://pypi.org/project/qrcode/>`__ modules.
 It is a great example of a library that has a very specific purpose and does it well.
-The connection will only be automatic is your password is correct, so make sure you type it carefully.
+The connection will only be automatic if your password is correct, so make sure you type it carefully.
 
 The library has two ways to create a QR code:
 
@@ -74,7 +74,7 @@ It can be invoked with this command:
 
 **Small Projects for the Win**
 
-I like little projects like this. Some of my favorite coding happens when I
-start with a simple goal, research the libraries available, apply Python skills
-and get a tangible result in a short period of time. If you want to streamline
-sharing your Wi-Fi network, remember this practical Python library!
+Some of my favorite coding happens when I start with a simple goal, research
+the libraries available, apply Python skills and get a tangible result
+in a short period of time. If you want to streamline sharing your Wi-Fi network,
+remember this practical Python library!
