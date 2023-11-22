@@ -27,6 +27,7 @@ ARTICLE_PATHS = ["blog", "theme", "static", "extra", "images"]
 EXTRA_PATH_METADATA = {
     "extra/robots.txt": {"path": "robots.txt"},
     "extra/favicon.ico": {"path": "favicon.ico"},
+    "extra/ads.txt": {"path": "ads.txt"},
 }
 PYGMENTS_RST_OPTIONS = {"linenos": "table"}
 ARTICLE_EXCLUDES = ["blog/drafts"]
