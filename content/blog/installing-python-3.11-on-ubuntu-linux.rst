@@ -19,6 +19,7 @@ How to Install Python 3.11 or 3.12
 ==================================
 
 **Install Linux build libraries.**
+
 I followed this step posted on `this blog <https://aruljohn.com/blog/install-python/>`_.
 If you don't do this, you'll likely see an error about C not being found when running the ./configure command.
 
