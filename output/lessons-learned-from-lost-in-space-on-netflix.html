@@ -1,140 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-          <title>Lo-Fi Python - Lessons Learned from "Lost in Space" on Netflix</title>
         <meta charset="utf-8" />
-        <meta name="generator" content="Pelican" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
-        <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
-        <link href="https://lofipython.com/feeds/entertainment-life-space.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
-        <link href="https://lofipython.com/feeds/entertainment-life-space.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lo-Fi Python | Lessons Learned from "Lost in Space" on Netflix</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/entertainment-life-space.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
+    <link href="https://lofipython.com/feeds/entertainment-life-space.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
 
-
-
-
-    <meta name="tags" content="Lost in Space" />
-    <meta name="tags" content="Netflix" />
-    <meta name="tags" content="problem solving" />
-
+    <meta name="keywords" content="Lost in Space,Netflix,problem solving" />
 </head>
-
 <body>
-        <header>
-              <hgroup><h1><a href="https://lofipython.com/">Lo-Fi Python</a></h1></hgroup>
-        <nav><ul>
-            <li><a href="feeds/all.rss.xml">RSS</a></li>
-            <li><a href="feeds/all.atom.xml">Atom</a></li>
-            <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
-            <li><a href="https://lofipython.com/category/apis-apps-coding-product-development-programming-software-uncategorized.html" >APIs, apps, coding, product development, programming, software, Uncategorized</a></li>
-            <li><a href="https://lofipython.com/category/apis-coding-google-programming.html" >APIs, coding, Google, programming</a></li>
-            <li><a href="https://lofipython.com/category/apis-coding-http-productivity-programming.html" >APIs, coding, HTTP, productivity, programming</a></li>
-            <li><a href="https://lofipython.com/category/apis-coding-http-programming-python.html" >APIs, coding, HTTP, programming, python</a></li>
-            <li><a href="https://lofipython.com/category/apis-coding-pandas-programming-python-rust.html" >APIs, coding, pandas, programming, python, Rust</a></li>
-            <li><a href="https://lofipython.com/category/apis-coding-programming.html" >APIs, coding, programming</a></li>
-            <li><a href="https://lofipython.com/category/apis-coding-programming-python.html" >APIs, coding, programming, python</a></li>
-            <li><a href="https://lofipython.com/category/apis-data-programming-writing.html" >APIs, data, programming, writing</a></li>
-            <li><a href="https://lofipython.com/category/apis-odbc-programming-python.html" >APIs, ODBC, programming, python</a></li>
-            <li><a href="https://lofipython.com/category/apps-coding-command-prompt-data-http-json-productivity-programming-python-software.html" >apps, coding, command prompt, data, HTTP, json, productivity, programming, python, software</a></li>
-            <li><a href="https://lofipython.com/category/apps-internet-life.html" >apps, internet, life</a></li>
-            <li><a href="https://lofipython.com/category/apps-internet-productivity.html" >apps, internet, productivity</a></li>
-            <li><a href="https://lofipython.com/category/automation-coding-command-prompt-performance-productivity-programming-python-scripts-software.html" >automation, coding, command prompt, performance, productivity, programming, python, Scripts, software</a></li>
-            <li><a href="https://lofipython.com/category/automation-coding-education-programming-scripts.html" >automation, coding, education, programming, Scripts</a></li>
-            <li><a href="https://lofipython.com/category/automation-coding-excel-google-pandas.html" >automation, coding, excel, Google, pandas</a></li>
-            <li><a href="https://lofipython.com/category/automation-coding-gui-programming-python.html" >automation, coding, gui, programming, python</a></li>
-            <li><a href="https://lofipython.com/category/automation-coding-pandas-productivity-programming-scripts.html" >automation, coding, pandas, productivity, programming, Scripts</a></li>
-            <li><a href="https://lofipython.com/category/automation-coding-windows.html" >automation, coding, Windows</a></li>
-            <li><a href="https://lofipython.com/category/automation-command-prompt-scripts-windows.html" >automation, command prompt, Scripts, Windows</a></li>
-            <li><a href="https://lofipython.com/category/automation-data-databases-excel-odbc-pandas-python-windows.html" >automation, data, Databases, excel, ODBC, pandas, python, Windows</a></li>
-            <li><a href="https://lofipython.com/category/automation-git-pelican-programming-python-writing.html" >automation, git, pelican, programming, python, writing</a></li>
-            <li><a href="https://lofipython.com/category/automation-productivity-programming-python-windows.html" >automation, productivity, programming, python, Windows</a></li>
-            <li><a href="https://lofipython.com/category/automation-programming-software-testing-windows.html" >automation, programming, software testing, Windows</a></li>
-            <li><a href="https://lofipython.com/category/blog.html" >blog</a></li>
-            <li><a href="https://lofipython.com/category/books-coding-life-programming.html" >books, coding, life, programming</a></li>
-            <li><a href="https://lofipython.com/category/books-productivity-programming.html" >books, productivity, programming</a></li>
-            <li><a href="https://lofipython.com/category/business-entrepreneurship-marketing-product-development.html" >business, entrepreneurship, Marketing, product development</a></li>
-            <li><a href="https://lofipython.com/category/business-programming.html" >business, programming</a></li>
-            <li><a href="https://lofipython.com/category/chicago-coding-http-json-pandas-programming.html" >Chicago, coding, HTTP, json, pandas, programming</a></li>
-            <li><a href="https://lofipython.com/category/chicago-electronics.html" >Chicago, electronics</a></li>
-            <li><a href="https://lofipython.com/category/coding.html" >coding</a></li>
-            <li><a href="https://lofipython.com/category/coding-colors-pandas-programming.html" >coding, Colors, pandas, programming</a></li>
-            <li><a href="https://lofipython.com/category/coding-command-prompt-data-analysis-git-programming-software.html" >coding, command prompt, data analysis, git, programming, software</a></li>
-            <li><a href="https://lofipython.com/category/coding-command-prompt-productivity-windows.html" >coding, command prompt, productivity, Windows</a></li>
-            <li><a href="https://lofipython.com/category/coding-computing-pandas-performance-programming.html" >coding, computing, pandas, performance, programming</a></li>
-            <li><a href="https://lofipython.com/category/coding-concurrency-data-education-go-lectures-notes-programming.html" >coding, concurrency, data, education, Go, lectures notes, programming</a></li>
-            <li><a href="https://lofipython.com/category/coding-data-analysis-google-pandas-programming-python.html" >coding, data analysis, Google, pandas, programming, python</a></li>
-            <li><a href="https://lofipython.com/category/coding-data-databases-education-programming-python-software.html" >coding, data, Databases, education, programming, python, software</a></li>
-            <li><a href="https://lofipython.com/category/coding-data-databases-programming.html" >coding, data, Databases, programming</a></li>
-            <li><a href="https://lofipython.com/category/coding-data-excel-pandas-python.html" >coding, data, excel, pandas, python</a></li>
-            <li><a href="https://lofipython.com/category/coding-data-product-development-programming-software.html" >coding, data, product development, programming, software</a></li>
-            <li><a href="https://lofipython.com/category/coding-education-marketing-programming-python-wisdom.html" >coding, education, Marketing, programming, python, wisdom</a></li>
-            <li><a href="https://lofipython.com/category/coding-excel-http.html" >coding, excel, HTTP</a></li>
-            <li><a href="https://lofipython.com/category/coding-flask-programming-python-web-development.html" >coding, flask, programming, python, web development</a></li>
-            <li><a href="https://lofipython.com/category/coding-http-python-windows.html" >coding, HTTP, python, Windows</a></li>
-            <li><a href="https://lofipython.com/category/coding-javascript-programming.html" >coding, javascript, programming</a></li>
-            <li><a href="https://lofipython.com/category/coding-javascript-programming-web-development.html" >coding, javascript, programming, web development</a></li>
-            <li><a href="https://lofipython.com/category/coding-linux-scripts-software-ubuntu.html" >coding, Linux, Scripts, software, Ubuntu</a></li>
-            <li><a href="https://lofipython.com/category/coding-pandas-programming.html" >coding, pandas, programming</a></li>
-            <li><a href="https://lofipython.com/category/coding-pandas-programming-python.html" >coding, pandas, programming, python</a></li>
-            <li><a href="https://lofipython.com/category/coding-pandas-python-software.html" >coding, pandas, python, software</a></li>
-            <li><a href="https://lofipython.com/category/coding-productivity-programming-python-software-testing.html" >coding, productivity, programming, python, software testing</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming.html" >coding, programming</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-blogging-web-hosting.html" >coding, programming, blogging, web hosting</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-python.html" >coding, programming, python</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-python-artificial-intelligence-ai.html" >coding, programming, python, artificial intelligence, AI</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-python-linting-tools.html" >coding, programming, python, linting, tools</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-python-python-performance-cli.html" >coding, programming, python, python performance, CLI</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-python-qr-code-wi-fi.html" >coding, programming, python, QR code, Wi-Fi</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-python-scripts.html" >coding, programming, python, Scripts</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-python-stocks-cli.html" >coding, programming, python, stocks, CLI</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-python-web-development-web2py.html" >coding, programming, python, web development, web2py</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-python-xml-rss-writing.html" >coding, programming, python, XML, RSS, writing</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-talks.html" >coding, programming, talks</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-text-editors.html" >coding, programming, text editors</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-web-development.html" >coding, programming, web development</a></li>
-            <li><a href="https://lofipython.com/category/coding-programming-work.html" >coding, programming, work</a></li>
-            <li><a href="https://lofipython.com/category/coding-python.html" >coding, python</a></li>
-            <li><a href="https://lofipython.com/category/coding-python-software.html" >coding, python, software</a></li>
-            <li><a href="https://lofipython.com/category/coding-python-writing.html" >coding, python, writing</a></li>
-            <li><a href="https://lofipython.com/category/coding-python-writing-meta.html" >coding, python, writing, meta</a></li>
-            <li><a href="https://lofipython.com/category/command-prompt-data-python-windows.html" >command prompt, data, python, Windows</a></li>
-            <li><a href="https://lofipython.com/category/command-prompt-productivity.html" >command prompt, productivity</a></li>
-            <li><a href="https://lofipython.com/category/data-databases-education-performance.html" >data, Databases, education, performance</a></li>
-            <li><a href="https://lofipython.com/category/data-databases-odbc-pandas-programming-sql-web-development-web2py.html" >data, Databases, ODBC, pandas, programming, SQL, web development, web2py</a></li>
-            <li><a href="https://lofipython.com/category/data-databases-python-sql.html" >data, Databases, python, SQL</a></li>
-            <li><a href="https://lofipython.com/category/databases-programming.html" >Databases, programming</a></li>
-            <li><a href="https://lofipython.com/category/education-productivity-python-writing.html" >education, productivity, python, writing</a></li>
-            <li><a href="https://lofipython.com/category/entertainment-life-space.html"  aria-current="page" >entertainment, life, space</a></li>
-            <li><a href="https://lofipython.com/category/football-coding-programming-python-sports.html" >football, coding, programming, python, sports</a></li>
-            <li><a href="https://lofipython.com/category/http-urls-python-requests.html" >http, urls, python, requests</a></li>
-            <li><a href="https://lofipython.com/category/internet-investing-personal-finance-programming-writing.html" >internet, investing, personal finance, programming, writing</a></li>
-            <li><a href="https://lofipython.com/category/internet-network-productivity.html" >internet, network, productivity</a></li>
-            <li><a href="https://lofipython.com/category/investing.html" >investing</a></li>
-            <li><a href="https://lofipython.com/category/life.html" >life</a></li>
-            <li><a href="https://lofipython.com/category/linux-software.html" >Linux, software</a></li>
-            <li><a href="https://lofipython.com/category/marketing.html" >Marketing</a></li>
-            <li><a href="https://lofipython.com/category/marketing-meta-writing.html" >Marketing, meta, writing</a></li>
-            <li><a href="https://lofipython.com/category/pandas-programming-python.html" >pandas, programming, python</a></li>
-            <li><a href="https://lofipython.com/category/performance-windows.html" >performance, Windows</a></li>
-            <li><a href="https://lofipython.com/category/productivity-programming-writing.html" >productivity, programming, writing</a></li>
-            <li><a href="https://lofipython.com/category/productivity-python.html" >productivity, python</a></li>
-            <li><a href="https://lofipython.com/category/productivity-work.html" >productivity, work</a></li>
-            <li><a href="https://lofipython.com/category/programming.html" >programming</a></li>
-            <li><a href="https://lofipython.com/category/programming-python.html" >programming, python</a></li>
-            <li><a href="https://lofipython.com/category/programming-python-web-development-web2py.html" >programming, python, web development, web2py</a></li>
-            <li><a href="https://lofipython.com/category/python-events-conferences.html" >python, events, conferences</a></li>
-            <li><a href="https://lofipython.com/category/tame-impala.html" >tame impala</a></li>
-        </ul></nav>
-        </header>
-        <main>
-<article>
-  <header>
-    <h2>
-      <a href="https://lofipython.com/lessons-learned-from-lost-in-space-on-netflix.html" rel="bookmark"
-         title="Permalink to Lessons Learned from "Lost in Space" on Netflix">Lessons Learned from &quot;Lost in Space&quot; on Netflix</a></h2>
- 
-  </header>
-  <p>Being a developer has similarities to the life of a family surviving in
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li><a href="https://lofipython.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jan 28, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/lessons-learned-from-lost-in-space-on-netflix.html" rel="bookmark" title="Permanent Link to &quot;Lessons Learned from "Lost in Space" on Netflix&quot;">Lessons Learned from &quot;Lost in Space&quot; on Netflix</a>
+                </h2>
+
+                
+                
+
+                <p>Being a developer has similarities to the life of a family surviving in
 space. Sure, the stakes are lower when writing code versus being chased
 by alien life forms, but the core idea is the same. One is faced with a
 problem and it must be solved, with varying degrees of consequences for
@@ -195,30 +106,30 @@ can be frustrating to watch on TV. &quot;Did you really have to kill
 yourself there?&quot; - me, several times during the show 😆</li>
 </ol>
 
-  <footer>
-    <p>Published: <time datetime="2020-01-28T06:39:00-06:00">
-      Tue 28 January 2020
-    </time></p>
-    <address>
-      By           <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
-    </address>
-    <p>
-        Category: <a href="https://lofipython.com/category/entertainment-life-space.html">entertainment, life, space</a>
-    </p>
-    <p>
-        Tags:
-            <a href="https://lofipython.com/tag/lost-in-space.html">Lost in Space</a>
-            <a href="https://lofipython.com/tag/netflix.html">Netflix</a>
-            <a href="https://lofipython.com/tag/problem-solving.html">problem solving</a>
-    </p>
-  </footer>
-  </article>
-        </main>
-        <footer>
-                <address>
-                Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
-                </address>
-        </footer>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/lessons-learned-from-lost-in-space-on-netflix.html">posted at 06:39</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/entertainment-life-space.html" rel="tag">entertainment, life, space</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/lost-in-space.html" class="tags">Lost in Space</a>
+                    &nbsp;<a href="https://lofipython.com/tag/netflix.html" class="tags">Netflix</a>
+                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
 </body>
 </html>

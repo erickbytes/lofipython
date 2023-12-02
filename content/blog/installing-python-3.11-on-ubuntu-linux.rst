@@ -34,6 +34,8 @@ If you don't do this, you'll see an error about C not being found when running t
   sudo apt install sqlite3 libsqlite3-dev
 
 
+If you wish to make a Django website, install sqllite libraries before you build Python.
+
 Use curl to download the Python gzip file.
 
 .. code:: console
