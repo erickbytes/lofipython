@@ -15,26 +15,26 @@ Once I unpacked the compressed files, I saw the build instructions in the README
 to build a functional Python 3.11 on my Ubuntu computer. Here's how to install the speedier Python versionss 3.11 or 3.12.
 
 
-**How to Install Python 3.11 or 3.12**
+How to Install Python 3.11 or 3.12
+==================================
 
-Install Linux build libraries.
+**Install Linux build libraries.**
+I followed this step posted on `this blog <https://aruljohn.com/blog/install-python/>`_.
+If you don't do this, you'll likely see an error about C not being found when running the ./configure command.
 
 .. code:: console
 
   sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev
 
 
-I followed this step posted on `this blog <https://aruljohn.com/blog/install-python/>`_.
-If you don't do this, you'll see an error about C not being found when running the ./configure command.
-
 **Install sqllite Libraries (Django Requirement)**
+
+If you wish to make a Django website, install sqllite libraries before you build Python.
 
 .. code:: console
 
   sudo apt install sqlite3 libsqlite3-dev
 
-
-If you wish to make a Django website, install sqllite libraries before you build Python.
 
 Use curl to download the Python gzip file.
 
