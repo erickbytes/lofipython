@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - install python linux</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/install-python-linux.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-08-13T22:45:00-05:00</updated><entry><title>How to Install Python 3.11 on a Linux Computer</title><link href="https://lofipython.com/installing-python-3.11-on-ubuntu-linux.html" rel="alternate"></link><published>2023-08-13T22:45:00-05:00</published><updated>2023-08-13T22:45:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-08-13:/installing-python-3.11-on-ubuntu-linux.html</id><summary type="html">&lt;p&gt;Below are the steps I followed to install Python 3.11 from my Ubuntu Linux shell. I downloaded the .tgz file from Python.org, not sure initially how to build Python from it. Once I unpacked the compressed files, I saw the build instructions in the README.rst to build …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below are the steps I followed to install Python 3.11 from my Ubuntu Linux shell. I downloaded the .tgz file from Python.org, not sure initially how to build Python from it. Once I unpacked the compressed files, I saw the build instructions in the README.rst to build a functional Python 3.11 on my Ubuntu computer. Here's how to install the speedier Python version 3.11.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;How to Install Python 3.11&lt;/strong&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - install python linux</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/install-python-linux.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-08-13T22:45:00-05:00</updated><entry><title>How to Install Python 3.11 or 3.12 on a Linux Computer</title><link href="https://lofipython.com/installing-python-3.11-on-ubuntu-linux.html" rel="alternate"></link><published>2023-08-13T22:45:00-05:00</published><updated>2023-08-13T22:45:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-08-13:/installing-python-3.11-on-ubuntu-linux.html</id><summary type="html">&lt;p&gt;Below are the steps I followed to install both Python 3.11 and Python 3.12 in my Ubuntu Linux shell.
+Make sure to adjust your Python version to match 3.11 or 3.12 in all commands.&lt;/p&gt;
+&lt;p&gt;I downloaded the .tgz file from Python.org, not sure initially how …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below are the steps I followed to install both Python 3.11 and Python 3.12 in my Ubuntu Linux shell.
+Make sure to adjust your Python version to match 3.11 or 3.12 in all commands.&lt;/p&gt;
+&lt;p&gt;I downloaded the .tgz file from Python.org, not sure initially how to build Python from it.
+Once I unpacked the compressed files, I saw the build instructions in the README.rst
+to build a functional Python 3.11 on my Ubuntu computer. Here's how to install the speedier Python versionss 3.11 or 3.12.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How to Install Python 3.11 or 3.12&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Install Linux build libraries.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;I followed this step posted on &lt;a class="reference external" href="https://aruljohn.com/blog/install-python/"&gt;this blog&lt;/a&gt;.
+If you don't do this, you'll see an error about C not being found when running the ./configure command.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Install sqllite Libraries (Django Requirement)&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo apt install sqlite3 libsqlite3-dev&lt;/span&gt;
+&lt;/pre&gt;
 &lt;p&gt;Use curl to download the Python gzip file.&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;curl https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz --output Python-3.11.0.tgz&lt;/span&gt;
@@ -18,7 +34,7 @@ cat README.rst&lt;/span&gt;
 &lt;p&gt;Build Python.&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;# &lt;/span&gt;Build&lt;span class="w"&gt; &lt;/span&gt;Python&lt;span class="w"&gt; &lt;/span&gt;on&lt;span class="w"&gt; &lt;/span&gt;Unix,&lt;span class="w"&gt; &lt;/span&gt;Linux,&lt;span class="w"&gt; &lt;/span&gt;BSD,&lt;span class="w"&gt; &lt;/span&gt;macOS,&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;Cygwin:&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="go"&gt;./configure
+&lt;/span&gt;&lt;span class="go"&gt;./configure --enable-optimizations
 make
 make test
 sudo make install&lt;/span&gt;
@@ -41,4 +57,4 @@ to macOS framework and universal builds.  Refer to &lt;a class="reference extern
 &lt;p&gt;On Windows, see &lt;a class="reference external" href="https://github.com/python/cpython/blob/main/PCbuild/readme.txt"&gt;PCbuild/readme.txt&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;- Python 3.11 Linux README.rst&lt;/p&gt;
 &lt;/blockquote&gt;
-</content><category term="coding, programming, python"></category><category term="install python linux"></category><category term="installing Python 3.11"></category><category term="how to build Python 3.11"></category></entry></feed>
+</content><category term="coding, programming, python"></category><category term="install python linux"></category><category term="installing Python 3.11"></category><category term="installing python 3.12"></category><category term="how to build Python 3.11 + 3.12"></category></entry></feed>

@@ -1,629 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lo-Fi Python | Articles by pythonmarketer</title>
-    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
-    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
-    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
-    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
-    <meta name="generator" content="Pelican" />
-    <meta name="description" content="" />
-    <meta name="author" content="@erickbytes" />
+        <title>Lo-Fi Python - Articles by pythonmarketer</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+        <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
 </head>
+
 <body>
-    <header>
-        <nav style="overflow: hidden;">
-            <ul>
-
-                <li class="ephemeral selected"><a href="https://lofipython.com/author/pythonmarketer2.html">pythonmarketer</a></li>
-                <li><a href="https://lofipython.com/">Home</a></li>
-                <li><a href="feeds/all.rss.xml">RSS</a></li>
-                <li><a href="feeds/all.atom.xml">Atom</a></li>
-                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
-            </ul>
-        </nav>
-        <div class="header_box" style="height: 50px">
-        <h1><a href="https://lofipython.com/">
-            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
-            </a></h1></div>
-        </div>
-    </header>
-    <div id="wrapper">
-        <div id="content">            <h4 class="date">Oct 18, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/how-to-find-and-open-a-public-wi-fi-login-page.html" rel="bookmark" title="Permanent Link to &quot;How to Find and Open a Public Wi-Fi Login Page&quot;">How to Find and Open a Public Wi-Fi Login Page</a>
-                </h2>
-
-                
-                
-
-                <p>Sometimes, we find ourselves on a public Wi-Fi connection that is &quot;connected&quot;, but unable to get to the login page. While the login page is triggered automatically on most mobile devices, computers may not connect so easily. As usual, I turned to Google to find a way to get to a public Wi-Fi login page.</p>
-<p><a class="reference external" href="https://zapier.com/blog/open-wifi-login-page/#:~:text=An%20easy%20trick%20is%20to,you're%20at%20home).">This helpful Zapier blog post</a> outlines a few different approaches you can take. My solution below is one of the IP addresses they suggested trying. Decide if you need to edit your computer's network settings. Alternatively, you may just need to find the public login page. I was able to load my public Wi-Fi login page with this IP address in my web browser:</p>
-<pre class="literal-block">
-192.168.1.11
-</pre>
-<div class="wp-image-7279 figure">
-<img alt="web browser navigation bar" src="https://pythonmarketer.files.wordpress.com/2022/10/image-6.png?w=727" />
-</div>
-<p>This is a fun little trick to keep in mind if you're having difficulty connecting to public Wi-Fi. Problem solved!</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/how-to-find-and-open-a-public-wi-fi-login-page.html">posted at 12:38</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/internet-network-productivity.html" rel="tag">internet, network, productivity</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/find-public-wi-fi-login-page.html" class="tags">find public wi-fi login page</a>
-                    &nbsp;<a href="https://lofipython.com/tag/open-wi-fi-login.html" class="tags">open wi-fi login</a>
-                    &nbsp;<a href="https://lofipython.com/tag/wifi-hack.html" class="tags">wifi hack</a>
-                </div>
-            </article>            <h4 class="date">Oct 10, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/how-to-check-github-repo-star-counts-with-python.html" rel="bookmark" title="Permanent Link to &quot;How to Check Github Repo Star Counts With Python&quot;">How to Check Github Repo Star Counts With Python</a>
-                </h2>
-
-                
-                
-
-                <p>Snooping through my package list, I noticed the <a class="reference external" href="https://github.com/PyGithub/PyGithub">PyGithub library</a> was installed. Its repo boasts &quot;Typed interactions with the GitHub API v3&quot;. I googled the package, wanting to check in on the repos I profiled in an <a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/">earlier post about static site generators</a>.</p>
-<p>I drafted the code below after noticing the <a class="reference external" href="https://pygithub.readthedocs.io/en/latest/examples/Repository.html#get-count-of-stars">repo.stargazer_count</a> function in its documentation. This is neat to have if you want to keep tabs on a batch of repos, instead of tediously checking the Github web interface! If you're new to Github, the <a class="reference external" href="https://github.com/trending">trending page</a> is an easy way to find new, interesting repos.</p>
-<p><strong>Getting Started</strong></p>
-<ol class="arabic simple">
-<li>You'll need to create a personal access token for your Github account. See the Github docs, <a class="reference external" href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">&quot;Creating a personal access token&quot;.</a></li>
-<li><a class="reference external" href="https://pypi.org/project/PyGithub/">Install PyGithub</a> and <a class="reference external" href="https://pandas.pydata.org/docs/getting_started/index.html">pandas</a>:</li>
-</ol>
-<pre class="literal-block">
-pip install PyGithub
-pip install pandas
-</pre>
-<ol class="arabic simple" start="3">
-<li>Run the below code as a Python script.</li>
-</ol>
-<pre class="literal-block">
-python github_stars.py
-</pre>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">github</span> <span class="kn">import</span> <span class="n">Github</span>
-
-
-<span class="k">def</span> <span class="nf">stars</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve github repo star count.</span>
-<span class="sd">    Accepts: str, repo &quot;username/repo name&quot;,ex: &quot;getpelican/pelican&quot;</span>
-<span class="sd">    Returns: int, github repo stargazers number&quot;&quot;&quot;</span>
-    <span class="n">repo</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_repo</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">repo</span><span class="o">.</span><span class="n">stargazers_count</span>
+        <header>
+              <hgroup><h1><a href="https://lofipython.com/">Lo-Fi Python</a></h1></hgroup>
+        <nav><ul>
+            <li><a href="feeds/all.rss.xml">RSS</a></li>
+            <li><a href="feeds/all.atom.xml">Atom</a></li>
+            <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
+            <li><a href="https://lofipython.com/category/apis-apps-coding-product-development-programming-software-uncategorized.html" >APIs, apps, coding, product development, programming, software, Uncategorized</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-google-programming.html" >APIs, coding, Google, programming</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-http-productivity-programming.html" >APIs, coding, HTTP, productivity, programming</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-http-programming-python.html" >APIs, coding, HTTP, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-pandas-programming-python-rust.html" >APIs, coding, pandas, programming, python, Rust</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-programming.html" >APIs, coding, programming</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-programming-python.html" >APIs, coding, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/apis-data-programming-writing.html" >APIs, data, programming, writing</a></li>
+            <li><a href="https://lofipython.com/category/apis-odbc-programming-python.html" >APIs, ODBC, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/apps-coding-command-prompt-data-http-json-productivity-programming-python-software.html" >apps, coding, command prompt, data, HTTP, json, productivity, programming, python, software</a></li>
+            <li><a href="https://lofipython.com/category/apps-internet-life.html" >apps, internet, life</a></li>
+            <li><a href="https://lofipython.com/category/apps-internet-productivity.html" >apps, internet, productivity</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-command-prompt-performance-productivity-programming-python-scripts-software.html" >automation, coding, command prompt, performance, productivity, programming, python, Scripts, software</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-education-programming-scripts.html" >automation, coding, education, programming, Scripts</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-excel-google-pandas.html" >automation, coding, excel, Google, pandas</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-gui-programming-python.html" >automation, coding, gui, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-pandas-productivity-programming-scripts.html" >automation, coding, pandas, productivity, programming, Scripts</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-windows.html" >automation, coding, Windows</a></li>
+            <li><a href="https://lofipython.com/category/automation-command-prompt-scripts-windows.html" >automation, command prompt, Scripts, Windows</a></li>
+            <li><a href="https://lofipython.com/category/automation-data-databases-excel-odbc-pandas-python-windows.html" >automation, data, Databases, excel, ODBC, pandas, python, Windows</a></li>
+            <li><a href="https://lofipython.com/category/automation-git-pelican-programming-python-writing.html" >automation, git, pelican, programming, python, writing</a></li>
+            <li><a href="https://lofipython.com/category/automation-productivity-programming-python-windows.html" >automation, productivity, programming, python, Windows</a></li>
+            <li><a href="https://lofipython.com/category/automation-programming-software-testing-windows.html" >automation, programming, software testing, Windows</a></li>
+            <li><a href="https://lofipython.com/category/blog.html" >blog</a></li>
+            <li><a href="https://lofipython.com/category/books-coding-life-programming.html" >books, coding, life, programming</a></li>
+            <li><a href="https://lofipython.com/category/books-productivity-programming.html" >books, productivity, programming</a></li>
+            <li><a href="https://lofipython.com/category/business-entrepreneurship-marketing-product-development.html" >business, entrepreneurship, Marketing, product development</a></li>
+            <li><a href="https://lofipython.com/category/business-programming.html" >business, programming</a></li>
+            <li><a href="https://lofipython.com/category/chicago-coding-http-json-pandas-programming.html" >Chicago, coding, HTTP, json, pandas, programming</a></li>
+            <li><a href="https://lofipython.com/category/chicago-electronics.html" >Chicago, electronics</a></li>
+            <li><a href="https://lofipython.com/category/coding.html" >coding</a></li>
+            <li><a href="https://lofipython.com/category/coding-colors-pandas-programming.html" >coding, Colors, pandas, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-command-prompt-data-analysis-git-programming-software.html" >coding, command prompt, data analysis, git, programming, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-command-prompt-productivity-windows.html" >coding, command prompt, productivity, Windows</a></li>
+            <li><a href="https://lofipython.com/category/coding-computing-pandas-performance-programming.html" >coding, computing, pandas, performance, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-concurrency-data-education-go-lectures-notes-programming.html" >coding, concurrency, data, education, Go, lectures notes, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-analysis-google-pandas-programming-python.html" >coding, data analysis, Google, pandas, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-databases-education-programming-python-software.html" >coding, data, Databases, education, programming, python, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-databases-programming.html" >coding, data, Databases, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-excel-pandas-python.html" >coding, data, excel, pandas, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-product-development-programming-software.html" >coding, data, product development, programming, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-education-marketing-programming-python-wisdom.html" >coding, education, Marketing, programming, python, wisdom</a></li>
+            <li><a href="https://lofipython.com/category/coding-excel-http.html" >coding, excel, HTTP</a></li>
+            <li><a href="https://lofipython.com/category/coding-flask-programming-python-web-development.html" >coding, flask, programming, python, web development</a></li>
+            <li><a href="https://lofipython.com/category/coding-http-python-windows.html" >coding, HTTP, python, Windows</a></li>
+            <li><a href="https://lofipython.com/category/coding-javascript-programming.html" >coding, javascript, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-javascript-programming-web-development.html" >coding, javascript, programming, web development</a></li>
+            <li><a href="https://lofipython.com/category/coding-linux-scripts-software-ubuntu.html" >coding, Linux, Scripts, software, Ubuntu</a></li>
+            <li><a href="https://lofipython.com/category/coding-pandas-programming.html" >coding, pandas, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-pandas-programming-python.html" >coding, pandas, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-pandas-python-software.html" >coding, pandas, python, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-productivity-programming-python-software-testing.html" >coding, productivity, programming, python, software testing</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming.html" >coding, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-blogging-web-hosting.html" >coding, programming, blogging, web hosting</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python.html" >coding, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-artificial-intelligence-ai.html" >coding, programming, python, artificial intelligence, AI</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-linting-tools.html" >coding, programming, python, linting, tools</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-python-performance-cli.html" >coding, programming, python, python performance, CLI</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-qr-code-wi-fi.html" >coding, programming, python, QR code, Wi-Fi</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-scripts.html" >coding, programming, python, Scripts</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-stocks-cli.html" >coding, programming, python, stocks, CLI</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-web-development-web2py.html" >coding, programming, python, web development, web2py</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-xml-rss-writing.html" >coding, programming, python, XML, RSS, writing</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-talks.html" >coding, programming, talks</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-text-editors.html" >coding, programming, text editors</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-web-development.html" >coding, programming, web development</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-work.html" >coding, programming, work</a></li>
+            <li><a href="https://lofipython.com/category/coding-python.html" >coding, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-python-software.html" >coding, python, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-python-writing.html" >coding, python, writing</a></li>
+            <li><a href="https://lofipython.com/category/coding-python-writing-meta.html" >coding, python, writing, meta</a></li>
+            <li><a href="https://lofipython.com/category/command-prompt-data-python-windows.html" >command prompt, data, python, Windows</a></li>
+            <li><a href="https://lofipython.com/category/command-prompt-productivity.html" >command prompt, productivity</a></li>
+            <li><a href="https://lofipython.com/category/data-databases-education-performance.html" >data, Databases, education, performance</a></li>
+            <li><a href="https://lofipython.com/category/data-databases-odbc-pandas-programming-sql-web-development-web2py.html" >data, Databases, ODBC, pandas, programming, SQL, web development, web2py</a></li>
+            <li><a href="https://lofipython.com/category/data-databases-python-sql.html" >data, Databases, python, SQL</a></li>
+            <li><a href="https://lofipython.com/category/databases-programming.html" >Databases, programming</a></li>
+            <li><a href="https://lofipython.com/category/education-productivity-python-writing.html" >education, productivity, python, writing</a></li>
+            <li><a href="https://lofipython.com/category/entertainment-life-space.html" >entertainment, life, space</a></li>
+            <li><a href="https://lofipython.com/category/football-coding-programming-python-sports.html" >football, coding, programming, python, sports</a></li>
+            <li><a href="https://lofipython.com/category/http-urls-python-requests.html" >http, urls, python, requests</a></li>
+            <li><a href="https://lofipython.com/category/internet-investing-personal-finance-programming-writing.html" >internet, investing, personal finance, programming, writing</a></li>
+            <li><a href="https://lofipython.com/category/internet-network-productivity.html" >internet, network, productivity</a></li>
+            <li><a href="https://lofipython.com/category/investing.html" >investing</a></li>
+            <li><a href="https://lofipython.com/category/life.html" >life</a></li>
+            <li><a href="https://lofipython.com/category/linux-software.html" >Linux, software</a></li>
+            <li><a href="https://lofipython.com/category/marketing.html" >Marketing</a></li>
+            <li><a href="https://lofipython.com/category/marketing-meta-writing.html" >Marketing, meta, writing</a></li>
+            <li><a href="https://lofipython.com/category/pandas-programming-python.html" >pandas, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/performance-windows.html" >performance, Windows</a></li>
+            <li><a href="https://lofipython.com/category/productivity-programming-writing.html" >productivity, programming, writing</a></li>
+            <li><a href="https://lofipython.com/category/productivity-python.html" >productivity, python</a></li>
+            <li><a href="https://lofipython.com/category/productivity-work.html" >productivity, work</a></li>
+            <li><a href="https://lofipython.com/category/programming.html" >programming</a></li>
+            <li><a href="https://lofipython.com/category/programming-python.html" >programming, python</a></li>
+            <li><a href="https://lofipython.com/category/programming-python-web-development-web2py.html" >programming, python, web development, web2py</a></li>
+            <li><a href="https://lofipython.com/category/python-events-conferences.html" >python, events, conferences</a></li>
+            <li><a href="https://lofipython.com/category/tame-impala.html" >tame impala</a></li>
+        </ul></nav>
+        </header>
+        <main>
+<h2>Articles by pythonmarketer</h2>
 
 
-<span class="c1"># static site repos: http://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/</span>
-<span class="n">urls</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;https://github.com/getpelican/pelican&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https://github.com/lektor/lektor&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https://github.com/eudicots/Cactus&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https://github.com/getnikola/nikola&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https://github.com/sunainapai/makesite&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https://github.com/hyde/hyde&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https://github.com/Anomareh/mynt&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https://github.com/staticjinja/staticjinja&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-<span class="n">repos</span> <span class="o">=</span> <span class="p">[</span><span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;https://github.com/&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">]</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">Github</span><span class="p">(</span><span class="s2">&quot;access_token&quot;</span><span class="p">)</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="p">[(</span><span class="n">repo</span><span class="p">,</span> <span class="n">stars</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">g</span><span class="p">))</span> <span class="k">for</span> <span class="n">repo</span> <span class="ow">in</span> <span class="n">repos</span><span class="p">]</span>
-<span class="n">stars_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;repo&quot;</span><span class="p">,</span><span class="s2">&quot;stars&quot;</span><span class="p">])</span>
-<span class="n">stars_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;Stars.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p>On Linux, I was able to check the results of the CSV with the cat command:</p>
-<div class="wp-image-7254 figure">
-<img alt="View repo github stars with Python" src="https://pythonmarketer.files.wordpress.com/2022/10/check-pelican.png?w=409" />
-</div>
-<p>I confirmed the API was accurate against the web interface in <a class="reference external" href="https://github.com/getpelican/pelican">pelican's repo</a>!</p>
-<div class="wp-image-7251 figure">
-<img alt="Github browser UX" src="https://pythonmarketer.files.wordpress.com/2022/10/pelican-stars.png?w=1024" />
-</div>
-<p><a class="reference external" href="https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html#github.Repository.Repository.stargazers_count">Github Repo Stargazer API Reference</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/how-to-check-github-repo-star-counts-with-python.html">posted at 00:08</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-programming-python.html" rel="tag">APIs, coding, programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/github-api.html" class="tags">github api</a>
-                    &nbsp;<a href="https://lofipython.com/tag/github-stars-python.html" class="tags">github stars python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/repo-star-counts.html" class="tags">repo star counts</a>
-                </div>
-            </article>            <h4 class="date">Oct 08, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html" rel="bookmark" title="Permanent Link to &quot;Pelican Fix for "No valid files found in content"...&quot;">Pelican Fix for &quot;No valid files found in content&quot;...</a>
-                </h2>
-
-                
-                
-
-                <p>Pelican is a popular <a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/">static site generator library</a> in Python. I didn't know why my pelican blog was not working. I've used the &quot;pelican content&quot; command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">WARNING</span>  <span class="n">No</span> <span class="n">valid</span> <span class="n">files</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">content</span> <span class="k">for</span> <span class="n">the</span> <span class="n">active</span>         <span class="n">log</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">91</span>
-         <span class="n">readers</span><span class="p">:</span>
-           <span class="o">|</span> <span class="n">BaseReader</span> <span class="p">(</span><span class="n">static</span><span class="p">)</span>
-           <span class="o">|</span> <span class="n">HTMLReader</span> <span class="p">(</span><span class="n">htm</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
-           <span class="o">|</span> <span class="n">RstReader</span> <span class="p">(</span><span class="n">rst</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<div class="wp-image-7221 figure">
-<img alt="no valid files found in pelican content" src="https://pythonmarketer.files.wordpress.com/2022/10/image.png?w=665" />
-</div>
-<p><strong>Solution</strong></p>
-<p>Install the markdown library, which is stated in the <a class="reference external" href="https://docs.getpelican.com/en/3.6.3/install.html#optional-packages">pelican docs</a>. This <a class="reference external" href="https://github.com/getpelican/pelican/issues/1868">Github issue</a> also provides some background on this warning.</p>
-<pre class="literal-block">
-pip install markdown
-</pre>
-<div class="wp-image-7224 figure">
-<img alt="python pip installing markdown" src="https://pythonmarketer.files.wordpress.com/2022/10/image-1.png?w=672" />
-</div>
-<p>Now my &quot;pelican content&quot; command works!</p>
-<pre class="literal-block">
-pelican content
-</pre>
-<div class="wp-image-7226 figure">
-<img alt="successful pelican content build" src="https://pythonmarketer.files.wordpress.com/2022/10/image-2.png?w=679" />
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html">posted at 13:43</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-writing.html" rel="tag">coding, python, writing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/markdown-library.html" class="tags">markdown library</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pelican-blog.html" class="tags">pelican blog</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-fix.html" class="tags">python fix</a>
-                </div>
-            </article>            <h4 class="date">Sep 15, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/fetch-a-random-number-or-random-n-length-list-of-numbers-in-python-with-the-random-module.html" rel="bookmark" title="Permanent Link to &quot;Retrieve Random Numbers Via Python's random Module + range() Built-in&quot;">Retrieve Random Numbers Via Python's random Module + range() Built-in</a>
-                </h2>
-
-                
-                
-
-                <p>There are usually many ways to do most things in Python. I've retrieved
+        <article>
+                <header> <h2><a href="https://lofipython.com/how-to-find-and-open-a-public-wi-fi-login-page.html" rel="bookmark" title="Permalink to How to Find and Open a Public Wi-Fi Login Page">How to Find and Open a Public Wi-Fi Login Page</a></h2> </header>
+                <section><p>Sometimes, we find ourselves on a public Wi-Fi connection that is &quot;connected&quot;, but unable to get to the login page. While the login page is triggered automatically on most mobile devices, computers may not connect so easily. As usual, I turned to Google to find a way to get to …</p></section>
+                <footer>
+                    <p>Published: <time datetime="2022-10-18T12:38:00-05:00"> Tue 18 October 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
+        <article>
+                <header> <h2><a href="https://lofipython.com/how-to-check-github-repo-star-counts-with-python.html" rel="bookmark" title="Permalink to How to Check Github Repo Star Counts With Python">How to Check Github Repo Star Counts With Python</a></h2> </header>
+                <section><p>Snooping through my package list, I noticed the <a class="reference external" href="https://github.com/PyGithub/PyGithub">PyGithub library</a> was installed. Its repo boasts &quot;Typed interactions with the GitHub API v3&quot;. I googled the package, wanting to check in on the repos I profiled in an <a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/">earlier post about static site generators</a>.</p>
+<p>I drafted the code below after noticing …</p></section>
+                <footer>
+                    <p>Published: <time datetime="2022-10-10T00:08:00-05:00"> Mon 10 October 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
+        <article>
+                <header> <h2><a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html" rel="bookmark" title="Permalink to Pelican Fix for "No valid files found in content"...">Pelican Fix for &quot;No valid files found in content&quot;...</a></h2> </header>
+                <section><p>Pelican is a popular <a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/">static site generator library</a> in Python. I didn't know why my pelican blog was not working. I've used the &quot;pelican content&quot; command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where …</p></section>
+                <footer>
+                    <p>Published: <time datetime="2022-10-08T13:43:00-05:00"> Sat 08 October 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
+        <article>
+                <header> <h2><a href="https://lofipython.com/fetch-a-random-number-or-random-n-length-list-of-numbers-in-python-with-the-random-module.html" rel="bookmark" title="Permalink to Retrieve Random Numbers Via Python's random Module + range() Built-in">Retrieve Random Numbers Via Python's random Module + range() Built-in</a></h2> </header>
+                <section><p>There are usually many ways to do most things in Python. I've retrieved
 random numbers a few different ways at various times within the random
 module, often after reading a Stack Overflow post. This time in my most
-recent search for random digits, I discovered in the Python docs the
-<a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample">random.sample()</a>
-function with its k parameter:</p>
-<blockquote>
-<p>Return a <em>k</em> length list of unique elements chosen from the
-population sequence or set. Used for random sampling without
-replacement.</p>
-<p><a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample">https://docs.python.org/3/library/random.html#random.sample</a></p>
-</blockquote>
-<p>When combined with the <a class="reference external" href="https://docs.python.org/3.3/library/stdtypes.html?highlight=range#range">range() built-in</a>,
-it makes doing this easy. Being able to specify a length and return a
-list of random numbers is mighty convenient. This function seems a
-Pythonic way to randomize to me. Have a look!</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-<span class="c1"># Returns a list of 5 random numbers.</span>
-<span class="n">numbers</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
-<span class="c1"># Returns a single random number.</span>
-<span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000000</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<div class="wp-image-7196 figure">
-<img alt="Python Random Number Code" src="https://pythonmarketer.files.wordpress.com/2022/09/image-2.png?w=552" />
-</div>
-<p>To choose a sample from a range of integers, use a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#range">range()</a> object as an
-argument.</p>
-<p>&quot;This is especially fast and space efficient for sampling from a large
-population&quot;:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p>- Python Docs, <a class="reference external" href="https://docs.python.org/3/library/random.html#random.sample">https://docs.python.org/3/library/random.html#random.sample</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/fetch-a-random-number-or-random-n-length-list-of-numbers-in-python-with-the-random-module.html">posted at 23:09</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/python-random-numbers-list.html" class="tags">python random numbers list</a>
-                    &nbsp;<a href="https://lofipython.com/tag/random-module.html" class="tags">random module</a>
-                    &nbsp;<a href="https://lofipython.com/tag/random-numbers-python.html" class="tags">random numbers python</a>
-                </div>
-            </article>            <h4 class="date">Sep 07, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/30-external-python-libraries-starter-pack.html" rel="bookmark" title="Permanent Link to &quot;Beyond the Standard Library, An External Python Modules Starter Pack&quot;">Beyond the Standard Library, An External Python Modules Starter Pack</a>
-                </h2>
-
-                
-                
-
-                <p>Here is a list of external Python modules you can install with <a class="reference external" href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. These are not included with your Python version and need to be installed separately. In some cases, other options may be suitable. To keep the list shorter, I picked libraries that were chosen based on having at least one of these qualities:</p>
-<ul class="simple">
-<li>most obvious library for its category</li>
-<li>a library I have experience using effectively</li>
-<li>provide a niche, useful functionality or tool</li>
-</ul>
-<p><strong>In alphabetical order:</strong></p>
-<div class="wp-block-columns docutils container">
-</p><div class="wp-block-column docutils container">
-</p><ol class="arabic simple">
-<li><a class="reference external" href="https://pypi.org/project/black/">black</a>: code formatting</li>
-<li><a class="reference external" href="https://pypi.org/project/chardet/">chardet</a>: detect file encoding (useful for reading CSVs)</li>
-<li><a class="reference external" href="https://pypi.org/project/diagrams/">diagrams</a>: make cloud architecture diagrams</li>
-<li><a class="reference external" href="https://pypi.org/project/Django/">Django</a>: web framework</li>
-<li><a class="reference external" href="https://fastapi.tiangolo.com/#installation">fastapi</a>: web framework for building APIs</li>
-<li><a class="reference external" href="https://pypi.org/project/ffn/">ffn</a>: financial function library</li>
-<li><a class="reference external" href="https://pypi.org/project/Flask/">Flask:</a> web framework</li>
-<li><a class="reference external" href="https://pypi.org/project/pygame/">ftfy</a>: fix mojibake in text</li>
-<li><a class="reference external" href="https://pypi.org/project/fuzzywuzzy/">fuzzywuzzy</a>: fuzzy matching library</li>
-<li><a class="reference external" href="https://pypi.org/project/matplotlib/">matplotlib</a>: data visualization</li>
-<li><a class="reference external" href="https://pypi.org/project/numpy/">numpy</a>: array operations</li>
-<li><a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a>: foundational Excel library</li>
-<li><a class="reference external" href="https://pypi.org/project/pandas/">pandas</a>: working with tabular data</li>
-<li><a class="reference external" href="https://pypi.org/project/pelican/">pelican</a>: static site generator</li>
-<li><a class="reference external" href="https://github.com/giampaolo/psutil/blob/master/INSTALL.rst">psutil</a>: process and system utilities</li>
-<li><a class="reference external" href="https://pypi.org/project/pygame/">pygame</a>: video game creation</li>
-<li><a class="reference external" href="https://pypi.org/project/pyodbc/">pyodbc</a>: Open Database Connection client</li>
-<li><a class="reference external" href="https://github.com/benfred/py-spy">py-spy</a>: sampling profiler to visualize your program</li>
-<li>pyheat: visualize code bottlenecks</li>
-<li><a class="reference external" href="https://pypi.org/project/pytest/">pytest</a>: testing framework</li>
-<li><a class="reference external" href="https://pypi.org/project/pytrends/">pytrends</a>: research trends in the Google Trends API</li>
-<li><a class="reference external" href="https://pypi.org/project/pytube3/">pytube3</a>: YouTube video downloading library</li>
-<li><a class="reference external" href="https://pypi.org/project/pywin32/">pywin32</a>: Python for Win32 Extensions</li>
-<li><a class="reference external" href="https://pypi.org/project/requests/">requests</a>: HTTP requests</li>
-<li><a class="reference external" href="https://pypi.org/project/scikit-learn/">scikit-learn</a>: machine learning</li>
-<li><a class="reference external" href="https://pypi.org/project/soltrack/">soltrack</a>: calculate the location of the sun</li>
-<li><a class="reference external" href="https://pypi.org/project/sqlfluff/">sqlfluff</a>: SQL linter</li>
-<li><a class="reference external" href="https://github.com/streamlit/streamlit">streamlit</a>: build data apps</li>
-<li><a class="reference external" href="https://pypi.org/project/tqdm/">tqdm</a>: add a progress bar to loops</li>
-<li><a class="reference external" href="https://wxpython.org/pages/downloads/index.html">wxPython</a>: Graphical User Interface</li>
-<li><a class="reference external" href="https://pypi.org/project/xlrd/">xlrd</a>: supplementary Excel library</li>
-<li><a class="reference external" href="https://pypi.org/project/xmltodict/">xmltodict</a>: convert XML to nested Python dicts</li>
-</ol>
-</div>
-</div>
-<p><a class="reference external" href="https://docs.python.org/3/installing/index.html">Python Documentation: Installing Python Modules</a></p>
-<div class="wp-image-7164 figure">
-<img alt="python pip install shell" src="https://pythonmarketer.files.wordpress.com/2022/09/image.png?w=672" />
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/30-external-python-libraries-starter-pack.html">posted at 23:46</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/programming-python.html" rel="tag">programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/advanced-python-modules.html" class="tags">advanced python modules</a>
-                    &nbsp;<a href="https://lofipython.com/tag/coding.html" class="tags">coding</a>
-                    &nbsp;<a href="https://lofipython.com/tag/useful-python-libraries.html" class="tags">useful python libraries</a>
-                </div>
-            </article>            <h4 class="date">Aug 14, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/recycling-old-electronics-in-chicago.html" rel="bookmark" title="Permanent Link to &quot;Recycling Old Electronics in Chicago&quot;">Recycling Old Electronics in Chicago</a>
-                </h2>
-
-                
-                
-
-                <p>Though we feel powerless at times, our individual choices can have ripple effects which can help us preserve Earth's precious materials. Here is how to recycle your old electronics in Chicago. Definitely check out if your city has a similar program for recycling electronics.</p>
-<p>Look up the schedule for any Chicago address here: <a class="reference external" href="https://www.recyclebycity.com/chicago/schedule">https://www.recyclebycity.com/chicago/schedule</a></p>
-<div class="wp-image-7143 figure">
-<img alt="Chicago Recycling Schedule Website" src="https://pythonmarketer.files.wordpress.com/2022/08/screenshot-2022-08-14-1.32.53-pm.png?w=931" />
-</div>
-<p>I was able to look up my address, see the recycling pickup schedule for my street, and see collection events for old electronics and waste. I scheduled an email reminder for the day before an upcoming event near me. I have a graveyard of broken phones and a busted Macbook to dispose of.</p>
-<div class="wp-image-7149 figure">
-<img alt="Sign up for a reminder to recycle." src="https://pythonmarketer.files.wordpress.com/2022/08/send-reminder-recycling.png?w=928" />
-</div>
-<p>Our recycling program also accepts nail polish, chemicals, paints, auto fluids, pharmaceuticals and &quot;Misc. Hazardous Waste&quot;. I learned today that the city says alkaline batteries are ok to throw away in the trash since they no longer contain Mercury like they did in the '90s.</p>
-<p>The website also has an option for Spanish language speakers. You can sign up for email updates on the city's recycling program at the bottom of their website. Overall, I give the city's recycling service an A+ for its accessibility. Happy to see a wealth of resources available to re-purpose our planet's resources. If we all choose to care in our day to day lives, we can make a better future for generations to come.</p>
-<blockquote>
-<div class="line-block">
-<div class="line"><strong>Here's what to take:</strong></div>
-<div class="line">•   All computer-related equipment (monitors, mice, hard drives, CPU’s, computer cables, keyboards, laptops, etc.)</div>
-<div class="line">•   Cell phones</div>
-<div class="line">•   Fax machines</div>
-<div class="line">•   Scanners</div>
-<div class="line">•   Printers/copiers</div>
-<div class="line">•   Televisions</div>
-<div class="line">•   DVD players</div>
-<div class="line">•   VHS players</div>
-<div class="line">•   MP3/digital music players</div>
-<div class="line">•   PDAs</div>
-<div class="line">•   Video game consoles</div>
-<div class="line">•   Zip drive</div>
-<div class="line">•   Computer cables</div>
-</div>
-<p><a class="reference external" href="https://www.recyclebycity.com/chicago/brief/household-chemicals-computer-recycling-facility">https://www.recyclebycity.com/chicago/brief/household-chemicals-computer-recycling-facility</a></p>
-</blockquote>
-<p><strong>Additional Resources</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://www.recyclebycity.com/chicago/brief/recycling-in-chicago-apartments-and-condos">Getting Started with recycling at a new building guide</a></li>
-<li><a class="reference external" href="https://www.recyclebycity.com/chicago/brief/new-residential-electronics-recycling-program">Chicago electronics recycling events</a></li>
-<li><a class="reference external" href="https://www.recyclebycity.com/chicago/quiz">Recycling quiz</a></li>
-</ul>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/recycling-old-electronics-in-chicago.html">posted at 14:02</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/chicago-electronics.html" rel="tag">Chicago, electronics</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/recycling.html" class="tags">recycling</a>
-                    &nbsp;<a href="https://lofipython.com/tag/resources.html" class="tags">resources</a>
-                    &nbsp;<a href="https://lofipython.com/tag/smartphones.html" class="tags">smartphones</a>
-                </div>
-            </article>            <h4 class="date">Jul 08, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages.html" rel="bookmark" title="Permanent Link to &quot;Launching a Live Static Site Blog via Pelican, Github and Cloudflare Pages&quot;">Launching a Live Static Site Blog via Pelican, Github and Cloudflare Pages</a>
-                </h2>
-
-                
-                
-
-                <p>Proud to announce my newest side project blog, Diversified Bullish, is live at <a class="reference external" href="http://divbull.com">divbull.com</a>. It is made with <a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html#">Pelican</a> and the <a class="reference external" href="https://github.com/jody-frankowski/blue-penguin/tree/311a5208c030ea62d85bbca952e31b6775a50c2c">Blue Penguin theme</a>. I'm planning to write about stocks and investing there moving forward in addition to this blog which focuses on Python programming.</p>
-<p>The <a class="reference external" href="https://github.com/erickbytes/divbull/tree/main/divbull.com">divbull.com Github repo</a> serves the static files generated by Pelican via <a class="reference external" href="https://pages.cloudflare.com/">Cloudflare pages</a>. It's free, unless you purchase a domain. I purchased my .com domain with <a class="reference external" href="https://www.namecheap.com/support/knowledgebase/article.aspx/9607/2210/how-to-set-up-dns-records-for-your-domain-in-cloudflare-account/">Namecheap</a> before I learned about Cloudflare pages. I followed <a class="reference external" href="https://developers.cloudflare.com/pages/get-started/">these instructions</a> to set up my new financial blog. If you're interested, you can subscribe to an <a class="reference external" href="https://divbull.com/feeds/all.atom.xml">RSS feed here</a> to follow when I post something new.</p>
-<blockquote>
-<p>The dashboard provides a number of framework-specific presets. These presets provide the default build command and build output directory values for the selected framework. If you are unsure what the correct values are for this section, refer to <a class="reference external" href="https://developers.cloudflare.com/pages/platform/build-configuration/">Build configuration</a>. <strong>If you do not need a build step, leave the Build command field blank.</strong></p>
-<p><a class="reference external" href="https://developers.cloudflare.com/pages/get-started/">https://developers.cloudflare.com/pages/get-started/</a></p>
-</blockquote>
-<div class="wp-image-7113 figure">
-<img alt="Cloudflare pages deployment details" src="https://pythonmarketer.files.wordpress.com/2022/07/cloudflare-deployment-details-1.png?w=1024" />
-</div>
-<p>Working in the Cloudflare pages build dashboard is sweet. It took me about 5 failed Pelican <a class="reference external" href="https://developers.cloudflare.com/pages/platform/build-configuration/">build commands</a> to get the site to deploy. Finally, I was able to get the site build to complete by leaving the build command blank. Cloudflare was able to scoop up my Pelican &quot;output&quot; folder contents and render the blog. How cool. I feel like I've done the impossible, launching a passable quality blog with top shelf tools this quickly for under $10!</p>
-<p>Initially, I spent a few hours getting to know Pelican. Once I correctly installed a theme I liked, I banged out a few philosophical financial musings to give the blog some posts. Then I had the static files generated but no clue how to serve them. Enter Cloudflare pages, a free option to host a blog.</p>
-<p>Connecting the repo to Cloudflare pages, adding the files to the repo and finding the correct build command added a few more hours. In total, it took me about 1-2 days to make a live site since I did not know about Pelican or Cloudflare pages when I began playing with a Pelican blog in April. This was my first static site launch!</p>
-<div class="wp-image-7115 figure">
-<img alt="Cloudflare build settings" src="https://pythonmarketer.files.wordpress.com/2022/07/cloudflare-build-settings.png?w=528" />
-<p class="caption">Generating a Blue Penguin themed Pelican blog.</p>
-</div>
-<div class="wp-image-7086 figure">
-<img alt="showing Pelican blog workflow" src="https://pythonmarketer.files.wordpress.com/2022/07/pelican-blog-dev.png?w=1024" />
-<p class="caption">Head over to <a class="reference external" href="https://divbull.com">divbull.com</a> to see this Pelican, Github and Cloudflare pages stack in action.</p>
-<div class="legend">
-Like static site generators? Check out <a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/">this post about static site generator libraries in Python</a>.</div>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages.html">posted at 01:20</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/internet-investing-personal-finance-programming-writing.html" rel="tag">internet, investing, personal finance, programming, writing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/blog.html" class="tags">blog</a>
-                    &nbsp;<a href="https://lofipython.com/tag/cloudflare-pages.html" class="tags">cloudflare pages</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pelican.html" class="tags">pelican</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/static-site-generator.html" class="tags">static site generator</a>
-                </div>
-            </article>            <h4 class="date">Jul 06, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/the-things-they-dont-tell-you-about-ampersands-and-xml.html" rel="bookmark" title="Permanent Link to &quot;The Things They Don't Tell You About Ampersands and XML&quot;">The Things They Don't Tell You About Ampersands and XML</a>
-                </h2>
-
-                
-                
-
-                <p><strong>In an XML document, you need to escape any ampersands in your text as</strong> <tt class="docutils literal">&amp;amp;</tt></p>
-<p>I began a new coding project. Sure, there's documentation for the API that solves my problem. I find out it uses XML. <a class="reference external" href="https://en.wikipedia.org/wiki/XML">Extensible Markup Language</a>, a classic API format. Cool. I craft a beautiful script that works at first. Or so it seems!</p>
-<p>Later on, I realize it doesn't work as well as I believed. It turns out, if I want a server to accept my XML document, <a class="reference external" href="https://www.ibm.com/docs/en/was-liberty/base?topic=manually-xml-escape-characters">escaping certain characters</a> might be required. The documentation didn't mention this. It was my first time using XML, how would I know?</p>
-<p>I noticed a script only worked for a handful of requests. It failed for most, returning a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400 status code</a>. Suspecting the issue was likely in my payload, I studied the data of the request bodies that failed compared to the others that succeeded. All of the payload bodies that failed contained text with an ampersand.</p>
-<p>Suspecting it might be an XML + ampersand related issue, I googled <a class="reference external" href="https://stackoverflow.com/questions/1328538/how-do-i-escape-ampersands-in-xml-so-they-are-rendered-as-entities-in-html">this Stack Overflow post</a> which explains the ampersand escaping situation. There are a handful of characters that must be escaped. Otherwise, you might not be able to connect to the server.</p>
-<p>These are the things they often don't tell you. Those little details you must sometimes realize for yourself, unless someone bothers to mention it or write it down. Now you know something that cost me an hour or two of tinkering to realize!</p>
-<div class="wp-image-7060 figure">
-<img alt="`Image Source &lt;https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml&gt;`__" src="https://pythonmarketer.files.wordpress.com/2022/07/xml-example-2.png?w=453" style="width: 453px; height: 521px;" />
-</div>
-<p class="center"><a class="reference external" href="https://github.com/sichkar-valentyn/XML_files_in_Python/blob/master/example.xml">Image Source</a></p>
-<p>Want to read more on HTTP? Check out my guide on <a class="reference external" href="https://lofipython.com/2020/05/18/how-to-make-json-requests-with-python/">making HTTP requests with Python</a> to read more about HTTP requests.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/the-things-they-dont-tell-you-about-ampersands-and-xml.html">posted at 12:49</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-google-programming.html" rel="tag">APIs, coding, Google, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
-                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
-                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
-                    &nbsp;<a href="https://lofipython.com/tag/xml.html" class="tags">XML</a>
-                </div>
-            </article>            <h4 class="date">Jun 24, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/hammock-driven-development-talk-notes.html" rel="bookmark" title="Permanent Link to &quot;Hammock-Driven Development Notes&quot;">Hammock-Driven Development Notes</a>
-                </h2>
-
-                
-                
-
-                <p>Occasionally you will find a video or talk that connects or resonates with you in a great way. Rich Hickey's <a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">&quot;Hammock Driven Development&quot;</a>, a self-described &quot;rant&quot; is packed with wisdom. I keep coming back to re-watch and today, I have written down some key points from this amazing rant!</p>
+recent search for random digits, I discovered in the Python docs the …</p></section>
+                <footer>
+                    <p>Published: <time datetime="2022-09-15T23:09:00-05:00"> Thu 15 September 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
+        <article>
+                <header> <h2><a href="https://lofipython.com/30-external-python-libraries-starter-pack.html" rel="bookmark" title="Permalink to Beyond the Standard Library, An External Python Modules Starter Pack">Beyond the Standard Library, An External Python Modules Starter Pack</a></h2> </header>
+                <section><p>Here is a list of external Python modules you can install with <a class="reference external" href="https://pythonmarketer.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>. These are not included with your Python version and need to be installed separately. In some cases, other options may be suitable. To keep the list shorter, I picked libraries that were chosen based on having at …</p></section>
+                <footer>
+                    <p>Published: <time datetime="2022-09-07T23:46:00-05:00"> Wed 07 September 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
+        <article>
+                <header> <h2><a href="https://lofipython.com/recycling-old-electronics-in-chicago.html" rel="bookmark" title="Permalink to Recycling Old Electronics in Chicago">Recycling Old Electronics in Chicago</a></h2> </header>
+                <section><p>Though we feel powerless at times, our individual choices can have ripple effects which can help us preserve Earth's precious materials. Here is how to recycle your old electronics in Chicago. Definitely check out if your city has a similar program for recycling electronics.</p>
+<p>Look up the schedule for any …</p></section>
+                <footer>
+                    <p>Published: <time datetime="2022-08-14T14:02:00-05:00"> Sun 14 August 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
+        <article>
+                <header> <h2><a href="https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages.html" rel="bookmark" title="Permalink to Launching a Live Static Site Blog via Pelican, Github and Cloudflare Pages">Launching a Live Static Site Blog via Pelican, Github and Cloudflare Pages</a></h2> </header>
+                <section><p>Proud to announce my newest side project blog, Diversified Bullish, is live at <a class="reference external" href="http://divbull.com">divbull.com</a>. It is made with <a class="reference external" href="https://docs.getpelican.com/en/latest/quickstart.html#">Pelican</a> and the <a class="reference external" href="https://github.com/jody-frankowski/blue-penguin/tree/311a5208c030ea62d85bbca952e31b6775a50c2c">Blue Penguin theme</a>. I'm planning to write about stocks and investing there moving forward in addition to this blog which focuses on Python programming.</p>
+<p>The <a class="reference external" href="https://github.com/erickbytes/divbull/tree/main/divbull.com">divbull.com Github …</a></p></section>
+                <footer>
+                    <p>Published: <time datetime="2022-07-08T01:20:00-05:00"> Fri 08 July 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
+        <article>
+                <header> <h2><a href="https://lofipython.com/the-things-they-dont-tell-you-about-ampersands-and-xml.html" rel="bookmark" title="Permalink to The Things They Don't Tell You About Ampersands and XML">The Things They Don't Tell You About Ampersands and XML</a></h2> </header>
+                <section><p><strong>In an XML document, you need to escape any ampersands in your text as</strong> <tt class="docutils literal">&amp;amp;</tt></p>
+<p>I began a new coding project. Sure, there's documentation for the API that solves my problem. I find out it uses XML. <a class="reference external" href="https://en.wikipedia.org/wiki/XML">Extensible Markup Language</a>, a classic API format. Cool. I craft a beautiful script …</p></section>
+                <footer>
+                    <p>Published: <time datetime="2022-07-06T12:49:00-05:00"> Wed 06 July 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
+        <article>
+                <header> <h2><a href="https://lofipython.com/hammock-driven-development-talk-notes.html" rel="bookmark" title="Permalink to Hammock-Driven Development Notes">Hammock-Driven Development Notes</a></h2> </header>
+                <section><p>Occasionally you will find a video or talk that connects or resonates with you in a great way. Rich Hickey's <a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">&quot;Hammock Driven Development&quot;</a>, a self-described &quot;rant&quot; is packed with wisdom. I keep coming back to re-watch and today, I have written down some key points from this amazing rant!</p>
 <div class="section" id="key-ideas">
-<h2>Key Ideas</h2>
-<p><strong>Take more time to think through your problem.</strong></p>
-<blockquote>
-<p>When was the last time you...</p>
-<p>thought about something for a whole day?</p>
-<p>thought about something for a whole month or year?</p>
-<p>Hammock Driven Development, <a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">https://www.youtube.com/watch?v=f84n5oFoZBc</a></p>
-</blockquote>
-<p><strong>On Bugs</strong></p>
-<ul class="simple">
-<li>Bugs are cheaper to fix in development.</li>
-<li>Least expensive to avoid in design</li>
-<li>Most expensive in to fix in production</li>
-</ul>
-<p><strong>Analysis &amp; Design, Simplified</strong></p>
-<ul class="simple">
-<li>Identify problem trying to solve.</li>
-<li>Assess whether it solves that problem.</li>
-</ul>
-<p><strong>On Problem Solving</strong></p>
-<div class="wp-image-7029 figure">
-<img alt="solving problems by Rich Hickey" src="https://pythonmarketer.files.wordpress.com/2022/06/solve-problems-1.png?w=730" />
-</div>
-<p><strong>Problem Solving (cont.)</strong></p>
-<ul class="simple">
-<li>State the problem out loud.</li>
-<li>Understand the problem's facts, context and constraints.</li>
-<li>What don't you know?</li>
-<li>Find problems in your solution.</li>
-<li>Write it all down.</li>
-</ul>
-<p><strong>More Input, Better Output</strong></p>
-<ul class="simple">
-<li>Read in and around your space.</li>
-<li>Look critically at other solutions.</li>
-<li>You can't connect things you don't know about.</li>
-</ul>
-<p><strong>On Focus</strong></p>
-<ul class="simple">
-<li>On the hammock, no one knows if you're sleeping and they don't bother you because of this.</li>
-<li>Computers are distracting.</li>
-<li>Let loved ones know you are going to be &quot;gone&quot;, focusing deeply for some time.</li>
-</ul>
-<p><strong>Waking Mind vs Background Mind</strong></p>
-<ul class="simple">
-<li>The waking mind is good at critical thinking.</li>
-<li>Use waking time to assign tasks to background mind.</li>
-<li>The background mind is good at making connections and good at strategy.</li>
-</ul>
-<p><strong>Sleep According to Scientific American:</strong></p>
-<ul class="simple">
-<li>The brain processes info learned while sleeping.</li>
-<li>Sleep makes memories stonger and weeds out irrelevant details.</li>
-<li>Our brain finds hidden relations among memories to solve waking problems.</li>
-</ul>
-<p><strong>Closing Ideas</strong></p>
-<p>Write the proposed solution down. Hammock time is important &quot;mind's eye time&quot;. We switch from &quot;input mode&quot; to &quot;recall mode&quot; during hammock time. Wait overnight, or sometimes months, to think about your problem, sleep sober for best results! Eventually coding is required, and your feedback loop is important, but &quot;don't lean on it too much&quot;. You will be wrong, facts and requirements will change. Mistakes happen. That's fine, do not be afraid of being wrong. /rant</p>
-<p>The notes in this blog post are paraphrased from <a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">this rant</a>.</p>
-</div>
+<h2>Key …</h2></div></section>
+                <footer>
+                    <p>Published: <time datetime="2022-06-24T11:39:00-05:00"> Fri 24 June 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
+        <article>
+                <header> <h2><a href="https://lofipython.com/a-quick-windows-command-line-tab-key-shortcut.html" rel="bookmark" title="Permalink to A Quick Windows Command Line Tab Key Shortcut">A Quick Windows Command Line Tab Key Shortcut</a></h2> </header>
+                <section><p>You might know you can use the tab key to view the files in a folder one at a time on the command line. However, I recently stumbled into another way to help navigate folders with a lot of files in the command line. Let's say you're looking for a …</p></section>
+                <footer>
+                    <p>Published: <time datetime="2022-06-11T12:58:00-05:00"> Sat 11 June 2022 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
 
-                <div class="clear"></div>
+<nav>
+  <ul>
+        <li><a href="https://lofipython.com/author/pythonmarketer.html">&Lang;</a></li>
+        <li><a href="https://lofipython.com/author/pythonmarketer.html">&lang;</a></li>
+    <li>Page 2 / 10</li>
+        <li><a href="https://lofipython.com/author/pythonmarketer3.html">&rang;</a></li>
+        <li><a href="https://lofipython.com/author/pythonmarketer10.html">&Rang;</a></li>
+  </ul>
+</nav>
 
-                <div class="info">
-                    <a href="https://lofipython.com/hammock-driven-development-talk-notes.html">posted at 11:39</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-talks.html" rel="tag">coding, programming, talks</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
-                    &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
-                    &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
-                </div>
-            </article>            <h4 class="date">Jun 11, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/a-quick-windows-command-line-tab-key-shortcut.html" rel="bookmark" title="Permanent Link to &quot;A Quick Windows Command Line Tab Key Shortcut&quot;">A Quick Windows Command Line Tab Key Shortcut</a>
-                </h2>
-
-                
-                
-
-                <p>You might know you can use the tab key to view the files in a folder one at a time on the command line. However, I recently stumbled into another way to help navigate folders with a lot of files in the command line. Let's say you're looking for a file named &quot;stuff.txt&quot;.</p>
-<ol class="arabic simple">
-<li>Type &quot;s&quot;.</li>
-<li>Hit the tab key.</li>
-</ol>
-<p>You just jumped right to the files that start with &quot;s&quot;. If there are not many files, you might go straight to &quot;stuff.txt&quot;. The point is that you can jump straight to the letter of your file rather than scrolling through a mountain of files by hitting the tab key 50 times. Once you get to the relative place in the alphabet of your target file, you can scroll forward in the file list with the <strong>tab key</strong> or move backward by pressing <strong>shift + tab</strong>.</p>
-<blockquote>
-<p><strong>Multi-Letter Example</strong></p>
-<p>Type &quot;st&quot; + tab to target more precise multi-letter sequences.</p>
-</blockquote>
-<p>I felt a productive zen when I accidentally realized this little command line quirk can save a lot of time. Especially when you have a folder with 50 or hundreds of files. Of course, you can always type in the file name directly. Using the tab key is very handy to browse if you don't know the exact file name. This is a nice little trick to add to your bag of Windows command line skills!</p>
-<div class="wp-image-7002 figure">
-<img alt="command prompt typing example" src="https://pythonmarketer.files.wordpress.com/2022/06/commandprompt.webp?w=1024" />
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/a-quick-windows-command-line-tab-key-shortcut.html">posted at 12:58</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-command-prompt-productivity-windows.html" rel="tag">coding, command prompt, productivity, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
-                    &nbsp;<a href="https://lofipython.com/tag/file-system.html" class="tags">file system</a>
-                    &nbsp;<a href="https://lofipython.com/tag/shortcuts.html" class="tags">shortcuts</a>
-                </div>
-            </article>
-
-                <div class="clear"></div>
-                <div class="pages">
-
-                    <a href="https://lofipython.com/author/pythonmarketer.html" class="prev_page">&larr;&nbsp;Previous</a>
-
-                    <a href="https://lofipython.com/author/pythonmarketer3.html" class="next_page">Next&nbsp;&rarr;</a>
-
-                    <span>Page 2 of 10</span>
-                </div>
-
-            <div class="clear"></div>
-            <footer>
-                <p>
-                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
-                &middot;
-                Powered by <a href="http://getpelican.com">Pelican</a>
-                &middot;
-                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
-                &middot;
-                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
-            </footer>
-        </div>
-        <div class="clear"></div>
-    </div>
+        </main>
+        <footer>
+                <address>
+                Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+                </address>
+        </footer>
 </body>
 </html>

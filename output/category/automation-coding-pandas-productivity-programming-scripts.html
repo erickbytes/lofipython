@@ -1,230 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lo-Fi Python | articles in the "automation, coding, pandas, productivity, programming, Scripts" category</title>
-    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
-    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
-    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
-    <link href="https://lofipython.com/feeds/automation-coding-pandas-productivity-programming-scripts.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
-    <link href="https://lofipython.com/feeds/automation-coding-pandas-productivity-programming-scripts.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
-    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
-    <meta name="generator" content="Pelican" />
-    <meta name="description" content="" />
-    <meta name="author" content="@erickbytes" />
+        <title>Lo-Fi Python - automation, coding, pandas, productivity, programming, Scripts category</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+        <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+        <link href="https://lofipython.com/feeds/automation-coding-pandas-productivity-programming-scripts.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
+        <link href="https://lofipython.com/feeds/automation-coding-pandas-productivity-programming-scripts.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
 </head>
+
 <body>
-    <header>
-        <nav style="overflow: hidden;">
-            <ul>
-
-                <li class="ephemeral selected"><a href="https://lofipython.com/category/automation-coding-pandas-productivity-programming-scripts.html">automation, coding, pandas, productivity, programming, Scripts</a></li>
-                <li><a href="https://lofipython.com/">Home</a></li>
-                <li><a href="feeds/all.rss.xml">RSS</a></li>
-                <li><a href="feeds/all.atom.xml">Atom</a></li>
-                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
-            </ul>
-        </nav>
-        <div class="header_box" style="height: 50px">
-        <h1><a href="https://lofipython.com/">
-            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
-            </a></h1></div>
-        </div>
-    </header>
-    <div id="wrapper">
-        <div id="content">            <h4 class="date">Feb 12, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/lightning-scripts-%e2%9a%a1.html" rel="bookmark" title="Permanent Link to &quot;Lightning Scripts ⚡&quot;">Lightning Scripts ⚡</a>
-                </h2>
-
-                
-                
-
-                <p>You may or may not be familiar with <a class="reference external" href="https://www.youtube.com/channel/UCsX05-2sVSH7Nx3zuk3NYuQ">PyCon</a>'s <a class="reference external" href="https://pyvideo.org/pycon-us-2010/pycon-2010--plenary--saturday-evening-lightning-t.html">Lightning Talks</a>, a session of quick hitter talks given each year on a variety of topics. These &quot;Lightning Scripts&quot; are ten of my favorite Python scripts that have served me well as of late to perform a variety of tasks.</p>
-<p>Highlights include the glob, os, calendar, webbrowser and pandas modules. Plus, how to convert a dataframe into a pdf and how to take a snapshot of a website with pdfkit. The webpage pdf was not the greatest snapshot in some cases, but did capture text and many of a live website's visual elements.</p>
-<p>If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.</p>
-<div class="section" id="the-first-5-scripts-use-modules-that-ship-with-python">
-<h2>The first 5 scripts use modules that ship with Python.</h2>
-<p><strong>(1) Uppercase all of the file names in the current working directory.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
-</pre></div></td></tr></table></div>
-<p>os module <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rename">documentation</a></p>
-<p><strong>(2) Get all filenames in the current directory and write to a text file.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">folder_contents</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;list_of_dir_files.txt&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">folder_contents</span><span class="p">:</span>
-        <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;f</span><span class="si">{item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>(3) Check what day of the week is today.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">calendar</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
-<span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">calendar</span><span class="o">.</span><span class="n">day_name</span><span class="p">[</span><span class="n">today</span><span class="o">.</span><span class="n">weekday</span><span class="p">()]</span> <span class="o">==</span> <span class="s1">&#39;Friday&#39;</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is Friday.&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is not Friday.&quot;</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><a class="reference external" href="https://docs.python.org/3/library/calendar.html">calendar documentation</a></p>
-<p><strong>(4) Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">getpass</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="c1"># getctime == by created date, getmtime == by date modified</span>
-<span class="c1"># get all files, regardless of extension</span>
-<span class="n">folder</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s1">/Desktop/&#39;</span>
-<span class="n">list_of_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
-<span class="n">newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:/Users/your_username/Desktop/*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">second_newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:/Users/your_username/Desktop/*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">newest_file</span><span class="p">,</span> <span class="n">second_newest_file</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p>glob module documentation: <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.iglob">https://docs.python.org/3/library/glob.html#glob.iglob</a></p>
-<p><strong>(5)  Auto-Hamilton Ticket Lottery</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
-<span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;https://www.luckyseat.com/hamilton-chi/&#39;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p>webbrowser PMOTW: <a class="reference external" href="https://pymotw.com/3/webbrowser">https://pymotw.com/3/webbrowser</a></p>
-</div>
-<div class="section" id="to-run-the-next-3-scripts-install-pandas">
-<h2>To Run The Next 3 Scripts, install pandas:</h2>
-<pre class="literal-block">
-python -m pip install pandas
-</pre>
-<p><strong>(6) Split a csv file into smaller excel files.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;big_file.csv&#39;</span>
-<span class="c1"># slice off extension</span>
-<span class="n">src_file_minus_ext</span> <span class="o">=</span> <span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">250000</span><span class="p">)):</span>
-    <span class="n">csv</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">src_file_minus_ext</span><span class="si">}{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s1">.csv&#39;</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p>pandas beginner tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">https://www.youtube.com/watch?v=5JnMutdy6Fw</a></p>
-<p><strong>(7) Convert a .xlsx to .csv</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>(8) Convert a .xlsx to .html</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;data.xlsx&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="s2">&quot;data.html&quot;</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-</div>
-<div class="section" id="to-run-the-last-two-scripts-install-pdfkit">
-<h2>To Run The Last Two Scripts, install pdfkit:</h2>
-<p>pdfkit relies on another library, wkhtmltopdf, which adds an extra wrinkle to setting it up for Windows users. I've laid out the differences between using pdfkit for Windows vs. Ubuntu below.</p>
-<pre class="literal-block">
-python -m pip install pdfkit
-</pre>
-<p><strong>installing wkhtmltopdf on Windows</strong></p>
-<p>To use pdfkit on Windows, go to the link, choose your version to download. This installs a Windows executable that pdfkit needs to find to work.</p>
-<pre class="literal-block">
-https://wkhtmltopdf.org/downloads.html
-</pre>
-<p><strong>installing wkhtmltopdf on Ubuntu</strong></p>
-<pre class="literal-block">
-sudo apt-get install wkhtmltopdf
+        <header>
+              <hgroup><h1><a href="https://lofipython.com/">Lo-Fi Python</a></h1></hgroup>
+        <nav><ul>
+            <li><a href="feeds/all.rss.xml">RSS</a></li>
+            <li><a href="feeds/all.atom.xml">Atom</a></li>
+            <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
+            <li><a href="https://lofipython.com/category/apis-apps-coding-product-development-programming-software-uncategorized.html" >APIs, apps, coding, product development, programming, software, Uncategorized</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-google-programming.html" >APIs, coding, Google, programming</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-http-productivity-programming.html" >APIs, coding, HTTP, productivity, programming</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-http-programming-python.html" >APIs, coding, HTTP, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-pandas-programming-python-rust.html" >APIs, coding, pandas, programming, python, Rust</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-programming.html" >APIs, coding, programming</a></li>
+            <li><a href="https://lofipython.com/category/apis-coding-programming-python.html" >APIs, coding, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/apis-data-programming-writing.html" >APIs, data, programming, writing</a></li>
+            <li><a href="https://lofipython.com/category/apis-odbc-programming-python.html" >APIs, ODBC, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/apps-coding-command-prompt-data-http-json-productivity-programming-python-software.html" >apps, coding, command prompt, data, HTTP, json, productivity, programming, python, software</a></li>
+            <li><a href="https://lofipython.com/category/apps-internet-life.html" >apps, internet, life</a></li>
+            <li><a href="https://lofipython.com/category/apps-internet-productivity.html" >apps, internet, productivity</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-command-prompt-performance-productivity-programming-python-scripts-software.html" >automation, coding, command prompt, performance, productivity, programming, python, Scripts, software</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-education-programming-scripts.html" >automation, coding, education, programming, Scripts</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-excel-google-pandas.html" >automation, coding, excel, Google, pandas</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-gui-programming-python.html" >automation, coding, gui, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-pandas-productivity-programming-scripts.html"  aria-current="page" >automation, coding, pandas, productivity, programming, Scripts</a></li>
+            <li><a href="https://lofipython.com/category/automation-coding-windows.html" >automation, coding, Windows</a></li>
+            <li><a href="https://lofipython.com/category/automation-command-prompt-scripts-windows.html" >automation, command prompt, Scripts, Windows</a></li>
+            <li><a href="https://lofipython.com/category/automation-data-databases-excel-odbc-pandas-python-windows.html" >automation, data, Databases, excel, ODBC, pandas, python, Windows</a></li>
+            <li><a href="https://lofipython.com/category/automation-git-pelican-programming-python-writing.html" >automation, git, pelican, programming, python, writing</a></li>
+            <li><a href="https://lofipython.com/category/automation-productivity-programming-python-windows.html" >automation, productivity, programming, python, Windows</a></li>
+            <li><a href="https://lofipython.com/category/automation-programming-software-testing-windows.html" >automation, programming, software testing, Windows</a></li>
+            <li><a href="https://lofipython.com/category/blog.html" >blog</a></li>
+            <li><a href="https://lofipython.com/category/books-coding-life-programming.html" >books, coding, life, programming</a></li>
+            <li><a href="https://lofipython.com/category/books-productivity-programming.html" >books, productivity, programming</a></li>
+            <li><a href="https://lofipython.com/category/business-entrepreneurship-marketing-product-development.html" >business, entrepreneurship, Marketing, product development</a></li>
+            <li><a href="https://lofipython.com/category/business-programming.html" >business, programming</a></li>
+            <li><a href="https://lofipython.com/category/chicago-coding-http-json-pandas-programming.html" >Chicago, coding, HTTP, json, pandas, programming</a></li>
+            <li><a href="https://lofipython.com/category/chicago-electronics.html" >Chicago, electronics</a></li>
+            <li><a href="https://lofipython.com/category/coding.html" >coding</a></li>
+            <li><a href="https://lofipython.com/category/coding-colors-pandas-programming.html" >coding, Colors, pandas, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-command-prompt-data-analysis-git-programming-software.html" >coding, command prompt, data analysis, git, programming, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-command-prompt-productivity-windows.html" >coding, command prompt, productivity, Windows</a></li>
+            <li><a href="https://lofipython.com/category/coding-computing-pandas-performance-programming.html" >coding, computing, pandas, performance, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-concurrency-data-education-go-lectures-notes-programming.html" >coding, concurrency, data, education, Go, lectures notes, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-analysis-google-pandas-programming-python.html" >coding, data analysis, Google, pandas, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-databases-education-programming-python-software.html" >coding, data, Databases, education, programming, python, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-databases-programming.html" >coding, data, Databases, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-excel-pandas-python.html" >coding, data, excel, pandas, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-data-product-development-programming-software.html" >coding, data, product development, programming, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-education-marketing-programming-python-wisdom.html" >coding, education, Marketing, programming, python, wisdom</a></li>
+            <li><a href="https://lofipython.com/category/coding-excel-http.html" >coding, excel, HTTP</a></li>
+            <li><a href="https://lofipython.com/category/coding-flask-programming-python-web-development.html" >coding, flask, programming, python, web development</a></li>
+            <li><a href="https://lofipython.com/category/coding-http-python-windows.html" >coding, HTTP, python, Windows</a></li>
+            <li><a href="https://lofipython.com/category/coding-javascript-programming.html" >coding, javascript, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-javascript-programming-web-development.html" >coding, javascript, programming, web development</a></li>
+            <li><a href="https://lofipython.com/category/coding-linux-scripts-software-ubuntu.html" >coding, Linux, Scripts, software, Ubuntu</a></li>
+            <li><a href="https://lofipython.com/category/coding-pandas-programming.html" >coding, pandas, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-pandas-programming-python.html" >coding, pandas, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-pandas-python-software.html" >coding, pandas, python, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-productivity-programming-python-software-testing.html" >coding, productivity, programming, python, software testing</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming.html" >coding, programming</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-blogging-web-hosting.html" >coding, programming, blogging, web hosting</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python.html" >coding, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-artificial-intelligence-ai.html" >coding, programming, python, artificial intelligence, AI</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-linting-tools.html" >coding, programming, python, linting, tools</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-python-performance-cli.html" >coding, programming, python, python performance, CLI</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-qr-code-wi-fi.html" >coding, programming, python, QR code, Wi-Fi</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-scripts.html" >coding, programming, python, Scripts</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-stocks-cli.html" >coding, programming, python, stocks, CLI</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-web-development-web2py.html" >coding, programming, python, web development, web2py</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-python-xml-rss-writing.html" >coding, programming, python, XML, RSS, writing</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-talks.html" >coding, programming, talks</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-text-editors.html" >coding, programming, text editors</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-web-development.html" >coding, programming, web development</a></li>
+            <li><a href="https://lofipython.com/category/coding-programming-work.html" >coding, programming, work</a></li>
+            <li><a href="https://lofipython.com/category/coding-python.html" >coding, python</a></li>
+            <li><a href="https://lofipython.com/category/coding-python-software.html" >coding, python, software</a></li>
+            <li><a href="https://lofipython.com/category/coding-python-writing.html" >coding, python, writing</a></li>
+            <li><a href="https://lofipython.com/category/coding-python-writing-meta.html" >coding, python, writing, meta</a></li>
+            <li><a href="https://lofipython.com/category/command-prompt-data-python-windows.html" >command prompt, data, python, Windows</a></li>
+            <li><a href="https://lofipython.com/category/command-prompt-productivity.html" >command prompt, productivity</a></li>
+            <li><a href="https://lofipython.com/category/data-databases-education-performance.html" >data, Databases, education, performance</a></li>
+            <li><a href="https://lofipython.com/category/data-databases-odbc-pandas-programming-sql-web-development-web2py.html" >data, Databases, ODBC, pandas, programming, SQL, web development, web2py</a></li>
+            <li><a href="https://lofipython.com/category/data-databases-python-sql.html" >data, Databases, python, SQL</a></li>
+            <li><a href="https://lofipython.com/category/databases-programming.html" >Databases, programming</a></li>
+            <li><a href="https://lofipython.com/category/education-productivity-python-writing.html" >education, productivity, python, writing</a></li>
+            <li><a href="https://lofipython.com/category/entertainment-life-space.html" >entertainment, life, space</a></li>
+            <li><a href="https://lofipython.com/category/football-coding-programming-python-sports.html" >football, coding, programming, python, sports</a></li>
+            <li><a href="https://lofipython.com/category/http-urls-python-requests.html" >http, urls, python, requests</a></li>
+            <li><a href="https://lofipython.com/category/internet-investing-personal-finance-programming-writing.html" >internet, investing, personal finance, programming, writing</a></li>
+            <li><a href="https://lofipython.com/category/internet-network-productivity.html" >internet, network, productivity</a></li>
+            <li><a href="https://lofipython.com/category/investing.html" >investing</a></li>
+            <li><a href="https://lofipython.com/category/life.html" >life</a></li>
+            <li><a href="https://lofipython.com/category/linux-software.html" >Linux, software</a></li>
+            <li><a href="https://lofipython.com/category/marketing.html" >Marketing</a></li>
+            <li><a href="https://lofipython.com/category/marketing-meta-writing.html" >Marketing, meta, writing</a></li>
+            <li><a href="https://lofipython.com/category/pandas-programming-python.html" >pandas, programming, python</a></li>
+            <li><a href="https://lofipython.com/category/performance-windows.html" >performance, Windows</a></li>
+            <li><a href="https://lofipython.com/category/productivity-programming-writing.html" >productivity, programming, writing</a></li>
+            <li><a href="https://lofipython.com/category/productivity-python.html" >productivity, python</a></li>
+            <li><a href="https://lofipython.com/category/productivity-work.html" >productivity, work</a></li>
+            <li><a href="https://lofipython.com/category/programming.html" >programming</a></li>
+            <li><a href="https://lofipython.com/category/programming-python.html" >programming, python</a></li>
+            <li><a href="https://lofipython.com/category/programming-python-web-development-web2py.html" >programming, python, web development, web2py</a></li>
+            <li><a href="https://lofipython.com/category/python-events-conferences.html" >python, events, conferences</a></li>
+            <li><a href="https://lofipython.com/category/tame-impala.html" >tame impala</a></li>
+        </ul></nav>
+        </header>
+        <main>
+<h2>Articles in the automation, coding, pandas, productivity, programming, Scripts category</h2>
 
 
-**For Windows, **\ `download wkhtmltopdf &lt;https://wkhtmltopdf.org/downloads.html&gt;`__\ ** and add this config patch for pdfkit:**
-</pre>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
-<span class="n">config</span> <span class="o">=</span> <span class="n">pdfkit</span><span class="o">.</span><span class="n">configuration</span><span class="p">(</span><span class="n">wkhtmltopdf</span><span class="o">=</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Program Files</span><span class="se">\\</span><span class="s1">wkhtmltopdf</span><span class="se">\\</span><span class="s1">bin</span><span class="se">\\</span><span class="s1">wkhtmltopdf.exe&#39;</span><span class="p">)</span>
-<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;webpage.pdf&#39;</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>4 Convert a .html file to .pdf. (Add config patch above for Windows.)</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
-<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data.html&#39;</span><span class="p">,</span> <span class="s1">&#39;report.pdf&#39;</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>5 Create a pdf snapshot of a webpage on Ubuntu below. (Add config patch above for Windows.)</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
-<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;alicia_keys.pdf&#39;</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p>pdfkit documentation: <a class="reference external" href="https://pypi.org/project/pdfkit/">https://pypi.org/project/pdfkit/</a></p>
-<p><strong>Final Thoughts</strong></p>
-<p>I am very pleased with pdfkit. I am also toying around with Python's PyFPDF: <a class="reference external" href="https://pyfpdf.readthedocs.io/en/latest/index.html">https://pyfpdf.readthedocs.io/en/latest/index.html</a> and PyPDF2: <a class="reference external" href="https://pythonhosted.org/PyPDF2">https://pythonhosted.org/PyPDF2</a> libraries. Together, these three offer some unique abilities for creating and manipulating pdf files. And the pandas library is amazing for reading and writing tabular data sheets, can't say enough great things about pandas. Worth the time. Hope you enjoyed these Lightning Scripts :)</p>
-</div>
+        <article>
+                <header> <h2><a href="https://lofipython.com/lightning-scripts-%e2%9a%a1.html" rel="bookmark" title="Permalink to Lightning Scripts ⚡">Lightning Scripts ⚡</a></h2> </header>
+                <section><p>You may or may not be familiar with <a class="reference external" href="https://www.youtube.com/channel/UCsX05-2sVSH7Nx3zuk3NYuQ">PyCon</a>'s <a class="reference external" href="https://pyvideo.org/pycon-us-2010/pycon-2010--plenary--saturday-evening-lightning-t.html">Lightning Talks</a>, a session of quick hitter talks given each year on a variety of topics. These &quot;Lightning Scripts&quot; are ten of my favorite Python scripts that have served me well as of late to perform a variety of tasks …</p></section>
+                <footer>
+                    <p>Published: <time datetime="2019-02-12T06:27:00-06:00"> Tue 12 February 2019 </time></p>
+                    <address>By
+                        <a href="https://lofipython.com/author/pythonmarketer.html">pythonmarketer</a>
+                    </address>
+                </footer>
+        </article>
 
-                <div class="clear"></div>
 
-                <div class="info">
-                    <a href="https://lofipython.com/lightning-scripts-%e2%9a%a1.html">posted at 06:27</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-pandas-productivity-programming-scripts.html" rel="tag">automation, coding, pandas, productivity, programming, Scripts</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/alicia-keys.html" class="tags">alicia keys</a>
-                    &nbsp;<a href="https://lofipython.com/tag/code.html" class="tags">code</a>
-                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
-                    &nbsp;<a href="https://lofipython.com/tag/hamilton.html" class="tags">hamilton</a>
-                    &nbsp;<a href="https://lofipython.com/tag/lightning-scripts.html" class="tags">lightning scripts</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                </div>
-            </article>
-
-            <div class="clear"></div>
-            <footer>
-                <p>
-                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
-                &middot;
-                Powered by <a href="http://getpelican.com">Pelican</a>
-                &middot;
-                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
-                &middot;
-                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
-            </footer>
-        </div>
-        <div class="clear"></div>
-    </div>
+        </main>
+        <footer>
+                <address>
+                Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+                </address>
+        </footer>
 </body>
 </html>
