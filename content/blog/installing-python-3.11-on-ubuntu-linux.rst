@@ -12,7 +12,7 @@ Make sure to adjust your Python version to match 3.11 or 3.12 in all commands.
 
 I downloaded the .tgz file from Python.org, not sure initially how to build Python from it.
 Once I unpacked the compressed files, I saw the build instructions in the README.rst
-to build a functional Python 3.11 on my Ubuntu computer. Here's how to install the speedier Python versionss 3.11 or 3.12.
+to build a functional Python 3.11 on my Ubuntu computer. Here's how to install the speedier Python versions 3.11 or 3.12.
 
 
 How to Install Python 3.11 or 3.12
