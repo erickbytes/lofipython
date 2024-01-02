@@ -27,11 +27,11 @@ Here's the code to get stock data with `ffn <https://pmorissette.github.io/ffn/q
 
    # ffn.get returns a pandas dataframe of market data.
    data = ffn.get(
-       'tsla,spot,nflx,nke,addyy', 
-       start='2019-01-01', 
+       'tsla,spot,nflx,nke,addyy',
+       start='2019-01-01',
        end='2020-12-31'
    )
-   print(data.head()) 
+   print(data.head())
    stats = data.calc_stats()
    print(stats.display())
 
@@ -43,7 +43,12 @@ Here's the code to get stock data with `ffn <https://pmorissette.github.io/ffn/q
 
 I first considered using pyfolio to pull stock data. It is not "out of the box" ready per se to deliver the results pictured in their `"single stock" example <https://lofipython.com/pick-stocks-like-a-pro-with-pyfolio/>`__ documentation. You'd need to find another way to fetch your market data or somehow patch the Yahoo Finance API within pyfolio. I preferred `ffn <http://pmorissette.github.io/ffn/quick.html>`__, mostly because it worked right away after pip installing it and running the above code.
 
-**2023 Update:** ffn and pyfolio both depend on the Yahoo Finance API, which tends to change and break these libraries. Troubleshooting traceback errors may be required.
+**2024 Update**
+
+For a capable finance module, I recommend `yfinance <https://pypi.org/project/yfinance/>`__. It has worked well for me also.
+ffn and pyfolio both depend on the Yahoo Finance API, which tends to change and break these libraries.
+Troubleshooting traceback errors may be required.
+
 
 **Try these other Python financial analysis libraries:**
 
@@ -57,7 +62,7 @@ I first considered using pyfolio to pull stock data. It is not "out of the box" 
 
 `finsou.py <https://github.com/erickbytes/finsou.py>`__ (CLI written by me)
 
-`awesome-quant <https://github.com/wilsonfreitas/awesome-quant>`__ 
+`awesome-quant <https://github.com/wilsonfreitas/awesome-quant>`__
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2021/01/top10financepackages-1200x675-1.png?w=1024
    :alt: Image credit, ActiveState: https://www.activestate.com/blog/top-10-python-packages-for-finance-and-financial-modeling/
