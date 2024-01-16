@@ -161,6 +161,7 @@ returns True, if not returns False. `.empty Documentation <https://pandas.pydata
       print("DataFrame has no data.")
   else:
       print("DataFrame contains data.")
+  # DataFrame contains data.
 
 **pandas.DataFrame.T**
 
