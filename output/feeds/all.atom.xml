@@ -1,5 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-10-27T19:33:00-05:00</updated><entry><title>Streamline Sharing Your Wi-Fi Network Details With Python</title><link href="https://lofipython.com/how-to-make-a-wi-fi-qr-code-with-python.html" rel="alternate"></link><published>2023-10-27T19:33:00-05:00</published><updated>2023-10-27T19:33:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-10-27:/how-to-make-a-wi-fi-qr-code-with-python.html</id><summary type="html">&lt;p&gt;If you host a public space or office with shared Wi-Fi, a QR code skips the tedious process of
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-01-15T17:41:00-06:00</updated><entry><title>Python Pandas API Oddities</title><link href="https://lofipython.com/python-pandas-api-oddities.html" rel="alternate"></link><published>2024-01-15T17:41:00-06:00</published><updated>2024-01-15T17:41:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-01-15:/python-pandas-api-oddities.html</id><summary type="html">&lt;p&gt;This post uses the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations"&gt;Delta Airlines Airports Wikipedia HTML table&lt;/a&gt;
+as an example to highlight some niche functions in Python's pandas library.
+I be skipped the standard must knows like pd.read_csv() and pd.read_excel().
+I use those all the time. This is aimed at the more advanced stuff on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post uses the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations"&gt;Delta Airlines Airports Wikipedia HTML table&lt;/a&gt;
+as an example to highlight some niche functions in Python's pandas library.
+I be skipped the standard must knows like pd.read_csv() and pd.read_excel().
+I use those all the time. This is aimed at the more advanced stuff on the fringes of the docs.
+Here are some oddities of the less traveled parts of the pandas documentation.
+You never know what you'll find there, it's always evolving.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Install Python dependencies: pandas and lxml, required for read_html()&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;python3.12 -m pip install pandas
+python3.12 -m pip install lxml&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Import a DataFrame From Another Library Using the DataFrame Interchange Standard.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Keep in mind that a DataFrame standard exists and supoorted across the Python ecosystem.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="n"&gt;df_not_necessarily_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]})&lt;/span&gt;
+&lt;span class="n"&gt;interchange_object&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df_not_necessarily_pandas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__dataframe__&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandas-dataframe-interchange-protocol.png" /&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe"&gt;Pandas Interchange Object Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pandas.read_html(url)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;pd.read_html() accepts a website url. It returns a list of all HTML tables
+as DataFrames. After getting the table as a dataframe, use &amp;quot;.drop()&amp;quot; to drop a column and &amp;quot;.fillna()&amp;quot;
+to fill NA values as blanks. &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_html.html"&gt;read_html() Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;airports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_html&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c1"&gt;# Drop the irrelevant &amp;quot;Refs&amp;quot; column and fill nans blank.&lt;/span&gt;
+&lt;span class="n"&gt;airports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Refs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fillna&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;pandas.DataFrame.to_html()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This function returns your tabular data as an HTML string.
+df.head() accepts a number and returns a df with that many records, in this case 2.
+&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_html.html"&gt;to_html() Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_html&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;pre class="literal-block"&gt;
+&amp;lt;table border=&amp;quot;1&amp;quot; class=&amp;quot;dataframe&amp;quot;&amp;gt;
+ &amp;lt;thead&amp;gt;
+   &amp;lt;tr style=&amp;quot;text-align: right;&amp;quot;&amp;gt;
+     &amp;lt;th&amp;gt;&amp;lt;/th&amp;gt;
+     &amp;lt;th&amp;gt;Country / Territory&amp;lt;/th&amp;gt;
+     &amp;lt;th&amp;gt;City&amp;lt;/th&amp;gt;
+     &amp;lt;th&amp;gt;Airport&amp;lt;/th&amp;gt;
+     &amp;lt;th&amp;gt;Notes&amp;lt;/th&amp;gt;
+   &amp;lt;/tr&amp;gt;
+ &amp;lt;/thead&amp;gt;
+ &amp;lt;tbody&amp;gt;
+   &amp;lt;tr&amp;gt;
+     &amp;lt;th&amp;gt;0&amp;lt;/th&amp;gt;
+     &amp;lt;td&amp;gt;Antigua and Barbuda&amp;lt;/td&amp;gt;
+     &amp;lt;td&amp;gt;Osbourn&amp;lt;/td&amp;gt;
+     &amp;lt;td&amp;gt;V. C. Bird International Airport&amp;lt;/td&amp;gt;
+     &amp;lt;td&amp;gt;Seasonal&amp;lt;/td&amp;gt;
+   &amp;lt;/tr&amp;gt;
+   &amp;lt;tr&amp;gt;
+     &amp;lt;th&amp;gt;1&amp;lt;/th&amp;gt;
+     &amp;lt;td&amp;gt;Argentina&amp;lt;/td&amp;gt;
+     &amp;lt;td&amp;gt;Buenos Aires&amp;lt;/td&amp;gt;
+     &amp;lt;td&amp;gt;Ministro Pistarini International Airport&amp;lt;/td&amp;gt;
+     &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+   &amp;lt;/tr&amp;gt;
+ &amp;lt;/tbody&amp;gt;
+&amp;lt;/table&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;pandas.DataFrame.memory_usage()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Returns the memory usage of each column in bytes. &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html"&gt;.memory_usage() Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;
+&lt;span class="normal"&gt;8&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt; airports.memory_usage()&lt;/span&gt;
+
+&lt;span class="go"&gt;Index                   132&lt;/span&gt;
+&lt;span class="go"&gt;Country / Territory    2904&lt;/span&gt;
+&lt;span class="go"&gt;City                   2904&lt;/span&gt;
+&lt;span class="go"&gt;Airport                2904&lt;/span&gt;
+&lt;span class="go"&gt;Notes                  2904&lt;/span&gt;
+&lt;span class="go"&gt;dtype: int64&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;pandas.DataFrame.empty&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Every pandas DataFrame has a &amp;quot;.empty&amp;quot; attribute. If Series/DataFrame is empty,
+returns True, if not returns False. &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.empty.html"&gt;.empty Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# False&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;pandas.DataFrame.T&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Every pandas DataFrame has a &amp;quot;.T&amp;quot; attribute. It returns the transposed version
+of the DataFrame. &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.T.html#pandas.DataFrame.T"&gt;.T Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;  0                                         1                                    2&lt;/span&gt;
+&lt;span class="go"&gt;Country / Territory               Antigua and Barbuda                                 Argentina                                Aruba&lt;/span&gt;
+&lt;span class="go"&gt;City                                          Osbourn                              Buenos Aires                           Oranjestad&lt;/span&gt;
+&lt;span class="go"&gt;Airport              V. C. Bird International Airport  Ministro Pistarini International Airport  Queen Beatrix International Airport&lt;/span&gt;
+&lt;span class="go"&gt;Notes                                        Seasonal&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;pandas.Series.str.get(index)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;str.get() is available via the pandas Series string accessor.
+This function is useful when your dataset contains a column holding a list in each cell.
+You can pass an index and that value will be returned for each cell in a column.
+&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html#pandas-series-str-get"&gt;str.get() Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+
+&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Series&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;c&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;123&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;456&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;World&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;new_column&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_column&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt; s&lt;/span&gt;
+&lt;span class="go"&gt;0                        String&lt;/span&gt;
+&lt;span class="go"&gt;1                     (1, 2, 3)&lt;/span&gt;
+&lt;span class="go"&gt;2                     [a, b, c]&lt;/span&gt;
+&lt;span class="go"&gt;3                           123&lt;/span&gt;
+&lt;span class="go"&gt;4                          -456&lt;/span&gt;
+&lt;span class="go"&gt;5    {1: &amp;#39;Hello&amp;#39;, &amp;#39;2&amp;#39;: &amp;#39;World&amp;#39;}&lt;/span&gt;
+&lt;span class="go"&gt;dtype: object&lt;/span&gt;
+
+&lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt; s.str.get(1)&lt;/span&gt;
+&lt;span class="go"&gt;0        t&lt;/span&gt;
+&lt;span class="go"&gt;1        2&lt;/span&gt;
+&lt;span class="go"&gt;2        b&lt;/span&gt;
+&lt;span class="go"&gt;3      NaN&lt;/span&gt;
+&lt;span class="go"&gt;4      NaN&lt;/span&gt;
+&lt;span class="go"&gt;5    Hello&lt;/span&gt;
+&lt;span class="go"&gt;dtype: object&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;pandas.DataFrame.convert_dtypes() and .infer_objects()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;These are 2 functions for swiftly handling data types in your tabular data.
+Note: these are alternatives to the &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.astype.html"&gt;&amp;quot;astype()&amp;quot; function&lt;/a&gt;, which is used more commonly.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;([[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1234&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;5678&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Use pandas to coerce data to default types.&lt;/span&gt;
+&lt;span class="n"&gt;typed_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert_dtypes&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# Coerce data back to object types.&lt;/span&gt;
+&lt;span class="n"&gt;objects_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;typed_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;infer_objects&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;converted_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;objects_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt; df.head()&lt;/span&gt;
+&lt;span class="go"&gt;  0     1    2&lt;/span&gt;
+&lt;span class="go"&gt;0  1234  5678  abc&lt;/span&gt;
+
+&lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt; df.dtypes&lt;/span&gt;
+&lt;span class="go"&gt;0    object&lt;/span&gt;
+&lt;span class="go"&gt;1    object&lt;/span&gt;
+&lt;span class="go"&gt;2    object&lt;/span&gt;
+
+&lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt; converted_df.dtypes&lt;/span&gt;
+&lt;span class="go"&gt;0    string[python]&lt;/span&gt;
+&lt;span class="go"&gt;1    string[python]&lt;/span&gt;
+&lt;span class="go"&gt;2    string[python]&lt;/span&gt;
+&lt;span class="go"&gt;dtype: object&lt;/span&gt;
+
+&lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt; objects_df.dtypes&lt;/span&gt;
+&lt;span class="go"&gt;0    object&lt;/span&gt;
+&lt;span class="go"&gt;1    object&lt;/span&gt;
+&lt;span class="go"&gt;2    object&lt;/span&gt;
+&lt;span class="go"&gt;dtype: object&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html"&gt;convert_dtypes Documentation&lt;/a&gt;
++ &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html"&gt;infer_objects() Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pique Your Curiosity With Pandas&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Now you know a few of my favorite pandas API oddities. It's always time
+well spent reading the &lt;a class="reference external" href="https://pandas.pydata.org/"&gt;Pandas API documentation&lt;/a&gt;.
+Check out &lt;a class="reference external" href="https://lofipython.com/pandas-pythons-excel-powerhouse"&gt;this other post I wrote about pandas&lt;/a&gt;
+for a deeper dive into this powerful Python module.&lt;/p&gt;
+</content><category term="coding, programming, python"></category><category term="pandas api"></category><category term="using pandas Python"></category><category term="working with data"></category></entry><entry><title>Streamline Sharing Your Wi-Fi Network Details With Python</title><link href="https://lofipython.com/how-to-make-a-wi-fi-qr-code-with-python.html" rel="alternate"></link><published>2023-10-27T19:33:00-05:00</published><updated>2023-10-27T19:33:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-10-27:/how-to-make-a-wi-fi-qr-code-with-python.html</id><summary type="html">&lt;p&gt;If you host a public space or office with shared Wi-Fi, a QR code skips the tedious process of
 exchanging your network's details. This is nice to have as an alternative to asking
 people to manually enter an auto-generated, cryptic, error-prone 16 character string password.
 Especially when you frequently have …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you host a public space or office with shared Wi-Fi, a QR code skips the tedious process of
@@ -329,8 +575,11 @@ pip install tqdm&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;First, an HTTP request is made and parsed by beautiful soup using Python's html.parser. We can then use bs4 and regex's &lt;a class="reference external" href="https://docs.python.org/3/library/re.html#re.compile"&gt;re.compile function&lt;/a&gt; to return the HTML tags with a specific CSS class. Then once we have the tags, beautiful soup gives us a &amp;quot;.string&amp;quot; attribute for each tag to return their contents as a string. This pattern was applied to return all of the data in the stock report. To find the css classes I wanted, I right-clicked the price or data on Yahoo's website in a Chrome browser and selected &amp;quot;Inspect&amp;quot;. Doing this opens Chrome's developer tools and drops you into that spot in the HTML code, where you can find the class you want to target.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;No Official API, No Problem&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;It felt good to prove the concept that you don't need an official API to print stock data in your terminal! If you want to check in on your portfolio's daily moves, give this CLI a try.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://github.com/erickbytes/finsou.py"&gt;finsou.py Github Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It felt good to prove the concept that you don't need an official API
+to print stock data in your terminal! If you want to check in on your
+portfolio's daily moves, give this CLI a try: &lt;a class="reference external" href="https://github.com/erickbytes/finsou.py"&gt;finsou.py Github Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you're looking for a more robust finance Python module,
+I recommend &lt;a class="reference external" href="https://pypi.org/project/yfinance/"&gt;yfinance&lt;/a&gt; for querying stock data.&lt;/p&gt;
 </content><category term="coding, programming, python, stocks, CLI"></category><category term="stock prices command line"></category><category term="python CLI"></category><category term="python investing research"></category></entry><entry><title>An Introduction to the LangChain Python Library</title><link href="https://lofipython.com/an-introduction-to-the-langchain-python-library.html" rel="alternate"></link><published>2023-10-02T15:15:00-05:00</published><updated>2023-10-02T15:15:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-10-02:/an-introduction-to-the-langchain-python-library.html</id><summary type="html">&lt;p&gt;LangChain is a lauded Python library in the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Large_language_model"&gt;large language model&lt;/a&gt; space. It seems to be riding along on the AI hype train as of late and is getting mentioned everywhere I look. I wrote this post to understand better, what is LangChain? Warning: I learned a lot by researching …&lt;/p&gt;</summary><content type="html">&lt;p&gt;LangChain is a lauded Python library in the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Large_language_model"&gt;large language model&lt;/a&gt; space. It seems to be riding along on the AI hype train as of late and is getting mentioned everywhere I look. I wrote this post to understand better, what is LangChain? Warning: I learned a lot by researching for this post! Below you'll find basic information about what LangChain is and code examples for a few of its use cases. I connected a few different sources that helped me fill in the gaps in my knowledge. After reading this, you'll have a basic understanding of what this Python module does and some of the diverse ways it can be applied.&lt;/p&gt;
 &lt;p&gt;A huge bonus of this library is that it has &lt;a class="reference external" href="https://python.langchain.com/docs/get_started/quickstart"&gt;excellent documentation&lt;/a&gt;. On the front page, they state its main value propositions.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -7127,14 +7376,4 @@ study, then time off to rest, then semester of study, more rest, etc.
 The time away is as important as the time of study. Earlier this year, I
 returned to programming and web development. After a long time of not
 writing on this blog, I'm back at it. New cycle.&lt;/p&gt;
-</content><category term="coding, programming, work"></category><category term="web apps"></category></entry><entry><title>Ask Tame Impala - My First Web App</title><link href="https://lofipython.com/askkevinparker-com-my-first-web-app-other-notes.html" rel="alternate"></link><published>2016-05-25T02:03:00-05:00</published><updated>2016-05-25T02:03:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2016-05-25:/askkevinparker-com-my-first-web-app-other-notes.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;My app is alive.&lt;/strong&gt; It is a simple program - ask it a question, and it queries a database of Tame Impala lyrics and pulls a response line from the lyrics based on which words match up. Kevin Parker is the frontman of the band. &lt;strong&gt;The latest iteration exists at&lt;/strong&gt; &lt;a class="reference external" href="http://tameimpala.pythonanywhere.com"&gt;tameimpala …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;My app is alive.&lt;/strong&gt; It is a simple program - ask it a question, and it queries a database of Tame Impala lyrics and pulls a response line from the lyrics based on which words match up. Kevin Parker is the frontman of the band. &lt;strong&gt;The latest iteration exists at&lt;/strong&gt; &lt;a class="reference external" href="http://tameimpala.pythonanywhere.com"&gt;tameimpala.pythonanywhere.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I published it a few weeks ago and according to Google Analytics it has had 50 sessions from Google and over 200 page views in 10 different countries - not bad!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;SSL Certificates / Start SSL / PythonAnywhere&amp;quot;&lt;/strong&gt;
-An SSL certificate is required for the domain by PythonAnywhere to control the Admin page and set up your app. You don't need this if your domain is &amp;quot;username.pythonanywhere.com&amp;quot;.&lt;/p&gt;
-&lt;p&gt;It was kind of tricky was figuring out how to set up the certificate for the first time. &lt;a class="reference external" href="https://help.pythonanywhere.com/pages/SSLOwnDomains"&gt;These instructions from PythonAnywhere&lt;/a&gt; helped a lot. &lt;a class="reference external" href="https://www.doconnor.org/entry/how-create-configure-free-ssl-certificate-using-django-and-pythonanywhere"&gt;These instructions&lt;/a&gt; helped also, although they're somewhat outdated.&lt;/p&gt;
-&lt;p&gt;I used a free certificate from &lt;a class="reference external" href="https://www.startssl.com/Support?v=1"&gt;Start SSL&lt;/a&gt; and it worked fine. If you're new to SSL like me, here's a simple explanation: you get certificates aka two text files containing a long code from your SSL provider and submit them to the domain host. The last step is to notify your domain host and have them verify with the SSL provider. If all goes well, you'll be live in a few hours.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&amp;quot;Masking&amp;quot; domains&lt;/strong&gt;
-This means if you type &amp;quot;google.com&amp;quot;, it will redirect to &amp;quot;www.Google.com&amp;quot; &lt;a class="reference external" href="https://www.godaddy.com/help/manually-forwarding-or-masking-your-domain-name-422"&gt;GoDaddy makes this super easy&lt;/a&gt;. I set it up for my site as well. &lt;a class="reference external" href="https://help.pythonanywhere.com/pages/NakedDomains"&gt;Here's a post from PythonAnywhere&lt;/a&gt; on this also.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Collaborating with other programmers&lt;/strong&gt;
-Currently trying to &lt;a class="reference external" href="https://help.github.com/desktop/guides/getting-started/installing-github-desktop/"&gt;install and run GitHub&lt;/a&gt; on my Desktop (trickier to do on an outdated operating system). Another programmer explained to me how it is the base means of collaboration and managing work flow for programmers working together on a project. Probably will know more about this soon / &lt;a class="reference external" href="https://lofipython.com/git-the-basics-a-git-version-control-cheat-sheet/"&gt;write a post on it&lt;/a&gt;, but it seems awesome and I had not been exposed to this tool until recently.&lt;/p&gt;
-</content><category term="tame impala"></category></entry></feed>
+</content><category term="coding, programming, work"></category><category term="web apps"></category></entry></feed>

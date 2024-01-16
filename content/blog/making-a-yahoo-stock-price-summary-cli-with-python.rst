@@ -7,7 +7,7 @@ Making a Yahoo Stock Price Summary CLI with Python
 :slug: making-a-yahoo-stock-price-summary-cli-with-python
 :status: published
 
-Over the past few years, I found a few different external Python libraries that relied on a broken `Yahoo Finance <https://finance.yahoo.com/>`__ API. Apparently, the API changes frequently, leaving us developers in a tough spot troubleshooting tracebacks in order to get stock data. I wanted to check my stocks' prices from the terminal. 6 months ago, dealing with these frustrations inspired me to begin making a Python command line interface (CLI) to fetch stock info directly from the Yahoo Finance website. 
+Over the past few years, I found a few different external Python libraries that relied on a broken `Yahoo Finance <https://finance.yahoo.com/>`__ API. Apparently, the API changes frequently, leaving us developers in a tough spot troubleshooting tracebacks in order to get stock data. I wanted to check my stocks' prices from the terminal. 6 months ago, dealing with these frustrations inspired me to begin making a Python command line interface (CLI) to fetch stock info directly from the Yahoo Finance website.
 
 With an idea and curiosity to see if I could make it work, I reached for the beautifulsoup4 library, the de facto HTML parser in Python. It turned out way better than I envisioned when I started. The CLI is working great, barring any changes to Yahoo's stock page HTML or CSS code. It accepts a stock ticker and grabs stock price data from the Yahoo website in your terminal. It is designed to monitor daily moves of stocks, including after hours prices.
 
@@ -43,7 +43,7 @@ The CLI currently works after the US stock market has closed normal market hours
 4. Query a stock's daily price summary:
 
 .. code:: console
-    
+
     # Print a daily stock summary for Virgin Galactic (SPCE).
     python finsou.py -s SPCE
 
@@ -79,15 +79,15 @@ Note: currently the code needs to be modified depending on the HTML structure of
 
 **How It Works**
 
-Check out the `finsou.py Python script <https://github.com/erickbytes/finsou.py/blob/main/finsou.py>`__ to see the complete code for how this stock report is created. Here is a brief simplified example of the logic behind the code. 
+Check out the `finsou.py Python script <https://github.com/erickbytes/finsou.py/blob/main/finsou.py>`__ to see the complete code for how this stock report is created. Here is a brief simplified example of the logic behind the code.
 
 
 .. code-block:: python
-    
+
     import re
     import requests
     from bs4 import BeautifulSoup
-    
+
     stock = "SNOW"
     url = f"https://finance.yahoo.com/quote/{stock}/"
     user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.1 (KHTML, like Gecko) Chrome/43.0.845.0 Safari/534.1"
@@ -109,7 +109,9 @@ First, an HTTP request is made and parsed by beautiful soup using Python's html.
 
 **No Official API, No Problem**
 
-It felt good to prove the concept that you don't need an official API to print stock data in your terminal! If you want to check in on your portfolio's daily moves, give this CLI a try. 
+It felt good to prove the concept that you don't need an official API
+to print stock data in your terminal! If you want to check in on your
+portfolio's daily moves, give this CLI a try: `finsou.py Github Repo <https://github.com/erickbytes/finsou.py>`__
 
-`finsou.py Github Repo <https://github.com/erickbytes/finsou.py>`__
-
+If you're looking for a more robust finance Python module,
+I recommend `yfinance <https://pypi.org/project/yfinance/>`__ for querying stock data.
