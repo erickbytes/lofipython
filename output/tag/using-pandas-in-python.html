@@ -43,16 +43,17 @@
                 
                 
 
-                <p>This post uses the <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations">Delta Airlines Airports Wikipedia HTML table</a>
-as an example to highlight some niche functions in Python's pandas library. It's
-aimed at the more advanced stuff on the fringes of the docs.
+                <p>Below I've highlighted some niche functions in Python's pandas library. I've plucked
+a few examples from the pandas documentation examples and the
+<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations">Delta Airlines Airports Wikipedia HTML table</a>
+as an example. This post is aimed at the more advanced stuff on the fringes of the pandas docs.
 Here are some oddities of the less traveled parts of the pandas documentation.
 You never know what you'll find there, it's always evolving.</p>
 <blockquote>
 I skipped the standard must know functions like <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pd.read_csv()</a>,
 pd.read_excel(), pd.to_csv(), <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html">pd.to_json()</a>
 and so on. The documentation on these functions is extensive. I recommend checking
-out all the ways you can customize behavior of your data.</blockquote>
+out all the ways you can customize behavior of your data with their arguments.</blockquote>
 <p><strong>Install Python dependencies: pandas and lxml, required for read_html()</strong></p>
 <pre class="code console literal-block">
 <span class="go">python3.12 -m pip install pandas
@@ -62,9 +63,15 @@ python3.12 -m pip install lxml</span>
 <p>Keep in mind that a DataFrame standard exists and is supported across the Python ecosystem.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
 <span class="n">df_not_necessarily_pandas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
 <span class="n">interchange_object</span> <span class="o">=</span> <span class="n">df_not_necessarily_pandas</span><span class="o">.</span><span class="n">__dataframe__</span><span class="p">()</span>
+<span class="n">df_pandas</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">interchange</span><span class="o">.</span><span class="n">from_dataframe</span>
+           <span class="p">(</span><span class="n">interchange_object</span><span class="o">.</span><span class="n">select_columns_by_name</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">])))</span>
 </pre></div></td></tr></table></div>
 <img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandasdataframeinterchangeprotocol.png" />
 <p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">Pandas Interchange Object Documentation</a></p>
@@ -168,6 +175,7 @@ of the DataFrame. <a class="reference external" href="https://pandas.pydata.org/
 <p><strong>pandas.Series.str.get(index)</strong></p>
 <p>str.get() is available via the pandas Series string accessor.
 This function is useful when your dataset contains a column holding a list in each cell.
+It also works on strings by returning the character at the index of a string.
 You can pass an index and that value will be returned for each cell in a column.
 <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html#pandas-series-str-get">str.get() Documentation</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
