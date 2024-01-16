@@ -18,7 +18,6 @@ You never know what you'll find there, it's always evolving.
   pd.read_excel(), pd.to_csv(), `pd.to_json() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html>`__
   and so on. The documentation on these functions is extensive. I recommend checking
   out all the ways you can customize behavior of your data with their arguments.
-  `Pandas Interchange Object Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
 
 **Install Python dependencies: pandas and lxml, required for read_html()**
 
@@ -31,7 +30,7 @@ You never know what you'll find there, it's always evolving.
 **Import a DataFrame From Another Library Using the DataFrame Interchange Protocol.**
 
 If you're dealing with a flavor of dataframe other than pandas,
-keep in mind that it may support the DataFrame interchange protocol.
+keep in mind that it may support the DataFrame interchange protocol. `Pandas Interchange Object Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
 
 .. code-block:: python
 
