@@ -31,10 +31,14 @@ and so on. The documentation on these functions is extensive. I recommend checki
 out all the ways you can customize behavior of your data with their arguments.
 
 
-**Import a DataFrame From Another Library Using the DataFrame Interchange Protocol.**
+**pandas.DataFrame.__dataframe__() and pd.api.interchange.from_dataframe()**
 
-If you're dealing with a flavor of dataframe other than pandas,
-keep in mind that it may support the DataFrame interchange protocol. `Pandas Interchange Object Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
+Import a DataFrame from another library via the DataFrame interchange protocol.
+The .__dataframe__() dunder method returns an interchange object which can be used to
+convert another dialect of dataframe to pandas. If the protocol is supported,
+a dataframe interchange object has the methods "column_names" and "select_columns_by_name".
+If you're dealing with a flavor of dataframe other than pandas, keep in mind it may support
+the DataFrame interchange protocol. `Pandas Interchange Object Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
 
 .. code-block:: python
 
@@ -49,9 +53,14 @@ keep in mind that it may support the DataFrame interchange protocol. `Pandas Int
 ::
 
   >>> df_pandas
-             A
-        0    1
-        1    2
+
+       A
+  0    1
+  1    2
+
+  >>> interchange_object.column_names()
+
+  Index(['A', 'B'], dtype='object')
 
 
 .. image:: {static}/images/pandasdataframeinterchangeprotocol.png

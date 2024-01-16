@@ -62,9 +62,13 @@ python3.12 -m pip install lxml
 pd.read_excel(), pd.DataFrame.to_csv(), <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html">pd.DataFrame.to_json()</a>
 and so on. The documentation on these functions is extensive. I recommend checking
 out all the ways you can customize behavior of your data with their arguments.</p>
-<p><strong>Import a DataFrame From Another Library Using the DataFrame Interchange Protocol.</strong></p>
-<p>If you're dealing with a flavor of dataframe other than pandas,
-keep in mind that it may support the DataFrame interchange protocol. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">Pandas Interchange Object Documentation</a></p>
+<p><strong>pandas.DataFrame.__dataframe__() and pd.api.interchange.from_dataframe()</strong></p>
+<p>Import a DataFrame from another library via the DataFrame interchange protocol.
+The .__dataframe__() dunder method returns an interchange object which can be used to
+convert another dialect of dataframe to pandas. If the protocol is supported,
+a dataframe interchange object has the methods &quot;column_names&quot; and &quot;select_columns_by_name&quot;.
+If you're dealing with a flavor of dataframe other than pandas, keep in mind it may support
+the DataFrame interchange protocol. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">Pandas Interchange Object Documentation</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -79,9 +83,14 @@ keep in mind that it may support the DataFrame interchange protocol. <a class="r
 </pre></div></td></tr></table></div>
 <pre class="literal-block">
 &gt;&gt;&gt; df_pandas
-           A
-      0    1
-      1    2
+
+     A
+0    1
+1    2
+
+&gt;&gt;&gt; interchange_object.column_names()
+
+Index(['A', 'B'], dtype='object')
 </pre>
 <img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandasdataframeinterchangeprotocol.png" />
 <p><strong>pandas.read_html(url)</strong></p>
