@@ -123,11 +123,11 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
 
 .. code-block:: python
 
-  print(airports.memory_usage())
+  # To include memory footprint of object dtypes, pass deep=True.
+  print(airports.memory_usage(deep=True))
 
 .. code-block:: console
 
-  # To include memory footprint of object dtypes, pass deep=True.
   >>> airports.memory_usage(deep=True)
 
   Index                    132

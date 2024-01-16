@@ -143,7 +143,9 @@ df.head() accepts a number and returns a df with that many records, in this case
 <dt>Returns the memory usage of each column in bytes. Per the docs, &quot;this value is displayed in DataFrame.info by default.&quot;</dt>
 <dd><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html">.memory_usage() Documentation</a></dd>
 </dl>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">())</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># To include memory footprint of object dtypes, pass deep=True.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
@@ -152,9 +154,7 @@ df.head() accepts a number and returns a df with that many records, in this case
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="gp"># </span>To<span class="w"> </span>include<span class="w"> </span>memory<span class="w"> </span>footprint<span class="w"> </span>of<span class="w"> </span>object<span class="w"> </span>dtypes,<span class="w"> </span>pass<span class="w"> </span><span class="nv">deep</span><span class="o">=</span>True.
-<span class="go">&gt;&gt;&gt; airports.memory_usage(deep=True)</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">&gt;&gt;&gt; airports.memory_usage(deep=True)</span>
 
 <span class="go">Index                    132</span>
 <span class="go">Country / Territory    24125</span>
