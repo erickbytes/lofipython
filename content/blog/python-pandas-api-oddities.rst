@@ -23,7 +23,7 @@ Install Python dependencies with pip: pandas and lxml, required for read_html()
    python3.12 -m pip install pandas
    python3.12 -m pip install lxml
 
-**What's Not Mentioned**
+**What's Not Mentioned Here**
 
 I skipped the standard must know functions like `pd.read_csv() <https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html>`__,
 pd.read_excel(), pd.DataFrame.to_csv(), `pd.DataFrame.to_json() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html>`__
@@ -31,7 +31,7 @@ and so on. The documentation on these functions is extensive. I recommend checki
 out all the ways you can customize behavior of your data with their arguments.
 
 
-**pandas.DataFrame.__dataframe__() and pd.api.interchange.from_dataframe()**
+**pandas.DataFrame.__dataframe__() + pd.api.interchange.from_dataframe()**
 
 Import a DataFrame from another library via the DataFrame interchange protocol.
 The .__dataframe__() dunder method returns an interchange object which can be used to
@@ -157,6 +157,10 @@ returns True, if not returns False. `.empty Documentation <https://pandas.pydata
 
   print(airports.empty)
   # False
+  if airports.empty:
+      print("DataFrame has no data.")
+  else:
+      print("DataFrame contains data.")
 
 **pandas.DataFrame.T**
 

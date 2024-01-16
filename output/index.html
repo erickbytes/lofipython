@@ -53,12 +53,12 @@ You never know what you'll find there, it's always evolving.</p>
 python3.12 -m pip install pandas
 python3.12 -m pip install lxml
 </pre>
-<p><strong>What's Not Mentioned</strong></p>
+<p><strong>What's Not Mentioned Here</strong></p>
 <p>I skipped the standard must know functions like <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pd.read_csv()</a>,
 pd.read_excel(), pd.DataFrame.to_csv(), <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html">pd.DataFrame.to_json()</a>
 and so on. The documentation on these functions is extensive. I recommend checking
 out all the ways you can customize behavior of your data with their arguments.</p>
-<p><strong>pandas.DataFrame.__dataframe__() and pd.api.interchange.from_dataframe()</strong></p>
+<p><strong>pandas.DataFrame.__dataframe__() + pd.api.interchange.from_dataframe()</strong></p>
 <p>Import a DataFrame from another library via the DataFrame interchange protocol.
 The .__dataframe__() dunder method returns an interchange object which can be used to
 convert another dialect of dataframe to pandas. If the protocol is supported,
@@ -163,8 +163,16 @@ dtype: int64
 <p>Every pandas DataFrame has a &quot;.empty&quot; attribute. If Series/DataFrame is empty,
 returns True, if not returns False. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.empty.html">.empty Documentation</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">empty</span><span class="p">)</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">empty</span><span class="p">)</span>
 <span class="c1"># False</span>
+<span class="k">if</span> <span class="n">airports</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DataFrame has no data.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DataFrame contains data.&quot;</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p><strong>pandas.DataFrame.T</strong></p>
 <p>Every pandas DataFrame has a &quot;.T&quot; attribute. It returns the transposed version
