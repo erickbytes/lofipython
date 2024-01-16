@@ -162,7 +162,7 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
       s = round(size_bytes / p, 2)
       return "%s %s" % (s, size_name[i])
 
-  # math module Bonus: convert bytes to "human readable" data format.
+  # Use the math module + pandas .apply() to convert bytes to "human readable" data format.
   memory_usage = airports.memory_usage(deep=True).apply(convert_size)
   print(memory_usage)
 
