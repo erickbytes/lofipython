@@ -21,7 +21,7 @@ You never know what you'll find there, it's always evolving.
 
 **Install Python dependencies: pandas and lxml, required for read_html()**
 
-.. code:: console
+::
 
    python3.12 -m pip install pandas
    python3.12 -m pip install lxml
@@ -41,7 +41,7 @@ Keep in mind that a DataFrame standard is supported across the Python ecosystem.
              (interchange_object.select_columns_by_name(['A'])))
 
 
-.. code:: console
+::
 
   >>> df_pandas
              A
@@ -126,7 +126,7 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
   # To include memory footprint of object dtypes, pass deep=True.
   print(airports.memory_usage(deep=True))
 
-.. code-block:: console
+::
 
   >>> airports.memory_usage(deep=True)
 
@@ -153,11 +153,11 @@ returns True, if not returns False. `.empty Documentation <https://pandas.pydata
 Every pandas DataFrame has a ".T" attribute. It returns the transposed version
 of the DataFrame. `.T Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.T.html#pandas.DataFrame.T>`__
 
-.. code-block:: python
+::
 
   >>> airports.head(2).T
 
-.. code-block:: console
+::
 
     0                                         1                                    2
   Country / Territory               Antigua and Barbuda                                 Argentina                                Aruba
@@ -185,7 +185,7 @@ You can pass an index and that value will be returned for each cell in a column.
   new_column = s.str.get(1)
   print(new_column)
 
-.. code-block:: console
+::
 
   >>> s
   0                        String
@@ -225,7 +225,7 @@ Note: these are alternatives to the `"astype()" function <https://pandas.pydata.
    print(converted_df.dtypes)
    print(objects_df.dtypes)
 
-.. code-block:: console
+::
 
   >>> df.head()
     0     1    2

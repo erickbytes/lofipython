@@ -53,9 +53,9 @@ pd.read_excel(), pd.to_csv(), <a class="reference external" href="https://pandas
 and so on. The documentation on these functions is extensive. I recommend checking
 out all the ways you can customize behavior of your data with their arguments.</blockquote>
 <p><strong>Install Python dependencies: pandas and lxml, required for read_html()</strong></p>
-<pre class="code console literal-block">
-<span class="go">python3.12 -m pip install pandas
-python3.12 -m pip install lxml</span>
+<pre class="literal-block">
+python3.12 -m pip install pandas
+python3.12 -m pip install lxml
 </pre>
 <p><strong>Import a DataFrame From Another Library Using the DataFrame Interchange Standard.</strong></p>
 <p>Keep in mind that a DataFrame standard is supported across the Python ecosystem.</p>
@@ -71,11 +71,11 @@ python3.12 -m pip install lxml</span>
 <span class="n">df_pandas</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">interchange</span><span class="o">.</span><span class="n">from_dataframe</span>
            <span class="p">(</span><span class="n">interchange_object</span><span class="o">.</span><span class="n">select_columns_by_name</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">])))</span>
 </pre></div></td></tr></table></div>
-<pre class="code console literal-block">
-<span class="go">&gt;&gt;&gt; df_pandas
+<pre class="literal-block">
+&gt;&gt;&gt; df_pandas
            A
       0    1
-      1    2</span>
+      1    2
 </pre>
 <img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandasdataframeinterchangeprotocol.png" />
 <p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">Pandas Interchange Object Documentation</a></p>
@@ -143,22 +143,16 @@ df.head() accepts a number and returns a df with that many records, in this case
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># To include memory footprint of object dtypes, pass deep=True.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">&gt;&gt;&gt; airports.memory_usage(deep=True)</span>
+<pre class="literal-block">
+&gt;&gt;&gt; airports.memory_usage(deep=True)
 
-<span class="go">Index                    132</span>
-<span class="go">Country / Territory    24125</span>
-<span class="go">City                   21164</span>
-<span class="go">Airport                30660</span>
-<span class="go">Notes                  19237</span>
-<span class="go">dtype: int64</span>
-</pre></div></td></tr></table></div>
+Index                    132
+Country / Territory    24125
+City                   21164
+Airport                30660
+Notes                  19237
+dtype: int64
+</pre>
 <p><strong>pandas.DataFrame.empty</strong></p>
 <p>Every pandas DataFrame has a &quot;.empty&quot; attribute. If Series/DataFrame is empty,
 returns True, if not returns False. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.empty.html">.empty Documentation</a></p>
@@ -169,18 +163,16 @@ returns True, if not returns False. <a class="reference external" href="https://
 <p><strong>pandas.DataFrame.T</strong></p>
 <p>Every pandas DataFrame has a &quot;.T&quot; attribute. It returns the transposed version
 of the DataFrame. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.T.html#pandas.DataFrame.T">.T Documentation</a></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">airports</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-</pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">  0                                         1                                    2</span>
-<span class="go">Country / Territory               Antigua and Barbuda                                 Argentina                                Aruba</span>
-<span class="go">City                                          Osbourn                              Buenos Aires                           Oranjestad</span>
-<span class="go">Airport              V. C. Bird International Airport  Ministro Pistarini International Airport  Queen Beatrix International Airport</span>
-<span class="go">Notes                                        Seasonal</span>
-</pre></div></td></tr></table></div>
+<pre class="literal-block">
+&gt;&gt;&gt; airports.head(2).T
+</pre>
+<pre class="literal-block">
+  0                                         1                                    2
+Country / Territory               Antigua and Barbuda                                 Argentina                                Aruba
+City                                          Osbourn                              Buenos Aires                           Oranjestad
+Airport              V. C. Bird International Airport  Ministro Pistarini International Airport  Queen Beatrix International Airport
+Notes                                        Seasonal
+</pre>
 <p><strong>pandas.Series.str.get(index)</strong></p>
 <p>str.get() is available via the pandas Series string accessor.
 This function is useful when your dataset contains a column holding a list in each cell.
@@ -201,40 +193,25 @@ You can pass an index and that value will be returned for each cell in a column.
 <span class="n">new_column</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">new_column</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">&gt;&gt;&gt; s</span>
-<span class="go">0                        String</span>
-<span class="go">1                     (1, 2, 3)</span>
-<span class="go">2                     [a, b, c]</span>
-<span class="go">3                           123</span>
-<span class="go">4                          -456</span>
-<span class="go">5    {1: &#39;Hello&#39;, &#39;2&#39;: &#39;World&#39;}</span>
-<span class="go">dtype: object</span>
+<pre class="literal-block">
+&gt;&gt;&gt; s
+0                        String
+1                     (1, 2, 3)
+2                     [a, b, c]
+3                           123
+4                          -456
+5    {1: 'Hello', '2': 'World'}
+dtype: object
 
-<span class="go">&gt;&gt;&gt; s.str.get(1)</span>
-<span class="go">0        t</span>
-<span class="go">1        2</span>
-<span class="go">2        b</span>
-<span class="go">3      NaN</span>
-<span class="go">4      NaN</span>
-<span class="go">5    Hello</span>
-<span class="go">dtype: object</span>
-</pre></div></td></tr></table></div>
+&gt;&gt;&gt; s.str.get(1)
+0        t
+1        2
+2        b
+3      NaN
+4      NaN
+5    Hello
+dtype: object
+</pre>
 <p><strong>pandas.DataFrame.convert_dtypes() and .infer_objects()</strong></p>
 <p>These are 2 functions for swiftly handling data types in your tabular data.
 Note: these are alternatives to the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.astype.html">&quot;astype()&quot; function</a>, which is used more commonly.</p>
@@ -260,46 +237,28 @@ Note: these are alternatives to the <a class="reference external" href="https://
 <span class="nb">print</span><span class="p">(</span><span class="n">converted_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">objects_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">&gt;&gt;&gt; df.head()</span>
-<span class="go">  0     1    2</span>
-<span class="go">0  1234  5678  abc</span>
+<pre class="literal-block">
+&gt;&gt;&gt; df.head()
+  0     1    2
+0  1234  5678  abc
 
-<span class="go">&gt;&gt;&gt; df.dtypes</span>
-<span class="go">0    object</span>
-<span class="go">1    object</span>
-<span class="go">2    object</span>
+&gt;&gt;&gt; df.dtypes
+0    object
+1    object
+2    object
 
-<span class="go">&gt;&gt;&gt; converted_df.dtypes</span>
-<span class="go">0    string[python]</span>
-<span class="go">1    string[python]</span>
-<span class="go">2    string[python]</span>
-<span class="go">dtype: object</span>
+&gt;&gt;&gt; converted_df.dtypes
+0    string[python]
+1    string[python]
+2    string[python]
+dtype: object
 
-<span class="go">&gt;&gt;&gt; objects_df.dtypes</span>
-<span class="go">0    object</span>
-<span class="go">1    object</span>
-<span class="go">2    object</span>
-<span class="go">dtype: object</span>
-</pre></div></td></tr></table></div>
+&gt;&gt;&gt; objects_df.dtypes
+0    object
+1    object
+2    object
+dtype: object
+</pre>
 <p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html">convert_dtypes Documentation</a>
 + <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html">infer_objects() Documentation</a></p>
 <p><strong>Pique Your Curiosity With Pandas</strong></p>
