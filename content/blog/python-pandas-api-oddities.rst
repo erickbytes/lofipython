@@ -33,7 +33,7 @@ Keep in mind that a DataFrame standard exists and supoorted across the Python ec
   interchange_object = df_not_necessarily_pandas.__dataframe__()
 
 
-.. image:: {static}/images/pandas-dataframe-interchange-protocol.png
+.. image:: {static}/images/pandasdataframeinterchangeprotocol.png
  :alt: interchange dataframes between libraries
 
 
