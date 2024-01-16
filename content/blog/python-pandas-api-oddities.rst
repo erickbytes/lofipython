@@ -220,6 +220,9 @@ You can pass an index and that value will be returned for each cell in a column.
 
 These are 2 functions for swiftly handling data types in your tabular data.
 Note: these are alternatives to the `"astype()" function <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.astype.html>`__, which is used more commonly.
+Use astype() to set a column or dataframe to a specific dtype. Use infer_objects() to
+infer more suitable types for object columns. Use convert_dtypes to let pandas choose the best possible dtype.
+
 
 .. code-block:: python
 
@@ -228,12 +231,14 @@ Note: these are alternatives to the `"astype()" function <https://pandas.pydata.
    df = pd.DataFrame([["1234", 5678, "abc"]])
    print(df.head())
    print(df.dtypes)
+
    # Convert columns to the best possible dtypes using dtypes supporting pd.NA.
    typed_df = df.convert_dtypes()
-   # Attempt to infer better dtypes for object columns.
-   objects_df = df.infer_objects()
    print(typed_df.dtypes)
-   print(objects_df.dtypes)
+
+   # Attempt to infer better dtypes for object columns.
+   inferred_df = df.infer_objects()
+   print(inferred_df.dtypes)
 
 ::
 
