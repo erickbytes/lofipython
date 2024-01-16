@@ -118,7 +118,8 @@ df.head() accepts a number and returns a df with that many records, in this case
 
 **pandas.DataFrame.memory_usage()**
 
-Returns the memory usage of each column in bytes. `.memory_usage() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html>`__
+Returns the memory usage of each column in bytes. Per the docs, "this value is displayed in DataFrame.info by default."
+ `.memory_usage() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html>`__
 
 .. code-block:: python
 
@@ -126,13 +127,14 @@ Returns the memory usage of each column in bytes. `.memory_usage() Documentation
 
 .. code-block:: console
 
-  >>> airports.memory_usage()
+  # To include memory footprint of object dtypes, pass deep=True.
+  >>> airports.memory_usage(deep=True)
 
-  Index                   132
-  Country / Territory    2904
-  City                   2904
-  Airport                2904
-  Notes                  2904
+  Index                    132
+  Country / Territory    24125
+  City                   21164
+  Airport                30660
+  Notes                  19237
   dtype: int64
 
 
