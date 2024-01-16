@@ -8,16 +8,15 @@ Python Pandas API Oddities
 :status: published
 
 This post uses the `Delta Airlines Airports Wikipedia HTML table <https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations>`__
-as an example to highlight some niche functions in Python's pandas library.
+as an example to highlight some niche functions in Python's pandas library. It's
+aimed at the more advanced stuff on the fringes of the docs.
+Here are some oddities of the less traveled parts of the pandas documentation.
+You never know what you'll find there, it's always evolving.
 
   I skipped the standard must know functions like `pd.read_csv() <https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html>`__,
   pd.read_excel(), pd.to_csv(), `pd.to_json() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html>`__
   and so on. The documentation on these functions is extensive. I recommend checking
   out all the ways you can customize behavior of your data.
-
-This post is aimed at the more advanced stuff on the fringes of the docs.
-Here are some oddities of the less traveled parts of the pandas documentation.
-You never know what you'll find there, it's always evolving.
 
 **Install Python dependencies: pandas and lxml, required for read_html()**
 
