@@ -15,7 +15,7 @@ Here are some oddities of the less traveled parts of the pandas documentation.
 You never know what you'll find there, it's always evolving.
 
   I skipped the standard must know functions like `pd.read_csv() <https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html>`__,
-  pd.read_excel(), pd.to_csv(), `pd.to_json() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html>`__
+  pd.read_excel(), pd.DataFrame.to_csv(), `pd.DataFrame.to_json() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html>`__
   and so on. The documentation on these functions is extensive. I recommend checking
   out all the ways you can customize behavior of your data with their arguments.
 
