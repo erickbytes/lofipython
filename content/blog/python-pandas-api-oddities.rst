@@ -216,13 +216,13 @@ Note: these are alternatives to the `"astype()" function <https://pandas.pydata.
 
    import pandas as pd
 
-   df = pd.DataFrame([["1234", "5678", ""]])
+   df = pd.DataFrame([["1234", 5678, "abc"]])
    print(df.head())
    print(df.dtypes)
-   # Use pandas to coerce data to default types.
+   # Convert columns to the best possible dtypes using dtypes supporting pd.NA.
    typed_df = df.convert_dtypes()
-   # Coerce data back to object types.
-   objects_df = typed_df.infer_objects()
+   # Attempt to infer better dtypes for object columns.
+   objects_df = df.infer_objects()
    print(typed_df.dtypes)
    print(objects_df.dtypes)
 
@@ -234,18 +234,18 @@ Note: these are alternatives to the `"astype()" function <https://pandas.pydata.
 
   >>> df.dtypes
   0    object
-  1    object
+  1     int64
   2    object
 
   >>> typed_df.dtypes
   0    string[python]
-  1    string[python]
+  1             Int64
   2    string[python]
   dtype: object
 
   >>> objects_df.dtypes
   0    object
-  1    object
+  1     int64
   2    object
   dtype: object
 
