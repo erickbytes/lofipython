@@ -10,7 +10,7 @@ Python Pandas API Oddities
 Below I've highlighted some niche functions in Python's pandas library. I've plucked
 a few examples from the pandas documentation examples and the
 `Delta Airlines Airports Wikipedia HTML table <https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations>`__
-as an example. This post is aimed at the more advanced stuff on the fringes of the pandas docs.
+for sample data. This post is aimed at the more advanced stuff on the fringes of the pandas docs.
 Here are some oddities of the less traveled parts of the pandas documentation.
 You never know what you'll find there, it's always evolving.
 
@@ -29,7 +29,7 @@ You never know what you'll find there, it's always evolving.
 
 **Import a DataFrame From Another Library Using the DataFrame Interchange Standard.**
 
-Keep in mind that a DataFrame standard exists and is supported across the Python ecosystem.
+Keep in mind that a DataFrame standard is supported across the Python ecosystem.
 
 .. code-block:: python
 
@@ -39,6 +39,14 @@ Keep in mind that a DataFrame standard exists and is supported across the Python
   interchange_object = df_not_necessarily_pandas.__dataframe__()
   df_pandas = (pd.api.interchange.from_dataframe
              (interchange_object.select_columns_by_name(['A'])))
+
+
+.. code:: console
+
+  >>> df_pandas
+             A
+        0    1
+        1    2
 
 
 .. image:: {static}/images/pandasdataframeinterchangeprotocol.png
