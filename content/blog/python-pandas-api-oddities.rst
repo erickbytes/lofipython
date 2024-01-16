@@ -8,7 +8,7 @@ Python Pandas API Oddities
 :status: published
 
 Below I've highlighted some niche functions in Python's pandas library. I've plucked
-a few examples from the pandas documentation examples and the
+a few examples from the pandas documentation and the
 `Delta Airlines Airports Wikipedia HTML table <https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations>`__
 for sample data. This post is aimed at the more advanced stuff on the fringes of the pandas docs.
 Here are some oddities of the less traveled parts of the pandas documentation.
