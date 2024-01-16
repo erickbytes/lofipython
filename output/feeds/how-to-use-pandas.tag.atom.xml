@@ -9,16 +9,17 @@ a few examples from the pandas documentation and the
 for sample data. This post is aimed at the more advanced stuff on the fringes of the pandas docs.
 Here are some oddities of the less traveled parts of the pandas documentation.
 You never know what you'll find there, it's always evolving.&lt;/p&gt;
-&lt;blockquote&gt;
-I skipped the standard must know functions like &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"&gt;pd.read_csv()&lt;/a&gt;,
-pd.read_excel(), pd.DataFrame.to_csv(), &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html"&gt;pd.DataFrame.to_json()&lt;/a&gt;
-and so on. The documentation on these functions is extensive. I recommend checking
-out all the ways you can customize behavior of your data with their arguments.&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Install Python dependencies: pandas and lxml, required for read_html()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Install pandas + lxml&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Install Python dependencies with pip: pandas and lxml, required for read_html()&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 python3.12 -m pip install pandas
 python3.12 -m pip install lxml
 &lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;What's Not Mentioned&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I skipped the standard must know functions like &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"&gt;pd.read_csv()&lt;/a&gt;,
+pd.read_excel(), pd.DataFrame.to_csv(), &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html"&gt;pd.DataFrame.to_json()&lt;/a&gt;
+and so on. The documentation on these functions is extensive. I recommend checking
+out all the ways you can customize behavior of your data with their arguments.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Import a DataFrame From Another Library Using the DataFrame Interchange Protocol.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;If you're dealing with a flavor of dataframe other than pandas,
 keep in mind that it may support the DataFrame interchange protocol. &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe"&gt;Pandas Interchange Object Documentation&lt;/a&gt;&lt;/p&gt;
@@ -104,8 +105,6 @@ df.head() accepts a number and returns a df with that many records, in this case
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deep&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
-&amp;gt;&amp;gt;&amp;gt; airports.memory_usage(deep=True)
-
 Index                    132
 Country / Territory    24125
 City                   21164
@@ -194,7 +193,7 @@ Note: these are alternatives to the &lt;a class="reference external" href="https
 &lt;span class="n"&gt;typed_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert_dtypes&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="c1"&gt;# Coerce data back to object types.&lt;/span&gt;
 &lt;span class="n"&gt;objects_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;typed_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;infer_objects&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;converted_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;typed_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;objects_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
@@ -207,7 +206,7 @@ Note: these are alternatives to the &lt;a class="reference external" href="https
 1    object
 2    object
 
-&amp;gt;&amp;gt;&amp;gt; converted_df.dtypes
+&amp;gt;&amp;gt;&amp;gt; typed_df.dtypes
 0    string[python]
 1    string[python]
 2    string[python]

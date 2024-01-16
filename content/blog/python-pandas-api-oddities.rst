@@ -14,17 +14,21 @@ for sample data. This post is aimed at the more advanced stuff on the fringes of
 Here are some oddities of the less traveled parts of the pandas documentation.
 You never know what you'll find there, it's always evolving.
 
-  I skipped the standard must know functions like `pd.read_csv() <https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html>`__,
-  pd.read_excel(), pd.DataFrame.to_csv(), `pd.DataFrame.to_json() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html>`__
-  and so on. The documentation on these functions is extensive. I recommend checking
-  out all the ways you can customize behavior of your data with their arguments.
+**Install pandas + lxml**
 
-**Install Python dependencies: pandas and lxml, required for read_html()**
+Install Python dependencies with pip: pandas and lxml, required for read_html()
 
 ::
 
    python3.12 -m pip install pandas
    python3.12 -m pip install lxml
+
+**What's Not Mentioned**
+
+I skipped the standard must know functions like `pd.read_csv() <https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html>`__,
+pd.read_excel(), pd.DataFrame.to_csv(), `pd.DataFrame.to_json() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html>`__
+and so on. The documentation on these functions is extensive. I recommend checking
+out all the ways you can customize behavior of your data with their arguments.
 
 
 **Import a DataFrame From Another Library Using the DataFrame Interchange Protocol.**
@@ -127,8 +131,6 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
 
 ::
 
-  >>> airports.memory_usage(deep=True)
-
   Index                    132
   Country / Territory    24125
   City                   21164
@@ -221,7 +223,7 @@ Note: these are alternatives to the `"astype()" function <https://pandas.pydata.
    typed_df = df.convert_dtypes()
    # Coerce data back to object types.
    objects_df = typed_df.infer_objects()
-   print(converted_df.dtypes)
+   print(typed_df.dtypes)
    print(objects_df.dtypes)
 
 ::
@@ -235,7 +237,7 @@ Note: these are alternatives to the `"astype()" function <https://pandas.pydata.
   1    object
   2    object
 
-  >>> converted_df.dtypes
+  >>> typed_df.dtypes
   0    string[python]
   1    string[python]
   2    string[python]

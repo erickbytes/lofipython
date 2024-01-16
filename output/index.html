@@ -47,16 +47,17 @@ a few examples from the pandas documentation and the
 for sample data. This post is aimed at the more advanced stuff on the fringes of the pandas docs.
 Here are some oddities of the less traveled parts of the pandas documentation.
 You never know what you'll find there, it's always evolving.</p>
-<blockquote>
-I skipped the standard must know functions like <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pd.read_csv()</a>,
-pd.read_excel(), pd.DataFrame.to_csv(), <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html">pd.DataFrame.to_json()</a>
-and so on. The documentation on these functions is extensive. I recommend checking
-out all the ways you can customize behavior of your data with their arguments.</blockquote>
-<p><strong>Install Python dependencies: pandas and lxml, required for read_html()</strong></p>
+<p><strong>Install pandas + lxml</strong></p>
+<p>Install Python dependencies with pip: pandas and lxml, required for read_html()</p>
 <pre class="literal-block">
 python3.12 -m pip install pandas
 python3.12 -m pip install lxml
 </pre>
+<p><strong>What's Not Mentioned</strong></p>
+<p>I skipped the standard must know functions like <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pd.read_csv()</a>,
+pd.read_excel(), pd.DataFrame.to_csv(), <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html">pd.DataFrame.to_json()</a>
+and so on. The documentation on these functions is extensive. I recommend checking
+out all the ways you can customize behavior of your data with their arguments.</p>
 <p><strong>Import a DataFrame From Another Library Using the DataFrame Interchange Protocol.</strong></p>
 <p>If you're dealing with a flavor of dataframe other than pandas,
 keep in mind that it may support the DataFrame interchange protocol. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">Pandas Interchange Object Documentation</a></p>
@@ -142,8 +143,6 @@ df.head() accepts a number and returns a df with that many records, in this case
 <span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div></td></tr></table></div>
 <pre class="literal-block">
-&gt;&gt;&gt; airports.memory_usage(deep=True)
-
 Index                    132
 Country / Territory    24125
 City                   21164
@@ -232,7 +231,7 @@ Note: these are alternatives to the <a class="reference external" href="https://
 <span class="n">typed_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
 <span class="c1"># Coerce data back to object types.</span>
 <span class="n">objects_df</span> <span class="o">=</span> <span class="n">typed_df</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">converted_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">typed_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">objects_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <pre class="literal-block">
@@ -245,7 +244,7 @@ Note: these are alternatives to the <a class="reference external" href="https://
 1    object
 2    object
 
-&gt;&gt;&gt; converted_df.dtypes
+&gt;&gt;&gt; typed_df.dtypes
 0    string[python]
 1    string[python]
 2    string[python]
