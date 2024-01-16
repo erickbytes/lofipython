@@ -2,8 +2,8 @@ Python Pandas API Oddities
 ##########################
 :date: 2024-01-15 17:41
 :author: lofipython
-:category: coding, programming, python
-:tags: pandas api, using pandas Python, working with data
+:category: coding, programming, python, pandas
+:tags: pandas api, using pandas in Python, working with data, how to use pandas, reading HTML with pandas, reading pandas memory usage
 :slug: python-pandas-api-oddities
 :status: published
 
