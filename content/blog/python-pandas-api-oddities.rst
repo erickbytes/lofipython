@@ -257,7 +257,7 @@ infer more suitable types for object columns. Use convert_dtypes to let pandas c
   2    string[python]
   dtype: object
 
-  >>> objects_df.dtypes
+  >>> inferred_df.dtypes
   0    object
   1     int64
   2    object
