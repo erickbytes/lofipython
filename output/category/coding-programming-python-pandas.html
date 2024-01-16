@@ -55,7 +55,8 @@ You never know what you'll find there, it's always evolving.</p>
 I skipped the standard must know functions like <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pd.read_csv()</a>,
 pd.read_excel(), pd.to_csv(), <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html">pd.to_json()</a>
 and so on. The documentation on these functions is extensive. I recommend checking
-out all the ways you can customize behavior of your data with their arguments.</blockquote>
+out all the ways you can customize behavior of your data with their arguments.
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">Pandas Interchange Object Documentation</a></blockquote>
 <p><strong>Install Python dependencies: pandas and lxml, required for read_html()</strong></p>
 <pre class="literal-block">
 python3.12 -m pip install pandas
@@ -83,7 +84,6 @@ keep in mind that it may support the DataFrame interchange protocol.</p>
       1    2
 </pre>
 <img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandasdataframeinterchangeprotocol.png" />
-<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">Pandas Interchange Object Documentation</a></p>
 <p><strong>pandas.read_html(url)</strong></p>
 <p>pd.read_html() accepts a website url. It returns a list of all HTML tables
 as DataFrames. After getting the table as a dataframe, use &quot;.drop()&quot; to drop a column and &quot;.fillna()&quot;
@@ -140,10 +140,8 @@ df.head() accepts a number and returns a df with that many records, in this case
 &lt;/table&gt;
 </pre>
 <p><strong>pandas.DataFrame.memory_usage()</strong></p>
-<dl class="docutils">
-<dt>Returns the memory usage of each column in bytes. Per the docs, &quot;this value is displayed in DataFrame.info by default.&quot;</dt>
-<dd><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html">.memory_usage() Documentation</a></dd>
-</dl>
+<p>Returns the memory usage of each column in bytes. Per the docs, &quot;this value is displayed in DataFrame.info by default.&quot;
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html">.memory_usage() Documentation</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># To include memory footprint of object dtypes, pass deep=True.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>

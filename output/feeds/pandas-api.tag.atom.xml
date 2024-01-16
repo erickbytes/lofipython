@@ -13,7 +13,8 @@ You never know what you'll find there, it's always evolving.&lt;/p&gt;
 I skipped the standard must know functions like &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"&gt;pd.read_csv()&lt;/a&gt;,
 pd.read_excel(), pd.to_csv(), &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html"&gt;pd.to_json()&lt;/a&gt;
 and so on. The documentation on these functions is extensive. I recommend checking
-out all the ways you can customize behavior of your data with their arguments.&lt;/blockquote&gt;
+out all the ways you can customize behavior of your data with their arguments.
+&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe"&gt;Pandas Interchange Object Documentation&lt;/a&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Install Python dependencies: pandas and lxml, required for read_html()&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 python3.12 -m pip install pandas
@@ -41,7 +42,6 @@ keep in mind that it may support the DataFrame interchange protocol.&lt;/p&gt;
       1    2
 &lt;/pre&gt;
 &lt;img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandasdataframeinterchangeprotocol.png" /&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe"&gt;Pandas Interchange Object Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;pandas.read_html(url)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;pd.read_html() accepts a website url. It returns a list of all HTML tables
 as DataFrames. After getting the table as a dataframe, use &amp;quot;.drop()&amp;quot; to drop a column and &amp;quot;.fillna()&amp;quot;
@@ -98,10 +98,8 @@ df.head() accepts a number and returns a df with that many records, in this case
 &amp;lt;/table&amp;gt;
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;pandas.DataFrame.memory_usage()&lt;/strong&gt;&lt;/p&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;Returns the memory usage of each column in bytes. Per the docs, &amp;quot;this value is displayed in DataFrame.info by default.&amp;quot;&lt;/dt&gt;
-&lt;dd&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html"&gt;.memory_usage() Documentation&lt;/a&gt;&lt;/dd&gt;
-&lt;/dl&gt;
+&lt;p&gt;Returns the memory usage of each column in bytes. Per the docs, &amp;quot;this value is displayed in DataFrame.info by default.&amp;quot;
+&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html"&gt;.memory_usage() Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# To include memory footprint of object dtypes, pass deep=True.&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deep&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;

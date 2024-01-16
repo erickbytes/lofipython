@@ -18,6 +18,7 @@ You never know what you'll find there, it's always evolving.
   pd.read_excel(), pd.to_csv(), `pd.to_json() <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html>`__
   and so on. The documentation on these functions is extensive. I recommend checking
   out all the ways you can customize behavior of your data with their arguments.
+  `Pandas Interchange Object Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
 
 **Install Python dependencies: pandas and lxml, required for read_html()**
 
@@ -53,8 +54,6 @@ keep in mind that it may support the DataFrame interchange protocol.
 .. image:: {static}/images/pandasdataframeinterchangeprotocol.png
  :alt: interchange dataframes between libraries
 
-
-`Pandas Interchange Object Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
 
 **pandas.read_html(url)**
 
@@ -120,7 +119,7 @@ df.head() accepts a number and returns a df with that many records, in this case
 **pandas.DataFrame.memory_usage()**
 
 Returns the memory usage of each column in bytes. Per the docs, "this value is displayed in DataFrame.info by default."
- `.memory_usage() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html>`__
+`.memory_usage() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html>`__
 
 .. code-block:: python
 
