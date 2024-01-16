@@ -24,7 +24,7 @@ You never know what you'll find there, it's always evolving.
 
 **Import a DataFrame From Another Library Using the DataFrame Interchange Standard.**
 
-Keep in mind that a DataFrame standard exists and supoorted across the Python ecosystem.
+Keep in mind that a DataFrame standard exists and supported across the Python ecosystem.
 
 .. code-block:: python
 
