@@ -155,7 +155,7 @@ of the DataFrame. `.T Documentation <https://pandas.pydata.org/pandas-docs/stabl
 
 ::
 
-  >>> airports.head(2).T
+  >>> airports.head(3).T
 
 ::
 
