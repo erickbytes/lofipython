@@ -27,9 +27,10 @@ You never know what you'll find there, it's always evolving.
    python3.12 -m pip install lxml
 
 
-**Import a DataFrame From Another Library Using the DataFrame Interchange Standard.**
+**Import a DataFrame From Another Library Using the DataFrame Interchange Protocol.**
 
-Keep in mind that a DataFrame standard is supported across the Python ecosystem.
+If you're dealing with a flavor of dataframe other than pandas,
+keep in mind that it may support the DataFrame interchange protocol.
 
 .. code-block:: python
 
