@@ -150,26 +150,29 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
 
 .. code-block:: python
 
-  import math
 
-  def convert_size(size_bytes):
-      """Credit: https://stackoverflow.com/questions/5194057/better-way-to-convert-file-sizes-in-python"""
-      if size_bytes == 0:
-          return "0B"
-      size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
-      i = int(math.floor(math.log(size_bytes, 1024)))
-      p = math.pow(1024, i)
-      s = round(size_bytes / p, 2)
-      return "%s %s" % (s, size_name[i])
+  def readable_format(size: int) -> str:
+      """Converts a bytes integer to a human-readable format.
 
-  # Use the math module + pandas .apply() to convert bytes to "human readable" data format.
-  memory_usage = airports.memory_usage(deep=True).apply(convert_size)
+      Args:
+          size (int): The bytes integer to convert.
+
+      Returns:
+          str: The human-readable format of the bytes integer.
+      """
+      for unit in ["B", "KB", "MB", "GB", "TB"]:
+          if size < 1024:
+              return f"{size:.2f} {unit}"
+          size /= 1024
+      return f"{size:.2f} PB"
+
+  # Use pandas .apply() to convert bytes to "human readable" data format.
+  memory_usage = airports.memory_usage(deep=True).apply(readable_format)
   print(memory_usage)
-
 
 ::
 
-  Index                   132.0 B
+  Index                  132.00 B
   Country / Territory    23.56 KB
   City                   20.67 KB
   Airport                29.94 KB
