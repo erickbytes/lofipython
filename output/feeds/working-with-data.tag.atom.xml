@@ -20,7 +20,7 @@ python3.12 -m pip install lxml
 pd.read_excel(), pd.DataFrame.to_csv(), &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html"&gt;pd.DataFrame.to_json()&lt;/a&gt;
 and so on. The documentation on these functions is extensive. I recommend checking
 out all the ways you can customize behavior of your data with their arguments.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;pandas.DataFrame.__dataframe__() + pd.api.interchange.from_dataframe()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pd.DataFrame.__dataframe__() + pd.api.interchange.from_dataframe()&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Import a DataFrame from another library via the DataFrame interchange protocol.
 The .__dataframe__() dunder method returns an interchange object which can be used to
 convert another dialect of dataframe to pandas. If the protocol is supported,
@@ -51,7 +51,7 @@ the DataFrame interchange protocol. &lt;a class="reference external" href="https
 Index(['A', 'B'], dtype='object')
 &lt;/pre&gt;
 &lt;img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandasdataframeinterchangeprotocol.png" /&gt;
-&lt;p&gt;&lt;strong&gt;pandas.read_html(url)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pd.read_html(url)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;pd.read_html() accepts a website url. It returns a list of all HTML tables
 as DataFrames. After getting the table as a dataframe, use &amp;quot;.drop()&amp;quot; to drop a column and &amp;quot;.fillna()&amp;quot;
 to fill NA values as blanks. &lt;a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_html.html"&gt;read_html() Documentation&lt;/a&gt;&lt;/p&gt;
@@ -69,7 +69,7 @@ to fill NA values as blanks. &lt;a class="reference external" href="https://pand
 &lt;span class="n"&gt;airports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Refs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fillna&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;pandas.DataFrame.to_html()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pd.DataFrame.to_html()&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This function returns your tabular data as an HTML string.
 df.head() accepts a number and returns a df with that many records, in this case 2.
 &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_html.html"&gt;to_html() Documentation&lt;/a&gt;&lt;/p&gt;
@@ -104,7 +104,7 @@ df.head() accepts a number and returns a df with that many records, in this case
 &amp;lt;/table&amp;gt;
 &lt;/pre&gt;
 &lt;img alt="example pandas HTML table" src="https://lofipython.com/images/htmltable.png" /&gt;
-&lt;p&gt;&lt;strong&gt;pandas.DataFrame.memory_usage()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pd.DataFrame.memory_usage()&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Returns the memory usage of each column in bytes. Per the docs, &amp;quot;this value is displayed in DataFrame.info by default.&amp;quot;
 &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html"&gt;.memory_usage() Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
@@ -151,7 +151,7 @@ dtype: int64
         &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;/=&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.2f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; PB&amp;quot;&lt;/span&gt;
 
-&lt;span class="c1"&gt;# Use pandas .apply() to convert bytes to &amp;quot;human readable&amp;quot; data format.&lt;/span&gt;
+&lt;span class="c1"&gt;# Use pd.Series.apply() to convert bytes to &amp;quot;human readable&amp;quot; data format.&lt;/span&gt;
 &lt;span class="n"&gt;memory_usage&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;airports&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deep&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;readable_format&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
@@ -163,7 +163,7 @@ Airport                29.94 KB
 Notes                  18.79 KB
 dtype: object
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;pandas.DataFrame.empty&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pd.DataFrame.empty&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Every pandas DataFrame has a &amp;quot;.empty&amp;quot; attribute. If Series/DataFrame is empty,
 returns True, if not returns False. &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.empty.html"&gt;.empty Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
@@ -180,7 +180,7 @@ returns True, if not returns False. &lt;a class="reference external" href="https
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DataFrame contains data.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="c1"&gt;# DataFrame contains data.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;pandas.DataFrame.T&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pd.DataFrame.T&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Every pandas DataFrame has a &amp;quot;.T&amp;quot; attribute. It returns the transposed version
 of the DataFrame. &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.T.html#pandas.DataFrame.T"&gt;.T Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
@@ -193,7 +193,7 @@ City                                          Osbourn                           
 Airport              V. C. Bird International Airport  Ministro Pistarini International Airport  Queen Beatrix International Airport
 Notes                                        Seasonal
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;pandas.DataFrame.convert_dtypes() and .infer_objects()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pd.DataFrame.convert_dtypes() + .infer_objects()&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;These are 2 functions for swiftly handling data types in your tabular data.
 Note: these are alternatives to the &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.astype.html"&gt;&amp;quot;astype()&amp;quot; function&lt;/a&gt;, which is used more commonly.
 Use astype() to set a column or dataframe to a specific dtype. Use infer_objects() to
@@ -250,7 +250,7 @@ dtype: object
 &lt;/pre&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html"&gt;convert_dtypes Documentation&lt;/a&gt;
 + &lt;a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html"&gt;infer_objects() Documentation&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;pandas.Series.str.get(index)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pd.Series.str.get(index)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;str.get() is available via the pandas Series string accessor.
 This function is useful when your dataset contains a column holding a list in each cell.
 It also works on strings by returning the character at the index of a string.

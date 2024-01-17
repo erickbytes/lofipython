@@ -31,7 +31,7 @@ and so on. The documentation on these functions is extensive. I recommend checki
 out all the ways you can customize behavior of your data with their arguments.
 
 
-**pandas.DataFrame.__dataframe__() + pd.api.interchange.from_dataframe()**
+**pd.DataFrame.__dataframe__() + pd.api.interchange.from_dataframe()**
 
 Import a DataFrame from another library via the DataFrame interchange protocol.
 The .__dataframe__() dunder method returns an interchange object which can be used to
@@ -67,7 +67,7 @@ the DataFrame interchange protocol. `Pandas Interchange Object Documentation <ht
  :alt: interchange dataframes between libraries
 
 
-**pandas.read_html(url)**
+**pd.read_html(url)**
 
 pd.read_html() accepts a website url. It returns a list of all HTML tables
 as DataFrames. After getting the table as a dataframe, use ".drop()" to drop a column and ".fillna()"
@@ -85,7 +85,7 @@ to fill NA values as blanks. `read_html() Documentation <https://pandas.pydata.o
   print(airports.head())
 
 
-**pandas.DataFrame.to_html()**
+**pd.DataFrame.to_html()**
 
 This function returns your tabular data as an HTML string.
 df.head() accepts a number and returns a df with that many records, in this case 2.
@@ -128,7 +128,7 @@ df.head() accepts a number and returns a df with that many records, in this case
  :alt: example pandas HTML table
 
 
-**pandas.DataFrame.memory_usage()**
+**pd.DataFrame.memory_usage()**
 
 Returns the memory usage of each column in bytes. Per the docs, "this value is displayed in DataFrame.info by default."
 `.memory_usage() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html>`__
@@ -166,7 +166,7 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
           size /= 1024
       return f"{size:.2f} PB"
 
-  # Use pandas .apply() to convert bytes to "human readable" data format.
+  # Use pd.Series.apply() to convert bytes to "human readable" data format.
   memory_usage = airports.memory_usage(deep=True).apply(readable_format)
   print(memory_usage)
 
@@ -179,7 +179,7 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
   Notes                  18.79 KB
   dtype: object
 
-**pandas.DataFrame.empty**
+**pd.DataFrame.empty**
 
 Every pandas DataFrame has a ".empty" attribute. If Series/DataFrame is empty,
 returns True, if not returns False. `.empty Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.empty.html>`__
@@ -194,7 +194,7 @@ returns True, if not returns False. `.empty Documentation <https://pandas.pydata
       print("DataFrame contains data.")
   # DataFrame contains data.
 
-**pandas.DataFrame.T**
+**pd.DataFrame.T**
 
 Every pandas DataFrame has a ".T" attribute. It returns the transposed version
 of the DataFrame. `.T Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.T.html#pandas.DataFrame.T>`__
@@ -211,7 +211,7 @@ of the DataFrame. `.T Documentation <https://pandas.pydata.org/pandas-docs/stabl
   Airport              V. C. Bird International Airport  Ministro Pistarini International Airport  Queen Beatrix International Airport
   Notes                                        Seasonal
 
-**pandas.DataFrame.convert_dtypes() and .infer_objects()**
+**pd.DataFrame.convert_dtypes() + .infer_objects()**
 
 These are 2 functions for swiftly handling data types in your tabular data.
 Note: these are alternatives to the `"astype()" function <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.astype.html>`__, which is used more commonly.
@@ -267,7 +267,7 @@ infer more suitable types for object columns. Use convert_dtypes to let pandas c
 `convert_dtypes Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html>`__
 + `infer_objects() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html>`__
 
-**pandas.Series.str.get(index)**
+**pd.Series.str.get(index)**
 
 str.get() is available via the pandas Series string accessor.
 This function is useful when your dataset contains a column holding a list in each cell.
