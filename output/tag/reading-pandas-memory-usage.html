@@ -48,7 +48,8 @@ a few examples from the pandas documentation and the
 <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations">Delta Airlines Airports Wikipedia HTML table</a>
 for sample data. This post is aimed at the more advanced stuff on the fringes of the pandas docs.
 Here are some oddities of the less traveled parts of the pandas documentation.
-You never know what you'll find there, it's always evolving.</p>
+You never know what you'll find there, it's always evolving. Images were sourced
+from the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries">pandas documentation</a>.</p>
 <p><strong>Install pandas + lxml</strong></p>
 <p>Install Python dependencies with pip: pandas and lxml, required for read_html()</p>
 <pre class="literal-block">
@@ -93,7 +94,6 @@ the DataFrame interchange protocol.</p>
 Index(['A', 'B'], dtype='object')
 </pre>
 <img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandasdataframeinterchangeprotocol.png" />
-<p>Image Source: <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries">pandas documentation</a></p>
 <p><strong>pd.read_html(url)</strong></p>
 <p>pd.read_html() accepts a website url. It returns a list of all HTML tables
 as DataFrames. After getting the table as a dataframe, use &quot;.drop()&quot; to drop a column and &quot;.fillna()&quot;
@@ -118,7 +118,6 @@ to fill NA values as blanks. <a class="reference external" href="https://pandas.
 df.head() accepts a number and returns a df with that many records, in this case 2.
 <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_html.html">to_html() Documentation</a></p>
 <img alt="convert dataframe to HTML table with pandas" src="https://lofipython.com/images/tohtmlpandas.png" />
-<p>Image Source: <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries">pandas documentation</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>

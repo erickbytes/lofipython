@@ -12,7 +12,9 @@ a few examples from the pandas documentation and the
 `Delta Airlines Airports Wikipedia HTML table <https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations>`__
 for sample data. This post is aimed at the more advanced stuff on the fringes of the pandas docs.
 Here are some oddities of the less traveled parts of the pandas documentation.
-You never know what you'll find there, it's always evolving.
+You never know what you'll find there, it's always evolving. Images were sourced
+from the `pandas documentation <https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries>`__.
+
 
 **Install pandas + lxml**
 
@@ -71,8 +73,6 @@ the DataFrame interchange protocol.
 .. image:: {static}/images/pandasdataframeinterchangeprotocol.png
  :alt: interchange dataframes between libraries
 
-Image Source: `pandas documentation <https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries>`__
-
 **pd.read_html(url)**
 
 pd.read_html() accepts a website url. It returns a list of all HTML tables
@@ -101,8 +101,6 @@ df.head() accepts a number and returns a df with that many records, in this case
 
 .. image:: {static}/images/tohtmlpandas.png
  :alt: convert dataframe to HTML table with pandas
-
-Image Source: `pandas documentation <https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries>`__
 
 .. code-block:: python
 
@@ -162,7 +160,6 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
 
 
 .. code-block:: python
-
 
   def readable_format(size: int) -> str:
       """Converts a bytes integer to a human-readable format.
