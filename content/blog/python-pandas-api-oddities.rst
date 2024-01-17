@@ -45,8 +45,13 @@ the DataFrame interchange protocol.
 .. image:: {static}/images/dunderdataframepandasapi.png
  :alt: get a dataframe interchange object
 
+`pandas interchange object documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.__dataframe__.html>`__
+
 .. image:: {static}/images/pandasdataframeinterchangeprotocol.png
  :alt: interchange dataframes between libraries
+
+`pandas.api.interchange.from_dataframe() documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
+
 
 .. code-block:: python
 
@@ -70,10 +75,6 @@ the DataFrame interchange protocol.
 
   Index(['A', 'B'], dtype='object')
 
-
-`pandas interchange object documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.__dataframe__.html>`__
-
-`pandas.api.interchange.from_dataframe() documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
 
 **pd.read_html(url)**
 
