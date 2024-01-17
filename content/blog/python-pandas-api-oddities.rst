@@ -35,7 +35,7 @@ out all the ways you can customize behavior of your data with their arguments.
 
 **pd.DataFrame.__dataframe__() + pd.api.interchange.from_dataframe()**
 
-Import a DataFrame from another library via the DataFrame interchange protocol.
+Import a DataFrame from another library via the `DataFrame interchange protocol <https://data-apis.org/dataframe-protocol/latest/index.html>`__.
 The .__dataframe__() dunder method returns an interchange object which can be used to
 convert another dialect of dataframe to pandas. If the protocol is supported,
 a dataframe interchange object has the methods "column_names" and "select_columns_by_name".
