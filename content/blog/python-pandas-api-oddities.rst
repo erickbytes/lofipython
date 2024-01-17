@@ -211,47 +211,6 @@ of the DataFrame. `.T Documentation <https://pandas.pydata.org/pandas-docs/stabl
   Airport              V. C. Bird International Airport  Ministro Pistarini International Airport  Queen Beatrix International Airport
   Notes                                        Seasonal
 
-
-**pandas.Series.str.get(index)**
-
-str.get() is available via the pandas Series string accessor.
-This function is useful when your dataset contains a column holding a list in each cell.
-It also works on strings by returning the character at the index of a string.
-You can pass an index and that value will be returned for each cell in a column.
-`str.get() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html#pandas-series-str-get>`__
-
-
-.. code-block:: python
-
-  import pandas as pd
-
-  s = pd.Series(
-      ["String", (1, 2, 3), ["a", "b", "c"], 123, -456, {1: "Hello", "2": "World"}]
-  )
-  new_column = s.str.get(1)
-  print(new_column)
-
-::
-
-  >>> s
-  0                        String
-  1                     (1, 2, 3)
-  2                     [a, b, c]
-  3                           123
-  4                          -456
-  5    {1: 'Hello', '2': 'World'}
-  dtype: object
-
-  >>> s.str.get(1)
-  0        t
-  1        2
-  2        b
-  3      NaN
-  4      NaN
-  5    Hello
-  dtype: object
-
-
 **pandas.DataFrame.convert_dtypes() and .infer_objects()**
 
 These are 2 functions for swiftly handling data types in your tabular data.
@@ -307,6 +266,46 @@ infer more suitable types for object columns. Use convert_dtypes to let pandas c
 
 `convert_dtypes Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html>`__
 + `infer_objects() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html>`__
+
+**pandas.Series.str.get(index)**
+
+str.get() is available via the pandas Series string accessor.
+This function is useful when your dataset contains a column holding a list in each cell.
+It also works on strings by returning the character at the index of a string.
+You can pass an index and that value will be returned for each cell in a column.
+`str.get() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html#pandas-series-str-get>`__
+
+
+.. code-block:: python
+
+  import pandas as pd
+
+  s = pd.Series(
+      ["String", (1, 2, 3), ["a", "b", "c"], 123, -456, {1: "Hello", "2": "World"}]
+  )
+  new_column = s.str.get(1)
+  print(new_column)
+
+::
+
+  >>> s
+  0                        String
+  1                     (1, 2, 3)
+  2                     [a, b, c]
+  3                           123
+  4                          -456
+  5    {1: 'Hello', '2': 'World'}
+  dtype: object
+
+  >>> s.str.get(1)
+  0        t
+  1        2
+  2        b
+  3      NaN
+  4      NaN
+  5    Hello
+  dtype: object
+
 
 
 **Pique Your Curiosity With Pandas**
