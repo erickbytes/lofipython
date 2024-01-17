@@ -144,6 +144,9 @@ df.head() accepts a number and returns a df with that many records, in this case
 Returns the memory usage of each column in bytes. Per the docs, "this value is displayed in DataFrame.info by default."
 `.memory_usage() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html>`__
 
+.. image:: {static}/images/memoryusagepandasapi.png
+ :alt: see bytes size for each column
+
 .. code-block:: python
 
   # To include memory footprint of object dtypes, pass deep=True.
