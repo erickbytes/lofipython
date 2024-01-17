@@ -259,41 +259,46 @@ infer more suitable types for object columns. Use convert_dtypes to let pandas c
 
 .. code-block:: python
 
-   import pandas as pd
-
-   df = pd.DataFrame([["1234", 5678, "abc"]])
-   print(df.head())
-   print(df.dtypes)
+   print(airports.head())
+   print(airports.dtypes)
 
    # Convert columns to the best possible dtypes using dtypes supporting pd.NA.
-   typed_df = df.convert_dtypes()
+   typed_df = airports.convert_dtypes()
    print(typed_df.dtypes)
 
    # Attempt to infer better dtypes for object columns.
-   inferred_df = df.infer_objects()
+   inferred_df = airports.infer_objects()
    print(inferred_df.dtypes)
 
 ::
 
-  >>> df.head()
-    0     1    2
-  0  1234  5678  abc
+  >>> airports.head()
+    Country / Territory          City                                   Airport       Notes
+  0  Antigua and Barbuda       Osbourn          V. C. Bird International Airport    Seasonal
+  1            Argentina  Buenos Aires  Ministro Pistarini International Airport
+  2                Aruba    Oranjestad       Queen Beatrix International Airport
+  3            Australia        Sydney                            Sydney Airport
+  4              Austria        Vienna              Vienna International Airport  Terminated
 
-  >>> df.dtypes
-  0    object
-  1     int64
-  2    object
+  >>> airports.dtypes
+  Country / Territory    object
+  City                   object
+  Airport                object
+  Notes                  object
+  dtype: object
 
   >>> typed_df.dtypes
-  0    string[python]
-  1             Int64
-  2    string[python]
+  Country / Territory    string[python]
+  City                   string[python]
+  Airport                string[python]
+  Notes                  string[python]
   dtype: object
 
   >>> inferred_df.dtypes
-  0    object
-  1     int64
-  2    object
+  Country / Territory    object
+  City                   object
+  Airport                object
+  Notes                  object
   dtype: object
 
 

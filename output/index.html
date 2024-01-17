@@ -278,43 +278,45 @@ infer more suitable types for object columns. Use convert_dtypes to let pandas c
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">&quot;1234&quot;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">,</span> <span class="s2">&quot;abc&quot;</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 
 <span class="c1"># Convert columns to the best possible dtypes using dtypes supporting pd.NA.</span>
-<span class="n">typed_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
+<span class="n">typed_df</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">typed_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 
 <span class="c1"># Attempt to infer better dtypes for object columns.</span>
-<span class="n">inferred_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">()</span>
+<span class="n">inferred_df</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">inferred_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <pre class="literal-block">
-&gt;&gt;&gt; df.head()
-  0     1    2
-0  1234  5678  abc
+&gt;&gt;&gt; airports.head()
+  Country / Territory          City                                   Airport       Notes
+0  Antigua and Barbuda       Osbourn          V. C. Bird International Airport    Seasonal
+1            Argentina  Buenos Aires  Ministro Pistarini International Airport
+2                Aruba    Oranjestad       Queen Beatrix International Airport
+3            Australia        Sydney                            Sydney Airport
+4              Austria        Vienna              Vienna International Airport  Terminated
 
-&gt;&gt;&gt; df.dtypes
-0    object
-1     int64
-2    object
+&gt;&gt;&gt; airports.dtypes
+Country / Territory    object
+City                   object
+Airport                object
+Notes                  object
+dtype: object
 
 &gt;&gt;&gt; typed_df.dtypes
-0    string[python]
-1             Int64
-2    string[python]
+Country / Territory    string[python]
+City                   string[python]
+Airport                string[python]
+Notes                  string[python]
 dtype: object
 
 &gt;&gt;&gt; inferred_df.dtypes
-0    object
-1     int64
-2    object
+Country / Territory    object
+City                   object
+Airport                object
+Notes                  object
 dtype: object
 </pre>
 <p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html">convert_dtypes Documentation</a>
