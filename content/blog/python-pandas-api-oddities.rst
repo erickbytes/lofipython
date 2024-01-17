@@ -38,7 +38,12 @@ The .__dataframe__() dunder method returns an interchange object which can be us
 convert another dialect of dataframe to pandas. If the protocol is supported,
 a dataframe interchange object has the methods "column_names" and "select_columns_by_name".
 If you're dealing with a flavor of dataframe other than pandas, keep in mind it may support
-the DataFrame interchange protocol. `Pandas Interchange Object Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
+the DataFrame interchange protocol.
+
+
+`pandas interchange object documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.__dataframe__.html>`__
+
+`pandas.api.interchange.from_dataframe() documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
 
 .. code-block:: python
 
@@ -66,6 +71,7 @@ the DataFrame interchange protocol. `Pandas Interchange Object Documentation <ht
 .. image:: {static}/images/pandasdataframeinterchangeprotocol.png
  :alt: interchange dataframes between libraries
 
+Image Source: `pandas documentation <https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries>`__
 
 **pd.read_html(url)**
 
@@ -73,6 +79,8 @@ pd.read_html() accepts a website url. It returns a list of all HTML tables
 as DataFrames. After getting the table as a dataframe, use ".drop()" to drop a column and ".fillna()"
 to fill NA values as blanks. `read_html() Documentation <https://pandas.pydata.org/docs/reference/api/pandas.read_html.html>`__
 
+.. image:: {static}/images/readhtmlpandas.png
+ :alt: read an HTML table to pandas dataframe
 
 .. code-block:: python
 
@@ -90,6 +98,11 @@ to fill NA values as blanks. `read_html() Documentation <https://pandas.pydata.o
 This function returns your tabular data as an HTML string.
 df.head() accepts a number and returns a df with that many records, in this case 2.
 `to_html() Documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_html.html>`__
+
+.. image:: {static}/images/tohtmlpandas.png
+ :alt: convert dataframe to HTML table with pandas
+
+Image Source: `pandas documentation <https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries>`__
 
 .. code-block:: python
 
@@ -220,9 +233,6 @@ infer more suitable types for object columns. Use convert_dtypes() to let pandas
 
 
 .. code-block:: python
-
-   print(airports.head())
-   print(airports.dtypes)
 
    # Convert columns to the best possible dtypes using dtypes supporting pd.NA.
    typed_df = airports.convert_dtypes()

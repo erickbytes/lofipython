@@ -64,7 +64,9 @@ The .__dataframe__() dunder method returns an interchange object which can be us
 convert another dialect of dataframe to pandas. If the protocol is supported,
 a dataframe interchange object has the methods &quot;column_names&quot; and &quot;select_columns_by_name&quot;.
 If you're dealing with a flavor of dataframe other than pandas, keep in mind it may support
-the DataFrame interchange protocol. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">Pandas Interchange Object Documentation</a></p>
+the DataFrame interchange protocol.</p>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.__dataframe__.html">pandas interchange object documentation</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">pandas.api.interchange.from_dataframe() documentation</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -89,10 +91,12 @@ the DataFrame interchange protocol. <a class="reference external" href="https://
 Index(['A', 'B'], dtype='object')
 </pre>
 <img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandasdataframeinterchangeprotocol.png" />
+<p>Image Source: <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries">pandas documentation</a></p>
 <p><strong>pd.read_html(url)</strong></p>
 <p>pd.read_html() accepts a website url. It returns a list of all HTML tables
 as DataFrames. After getting the table as a dataframe, use &quot;.drop()&quot; to drop a column and &quot;.fillna()&quot;
 to fill NA values as blanks. <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_html.html">read_html() Documentation</a></p>
+<img alt="read an HTML table to pandas dataframe" src="https://lofipython.com/images/readhtmlpandas.png" />
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -111,6 +115,8 @@ to fill NA values as blanks. <a class="reference external" href="https://pandas.
 <p>This function returns your tabular data as an HTML string.
 df.head() accepts a number and returns a df with that many records, in this case 2.
 <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_html.html">to_html() Documentation</a></p>
+<img alt="convert dataframe to HTML table with pandas" src="https://lofipython.com/images/tohtmlpandas.png" />
+<p>Image Source: <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries">pandas documentation</a></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
@@ -236,19 +242,13 @@ Notes                                        Seasonal
 Note: these are alternatives to the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.astype.html">&quot;astype()&quot; function</a>, which is used more commonly.
 Use astype() to set a column or dataframe to a specific dtype. Use infer_objects() to
 infer more suitable types for object columns. Use convert_dtypes() to let pandas choose the best possible dtype.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
-
-<span class="c1"># Convert columns to the best possible dtypes using dtypes supporting pd.NA.</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># Convert columns to the best possible dtypes using dtypes supporting pd.NA.</span>
 <span class="n">typed_df</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">typed_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 
