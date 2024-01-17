@@ -93,39 +93,39 @@ df.head() accepts a number and returns a df with that many records, in this case
 
 .. code-block:: python
 
-   html = airports.head(2).to_html()
+   html = airports.head(2).to_html(index=False)
    print(html)
-
 
 ::
 
   <table border="1" class="dataframe">
-   <thead>
-     <tr style="text-align: right;">
-       <th></th>
-       <th>Country / Territory</th>
-       <th>City</th>
-       <th>Airport</th>
-       <th>Notes</th>
-     </tr>
-   </thead>
-   <tbody>
-     <tr>
-       <th>0</th>
-       <td>Antigua and Barbuda</td>
-       <td>Osbourn</td>
-       <td>V. C. Bird International Airport</td>
-       <td>Seasonal</td>
-     </tr>
-     <tr>
-       <th>1</th>
-       <td>Argentina</td>
-       <td>Buenos Aires</td>
-       <td>Ministro Pistarini International Airport</td>
-       <td></td>
-     </tr>
-   </tbody>
+    <thead>
+      <tr style="text-align: right;">
+        <th>Country / Territory</th>
+        <th>City</th>
+        <th>Airport</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Antigua and Barbuda</td>
+        <td>Osbourn</td>
+        <td>V. C. Bird International Airport</td>
+        <td>Seasonal</td>
+      </tr>
+      <tr>
+        <td>Argentina</td>
+        <td>Buenos Aires</td>
+        <td>Ministro Pistarini International Airport</td>
+        <td></td>
+      </tr>
+    </tbody>
   </table>
+
+
+.. image:: {static}/images/htmltable.png
+ :alt: example pandas HTML table
 
 
 **pandas.DataFrame.memory_usage()**
