@@ -42,10 +42,11 @@ a dataframe interchange object has the methods "column_names" and "select_column
 If you're dealing with a flavor of dataframe other than pandas, keep in mind it may support
 the DataFrame interchange protocol.
 
+.. image:: {static}/images/dunderdataframepandasapi.png
+ :alt: get a dataframe interchange object
 
-`pandas interchange object documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.__dataframe__.html>`__
-
-`pandas.api.interchange.from_dataframe() documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
+.. image:: {static}/images/pandasdataframeinterchangeprotocol.png
+ :alt: interchange dataframes between libraries
 
 .. code-block:: python
 
@@ -70,8 +71,9 @@ the DataFrame interchange protocol.
   Index(['A', 'B'], dtype='object')
 
 
-.. image:: {static}/images/pandasdataframeinterchangeprotocol.png
- :alt: interchange dataframes between libraries
+`pandas interchange object documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.__dataframe__.html>`__
+
+`pandas.api.interchange.from_dataframe() documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
 
 **pd.read_html(url)**
 
