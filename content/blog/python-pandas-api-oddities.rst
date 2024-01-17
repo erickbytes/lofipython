@@ -42,16 +42,15 @@ a dataframe interchange object has the methods "column_names" and "select_column
 If you're dealing with a flavor of dataframe other than pandas, keep in mind it may support
 the DataFrame interchange protocol.
 
-.. image:: {static}/images/dunderdataframepandasapi.png
- :alt: get a dataframe interchange object
-
-`pandas interchange object documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.__dataframe__.html>`__
-
 .. image:: {static}/images/pandasdataframeinterchangeprotocol.png
  :alt: interchange dataframes between libraries
 
 `pandas.api.interchange.from_dataframe() documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe>`__
 
+.. image:: {static}/images/dunderdataframepandasapi.png
+ :alt: get a dataframe interchange object
+
+`pandas interchange object documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.__dataframe__.html>`__
 
 .. code-block:: python
 
@@ -61,7 +60,6 @@ the DataFrame interchange protocol.
   interchange_object = df_not_necessarily_pandas.__dataframe__()
   df_pandas = (pd.api.interchange.from_dataframe
              (interchange_object.select_columns_by_name(['A'])))
-
 
 ::
 
