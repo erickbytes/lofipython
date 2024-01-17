@@ -216,7 +216,7 @@ of the DataFrame. `.T Documentation <https://pandas.pydata.org/pandas-docs/stabl
 These are 2 functions for swiftly handling data types in your tabular data.
 Note: these are alternatives to the `"astype()" function <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.astype.html>`__, which is used more commonly.
 Use astype() to set a column or dataframe to a specific dtype. Use infer_objects() to
-infer more suitable types for object columns. Use convert_dtypes to let pandas choose the best possible dtype.
+infer more suitable types for object columns. Use convert_dtypes() to let pandas choose the best possible dtype.
 
 
 .. code-block:: python
