@@ -161,9 +161,9 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
           str: The human-readable format of the bytes integer.
       """
       for unit in ["B", "KB", "MB", "GB", "TB"]:
-          if size < 1024:
+          if size < 1000:
               return f"{size:.2f} {unit}"
-          size /= 1024
+          size /= 1000
       return f"{size:.2f} PB"
 
   # Use pd.Series.apply() to convert bytes to "human readable" data format.
@@ -173,10 +173,10 @@ Returns the memory usage of each column in bytes. Per the docs, "this value is d
 ::
 
   Index                  132.00 B
-  Country / Territory    23.56 KB
-  City                   20.67 KB
-  Airport                29.94 KB
-  Notes                  18.79 KB
+  Country / Territory    24.12 KB
+  City                   21.16 KB
+  Airport                30.66 KB
+  Notes                  19.24 KB
   dtype: object
 
 **pd.DataFrame.empty**
