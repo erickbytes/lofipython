@@ -31,7 +31,69 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jun 23, 2020</h4>
+        <div id="content">            <h4 class="date">Jun 27, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/choosing-database-storage-models-and-workloads-that-mesh.html" rel="bookmark" title="Permanent Link to &quot;Characterizing Database Workloads & Storage Models&quot;">Characterizing Database Workloads &amp; Storage Models</a>
+                </h2>
+
+                
+                
+
+                <p>Thank you <a class="reference external" href="https://db.cs.cmu.edu/">Carnegie Mellon Database Group</a> for putting this online! These are my notes from watching on YouTube.</p>
+<blockquote>
+<p>Carnegie Mellon Databases Storage II, Lecture 4</p>
+<p>Prof. Andy Pavlo [<a class="reference external" href="https://www.youtube.com/watch?v=YWRYEXNy6IE&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=4">Watch on YouTube</a>]</p>
+</blockquote>
+<div class="section" id="the-problem-and-solution">
+<h2>The Problem and Solution</h2>
+<p>How should the DBMS represent the database in storage files on disk? Solve it by choosing the right <em>storage model</em> for your target <em>workload</em>. The right strategy varies if you are reading data, writing data and with how many joins you are performing.</p>
+</div>
+<div class="section" id="workload-characterization">
+<h2>Workload Characterization</h2>
+<p><strong>OLTP</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Online_transaction_processing">Online Transaction Processing</a>): &quot;Simple queries with lots of writes.&quot;</p>
+<p><strong>OLAP</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Online_analytical_processing">Online Analytical Processing</a>): &quot;Read only queries. Lots of joins. Doing a lot of reads, but they're more complex.&quot;</p>
+<p><strong>HTAP</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing">Hybrid Transactional Analytical Processing</a>): &quot;is trying to do both of them. You still want to ingest new data, but analyze it as it comes in. It's used for companies making decisions on the fly as people are browsing websites, like internet advertising companies.&quot;</p>
+</div>
+<div class="section" id="screenshot-2020-06-27-at-11-56-10-am">
+<h2><img alt="Screenshot 2020-06-27 at 11.56.10 AM" class="alignnone size-full wp-image-3897" src="https://pythonmarketer.files.wordpress.com/2020/06/screenshot-2020-06-27-at-11.56.10-am.png" style="width: 1920px; height: 1080px;" /></h2>
+</div>
+<div class="section" id="storage-models">
+<h2>Storage Models</h2>
+<p>screenshots from the <a class="reference external" href="https://www.youtube.com/watch?v=YWRYEXNy6IE&amp;list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi&amp;index=4">lecture</a></p>
+<img alt="n-ary model" class="alignnone size-full wp-image-3918" src="https://pythonmarketer.files.wordpress.com/2020/06/n-ary-model.png" style="width: 692px; height: 360px;" />
+<p>N-ary used to be the dominant model until the '80s.</p>
+<img alt="DSM model" class="alignnone size-full wp-image-3917" src="https://pythonmarketer.files.wordpress.com/2020/06/dsm-model-1.png" style="width: 938px; height: 396px;" />
+<p><strong>Additional Reading:</strong> <a class="reference external" href="https://www.allthingsdistributed.com/2013/09/column-oriented-databases.html">All Things Distributed</a></p>
+</div>
+<div class="section" id="column-store-vs-row-store-rdbms">
+<h2>Column Store Vs. Row Store RDBMS</h2>
+<p><a class="reference external" href="https://dataschool.com/data-modeling-101/row-vs-column-oriented-databases/">Row-oriented DBMS</a><strong>(Row Store)</strong></p>
+<ul class="simple">
+<li>PostgreSQL, MySQL</li>
+<li>Row Store = use OLTP</li>
+</ul>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Column-oriented_DBMS">Column-oriented DBMS</a><strong>(Column Store)</strong></p>
+<ul class="simple">
+<li>Red Shift, BigQuery</li>
+<li>Column Store = use OLAP</li>
+</ul>
+<p>If types are consistent, you can compress data into single column store.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/choosing-database-storage-models-and-workloads-that-mesh.html">posted at 13:22</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/data-databases-education-performance.html" rel="tag">data, Databases, education, performance</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/carnegie-mellon.html" class="tags">Carnegie Mellon</a>
+                    &nbsp;<a href="https://lofipython.com/tag/database-storage.html" class="tags">database storage</a>
+                    &nbsp;<a href="https://lofipython.com/tag/learning.html" class="tags">learning</a>
+                    &nbsp;<a href="https://lofipython.com/tag/lectures-notes.html" class="tags">lectures notes</a>
+                </div>
+            </article>            <h4 class="date">Jun 23, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1490,111 +1552,6 @@ yourself there?&quot; - me, several times during the show 😆</li>
                     &nbsp;<a href="https://lofipython.com/tag/github.html" class="tags">github</a>
                     &nbsp;<a href="https://lofipython.com/tag/terminal.html" class="tags">terminal</a>
                     &nbsp;<a href="https://lofipython.com/tag/version-control.html" class="tags">version control</a>
-                </div>
-            </article>            <h4 class="date">Dec 26, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code.html" rel="bookmark" title="Permanent Link to &quot;Comparing Text Editors on Ubuntu: Atom, Emacs, Sublime, Vim & VS Code&quot;">Comparing Text Editors on Ubuntu: Atom, Emacs, Sublime, Vim &amp; VS Code</a>
-                </h2>
-
-                
-                
-
-                <p>The text editor is a core tool for writing software. I've always used Atom. Lately, I've noticed my Atom text editor was bogging down on my Chromebook running Ubuntu 16.04. Keystrokes and mouse movements were lagging and slowing my coding down. I'm also getting low on disk space, which may be a related issue.</p>
-<p>You'll want to choose a text editor based on how it suits your own needs. In this case, I want a light-weight, responsive editor with no lag. Bells and whistles are less important. I'm also looking to minimize disk space required.</p>
-<p>I decided to compare the <a class="reference external" href="https://codeburst.io/a-beginners-guide-to-using-apt-get-commands-in-linux-ubuntu-d5f102a56fc4">apt installed</a> package size of some popular editors.&nbsp;First, I installed Atom, Emacs, Sublime, VS Code and Vim using the Ubuntu 16.04 terminal. You&nbsp;could also consider using <a class="reference external" href="https://docs.python.org/3/library/idle.html">IDLE, python's built-in text editor</a> as an alternative that requires no additional software.</p>
-<p><strong>Then I</strong> <a class="reference external" href="https://unix.stackexchange.com/questions/40442/which-installed-software-packages-use-the-most-disk-space-on-debian">found the below command</a> <strong>to list all installed apt packages by package size on Ubuntu:</strong></p>
-<pre class="literal-block">
-dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
-</pre>
-<p><strong>Here's the terminal output with relevant packages in Megabytes (including Firefox for comparative size):</strong></p>
-<pre class="literal-block">
-136    emacsen-common
-366 vim-common
-1071    vim-tiny
-2400    vim
-21648   emacs26
-26870   vim-runtime
-34033   sublime-text
-70307   emacs26-common
-193694  firefox
-236965  code
-607932  atom
-</pre>
-<p>Atom is by far the largest package I downloaded. It is nearly three times the size of VS Code, my second largest package. The next largest was my web browser, Firefox. Most of the other packages I downloaded were considerably smaller.</p>
-<blockquote>
-Side note: I also found out Ubuntu 16.04 ships with a stripped down version of Vim called <a class="reference external" href="https://askubuntu.com/questions/104138/what-features-does-vim-tiny-have">vim-tiny</a>.</blockquote>
-<p><strong>Total Installed Package Sizes in Megabytes (Smallest to Largest)</strong></p>
-<p>Some of these editors have multiple packages they are dependent on.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="15%" />
-<col width="36%" />
-<col width="48%" />
-</colgroup>
-<tbody valign="top">
-<tr><td>Text Editor</td>
-<td>Total Installed Packages Size</td>
-<td><strong>Packages Installed</strong></td>
-</tr>
-<tr><td>Vim</td>
-<td>29,636 MB</td>
-<td>vim, vim-common, vim-runtime</td>
-</tr>
-<tr><td>Sublime</td>
-<td>34,033 MB</td>
-<td>sublime-text</td>
-</tr>
-<tr><td>Emacs</td>
-<td>91,955 MB</td>
-<td>emacs26-common, emacs26, emacsen-common</td>
-</tr>
-<tr><td>VS Code</td>
-<td>236,965 MB</td>
-<td>code</td>
-</tr>
-<tr><td>Atom</td>
-<td>607,932 MB</td>
-<td>atom</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Results: Vim and Sublime win for smallest installed package size.</strong></p>
-<ul class="simple">
-<li>Vim is the lightest-weight package of these 5 popular text editors, with Sublime not far behind. Emacs is comparable to them for usability and relatively small.</li>
-<li>Atom is nearly 3x the size of VS Code and 20x the size of Vim. Atom and VS Code are larger than the Firefox browser package, the third largest of any downloaded package on my system.</li>
-<li>I tested out all of the editors by opening the same Python file and making some edits. I found Vim, Emacs and Sublime were much more responsive than Atom and VS Code.</li>
-</ul>
-<p><strong>Conclusion: All Editors Are Not Created Equal</strong></p>
-<p>These are fine editors when paired with the right machine and developer needs. In my case, a Chromebook running Linux installed with <a class="reference external" href="https://github.com/dnschneid/crouton">Crouton</a>, a few editors are performing faster and taking up less space. I've chosen Sublime or Emacs as my editor for this computer. One slightly annoying feature of Sublime is being prompted to buy the paid version from the trial version. Atom, Emacs, Vim and VS Code are free. Vim might be a good option if I ever decide to conquer its <a class="reference external" href="https://stackoverflow.com/questions/11828270/how-do-i-exit-the-vim-editor">notoriously high learning curve</a>.</p>
-<p><strong>[Bonus] Find the size of all packages matching with &quot;vim&quot; in their name:</strong></p>
-<pre class="literal-block">
-dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | grep vim
-</pre>
-<p><strong>Terminal output from above command:</strong></p>
-<pre class="literal-block">
-366 vim-common
-1071 vim-tiny
-2400 vim
-26870 vim-runtime
-</pre>
-<p><strong>Additional Reading</strong></p>
-<p><a class="reference external" href="https://www.quora.com/What-is-the-best-lightweight-text-editor">What is the best lightweight text editor?</a></p>
-<p><a class="reference external" href="https://github.com/atom/atom/issues/9755">Atom as an Editor is Too Big</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code.html">posted at 01:25</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-linux-scripts-software-ubuntu.html" rel="tag">coding, Linux, Scripts, software, Ubuntu</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/atom.html" class="tags">atom</a>
-                    &nbsp;<a href="https://lofipython.com/tag/emacs.html" class="tags">emacs</a>
-                    &nbsp;<a href="https://lofipython.com/tag/sublime.html" class="tags">sublime</a>
-                    &nbsp;<a href="https://lofipython.com/tag/text-editors.html" class="tags">text editors</a>
-                    &nbsp;<a href="https://lofipython.com/tag/vim.html" class="tags">vim</a>
-                    &nbsp;<a href="https://lofipython.com/tag/vs-code.html" class="tags">vs code</a>
                 </div>
             </article>
 
