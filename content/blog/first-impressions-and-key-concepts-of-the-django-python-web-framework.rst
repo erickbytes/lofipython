@@ -11,7 +11,7 @@ First Impressions and Key Concepts of the Django Python Web Framework
 
 Picking up `Django <https://pypi.org/project/Django/>`__ felt right. In the past I used
 other Python web frameworks like `web2py <http://www.web2py.com/>`__ and `flask <http://www.web2py.com/>`__.
-I mostly avoided Django in the past because it felt a bit overkill for the smaller
+I mostly avoided Django before now because it felt a bit overkill for the smaller
 toy apps I made in my beginning years as a Python developer. For example, this blog
 is made with the `Pelican <https://getpelican.com/>`__ static site generator, a
 choice which has served me well.
@@ -47,7 +47,7 @@ and store it in the database.
 
 **views.py**
 
-The views.py file contains the Python funtions that execute the flow of your app.
+The views.py file contains the Python functions that execute the flow of your app.
 Each function in the views.py can be a view.
 
 **urls.py**
@@ -101,19 +101,19 @@ Don't forget to register your models in your admin.py.
 
 **apps.get_model()**
 
-You can import your models directly, or use this handy convenience function to
+You can import your models at the top of your code or use this handy convenience function to
 retrieve it directly.
 
 **model_to_dict()**
 
-This is another function django provides for converting a model object class to a Python dictionary.
-Once a model is in this format, you can pass it to a django form's "initial" argument
+This is another function Django provides for converting a model object class to a Python dictionary.
+Once a model is in dictionary format, you can pass it to a django form's "initial" argument
 to easily auto-populate a form.
 
 **request.GET()**
 
-Django has its own request objects. You can pass a raw query string to httpresponseredirect.
-In the view of the target page, you can use this function to get the querystring
+Django has its own request objects. You can pass a raw query string to HttpResponseRedirect.
+Then, in the view of the target page, you can use this function to get the querystring
 value by passing its key.
 
 **render() and contexts**
