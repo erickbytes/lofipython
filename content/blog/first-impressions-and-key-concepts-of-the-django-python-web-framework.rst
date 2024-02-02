@@ -181,7 +181,7 @@ that allows you to pass variables into the HTML view.
       booking_id = request.GET["booking_id"]
       Booking = apps.get_model(app_label="your_app_name", model_name="Booking")
       booking = Booking.objects.get(id=booking_id)
-      Hotel = apps.get_model(app_label="bookings", model_name="Hotel")
+      Hotel = apps.get_model(app_label="your_app_name", model_name="Hotel")
       hotels = Hotel.objects.filter(city__contains=booking.to_city)
       # Pass context to access variables directly in hotels.html: {{ return_date }}
       context = {
