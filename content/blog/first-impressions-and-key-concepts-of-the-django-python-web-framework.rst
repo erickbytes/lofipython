@@ -55,6 +55,18 @@ Each function in the views.py can be a view.
 The urls.py defines your url schema so that when you go to "example.com/any_page",
 you can tell django which view to show there.
 
+
+.. code-block:: python
+
+    from django.urls import path
+    from . import views
+
+    app_name = "bookings"
+    urlpatterns = [
+        path("", views.index, name="index"),
+        path("hotels/", views.hotels, name="hotels"),
+    ]
+
 **settings.py**
 
 After you create your app with django cli commands, a settings.py is automatically generated.
