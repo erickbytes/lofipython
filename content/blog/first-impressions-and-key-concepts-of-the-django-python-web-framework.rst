@@ -133,9 +133,9 @@ that allows you to pass variables into the HTML view.
 
 .. code-block:: python
 
-  from django.shortcuts import render
   from django.apps import apps
   from django.forms.models import model_to_dict
+  from django.shortcuts import render
   from forms import BookingForm
 
   def index(request):
@@ -164,22 +164,22 @@ that allows you to pass variables into the HTML view.
       return render(request, "simple_django_form.html", context)
 
 
-      def hotels(request):
-          """Render a list of hotels to for clients to view from the Hotel model."""
-          booking_id = request.GET["booking_id"]
-          Booking = apps.get_model(app_label="your_app_name", model_name="Booking")
-          booking = Booking.objects.get(id=booking_id)
-          Hotel = apps.get_model(app_label="bookings", model_name="Hotel")
-          hotels = Hotel.objects.filter(city__contains=booking.to_city)
-          # Pass context to access variables directly in hotels.html: {{ return_date }}
-          context = {
-              "hotels": hotels,
-              "booking_id": booking_id,
-              "departure_date": booking.departure_date.date(),
-              "return_date": booking.return_date.date(),
-              "to_city": booking.to_city,
-          }
-          return render(request, "hotels.html", context)
+  def hotels(request):
+      """Render a list of hotels to for clients to view from the Hotel model."""
+      booking_id = request.GET["booking_id"]
+      Booking = apps.get_model(app_label="your_app_name", model_name="Booking")
+      booking = Booking.objects.get(id=booking_id)
+      Hotel = apps.get_model(app_label="bookings", model_name="Hotel")
+      hotels = Hotel.objects.filter(city__contains=booking.to_city)
+      # Pass context to access variables directly in hotels.html: {{ return_date }}
+      context = {
+          "hotels": hotels,
+          "booking_id": booking_id,
+          "departure_date": booking.departure_date.date(),
+          "return_date": booking.return_date.date(),
+          "to_city": booking.to_city,
+      }
+      return render(request, "hotels.html", context)
 
 
 **Basic Model Example**
