@@ -195,6 +195,15 @@ that allows you to pass variables into the HTML view.
         to_city = models.CharField("Destino", max_length=200)
 
 
+    class Hotel(models.Model):
+        name = models.CharField(max_length=200)
+        price = models.DecimalField(max_digits=10, decimal_places=2)
+        address = models.CharField(max_length=200)
+        city = models.CharField(max_length=200)
+        all_inclusive = models.BooleanField()
+        photo = models.ImageField(upload_to="hotels")
+
+
 Hopefully this helped you get started with Django. In my own experience, once you
 get some momentum going with this web framework, you'll progress rapidly!
 
