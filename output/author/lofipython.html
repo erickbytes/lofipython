@@ -97,7 +97,7 @@ to get my jQuery script working!</p>
 <p>Another plus of Django due to its popularity is the amount of external modules that
 Python developers have written to add features and functionality. For example,
 <a class="reference external" href="https://django-autocomplete-light.readthedocs.io/en/master/tutorial.html">django-autocomplete-light</a>
-and the <a class="reference external" href="https://pypi.org/project/django-bootstrap-v5/">django-bootstrap-v5 library</a>
+and the <a class="reference external" href="https://pypi.org/project/django-bootstrap-v5/">django-bootstrap-v5</a>
 CSS library are installed with pip. I successfully used django-bootstrap-v5 to add
 bootstrap CSS styling to my website. Note this library requires a slightly older
 version of Django.</p>
@@ -174,9 +174,7 @@ that allows you to pass variables into the HTML view.</p>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 <span class="kn">from</span> <span class="nn">django.apps</span> <span class="kn">import</span> <span class="n">apps</span>
 <span class="kn">from</span> <span class="nn">django.forms.models</span> <span class="kn">import</span> <span class="n">model_to_dict</span>
 <span class="kn">from</span> <span class="nn">forms</span> <span class="kn">import</span> <span class="n">BookingForm</span>
@@ -190,8 +188,6 @@ that allows you to pass variables into the HTML view.</p>
           <span class="n">form</span> <span class="o">=</span> <span class="n">BookingForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
           <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
               <span class="n">new_booking</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-              <span class="n">Hotel</span> <span class="o">=</span> <span class="n">apps</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="n">app_label</span><span class="o">=</span><span class="s2">&quot;bookings&quot;</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;Hotel&quot;</span><span class="p">)</span>
-              <span class="n">hotels</span> <span class="o">=</span> <span class="n">Hotel</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">city__contains</span><span class="o">=</span><span class="n">new_booking</span><span class="o">.</span><span class="n">to_city</span><span class="p">)</span>
               <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/hotels?booking_id=</span><span class="si">{</span><span class="n">new_booking</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">booking_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s2">&quot;booking_id&quot;</span><span class="p">]</span>
@@ -200,7 +196,7 @@ that allows you to pass variables into the HTML view.</p>
     <span class="k">if</span> <span class="n">booking_id</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
         <span class="n">Booking</span> <span class="o">=</span> <span class="n">apps</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="n">app_label</span><span class="o">=</span><span class="s2">&quot;your_app_name&quot;</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;Booking&quot;</span><span class="p">)</span>
         <span class="n">booking</span> <span class="o">=</span> <span class="n">Booking</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">booking_id</span><span class="p">)</span>
-        <span class="n">booking_dict</span> <span class="o">=</span> <span class="n">model_to_dict</span><span class="p">(</span><span class="n">new_booking</span><span class="p">)</span>
+        <span class="n">booking_dict</span> <span class="o">=</span> <span class="n">model_to_dict</span><span class="p">(</span><span class="n">booking</span><span class="p">)</span>
     <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="n">booking_dict</span><span class="p">:</span>
         <span class="n">context</span><span class="p">[</span><span class="s2">&quot;form&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BookingForm</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="n">booking_dict</span><span class="p">)</span>

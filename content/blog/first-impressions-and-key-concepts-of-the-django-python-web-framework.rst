@@ -83,7 +83,7 @@ to get my jQuery script working!
 Another plus of Django due to its popularity is the amount of external modules that
 Python developers have written to add features and functionality. For example,
 `django-autocomplete-light <https://django-autocomplete-light.readthedocs.io/en/master/tutorial.html>`__
-and the `django-bootstrap-v5 library <https://pypi.org/project/django-bootstrap-v5/>`__
+and the `django-bootstrap-v5 <https://pypi.org/project/django-bootstrap-v5/>`__
 CSS library are installed with pip. I successfully used django-bootstrap-v5 to add
 bootstrap CSS styling to my website. Note this library requires a slightly older
 version of Django.
@@ -147,8 +147,6 @@ that allows you to pass variables into the HTML view.
             form = BookingForm(request.POST)
             if form.is_valid():
                 new_booking = form.save()
-                Hotel = apps.get_model(app_label="bookings", model_name="Hotel")
-                hotels = Hotel.objects.filter(city__contains=new_booking.to_city)
                 return HttpResponseRedirect(f"/hotels?booking_id={new_booking.id}")
       try:
           booking_id = request.GET["booking_id"]
@@ -157,7 +155,7 @@ that allows you to pass variables into the HTML view.
       if booking_id.isdigit():
           Booking = apps.get_model(app_label="your_app_name", model_name="Booking")
           booking = Booking.objects.get(id=booking_id)
-          booking_dict = model_to_dict(new_booking)
+          booking_dict = model_to_dict(booking)
       context = {}
       if booking_dict:
           context["form"] = BookingForm(initial=booking_dict)
