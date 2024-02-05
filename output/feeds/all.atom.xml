@@ -1,5 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-02T12:33:00-06:00</updated><entry><title>First Impressions and Key Concepts of the Django Python Web Framework</title><link href="https://lofipython.com/first-impressions-and-key-concepts-of-the-django-python-web-framework.html" rel="alternate"></link><published>2024-02-02T12:33:00-06:00</published><updated>2024-02-02T12:33:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-02:/first-impressions-and-key-concepts-of-the-django-python-web-framework.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;First Impressions of Django&lt;/strong&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-05T14:33:00-06:00</updated><entry><title>Adding City Name Autocomplete to a Django Form With jQuery + AJAX</title><link href="https://lofipython.com/adding-city-name-autocomplete-to-a-django-form-with-jquery-ajax.html" rel="alternate"></link><published>2024-02-05T14:33:00-06:00</published><updated>2024-02-05T14:33:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-05:/adding-city-name-autocomplete-to-a-django-form-with-jquery-ajax.html</id><summary type="html">&lt;p&gt;Below is a slightly modified adaptation of the &lt;a class="reference external" href="https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/"&gt;Espere.in Step By Step Guide&lt;/a&gt;
+by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
+I also expanded the example to show how I created the Django model and imported cities data.
+In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below is a slightly modified adaptation of the &lt;a class="reference external" href="https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/"&gt;Espere.in Step By Step Guide&lt;/a&gt;
+by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
+I also expanded the example to show how I created the Django model and imported cities data.
+In this post, I'll show how you can use AJAX and &lt;a class="reference external" href="https://jqueryui.com/autocomplete/"&gt;jQuery Autocomplete&lt;/a&gt;
+with a Django Model to create a form with city auto-completion.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Add a Model to models.py&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;City&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;city&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;country&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Migrate the Django Model&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;python manage.py makemigrations City
+python manage.py migrate&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Add Auto-complete TextInput() to forms.py&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The key item here is the &amp;quot;id&amp;quot; attribute, here named &amp;quot;search-input&amp;quot;. This id will tell jQuery
+for which form element to render the autocomplete view.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;forms&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bookings.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Booking&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;BookingForm&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;forms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelForm&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Booking&lt;/span&gt;
+        &lt;span class="n"&gt;fields&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__all__&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;widgets&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;city&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;forms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TextInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                &lt;span class="n"&gt;attrs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;class&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;form-control&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;search-input&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;city_name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;placeholder&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Type to search&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Download the World Cities Database from Simplemaps&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://simplemaps.com/data/world-cities"&gt;World Cities Database&lt;/a&gt; basic version
+is free and allowed for commercial use. In this example, this provides the cities data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Import the Cities Database to Django Model&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Now we need to import the cities to our Django model. I achieved this by running
+this code in the Django shell and entering each line individually. This code was
+modified from a &lt;a class="reference external" href="https://stackoverflow.com/questions/2459979/how-to-import-csv-data-into-django-models"&gt;Stack Overflow post&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;python manage.py shell&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;
+&lt;span class="normal"&gt;8&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;csv&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.apps&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;apps&lt;/span&gt;
+
+&lt;span class="n"&gt;City&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;apps&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app_label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bookings&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;City&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;worldcities.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;City&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_or_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;city&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;country&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;],)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;img alt="running Python in the Django shell" src="https://lofipython.com/images/djangoshell.png" /&gt;
+&lt;p&gt;&lt;strong&gt;View Your City Model in the Admin Panel&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Enter the below command to start your local Django development server. Then you
+can go to &lt;a class="reference external" href="http://127.0.0.1:8000/admin"&gt;http://127.0.0.1:8000/admin&lt;/a&gt; in a web browser to see your model on the back-end.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;python manage.py runserver&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Add jQuery Scripts to HTML File&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Add the jquery import scripts to your HTML &amp;lt;head&amp;gt; tag.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;link&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;all&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+
+&lt;span class="c"&gt;&amp;lt;!--&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Add&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;jQuery&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;jQuery&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;UI&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;JavaScript&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://code.jquery.com/jquery-3.6.4.min.js&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://code.jquery.com/ui/1.12.1/jquery-ui.js&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;Add the jQuery autocomplete script to the bottom of your HTML.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#search-input&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;autocomplete&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;source&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/ajax_calls/search/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;minLength&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;open&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.ui-autocomplete&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;css&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;z-index&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;99&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Add the Autocomplete View to Views.py&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Note this script is using an &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"&gt;XMLHttpRequest API&lt;/a&gt;,
+which is used in combination with &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Ajax_(programming)"&gt;AJAX&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.apps&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;apps&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.forms.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;model_to_dict&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;autocomplete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Show the City model records via AJAX + jQuery.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;x-requested-with&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;XMLHttpRequest&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;City&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;apps&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app_label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bookings&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;City&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;term&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;term&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;search_results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;City&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;city_name__startswith&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;term&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;cities&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;city_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;, &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;country&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;search_results&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dumps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cities&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+   &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;fail&amp;quot;&lt;/span&gt;
+   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;application/json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Understanding Ajax + XMLHttpRequest&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+Ajax is a technique that uses XMLHttpRequest  to exchange data with a web server
+without reloading the whole page. XMLHttpRequest is an object that allows web apps
+to make HTTP requests and receive the responses programmatically using JavaScript.
+Ajax stands for Asynchronous JavaScript and XML,  which means that the data exchange
+can happen in the background, while the user interacts with the web page.
+- Bing AI&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Add the URL Route to urls.py&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.urls&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;views&lt;/span&gt;
+
+&lt;span class="n"&gt;app_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;your_app_name&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;urlpatterns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ajax_calls/search/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;views&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;autocomplete&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;city_autocomplete&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Voila! The City Autocomplete View&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="adding autocomplete to a Django form with jQuery" src="https://lofipython.com/images/jQueryautocomplete.png" /&gt;
+&lt;p&gt;This was felt very rewarding to see once it was working. I stretched my abilities
+outside of coding only in Python to achieve this functionality in my website.
+Someday I would like to be an experienced Javascript developer also. &lt;a class="reference external" href="https://api.jquery.com/"&gt;jQuery&lt;/a&gt; has
+been a staple in web development for many years. Auto-complete is just one of the features
+that this core Javascript library enables. I am intrigued to explore this Javascript
+library further.&lt;/p&gt;
+&lt;p&gt;Want to read more about Django? Check out my
+&lt;a class="reference external" href="https://lofipython.com/first-impressions-and-key-concepts-of-the-django-python-web-framework"&gt;notes on Django here&lt;/a&gt;.&lt;/p&gt;
+</content><category term="coding, programming, python, AJAX, Javascript, web development"></category><category term="making a city autocomplete form"></category><category term="how to make django autocomplete"></category><category term="integrating Django and jQuery"></category></entry><entry><title>First Impressions and Key Concepts of the Django Python Web Framework</title><link href="https://lofipython.com/first-impressions-and-key-concepts-of-the-django-python-web-framework.html" rel="alternate"></link><published>2024-02-02T12:33:00-06:00</published><updated>2024-02-02T12:33:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-02:/first-impressions-and-key-concepts-of-the-django-python-web-framework.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;First Impressions of Django&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Picking up &lt;a class="reference external" href="https://pypi.org/project/Django/"&gt;Django&lt;/a&gt; felt right. In the past I used
 other Python web frameworks like &lt;a class="reference external" href="http://www.web2py.com/"&gt;web2py&lt;/a&gt; and &lt;a class="reference external" href="http://www.web2py.com/"&gt;flask&lt;/a&gt;.
 I mostly avoided Django before now because it felt a bit overkill for the smaller
@@ -7595,40 +7790,4 @@ add a new twist.&lt;/li&gt;
 &lt;li&gt;Many of the successful people during the gold rush sold pick-axes to
 the miners.&lt;/li&gt;
 &lt;/ol&gt;
-</content><category term="business, entrepreneurship, Marketing, product development"></category><category term="app development"></category><category term="rework"></category><category term="seth godin"></category><category term="shoe dog"></category></entry><entry><title>Should You Go To Programming School?</title><link href="https://lofipython.com/should-i-go-to-programming-school.html" rel="alternate"></link><published>2017-07-28T23:45:00-05:00</published><updated>2017-07-28T23:45:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2017-07-28:/should-i-go-to-programming-school.html</id><summary type="html">&lt;p&gt;There is no one-size-fits-all answer. Below are some thoughts that may help you decide.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;What are your programming goals? Get a coding job? Create an app or website? Become more productive at your current job?&lt;/li&gt;
-&lt;li&gt;What is your current experience level? Are you starting fresh or do you already know …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;There is no one-size-fits-all answer. Below are some thoughts that may help you decide.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;What are your programming goals? Get a coding job? Create an app or website? Become more productive at your current job?&lt;/li&gt;
-&lt;li&gt;What is your current experience level? Are you starting fresh or do you already know a language or two?&lt;/li&gt;
-&lt;li&gt;Do you have money saved up? Otherwise, you might need to take out a loan.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;A computer science degree is typically most expensive. Coding bootcamps are a lower cost option that pack a wide curriculum into a few weeks or months, but they can still be pricey. The cheapest option is to take a piecemeal approach through various online courses.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;School Advantages&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Wholistic approach. You get the ins and outs of programming from a proven curriculum.&lt;/li&gt;
-&lt;li&gt;Community. You learn with other students and from experienced teachers.&lt;/li&gt;
-&lt;li&gt;Job placement. Often various schools and bootcamps will connect you to a company.&lt;/li&gt;
-&lt;li&gt;Credentials. You gain confidence and the backing of your skills by an established institution.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Potential Downsides&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Tuition Money. A lot of&amp;nbsp;what you need to know is available for free or cheap on the web.&lt;/li&gt;
-&lt;li&gt;Skill level match. Some bootcamps are oriented for beginners, others are more advanced. If you do a bootcamp, make sure it fits your skill level.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;If you want a coding job&lt;/strong&gt;, school makes sense. The bootcamps look to be effective if you can handle the up-front investment. It's possible to land a job without schooling but much tougher. I am currently considering &lt;a class="reference external" href="https://www.fullstackacademy.com/"&gt;Full Stack Academy&lt;/a&gt;. and &lt;a class="reference external" href="http://www.codingdojo.com/"&gt;Coding Dojo&lt;/a&gt;. There are many out there. CodeAcademy is a popular route as well.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;If you want to make an app or website&lt;/strong&gt;, the school or the non-school route may both work. For the non-school route, the following languages are good places to start: &lt;em&gt;(note - not a comprehensive list, these are my picks.)&lt;/em&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Web App or Website: HTML, CSS,&amp;nbsp;Python, Javascript&lt;/li&gt;
-&lt;li&gt;Web App or Website Framework:&amp;nbsp; Flask, Django, py4web, Ruby on Rails, React&lt;/li&gt;
-&lt;li&gt;iOS app: Swift plus Apple's Xcode environment, Beeware (python library)&lt;/li&gt;
-&lt;li&gt;Android App: Java or Kotlin, Beeware&lt;/li&gt;
-&lt;li&gt;General Coding: Python or Ruby&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;If you want to be more productive at work&lt;/strong&gt;, I recommend learning Python. More on Python and where to start &lt;a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/22/marketer-slash-programmer/"&gt;here&lt;/a&gt;.&amp;nbsp;&lt;a class="reference external" href="https://automatetheboringstuff.com/"&gt;Automate the Boring Stuff With Python&lt;/a&gt; is a great resource for boosting your productivity also.&lt;/p&gt;
-&lt;p&gt;It's not easy to decide whether or not school is for you. I'm still unsure after a year and a half of programming on the side. No matter what, continue to learn multiple languages and strive for a better grasp of the ones you know. Good luck!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My decision: continue self-study and learning online for free.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;As of 8 months after writing this post, I have concluded that learning for free online was the right choice for me. I've achieved many of my programming goals in the last three years, thanks to materials available from &lt;a class="reference external" href="https://www.codecademy.com/learn/learn-python"&gt;Codeacademy&lt;/a&gt;, &lt;a class="reference external" href="https://www.coursera.org/learn/python"&gt;Coursera&lt;/a&gt;, &lt;a class="reference external" href="https://www.youtube.com/watch?v=u3d-n41Tobw"&gt;YouTube&lt;/a&gt;, &lt;a class="reference external" href="https://stackoverflow.com/questions/1720421/how-to-concatenate-two-lists-in-python?rq=1"&gt;Stack Overflow&lt;/a&gt;, &lt;a class="reference external" href="https://automatetheboringstuff.com/"&gt;countless helpful resources,&lt;/a&gt;&lt;a class="reference external" href="https://pymotw.com/3/glob/index.html"&gt;interesting blogs&lt;/a&gt;, and &lt;a class="reference external" href="https://docs.python.org/3/library/index.html"&gt;documentation&lt;/a&gt;. I've talked with others who need the in-person assistance that a bootcamp offers to learn. Do what works for you. Good luck with your decision.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; Several years later, I also get paid to use Python and Excel for a living! I studied for free online intermittently over 2 years to achieve it.&lt;/p&gt;
-</content><category term="coding, programming"></category><category term="app development"></category><category term="computer jobs"></category><category term="python"></category><category term="software"></category><category term="web apps"></category><category term="web development"></category><category term="website"></category></entry></feed>
+</content><category term="business, entrepreneurship, Marketing, product development"></category><category term="app development"></category><category term="rework"></category><category term="seth godin"></category><category term="shoe dog"></category></entry></feed>
