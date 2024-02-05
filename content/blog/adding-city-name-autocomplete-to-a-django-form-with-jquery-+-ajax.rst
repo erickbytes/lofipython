@@ -11,7 +11,7 @@ Below is a slightly modified adaptation of the `Espere.in Step By Step Guide <ht
 by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
 I also expanded the example to show how I created the Django model and imported cities data.
 In this post, I'll show how you can use AJAX and `jQuery Autocomplete <https://jqueryui.com/autocomplete/>`__
-with a Django Model to create a form with city auto-completion.
+with a Django model to create a form with city auto-completion.
 
 
 **Add a Model to models.py**
@@ -33,8 +33,8 @@ with a Django Model to create a form with city auto-completion.
 
 **Add Auto-complete TextInput() to forms.py**
 
-The key item here is the "id" attribute, named "search-input". This id will tell jQuery
-for which form element to render the autocomplete view.
+The key item here is the "id" attribute holding the value "search-input". This id
+will tell jQuery for which form element to render the autocomplete view.
 
 .. code-block:: python
 
@@ -114,7 +114,8 @@ Add the jquery import scripts to your HTML <head> tag.
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-Add the jQuery autocomplete script to the bottom of your HTML.
+Add the jQuery autocomplete script to the bottom of your HTML. This is where we
+reference the "search-input" id in our form and specify the url route "/ajax_calls/search/".
 
 .. code-block:: javascript
 
@@ -185,7 +186,7 @@ which is used in combination with `AJAX <https://en.wikipedia.org/wiki/Ajax_(pro
   :alt: adding autocomplete to a Django form with jQuery
 
 
-This was felt very rewarding to see once it was working. I stretched my abilities
+This felt very rewarding to see once it was working. I stretched my abilities
 outside of coding only in Python to achieve this functionality in my website.
 Someday I would like to be an experienced Javascript developer also. `jQuery <https://api.jquery.com/>`__ has
 been a staple in web development for many years. Auto-complete is just one of the features

@@ -6,7 +6,7 @@ In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below is a slightly modi
 by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
 I also expanded the example to show how I created the Django model and imported cities data.
 In this post, I'll show how you can use AJAX and &lt;a class="reference external" href="https://jqueryui.com/autocomplete/"&gt;jQuery Autocomplete&lt;/a&gt;
-with a Django Model to create a form with city auto-completion.&lt;/p&gt;
+with a Django model to create a form with city auto-completion.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Add a Model to models.py&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
@@ -20,8 +20,8 @@ with a Django Model to create a form with city auto-completion.&lt;/p&gt;
 python manage.py migrate&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Add Auto-complete TextInput() to forms.py&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The key item here is the &amp;quot;id&amp;quot; attribute, named &amp;quot;search-input&amp;quot;. This id will tell jQuery
-for which form element to render the autocomplete view.&lt;/p&gt;
+&lt;p&gt;The key item here is the &amp;quot;id&amp;quot; attribute holding the value &amp;quot;search-input&amp;quot;. This id
+will tell jQuery for which form element to render the autocomplete view.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -103,7 +103,8 @@ can go to &lt;a class="reference external" href="http://127.0.0.1:8000/admin"&gt
 &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://code.jquery.com/jquery-3.6.4.min.js&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
 &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://code.jquery.com/ui/1.12.1/jquery-ui.js&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;Add the jQuery autocomplete script to the bottom of your HTML.&lt;/p&gt;
+&lt;p&gt;Add the jQuery autocomplete script to the bottom of your HTML. This is where we
+reference the &amp;quot;search-input&amp;quot; id in our form and specify the url route &amp;quot;/ajax_calls/search/&amp;quot;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -188,7 +189,7 @@ can happen in the background, while the user interacts with the web page.
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Voila! The City Autocomplete View&lt;/strong&gt;&lt;/p&gt;
 &lt;img alt="adding autocomplete to a Django form with jQuery" src="https://lofipython.com/images/jQueryautocomplete.png" /&gt;
-&lt;p&gt;This was felt very rewarding to see once it was working. I stretched my abilities
+&lt;p&gt;This felt very rewarding to see once it was working. I stretched my abilities
 outside of coding only in Python to achieve this functionality in my website.
 Someday I would like to be an experienced Javascript developer also. &lt;a class="reference external" href="https://api.jquery.com/"&gt;jQuery&lt;/a&gt; has
 been a staple in web development for many years. Auto-complete is just one of the features

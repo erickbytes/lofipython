@@ -49,7 +49,7 @@
 by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
 I also expanded the example to show how I created the Django model and imported cities data.
 In this post, I'll show how you can use AJAX and <a class="reference external" href="https://jqueryui.com/autocomplete/">jQuery Autocomplete</a>
-with a Django Model to create a form with city auto-completion.</p>
+with a Django model to create a form with city auto-completion.</p>
 <p><strong>Add a Model to models.py</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
@@ -63,8 +63,8 @@ with a Django Model to create a form with city auto-completion.</p>
 python manage.py migrate</span>
 </pre>
 <p><strong>Add Auto-complete TextInput() to forms.py</strong></p>
-<p>The key item here is the &quot;id&quot; attribute, named &quot;search-input&quot;. This id will tell jQuery
-for which form element to render the autocomplete view.</p>
+<p>The key item here is the &quot;id&quot; attribute holding the value &quot;search-input&quot;. This id
+will tell jQuery for which form element to render the autocomplete view.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -146,7 +146,8 @@ can go to <a class="reference external" href="http://127.0.0.1:8000/admin">http:
 <span class="o">&lt;</span><span class="nx">script</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;https://code.jquery.com/jquery-3.6.4.min.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
 <span class="o">&lt;</span><span class="nx">script</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;https://code.jquery.com/ui/1.12.1/jquery-ui.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
 </pre></div></td></tr></table></div>
-<p>Add the jQuery autocomplete script to the bottom of your HTML.</p>
+<p>Add the jQuery autocomplete script to the bottom of your HTML. This is where we
+reference the &quot;search-input&quot; id in our form and specify the url route &quot;/ajax_calls/search/&quot;.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -231,7 +232,7 @@ can happen in the background, while the user interacts with the web page.
 </pre></div></td></tr></table></div>
 <p><strong>Voila! The City Autocomplete View</strong></p>
 <img alt="adding autocomplete to a Django form with jQuery" src="https://lofipython.com/images/jQueryautocomplete.png" />
-<p>This was felt very rewarding to see once it was working. I stretched my abilities
+<p>This felt very rewarding to see once it was working. I stretched my abilities
 outside of coding only in Python to achieve this functionality in my website.
 Someday I would like to be an experienced Javascript developer also. <a class="reference external" href="https://api.jquery.com/">jQuery</a> has
 been a staple in web development for many years. Auto-complete is just one of the features
