@@ -191,9 +191,48 @@ which is used in combination with <a class="reference external" href="https://en
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">django.apps</span> <span class="kn">import</span> <span class="n">apps</span>
 <span class="kn">from</span> <span class="nn">django.forms.models</span> <span class="kn">import</span> <span class="n">model_to_dict</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">forms</span> <span class="kn">import</span> <span class="n">BookingForm</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span><span class="p">,</span> <span class="n">HttpResponseRedirect</span>
+
+
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Displays an HTML page with a form. If the request is a post, save the data to the DB.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+          <span class="c1"># Create a form instance and populate it with data from the request.</span>
+          <span class="n">form</span> <span class="o">=</span> <span class="n">BookingForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+              <span class="n">new_booking</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+              <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/confirmation_page&quot;</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">context</span><span class="p">[</span><span class="s2">&quot;form&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BookingForm</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;simple_django_form.html&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
 
 <span class="k">def</span> <span class="nf">autocomplete</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Show the City model records via AJAX + jQuery.&quot;&quot;&quot;</span>
@@ -206,6 +245,29 @@ which is used in combination with <a class="reference external" href="https://en
    <span class="k">else</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;fail&quot;</span>
    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;application/json&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">confirmation_page</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show a confirmation page thanking the client for their business.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Thanks for signing up!&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Write the HTML for a Simple Django Form</strong></p>
+<p>Here is the template I used. It differs slightly from the <a class="reference external" href="https://docs.djangoproject.com/en/5.0/topics/forms/#the-template">template in the Django docs</a>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><span class="p">{</span><span class="o">%</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="s1">&#39;base.html&#39;</span><span class="w"> </span><span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span><span class="w"> </span><span class="nx">block</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="nx">form</span><span class="w"> </span><span class="nx">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="p">{</span><span class="o">%</span><span class="w"> </span><span class="nx">csrf_token</span><span class="w"> </span><span class="o">%</span><span class="p">}</span>
+<span class="w">    </span><span class="p">{{</span><span class="w"> </span><span class="nx">form</span><span class="p">.</span><span class="nx">as_p</span><span class="w"> </span><span class="p">}}</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Submit&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">/form&gt;</span>
+<span class="p">{</span><span class="o">%</span><span class="w"> </span><span class="nx">endblock</span><span class="w"> </span><span class="o">%</span><span class="p">}</span>
 </pre></div></td></tr></table></div>
 <p><strong>Understanding Ajax + XMLHttpRequest</strong></p>
 <blockquote>
@@ -222,11 +284,15 @@ can happen in the background, while the user interacts with the web page.
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">views</span>
 
 <span class="n">app_name</span> <span class="o">=</span> <span class="s2">&quot;your_app_name&quot;</span>
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;confirmation_page/&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">confirmation_page</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;confirmation page&quot;</span><span class="p">),</span>
     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;ajax_calls/search/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">autocomplete</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;city_autocomplete&#39;</span><span class="p">),</span>
 <span class="p">]</span>
 </pre></div></td></tr></table></div>

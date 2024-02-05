@@ -144,6 +144,23 @@ which is used in combination with `AJAX <https://en.wikipedia.org/wiki/Ajax_(pro
     import json
     from django.apps import apps
     from django.forms.models import model_to_dict
+    from django.shortcuts import render
+    from forms import BookingForm
+    from django.http import HttpResponse, HttpResponseRedirect
+
+
+    def index(request):
+        """Displays an HTML page with a form. If the request is a post, save the data to the DB."""
+        if request.method == "POST":
+              # Create a form instance and populate it with data from the request.
+              form = BookingForm(request.POST)
+              if form.is_valid():
+                  new_booking = form.save()
+                  return HttpResponseRedirect(f"/confirmation_page")
+        context = {}
+        context["form"] = BookingForm()
+        return render(request, "simple_django_form.html", context)
+
 
     def autocomplete(request):
         """Show the City model records via AJAX + jQuery."""
@@ -156,6 +173,27 @@ which is used in combination with `AJAX <https://en.wikipedia.org/wiki/Ajax_(pro
        else:
             data = "fail"
        return HttpResponse(data, "application/json")
+
+
+    def confirmation_page(request):
+        """Show a confirmation page thanking the client for their business."""
+        return HttpResponse("Thanks for signing up!")
+
+
+**Write the HTML for a Simple Django Form**
+
+Here is the template I used. It differs slightly from the `template in the Django docs <https://docs.djangoproject.com/en/5.0/topics/forms/#the-template>`__.
+
+.. code-block:: javascript
+
+    {% extends 'base.html' %}
+    {% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+    {% endblock %}
 
 
 **Understanding Ajax + XMLHttpRequest**
@@ -176,6 +214,8 @@ which is used in combination with `AJAX <https://en.wikipedia.org/wiki/Ajax_(pro
 
     app_name = "your_app_name"
     urlpatterns = [
+        path("", views.index, name="index"),
+        path("confirmation_page/", views.confirmation_page, name="confirmation page"),
         path('ajax_calls/search/', views.autocomplete, name='city_autocomplete'),
     ]
 
