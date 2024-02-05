@@ -19,7 +19,7 @@ with a Django model to create a form with city auto-completion.
 .. code-block:: python
 
     class City(models.Model):
-        city = models.CharField("Origen:", max_length=200)
+        city = models.CharField("Origen", max_length=200)
         country = models.CharField("País", max_length=200)
 
 
@@ -65,7 +65,7 @@ is free and allowed for commercial use. In this example, this provides the citie
 **Import the Cities Database to Django Model**
 
 Now we need to import the cities to our Django model. I achieved this by running
-this code in the Django shell and entering each line individually. This code was
+the below code in the Django shell and entering each line individually. The code was
 modified from a `Stack Overflow post <https://stackoverflow.com/questions/2459979/how-to-import-csv-data-into-django-models>`__.
 The World Cities data stores the city in the first column (index 0) and the country
 in the 5th column (index 4).
