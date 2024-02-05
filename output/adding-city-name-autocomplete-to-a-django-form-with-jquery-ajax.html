@@ -63,7 +63,7 @@ with a Django Model to create a form with city auto-completion.</p>
 python manage.py migrate</span>
 </pre>
 <p><strong>Add Auto-complete TextInput() to forms.py</strong></p>
-<p>The key item here is the &quot;id&quot; attribute, here named &quot;search-input&quot;. This id will tell jQuery
+<p>The key item here is the &quot;id&quot; attribute, named &quot;search-input&quot;. This id will tell jQuery
 for which form element to render the autocomplete view.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -100,12 +100,14 @@ for which form element to render the autocomplete view.</p>
         <span class="p">}</span>
 </pre></div></td></tr></table></div>
 <p><strong>Download the World Cities Database from Simplemaps</strong></p>
-<p><a class="reference external" href="https://simplemaps.com/data/world-cities">World Cities Database</a> basic version
+<p>The <a class="reference external" href="https://simplemaps.com/data/world-cities">World Cities Database</a> basic version
 is free and allowed for commercial use. In this example, this provides the cities data.</p>
 <p><strong>Import the Cities Database to Django Model</strong></p>
 <p>Now we need to import the cities to our Django model. I achieved this by running
 this code in the Django shell and entering each line individually. This code was
-modified from a <a class="reference external" href="https://stackoverflow.com/questions/2459979/how-to-import-csv-data-into-django-models">Stack Overflow post</a>.</p>
+modified from a <a class="reference external" href="https://stackoverflow.com/questions/2459979/how-to-import-csv-data-into-django-models">Stack Overflow post</a>.
+The World Cities data stores the city in the first column (index 0) and the country
+in the 5th column (index 4).</p>
 <pre class="code console literal-block">
 <span class="go">python manage.py shell</span>
 </pre>
@@ -233,8 +235,7 @@ can happen in the background, while the user interacts with the web page.
 outside of coding only in Python to achieve this functionality in my website.
 Someday I would like to be an experienced Javascript developer also. <a class="reference external" href="https://api.jquery.com/">jQuery</a> has
 been a staple in web development for many years. Auto-complete is just one of the features
-that this core Javascript library enables. I am intrigued to explore this Javascript
-library further.</p>
+that this core Javascript library enables. I am definitely intrigued to explore jQuery further.</p>
 <p>Want to read more about Django? Check out my
 <a class="reference external" href="https://lofipython.com/first-impressions-and-key-concepts-of-the-django-python-web-framework">notes on Django here</a>.</p>
 

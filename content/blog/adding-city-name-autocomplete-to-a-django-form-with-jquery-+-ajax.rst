@@ -33,7 +33,7 @@ with a Django Model to create a form with city auto-completion.
 
 **Add Auto-complete TextInput() to forms.py**
 
-The key item here is the "id" attribute, here named "search-input". This id will tell jQuery
+The key item here is the "id" attribute, named "search-input". This id will tell jQuery
 for which form element to render the autocomplete view.
 
 .. code-block:: python
@@ -59,7 +59,7 @@ for which form element to render the autocomplete view.
 
 **Download the World Cities Database from Simplemaps**
 
-`World Cities Database <https://simplemaps.com/data/world-cities>`__ basic version
+The `World Cities Database <https://simplemaps.com/data/world-cities>`__ basic version
 is free and allowed for commercial use. In this example, this provides the cities data.
 
 **Import the Cities Database to Django Model**
@@ -67,7 +67,8 @@ is free and allowed for commercial use. In this example, this provides the citie
 Now we need to import the cities to our Django model. I achieved this by running
 this code in the Django shell and entering each line individually. This code was
 modified from a `Stack Overflow post <https://stackoverflow.com/questions/2459979/how-to-import-csv-data-into-django-models>`__.
-
+The World Cities data stores the city in the first column (index 0) and the country
+in the 5th column (index 4).
 
 .. code:: console
 
@@ -188,8 +189,7 @@ This was felt very rewarding to see once it was working. I stretched my abilitie
 outside of coding only in Python to achieve this functionality in my website.
 Someday I would like to be an experienced Javascript developer also. `jQuery <https://api.jquery.com/>`__ has
 been a staple in web development for many years. Auto-complete is just one of the features
-that this core Javascript library enables. I am intrigued to explore this Javascript
-library further.
+that this core Javascript library enables. I am definitely intrigued to explore jQuery further.
 
 Want to read more about Django? Check out my
 `notes on Django here <https://lofipython.com/first-impressions-and-key-concepts-of-the-django-python-web-framework>`__.

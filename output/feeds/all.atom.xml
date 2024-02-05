@@ -20,7 +20,7 @@ with a Django Model to create a form with city auto-completion.&lt;/p&gt;
 python manage.py migrate&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Add Auto-complete TextInput() to forms.py&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The key item here is the &amp;quot;id&amp;quot; attribute, here named &amp;quot;search-input&amp;quot;. This id will tell jQuery
+&lt;p&gt;The key item here is the &amp;quot;id&amp;quot; attribute, named &amp;quot;search-input&amp;quot;. This id will tell jQuery
 for which form element to render the autocomplete view.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
@@ -57,12 +57,14 @@ for which form element to render the autocomplete view.&lt;/p&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Download the World Cities Database from Simplemaps&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://simplemaps.com/data/world-cities"&gt;World Cities Database&lt;/a&gt; basic version
+&lt;p&gt;The &lt;a class="reference external" href="https://simplemaps.com/data/world-cities"&gt;World Cities Database&lt;/a&gt; basic version
 is free and allowed for commercial use. In this example, this provides the cities data.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Import the Cities Database to Django Model&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Now we need to import the cities to our Django model. I achieved this by running
 this code in the Django shell and entering each line individually. This code was
-modified from a &lt;a class="reference external" href="https://stackoverflow.com/questions/2459979/how-to-import-csv-data-into-django-models"&gt;Stack Overflow post&lt;/a&gt;.&lt;/p&gt;
+modified from a &lt;a class="reference external" href="https://stackoverflow.com/questions/2459979/how-to-import-csv-data-into-django-models"&gt;Stack Overflow post&lt;/a&gt;.
+The World Cities data stores the city in the first column (index 0) and the country
+in the 5th column (index 4).&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;python manage.py shell&lt;/span&gt;
 &lt;/pre&gt;
@@ -190,8 +192,7 @@ can happen in the background, while the user interacts with the web page.
 outside of coding only in Python to achieve this functionality in my website.
 Someday I would like to be an experienced Javascript developer also. &lt;a class="reference external" href="https://api.jquery.com/"&gt;jQuery&lt;/a&gt; has
 been a staple in web development for many years. Auto-complete is just one of the features
-that this core Javascript library enables. I am intrigued to explore this Javascript
-library further.&lt;/p&gt;
+that this core Javascript library enables. I am definitely intrigued to explore jQuery further.&lt;/p&gt;
 &lt;p&gt;Want to read more about Django? Check out my
 &lt;a class="reference external" href="https://lofipython.com/first-impressions-and-key-concepts-of-the-django-python-web-framework"&gt;notes on Django here&lt;/a&gt;.&lt;/p&gt;
 </content><category term="coding, programming, python, AJAX, Javascript, web development"></category><category term="making a city autocomplete form"></category><category term="how to make django autocomplete"></category><category term="integrating Django and jQuery"></category></entry><entry><title>First Impressions and Key Concepts of the Django Python Web Framework</title><link href="https://lofipython.com/first-impressions-and-key-concepts-of-the-django-python-web-framework.html" rel="alternate"></link><published>2024-02-02T12:33:00-06:00</published><updated>2024-02-02T12:33:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-02:/first-impressions-and-key-concepts-of-the-django-python-web-framework.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;First Impressions of Django&lt;/strong&gt;&lt;/p&gt;
