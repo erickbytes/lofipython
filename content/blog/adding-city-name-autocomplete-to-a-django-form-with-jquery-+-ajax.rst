@@ -136,7 +136,7 @@ reference the "search-input" id in our form and specify the url route "/ajax_cal
 
 **Add the Autocomplete View to Views.py**
 
-Note this script is using an `XMLHttpRequest API <https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest>`__,
+Note this script is using the `XMLHttpRequest API <https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest>`__,
 which is used in combination with `AJAX <https://en.wikipedia.org/wiki/Ajax_(programming)>`__
 
 .. code-block:: python
@@ -160,7 +160,7 @@ which is used in combination with `AJAX <https://en.wikipedia.org/wiki/Ajax_(pro
 
 **Understanding Ajax + XMLHttpRequest**
 
-  Ajax is a technique that uses XMLHttpRequest  to exchange data with a web server
+  Ajax is a technique that uses XMLHttpRequest to exchange data with a web server
   without reloading the whole page. XMLHttpRequest is an object that allows web apps
   to make HTTP requests and receive the responses programmatically using JavaScript.
   Ajax stands for Asynchronous JavaScript and XML,  which means that the data exchange
@@ -185,6 +185,9 @@ which is used in combination with `AJAX <https://en.wikipedia.org/wiki/Ajax_(pro
 .. image:: {static}/images/jQueryautocomplete.png
   :alt: adding autocomplete to a Django form with jQuery
 
+
+Note: to achieve the appearance of the form text box and autocomplete dropdown, I installed
+the `django-bootstrap-v5 python module <https://django-bootstrap-v5.readthedocs.io/en/latest/>`__
 
 This felt very rewarding to see once it was working. I stretched my abilities
 outside of coding only in Python to achieve this functionality in my website.
