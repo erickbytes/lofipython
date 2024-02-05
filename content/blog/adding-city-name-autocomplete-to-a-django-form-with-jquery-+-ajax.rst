@@ -19,8 +19,8 @@ with a Django model to create a form with city auto-completion.
 .. code-block:: python
 
     class City(models.Model):
-        city = models.CharField(max_length=200)
-        country = models.CharField(max_length=200)
+        city = models.CharField("Origen:", max_length=200)
+        country = models.CharField("País", max_length=200)
 
 
 **Migrate the Django Model**
@@ -137,7 +137,7 @@ reference the "search-input" id in our form and specify the url route "/ajax_cal
 **Add the Autocomplete View to Views.py**
 
 Note this script is using the `XMLHttpRequest API <https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest>`__,
-which is used in combination with `AJAX <https://en.wikipedia.org/wiki/Ajax_(programming)>`__
+which is used in combination with `AJAX <https://en.wikipedia.org/wiki/Ajax_(programming)>`__.
 
 .. code-block:: python
 
