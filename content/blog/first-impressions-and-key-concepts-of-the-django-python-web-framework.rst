@@ -84,11 +84,11 @@ Your HTML and CSS skills will come in handy when working with Django or any web 
 This is not a big surprise. You almost always need to know HTML and CSS to mold
 your website to your requirements.
 
-**Django Templating Language + Filters**
-Django comes with its own HTML language to help you dynamically populate values in HTML.
-You can also use its `built-in filters <https://docs.djangoproject.com/en/5.0/ref/templates/builtins/>`__
-to transform values directly in the HTML. Additionally,
-Django lets you write `custom template tags and filters <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__ 
+**Django Template Language + Filters**
+Django comes with its own `HTML template language <https://docs.djangoproject.com/en/5.0/ref/templates/language/#the-django-template-language>`__
+to help you dynamically populate values in HTML. You can also use its `built-in template tags and filters <https://docs.djangoproject.com/en/5.0/ref/templates/builtins/>`__
+to transform values directly in the HTML. Additionally, Django lets you write
+`custom template tags and filters <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__
 to use Python for more complex transformations or on the fly mathematic calculations.
 
 **Javascript + jQuery Friendly**
