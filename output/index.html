@@ -43,15 +43,24 @@
 
                 <p>Below is a slightly modified adaptation of the <a class="reference external" href="https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/">Espere.in Step By Step Guide</a>
 by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
-I also expanded the example to show how I created the Django model and imported cities data.
+I also expanded the example to show how I imported cities data to the Django model.
 In this post, I'll show how you can use AJAX and <a class="reference external" href="https://jqueryui.com/autocomplete/">jQuery Autocomplete</a>
 with a Django model to create a form with city auto-completion.</p>
 <p><strong>Add a Model to models.py</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">class</span> <span class="nc">City</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">city</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="s2">&quot;Origen&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">city_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="s2">&quot;Origen&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
     <span class="n">country</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="s2">&quot;País&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Register the City Model in admin.py</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Hotel</span><span class="p">,</span> <span class="n">City</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">City</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 <p><strong>Migrate the Django Model</strong></p>
 <pre class="code console literal-block">
@@ -59,8 +68,10 @@ with a Django model to create a form with city auto-completion.</p>
 python manage.py migrate</span>
 </pre>
 <p><strong>Add Auto-complete TextInput() to forms.py</strong></p>
-<p>The key item here is the &quot;id&quot; attribute holding the value &quot;search-input&quot;. This id
-will tell jQuery for which form element to render the autocomplete view.</p>
+<p>The key items here are the &quot;id&quot; attribute holding the value &quot;search-input&quot; and
+I believe the &quot;name&quot; attribute with value &quot;city_name&quot;, which is relevant because
+it references the Django model field name. These values will tell jQuery for which
+form element to render the autocomplete view and which model field you targeting.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>

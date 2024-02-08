@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - how to make django autocomplete</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/how-to-make-django-autocomplete.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-05T14:33:00-06:00</updated><entry><title>Adding City Name Autocomplete to a Django Form With jQuery + AJAX</title><link href="https://lofipython.com/adding-city-name-autocomplete-to-a-django-form-with-jquery-ajax.html" rel="alternate"></link><published>2024-02-05T14:33:00-06:00</published><updated>2024-02-05T14:33:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-05:/adding-city-name-autocomplete-to-a-django-form-with-jquery-ajax.html</id><summary type="html">&lt;p&gt;Below is a slightly modified adaptation of the &lt;a class="reference external" href="https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/"&gt;Espere.in Step By Step Guide&lt;/a&gt;
 by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
-I also expanded the example to show how I created the Django model and imported cities data.
-In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below is a slightly modified adaptation of the &lt;a class="reference external" href="https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/"&gt;Espere.in Step By Step Guide&lt;/a&gt;
+I also expanded the example to show how I imported cities data to the Django model.
+In this …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below is a slightly modified adaptation of the &lt;a class="reference external" href="https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/"&gt;Espere.in Step By Step Guide&lt;/a&gt;
 by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
-I also expanded the example to show how I created the Django model and imported cities data.
+I also expanded the example to show how I imported cities data to the Django model.
 In this post, I'll show how you can use AJAX and &lt;a class="reference external" href="https://jqueryui.com/autocomplete/"&gt;jQuery Autocomplete&lt;/a&gt;
 with a Django model to create a form with city auto-completion.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Add a Model to models.py&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;City&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;city&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Origen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;city_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Origen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;country&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;País&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Register the City Model in admin.py&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Hotel&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;City&lt;/span&gt;
+
+&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;register&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;City&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Migrate the Django Model&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -20,8 +29,10 @@ with a Django model to create a form with city auto-completion.&lt;/p&gt;
 python manage.py migrate&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Add Auto-complete TextInput() to forms.py&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The key item here is the &amp;quot;id&amp;quot; attribute holding the value &amp;quot;search-input&amp;quot;. This id
-will tell jQuery for which form element to render the autocomplete view.&lt;/p&gt;
+&lt;p&gt;The key items here are the &amp;quot;id&amp;quot; attribute holding the value &amp;quot;search-input&amp;quot; and
+I believe the &amp;quot;name&amp;quot; attribute with value &amp;quot;city_name&amp;quot;, which is relevant because
+it references the Django model field name. These values will tell jQuery for which
+form element to render the autocomplete view and which model field you targeting.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;

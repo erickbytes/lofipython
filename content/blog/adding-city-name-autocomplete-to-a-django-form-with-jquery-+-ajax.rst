@@ -9,7 +9,7 @@ Adding City Name Autocomplete to a Django Form With jQuery + AJAX
 
 Below is a slightly modified adaptation of the `Espere.in Step By Step Guide <https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/>`__
 by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
-I also expanded the example to show how I created the Django model and imported cities data.
+I also expanded the example to show how I imported cities data to the Django model.
 In this post, I'll show how you can use AJAX and `jQuery Autocomplete <https://jqueryui.com/autocomplete/>`__
 with a Django model to create a form with city auto-completion.
 
@@ -19,8 +19,19 @@ with a Django model to create a form with city auto-completion.
 .. code-block:: python
 
     class City(models.Model):
-        city = models.CharField("Origen", max_length=200)
+        city_name = models.CharField("Origen", max_length=200)
         country = models.CharField("País", max_length=200)
+
+
+
+**Register the City Model in admin.py**
+
+.. code-block:: python
+
+    from django.contrib import admin
+    from .models import Hotel, City
+
+    admin.site.register(City)
 
 
 **Migrate the Django Model**
@@ -33,8 +44,10 @@ with a Django model to create a form with city auto-completion.
 
 **Add Auto-complete TextInput() to forms.py**
 
-The key item here is the "id" attribute holding the value "search-input". This id
-will tell jQuery for which form element to render the autocomplete view.
+The key items here are the "id" attribute holding the value "search-input" and
+I believe the "name" attribute with value "city_name", which is relevant because
+it references the Django model field name. These values will tell jQuery for which
+form element to render the autocomplete view and which model field you targeting.
 
 .. code-block:: python
 
