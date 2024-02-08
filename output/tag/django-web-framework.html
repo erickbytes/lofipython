@@ -112,6 +112,34 @@ to help you dynamically populate values in HTML. You can also use its <a class="
 to transform values directly in the HTML. Additionally, Django lets you write
 <a class="reference external" href="https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/">custom template tags and filters</a>
 to use Python for more complex transformations or on the fly mathematic calculations.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span>{% for hotel in hotels %}
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+{% if hotel.all_inclusive %}
+    This hotel is all included.
+{% else %}
+    This hotel is not all included.
+{% endif %}
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+{% if hotel.accepts_groups %}
+    This hotel accepts groups.
+{% else %}
+    This hotel doesn&#39;t accept groups.
+{% endif %}
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div></td></tr></table></div>
 <p><strong>Javascript + jQuery Friendly</strong></p>
 <p>Django seems fully capable of integrating with Javascript libraries. I was able
 to get jQuery + AJAX request autocomplete functionality working in my form with

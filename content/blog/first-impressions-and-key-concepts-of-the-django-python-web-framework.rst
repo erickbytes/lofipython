@@ -93,6 +93,25 @@ to transform values directly in the HTML. Additionally, Django lets you write
 `custom template tags and filters <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__
 to use Python for more complex transformations or on the fly mathematic calculations.
 
+
+.. code-block:: html
+
+    {% for hotel in hotels %}
+    <p>
+    {% if hotel.all_inclusive %}
+        This hotel is all included.
+    {% else %}
+        This hotel is not all included.
+    {% endif %}
+    <br>
+    {% if hotel.accepts_groups %}
+        This hotel accepts groups.
+    {% else %}
+        This hotel doesn't accept groups.
+    {% endif %}
+    </p>
+
+
 **Javascript + jQuery Friendly**
 
 Django seems fully capable of integrating with Javascript libraries. I was able
@@ -145,7 +164,6 @@ value by passing its key.
 
 The render function renders an HTML document. This function has a context argument
 that allows you to pass variables into the HTML view.
-
 
 **How to Install Django**
 
