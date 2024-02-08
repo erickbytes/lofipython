@@ -23,7 +23,6 @@ with a Django model to create a form with city auto-completion.
         country = models.CharField("País", max_length=200)
 
 
-
 **Register the City Model in admin.py**
 
 .. code-block:: python

@@ -45,6 +45,10 @@ Start there and work your way out. `Django Documentation Tutorial <https://docs.
 Your forms.py and models.py files are crucial pieces to render a form, collect data
 and store it in the database.
 
+**manage.py**
+This file is used for database model migrations, creating a new app and accessing
+your app through the shell.
+
 **views.py**
 
 The views.py file contains the Python functions that execute the flow of your app.
@@ -69,7 +73,7 @@ you can tell django which view to show there.
 
 **settings.py**
 
-After you create your app with django cli commands, a settings.py is automatically generated.
+After you create your app structure with a django manage.py command, a settings.py is automatically generated.
 You will need to make edits here occasionally, such as changing the value of debug
 to true or false. You may need to add newly installed apps or make other changes
 in your settings.py to get things to work.
@@ -79,6 +83,13 @@ in your settings.py to get things to work.
 Your HTML and CSS skills will come in handy when working with Django or any web framework.
 This is not a big surprise. You almost always need to know HTML and CSS to mold
 your website to your requirements.
+
+**Django Templating Language + Filters**
+Django comes with its own HTML language to help you dynamically populate values in HTML.
+You can also use its `built-in filters <https://docs.djangoproject.com/en/5.0/ref/templates/builtins/>`__
+to transform values directly in the HTML. Additionally,
+Django lets you write `custom template tags and filters <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__ 
+to use Python for more complex transformations or on the fly mathematic calculations.
 
 **Javascript + jQuery Friendly**
 
