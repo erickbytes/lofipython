@@ -45,9 +45,9 @@ with a Django model to create a form with city auto-completion.
 **Add Auto-complete TextInput() to forms.py**
 
 The key items here are the "id" attribute holding the value "search-input" and
-I believe the "name" attribute with value "city_name", which is relevant because
-it references the Django model field name. These values will tell jQuery for which
-form element to render the autocomplete view and which model field you targeting.
+the "name" attribute with value "city_name". Together, these values will tell jQuery
+for which form element to render the autocomplete view and which model field you targeting
+to fill into the autocomplete view.
 
 .. code-block:: python
 
