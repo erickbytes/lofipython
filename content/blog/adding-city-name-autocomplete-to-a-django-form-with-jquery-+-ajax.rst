@@ -29,7 +29,7 @@ with a Django model to create a form with city auto-completion.
 .. code-block:: python
 
     from django.contrib import admin
-    from .models import Hotel, City
+    from .models import City
 
     admin.site.register(City)
 
