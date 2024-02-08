@@ -92,6 +92,8 @@ to help you dynamically populate values in HTML. You can also use its `built-in 
 to transform values directly in the HTML. Additionally, Django lets you write
 `custom template tags and filters <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__
 to use Python for more complex transformations or on the fly mathematic calculations.
+Below is an example of how you can use Django's templating language to loop through
+your Django model. Django has built-in support for if statements inside its HTML.
 
 
 .. code-block:: html
