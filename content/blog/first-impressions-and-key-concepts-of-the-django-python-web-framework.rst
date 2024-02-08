@@ -46,6 +46,7 @@ Your forms.py and models.py files are crucial pieces to render a form, collect d
 and store it in the database.
 
 **manage.py**
+
 This file is used for database model migrations, creating a new app and accessing
 your app through the shell.
 
@@ -85,6 +86,7 @@ This is not a big surprise. You almost always need to know HTML and CSS to mold
 your website to your requirements.
 
 **Django Template Language + Filters**
+
 Django comes with its own `HTML template language <https://docs.djangoproject.com/en/5.0/ref/templates/language/#the-django-template-language>`__
 to help you dynamically populate values in HTML. You can also use its `built-in template tags and filters <https://docs.djangoproject.com/en/5.0/ref/templates/builtins/>`__
 to transform values directly in the HTML. Additionally, Django lets you write
