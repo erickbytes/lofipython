@@ -2,8 +2,8 @@ Ways to Free Up Disk Space on Your Computer for Python Developers
 #################################################################
 :date: 2024-02-09 14:30
 :author: lofipython
-:category: computer maintenance, managing linux files, clearing python cache and libraries
-:tags: how to free up disk space, creating extra linux ubuntu disk space, cleaning up disk space on hard drive
+:category: computer maintenance, Python, Ubuntu, disk space
+:tags: how to free up disk space, creating extra linux ubuntu disk space, cleaning up disk space on hard drive, managing linux files, clearing python cache and libraries
 :slug: ways-to-free-up-disk-space-on-your-computer
 :status: published
 
