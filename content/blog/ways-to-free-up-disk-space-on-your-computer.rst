@@ -49,7 +49,7 @@ to clear up space on your system. Pip will print how many files it removed to th
 
 
 .. image:: {static}/images/pipcachepurge.png
- :alt: clear the pip package manager cache
+  :alt: clear the pip package manager cache
 
 **Uninstall unnecessary Python libraries.**
 
@@ -63,7 +63,7 @@ you want to use. First, use the pip list command to see your installed libraries
    pip3.11 list
 
 .. image:: {static}/images/piplist.png
- :alt: view pip installed libraries
+  :alt: view pip installed libraries
 
 The pip uninstall command makes removing Python libraries easy.
 For example, let's say you're already using both the ruff Python linter and black.
