@@ -28,8 +28,7 @@ hard drive. You can print human readable disk space stats on Ubuntu with the df 
 **Clear your browser cache.**
 
 .. image:: {static}/images/clearchromecache.png
-  :alt: clear web browser cache
-
+  :alt: read disk space stats on Ubuntu
 
 **Purge your pip cache.**
 
