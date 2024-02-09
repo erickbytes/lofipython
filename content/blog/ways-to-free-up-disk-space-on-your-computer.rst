@@ -87,7 +87,7 @@ to format my code.
   sudo apt-get autoremove
 
 
-**Run the clean and autoclean Linux command.**
+**Run the clean and autoclean Linux commands.**
 
 .. code:: console
 
@@ -119,7 +119,7 @@ large and can be good targets to free up space.
     sudo find / -xdev -type f -size +25M -exec du -sh {} ';' | sort -rh | head -n 20
     rm ~/large_file.pdf
 
-That summarizes a few ways Ubuntu users and Python developers can add some extra available
+That sums up a few ways Ubuntu users and Python developers can add some extra available
 disk space. It can definitely be frustrating to watch an install fail because there's
 no more space on your computer. These are a few strategies you can deploy to make room
 to operate on a disk space constrained system.
