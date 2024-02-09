@@ -94,6 +94,7 @@ to format my code.
     sudo apt-get clean
     sudo apt-get autoclean
 
+
 Read more on Ask Ubuntu: `What is the difference between the options "autoclean" "autoremove" and "clean"? <https://askubuntu.com/questions/3167/what-is-difference-between-the-options-autoclean-autoremove-and-clean>`__
 
 **Purge unnecessary Linux packages.**
