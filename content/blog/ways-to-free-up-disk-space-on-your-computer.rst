@@ -25,6 +25,50 @@ hard drive. You can print human readable disk space stats on Ubuntu with the df 
 .. image:: {static}/images/readdiskspacedfh.png
   :alt: read disk space stats on Ubuntu
 
+Alternatively, here is a Python script that reads available disk space from your hard drive.
+
+.. code-block:: python
+
+  import shutil
+
+  def readable_format(size: int) -> str:
+      """Converts a bytes integer to a human-readable format.
+
+      Args:
+          size (int): The bytes integer to convert.
+
+      Returns:
+          str: The human-readable format of the bytes integer.
+      """
+      for unit in ["B", "KB", "MB", "GB", "TB"]:
+          if size < 1000:
+              return f"{size:.2f} {unit}"
+          size /= 1000
+      return f"{size:.2f} PB"
+
+
+  def disk_space(path="."):
+      """Returns the current total, used and free disk space in bytes."""
+      usage = shutil.disk_usage(path)
+      total_space = usage.total
+      used_space = usage.used
+      free_space = usage.free
+      return total_space, used_space, free_space
+
+
+  # Call the function with the current directory (you can specify a different path)
+  total_space, used_space, free_space = disk_space()
+  print(f"Total space: {readable_format(total_space)} bytes")
+  print(f"Used space: {readable_format(used_space)} bytes")
+  print(f"Free space: {readable_format(free_space)} bytes")
+
+
+.. code:: console
+
+  Total space: 21.47 GB bytes
+  Used space: 10.34 GB bytes
+  Free space: 10.50 GB bytes
+
 **Clear your browser cache.**
 
 .. image:: {static}/images/clearchromecache.png

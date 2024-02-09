@@ -54,6 +54,76 @@ hard drive. You can print human readable disk space stats on Ubuntu with the df 
 <span class="go">df -h</span>
 </pre>
 <img alt="read disk space stats on Ubuntu" src="https://lofipython.com/images/readdiskspacedfh.png" />
+<p>Alternatively, here is a Python script that reads available disk space from your hard drive.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="k">def</span> <span class="nf">readable_format</span><span class="p">(</span><span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a bytes integer to a human-readable format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        size (int): The bytes integer to convert.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The human-readable format of the bytes integer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;KB&quot;</span><span class="p">,</span> <span class="s2">&quot;MB&quot;</span><span class="p">,</span> <span class="s2">&quot;GB&quot;</span><span class="p">,</span> <span class="s2">&quot;TB&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">size</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">unit</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">size</span> <span class="o">/=</span> <span class="mi">1000</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">size</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> PB&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">disk_space</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the current total, used and free disk space in bytes.&quot;&quot;&quot;</span>
+    <span class="n">usage</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">disk_usage</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">total_space</span> <span class="o">=</span> <span class="n">usage</span><span class="o">.</span><span class="n">total</span>
+    <span class="n">used_space</span> <span class="o">=</span> <span class="n">usage</span><span class="o">.</span><span class="n">used</span>
+    <span class="n">free_space</span> <span class="o">=</span> <span class="n">usage</span><span class="o">.</span><span class="n">free</span>
+    <span class="k">return</span> <span class="n">total_space</span><span class="p">,</span> <span class="n">used_space</span><span class="p">,</span> <span class="n">free_space</span>
+
+
+<span class="c1"># Call the function with the current directory (you can specify a different path)</span>
+<span class="n">total_space</span><span class="p">,</span> <span class="n">used_space</span><span class="p">,</span> <span class="n">free_space</span> <span class="o">=</span> <span class="n">disk_space</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total space: </span><span class="si">{</span><span class="n">readable_format</span><span class="p">(</span><span class="n">total_space</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Used space: </span><span class="si">{</span><span class="n">readable_format</span><span class="p">(</span><span class="n">used_space</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Free space: </span><span class="si">{</span><span class="n">readable_format</span><span class="p">(</span><span class="n">free_space</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<pre class="code console literal-block">
+<span class="go">Total space: 21.47 GB bytes
+Used space: 10.34 GB bytes
+Free space: 10.50 GB bytes</span>
+</pre>
 <p><strong>Clear your browser cache.</strong></p>
 <img alt="read disk space stats on Ubuntu" src="https://lofipython.com/images/clearchromecache.png" />
 <p><strong>Purge your pip cache.</strong></p>
