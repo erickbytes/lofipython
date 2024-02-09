@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lo-Fi Python | articles tagged "creating extra linux ubuntu disk space"</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/creating-extra-linux-ubuntu-disk-space.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Tags Atom Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://lofipython.com/tag/creating-extra-linux-ubuntu-disk-space.html">creating extra linux ubuntu disk space</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Feb 09, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/ways-to-free-up-disk-space-on-your-computer.html" rel="bookmark" title="Permanent Link to &quot;Ways to Free Up Disk Space on Your Computer for Python Developers&quot;">Ways to Free Up Disk Space on Your Computer for Python Developers</a>
+                </h2>
+
+                
+                
+
+                <p>Below are some ways to free up disk space on your computer. This will be most helpful
+for Ubuntu users and Python developers. The pip examples show what I used on my Python
+version 3.11, so if you're running a different version use that number, like
+pip3.12, pip3.10, pip3.9, etc.</p>
+<p><strong>Benchmark your current disk space.</strong></p>
+<p>Before you start freeing up space, you might want to see the current state of your
+hard drive. You can print human readable disk space stats on Ubuntu with the df command.</p>
+<pre class="code console literal-block">
+<span class="go">df -h</span>
+</pre>
+<img alt="read disk space stats on Ubuntu" src="https://lofipython.com/images/readdiskspacedfh.png" />
+<p><strong>Clear your browser cache.</strong></p>
+<img alt="clear web browser cache" src="https://lofipython.com/images/clearchromecache.png" />
+<p><strong>Purge your pip cache.</strong></p>
+<p>Before purging the Python pip package manager's cache, you can use the pip cache info command to see how much
+storage is consumed by the cache.</p>
+<pre class="code console literal-block">
+<span class="go">pip3.11 cache info</span>
+</pre>
+<p>Next, use the <a class="reference external" href="https://pip.pypa.io/en/stable/cli/pip_cache/">pip cache purge command</a>
+to clear up space on your system. Pip will print how many files it removed to the terminal.</p>
+<pre class="code console literal-block">
+<span class="go">pip3.11 cache purge</span>
+</pre>
+<img alt="clear the pip package manager cache" src="https://lofipython.com/images/pipcachepurge.png" />
+<p><strong>Uninstall unnecessary Python libraries.</strong></p>
+<p>I tend to build up modules that I installed to see how it works or to quickly test something out,
+then never use again. It makes sense to cull your pip installed libraries occasionally.
+Be aware that sometimes an unknown module may be required dependency of a module
+you want to use. First, use the pip list command to see your installed libraries:</p>
+<pre class="code console literal-block">
+<span class="go">pip3.11 list</span>
+</pre>
+<img alt="view pip installed libraries" src="https://lofipython.com/images/piplist.png" />
+<p>The pip uninstall command makes removing Python libraries easy.
+For example, let's say you're already using both the ruff Python linter and black.
+The ruff module recently introduced a new formatter that is more or less identical
+to Black. Therefore, I can uninstall black and use ruff format command instead
+to format my code.</p>
+<pre class="code console literal-block">
+<span class="go">pip3.11 uninstall black</span>
+</pre>
+<p><strong>Run the autoremove Linux commands.</strong></p>
+<blockquote>
+autoremove is used to remove packages that were automatically installed to satisfy
+dependencies for other packages and are now no longer needed as dependencies changed
+or the package(s) needing them were removed in the meantime.
+- <a class="reference external" href="https://manpages.ubuntu.com/manpages/xenial/man8/apt.8.html">Linux apt Man Pages</a></blockquote>
+<pre class="code console literal-block">
+<span class="go">sudo apt-get autoremove</span>
+</pre>
+<p><strong>Run the clean and autoclean Linux command.</strong></p>
+<pre class="code console literal-block">
+<span class="go">sudo apt-get clean
+sudo apt-get autoclean</span>
+</pre>
+<p>Read more on Ask Ubuntu: <a class="reference external" href="https://askubuntu.com/questions/3167/what-is-difference-between-the-options-autoclean-autoremove-and-clean">What is the difference between the options &quot;autoclean&quot; &quot;autoremove&quot; and &quot;clean&quot;?</a></p>
+<p><strong>Purge unnecessary Linux packages.</strong></p>
+<p>If you are certain a Linux package can be deleted, the apt-get purge command remove a
+package and all configuration files from your computer. Be careful not to remove
+any critical Linux packages.</p>
+<pre class="code console literal-block">
+<span class="go">sudo apt-get purge &lt;package-name&gt;</span>
+</pre>
+<p><strong>Find and delete your largest Linux files.</strong></p>
+<p>This command prints the largest files on your root Linux file system. Then you can
+use the rm command to remove the file. Hint: sometimes PDF files can be deceptively
+large and can be good targets to free up space.</p>
+<pre class="code console literal-block">
+<span class="go">sudo find / -xdev -type f -size +25M -exec du -sh {} ';' | sort -rh | head -n 20
+rm ~/large_file.pdf</span>
+</pre>
+<p>That summarizes a few ways Ubuntu users and Python developers can add some extra available
+disk space. It can definitely be frustrating to watch an install fail because there's
+no more space on your computer. These are a few strategies you can deploy to make room
+to operate on a disk space constrained system.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/ways-to-free-up-disk-space-on-your-computer.html">posted at 14:30</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/computer-maintenance-managing-linux-files-clearing-python-cache-and-libraries.html" rel="tag">computer maintenance, managing linux files, clearing python cache and libraries</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/how-to-free-up-disk-space.html" class="tags">how to free up disk space</a>
+                    &nbsp;<a href="https://lofipython.com/tag/creating-extra-linux-ubuntu-disk-space.html" class="tags selected">creating extra linux ubuntu disk space</a>
+                    &nbsp;<a href="https://lofipython.com/tag/cleaning-up-disk-space-on-hard-drive.html" class="tags">cleaning up disk space on hard drive</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

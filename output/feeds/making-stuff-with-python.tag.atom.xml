@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - making stuff with python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/making-stuff-with-python.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-09T12:09:00-06:00</updated><entry><title>Ways to Free Up Disk Space on Your Computer for Python Developers</title><link href="https://lofipython.com/ways-to-free-up-disk-space-on-your-computer.html" rel="alternate"></link><published>2024-02-09T12:09:00-06:00</published><updated>2024-02-09T12:09:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-09:/ways-to-free-up-disk-space-on-your-computer.html</id><summary type="html">&lt;p&gt;Below are some ways to free up disk space on your computer. This will be most helpful
+for Ubuntu users and Python developers. The pip examples show what I used on my Python
+version 3.11, so if you're running a different version use that number, pip3.10, pip3.9 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below are some ways to free up disk space on your computer. This will be most helpful
+for Ubuntu users and Python developers. The pip examples show what I used on my Python
+version 3.11, so if you're running a different version use that number, pip3.10, pip3.9, etc.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Benchmark your current disk space.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Before you start freeing up space, you might want to see the current state of your
+hard drive. You can print human readable disk space stats on Ubuntu with the df command.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;df -h&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="read disk space stats on Ubuntu" src="https://lofipython.com/images/readdiskspacedfh.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Clear your browser cache.&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="clear web browser cache" src="https://lofipython.com/images/clearchromecache.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Purge your pip cache.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Before purging the cache, you can use the pip cache info command to see how much
+storage is consumed by the cache.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip3.11 cache info&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Next, use Python pip manager's &lt;a class="reference external" href="https://pip.pypa.io/en/stable/cli/pip_cache/"&gt;cache purge command&lt;/a&gt;
+to clear up space on your system. pip will print how many files it removed to the terminal.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip3.11 cache purge&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="clear the pip package manager cache" src="https://lofipython.com/images/pipcachepurge.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Uninstall unnecessary Python libraries.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I tend to build up modules that maybe I only want to test quickly test something out,
+then never use again. It makes sense to cull your pip installed libraries occasionally.
+Be aware that sometimes an unknown module may be required dependency of a module
+you want to use. First, use the pip list command to see your installed libraries:&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip3.11 list&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="view pip installed libraries" src="https://lofipython.com/images/piplist.png" /&gt;
+&lt;p&gt;The pip uninstall command makes removing Python libraries easy.
+For example, let's say you're already using both the ruff Python linter and black.
+The ruff module recently introduced a new formatter that is more or less identical
+to Black. Therefore, I can uninstall black and use ruff format command instead
+to format my code.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip3.11 uninstall black&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Run the autoremove Linux command.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+autoremove is used to remove packages that were automatically installed to satisfy
+dependencies for other packages and are now no longer needed as dependencies changed
+or the package(s) needing them were removed in the meantime.
+- &lt;a class="reference external" href="https://manpages.ubuntu.com/manpages/xenial/man8/apt.8.html"&gt;Linux apt Man Pages&lt;/a&gt;&lt;/blockquote&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo apt-get autoremove&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Run the clean and autoclean Linux command.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo apt-get clean
+sudo apt-get autoclean&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Purge unneccessary Linux packages.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you are certain a Linux package can be deleted, the apt-get purge command remove a
+package and all configuration files from your computer. Be careful not to remove
+any critical Linux packages.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo apt-get purge &amp;lt;package-name&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Find and delete your largest Linux files.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This command prints the largest files on your root Linux file system. Then you can
+use the rm command to remove the file. Hint: sometimes PDF files can be deceptively
+large and can be good targets to free up space.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo find / -xdev -type f -size +25M -exec du -sh {} ';' | sort -rh | head -n 20
+rm /home/erickbytes/large_file.pdf&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;That summarizes a few ways Ubuntu users and Python developers can add some extra available
+disk space. It can definitely be frustrating to watch an install fail because there's
+no more space on your computer. These are a few strategies you can deploy to make room
+to operate on a disk space constrained system.&lt;/p&gt;
+</content><category term="coding, programming, python"></category><category term="api"></category><category term="making stuff with python"></category><category term="hacking"></category></entry></feed>

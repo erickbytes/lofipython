@@ -1,5 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-05T14:33:00-06:00</updated><entry><title>Adding City Name Autocomplete to a Django Form With jQuery + AJAX</title><link href="https://lofipython.com/adding-city-name-autocomplete-to-a-django-form-with-jquery-ajax.html" rel="alternate"></link><published>2024-02-05T14:33:00-06:00</published><updated>2024-02-05T14:33:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-05:/adding-city-name-autocomplete-to-a-django-form-with-jquery-ajax.html</id><summary type="html">&lt;p&gt;Below is a slightly modified adaptation of the &lt;a class="reference external" href="https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/"&gt;Espere.in Step By Step Guide&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-09T14:30:00-06:00</updated><entry><title>Ways to Free Up Disk Space on Your Computer for Python Developers</title><link href="https://lofipython.com/ways-to-free-up-disk-space-on-your-computer.html" rel="alternate"></link><published>2024-02-09T14:30:00-06:00</published><updated>2024-02-09T14:30:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-09:/ways-to-free-up-disk-space-on-your-computer.html</id><summary type="html">&lt;p&gt;Below are some ways to free up disk space on your computer. This will be most helpful
+for Ubuntu users and Python developers. The pip examples show what I used on my Python
+version 3.11, so if you're running a different version use that number, like
+pip3.12, pip3 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below are some ways to free up disk space on your computer. This will be most helpful
+for Ubuntu users and Python developers. The pip examples show what I used on my Python
+version 3.11, so if you're running a different version use that number, like
+pip3.12, pip3.10, pip3.9, etc.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Benchmark your current disk space.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Before you start freeing up space, you might want to see the current state of your
+hard drive. You can print human readable disk space stats on Ubuntu with the df command.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;df -h&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="read disk space stats on Ubuntu" src="https://lofipython.com/images/readdiskspacedfh.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Clear your browser cache.&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="clear web browser cache" src="https://lofipython.com/images/clearchromecache.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Purge your pip cache.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Before purging the Python pip package manager's cache, you can use the pip cache info command to see how much
+storage is consumed by the cache.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip3.11 cache info&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Next, use the &lt;a class="reference external" href="https://pip.pypa.io/en/stable/cli/pip_cache/"&gt;pip cache purge command&lt;/a&gt;
+to clear up space on your system. Pip will print how many files it removed to the terminal.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip3.11 cache purge&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="clear the pip package manager cache" src="https://lofipython.com/images/pipcachepurge.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Uninstall unnecessary Python libraries.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I tend to build up modules that I installed to see how it works or to quickly test something out,
+then never use again. It makes sense to cull your pip installed libraries occasionally.
+Be aware that sometimes an unknown module may be required dependency of a module
+you want to use. First, use the pip list command to see your installed libraries:&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip3.11 list&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="view pip installed libraries" src="https://lofipython.com/images/piplist.png" /&gt;
+&lt;p&gt;The pip uninstall command makes removing Python libraries easy.
+For example, let's say you're already using both the ruff Python linter and black.
+The ruff module recently introduced a new formatter that is more or less identical
+to Black. Therefore, I can uninstall black and use ruff format command instead
+to format my code.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip3.11 uninstall black&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Run the autoremove Linux commands.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+autoremove is used to remove packages that were automatically installed to satisfy
+dependencies for other packages and are now no longer needed as dependencies changed
+or the package(s) needing them were removed in the meantime.
+- &lt;a class="reference external" href="https://manpages.ubuntu.com/manpages/xenial/man8/apt.8.html"&gt;Linux apt Man Pages&lt;/a&gt;&lt;/blockquote&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo apt-get autoremove&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Run the clean and autoclean Linux command.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo apt-get clean
+sudo apt-get autoclean&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Read more on Ask Ubuntu: &lt;a class="reference external" href="https://askubuntu.com/questions/3167/what-is-difference-between-the-options-autoclean-autoremove-and-clean"&gt;What is the difference between the options &amp;quot;autoclean&amp;quot; &amp;quot;autoremove&amp;quot; and &amp;quot;clean&amp;quot;?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Purge unnecessary Linux packages.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you are certain a Linux package can be deleted, the apt-get purge command remove a
+package and all configuration files from your computer. Be careful not to remove
+any critical Linux packages.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo apt-get purge &amp;lt;package-name&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Find and delete your largest Linux files.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This command prints the largest files on your root Linux file system. Then you can
+use the rm command to remove the file. Hint: sometimes PDF files can be deceptively
+large and can be good targets to free up space.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo find / -xdev -type f -size +25M -exec du -sh {} ';' | sort -rh | head -n 20
+rm ~/large_file.pdf&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;That summarizes a few ways Ubuntu users and Python developers can add some extra available
+disk space. It can definitely be frustrating to watch an install fail because there's
+no more space on your computer. These are a few strategies you can deploy to make room
+to operate on a disk space constrained system.&lt;/p&gt;
+</content><category term="computer maintenance, managing linux files, clearing python cache and libraries"></category><category term="how to free up disk space"></category><category term="creating extra linux ubuntu disk space"></category><category term="cleaning up disk space on hard drive"></category></entry><entry><title>Adding City Name Autocomplete to a Django Form With jQuery + AJAX</title><link href="https://lofipython.com/adding-city-name-autocomplete-to-a-django-form-with-jquery-ajax.html" rel="alternate"></link><published>2024-02-05T14:33:00-06:00</published><updated>2024-02-05T14:33:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-05:/adding-city-name-autocomplete-to-a-django-form-with-jquery-ajax.html</id><summary type="html">&lt;p&gt;Below is a slightly modified adaptation of the &lt;a class="reference external" href="https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/"&gt;Espere.in Step By Step Guide&lt;/a&gt;
 by Abdulla Fajal. I needed to make a few changes to the code to get things to work.
 I also expanded the example to show how I imported cities data to the Django model.
 In this …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below is a slightly modified adaptation of the &lt;a class="reference external" href="https://espere.in/Enhance-Your-Django-App:-Step-by-Step-Guide-to-Implementing-Autocomplete-Search-with-jQuery/"&gt;Espere.in Step By Step Guide&lt;/a&gt;
@@ -7876,38 +7955,4 @@ Netflix, PayPal, Microsoft and Uber.&lt;/li&gt;
 &lt;p&gt;He also recaps the history of humanity, which was a trend towards Humanism, the misguided notion that humans can know themselves. The reality is that algorithms will likely know us better than we could ever know ourselves in the future, according to the author. Note: he is very well credentialed in his studies of human history.&lt;/p&gt;
 &lt;p&gt;Going forward, he predicts a shift from humanism towards dataism or techno-humanism. Basically, algorithms and data will know us better than we know ourselves. Therefore, machine algorithms will be better qualified to make decisions for us than ourselves. And many (if not all) of our choices will be made by powerful non-organic algorithms.&lt;/p&gt;
 &lt;p&gt;Everything we do, decided by a machine to maximize health, happiness, and optimal living. The idea of a human's entire life being driven by algorithms sounds dystopian to me, but the author makes a convincing case.&lt;/p&gt;
-</content><category term="books, coding, life, programming"></category><category term="algorithms"></category><category term="dataism"></category><category term="dystopia"></category><category term="future"></category><category term="Homo Deus"></category><category term="technohumanism"></category></entry><entry><title>Tips For Creating Useful Ideas</title><link href="https://lofipython.com/how-to-create-things-people-care-about.html" rel="alternate"></link><published>2017-07-30T19:10:00-05:00</published><updated>2017-07-30T19:10:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2017-07-30:/how-to-create-things-people-care-about.html</id><summary type="html">&lt;p&gt;11 Ideas from people who have created great products, businesses, or
-ideas:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Expertise in a field or product is one of the best assets. Nike's
-founders started out by making their prototype shoe designs
-themselves with a waffle iron. //&lt;a class="reference external" href="https://www.amazon.com/Shoe-Dog-Phil-Knight/dp/1508211809"&gt;Shoe Dog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Scratch your own itch. Create the product that you …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;11 Ideas from people who have created great products, businesses, or
-ideas:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Expertise in a field or product is one of the best assets. Nike's
-founders started out by making their prototype shoe designs
-themselves with a waffle iron. //&lt;a class="reference external" href="https://www.amazon.com/Shoe-Dog-Phil-Knight/dp/1508211809"&gt;Shoe Dog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Scratch your own itch. Create the product that you wish existed in
-the world. Write the book you want to read. // &lt;a class="reference external" href="https://austinkleon.com/steal/"&gt;Austin Kleon&lt;/a&gt; //&lt;a class="reference external" href="https://www.indiehackers.com/"&gt;Indie Hackers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Observe a problem or inconvenience that exists in the world and
-create a better solution. // Product Development Class&lt;/li&gt;
-&lt;li&gt;Find a niche and create something useful for that segment of people.
-//&lt;a class="reference external" href="http://sethgodin.typepad.com/"&gt;Seth Godin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;For every attribute, there is an opposite, effective attribute.
-//&lt;a class="reference external" href="https://blog.kowalczyk.info/articles/22-marketing-laws.html"&gt;Law 14, The 22 Immutable Laws of Marketing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Launch quickly, show to people, get feedback, and iterate your idea.
-//&lt;a class="reference external" href="https://37signals.com/rework"&gt;Rework&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Use combinatory play. Take ideas from different disciplines and
-combine them to bring about new ideas. //&lt;a class="reference external" href="https://www.brainpickings.org/2013/08/14/how-einstein-thought-combinatorial-creativity/"&gt;Brain Pickings&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Invest in improving your product versus marketing. A great product is
-obvious to a potential customer. //&lt;a class="reference external" href="http://sethgodin.typepad.com/"&gt;Seth Godin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;People remember how you or your product made them feel versus cost,
-etc.&lt;/li&gt;
-&lt;li&gt;An idea doesn't have to be revolutionary. Many new businesses or
-products take an existing product and make a slight modification or
-add a new twist.&lt;/li&gt;
-&lt;li&gt;Many of the successful people during the gold rush sold pick-axes to
-the miners.&lt;/li&gt;
-&lt;/ol&gt;
-</content><category term="business, entrepreneurship, Marketing, product development"></category><category term="app development"></category><category term="rework"></category><category term="seth godin"></category><category term="shoe dog"></category></entry></feed>
+</content><category term="books, coding, life, programming"></category><category term="algorithms"></category><category term="dataism"></category><category term="dystopia"></category><category term="future"></category><category term="Homo Deus"></category><category term="technohumanism"></category></entry></feed>
