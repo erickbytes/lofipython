@@ -54,7 +54,7 @@ to clear up space on your system. Pip will print how many files it removed to th
 
 I tend to build up modules that I installed to see how it works or to quickly test something out,
 then never use again. It makes sense to cull your pip installed libraries occasionally.
-Be aware that sometimes an unknown module may be required dependency of a module
+Be aware that sometimes an unknown module may be a required dependency of a module
 you want to use. First, use the pip list command to see your installed libraries:
 
 .. code:: console
