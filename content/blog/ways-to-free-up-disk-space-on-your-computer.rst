@@ -58,16 +58,16 @@ Alternatively, here is a Python script that reads available disk space from your
 
   # Call the function with the current directory (you can specify a different path)
   total_space, used_space, free_space = disk_space()
-  print(f"Total space: {readable_format(total_space)} bytes")
-  print(f"Used space: {readable_format(used_space)} bytes")
-  print(f"Free space: {readable_format(free_space)} bytes")
+  print(f"Total space: {readable_format(total_space)}")
+  print(f"Used space: {readable_format(used_space)}")
+  print(f"Free space: {readable_format(free_space)}")
 
 
 .. code:: console
 
-  Total space: 21.47 GB bytes
-  Used space: 10.34 GB bytes
-  Free space: 10.50 GB bytes
+  Total space: 21.47 GB
+  Used space: 10.34 GB
+  Free space: 10.50 GB
 
 **Clear your browser cache.**
 
