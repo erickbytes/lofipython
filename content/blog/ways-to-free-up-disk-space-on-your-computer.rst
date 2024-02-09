@@ -99,8 +99,8 @@ Read more on Ask Ubuntu: `What is the difference between the options "autoclean"
 
 **Purge unnecessary Linux packages.**
 
-If you are certain a Linux package can be deleted, the apt-get purge command remove a
-package and all configuration files from your computer. Be careful not to remove
+If you are certain a Linux package can be deleted, the apt-get purge command removes
+a package and all configuration files from your computer. Be careful not to remove
 any critical Linux packages.
 
 .. code:: console
