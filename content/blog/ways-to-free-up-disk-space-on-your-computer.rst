@@ -143,6 +143,13 @@ Read more on Ask Ubuntu: `What is the difference between the options "autoclean"
 
 **Purge unnecessary Linux packages.**
 
+First, create a text file with all your installed Linux packages. Then browse the
+packages and assess if they can be safely removed.
+
+.. code:: console
+
+    apt list --installed > installed_packages.txt
+
 If you are certain a Linux package can be deleted, the apt-get purge command removes
 a package and all configuration files from your computer. Be careful not to remove
 any critical Linux packages.
