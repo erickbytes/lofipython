@@ -150,8 +150,10 @@ packages and assess if they can be safely removed.
 
     apt list --installed > installed_packages.txt
 
-Once you've found a package you want to remove, learn more about it with the apt show command.
-The apt show command displays if a package is essential or required.
+Once you've targeted a package, learn more about it with the apt show command.
+The apt show command displays if a package is essential or required. It also lists
+its dependency modules. Any leftover packages will be removed by the autoremove
+command if they are "orphaned" after you purge a package.
 
 .. code:: console
 
