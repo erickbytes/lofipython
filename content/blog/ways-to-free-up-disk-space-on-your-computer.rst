@@ -167,9 +167,15 @@ packages in order of their file sizes and priority, you can use dpkg-query:
 
     dpkg-query -W -f='${Installed-Size;8}\t${Priority}\t${Package}\n' | sort -n -r
 
+
+.. image:: {static}/images/dpkgreport.png
+  :alt: see information about linux packages with dpkg-query
+
+
+
 Once you've targeted a package, learn more about it with the apt show command.
 It shows if a package is essential or required, a description and its dependency modules.
-Optional packages are generally safe to delete, assuming it's not a dependency of
+Optional packages are probably safe to delete assuming it's not a dependency of
 software you're actually using. Any leftover packages will be removed by the autoremove
 command if they are "orphaned" after you purge a package.
 
