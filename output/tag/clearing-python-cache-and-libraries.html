@@ -182,9 +182,9 @@ packages and assess if they can be safely removed.</p>
 <span class="go">apt list --installed &gt; installed_packages.txt</span>
 </pre>
 <p>You'll free up more space by deleting the largest optional packages. To list your installed
-packages in order of their file size, you can use dpkg-query:</p>
+packages in order of their file sizes and priority, you can use dpkg-query:</p>
 <pre class="code console literal-block">
-<span class="go">dpkg-query -W -f='${Installed-Size;8}\t${Package}\n' | sort -n -r</span>
+<span class="go">dpkg-query -W -f='${Installed-Size;8}\t${Priority}\t${Package}\n' | sort -n -r</span>
 </pre>
 <p>Once you've targeted a package, learn more about it with the apt show command.
 It shows if a package is essential or required, a description and its dependency modules.
