@@ -125,8 +125,8 @@ If you're not sure about a package, use the pip show command to learn more about
    pip3.11 show ruff
 
 
- .. image:: {static}/images/pipshowruff.png
-   :alt: view info about a Python library with pip
+.. image:: {static}/images/pipshowruff.png
+ :alt: view info about a Python library with pip
 
 
 **Run the autoremove Linux command.**
