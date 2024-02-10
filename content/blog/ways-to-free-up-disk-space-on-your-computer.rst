@@ -118,6 +118,16 @@ to format my code.
 
    pip3.11 uninstall black
 
+If you're not sure about a package, use the pip show command to learn more about it:
+
+.. code:: console
+
+   pip3.11 show ruff
+
+
+ .. image:: {static}/images/pipshowruff.png
+   :alt: view info about a Python library with pip
+
 
 **Run the autoremove Linux command.**
 
@@ -151,9 +161,9 @@ packages and assess if they can be safely removed.
     apt list --installed > installed_packages.txt
 
 Once you've targeted a package, learn more about it with the apt show command.
-The apt show command displays if a package is essential or required. It also lists
-its dependency modules. Any leftover packages will be removed by the autoremove
-command if they are "orphaned" after you purge a package.
+It shows if a package is essential or required. It also lists its dependency modules.
+Any leftover packages will be removed by the autoremove command if they are "orphaned"
+after you purge a package.
 
 .. code:: console
 

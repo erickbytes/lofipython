@@ -157,6 +157,14 @@ to format my code.</p>
 <pre class="code console literal-block">
 <span class="go">pip3.11 uninstall black</span>
 </pre>
+<p>If you're not sure about a package, use the pip show command to learn more about it:</p>
+<pre class="code console literal-block">
+<span class="go">  pip3.11 show ruff
+
+
+.. image:: {static}/images/pipshowruff.png
+  :alt: view info about a Python library with pip</span>
+</pre>
 <p><strong>Run the autoremove Linux command.</strong></p>
 <blockquote>
 autoremove is used to remove packages that were automatically installed to satisfy
@@ -179,9 +187,9 @@ packages and assess if they can be safely removed.</p>
 <span class="go">apt list --installed &gt; installed_packages.txt</span>
 </pre>
 <p>Once you've targeted a package, learn more about it with the apt show command.
-The apt show command displays if a package is essential or required. It also lists
-its dependency modules. Any leftover packages will be removed by the autoremove
-command if they are &quot;orphaned&quot; after you purge a package.</p>
+It shows if a package is essential or required. It also lists its dependency modules.
+Any leftover packages will be removed by the autoremove command if they are &quot;orphaned&quot;
+after you purge a package.</p>
 <pre class="code console literal-block">
 <span class="go">apt show &lt;package-name&gt;</span>
 </pre>
