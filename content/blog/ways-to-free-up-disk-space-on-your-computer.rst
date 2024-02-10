@@ -160,10 +160,18 @@ packages and assess if they can be safely removed.
 
     apt list --installed > installed_packages.txt
 
+You'll free up more space by deleting the largest optional packages. To list your installed
+packages in order of their file size, you can use dpkg-query:
+
+.. code:: console
+
+    dpkg-query -W -f='${Installed-Size;8}\t${Package}\n' | sort -n -r
+
 Once you've targeted a package, learn more about it with the apt show command.
-It shows if a package is essential or required. It also lists its dependency modules.
-Any leftover packages will be removed by the autoremove command if they are "orphaned"
-after you purge a package.
+It shows if a package is essential or required, a description and its dependency modules.
+Optional packages are generally safe to delete, assuming its not a dependency of
+software you're actually using. Any leftover packages will be removed by the autoremove
+command if they are "orphaned" after you purge a package.
 
 .. code:: console
 
