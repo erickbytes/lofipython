@@ -119,7 +119,7 @@ to format my code.
    pip3.11 uninstall black
 
 
-**Run the autoremove Linux commands.**
+**Run the autoremove Linux command.**
 
   autoremove is used to remove packages that were automatically installed to satisfy
   dependencies for other packages and are now no longer needed as dependencies changed
@@ -128,15 +128,15 @@ to format my code.
 
 .. code:: console
 
-  sudo apt-get autoremove
+  sudo apt autoremove
 
 
 **Run the clean and autoclean Linux commands.**
 
 .. code:: console
 
-    sudo apt-get clean
-    sudo apt-get autoclean
+    sudo apt clean
+    sudo apt autoclean
 
 
 Read more on Ask Ubuntu: `What is the difference between the options "autoclean" "autoremove" and "clean"? <https://askubuntu.com/questions/3167/what-is-difference-between-the-options-autoclean-autoremove-and-clean>`__
@@ -149,6 +149,18 @@ packages and assess if they can be safely removed.
 .. code:: console
 
     apt list --installed > installed_packages.txt
+
+Once you've found a package you want to remove, learn more about it with the apt show command.
+The apt show command displays if a package is essential or required.
+
+.. code:: console
+
+    apt show <package-name>
+
+
+.. image:: {static}/images/aptshowdash.png
+  :alt: see information about a linux package
+
 
 If you are certain a Linux package can be deleted, the apt-get purge command removes
 a package and all configuration files from your computer. Be careful not to remove
