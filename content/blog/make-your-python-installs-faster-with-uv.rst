@@ -110,7 +110,6 @@ a welcome sight for Pythonistas!
    rye sync
    rye run black
 
-
 **uv and rye Documentation Links**
 
 `uv: Python Packaging in Rust <https://astral.sh/blog/uv>`__
@@ -120,3 +119,7 @@ a welcome sight for Pythonistas!
 `Rye Grows with uv <https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/>`__
 
 `Rye User Guide <https://rye-up.com/guide/basics/#working-with-the-project>`__
+
+
+.. image:: {static}/images/uv-tweet.png
+  :alt: optimizing code with uv tweet
