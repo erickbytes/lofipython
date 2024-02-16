@@ -1,5 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-09T14:30:00-06:00</updated><entry><title>Ways to Free Up Disk Space on Your Computer for Python Developers</title><link href="https://lofipython.com/ways-to-free-up-disk-space-on-your-computer.html" rel="alternate"></link><published>2024-02-09T14:30:00-06:00</published><updated>2024-02-09T14:30:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-09:/ways-to-free-up-disk-space-on-your-computer.html</id><summary type="html">&lt;p&gt;Below are some ways to free up disk space on your computer. This will be most helpful
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-16T12:33:00-06:00</updated><entry><title>Make Your Python Installs Faster With uv</title><link href="https://lofipython.com/make-your-python-installs-faster-with-uv.html" rel="alternate"></link><published>2024-02-16T12:33:00-06:00</published><updated>2024-02-16T12:33:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-16:/make-your-python-installs-faster-with-uv.html</id><summary type="html">&lt;p&gt;For a several years, pip and &lt;a class="reference external" href="https://pypi.org/project/pip-tools/"&gt;pip-tools documentation&lt;/a&gt; have become distinguished in Python packaging
+for their usability and ubiquity. Recently there has been some interesting new developments
+in the realm of Python packaging tools. In a trend that started around 2022, there has been an
+ongoing &amp;quot;Rustification&amp;quot; of Python tooling …&lt;/p&gt;</summary><content type="html">&lt;p&gt;For a several years, pip and &lt;a class="reference external" href="https://pypi.org/project/pip-tools/"&gt;pip-tools documentation&lt;/a&gt; have become distinguished in Python packaging
+for their usability and ubiquity. Recently there has been some interesting new developments
+in the realm of Python packaging tools. In a trend that started around 2022, there has been an
+ongoing &amp;quot;Rustification&amp;quot; of Python tooling.&lt;/p&gt;
+&lt;p&gt;First, rye was released in pursuit of a &amp;quot;cargo for Python&amp;quot;. Cargo is Rust's package manager. It seems to
+have inspired Python developers to keep trying to improve on what we have with pip.&lt;/p&gt;
+&lt;p&gt;While this was happening, in secret the creator of ruff was also working on yet another hybrid
+Rust + Python package manager named uv. There's seemingly no end to this man's projects!
+ruff quickly supplanted the incumbent Python linters to become a favorite among Python developers.
+Could lightning strike twice for the creator of ruff? Seems he won't be a one-hit wonder when it
+comes to developing hit Python packages.&lt;/p&gt;
+&lt;blockquote&gt;
+uv is 8-10x faster than pip and pip-tools without caching, and 80-115x faster
+when running with a warm cache
+- Charlie Marsh, Astral Blog, &lt;a class="reference external" href="https://astral.sh/blog/uv"&gt;https://astral.sh/blog/uv&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;Improving Python packaging is an audacious and challenging task. Part of the problem
+is that out of the box Python installs can be tough to reason about for new Python developers.
+Not to mention the labor of explaining the purpose of virtual environments in Python coding via venv.
+One perk of uv is that it includes virtual environments in its workflow.&lt;/p&gt;
+&lt;p&gt;For more experienced developers, uv is a way you can make your code run much faster if you
+need to install a Python package everytime it runs. For example, if you're running a Python script
+on a Docker image, Python needs to install your packages everytime the image is run. In this case,
+a modest 8x speedup might shave off a shocking amount of time it takes your code to execute. Now,
+imagine an 80-115x speedup with caching. That's an incredible improvement we can now make with uv!&lt;/p&gt;
+&lt;blockquote&gt;
+uv is designed as a drop-in replacement for pip and pip-tools, and is
+ready for production use today in projects built around those workflows.
+- Charlie Marsh, Astral Blog, &lt;a class="reference external" href="https://astral.sh/blog/uv"&gt;https://astral.sh/blog/uv&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;This seems like an instance where two developers identified the same core problem
+and are now combining their efforts. Sounds like a win for all Python developers. Armin Ronacher, the
+creator of the Flask web framework and Charlie Marsch with the proven success of ruff are converging
+to tackle one of Python's biggest pain points. It sounds like they could be merged into a python packaging
+super tool at some point:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;strong&gt;Will Rye retired for uv?&lt;/strong&gt;
+Not today, but the desire is that these tools eventually converge into one.
+- Rye Grows with uv, Armin Ronacher, &lt;a class="reference external" href="https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/"&gt;https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;Per Armin's recent blog post, Rye is probably not the final solution. He thinks rye will get absorbed
+into a more fleshed out project like uv. It sounds like Python packaging will continue evolving and improving,
+a welcome sight for Pythonistas!&lt;/p&gt;
+&lt;img alt="optimize python installs with uv" src="https://lofipython.com/images/uv-install-benchmarks.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Install uv and rye&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip install uv
+pip install rye
+
+&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;Alternative&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;with&lt;span class="w"&gt; &lt;/span&gt;curl&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="go"&gt;curl -LsSf https://astral.sh/uv/install.sh | sh
+&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;Alternative&lt;span class="w"&gt; &lt;/span&gt;Install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;rye&lt;span class="w"&gt; &lt;/span&gt;on&lt;span class="w"&gt; &lt;/span&gt;Linux&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;Mac&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="go"&gt;curl -sSf https://rye-up.com/get | bash&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Create a Virtual Environment With uv&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;uv venv  # Create a virtual environment at .venv.&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Installing a New Module With uv&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;uv pip install requests&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;pip sync a requirements.txt file with uv&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;uv pip sync requirements.txt  # Install from a requirements.txt file.&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Optional: Configure rye on Top of uv&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;rye config --set-bool behavior.use-uv=true&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Create new Python project With Rye&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;rye init my-project
+rye pin 3.10
+rye add black
+rye sync
+rye run black&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;uv and rye Documentation Links&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://astral.sh/blog/uv"&gt;uv: Python Packaging in Rust&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/astral-sh/uv"&gt;uv Github Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/"&gt;Rye Grows with uv&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://rye-up.com/guide/basics/#working-with-the-project"&gt;Rye User Guide&lt;/a&gt;&lt;/p&gt;
+</content><category term="coding, programming, python"></category><category term="api"></category><category term="making stuff with python"></category><category term="hacking"></category></entry><entry><title>Ways to Free Up Disk Space on Your Computer for Python Developers</title><link href="https://lofipython.com/ways-to-free-up-disk-space-on-your-computer.html" rel="alternate"></link><published>2024-02-09T14:30:00-06:00</published><updated>2024-02-09T14:30:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-09:/ways-to-free-up-disk-space-on-your-computer.html</id><summary type="html">&lt;p&gt;Below are some ways to free up disk space on your computer. This will be most helpful
 for Ubuntu users and Python developers. The pip examples show what I used on my Python
 version 3.11, so if you're running a different version use that number, like
 pip3.12, pip3 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below are some ways to free up disk space on your computer. This will be most helpful
@@ -8044,11 +8127,4 @@ Netflix, PayPal, Microsoft and Uber.&lt;/li&gt;
 &lt;div class="line"&gt;4) Practice to hone your knowledge. Build things you like.&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;I've also noticed that Javascript has been easier to learn than Python was for me, because it's not my first programming language. The concepts are the same. The syntax can trip me up at times, but I'm currently flying through &lt;a class="reference external" href="https://www.codecademy.com/learn/learn-javascript"&gt;Codeacademy's Javascript courses&lt;/a&gt;. Sometimes it even seems fun!&lt;/p&gt;
-</content><category term="coding, javascript, programming"></category><category term="angular"></category><category term="express.js"></category><category term="javascript terms"></category><category term="JQuery"></category><category term="Node.js"></category><category term="software"></category><category term="understanding javascript"></category><category term="web frameworks."></category></entry><entry><title>Algorithms Will Decide The Future</title><link href="https://lofipython.com/algorithms-will-decide-the-future.html" rel="alternate"></link><published>2017-08-01T17:13:00-05:00</published><updated>2017-08-01T17:13:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2017-08-01:/algorithms-will-decide-the-future.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Algorithm: a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I recently read &amp;quot;&lt;a class="reference external" href="https://www.amazon.com/Homo-Deus-Brief-History-Tomorrow/dp/0062464310"&gt;Homo Deus&lt;/a&gt;&amp;quot;, a book by Yuval Noah Harari. It explores the idea that humans may simply be algorithmic decision making systems.&amp;nbsp;AKA self-aware, self-learning algorithms. There are …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Algorithm: a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I recently read &amp;quot;&lt;a class="reference external" href="https://www.amazon.com/Homo-Deus-Brief-History-Tomorrow/dp/0062464310"&gt;Homo Deus&lt;/a&gt;&amp;quot;, a book by Yuval Noah Harari. It explores the idea that humans may simply be algorithmic decision making systems.&amp;nbsp;AKA self-aware, self-learning algorithms. There are many parallels between a human and a computer algorithm.&lt;/p&gt;
-&lt;p&gt;The author says there are organic (human) and non-organic (machine) algorithms. Non-organic algorithms will someday have far more capability than organic algorithms. In some cases, such as diagnosing medical conditions, they already do.&lt;/p&gt;
-&lt;p&gt;He also recaps the history of humanity, which was a trend towards Humanism, the misguided notion that humans can know themselves. The reality is that algorithms will likely know us better than we could ever know ourselves in the future, according to the author. Note: he is very well credentialed in his studies of human history.&lt;/p&gt;
-&lt;p&gt;Going forward, he predicts a shift from humanism towards dataism or techno-humanism. Basically, algorithms and data will know us better than we know ourselves. Therefore, machine algorithms will be better qualified to make decisions for us than ourselves. And many (if not all) of our choices will be made by powerful non-organic algorithms.&lt;/p&gt;
-&lt;p&gt;Everything we do, decided by a machine to maximize health, happiness, and optimal living. The idea of a human's entire life being driven by algorithms sounds dystopian to me, but the author makes a convincing case.&lt;/p&gt;
-</content><category term="books, coding, life, programming"></category><category term="algorithms"></category><category term="dataism"></category><category term="dystopia"></category><category term="future"></category><category term="Homo Deus"></category><category term="technohumanism"></category></entry></feed>
+</content><category term="coding, javascript, programming"></category><category term="angular"></category><category term="express.js"></category><category term="javascript terms"></category><category term="JQuery"></category><category term="Node.js"></category><category term="software"></category><category term="understanding javascript"></category><category term="web frameworks."></category></entry></feed>
