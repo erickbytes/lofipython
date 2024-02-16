@@ -26,8 +26,8 @@ comes to developing hit Python packages.
     - Charlie Marsh, Astral Blog, https://astral.sh/blog/uv
 
 Improving Python packaging is an audacious and challenging task. Part of the problem 
-is that out of the box Python installs can be tough to reason about for new Python developers. 
-Not to mention the labor of explaining the purpose of virtual environments in Python coding via venv. 
+is that out of the box Python installs can be tough to reason about for new Python developers, 
+not to mention the hassle of explaining the purpose of virtual environments in Python coding via venv. 
 One perk of uv is that it includes virtual environments in its workflow.
 
 For more experienced developers, uv is a way you can make your code run much faster if you 
