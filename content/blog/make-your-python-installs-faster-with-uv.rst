@@ -115,7 +115,7 @@ a welcome sight for Pythonistas!
    rye run black
 
 
-**uv and rye Documentation Links**
+**uv and rye Documentation and Blog Links**
 
 `uv: Python Packaging in Rust <https://astral.sh/blog/uv>`__
 
@@ -128,3 +128,4 @@ a welcome sight for Pythonistas!
 
 .. image:: {static}/images/uv-tweet.png
   :alt: optimizing code with uv tweet
+  :target: https://twitter.com/charliermarsh/status/1758356727307632892
