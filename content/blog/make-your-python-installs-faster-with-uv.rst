@@ -43,7 +43,7 @@ imagine an 80-115x speedup with caching. That's an incredible improvement we can
 This seems like an instance where two developers identified the same core problem 
 and are now combining their efforts. Sounds like a win for all Python developers. Armin Ronacher, the
 creator of the Flask web framework and Charlie Marsch with the proven success of ruff are converging 
-to tackle one of Python's biggest pain points. It sounds like they could be merged into a Python packaging 
+to tackle one of Python's biggest pain points. They could be merged into a Python packaging 
 super tool at some point:
 
    **Will Rye retired for uv?**
@@ -51,7 +51,7 @@ super tool at some point:
    - Rye Grows with uv, Armin Ronacher, https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/
 
 Per Armin's recent blog post, Rye is probably not the final solution. He thinks rye will get absorbed 
-into a more fleshed out project like uv. It sounds like Python packaging will continue evolving and improving,
+into a more fleshed out project like uv. It seems Python packaging will continue evolving and improving,
 a welcome sight for Pythonistas!
 
 
