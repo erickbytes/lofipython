@@ -7,7 +7,7 @@ Make Your Python Installs Faster With uv
 :slug: make-your-python-installs-faster-with-uv
 :status: published
 
-For a several years, pip and `pip-tools documentation <https://pypi.org/project/pip-tools/>`__ have become distinguished in Python packaging 
+For a several years, `pip <https://pip.pypa.io/en/stable/>`__ and `pip-tool <https://pypi.org/project/pip-tools/>`__ have become distinguished in Python packaging 
 for their usability and ubiquity. Recently there has been some interesting new developments 
 in the realm of Python packaging tools. In a trend that started around 2022, there has been an 
 ongoing "Rustification" of Python tooling.
