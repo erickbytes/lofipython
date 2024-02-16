@@ -57,8 +57,8 @@ a welcome sight for Pythonistas!
 
 .. image:: {static}/images/uv-install-benchmarks.png
   :alt: optimize python installs with uv
-  
-*Image Source: Python Packaging in Rust*
+
+*Image Source: `uv: Python Packaging in Rust <https://astral.sh/blog/uv>`__*
 
 
 **Install uv and rye**
