@@ -3,7 +3,7 @@ Make Your Python Installs Faster With uv
 :date: 2024-02-16 12:33
 :author: lofipython
 :category: coding, programming, python
-:tags: api, making stuff with python, hacking
+:tags: optimizing python installs, uv python installation, installing python packages with uv
 :slug: make-your-python-installs-faster-with-uv
 :status: published
 
