@@ -57,6 +57,8 @@ a welcome sight for Pythonistas!
 
 .. image:: {static}/images/uv-install-benchmarks.png
   :alt: optimize python installs with uv
+  
+*Image Source: Python Packaging in Rust*
 
 
 **Install uv and rye**
@@ -109,6 +111,7 @@ a welcome sight for Pythonistas!
    rye add black
    rye sync
    rye run black
+
 
 **uv and rye Documentation Links**
 
