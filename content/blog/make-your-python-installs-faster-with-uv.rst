@@ -39,7 +39,7 @@ One perk of uv is that it includes virtual environments in its workflow.
 
       \- Charlie Marsh, "uv: Python Packaging in Rust", https://astral.sh/blog/uv
 
-A new space of potential optimization is now acessible to Python developers. We can now use uv 
+A new space of potential optimization is now accessible to Python developers. We can now use uv 
 to make our development environment build faster. A modest 8x speedup in Python library installs might shave off a shocking amount of time it takes your image 
 to build, especially if you have lots of Python library dependencies. Now, imagine an 80-115x speedup with caching. Docker images 
 are an optimization use case along with building your development environment in general. In some development shops, 
