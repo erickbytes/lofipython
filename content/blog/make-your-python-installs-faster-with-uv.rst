@@ -12,7 +12,7 @@ for their usability and ubiquity. Recently there has been some interesting new d
 in the realm of Python packaging tools. In a trend that started around 2022, there has been an 
 ongoing "Rustification" of Python tooling.
 
-First, rye was released in pursuit of a "cargo for Python". Cargo is Rust's package manager. It seems to 
+First, Rye was released in pursuit of a "cargo for Python". Cargo is Rust's package manager. It seems to 
 have inspired Python developers to keep trying to improve on what we have with pip.
 
 While this was happening, in secret the creator of ruff was also working on yet another hybrid 
@@ -30,11 +30,11 @@ is that out of the box Python installs can be tough to reason about for new Pyth
 not to mention the hassle of explaining the purpose of virtual environments in Python coding via venv. 
 One perk of uv is that it includes virtual environments in its workflow.
 
-For more experienced developers, uv is a way you can make your code run much faster if you 
-need to install a Python package everytime it runs. For example, if you're running a Python script 
-on a Docker image, Python needs to install your packages everytime the image is run. In this case, 
-a modest 8x speedup might shave off a shocking amount of time it takes your code to execute. Now, 
-imagine an 80-115x speedup with caching. That's an incredible improvement we can now make with uv!
+For more experienced developers, uv is a way you can make your Docker images build faster. In this case, 
+a modest 8x speedup might shave off a shocking amount of time it takes your image to build, especially if 
+you have lots of Python library dependencies. Now, imagine an 80-115x speedup with caching. Docker images 
+are an optimization use case along with building your developemnt environment in general. In some development shops, 
+this could cut a lot of time installing developer tooling. It's a potential incredible improvement we can now make with uv!
 
    uv is designed as a drop-in replacement for pip and pip-tools, and is 
    ready for production use today in projects built around those workflows.
@@ -50,7 +50,7 @@ super tool at some point:
    Not today, but the desire is that these tools eventually converge into one.
    - Rye Grows with uv, Armin Ronacher, https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/
 
-Per Armin's recent blog post, Rye is probably not the final solution. He thinks rye will get absorbed 
+Per Armin's recent blog post, Rye is probably not the final solution. He thinks Rye will get absorbed 
 into a more fleshed out project like uv. It seems Python packaging will continue evolving and improving,
 a welcome sight for Pythonistas!
 
@@ -97,7 +97,7 @@ a welcome sight for Pythonistas!
    uv pip sync requirements.txt  # Install from a requirements.txt file.
 
 
-**Optional: Configure rye on Top of uv**
+**Optional: Configure Rye on Top of uv**
 
 .. code:: console
    
