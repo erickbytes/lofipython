@@ -48,6 +48,7 @@ this could cut a lot of time installing developer tooling. It's a potential incr
 .. image:: {static}/images/uv-tweet.png
   :alt: optimizing code with uv tweet
   :target: https://twitter.com/charliermarsh/status/1758356727307632892
+  :width: 400px
 
 
 In the case of Rye and uv, two developers simultaneously identified the same opportunity
