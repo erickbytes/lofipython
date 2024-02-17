@@ -46,7 +46,7 @@ creator of the Flask web framework and Charlie Marsch with the proven success of
 to tackle one of Python's biggest pain points. They could be merged into a Python packaging 
 super tool at some point:
 
-   **Will Rye retired for uv?**
+   **Will Rye be retired for uv?**
    Not today, but the desire is that these tools eventually converge into one.
    - Rye Grows with uv, Armin Ronacher, https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/
 
