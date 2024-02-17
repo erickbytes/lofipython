@@ -40,10 +40,13 @@ One perk of uv is that it includes virtual environments in its workflow.
       \- Charlie Marsh, "uv: Python Packaging in Rust", https://astral.sh/blog/uv
 
 A new space of potential optimization is now accessible to Python developers. We can now use uv 
-to make our development environment build faster. A modest 8x speedup in Python library installs might shave off a shocking amount of time it takes your image 
-to build, especially if you have lots of Python library dependencies. Now, imagine an 80-115x speedup with caching. Docker images 
-are an optimization use case along with building your development environment in general. In some development shops, 
-this could cut a lot of time installing developer tooling. It's a potential incredible improvement we can now make with uv!
+to make our development environment build faster. A modest 8x speedup in Python library installs 
+might shave off a shocking amount of time it takes your freshly minted Docker image to build, 
+especially if you have lots of Python library dependencies. Now, imagine an 80-115x speedup with caching. 
+Docker images also use caching after an image is built the first time. They are an optimization use case 
+along with building your development environment in general. In some development shops, 
+this could cut a lot of time installing developer tooling. It's a potential incredible improvement
+we can now make with uv!
 
 .. image:: {static}/images/uv-tweet.png
   :alt: optimizing code with uv tweet
@@ -54,8 +57,7 @@ this could cut a lot of time installing developer tooling. It's a potential incr
 In the case of Rye and uv, two developers simultaneously identified the same opportunity
 and are now combining their efforts. Sounds like a win for all Python developers. Armin Ronacher, the
 creator of the Flask web framework and Charlie Marsch with the proven success of ruff are converging 
-to tackle one of Python's biggest pain points. They could be merged into a Python packaging 
-"cargo for Python" super tool at some point:
+to tackle one of Python's biggest pain points. They could be merged into a "cargo for Python" super tool eventually:
 
    **Will Rye be retired for uv?**
    Not today, but the desire is that these tools eventually converge into one.
