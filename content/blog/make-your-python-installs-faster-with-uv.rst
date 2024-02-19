@@ -26,9 +26,6 @@ ruff quickly supplanted the incumbent Python linters to become a favorite among 
 Could lightning strike twice for the creator of ruff? Seems he won't be a one-hit wonder when it 
 comes to developing hit Python packages.
 
-.. role:: raw-html (raw)
-   :format: html
-
 Improving Python packaging is an audacious and challenging task. Part of the problem 
 is that out of the box Python installs can be tough to reason about for new Python developers, 
 not to mention the hassle of explaining the purpose of virtual environments in Python coding via venv. 
