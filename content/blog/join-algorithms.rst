@@ -89,4 +89,6 @@ Use a `Bloom Filter  <https://en.wikipedia.org/wiki/Bloom_filter>`__ set operati
    -Prof. Andy Pavlo
 
 
- `<https://webmention.rocks/update/1>`__:ref: (webmention) 
+`webmention <https://webmention.rocks/update/1>`__ 
+
+`webmention <https://webmention.rocks/update/1/part/2>`__ 
