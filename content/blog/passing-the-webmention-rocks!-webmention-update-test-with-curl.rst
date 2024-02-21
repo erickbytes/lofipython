@@ -58,7 +58,7 @@ Completing the Webmention Rocks! `Update Test #1 <https://webmention.rocks/updat
 **Alternative Browser Option: "View Page Source" to Find Webmention Endpoint**
 
 .. image:: {static}/images/webmentions-test-endpoint.png
-  :alt: successful Webmentions Rocks! Webmention Update Test
+  :alt: finding the webmentions endpoint in a browser
 
 Go to the page you want to check for a Webmention endpoint. Right-click anywhere on the page 
 and select "View Page Source" to view the website's HTML. Then, right-click the endpoint url 
@@ -132,6 +132,7 @@ First, add the Github HTML link to your website identify yourself to webmention.
 
 .. image:: {static}/images/authorize-indie-login.png
   :alt: connect indie login with Github
+  :width: 400px
 
 Once you successfully connect your Github account to webmention.io, you can copy your HTML code 
 from the webmentio.io dashboard to your website HTML:
