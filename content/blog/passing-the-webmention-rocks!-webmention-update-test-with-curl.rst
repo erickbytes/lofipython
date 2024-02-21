@@ -64,7 +64,7 @@ Go to the page you want to check for a Webmention endpoint. Right-click anywhere
 and select "View Page Source" to view the website's HTML. Then, right-click the endpoint url 
 and select "Copy Link Address" to copy the full url of the endpoint.
 
-**Send a curl request notifying of Webmention update**
+**Send a curl Request Notify the Target Site of Webmention Update**
 
 .. code:: console
 
