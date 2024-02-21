@@ -96,13 +96,6 @@ for more verbose output.
   :alt: successful Webmentions Rocks! Webmention Update Test
 
 
-**View Webmentions for Your Blog with curl**
-
-.. code:: console
-   
-   curl -X GET https://webmention.io/api/mentions.jf2?target=https://exampleblog.com
-
-
 **Check for a Webmention Endpoint and Send the Request in a Bash One-Liner**
 
 .. code:: console
@@ -141,7 +134,16 @@ from the webmentio.io dashboard to your website HTML:
    
    <link rel="webmention" href="https://webmention.io/yourblog.com/webmention" />
 
-With an active endpoint linked in your website HTML, you're able to receive webmentions. Happy webmentioning!
+With an active endpoint linked in your website HTML, you're able to receive webmentions from 
+the Webmention.io dashboard or with curl.
+
+**View Webmentions for Your Blog with curl**
+
+.. code:: console
+   
+   curl -X GET https://webmention.io/api/mentions.jf2?target=https://exampleblog.com
+
+Happy webmentioning!
 
 **Read More About Webmentions**
 

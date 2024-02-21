@@ -103,10 +103,6 @@ for more verbose output.</p>
 </pre>
 <p><strong>Webmention Update Test Succeeded Confirmation</strong></p>
 <img alt="successful Webmentions Rocks! Webmention Update Test" src="https://lofipython.com/images/successful-webmentions-test.png" />
-<p><strong>View Webmentions for Your Blog with curl</strong></p>
-<pre class="code console literal-block">
-<span class="go">curl -X GET https://webmention.io/api/mentions.jf2?target=https://exampleblog.com</span>
-</pre>
 <p><strong>Check for a Webmention Endpoint and Send the Request in a Bash One-Liner</strong></p>
 <pre class="code console literal-block">
 <span class="go">curl -i -d &quot;source=$your_url&amp;target=$target_url&quot; `curl -i -s $target_url | grep 'rel=&quot;http://webmention.org/&quot;' | sed 's/rel=&quot;webmention&quot;//' | grep -o -E 'https?://[^ &quot;&gt;]+' | sort | uniq`</span>
@@ -131,7 +127,13 @@ from the webmentio.io dashboard to your website HTML:</p>
 <pre class="code html literal-block">
 <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;webmention&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.io/yourblog.com/webmention&quot;</span> <span class="p">/&gt;</span>
 </pre>
-<p>With an active endpoint linked in your website HTML, you're able to receive webmentions. Happy webmentioning!</p>
+<p>With an active endpoint linked in your website HTML, you're able to receive webmentions from
+the Webmention.io dashboard or with curl.</p>
+<p><strong>View Webmentions for Your Blog with curl</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -X GET https://webmention.io/api/mentions.jf2?target=https://exampleblog.com</span>
+</pre>
+<p>Happy webmentioning!</p>
 <p><strong>Read More About Webmentions</strong></p>
 <p><a class="reference external" href="https://indieweb.org/Webmention">Webmention Wiki</a></p>
 <p><a class="reference external" href="https://github.com/aaronpk/webmention.io">Webmention.io Github</a></p>
