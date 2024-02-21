@@ -76,19 +76,23 @@ with Python or other means.</p>
 <pre class="code html literal-block">
 <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.rocks/update/1&quot;</span><span class="p">&gt;</span>Part 1 Test<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </pre>
-<p><strong>Send a curl request notifying of Webmention update</strong>
-You'll need to change the &quot;key&quot; url argument. The Webmention Rocks! endpoint changes the live key rapidly,
-about every 30 seconds. In curl, you can pass the -v argument for more verbose output.</p>
-<pre class="code console literal-block">
-<span class="go">curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;source=https://yourblog.com/example-post&amp;target=https://webmention.rocks/update/1&quot; https://webmention.rocks/update/1/part/1/webmention?key=UjJPJoDWZateFb7bTAhB -v</span>
-</pre>
 <p><strong>Check Target HTML for Webmention Endpoint with Curl</strong></p>
 <pre class="code console literal-block">
 <span class="go">curl -i -s $target | grep 'rel=&quot;webmention&quot;'</span>
 </pre>
 <p><strong>Alternative Browser Option: &quot;View Page Source&quot; to Find Webmention Endpoint</strong></p>
 <img alt="successful Webmentions Rocks! Webmention Update Test" src="https://lofipython.com/images/webmentions-test-endpoint.png" />
-<p>Right-click the endpoint url and select &quot;Copy Link Address&quot; to copy the full url of the endpoint.</p>
+<p>Go to the page you want to check for a Webmention endpoint. Right-click anywhere on the page
+and select &quot;View Page Source&quot; to view the website's HTML. Then, right-click the endpoint url
+and select &quot;Copy Link Address&quot; to copy the full url of the endpoint.</p>
+<p><strong>Send a curl request notifying of Webmention update</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;source=https://yourblog.com/example-post&amp;target=https://webmention.rocks/update/1&quot; https://webmention.rocks/update/1/part/1/webmention?key=UjJPJoDWZateFb7bTAhB -v</span>
+</pre>
+<p>In the curl request, edit the &quot;source&quot; with your blog post containing the link and &quot;target&quot;
+with your endpoint. You'll need to change the &quot;key&quot; url argument. The Webmention Rocks! endpoint
+changes the live key rapidly, about every 30 seconds. In curl, you can pass the -v argument
+for more verbose output.</p>
 <p><strong>Add URL Link to HTML for Part 2 of the Test</strong></p>
 <pre class="code html literal-block">
 <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.rocks/update/1/part/2&quot;</span><span class="p">&gt;</span>Part 2 Test<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>

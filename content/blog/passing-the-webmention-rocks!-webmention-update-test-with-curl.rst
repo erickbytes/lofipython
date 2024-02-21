@@ -48,15 +48,6 @@ Completing the Webmention Rocks! `Update Test #1 <https://webmention.rocks/updat
    <a href="https://webmention.rocks/update/1">Part 1 Test</a>
 
 
-**Send a curl request notifying of Webmention update**
-You'll need to change the "key" url argument. The Webmention Rocks! endpoint changes the live key rapidly, 
-about every 30 seconds. In curl, you can pass the -v argument for more verbose output.
-
-.. code:: console
-
-   curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "source=https://yourblog.com/example-post&target=https://webmention.rocks/update/1" https://webmention.rocks/update/1/part/1/webmention?key=UjJPJoDWZateFb7bTAhB -v
-
-
 **Check Target HTML for Webmention Endpoint with Curl**
 
 .. code:: console
@@ -69,7 +60,21 @@ about every 30 seconds. In curl, you can pass the -v argument for more verbose o
 .. image:: {static}/images/webmentions-test-endpoint.png
   :alt: successful Webmentions Rocks! Webmention Update Test
 
-Right-click the endpoint url and select "Copy Link Address" to copy the full url of the endpoint.
+Go to the page you want to check for a Webmention endpoint. Right-click anywhere on the page 
+and select "View Page Source" to view the website's HTML. Then, right-click the endpoint url 
+and select "Copy Link Address" to copy the full url of the endpoint.
+
+**Send a curl request notifying of Webmention update**
+
+.. code:: console
+
+   curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "source=https://yourblog.com/example-post&target=https://webmention.rocks/update/1" https://webmention.rocks/update/1/part/1/webmention?key=UjJPJoDWZateFb7bTAhB -v
+
+In the curl request, edit the "source" with your blog post containing the link and "target" 
+with your endpoint. You'll need to change the "key" url argument. The Webmention Rocks! endpoint 
+changes the live key rapidly, about every 30 seconds. In curl, you can pass the -v argument 
+for more verbose output.
+
 
 **Add URL Link to HTML for Part 2 of the Test**
 
