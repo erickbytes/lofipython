@@ -33,7 +33,57 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Sep 15, 2022</h4>
+        <div id="content">            <h4 class="date">Oct 08, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html" rel="bookmark" title="Permanent Link to &quot;Pelican Fix for "No valid files found in content"...&quot;">Pelican Fix for &quot;No valid files found in content&quot;...</a>
+                </h2>
+
+                
+                
+
+                <p>Pelican is a popular <a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/">static site generator library</a> in Python. I didn't know why my pelican blog was not working. I've used the &quot;pelican content&quot; command many times for my blog. This time, when attempting to write a new post on a new computer, I was getting this error where none of my posts were visible to Pelican:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">WARNING</span>  <span class="n">No</span> <span class="n">valid</span> <span class="n">files</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">content</span> <span class="k">for</span> <span class="n">the</span> <span class="n">active</span>         <span class="n">log</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">91</span>
+         <span class="n">readers</span><span class="p">:</span>
+           <span class="o">|</span> <span class="n">BaseReader</span> <span class="p">(</span><span class="n">static</span><span class="p">)</span>
+           <span class="o">|</span> <span class="n">HTMLReader</span> <span class="p">(</span><span class="n">htm</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+           <span class="o">|</span> <span class="n">RstReader</span> <span class="p">(</span><span class="n">rst</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7221 figure">
+<img alt="no valid files found in pelican content" src="https://pythonmarketer.files.wordpress.com/2022/10/image.png?w=665" />
+</div>
+<p><strong>Solution</strong></p>
+<p>Install the markdown library, which is stated in the <a class="reference external" href="https://docs.getpelican.com/en/3.6.3/install.html#optional-packages">pelican docs</a>. This <a class="reference external" href="https://github.com/getpelican/pelican/issues/1868">Github issue</a> also provides some background on this warning.</p>
+<pre class="literal-block">
+pip install markdown
+</pre>
+<div class="wp-image-7224 figure">
+<img alt="python pip installing markdown" src="https://pythonmarketer.files.wordpress.com/2022/10/image-1.png?w=672" />
+</div>
+<p>Now my &quot;pelican content&quot; command works!</p>
+<pre class="literal-block">
+pelican content
+</pre>
+<div class="wp-image-7226 figure">
+<img alt="successful pelican content build" src="https://pythonmarketer.files.wordpress.com/2022/10/image-2.png?w=679" />
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/pelican-fix-for-no-valid-files-found-in-content.html">posted at 13:43</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-writing.html" rel="tag">coding, python, writing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/markdown-library.html" class="tags">markdown library</a>
+                    &nbsp;<a href="https://lofipython.com/tag/pelican-blog.html" class="tags">pelican blog</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-fix.html" class="tags">python fix</a>
+                </div>
+            </article>            <h4 class="date">Sep 15, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -466,34 +516,6 @@ Like static site generators? Check out <a class="reference external" href="https
                     &nbsp;<a href="https://lofipython.com/tag/delegation.html" class="tags">delegation</a>
                     &nbsp;<a href="https://lofipython.com/tag/documentation.html" class="tags">documentation</a>
                     &nbsp;<a href="https://lofipython.com/tag/technical-writing.html" class="tags">technical writing</a>
-                </div>
-            </article>            <h4 class="date">Feb 23, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/six-must-read-python-enhancement-proposals.html" rel="bookmark" title="Permanent Link to &quot;6 Must-read Python Enhancement Proposals (PEPs)&quot;">6 Must-read Python Enhancement Proposals (PEPs)</a>
-                </h2>
-
-                
-                
-
-                <p>These are a few of my favorite PEPs, or Python Enhancements Proposals I've encountered recently. PEP 0, PEP 8 and PEP 20 are great reads for those aspiring to hone their Python skills. The <a class="reference external" href="https://docs.python.org/3/">documentation</a> sometimes references specific PEPs directly also. They document Python's evolution over time and the rationale behind it. Here are some good ones to remember!</p>
-<p><a class="reference external" href="https://www.python.org/dev/peps/">PEP 0</a> -- Index of Python Enhancement Proposals</p>
-<p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> -- Style Guide for Python Code</p>
-<p><a class="reference external" href="https://www.python.org/dev/peps/pep-0020/">PEP 20</a> -- The Zen of Python</p>
-<p><a class="reference external" href="https://www.python.org/dev/peps/pep-0249/#paramstyle">PEP 249</a> -- Python Database API Specification v2.0</p>
-<p><a class="reference external" href="https://www.python.org/dev/peps/pep-3131/">PEP 3131</a> -- Supporting Non-ASCII Identifiers</p>
-<p><a class="reference external" href="https://www.python.org/dev/peps/pep-3333/">PEP 3333</a> -- Python Web Server Gateway Interface v1.0.1</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/six-must-read-python-enhancement-proposals.html">posted at 17:15</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-odbc-programming-python.html" rel="tag">APIs, ODBC, programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/best-peps-python.html" class="tags">best PEPs Python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pep-8.html" class="tags">PEP 8</a>
-                    &nbsp;<a href="https://lofipython.com/tag/wsgi.html" class="tags">WSGI</a>
                 </div>
             </article>
 

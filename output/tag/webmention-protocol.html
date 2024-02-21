@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link href="https://github.com/erickbytes" rel="me">
+    <link rel="webmention" href="https://webmention.io/lofipython.com/webmention" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lo-Fi Python | articles tagged "webmention protocol"</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/webmention-protocol.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Tags Atom Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://lofipython.com/tag/webmention-protocol.html">webmention protocol</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Feb 21, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/passing-the-webmention-rocks-webmention-update-test-with-curl.html" rel="bookmark" title="Permanent Link to &quot;Passing the Webmention Rocks! Webmention Update Test With curl and Setting Up a Webmention.io Endpoint&quot;">Passing the Webmention Rocks! Webmention Update Test With curl and Setting Up a Webmention.io Endpoint</a>
+                </h2>
+
+                
+                
+
+                <p>After discovering Webmentions via a <a class="reference external" href="https://localghost.dev/blog/sending-webmentions-from-a-static-site/">helpful blog post about sending webmentions</a>,
+I wondered how I might be able to achieve sending and receiving them from my Pelican blog. I discovered the
+<a class="reference external" href="Webmention.Rocks">Webmention Rocks!</a> website and the <a class="reference external" href="https://www.w3.org/TR/webmention/">Webmention Protocol</a>.
+Webmentions are a standard for sending notification of linkbacks, likes, comments and pingbacks via HTTP.
+For example, if your blog is hosted on Wordpress these things are likely all set up for you.
+Supporting this recommended standard requires a more creative approach on a static site.</p>
+<p>Naturally, I'm now thinking about how I will automate this on my Pelican blog. There are also existing
+Python modules like <a class="reference external" href="https://pypi.org/project/ronkyuu/">ronkyuu</a> and the
+<a class="reference external" href="https://indieweb-utils.readthedocs.io/en/latest/">indieweb-utils</a> modules for supporting the
+Webmention protocol in Python. However, a static site generator presents challenges for automatically
+executing code to send webmentions. Another option may be to use something like Cloudflare Workers
+since this blog is hosted on Cloudflare's free plan. Possibly, I could set a worker to trigger and
+run some javascript everytime I add a new post. I'm thinking using an existing pelican plugin would
+likely be easier than that.</p>
+<p>Thankfully, there are some existing <a class="reference external" href="https://github.com/getpelican/pelican-plugins">Pelican plugins</a> to enable webmentions.
+I'm currently testing the <a class="reference external" href="https://github.com/drivet/pelican-webmention">pelican-webmention plugin</a>
+but have not yet verified if it is actually sending the webmentions. Alternatively, the
+<a class="reference external" href="https://github.com/pelican-plugins/linkbacks/">linkbacks plugin</a> is an option for supporting Webmentions
+on a Pelican blog. <a class="reference external" href="https://brid.gy/about#blogs">Bridgy</a> is another tool written
+in Python as a &quot;bridge&quot; for social networks to webmentions. There are a lot of interesting options
+for piecing together a Webmention implementation, which is essentially automating an HTTP request you send
+when you link to someone else from your website.</p>
+<p>In the interim until an automated solution is found I decided to attempt passing the
+Webmention Rocks! Update test with curl. Often I find when HTTP requests are required, I can better
+understand it by manually making the requests with curl or Python. Once I have a better grasp
+after succeeding with curl, it's a little easier to grasp automating the sending of the HTTP requests
+with Python or other means.</p>
+<div class="section" id="completing-the-webmention-rocks-update-test-1-with-curl">
+<h2>Completing the Webmention Rocks! <a class="reference external" href="https://webmention.rocks/update/1">Update Test #1</a> With curl</h2>
+<p><strong>Add a URL Link to Your Blog HTML, AKA The &quot;Webmention&quot;</strong></p>
+<pre class="code html literal-block">
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.rocks/update/1&quot;</span><span class="p">&gt;</span>Part 1 Test<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre>
+<p><strong>Send a curl request notifying of Webmention update</strong>
+You'll need to change the &quot;key&quot; url argument. The Webmention Rocks! endpoint changes the live key rapidly,
+about every 30 seconds. In curl, you can pass the -v argument for more verbose output.</p>
+<pre class="code console literal-block">
+<span class="go">curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;source=https://yourblog.com/example-post&amp;target=https://webmention.rocks/update/1&quot; https://webmention.rocks/update/1/part/1/webmention?key=UjJPJoDWZateFb7bTAhB -v</span>
+</pre>
+<p><strong>Check Target HTML for Webmention Endpoint with Curl</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -i -s $target | grep 'rel=&quot;webmention&quot;'</span>
+</pre>
+<p><strong>Alternative Browser Option: &quot;View Page Source&quot; to Find Webmention Endpoint</strong></p>
+<img alt="successful Webmentions Rocks! Webmention Update Test" src="https://lofipython.com/images/webmentions-test-endpoint.png" />
+<p>Right-click the endpoint url and select &quot;Copy Link Address&quot; to copy the full url of the endpoint.</p>
+<p><strong>Add URL Link to HTML for Part 2 of the Test</strong></p>
+<pre class="code html literal-block">
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.rocks/update/1/part/2&quot;</span><span class="p">&gt;</span>Part 2 Test<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre>
+<p><strong>Complete Part 2 of the Test with curl</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;source=https://yourblog.com/example-post&amp;target=https://webmention.rocks/update/1&quot; https://webmention.rocks/update/1/part/2/webmention?key=dfMuwOn4DUuwRSe6BM9o -v</span>
+</pre>
+<p><strong>Webmention Update Test Succeeded Confirmation</strong></p>
+<img alt="successful Webmentions Rocks! Webmention Update Test" src="https://lofipython.com/images/successful-webmentions-test.png" />
+<p><strong>View Webmentions for Your Blog with curl</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -X GET https://webmention.io/api/mentions.jf2?target=https://exampleblog.com</span>
+</pre>
+<p><strong>Check for a Webmention Endpoint and Send the Request in a Bash One-Liner</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -i -d &quot;source=$your_url&amp;target=$target_url&quot; `curl -i -s $target_url | grep 'rel=&quot;http://webmention.org/&quot;' | sed 's/rel=&quot;webmention&quot;//' | grep -o -E 'https?://[^ &quot;&gt;]+' | sort | uniq`</span>
+</pre>
+<p>source: <a class="reference external" href="https://indieweb.org/webmention-implementation-guide">https://indieweb.org/webmention-implementation-guide</a></p>
+</div>
+<div class="section" id="setting-up-your-blog-s-webmentions-endpoint-with-webmention-io">
+<h2>Setting Up Your Blog's Webmentions Endpoint With webmention.io</h2>
+<p>Webmention.io is a free service to set up your own Webmention endpoint so other people can send
+you Webmentions. I chose to authenticate with Github. There are also options to authenticate
+via email and other ways. If you choose to authenticate with Github, make sure the url
+of your website is in your Github profile.</p>
+<p><strong>Add Github HTML Link to Your Website</strong></p>
+<p>First, add the Github HTML link to your website identify yourself to webmention.io.</p>
+<pre class="code html literal-block">
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://github.com/your_username&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;me&quot;</span><span class="p">&gt;</span>
+</pre>
+<p><strong>Go to Webmention.io to Authorize Indie Login to Your Github Account</strong></p>
+<img alt="connect indie login with Github" src="https://lofipython.com/images/authorize-indie-login.png" />
+<p>Once you successfully connect your Github account to webmention.io, you can copy your HTML code
+from the webmentio.io dashboard to your website HTML:</p>
+<pre class="code html literal-block">
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;webmention&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.io/yourblog.com/webmention&quot;</span> <span class="p">/&gt;</span>
+</pre>
+<p>With an active endpoint linked in your website HTML, you're able to receive webmentions. Happy webmentioning!</p>
+<p><strong>Read More About Webmentions</strong></p>
+<p><a class="reference external" href="https://indieweb.org/Webmention">Webmention Wiki</a></p>
+<p><a class="reference external" href="https://github.com/aaronpk/webmention.io">Webmention.io Github</a></p>
+<p><a class="reference external" href="Webmention.Rocks">Webmention.Rocks</a></p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/passing-the-webmention-rocks-webmention-update-test-with-curl.html">posted at 15:37</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-curl-webmentions-blogging.html" rel="tag">coding, programming, curl, webmentions, blogging</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/webmention-protocol.html" class="tags selected">webmention protocol</a>
+                    &nbsp;<a href="https://lofipython.com/tag/implementing-webmentions-on-a-blog.html" class="tags">implementing webmentions on a blog</a>
+                    &nbsp;<a href="https://lofipython.com/tag/receiving-webmentions-with-webmentionio.html" class="tags">receiving webmentions with webmention.io</a>
+                    &nbsp;<a href="https://lofipython.com/tag/testing-webmentions.html" class="tags">testing webmentions</a>
+                    &nbsp;<a href="https://lofipython.com/tag/sending-webmentions.html" class="tags">sending webmentions</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

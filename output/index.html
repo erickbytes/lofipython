@@ -33,7 +33,120 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Feb 16, 2024</h4>
+        <div id="content">            <h4 class="date">Feb 21, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/passing-the-webmention-rocks-webmention-update-test-with-curl.html" rel="bookmark" title="Permanent Link to &quot;Passing the Webmention Rocks! Webmention Update Test With curl and Setting Up a Webmention.io Endpoint&quot;">Passing the Webmention Rocks! Webmention Update Test With curl and Setting Up a Webmention.io Endpoint</a>
+                </h2>
+
+                
+                
+
+                <p>After discovering Webmentions via a <a class="reference external" href="https://localghost.dev/blog/sending-webmentions-from-a-static-site/">helpful blog post about sending webmentions</a>,
+I wondered how I might be able to achieve sending and receiving them from my Pelican blog. I discovered the
+<a class="reference external" href="Webmention.Rocks">Webmention Rocks!</a> website and the <a class="reference external" href="https://www.w3.org/TR/webmention/">Webmention Protocol</a>.
+Webmentions are a standard for sending notification of linkbacks, likes, comments and pingbacks via HTTP.
+For example, if your blog is hosted on Wordpress these things are likely all set up for you.
+Supporting this recommended standard requires a more creative approach on a static site.</p>
+<p>Naturally, I'm now thinking about how I will automate this on my Pelican blog. There are also existing
+Python modules like <a class="reference external" href="https://pypi.org/project/ronkyuu/">ronkyuu</a> and the
+<a class="reference external" href="https://indieweb-utils.readthedocs.io/en/latest/">indieweb-utils</a> modules for supporting the
+Webmention protocol in Python. However, a static site generator presents challenges for automatically
+executing code to send webmentions. Another option may be to use something like Cloudflare Workers
+since this blog is hosted on Cloudflare's free plan. Possibly, I could set a worker to trigger and
+run some javascript everytime I add a new post. I'm thinking using an existing pelican plugin would
+likely be easier than that.</p>
+<p>Thankfully, there are some existing <a class="reference external" href="https://github.com/getpelican/pelican-plugins">Pelican plugins</a> to enable webmentions.
+I'm currently testing the <a class="reference external" href="https://github.com/drivet/pelican-webmention">pelican-webmention plugin</a>
+but have not yet verified if it is actually sending the webmentions. Alternatively, the
+<a class="reference external" href="https://github.com/pelican-plugins/linkbacks/">linkbacks plugin</a> is an option for supporting Webmentions
+on a Pelican blog. <a class="reference external" href="https://brid.gy/about#blogs">Bridgy</a> is another tool written
+in Python as a &quot;bridge&quot; for social networks to webmentions. There are a lot of interesting options
+for piecing together a Webmention implementation, which is essentially automating an HTTP request you send
+when you link to someone else from your website.</p>
+<p>In the interim until an automated solution is found I decided to attempt passing the
+Webmention Rocks! Update test with curl. Often I find when HTTP requests are required, I can better
+understand it by manually making the requests with curl or Python. Once I have a better grasp
+after succeeding with curl, it's a little easier to grasp automating the sending of the HTTP requests
+with Python or other means.</p>
+<div class="section" id="completing-the-webmention-rocks-update-test-1-with-curl">
+<h2>Completing the Webmention Rocks! <a class="reference external" href="https://webmention.rocks/update/1">Update Test #1</a> With curl</h2>
+<p><strong>Add a URL Link to Your Blog HTML, AKA The &quot;Webmention&quot;</strong></p>
+<pre class="code html literal-block">
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.rocks/update/1&quot;</span><span class="p">&gt;</span>Part 1 Test<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre>
+<p><strong>Send a curl request notifying of Webmention update</strong>
+You'll need to change the &quot;key&quot; url argument. The Webmention Rocks! endpoint changes the live key rapidly,
+about every 30 seconds. In curl, you can pass the -v argument for more verbose output.</p>
+<pre class="code console literal-block">
+<span class="go">curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;source=https://yourblog.com/example-post&amp;target=https://webmention.rocks/update/1&quot; https://webmention.rocks/update/1/part/1/webmention?key=UjJPJoDWZateFb7bTAhB -v</span>
+</pre>
+<p><strong>Check Target HTML for Webmention Endpoint with Curl</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -i -s $target | grep 'rel=&quot;webmention&quot;'</span>
+</pre>
+<p><strong>Alternative Browser Option: &quot;View Page Source&quot; to Find Webmention Endpoint</strong></p>
+<img alt="successful Webmentions Rocks! Webmention Update Test" src="https://lofipython.com/images/webmentions-test-endpoint.png" />
+<p>Right-click the endpoint url and select &quot;Copy Link Address&quot; to copy the full url of the endpoint.</p>
+<p><strong>Add URL Link to HTML for Part 2 of the Test</strong></p>
+<pre class="code html literal-block">
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.rocks/update/1/part/2&quot;</span><span class="p">&gt;</span>Part 2 Test<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre>
+<p><strong>Complete Part 2 of the Test with curl</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;source=https://yourblog.com/example-post&amp;target=https://webmention.rocks/update/1&quot; https://webmention.rocks/update/1/part/2/webmention?key=dfMuwOn4DUuwRSe6BM9o -v</span>
+</pre>
+<p><strong>Webmention Update Test Succeeded Confirmation</strong></p>
+<img alt="successful Webmentions Rocks! Webmention Update Test" src="https://lofipython.com/images/successful-webmentions-test.png" />
+<p><strong>View Webmentions for Your Blog with curl</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -X GET https://webmention.io/api/mentions.jf2?target=https://exampleblog.com</span>
+</pre>
+<p><strong>Check for a Webmention Endpoint and Send the Request in a Bash One-Liner</strong></p>
+<pre class="code console literal-block">
+<span class="go">curl -i -d &quot;source=$your_url&amp;target=$target_url&quot; `curl -i -s $target_url | grep 'rel=&quot;http://webmention.org/&quot;' | sed 's/rel=&quot;webmention&quot;//' | grep -o -E 'https?://[^ &quot;&gt;]+' | sort | uniq`</span>
+</pre>
+<p>source: <a class="reference external" href="https://indieweb.org/webmention-implementation-guide">https://indieweb.org/webmention-implementation-guide</a></p>
+</div>
+<div class="section" id="setting-up-your-blog-s-webmentions-endpoint-with-webmention-io">
+<h2>Setting Up Your Blog's Webmentions Endpoint With webmention.io</h2>
+<p>Webmention.io is a free service to set up your own Webmention endpoint so other people can send
+you Webmentions. I chose to authenticate with Github. There are also options to authenticate
+via email and other ways. If you choose to authenticate with Github, make sure the url
+of your website is in your Github profile.</p>
+<p><strong>Add Github HTML Link to Your Website</strong></p>
+<p>First, add the Github HTML link to your website identify yourself to webmention.io.</p>
+<pre class="code html literal-block">
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://github.com/your_username&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;me&quot;</span><span class="p">&gt;</span>
+</pre>
+<p><strong>Go to Webmention.io to Authorize Indie Login to Your Github Account</strong></p>
+<img alt="connect indie login with Github" src="https://lofipython.com/images/authorize-indie-login.png" />
+<p>Once you successfully connect your Github account to webmention.io, you can copy your HTML code
+from the webmentio.io dashboard to your website HTML:</p>
+<pre class="code html literal-block">
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;webmention&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.io/yourblog.com/webmention&quot;</span> <span class="p">/&gt;</span>
+</pre>
+<p>With an active endpoint linked in your website HTML, you're able to receive webmentions. Happy webmentioning!</p>
+<p><strong>Read More About Webmentions</strong></p>
+<p><a class="reference external" href="https://indieweb.org/Webmention">Webmention Wiki</a></p>
+<p><a class="reference external" href="https://github.com/aaronpk/webmention.io">Webmention.io Github</a></p>
+<p><a class="reference external" href="Webmention.Rocks">Webmention.Rocks</a></p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/passing-the-webmention-rocks-webmention-update-test-with-curl.html">posted at 15:37</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-curl-webmentions-blogging.html" rel="tag">coding, programming, curl, webmentions, blogging</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/webmention-protocol.html" class="tags">webmention protocol</a>
+                    &nbsp;<a href="https://lofipython.com/tag/implementing-webmentions-on-a-blog.html" class="tags">implementing webmentions on a blog</a>
+                    &nbsp;<a href="https://lofipython.com/tag/receiving-webmentions-with-webmentionio.html" class="tags">receiving webmentions with webmention.io</a>
+                    &nbsp;<a href="https://lofipython.com/tag/testing-webmentions.html" class="tags">testing webmentions</a>
+                    &nbsp;<a href="https://lofipython.com/tag/sending-webmentions.html" class="tags">sending webmentions</a>
+                </div>
+            </article>            <h4 class="date">Feb 16, 2024</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1660,285 +1773,6 @@ I recommend <a class="reference external" href="https://pypi.org/project/yfinanc
                     &nbsp;<a href="https://lofipython.com/tag/stock-prices-command-line.html" class="tags">stock prices command line</a>
                     &nbsp;<a href="https://lofipython.com/tag/python-cli.html" class="tags">python CLI</a>
                     &nbsp;<a href="https://lofipython.com/tag/python-investing-research.html" class="tags">python investing research</a>
-                </div>
-            </article>            <h4 class="date">Oct 02, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/an-introduction-to-the-langchain-python-library.html" rel="bookmark" title="Permanent Link to &quot;An Introduction to the LangChain Python Library&quot;">An Introduction to the LangChain Python Library</a>
-                </h2>
-
-                
-                
-
-                <p>LangChain is a lauded Python library in the <a class="reference external" href="https://en.wikipedia.org/wiki/Large_language_model">large language model</a> space. It seems to be riding along on the AI hype train as of late and is getting mentioned everywhere I look. I wrote this post to understand better, what is LangChain? Warning: I learned a lot by researching for this post! Below you'll find basic information about what LangChain is and code examples for a few of its use cases. I connected a few different sources that helped me fill in the gaps in my knowledge. After reading this, you'll have a basic understanding of what this Python module does and some of the diverse ways it can be applied.</p>
-<p>A huge bonus of this library is that it has <a class="reference external" href="https://python.langchain.com/docs/get_started/quickstart">excellent documentation</a>. On the front page, they state its main value propositions.</p>
-<blockquote>
-<p>The main value props of LangChain are:</p>
-<p>Components: abstractions for working with language models, along with a collection of implementations for each  abstraction. Components are modular and easy-to-use, whether you are using the rest of the LangChain framework or not</p>
-<p>Off-the-shelf chains: a structured assembly of components for accomplishing specific higher-level tasks
-Off-the-shelf chains make it easy to get started. For complex applications, components make it easy to customize existing chains and build new ones.</p>
-</blockquote>
-<p>The Github repo states LangChain is for &quot;Building applications with LLMs through composability&quot;. Ok, so what is composability?</p>
-<blockquote>
-Composability is a system design principle that deals with the inter-relationships of components. A highly composable system provides components that can be selected and assembled in various combinations to satisfy specific user requirements. - <a class="reference external" href="https://en.wikipedia.org/wiki/Large_language_model">Wikipedia</a></blockquote>
-<p>LangChain is important because it provides the function of &quot;orchestration&quot; in an LLM serving workflow:</p>
-<blockquote>
-<p>The leading orchestration tool right now in the LLM space is LangChain, and it is a marvel. It has a feature list a mile long, it provides astonishing power and flexibility, and it enables you to build AI apps of all sizes and levels of sophistication. But with that power comes quite a bit of complexity. Learning LangChain isn’t necessarily an easy task, let alone harnessing its full power.</p>
-<p>- Stephen Hood, <a class="reference external" href="https://hacks.mozilla.org/2023/07/so-you-want-to-build-your-own-open-source-chatbot">So you want to build your own open source chatbot… – Mozilla Hacks</a></p>
-</blockquote>
-<p>Sometimes an orchestration tool is required, but sometimes you can &quot;roll your own&quot; in a sense, as Mozilla did in their post about serving an LLM. When making your own large language model, you'll want to consider how it will be orchestrated. This is the functionality LangChain provides. In more complex LLM flows that involve tasks like writing code and subsequently running it, LangChain is essential.</p>
-<blockquote>
-<p>Often people hook up LLMs as part of a sequence of operations. LangChain does this. It puts an LLM in series with some other tools. For instance, LLMs can’t do math, they just spout plausible answers. They can write code, because they’ve read so much of it in their training. By themselves, they can’t use it. But configure a LangChain agent with both an LLM and a Python interpreter, and it can answer word problems. First ask the LLM for a plan to solve the problem, given a Python interpreter; then when the LLM returns code, run it; then provide the answer to the LLM so it can structure the final response.</p>
-<p>- Jessica Kerr, <a class="reference external" href="https://jessitron.com/2023/09/04/a-developers-guide-to-integrating-with-llms">A Developer’s Starting Point for Integrating with LLMs</a></p>
-</blockquote>
-<p>You'll also want to consider if you need to tune your own AI model, but beware that this can cost a lot of money in compute resources consumed. It seems more likely that for the AI-layperson coder, going with an off-the-shelf model via an API or open source code base makes more fiscal sense and is probably easier. However, you may achieve a unique quality of response by tuning your model to your specific use case, or providing examples as tokens for the model to consume before responding.</p>
-<blockquote>
-<p>Model training needs lots and lots of machines in relatively close proximity to one another. It needs the absolute latest, greatest GPUs.</p>
-<p>- Matthew Prince, James Governor, <a class="reference external" href="https://redmonk.com/jgovernor/2023/07/17/cloudflare-as-an-ai-play-an-interview-with-ceo-matthew-prince">Cloudflare as an AI play. An Interview with Matthew Prince</a></p>
-</blockquote>
-<p><strong>An Example LLM Stack With LangChain</strong></p>
-<img alt="Overview of an LLM stack from Mozilla" src="https://lofipython.com/images/MozillaAssistantdiagram.png" />
-<p>source: <a class="reference external" href="https://hacks.mozilla.org/2023/07/so-you-want-to-build-your-own-open-source-chatbot">So you want to build your own open source chatbot… – Mozilla Hacks</a></p>
-<p><strong>Installing the Python Libraries with pip</strong></p>
-<pre class="code console literal-block">
-<span class="go">pip install langchain[all]</span>
-</pre>
-<pre class="code console literal-block">
-<span class="go">pip install openai</span>
-</pre>
-<p><strong>The Two Types of Language Models</strong></p>
-<blockquote>
-<p>There are two types of language models, which in LangChain are called:</p>
-<p>LLMs: this is a language model which takes a string as input and returns a string</p>
-<p>ChatModels: this is a language model which takes a list of messages as input and returns a message</p>
-</blockquote>
-<p><strong>Calling OpenAI Without a Chain from LangChain</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-
-<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">openai_api_key</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;What would be a good company name for a company that makes colorful socks?&quot;</span>
-<span class="n">llm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-<span class="c1"># &gt;&gt; Feetful of Fun</span>
-<span class="n">chat_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-<span class="c1"># &gt;&gt; Socks O&#39;Color</span>
-</pre></div></td></tr></table></div>
-<p><strong>Chaining Components with LangChain</strong></p>
-<p>The chains are a Python class, as demonstrated in this psuedo-code from their docs.</p>
-<blockquote>
-<p>Using an LLM in isolation is fine for simple applications, but more complex applications require chaining LLMs - either with each other or with other components.</p>
-<p>LangChain provides the Chain interface for such &quot;chained&quot; applications. We define a Chain very generically as a sequence of calls to components, which can include other chains. The base interface is simple:</p>
-<p>- <a class="reference external" href="https://python.langchain.com/docs/modules/chains/">LangChain Documentation, Chains How-To</a></p>
-</blockquote>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">class</span> <span class="nc">Chain</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base interface that all chains should implement.&quot;&quot;&quot;</span>
-
-    <span class="n">memory</span><span class="p">:</span> <span class="n">BaseMemory</span>
-    <span class="n">callbacks</span><span class="p">:</span> <span class="n">Callbacks</span>
-
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">inputs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">return_only_outputs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">callbacks</span><span class="p">:</span> <span class="n">Callbacks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="o">...</span>
-</pre></div></td></tr></table></div>
-<p><strong>Chaining Open AI Components</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
-<span class="kn">from</span> <span class="nn">langchain.chains</span> <span class="kn">import</span> <span class="n">LLMChain</span>
-
-<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
-    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">],</span>
-    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;What is a good name for a company that makes </span><span class="si">{product}</span><span class="s2">?&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">chain</span> <span class="o">=</span> <span class="n">LLMChain</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
-<span class="c1"># Run the chain only specifying the input variable.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;colorful socks&quot;</span><span class="p">))</span>
-<span class="c1"># &gt;&gt; Socks O&#39;Color</span>
-</pre></div></td></tr></table></div>
-<p><strong>Natural Language Queries with LangChain</strong></p>
-<p>These examples are shown in <a class="reference external" href="https://python.langchain.com/docs/use_cases/qa_structured/sql/">Analyzing Structured Data</a>.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">langchain.utilities</span> <span class="kn">import</span> <span class="n">SQLDatabase</span>
-<span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-<span class="kn">from</span> <span class="nn">langchain_experimental.sql</span> <span class="kn">import</span> <span class="n">SQLDatabaseChain</span>
-
-<span class="c1"># The documented examples use a Chinook DB.</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">SQLDatabase</span><span class="o">.</span><span class="n">from_uri</span><span class="p">(</span><span class="s2">&quot;sqlite:///Chinook.db&quot;</span><span class="p">)</span>
-<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">db_chain</span> <span class="o">=</span> <span class="n">SQLDatabaseChain</span><span class="o">.</span><span class="n">from_llm</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">db_chain</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;How many employees are there?&quot;</span><span class="p">)</span>
-<span class="c1"># &gt;&gt;&gt; &#39;There are 8 employees.&#39;</span>
-</pre></div></td></tr></table></div>
-<p><strong>Text to SQL Queries With Ability to Run the Query on the Database</strong></p>
-<blockquote>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">langchain.utilities</span> <span class="kn">import</span> <span class="n">SQLDatabase</span>
-<span class="kn">from</span> <span class="nn">langchain.chat_models</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
-<span class="kn">from</span> <span class="nn">langchain.chains</span> <span class="kn">import</span> <span class="n">create_sql_query_chain</span>
-
-<span class="n">db</span> <span class="o">=</span> <span class="n">SQLDatabase</span><span class="o">.</span><span class="n">from_uri</span><span class="p">(</span><span class="s2">&quot;sqlite:///Chinook.db&quot;</span><span class="p">)</span>
-<span class="n">chain</span> <span class="o">=</span> <span class="n">create_sql_query_chain</span><span class="p">(</span><span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">db</span><span class="p">)</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;question&quot;</span><span class="p">:</span><span class="s2">&quot;How many employees are there&quot;</span><span class="p">})</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-<span class="c1"># &gt;&gt;&gt; &#39;There are 8 employees.&#39;</span>
-</pre></div></td></tr></table></div>
-</blockquote>
-<p><strong>Use a LangChain Agent to Describe a Database Table</strong></p>
-<blockquote>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">create_sql_agent</span>
-<span class="kn">from</span> <span class="nn">langchain.agents.agent_toolkits</span> <span class="kn">import</span> <span class="n">SQLDatabaseToolkit</span>
-<span class="c1"># from langchain.agents import AgentExecutor</span>
-<span class="kn">from</span> <span class="nn">langchain.agents.agent_types</span> <span class="kn">import</span> <span class="n">AgentType</span>
-
-<span class="n">db</span> <span class="o">=</span> <span class="n">SQLDatabase</span><span class="o">.</span><span class="n">from_uri</span><span class="p">(</span><span class="s2">&quot;sqlite:///Chinook.db&quot;</span><span class="p">)</span>
-<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">agent_executor</span> <span class="o">=</span> <span class="n">create_sql_agent</span><span class="p">(</span>
-    <span class="n">llm</span><span class="o">=</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">toolkit</span><span class="o">=</span><span class="n">SQLDatabaseToolkit</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span>
-    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">agent_type</span><span class="o">=</span><span class="n">AgentType</span><span class="o">.</span><span class="n">ZERO_SHOT_REACT_DESCRIPTION</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">agent_executor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Describe the playlisttrack table&quot;</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-</blockquote>
-<p><strong>Description of Database Table Result</strong></p>
-<blockquote>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">&gt; Entering new AgentExecutor chain...</span>
-<span class="go">Action: sql_db_list_tables</span>
-<span class="go">Action Input:</span>
-<span class="go">Observation: Album, Artist, Customer, Employee, Genre, Invoice, InvoiceLine, MediaType, Playlist, PlaylistTrack, Track</span>
-<span class="go">Thought: The PlaylistTrack table is the most relevant to the question.</span>
-<span class="go">Action: sql_db_schema</span>
-<span class="go">Action Input: PlaylistTrack</span>
-<span class="go">Observation:</span>
-<span class="go">CREATE TABLE &quot;PlaylistTrack&quot; (</span>
-<span class="go">    &quot;PlaylistId&quot; INTEGER NOT NULL,</span>
-<span class="go">    &quot;TrackId&quot; INTEGER NOT NULL,</span>
-<span class="go">    PRIMARY KEY (&quot;PlaylistId&quot;, &quot;TrackId&quot;),</span>
-<span class="go">    FOREIGN KEY(&quot;TrackId&quot;) REFERENCES &quot;Track&quot; (&quot;TrackId&quot;),</span>
-<span class="go">    FOREIGN KEY(&quot;PlaylistId&quot;) REFERENCES &quot;Playlist&quot; (&quot;PlaylistId&quot;)</span>
-<span class="go">)</span>
-
-<span class="go">/*</span>
-<span class="go">3 rows from PlaylistTrack table:</span>
-<span class="go">PlaylistId  TrackId</span>
-<span class="go">1   3402</span>
-<span class="go">1   3389</span>
-<span class="go">1   3390</span>
-<span class="go">*/</span>
-<span class="go">Thought: I now know the final answer</span>
-<span class="go">Final Answer: The PlaylistTrack table contains two columns, PlaylistId and TrackId, which are both integers and form a primary key. It also has two foreign keys, one to the Track table    and one to the Playlist table.</span>
-
-<span class="go">&gt; Finished chain.</span>
-</pre></div></td></tr></table></div>
-</blockquote>
-<p><strong>Versatile + Flexible for Your LLM Needs</strong></p>
-<p>If you prefer using the Meta's LLaMA model over OpenAI, more power to you. LangChain can do both and many more. At the time of this writing, the following models are documented: Anthropic, Anthropic Functions, Anyscale, Azure, Azure ML Chat Online Interface, Baidu Qianfan, Bedrock Chat, ERNIE-bot Chat, Fireworks, GCP Vertex API, JinaChat, Konko, LiteLLM, Llama API, MiniMax, Ollama, OpenAI, PromptLayer ChatOpenAI and vLLM Chat.</p>
-<p><strong>Wrapping Up With LangChain</strong></p>
-<p>These examples represent a few things you can do with this popular Python library. You're now a step closer to creating your next AI-infused product or service. No one needs to know it's just a wrapper for OpenAI and LangChain! The library's name makes more sense once you understand a bit of its context as orchestrator. It chains together the pieces of your large language model's parts into a shiny, impressive AI solution.</p>
-<p><strong>Read More:</strong></p>
-<p><a class="reference external" href="https://python.langchain.com/docs/modules/chains/how_to/">LangChain Documentation, Chains How To</a></p>
-<p><a class="reference external" href="https://python.langchain.com/docs/guides/deployments/">LangChain Documentation, Deployments</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/an-introduction-to-the-langchain-python-library.html">posted at 15:15</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-artificial-intelligence-ai.html" rel="tag">coding, programming, python, artificial intelligence, AI</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/python-large-language-models.html" class="tags">python large language models</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-llm.html" class="tags">python LLM</a>
-                    &nbsp;<a href="https://lofipython.com/tag/langchain-python-introduction.html" class="tags">langchain python introduction</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-llm-orchestration.html" class="tags">python LLM orchestration</a>
                 </div>
             </article>
 
