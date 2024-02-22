@@ -152,3 +152,5 @@ Happy webmentioning!
 `Webmention.io Github <https://github.com/aaronpk/webmention.io>`__
 
 `Webmention.Rocks <Webmention.Rocks>`__
+
+`Sending Your First Webmention Guide <https://aaronparecki.com/2018/06/30/11/your-first-webmention>`__

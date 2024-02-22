@@ -33,7 +33,110 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Oct 08, 2022</h4>
+        <div id="content">            <h4 class="date">Oct 10, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-check-github-repo-star-counts-with-python.html" rel="bookmark" title="Permanent Link to &quot;How to Check Github Repo Star Counts With Python&quot;">How to Check Github Repo Star Counts With Python</a>
+                </h2>
+
+                
+                
+
+                <p>Snooping through my package list, I noticed the <a class="reference external" href="https://github.com/PyGithub/PyGithub">PyGithub library</a> was installed. Its repo boasts &quot;Typed interactions with the GitHub API v3&quot;. I googled the package, wanting to check in on the repos I profiled in an <a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/">earlier post about static site generators</a>.</p>
+<p>I drafted the code below after noticing the <a class="reference external" href="https://pygithub.readthedocs.io/en/latest/examples/Repository.html#get-count-of-stars">repo.stargazer_count</a> function in its documentation. This is neat to have if you want to keep tabs on a batch of repos, instead of tediously checking the Github web interface! If you're new to Github, the <a class="reference external" href="https://github.com/trending">trending page</a> is an easy way to find new, interesting repos.</p>
+<p><strong>Getting Started</strong></p>
+<ol class="arabic simple">
+<li>You'll need to create a personal access token for your Github account. See the Github docs, <a class="reference external" href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">&quot;Creating a personal access token&quot;.</a></li>
+<li><a class="reference external" href="https://pypi.org/project/PyGithub/">Install PyGithub</a> and <a class="reference external" href="https://pandas.pydata.org/docs/getting_started/index.html">pandas</a>:</li>
+</ol>
+<pre class="literal-block">
+pip install PyGithub
+pip install pandas
+</pre>
+<ol class="arabic simple" start="3">
+<li>Run the below code as a Python script.</li>
+</ol>
+<pre class="literal-block">
+python github_stars.py
+</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">github</span> <span class="kn">import</span> <span class="n">Github</span>
+
+
+<span class="k">def</span> <span class="nf">stars</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve github repo star count.</span>
+<span class="sd">    Accepts: str, repo &quot;username/repo name&quot;,ex: &quot;getpelican/pelican&quot;</span>
+<span class="sd">    Returns: int, github repo stargazers number&quot;&quot;&quot;</span>
+    <span class="n">repo</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_repo</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">repo</span><span class="o">.</span><span class="n">stargazers_count</span>
+
+
+<span class="c1"># static site repos: http://lofipython.com/a-brief-summary-of-promising-python-static-site-generators/</span>
+<span class="n">urls</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;https://github.com/getpelican/pelican&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://github.com/lektor/lektor&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://github.com/eudicots/Cactus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://github.com/getnikola/nikola&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://github.com/sunainapai/makesite&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://github.com/hyde/hyde&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://github.com/Anomareh/mynt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://github.com/staticjinja/staticjinja&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">repos</span> <span class="o">=</span> <span class="p">[</span><span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;https://github.com/&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">]</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Github</span><span class="p">(</span><span class="s2">&quot;access_token&quot;</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[(</span><span class="n">repo</span><span class="p">,</span> <span class="n">stars</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">g</span><span class="p">))</span> <span class="k">for</span> <span class="n">repo</span> <span class="ow">in</span> <span class="n">repos</span><span class="p">]</span>
+<span class="n">stars_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;repo&quot;</span><span class="p">,</span><span class="s2">&quot;stars&quot;</span><span class="p">])</span>
+<span class="n">stars_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;Stars.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>On Linux, I was able to check the results of the CSV with the cat command:</p>
+<div class="wp-image-7254 figure">
+<img alt="View repo github stars with Python" src="https://pythonmarketer.files.wordpress.com/2022/10/check-pelican.png?w=409" />
+</div>
+<p>I confirmed the API was accurate against the web interface in <a class="reference external" href="https://github.com/getpelican/pelican">pelican's repo</a>!</p>
+<div class="wp-image-7251 figure">
+<img alt="Github browser UX" src="https://pythonmarketer.files.wordpress.com/2022/10/pelican-stars.png?w=1024" />
+</div>
+<p><a class="reference external" href="https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html#github.Repository.Repository.stargazers_count">Github Repo Stargazer API Reference</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-check-github-repo-star-counts-with-python.html">posted at 00:08</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-programming-python.html" rel="tag">APIs, coding, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/github-api.html" class="tags">github api</a>
+                    &nbsp;<a href="https://lofipython.com/tag/github-stars-python.html" class="tags">github stars python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/repo-star-counts.html" class="tags">repo star counts</a>
+                </div>
+            </article>            <h4 class="date">Oct 08, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -489,33 +592,6 @@ Like static site generators? Check out <a class="reference external" href="https
                     &nbsp;&middot;
                     &nbsp;<a href="https://lofipython.com/tag/growth.html" class="tags">growth</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                </div>
-            </article>            <h4 class="date">Mar 31, 2022</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/documentation-is-the-gateway-to-delegation.html" rel="bookmark" title="Permanent Link to &quot;Documentation is the Gateway to Delegation&quot;">Documentation is the Gateway to Delegation</a>
-                </h2>
-
-                
-                
-
-                <p>The first step to offloading a task is writing down how to complete it. Once the process is typed into a lean text file or wiki page, it can be learned by another human. This helps your team, but what's in it for you?</p>
-<div class="wp-image-6962 figure">
-<img alt="The definition of delegation" src="https://pythonmarketer.files.wordpress.com/2022/03/image_editor_output_image-551860623-1648785644967.jpg?w=720" />
-</div>
-<p>The most selfish programmers probably want to free up their time to focus on more interesting work instead of repetitive processes and maintenance. Therefore, the most selfish programmers should love writing documentation. These types of tasks are somewhat unavoidable, so committing to writing documentation will help you push it over to your teammates.</p>
-<p>Write to free yourself of your laundry list of recurring tasks. It's the first step to someone else to be able to step in for you or to delegate to someone else completely. On the plus side, you'll be less reliant on your meaty human brain to remember how to do it. Be selfish, take time to write down how to do your work!</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/documentation-is-the-gateway-to-delegation.html">posted at 23:07</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/productivity-programming-writing.html" rel="tag">productivity, programming, writing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/delegation.html" class="tags">delegation</a>
-                    &nbsp;<a href="https://lofipython.com/tag/documentation.html" class="tags">documentation</a>
-                    &nbsp;<a href="https://lofipython.com/tag/technical-writing.html" class="tags">technical writing</a>
                 </div>
             </article>
 

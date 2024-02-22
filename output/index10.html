@@ -33,7 +33,182 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Nov 25, 2018</h4>
+        <div id="content">            <h4 class="date">Feb 12, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/lightning-scripts-%e2%9a%a1.html" rel="bookmark" title="Permanent Link to &quot;Lightning Scripts ⚡&quot;">Lightning Scripts ⚡</a>
+                </h2>
+
+                
+                
+
+                <p>You may or may not be familiar with <a class="reference external" href="https://www.youtube.com/channel/UCsX05-2sVSH7Nx3zuk3NYuQ">PyCon</a>'s <a class="reference external" href="https://pyvideo.org/pycon-us-2010/pycon-2010--plenary--saturday-evening-lightning-t.html">Lightning Talks</a>, a session of quick hitter talks given each year on a variety of topics. These &quot;Lightning Scripts&quot; are ten of my favorite Python scripts that have served me well as of late to perform a variety of tasks.</p>
+<p>Highlights include the glob, os, calendar, webbrowser and pandas modules. Plus, how to convert a dataframe into a pdf and how to take a snapshot of a website with pdfkit. The webpage pdf was not the greatest snapshot in some cases, but did capture text and many of a live website's visual elements.</p>
+<p>If you have Python installed, paste the script into a text editor and run your .py file from the command line or however you like to run your scripts. You may have to change file paths to work on your operating system.</p>
+<div class="section" id="the-first-5-scripts-use-modules-that-ship-with-python">
+<h2>The first 5 scripts use modules that ship with Python.</h2>
+<p><strong>(1) Uppercase all of the file names in the current working directory.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
+<p>os module <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rename">documentation</a></p>
+<p><strong>(2) Get all filenames in the current directory and write to a text file.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">folder_contents</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;list_of_dir_files.txt&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">folder_contents</span><span class="p">:</span>
+        <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;f</span><span class="si">{item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>(3) Check what day of the week is today.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">calendar</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">calendar</span><span class="o">.</span><span class="n">day_name</span><span class="p">[</span><span class="n">today</span><span class="o">.</span><span class="n">weekday</span><span class="p">()]</span> <span class="o">==</span> <span class="s1">&#39;Friday&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is Friday.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is not Friday.&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><a class="reference external" href="https://docs.python.org/3/library/calendar.html">calendar documentation</a></p>
+<p><strong>(4) Get the two most recent file names from a directory. This is a Windows file path example. I have escaped the backslashes below to make it work in my Atom text editor.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="c1"># getctime == by created date, getmtime == by date modified</span>
+<span class="c1"># get all files, regardless of extension</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s1">/Desktop/&#39;</span>
+<span class="n">list_of_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+<span class="n">newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:/Users/your_username/Desktop/*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">second_newest_file</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s1">&#39;C:/Users/your_username/Desktop/*.csv&#39;</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newest_file</span><span class="p">,</span> <span class="n">second_newest_file</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>glob module documentation: <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.iglob">https://docs.python.org/3/library/glob.html#glob.iglob</a></p>
+<p><strong>(5)  Auto-Hamilton Ticket Lottery</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;https://www.luckyseat.com/hamilton-chi/&#39;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>webbrowser PMOTW: <a class="reference external" href="https://pymotw.com/3/webbrowser">https://pymotw.com/3/webbrowser</a></p>
+</div>
+<div class="section" id="to-run-the-next-3-scripts-install-pandas">
+<h2>To Run The Next 3 Scripts, install pandas:</h2>
+<pre class="literal-block">
+python -m pip install pandas
+</pre>
+<p><strong>(6) Split a csv file into smaller excel files.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;big_file.csv&#39;</span>
+<span class="c1"># slice off extension</span>
+<span class="n">src_file_minus_ext</span> <span class="o">=</span> <span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">250000</span><span class="p">)):</span>
+    <span class="n">csv</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">src_file_minus_ext</span><span class="si">}{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s1">.csv&#39;</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>pandas beginner tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw">https://www.youtube.com/watch?v=5JnMutdy6Fw</a></p>
+<p><strong>(7) Convert a .xlsx to .csv</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>(8) Convert a .xlsx to .html</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;data.xlsx&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="s2">&quot;data.html&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+</div>
+<div class="section" id="to-run-the-last-two-scripts-install-pdfkit">
+<h2>To Run The Last Two Scripts, install pdfkit:</h2>
+<p>pdfkit relies on another library, wkhtmltopdf, which adds an extra wrinkle to setting it up for Windows users. I've laid out the differences between using pdfkit for Windows vs. Ubuntu below.</p>
+<pre class="literal-block">
+python -m pip install pdfkit
+</pre>
+<p><strong>installing wkhtmltopdf on Windows</strong></p>
+<p>To use pdfkit on Windows, go to the link, choose your version to download. This installs a Windows executable that pdfkit needs to find to work.</p>
+<pre class="literal-block">
+https://wkhtmltopdf.org/downloads.html
+</pre>
+<p><strong>installing wkhtmltopdf on Ubuntu</strong></p>
+<pre class="literal-block">
+sudo apt-get install wkhtmltopdf
+
+
+**For Windows, **\ `download wkhtmltopdf &lt;https://wkhtmltopdf.org/downloads.html&gt;`__\ ** and add this config patch for pdfkit:**
+</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">pdfkit</span><span class="o">.</span><span class="n">configuration</span><span class="p">(</span><span class="n">wkhtmltopdf</span><span class="o">=</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Program Files</span><span class="se">\\</span><span class="s1">wkhtmltopdf</span><span class="se">\\</span><span class="s1">bin</span><span class="se">\\</span><span class="s1">wkhtmltopdf.exe&#39;</span><span class="p">)</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;webpage.pdf&#39;</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>4 Convert a .html file to .pdf. (Add config patch above for Windows.)</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data.html&#39;</span><span class="p">,</span> <span class="s1">&#39;report.pdf&#39;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>5 Create a pdf snapshot of a webpage on Ubuntu below. (Add config patch above for Windows.)</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.hollywoodreporter.com/news/grammys-alicia-keys-best-moments-as-host-1185013&#39;</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;alicia_keys.pdf&#39;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>pdfkit documentation: <a class="reference external" href="https://pypi.org/project/pdfkit/">https://pypi.org/project/pdfkit/</a></p>
+<p><strong>Final Thoughts</strong></p>
+<p>I am very pleased with pdfkit. I am also toying around with Python's PyFPDF: <a class="reference external" href="https://pyfpdf.readthedocs.io/en/latest/index.html">https://pyfpdf.readthedocs.io/en/latest/index.html</a> and PyPDF2: <a class="reference external" href="https://pythonhosted.org/PyPDF2">https://pythonhosted.org/PyPDF2</a> libraries. Together, these three offer some unique abilities for creating and manipulating pdf files. And the pandas library is amazing for reading and writing tabular data sheets, can't say enough great things about pandas. Worth the time. Hope you enjoyed these Lightning Scripts :)</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/lightning-scripts-%e2%9a%a1.html">posted at 06:27</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-pandas-productivity-programming-scripts.html" rel="tag">automation, coding, pandas, productivity, programming, Scripts</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/alicia-keys.html" class="tags">alicia keys</a>
+                    &nbsp;<a href="https://lofipython.com/tag/code.html" class="tags">code</a>
+                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://lofipython.com/tag/hamilton.html" class="tags">hamilton</a>
+                    &nbsp;<a href="https://lofipython.com/tag/lightning-scripts.html" class="tags">lightning scripts</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>            <h4 class="date">Nov 25, 2018</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1390,108 +1565,6 @@ with open(&quot;Notes.txt&quot;, &quot;w&quot;) as fhand:
                     &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
-                </div>
-            </article>            <h4 class="date">Aug 09, 2017</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html" rel="bookmark" title="Permanent Link to &quot;Creating A Simple Website and Server Environment with Node.js and Express.js&quot;">Creating A Simple Website and Server Environment with Node.js and Express.js</a>
-                </h2>
-
-                
-                
-
-                <p>Here is what I have deduced is the fastest way to get an app up and
-running with Node.js. This requires some familiarity with using the
-command line. I completed the Codeacademy course &quot;<a class="reference external" href="https://www.codecademy.com/learn/learn-the-command-line">Learn The Command
-Line</a>&quot;
-before beginning with Node.js. I think it helped me better understand
-what the commands are and what they do.</p>
-<p>Download and install <a class="reference external" href="https://nodejs.org/en/">Node.JS</a> Open the node
-command prompt. This was done on a windows machine.</p>
-<p>First, create a folder for your app(s):</p>
-<pre class="code literal-block">
-mkdir node_apps
-</pre>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<div class="line-block">
-<div class="line">Change the command prompt directory to your app's folder:</div>
-</div>
-<pre class="code literal-block">
-cd \app_name
-</pre>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<div class="line-block">
-<div class="line">Creates json file for your app. Fill out applicable info or just hit enter until the file is created.</div>
-</div>
-<pre class="code literal-block">
-npm init
-</pre>
-<p>Install express.js module in node.js:</p>
-<pre class="code literal-block">
-npm install express
-</pre>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<div class="line-block">
-<div class="line">Install express-generator module in node.js:</div>
-</div>
-<pre class="code literal-block">
-npm install express-generator -g
-</pre>
-<p>Create the structure for your app and all necessary folders. (views,
-css, Javascript, routing, etc.)</p>
-<pre class="code literal-block">
-express app_name
-</pre>
-<p>Ensure all app module dependencies are installed:</p>
-<pre class="code literal-block">
-npm install
-</pre>
-<p>Start your server and web app:</p>
-<pre class="code literal-block">
-npm start
-</pre>
-<p>Go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> in a browser. Port 3000 is the default port
-of Express. Your app is live in dev environment.</p>
-<p><strong>Notes</strong></p>
-<ul class="simple">
-<li>I learned most of this from <a class="reference external" href="https://codeforgeek.com/2014/10/express-complete-tutorial-part-1/">this great blog post</a>.</li>
-<li>The above does not include a database integration. I integrated with
-a MongoDB database by <a class="reference external" href="https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-for-front-end-developers-to-getting-up-and-running-with-nodejs-express-and-mongodb">following the instructions in this post</a>.</li>
-<li>This <a class="reference external" href="https://www.youtube.com/watch?v=1uFY60CESlM">YouTube video</a>
-was also very helpful to me for figuring out MongoDB and Node.js
-integration.</li>
-<li>An HTML shorthand language called jade (aka pug) comes stock within
-Express.js. <a class="reference external" href="https://webapplog.com/jade/">Here's further reading</a>
-on the pros and cons.</li>
-<li>All of the above has been from my own studies. I do not claim
-anything listed as the most efficient or best way to use Node.js.
-This is what has worked for me over the past two days.</li>
-<li>It feels good to whip up a nimble app environment that is capable of
-producing and supporting world changing software; Node.js is used by
-Netflix, PayPal, Microsoft and Uber.</li>
-</ul>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html">posted at 21:16</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-javascript-programming-web-development.html" rel="tag">coding, javascript, programming, web development</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
-                    &nbsp;<a href="https://lofipython.com/tag/creating-websites.html" class="tags">creating websites</a>
-                    &nbsp;<a href="https://lofipython.com/tag/expressjs.html" class="tags">express.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/mongodb.html" class="tags">mongodb</a>
-                    &nbsp;<a href="https://lofipython.com/tag/nodejs.html" class="tags">Node.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web-dev.html" class="tags">web
-dev</a>
-                    &nbsp;<a href="https://lofipython.com/tag/website.html" class="tags">website</a>
                 </div>
             </article>
 

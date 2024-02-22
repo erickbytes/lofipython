@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-21T15:37:00-06:00</updated><entry><title>Passing the Webmention Rocks! Webmention Update Test With curl and Setting Up a Webmention.io Endpoint</title><link href="https://lofipython.com/passing-the-webmention-rocks-webmention-update-test-with-curl.html" rel="alternate"></link><published>2024-02-21T15:37:00-06:00</published><updated>2024-02-21T15:37:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-21:/passing-the-webmention-rocks-webmention-update-test-with-curl.html</id><summary type="html">&lt;p&gt;After discovering Webmentions via a &lt;a class="reference external" href="https://localghost.dev/blog/sending-webmentions-from-a-static-site/"&gt;helpful blog post about sending webmentions&lt;/a&gt;,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-22T12:55:00-06:00</updated><entry><title>Fixing INSTALL_IMAGE_LOADER_TIMED_OUT Error 52 on Crostini Linux Terminal for Chromebook</title><link href="https://lofipython.com/fixing-install_image_loader_timed_out-on-crostini-linux-chromebook-terminal.html" rel="alternate"></link><published>2024-02-22T12:55:00-06:00</published><updated>2024-02-22T12:55:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-22:/fixing-install_image_loader_timed_out-on-crostini-linux-chromebook-terminal.html</id><summary type="html">&lt;p&gt;When booting up the Ubuntu shell on my Chromebook, it usually just works. However, After I updated
+to a new version of Chromebook OS, I was getting this error:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;vmshell failed:&lt;/dt&gt;
+&lt;dd&gt;&lt;dl class="first last docutils"&gt;
+&lt;dt&gt;Error starting crostini for terminal:&lt;/dt&gt;
+&lt;dd&gt;52 (INSTALL_IMAGE_LOADER_TIMED_OUT)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;First, I restarted my Chromebook but the error persisted after restarting. So …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When booting up the Ubuntu shell on my Chromebook, it usually just works. However, After I updated
+to a new version of Chromebook OS, I was getting this error:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;vmshell failed:&lt;/dt&gt;
+&lt;dd&gt;&lt;dl class="first last docutils"&gt;
+&lt;dt&gt;Error starting crostini for terminal:&lt;/dt&gt;
+&lt;dd&gt;52 (INSTALL_IMAGE_LOADER_TIMED_OUT)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;First, I restarted my Chromebook but the error persisted after restarting. So I turned to Bing Copilot:&lt;/p&gt;
+&lt;img alt="asking bing how to fix crostini error code 52" src="https://lofipython.com/images/bing-restart-crostini.png" /&gt;
+&lt;p&gt;source: &lt;a class="reference external" href="bing.com"&gt;Bing&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Open Crosh: ctrl + alt + T&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Stop The Termina Container in Crosh&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;vmc stop termina&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Start The Termina Container in Crosh&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;vmc start termina&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;The vmc command is used to manage Linux containers from Crosh. After I entered these two vmc commands,
+the error was resolved. My Crostini Linux shell is functional again!&lt;/p&gt;
+</content><category term="programming, linux, shell"></category><category term="chromebook crostini error fix"></category><category term="solving image loader timed out error"></category><category term="restart chromebook linux container"></category></entry><entry><title>Passing the Webmention Rocks! Webmention Update Test With curl and Setting Up a Webmention.io Endpoint</title><link href="https://lofipython.com/passing-the-webmention-rocks-webmention-update-test-with-curl.html" rel="alternate"></link><published>2024-02-21T15:37:00-06:00</published><updated>2024-02-21T15:37:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-21:/passing-the-webmention-rocks-webmention-update-test-with-curl.html</id><summary type="html">&lt;p&gt;After discovering Webmentions via a &lt;a class="reference external" href="https://localghost.dev/blog/sending-webmentions-from-a-static-site/"&gt;helpful blog post about sending webmentions&lt;/a&gt;,
 I wondered how I might be able to achieve sending and receiving them from my Pelican blog. I discovered the
 &lt;a class="reference external" href="Webmention.Rocks"&gt;Webmention Rocks!&lt;/a&gt; website and the &lt;a class="reference external" href="https://www.w3.org/TR/webmention/"&gt;Webmention Protocol&lt;/a&gt;.
 Webmentions are a standard for sending notification of linkbacks, likes, comments and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;After discovering Webmentions via a &lt;a class="reference external" href="https://localghost.dev/blog/sending-webmentions-from-a-static-site/"&gt;helpful blog post about sending webmentions&lt;/a&gt;,
@@ -97,6 +135,7 @@ the Webmention.io dashboard or with curl.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://indieweb.org/Webmention"&gt;Webmention Wiki&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://github.com/aaronpk/webmention.io"&gt;Webmention.io Github&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="Webmention.Rocks"&gt;Webmention.Rocks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://aaronparecki.com/2018/06/30/11/your-first-webmention"&gt;Sending Your First Webmention Guide&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="coding, programming, curl, webmentions, blogging"></category><category term="webmention protocol"></category><category term="implementing webmentions on a blog"></category><category term="receiving webmentions with webmention.io"></category><category term="testing webmentions"></category><category term="sending webmentions"></category></entry><entry><title>Make Your Python Installs Faster With uv</title><link href="https://lofipython.com/make-your-python-installs-faster-with-uv.html" rel="alternate"></link><published>2024-02-16T12:33:00-06:00</published><updated>2024-02-16T12:33:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-16:/make-your-python-installs-faster-with-uv.html</id><summary type="html">&lt;p&gt;For several years, &lt;a class="reference external" href="https://pip.pypa.io/en/stable/"&gt;pip&lt;/a&gt; and &lt;a class="reference external" href="https://pypi.org/project/pip-tools/"&gt;pip-tools&lt;/a&gt; have become distinguished in Python packaging
 for their usability and ubiquity. Recently there has been some interesting new developments
@@ -8146,84 +8185,4 @@ with open(&amp;quot;Notes.txt&amp;quot;, &amp;quot;w&amp;quot;) as fhand:
 &lt;p&gt;&lt;strong&gt;In line 4&lt;/strong&gt;, we are closing the file, completing the creation of our new file in the same folder as our .py program file.&lt;/p&gt;
 &lt;p&gt;Your program is now ready to be run. Double-click your .py file to execute it.&lt;/p&gt;
 &lt;p&gt;Before learning Python, file operations were a mystery to me. It took me a while to understand this clearly, and I wanted to share. Once you master these basic file operations, programming gets to be a lot more fun. Do try it out for yourself :D&lt;/p&gt;
-</content><category term="coding, programming"></category><category term="data"></category><category term="python"></category><category term="software"></category></entry><entry><title>Creating A Simple Website and Server Environment with Node.js and Express.js</title><link href="https://lofipython.com/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html" rel="alternate"></link><published>2017-08-09T21:16:00-05:00</published><updated>2017-08-09T21:16:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2017-08-09:/creating-a-simple-website-and-server-environment-with-node-js-and-express-js.html</id><summary type="html">&lt;p&gt;Here is what I have deduced is the fastest way to get an app up and
-running with Node.js. This requires some familiarity with using the
-command line. I completed the Codeacademy course &amp;quot;&lt;a class="reference external" href="https://www.codecademy.com/learn/learn-the-command-line"&gt;Learn The Command
-Line&lt;/a&gt;&amp;quot;
-before beginning with Node.js. I think it helped me better understand …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is what I have deduced is the fastest way to get an app up and
-running with Node.js. This requires some familiarity with using the
-command line. I completed the Codeacademy course &amp;quot;&lt;a class="reference external" href="https://www.codecademy.com/learn/learn-the-command-line"&gt;Learn The Command
-Line&lt;/a&gt;&amp;quot;
-before beginning with Node.js. I think it helped me better understand
-what the commands are and what they do.&lt;/p&gt;
-&lt;p&gt;Download and install &lt;a class="reference external" href="https://nodejs.org/en/"&gt;Node.JS&lt;/a&gt; Open the node
-command prompt. This was done on a windows machine.&lt;/p&gt;
-&lt;p&gt;First, create a folder for your app(s):&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-mkdir node_apps
-&lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Change the command prompt directory to your app's folder:&lt;/div&gt;
-&lt;/div&gt;
-&lt;pre class="code literal-block"&gt;
-cd \app_name
-&lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Creates json file for your app. Fill out applicable info or just hit enter until the file is created.&lt;/div&gt;
-&lt;/div&gt;
-&lt;pre class="code literal-block"&gt;
-npm init
-&lt;/pre&gt;
-&lt;p&gt;Install express.js module in node.js:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-npm install express
-&lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Install express-generator module in node.js:&lt;/div&gt;
-&lt;/div&gt;
-&lt;pre class="code literal-block"&gt;
-npm install express-generator -g
-&lt;/pre&gt;
-&lt;p&gt;Create the structure for your app and all necessary folders. (views,
-css, Javascript, routing, etc.)&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-express app_name
-&lt;/pre&gt;
-&lt;p&gt;Ensure all app module dependencies are installed:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-npm install
-&lt;/pre&gt;
-&lt;p&gt;Start your server and web app:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-npm start
-&lt;/pre&gt;
-&lt;p&gt;Go to &lt;a class="reference external" href="http://localhost:3000"&gt;http://localhost:3000&lt;/a&gt; in a browser. Port 3000 is the default port
-of Express. Your app is live in dev environment.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;I learned most of this from &lt;a class="reference external" href="https://codeforgeek.com/2014/10/express-complete-tutorial-part-1/"&gt;this great blog post&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;The above does not include a database integration. I integrated with
-a MongoDB database by &lt;a class="reference external" href="https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-for-front-end-developers-to-getting-up-and-running-with-nodejs-express-and-mongodb"&gt;following the instructions in this post&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;This &lt;a class="reference external" href="https://www.youtube.com/watch?v=1uFY60CESlM"&gt;YouTube video&lt;/a&gt;
-was also very helpful to me for figuring out MongoDB and Node.js
-integration.&lt;/li&gt;
-&lt;li&gt;An HTML shorthand language called jade (aka pug) comes stock within
-Express.js. &lt;a class="reference external" href="https://webapplog.com/jade/"&gt;Here's further reading&lt;/a&gt;
-on the pros and cons.&lt;/li&gt;
-&lt;li&gt;All of the above has been from my own studies. I do not claim
-anything listed as the most efficient or best way to use Node.js.
-This is what has worked for me over the past two days.&lt;/li&gt;
-&lt;li&gt;It feels good to whip up a nimble app environment that is capable of
-producing and supporting world changing software; Node.js is used by
-Netflix, PayPal, Microsoft and Uber.&lt;/li&gt;
-&lt;/ul&gt;
-</content><category term="coding, javascript, programming, web development"></category><category term="command line"></category><category term="creating websites"></category><category term="express.js"></category><category term="mongodb"></category><category term="Node.js"></category><category term="web&#10;dev"></category><category term="website"></category></entry></feed>
+</content><category term="coding, programming"></category><category term="data"></category><category term="python"></category><category term="software"></category></entry></feed>
