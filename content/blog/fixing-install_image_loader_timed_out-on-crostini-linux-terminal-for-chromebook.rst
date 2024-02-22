@@ -1,9 +1,9 @@
 Fixing INSTALL_IMAGE_LOADER_TIMED_OUT Error 52 on Crostini Linux Terminal for Chromebook
 ########################################################################################
-:date: 2024-02-22 12:55
+:date: 2024-02-22 13:22
 :author: lofipython
 :category: programming, linux, shell
-:tags: chromebook crostini error fix, solving image loader timed out error, restart chromebook linux container
+:tags: troubleshooting chromebook crostini error 52, solving image loader timed out error, restart chromebook linux container
 :slug: fixing-install_image_loader_timed_out-on-crostini-linux-chromebook-terminal
 :status: published
 
