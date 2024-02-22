@@ -70,11 +70,11 @@ and select "Copy Link Address" to copy the full url of the endpoint.
 
    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "source=https://yourblog.com/example-post&target=https://webmention.rocks/update/1" https://webmention.rocks/update/1/part/1/webmention?key=UjJPJoDWZateFb7bTAhB -v
 
-In the curl request, edit the "source" with your blog post containing the link and "target" 
-with your endpoint. You'll need to change the "key" url argument. The Webmention Rocks! endpoint 
-changes the live key rapidly, about every 30 seconds. In curl, you can pass the -v argument 
-for more verbose output.
 
+In the curl request, edit the "source" with your blog post containing the link and "target" 
+with the target Webmention endpoint. You'll need to change the "key" url argument. The Webmention Rocks! 
+endpoint changes the live key rapidly, about every 30 seconds. In curl, you can pass the -v argument 
+for more verbose output.
 
 **Add URL Link to HTML for Part 2 of the Test**
 
@@ -128,7 +128,7 @@ First, add the Github HTML link to your website identify yourself to webmention.
   :width: 400px
 
 Once you successfully connect your Github account to webmention.io, you can copy your HTML code 
-from the webmentio.io dashboard to your website HTML:
+from the webmention.io dashboard to your website HTML:
 
 .. code:: html
    
