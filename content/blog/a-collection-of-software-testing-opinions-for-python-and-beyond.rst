@@ -17,7 +17,7 @@ Over several years as a programmer, I've slowly grasped the landscape of testing
 
    Joel Spolsky, `Stack Overflow Podcast #38 <https://www.joelonsoftware.com/2009/01/>`__
 
-Implementing software tests is a best practice for maintaining code, but seems ambiguous to someone who has not tested any code before. I guess the best way is to `read open source projects with test suites <https://github.com/iodide-project/pyodide/tree/master/test>`__, but those can be tough to find. How do you know `a good test suite <https://docs.python-guide.org/writing/reading/>`__ when you see it? Maybe the maintainers went rogue and off the deep end with tests. Online, everybody says you should test your code, `is the emperor wearing any clothes? <https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes>`__
+Implementing software tests is a best practice for maintaining code, but seems ambiguous to someone who has not tested any code before. I guess the best way is to `read open source projects with test suites <https://github.com/iodide-project/pyodide/tree/main/test>`__, but those can be tough to find. How do you know `a good test suite <https://docs.python-guide.org/writing/reading/>`__ when you see it? Maybe the maintainers went rogue and off the deep end with tests. Online, everybody says you should test your code, `is the emperor wearing any clothes? <https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes>`__
 
 As a beginner stumbling across articles on testing, these questions were tough to answer. As with most things in programming, figuring out the right question to ask is a challenge in itself. `Codeacademy <https://www.codecademy.com/learn/learn-python-3>`__ and `Coursera <https://www.coursera.org/specializations/python>`__ never mentioned anything about writing tests. On the other hand, `Django <https://docs.djangoproject.com/en/2.2/intro/tutorial05/>`__ includes testing in its tutorial and documentation. Also, most languages come with built-in testing tools. Python has the `unittest <https://docs.python.org/3/library/unittest.html>`__ library.
 
@@ -57,7 +57,7 @@ This is where the Python hits the pavement. Unit tests are generally liked, alth
 
 ..
 
-   Tests start to lose signal when `Mock <https://docs.python.org/3/library/unittest.mock.html>`__ becomes routine instead of a reluctant workaround. - Brandon Rhodes, `When Python Practices Go Wrong <http://S0No2zSJmks>`__
+   Tests start to lose signal when `Mock <https://docs.python.org/3/library/unittest.mock.html>`__ becomes routine instead of a reluctant workaround. - Brandon Rhodes, `When Python Practices Go Wrong <https://www.youtube.com/watch?v=S0No2zSJmks>`__
 
 **Testing in Python \\ General Unit Testing Ideas**
 
@@ -100,14 +100,13 @@ Assertions are generally accepted as welcome additions to your code.
 
 -  `Use of Assertions <https://blog.regehr.org/archives/1091>`__
 -  `Fuzzers Love Assertions <http://www.squarefree.com/2014/02/03/fuzzers-love-assertions/>`__
--  `Code Carabiners <http://pgbovine.net/code-carabiners.htm>`__
 -  `pytest Assertions <https://docs.pytest.org/en/latest/assert.html#assert>`__
 
 ..
 
    In reality, the safety and restraints that these code carabiners provide actually give you **more freedom** to take risks in your coding. If you want to try out some risky feature, refactoring, or external library, you know something is wrong as soon as one of your assertions or tests fail and can undo back to an earlier working state.
 
-   Phillip J. Guo, `Code Carabiners <http://pgbovine.net/code-carabiners.htm>`__
+   Phillip J. Guo, Code Carabiners, (Link Broken)
 
 **Test Driven Development**
 
@@ -199,6 +198,6 @@ Opinions vary widely on the merits and appropriate application of TDD. I'm admit
 | ``pytest test_file_date.py``
 
 | **Conclusion**
-| I write programs for personal productivity and to `automate processes <https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/>`__ at my company. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.
+| I write programs for personal productivity and to `automate processes <https://lofipython.com/automated-python-with-windows-task-scheduler/>`__. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.
 
 It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.

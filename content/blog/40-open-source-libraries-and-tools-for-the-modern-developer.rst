@@ -20,7 +20,7 @@ I enjoy finding and cataloging new packages as much as using them sometimes. Som
 #. `curl-impersonate <https://github.com/lwthiker/curl-impersonate>`__: a special build of curl that can impersonate Chrome and Firefox browsers
 #. `jq <https://stedolan.github.io/jq/>`__: touted JSON processor command line tool
 #. `jc <https://github.com/kellyjonbrazil/jc>`__: CLI tool and Python library that converts out of popular command line tools to other formats
-#. `JSONView <https://chrome.google.com/webstore/detail/jsonview/gmegofmjomhknnokphhckolhcffdaihd>`__: a Chrome web extension that applies syntax highlighting and folding to JSON in your browser, written in Typescript
+#. `JSONView <https://chromewebstore.google.com/detail/jsonview/gmegofmjomhknnokphhckolhcffdaihd>`__: a Chrome web extension that applies syntax highlighting and folding to JSON in your browser, written in Typescript
 #. `thug <https://github.com/buffer/thug>`__: a Python based "honey client", used to mimic user behavior in a web browser in order to detect and emulate malicious content
 #. `OpenTelemetry <https://opentelemetry.io/docs/concepts/what-is-opentelemetry/>`__: open source tracing and monitoring app
 #. `nocodb <https://github.com/nocodb/nocodb>`__: an open source airtable alternative

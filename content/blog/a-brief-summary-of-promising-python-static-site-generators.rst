@@ -32,7 +32,7 @@ Intriguing CMS project touting a "Python API", `plugins for tools like Webpack <
 
 **Cactus** \| `Github - 3.5K stars <https://github.com/eudicots/Cactus>`__
 
-"Simple but powerful `static website generator <http://mickgardner.com/2011/04/27/An-Introduction-To-Static-Site-Generators.html>`__ using Python and the `Django template system <http://docs.djangoproject.com/en/dev/topics/templates/>`__... typical users would be designers that are tech-savvy, want to use templates, but don't like to mess with setting up django or S3." (Mac OS) `Demo Video <https://vimeo.com/46999791>`__
+"Simple but powerful static website generator using Python and the `Django template system <http://docs.djangoproject.com/en/dev/topics/templates/>`__... typical users would be designers that are tech-savvy, want to use templates, but don't like to mess with setting up django or S3." (Mac OS) `Demo Video <https://vimeo.com/46999791>`__
 
 **Nikola** \| `Github - 2.2K stars <https://github.com/getnikola/nikola>`__
 

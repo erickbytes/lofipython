@@ -58,7 +58,7 @@ See which search engines are crawling your blog.
 10. security events log: monitor managed challenges and bots
 11. `browser integrity check <https://developers.cloudflare.com/fundamentals/security/browser-integrity-check/>`__: looks for common http headers abused by spammers 
 12. user agent blocking: blocks users with malicious user agent
-13. `0-RTT Connection Resumption <0-RTT Connection Resumption>`__: enable "0-Round Trip Time", optimized DNS for your blog
+13. `0-RTT Connection Resumption <https://blog.cloudflare.com/introducing-0-rtt>`__: enable "0-Round Trip Time", optimized DNS for your blog
 14. DNS Analytics: see DNS traffic visualizations
 15. `Onion Routing <https://developers.cloudflare.com/support/firewall/learn-more/understanding-cloudflare-tor-support-and-onion-routing/#onion-routing>`__: serve your website's content in a tor-friendly way
 

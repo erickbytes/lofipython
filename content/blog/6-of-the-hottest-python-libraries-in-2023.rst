@@ -10,7 +10,7 @@
 Here's a short list of Python packages making a splash this year:
 
 -  `pyscript <https://pyscript.net/>`__: execute Python code in your web browser
--  `ruff <https://github.com/charliermarsh/ruff>`__: code linting package built with Rust and Python
+-  `ruff <https://github.com/astral-sh/ruff>`__: code linting package built with Rust and Python
 -  `FastAPI <https://fastapi.tiangolo.com/>`__: a rapidly adopted web framework for building APIs
 -  `polars <https://www.pola.rs/>`__: high performance pandas drop in replacement, also built with Rust and Python
 -  `buzz <https://github.com/chidiwilliams/buzz>`__: Python package that accesses the Whisper API's text transcription of audio
