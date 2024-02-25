@@ -95,4 +95,4 @@ My Facebook page posts are now triggered by page loads on this `website <https:/
 -  `FB Permissions Reference <https://developers.facebook.com/docs/permissions/reference>`__
 -  `Debugging Tokens <https://developers.facebook.com/docs/facebook-login/access-tokens/debugging-and-error-handling/>`__
 -  `FB API Publishing <https://developers.facebook.com/docs/pages/publishing/>`__
--  `A Guide to Tackling APIs <https://pythonmarketer.wordpress.com/2020/05/18/how-to-make-json-requests-with-python/>`__, written by me!
+-  `A Guide to Tackling APIs <https://lofipython.com/how-to-make-json-requests-with-python/>`__, written by me!

@@ -27,4 +27,5 @@ Thank you for reading,
 
 Erick
 
-\*At the time I wrote this, I worked in a non-techincal marketing role. I've since moved into a role where I use Python nearly every day. If you're wondering how, I use `Pandas <https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/>`__, `Requests <https://2.python-requests.org/en/master/>`__ and Excel a lot at my current gig.
+\*At the time I wrote this, I worked in a non-techincal marketing role. I've since moved into a role where I use Python nearly every day. 
+If you're wondering how, I use `Pandas <https://lofipython.com/pandas-pythons-excel-powerhouse/>`__, `Requests <https://requests.readthedocs.io/en/latest/api>`__ and Excel a lot at my current gig.

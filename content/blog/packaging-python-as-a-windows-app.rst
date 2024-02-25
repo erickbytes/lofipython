@@ -7,7 +7,9 @@ Packaging Python as a Windows App via Pyinstaller
 :slug: packaging-python-as-a-windows-app
 :status: published
 
-My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller. It worked on my Windows 7 PC. My program used a `Gooey GUI <https://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/>`__, but many of the popular Python GUI libraries work as well.
+My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller. 
+It worked on my Windows 7 PC. My program used a `Gooey GUI <https://lofipython.com/gooey-gui-for-python-scripts/>`__, but many of the popular 
+Python GUI libraries work as well.
 
 **Installation:**
 
@@ -47,7 +49,8 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 
 **Flushing sys.stdout/Python printing for Windows:**
 
-Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen(). This was contrary to `Gooey's instructions <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__.
+Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen(). 
+This was contrary to `Gooey's instructions <https://chriskiehl.com/article/packaging-gooey-with-pyinstaller>`__.
 
 .. code-block:: python
 
@@ -79,7 +82,9 @@ In order to run on any user's system, we need to grab their local file paths. I 
    hiddenimports=['pandas._libs.tslibs.timedeltas','pandas._libs.tslibs.nattype',
    'pandas._libs.tslibs.np_datetime','pandas._libs.skiplist']
 
-2. The Gooey library needs some special code added to the build.spec for its images and languages data. More details are found in this `blog post <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__, written by the author of the Gooey library.
+2. The Gooey library needs some special code added to the build.spec for its images and languages data. 
+More details are found in this `blog post <https://chriskiehl.com/article/packaging-gooey-with-pyinstaller>`__, 
+written by the author of the Gooey library.
 
 .. image:: https://pythonmarketer.files.wordpress.com/2018/11/will_ferrell_composure.jpg
    :alt: Will Ferrell Old School
@@ -95,7 +100,7 @@ Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn'
 
 #. Pyinstaller Github - `If Things Go Wrong <https://github.com/pyinstaller/pyinstaller/wiki/If-Things-Go-Wrong>`__
 #. Pyinstaller Documentation:`Using Pyinstaller Arguments <https://pyinstaller.readthedocs.io/en/stable/usage.html>`__
-#. `Gooey Pyinstaller Instructions <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__
+#. `Gooey Pyinstaller Instructions <https://chriskiehl.com/article/packaging-gooey-with-pyinstaller>`__
 #. `Pandas hiddenimports Discussion <https://github.com/pyinstaller/pyinstaller/issues/3422>`__
 
 **Caveats:**
@@ -110,7 +115,7 @@ Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn'
 
     pip3 install --upgrade pyinstaller
 
-My full build.spec file, modified from `here <http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/>`__ :
+My full build.spec file, modified from `here <https://chriskiehl.com/article/packaging-gooey-with-pyinstaller>`__ :
 
 .. code-block:: python
 

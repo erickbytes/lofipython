@@ -34,7 +34,7 @@ University CS Courses For Free
 
 `CS 4150 Algorithms <https://www.youtube.com/watch?v=9Btjg3I5-Wg>`__, Spring 2020 \| University of Utah
 
-CS 241 System Programming, Spring 2020 [`course wiki <http://cs241.cs.illinois.edu/coursebook/index.html>`__] \| University of Illinois
+CS 241 System Programming, Spring 2020 [`course wiki <https://github.com/illinois-cs241/coursebook>`__] \| University of Illinois
 
 `CS 6120: Advanced Compilers: The Self-Guided Online Course <https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/>`__ \| Cornell University
 

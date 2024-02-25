@@ -84,7 +84,7 @@ As of February 2020, this command `installs pandas version 0.24 with pip <https:
    :width: 676px
    :height: 186px
 
-If pandas is already installed, you can upgrade with `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
+If pandas is already installed, you can upgrade with `pip <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__:
 
  |pip_list| 
 
@@ -337,7 +337,10 @@ First, use `df.copy() <https://pandas.pydata.org/pandas-docs/stable/reference/ap
 
 Execute database queries with `pd.read_sql() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html>`__.
 
-When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like `pyodbc <https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/>`__ or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.
+When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. 
+When combined with DB connection libraries like `pyodbc <https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python/>`__ 
+or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. 
+Pyodbc works on a wide range of other databases also.
 
    uses `pd.Series.isin() <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html>`__ to check if each email is in the DB.
 

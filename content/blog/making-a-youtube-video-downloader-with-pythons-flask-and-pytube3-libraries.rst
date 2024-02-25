@@ -7,13 +7,14 @@ Making A YouTube Video Downloader With Python's Flask and pytube3 Libraries
 :slug: making-a-youtube-video-downloader-with-pythons-flask-and-pytube3-libraries
 :status: published
 
-How do you download YouTube videos? The easiest answer is to google sites like `y2mate <https://y2mate.guru/en8/>`__ that work for downloading videos. But then I thought, I wonder if I can make something?
+How do you download YouTube videos? The easiest answer is to google sites that have youtube downloader videos. 
+But then I thought, I wonder if I can make something?
 
 Boredom, my curiosity and some googling turned up the `pytube3 library <https://github.com/get-pytube/pytube3>`__, "A lightweight, dependency-free Python 3 library (and command-line utility) for downloading YouTube Videos." Lo and behold, 3 hours of experimentation later, I made a video downloader with Python. 😃
 
 I used pytube3 with `Flask <https://flask.palletsprojects.com/en/1.1.x/>`__ and `pythonanywhere <https://www.pythonanywhere.com/>`__ to accomplish the task. I was pleasantly surprised at how it came together and simply worked! Here's how to make a primitive YouTube video downloader.
 
-Install the pytube library in the pythonanywhere bash console with `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__
+Install the pytube library in the pythonanywhere bash console with `pip <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__
 
 ::
 
