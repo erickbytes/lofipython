@@ -13,9 +13,9 @@ I published it a few weeks ago and according to Google Analytics it has had 50 s
 **SSL Certificates / Start SSL / PythonAnywhere"** 
 An SSL certificate is required for the domain by PythonAnywhere to control the Admin page and set up your app. You don't need this if your domain is "username.pythonanywhere.com".
 
-It was kind of tricky was figuring out how to set up the certificate for the first time. `These instructions from PythonAnywhere <https://help.pythonanywhere.com/pages/SSLOwnDomains>`__ helped a lot. `These instructions <https://www.doconnor.org/entry/how-create-configure-free-ssl-certificate-using-django-and-pythonanywhere>`__ helped also, although they're somewhat outdated.
+It was kind of tricky was figuring out how to set up the certificate for the first time. `These instructions from PythonAnywhere <https://help.pythonanywhere.com/pages/SSLOwnDomains>`__ helped a lot.
 
-I used a free certificate from `Start SSL <https://www.startssl.com/Support?v=1>`__ and it worked fine. If you're new to SSL like me, here's a simple explanation: you get certificates aka two text files containing a long code from your SSL provider and submit them to the domain host. The last step is to notify your domain host and have them verify with the SSL provider. If all goes well, you'll be live in a few hours.
+I used a free certificate from Start SSL and it worked fine. If you're new to SSL like me, here's a simple explanation: you get certificates aka two text files containing a long code from your SSL provider and submit them to the domain host. The last step is to notify your domain host and have them verify with the SSL provider. If all goes well, you'll be live in a few hours.
 
 **"Masking" domains**
 This means if you type "google.com", it will redirect to "www.Google.com" `GoDaddy makes this super easy <https://www.godaddy.com/help/manually-forwarding-or-masking-your-domain-name-422>`__. I set it up for my site as well. `Here's a post from PythonAnywhere <https://help.pythonanywhere.com/pages/NakedDomains>`__ on this also.

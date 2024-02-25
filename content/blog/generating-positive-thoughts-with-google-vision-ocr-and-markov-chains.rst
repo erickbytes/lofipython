@@ -94,7 +94,7 @@ Since I had only 771 images, I was able to extract text on all of them and stay 
 
 .. _3-data-cleaning-via-pandas-and-manual-correction:
 
-3. Data cleaning (via `pandas <https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/>`__ and manual correction)
+3. Data cleaning (via `pandas <https://lofipython.com/pandas-pythons-excel-powerhouse/>`__ and manual correction)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The data did not come back perfect, but I was pleased with the Google Vision API's results. It saved me a lot of time compared to manually transcribing the images! Next I used pandas to clean the data. You can see more in a Jupyter notebook with `all of the code on github <https://github.com/erickbytes/positivipy>`__. Then I manually removed the author or source names, keeping only the quote text.

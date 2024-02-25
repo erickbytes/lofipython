@@ -626,12 +626,12 @@ Hexadecimal values of your color are added as text in the editor in
 proper format. However, we are looking for a color grabber to pull
 colors from a screen object. This is more of a productivity enhancing
 and color exploration tool for programmers. On to Python options.</p>
-<p><strong>Approach #2: Use the python tkcolorpicker package to grab the
-colors.</strong></p>
+<p><strong>Approach #2: Use the python tkcolorpicker package to grab the colors.</strong></p>
 <p>The first thing I found on Google was <a class="reference external" href="https://pypi.org/project/tkcolorpicker/">tkcolorpicker</a>, a package that uses the
-<a class="reference external" href="https://lofipython.com/2016/02/29/tkinter-and-python-libraries/">tkinter</a>
+<a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">tkinter
+&lt;https://lofipython.com/2016/02/29/tkinter-and-python-libraries/&gt;`___
 library. I couldn't tell exactly what it was, so let's find out. First,
-install via <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip install</a>:</p>
+install via `pip install</a>:</p>
 <pre class="code literal-block">
 python -m pip install tkcolorpicker
 </pre>
@@ -689,7 +689,7 @@ hex code for my Atom background. Some of the colors that eyedropper
 grabbed were nearly identical to those in the Atom text editor dark
 theme. Others were not quite the same. I made slight eyeball adjustments
 to the colors for some of the fonts.</p>
-<div class="section" id="using-python-to-convert-hex-to-rgb-1">
+<div class="section" id="using-python-to-convert-hex-to-rgb">
 <h2><a class="reference external" href="https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python">Using Python to convert hex to RGB</a></h2>
 <p>Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I
 found <a class="reference external" href="https://www.webpagefx.com/web-design/hex-to-rgb/">this website</a> practical and
@@ -727,8 +727,7 @@ sudo apt-get install xclip
 <p><strong>Supplementary Notes and Links</strong></p>
 <ul class="simple">
 <li>Here's a Python <a class="reference external" href="https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py">eyedropper script</a>
-featuring the <a class="reference external" href="https://pillow.readthedocs.io/en/5.2.x/index.html">pillow</a> and <a class="reference external" href="https://github.com/python-xlib/python-xlib">xlib</a> libraries that I was
-unable to get working.</li>
+featuring the <a class="reference external" href="https://pillow.readthedocs.io">pillow</a> and <a class="reference external" href="https://github.com/python-xlib/python-xlib">xlib</a> libraries that I was unable to get working.</li>
 <li>I didn't try <a class="reference external" href="http://colorcop.net/">ColorCop for Windows</a>, but it
 may be a non-Python alternative.</li>
 <li>Did you know? Python 2 had a <a class="reference external" href="https://docs.python.org/2/library/colorpicker.html">ColorPicker</a> module that
@@ -765,14 +764,15 @@ build Atom.</li>
                 
 
                 <p>GUI stands for &quot;Graphical User Interface&quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.</p>
-<p>There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, <a class="reference external" href="https://github.com/hoffstadt/DearPyGui">DearPyGui</a> and PySimpleGUI. I <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/">explored Tkinter</a> back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.</p>
+<p>There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, <a class="reference external" href="https://github.com/hoffstadt/DearPyGui">DearPyGui</a> and PySimpleGUI.
+I <a class="reference external" href="https://lofipython.com/2016/02/29/tkinter-and-python-libraries/">explored Tkinter</a> back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.</p>
 <p>The <a class="reference external" href="https://github.com/chriskiehl/Gooey">Gooey Github page</a> was most useful to me and helped me to do what I needed. The script posted <a class="reference external" href="http://pbpython.com/pandas-gui.html">in this blog</a> helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:</p>
 <ol class="arabic simple">
 <li>some basic widgets piggyback off the <a class="reference external" href="https://www.blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/">argparse</a> library</li>
 <li>another part of the library uses a function called the GooeyParser. The GooeyParser offers more advanced widgets, like a file chooser. This was exactly what I was looking to use to pull in files for my script.</li>
 </ol>
 <p><strong>Installing Gooey</strong></p>
-<p>Argparse comes stock with Python. You can install Gooey via the <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip installer</a>. Open command prompt or terminal and enter:</p>
+<p>Argparse comes stock with Python. You can install Gooey via the <a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">pip installer</a>. Open command prompt or terminal and enter:</p>
 <pre class="literal-block">
 python -m pip install Gooey
 </pre>
@@ -884,7 +884,11 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
                 
                 
 
-                <p>Findstr is the Windows alternative to GREP, which runs on the <a class="reference external" href="https://www.howtogeek.com/182649/htg-explains-what-is-unix/">Unix operating system</a>. Findstr searches files with <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> and seems useful for string matching within files and directories.&nbsp; It is one of over <a class="reference external" href="https://www.lifewire.com/list-of-command-prompt-commands-4092302">280 command prompt commands</a>. Here's the official&nbsp;<a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">Windows Documentation</a>&nbsp;and some&nbsp;<a class="reference external" href="https://www.mkyong.com/linux/grep-for-windows-findstr-example/">Linux vs. Windows Examples.</a></p>
+                <p>Findstr is the Windows alternative to GREP, which runs on the <a class="reference external" href="https://www.howtogeek.com/182649/htg-explains-what-is-unix/">Unix operating system</a>.
+Findstr searches files with <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> and seems useful for string matching within
+files and directories.&nbsp; It is one of over 280 command prompt commands.
+Here's the official&nbsp;<a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">Windows Documentation</a>&nbsp;and
+some&nbsp;<a class="reference external" href="https://www.mkyong.com/linux/grep-for-windows-findstr-example/">Linux vs. Windows Examples.</a></p>
 <p><strong>Update:</strong> Windows announced that <a class="reference external" href="https://hackaday.com/2019/06/10/windows-10-goes-to-shell/">Grep and several other Unix command line tools will be added to Windows 10</a>. This is a new alternative to findstr.</p>
 <p><strong>This findstr command returns all lines containing an '&#64;' in a text file.</strong></p>
 <pre class="literal-block">

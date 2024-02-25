@@ -9,7 +9,8 @@ Gooey GUI for Python Scripts
 
 GUI stands for "Graphical User Interface", aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.
 
-There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, `DearPyGui <https://github.com/hoffstadt/DearPyGui>`__ and PySimpleGUI. I `explored Tkinter <https://pythonmarketer.wordpress.com/2016/02/29/tkinter-and-python-libraries/>`__ back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.
+There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, `DearPyGui <https://github.com/hoffstadt/DearPyGui>`__ and PySimpleGUI. 
+I `explored Tkinter <https://lofipython.com/2016/02/29/tkinter-and-python-libraries/>`__ back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.
 
 The `Gooey Github page <https://github.com/chriskiehl/Gooey>`__ was most useful to me and helped me to do what I needed. The script posted `in this blog <http://pbpython.com/pandas-gui.html>`__ helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:
 
@@ -18,7 +19,7 @@ The `Gooey Github page <https://github.com/chriskiehl/Gooey>`__ was most useful 
 
 **Installing Gooey**
 
-Argparse comes stock with Python. You can install Gooey via the `pip installer <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__. Open command prompt or terminal and enter:
+Argparse comes stock with Python. You can install Gooey via the `pip installer <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__. Open command prompt or terminal and enter:
 
 ::
 

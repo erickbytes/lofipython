@@ -17,7 +17,9 @@ Over several years as a programmer, I've slowly grasped the landscape of testing
 
    Joel Spolsky, `Stack Overflow Podcast #38 <https://www.joelonsoftware.com/2009/01/>`__
 
-Implementing software tests is a best practice for maintaining code, but seems ambiguous to someone who has not tested any code before. I guess the best way is to `read open source projects with test suites <https://github.com/iodide-project/pyodide/tree/main/test>`__, but those can be tough to find. How do you know `a good test suite <https://docs.python-guide.org/writing/reading/>`__ when you see it? Maybe the maintainers went rogue and off the deep end with tests. Online, everybody says you should test your code, `is the emperor wearing any clothes? <https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes>`__
+Implementing software tests is a best practice for maintaining code, but seems ambiguous to someone who has not tested any code before. I guess the best way is 
+to `read open source projects with test suites <https://github.com/pyodide/pyodide/tree/main>`__, but those can be tough to find. How do you know `a good test suite <https://docs.python-guide.org/writing/reading/>`__ when you see it? Maybe the maintainers went rogue and off the deep end with tests. 
+Online, everybody says you should test your code, `is the emperor wearing any clothes? <https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes>`__
 
 As a beginner stumbling across articles on testing, these questions were tough to answer. As with most things in programming, figuring out the right question to ask is a challenge in itself. `Codeacademy <https://www.codecademy.com/learn/learn-python-3>`__ and `Coursera <https://www.coursera.org/specializations/python>`__ never mentioned anything about writing tests. On the other hand, `Django <https://docs.djangoproject.com/en/2.2/intro/tutorial05/>`__ includes testing in its tutorial and documentation. Also, most languages come with built-in testing tools. Python has the `unittest <https://docs.python.org/3/library/unittest.html>`__ library.
 

@@ -29,7 +29,7 @@ to look in a text file to count the lines matching a string:
    find /C "FAIL" < "Test_Results.txt"
    # returns: 0 if no match or # of lines found, e.g. 2,50,100
 
-I wrote a post on `findstr <https://pythonmarketer.wordpress.com/2018/07/15/findstr-aka-grep-for-windows/>`__, which offers similar functionality.
+I wrote a post on `findstr <https://lofipython.com/findstr-aka-grep-for-windows/>`__, which offers similar functionality.
 
 - **clip:** pipe commands `into the clipboard <https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx>`__.
 
@@ -131,7 +131,9 @@ Log into a remote computer with `winrs <https://docs.microsoft.com/en-us/windows
 Check Out Python's `pywin32 <https://github.com/mhammond/pywin32>`__ Module
 ---------------------------------------------------------------------------
 
-This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook and `Task Scheduler <https://pythonmarketer.wordpress.com/2018/11/25/automated-python-with-windows-task-scheduler/>`__. Install with `pip <http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
+This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook 
+and `Task Scheduler <https://lofipython.com/automated-python-with-windows-task-scheduler/>`__. 
+Install with `pip <http://lofipython.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
 
 ::
 

@@ -77,4 +77,4 @@ Final Reminders
 -  `Random <https://en.wikipedia.org/wiki/Special:Random>`__ - Wikipedia's Random Article Button
 -  And now for something completely different: `Useful Links for Javascript Developers <https://github.com/yuandongzhong/useful-links-for-javascript>`__
 
-Thank you for reading, hope you found something you liked! Here's another post with more `free resources for learning computer science online <https://pythonmarketer.wordpress.com/2020/06/23/my-favorite-free-educational-courses-and-talks-to-absorb/>`__.
+Thank you for reading, hope you found something you liked! Here's another post with more `free resources for learning computer science online <https://lofipython.com/my-favorite-free-educational-courses-and-talks-to-absorb/>`__.

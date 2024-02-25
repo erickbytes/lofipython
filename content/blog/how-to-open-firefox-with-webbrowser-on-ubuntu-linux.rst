@@ -22,8 +22,7 @@
 
 webbrowser is a convenient Python standard library module. It opened my
 Firefox browser on my Ubuntu Linux operating system running on a
-Chromebook. This code is adapted from a `Python Examples blog post
-<https://pythonexamples.org/python-open-url-in-firefox-browser/>`__.
+Chromebook. This code is adapted from a `Python Examples blog post <https://pythonexamples.org/python-open-url-in-firefox-browser/>`__.
 Below is a list of other browsers you can open with webbrowser. At the
 bottom of this post, you'll find more tools to interact with browsers
 and GUIs programmatically.
@@ -95,8 +94,7 @@ Type Name              Class Name
 -  `TagUI <https://github.com/kelaberetiv/TagUI>`__
 -  `Sikuli <https://github.com/RaiMan/SikuliX1>`__
 -  `Open RPA <https://github.com/open-rpa/openrpa>`__
--  `Power Automate <https://flow.microsoft.com/en-us/blog/automate-tasks-with-power-automate-desktop-for-windows-10-no-additional-cost/>`__
--  `CasperJS <https://www.casperjs.org/>`__
+-  `Power Automate <https://powerautomate.microsoft.com/en-us/blog/automate-tasks-with-power-automate-desktop-for-windows-10-no-additional-cost/>`__
 -  `PhantomJS <https://github.com/ariya/phantomjs>`__
 -  `SlimerJS <https://slimerjs.org/>`__
 

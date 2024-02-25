@@ -241,7 +241,7 @@ Example #2: Encode a Python dictionary to json string and **POST** to a hypothet
 
    **json** – (optional) A JSON serializable Python object to send in the body of the Request
 
-   **[**\ `requests API documentation <https://2.python-requests.org/en/master/api/>`__\ **]**
+   **[**\ `requests API documentation <https://requests.readthedocs.io/en/latest/api/>`__\ **]**
 
 **"Gotchyas" To Avoid**
 
@@ -286,7 +286,10 @@ You might be able to improve performance by using a requests `"session" object <
 |
    **Web Server Gateway Interface (WSGI, pronounced "Wis-Ghee")**
 
-   "As described in `PEP3333 <https://www.python.org/dev/peps/pep-3333/>`__, the Python Web Server Gateway Interface (WSGI) is a way to make sure that web servers and python web applications can talk to each other."  `Gunicorn <https://docs.gunicorn.org/en/latest/install.html>`__ is one of `a few Python WSGI clients <https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#uwsgi>`__. `web2py <https://pythonmarketer.wordpress.com/2016/04/30/useful-links-for-web2py-beginners/>`__ is another WSGI client and web framework I have used.
+   "As described in `PEP3333 <https://www.python.org/dev/peps/pep-3333/>`__, the Python Web Server Gateway Interface (WSGI) is a way to make sure 
+   that web servers and python web applications can talk to each other."  `Gunicorn <https://docs.gunicorn.org/en/latest/install.html>`__ is one 
+   of `a few Python WSGI clients <https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#uwsgi>`__. 
+   `web2py <https://lofipython.com/2016/04/30/useful-links-for-web2py-beginners/>`__ is another WSGI client and web framework I have used.
 
 
 **Conclusion**
@@ -297,9 +300,9 @@ I remember APIs seemed mysterious and daunting before I had used them. But like 
 
 `requests.request() API documentation <https://requests.readthedocs.io/en/master/api/>`__
 
-`requests.get() API documentation <https://2.python-requests.org/en/master/api/#requests.get>`__
+`requests.get() API documentation <https://requests.readthedocs.io/en/latest/api/#requests.get>`__
 
-`requests.post() API documentation <https://2.python-requests.org/en/master/api/#requests.post>`__
+`requests.post() API documentation <https://requests.readthedocs.io/en/latest/api/#requests.post>`__
 
 **Supplementary Reading**
 

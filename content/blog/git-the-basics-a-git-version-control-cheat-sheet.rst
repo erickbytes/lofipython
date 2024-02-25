@@ -56,8 +56,6 @@ Sometimes, your code may conflict with changes in the main branch. You'll find o
 
 Then `follow these instructions <https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line>`__ to review the merge conflicts.
 
-See also: `Resolving Conflicts - Virtualenv Documentation <https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/conflicts.html>`__
-
 **Or maybe you want to discard any local changes, then merge:**
 
 .. code-block:: console

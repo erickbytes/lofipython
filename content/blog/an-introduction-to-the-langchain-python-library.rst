@@ -136,7 +136,7 @@ The chains are a Python class, as demonstrated in this psuedo-code from their do
 
 **Natural Language Queries with LangChain**
 
-These examples are shown in `Analyzing Structured Data <https://python.langchain.com/docs/use_cases/qa_structured/sql/>`__.
+These examples are shown in `Analyzing Structured Data <https://python.langchain.com/docs/use_cases/sql/>`__.
 
 .. code-block:: python
 

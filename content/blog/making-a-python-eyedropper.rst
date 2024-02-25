@@ -31,15 +31,15 @@ potential solutions were "an-color-eyedropper" and "color picker" . The an-color
 description sounds perfect: "A simple "real" color picker. By "real" I
 mean it's able to pick colors anywhere on any screen."
 
-`Color picker <https://atom.io/packages/color-picker>`_
-`an color eyedropper <https://atom.io/packages/an-color-picker>`_
+`Color picker <https://atom.io/packages/color-picker>`__
+`an color eyedropper <https://atom.io/packages/an-color-picker>`__
 
 Unfortunately it failed to install and displayed the error, "Unable to
 download 400 Bad Request Repository inaccessible". It seems to rely on
 the "python" Atom package which is now deprecated. I was unable to find
 a repo anywhere by googling.
 
-`Color picker <https://atom.io/packages/color-picker>`_ has
+`Color picker <https://atom.io/packages/color-picker>`__ has
 easy-to-follow instructions and installed with no problem. It allows you
 to quickly select any color visually with sliders. Then the RGB or
 Hexadecimal values of your color are added as text in the editor in
@@ -47,16 +47,15 @@ proper format. However, we are looking for a color grabber to pull
 colors from a screen object. This is more of a productivity enhancing
 and color exploration tool for programmers. On to Python options.
 
-**Approach #2: Use the python tkcolorpicker package to grab the
-colors.**
+**Approach #2: Use the python tkcolorpicker package to grab the colors.**
 
 The first thing I found on Google was `tkcolorpicker
-<https://pypi.org/project/tkcolorpicker/>`_, a package that uses the
+<https://pypi.org/project/tkcolorpicker/>`__, a package that uses the
 `tkinter
-<https://lofipython.com/2016/02/29/tkinter-and-python-libraries/>`_
+<https://lofipython.com/2016/02/29/tkinter-and-python-libraries/>`___
 library. I couldn't tell exactly what it was, so let's find out. First,
 install via `pip install
-<https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`_:
+<https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
 
 .. code::
 
@@ -88,7 +87,7 @@ RGB_code variables.
 
 **Approach #3: Use the Python eyedropper package to grab the colors.**
 
-I then found `eyedropper <https://github.com/umluizlima/eyedropper>`_
+I then found `eyedropper <https://github.com/umluizlima/eyedropper>`__
 for Windows, which has a minimalist repository and offers a simple
 approach to desktop eyedropper functionality. Install eyedropper via
 pip:
@@ -130,14 +129,14 @@ theme. Others were not quite the same. I made slight eyeball adjustments
 to the colors for some of the fonts.
 
 *****************************************************************************************************************************
- `Using Python to convert hex to RGB <https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python>`_
+ `Using Python to convert hex to RGB <https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python>`__
 *****************************************************************************************************************************
 
 Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I
 found `this website
-<https://www.webpagefx.com/web-design/hex-to-rgb/>`_ practical and
+<https://www.webpagefx.com/web-design/hex-to-rgb/>`__ practical and
 quick. Alternatively, you could `convert a hex code to RGB with python
-<https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python>`_:
+<https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python>`__:
 
 .. code-block:: python
 
@@ -152,22 +151,21 @@ quick. Alternatively, you could `convert a hex code to RGB with python
    :height: 83px
 
 Bonus: use pd.read_clipboard() 
-`docs <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html>`_
+`docs <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html>`__
 to get the hex codes.
 
 Once eyedropper sends the color values to your system's clipboard, there
 are multiple ways to access them. This alternative uses pandas.
 
 Installing pandas and `pyperclip
-<https://github.com/asweigart/pyperclip>`_ with pip:
+<https://github.com/asweigart/pyperclip>`__ with pip:
 
 .. code-block:: python
 
    python -m pip install pandas
    python -m pip install pyperclip
 
-On Linux, install `xclip <https://github.com/astrand/xclip>`_ or `xsel
-<https://askubuntu.com/questions/705620/xclip-vs-xsel>`_
+On Linux, install `xclip <https://github.com/astrand/xclip>`__ or `xsel <https://askubuntu.com/questions/705620/xclip-vs-xsel>`__
 
 ::
 
@@ -185,26 +183,23 @@ On Linux, install `xclip <https://github.com/astrand/xclip>`_ or `xsel
 **Supplementary Notes and Links**
 
 -  Here's a Python `eyedropper script
-   <https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py>`_
-   featuring the `pillow
-   <https://pillow.readthedocs.io/en/5.2.x/index.html>`_ and `xlib
-   <https://github.com/python-xlib/python-xlib>`_ libraries that I was
-   unable to get working.
+   <https://github.com/gigawhitlocks/eyedropper/blob/master/x-color-get.py>`__
+   featuring the `pillow <https://pillow.readthedocs.io>`__ and `xlib <https://github.com/python-xlib/python-xlib>`__ libraries that I was unable to get working.
 
--  I didn't try `ColorCop for Windows <http://colorcop.net/>`_, but it
+-  I didn't try `ColorCop for Windows <http://colorcop.net/>`__, but it
    may be a non-Python alternative.
 
 -  Did you know? Python 2 had a `ColorPicker
-   <https://docs.python.org/2/library/colorpicker.html>`_ module that
+   <https://docs.python.org/2/library/colorpicker.html>`__ module that
    is not in Python 3.
 
 -  `How pandas read_clipboard method works
-   <https://dev.to/espoir/how-pandas-readclipboard-method-works-ake>`_
+   <https://dev.to/espoir/how-pandas-readclipboard-method-works-ake>`__
 
 -  `pandas to_clipboard and read_clipboard source code
-   <https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/io/clipboards.py#L10-L76>`_
+   <https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/io/clipboards.py#L10-L76>`__
 
--  This `desktop tool <https://github.com/Toinane/colorpicker>`_ has
+-  This `desktop tool <https://github.com/Toinane/colorpicker>`__ has
    great U/X and an eyedropper feature. It runs on Electron, a
    Javascript based framework. Coincidentally, Electron was used to
    build Atom.

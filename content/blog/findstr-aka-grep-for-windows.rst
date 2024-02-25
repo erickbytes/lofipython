@@ -7,7 +7,11 @@ Findstr, RegEx File Searches for Windows
 :slug: findstr-aka-grep-for-windows
 :status: published
 
-Findstr is the Windows alternative to GREP, which runs on the `Unix operating system <https://www.howtogeek.com/182649/htg-explains-what-is-unix/>`__. Findstr searches files with `regular expressions <https://en.wikipedia.org/wiki/Regular_expression>`__ and seems useful for string matching within files and directories.  It is one of over `280 command prompt commands <https://www.lifewire.com/list-of-command-prompt-commands-4092302>`__. Here's the official `Windows Documentation <https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr>`__ and some `Linux vs. Windows Examples. <https://www.mkyong.com/linux/grep-for-windows-findstr-example/>`__
+Findstr is the Windows alternative to GREP, which runs on the `Unix operating system <https://www.howtogeek.com/182649/htg-explains-what-is-unix/>`__. 
+Findstr searches files with `regular expressions <https://en.wikipedia.org/wiki/Regular_expression>`__ and seems useful for string matching within 
+files and directories.  It is one of over 280 command prompt commands. 
+Here's the official `Windows Documentation <https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr>`__ and 
+some `Linux vs. Windows Examples. <https://www.mkyong.com/linux/grep-for-windows-findstr-example/>`__
 
 **Update:** Windows announced that `Grep and several other Unix command line tools will be added to Windows 10 <https://hackaday.com/2019/06/10/windows-10-goes-to-shell/>`__. This is a new alternative to findstr.
 

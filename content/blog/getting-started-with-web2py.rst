@@ -34,4 +34,4 @@ It's pretty sweet to be able to create and manipulate a website so quickly; sti
 
    **Update:** consider using `py4web <https://github.com/web2py/py4web>`__, web2py's successor
 
-**See also:** `Useful Links for web2py Beginners <https://pythonmarketer.wordpress.com/2016/04/30/useful-links-for-web2py-beginners/>`__
+**See also:** `Useful Links for web2py Beginners <https://lofipython.com/useful-links-for-web2py-beginners/>`__

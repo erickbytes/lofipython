@@ -80,7 +80,7 @@ Access topped out just shy of 10 million rows in my use case, when records stopp
 
 **Supplementary Resources**
 
-`Insert Values into MS Access Table using Python <https://datatofish.com/insert-ms-access-python/>`__
+`Insert Values into MS Access Table using Python <https://datatofish.com/how-to-connect-python-to-ms-access-database-using-pyodbc/>`__
 
 `pyodbc documentation <https://github.com/mkleehammer/pyodbc/wiki>`__
 

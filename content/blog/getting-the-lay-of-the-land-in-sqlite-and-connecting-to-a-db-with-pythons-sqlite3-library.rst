@@ -9,7 +9,8 @@ SQLite3: Pythonic First Impressions & Lay of the Land
 
 **introduction**
 
-SQLite is one of the heavy hitters in the database space, up there with other popular choices like MySQL, Postgres, Microsoft SQLServer, Cassandra and MariaDB. There is no shortage of `database technologies <https://dbdb.io/>`__ but SQLite is certainly one that is commonly used. It also has a positive reputation. Its terminal interface reminds me of `MySQL <https://pythonmarketer.wordpress.com/2020/05/25/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/>`__. The syntax of both seem similarly "SQL-like" and easy to pick up.
+SQLite is one of the heavy hitters in the database space, up there with other popular choices like MySQL, Postgres, Microsoft SQLServer, Cassandra and MariaDB. There is no shortage of `database technologies <https://dbdb.io/>`__ but SQLite is certainly one that is commonly used. It also has a positive reputation. 
+Its terminal interface reminds me of `MySQL <https://lofipython.com/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere/>`__. The syntax of both seem similarly "SQL-like" and easy to pick up.
 
 I finally got around to test-driving a `SQLite <https://en.wikipedia.org/wiki/SQLite>`__ database this week. In this post, I've listed my impressions of some practical SQLite commands. The "dot" syntax is helpful to do a lot things as you'll see below. I'll conclude by briefly exploring the sqlite3 python library in the python interpreter.
 
@@ -122,4 +123,5 @@ Below, getting a cursor object that holds our S\ ``ELECT`` query results. Then i
 
 **Comparable Cursors and PEP 249**
 
-The cursor object has a variety of methods you can call on it for database operations and to execute SQL. You can read more about them in the `sqlite3 module documentation <https://docs.python.org/3/library/sqlite3.html>`__. This library also follows `PEP 249 - Python Database API Specification <https://www.python.org/dev/peps/pep-0249/>`__ for recommended Database API interfaces. I've noticed that in `pyodbc <https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/>`__, for example, the cursor object looks and feels the same as the cursor object in sqlite3. This is because they are both likely following PEP 249. Very cool!
+The cursor object has a variety of methods you can call on it for database operations and to execute SQL. You can read more about them in the `sqlite3 module documentation <https://docs.python.org/3/library/sqlite3.html>`__. This library also follows `PEP 249 - Python Database API Specification <https://www.python.org/dev/peps/pep-0249/>`__ for recommended Database API interfaces. 
+I've noticed that in `pyodbc <https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python/>`__, for example, the cursor object looks and feels the same as the cursor object in sqlite3. This is because they are both likely following PEP 249. Very cool!

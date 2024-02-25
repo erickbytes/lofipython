@@ -49,7 +49,7 @@ Useful if one or both tables are sorted on a join key. Maximize sequential I/O.
 
 *screenshot from lecture*
 
-**Hash Join [**\ `mysql blog example <https://mysqlserverteam.com/hash-join-in-mysql-8/#:~:text=Hash%20join%20is%20a%20way,inputs%20can%20fit%20in%20memory.>`__\ **]**
+**Hash Join**
 
 Best performance. For large datasets.
 

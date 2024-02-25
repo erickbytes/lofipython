@@ -11,7 +11,7 @@ You may want to `download an archive <https://help.twitter.com/en/managing-your-
 
 **How To Purge Your Tweet History with Python**
 
-#. Per the `Tweepy library documentation <http://docs.tweepy.org/en/latest/install.html>`__, install tweepy with `pip <https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__. It worked fine in my python 3.8 `virtual environment <https://docs.python.org/3/library/venv.html>`__.
+#. Per the `Tweepy library documentation <http://docs.tweepy.org/en/latest/install.html>`__, install tweepy with `pip <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__. It worked fine in my python 3.8 `virtual environment <https://docs.python.org/3/library/venv.html>`__.
 
 .. code:: python
 
