@@ -15,14 +15,14 @@ here going forward. Thank you for reading and I hope you
 enjoy these Python musings. If you want to keep up with my writing, I
 recommend using an RSS reader to follow the RSS or Atom feeds.
 
-I’ve decided to continue blogging under a new Python moniker
+I've decided to continue blogging under a new Python moniker
 which is more fitting of who I am as a Pythonista in 2023. WordPress
 gave me my start as a blogger before I had the capabilities to make my
-own. Now, I’ve switched from their “Personal” plan to a Pelican +
-Cloudlare Pages free plan blog stack. It’s going great so far and will
+own. Now, I've switched from their "Personal" plan to a Pelican +
+Cloudlare Pages free plan blog stack. It's going great so far and will
 save me $48 per year vs. WordPress. Not to mention, I have a hard backup
-of all my content and host it on Github! I’m no longer dependent on a
-paid blogging platform to serve my blog. Huge win all around. Here’s to
+of all my content and host it on Github! I'm no longer dependent on a
+paid blogging platform to serve my blog. Huge win all around. Here's to
 whatever Python projects are next!
 
 **The Next Chapter: Lo-Fi Python**

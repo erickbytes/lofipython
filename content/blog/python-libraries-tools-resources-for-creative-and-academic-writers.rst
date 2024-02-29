@@ -27,10 +27,10 @@ Today I scoured the internet for tools written in Python that assist writing in 
 -  `textblob <https://github.com/sloria/TextBlob>`__: Simple, Pythonic, text processing--Sentiment analysis, part-of-speech tagging, noun phrase extraction, translation, spelling correction and more.
 -  `Natural Language Toolkit (NLTK) <https://www.nltk.org/>`__
 -  `Sumy <https://github.com/miso-belica/sumy>`__: Module for automatic summarization of text documents and HTML pages.
--  `Mackerel <https://pythonmarketer.wordpress.com/wp-admin/post.php?post=5519&action=edit>`__: Mackerel provides an automated, easy to use alternative for company or school writing tasks. Simply provide the topic and/or files and we will do the rest.
+-  `Mackerel <https://pypi.org/project/mackerel/>`__: Mackerel provides an automated, easy to use alternative for company or school writing tasks. Simply provide the topic and/or files and we will do the rest.
 -  `Verb Miner <https://github.com/fandu/Verb-Miner>`__: This tool can help you analyze a document and discover cool verbs from pdf papers.
 -  `paper-translater <https://github.com/lkjie/paper-translator>`__: Chinese and English essay translator, paper translator, clipboard listener
--  There are many `text editor options <https://pythonmarketer.wordpress.com/2019/12/26/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code/>`__ like Sublime or Atom with useful `plug-ins for text documents <https://github.com/thedataking/SublimeWritingStyle>`__ or code.
+-  There are many `text editor options <https://lofipython.com/comparing-text-editors-on-ubuntu-atom-emacs-sublime-vim-vs-code/>`__ like Sublime or Atom with useful `plug-ins for text documents <https://github.com/thedataking/SublimeWritingStyle>`__ or code.
 -  `Free Google Technical Writing Courses <https://developers.google.com/tech-writing>`__
 -  `PythonWriters Wiki <https://wiki.python.org/moin/PythonWriters>`__
 
