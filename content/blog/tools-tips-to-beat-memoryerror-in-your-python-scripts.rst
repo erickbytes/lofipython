@@ -26,7 +26,7 @@ Now, I can watch my computer's memory bounce around with the Windows Resource Mo
 
 `Scalene <https://github.com/plasma-umass/scalene>`__: "a high-performance, high-precision CPU, GPU, and memory profiler for Python"
 
-`G <https://github.com/nicolargo/glances>`__\ `lances <https://github.com/nicolargo/glances>`__: "Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems."
+`Glances <https://github.com/nicolargo/glances>`__: "Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems."
 
 `Yappi <https://github.com/sumerc/yappi>`__: "Yet Another Python Profiler, but this time thread & coroutine & greenlet aware."
 
@@ -40,9 +40,10 @@ Now, I can watch my computer's memory bounce around with the Windows Resource Mo
 
 *See also:* `The Python Profilers <https://docs.python.org/3/library/profile.html>`__, Python documentation
 
-   CPython standard distribution comes with three deterministic profilers. ``cProfile``, ``Profile`` and ``hotshot``. ``cProfile`` is implemented as a C module based on ``lsprof``, ``Profile`` is in pure Python and ``hotshot`` can be seen as a small subset of a cProfile.
+   CPython standard distribution comes with three deterministic profilers. ``cProfile``, ``Profile`` and ``hotshot``. ``cProfile`` is implemented 
+   as a C module based on ``lsprof``, ``Profile`` is in pure Python and ``hotshot`` can be seen as a small subset of a cProfile.
 
-   Yappi Github, https://github.com/sumerc/yappi\ 
+   Yappi Github, https://github.com/sumerc/yappi
 
 **Windows Tools**
 

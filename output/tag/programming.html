@@ -222,7 +222,9 @@ python -m pip install pandas
                 
                 
 
-                <p>My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller. It worked on my Windows 7 PC. My program used a <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/">Gooey GUI</a>, but many of the popular Python GUI libraries work as well.</p>
+                <p>My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller.
+It worked on my Windows 7 PC. My program used a <a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/">Gooey GUI</a>, but many of the popular
+Python GUI libraries work as well.</p>
 <p><strong>Installation:</strong></p>
 <div class="line-block">
 <div class="line">To install, enter this into command your command prompt or terminal:</div>
@@ -253,7 +255,8 @@ by passing debug=True to the EXE() function of the build.spec. I used the second
 <p><em>To see your app's error message, run the resulting your_app.exe from the command line.</em>
 You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.</p>
 <p><strong>Flushing sys.stdout/Python printing for Windows:</strong></p>
-<p>Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen(). This was contrary to <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey's instructions</a>.</p>
+<p>Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen().
+This was contrary to <a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller">Gooey's instructions</a>.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -286,9 +289,9 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">hiddenimports</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pandas._libs.tslibs.timedeltas&#39;</span><span class="p">,</span><span class="s1">&#39;pandas._libs.tslibs.nattype&#39;</span><span class="p">,</span>
 <span class="s1">&#39;pandas._libs.tslibs.np_datetime&#39;</span><span class="p">,</span><span class="s1">&#39;pandas._libs.skiplist&#39;</span><span class="p">]</span>
 </pre></div></td></tr></table></div>
-<ol class="arabic simple" start="2">
-<li>The Gooey library needs some special code added to the build.spec for its images and languages data. More details are found in this <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">blog post</a>, written by the author of the Gooey library.</li>
-</ol>
+<p>2. The Gooey library needs some special code added to the build.spec for its images and languages data.
+More details are found in this <a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller">blog post</a>,
+written by the author of the Gooey library.</p>
 <img alt="Will Ferrell Old School" class="wp-image-1535 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/will_ferrell_composure.jpg" style="width: 293px; height: 216px;" />
 <p><strong>Last, but not least: don't panic.</strong></p>
 <p>Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn't nearly as complex as I feared. The folks behind Pyinstaller have done a great job of making it possible and, dare I say, simple. Stay calm, drink some coffee, dig in and welcome the challenge with a trial and error mentality. I was able to figure it out over the span of one Saturday. Good luck.</p>
@@ -296,7 +299,7 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 <ol class="arabic simple">
 <li>Pyinstaller Github - <a class="reference external" href="https://github.com/pyinstaller/pyinstaller/wiki/If-Things-Go-Wrong">If Things Go Wrong</a></li>
 <li>Pyinstaller Documentation:<a class="reference external" href="https://pyinstaller.readthedocs.io/en/stable/usage.html">Using Pyinstaller Arguments</a></li>
-<li><a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey Pyinstaller Instructions</a></li>
+<li><a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller">Gooey Pyinstaller Instructions</a></li>
 <li><a class="reference external" href="https://github.com/pyinstaller/pyinstaller/issues/3422">Pandas hiddenimports Discussion</a></li>
 </ol>
 <p><strong>Caveats:</strong></p>
@@ -310,7 +313,7 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 <pre class="literal-block">
 pip3 install --upgrade pyinstaller
 </pre>
-<p>My full build.spec file, modified from <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">here</a> :</p>
+<p>My full build.spec file, modified from <a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller">here</a> :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -502,7 +505,7 @@ sudo apt-get install python3-pandas
 python3.5 -m pip install pandas
 </pre>
 <img alt="successful_python_install" class="alignnone wp-image-2420" src="https://pythonmarketer.files.wordpress.com/2018/05/successful_python_install.jpg" style="width: 676px; height: 186px;" />
-<p>If pandas is already installed, you can upgrade with <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
+<p>If pandas is already installed, you can upgrade with <a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">pip</a>:</p>
 <blockquote>
 <img alt="pip_list" class="alignnone wp-image-2572" src="http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg" style="width: 179px; height: 230px;" /></blockquote>
 <pre class="literal-block">
@@ -731,7 +734,10 @@ python -m pip install -U matplotlib
 <span class="nb">print</span><span class="p">(</span><span class="n">joined_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div></td></tr></table></div>
 <p>Execute database queries with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html">pd.read_sql()</a>.</p>
-<p>When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows. When combined with DB connection libraries like <a class="reference external" href="https://pythonmarketer.wordpress.com/2019/11/30/inserting-new-records-into-a-microsoft-access-database-with-python/">pyodbc</a> or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk. Pyodbc works on a wide range of other databases also.</p>
+<p>When the chunksize argument is passed, pd.read_sql() returns an iterator. We can use this to iterate through a database with lots of rows.
+When combined with DB connection libraries like <a class="reference external" href="https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python/">pyodbc</a>
+or SQLAlchemy, you can process a database in chunks. In this example, it's an Access DB connection via pyodbc to process 500,000 rows per chunk.
+Pyodbc works on a wide range of other databases also.</p>
 <blockquote>
 uses <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html">pd.Series.isin()</a> to check if each email is in the DB.</blockquote>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>

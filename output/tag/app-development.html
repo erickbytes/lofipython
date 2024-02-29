@@ -45,7 +45,9 @@
                 
                 
 
-                <p>My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller. It worked on my Windows 7 PC. My program used a <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/08/25/gooey-gui-for-python-scripts/">Gooey GUI</a>, but many of the popular Python GUI libraries work as well.</p>
+                <p>My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller.
+It worked on my Windows 7 PC. My program used a <a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/">Gooey GUI</a>, but many of the popular
+Python GUI libraries work as well.</p>
 <p><strong>Installation:</strong></p>
 <div class="line-block">
 <div class="line">To install, enter this into command your command prompt or terminal:</div>
@@ -76,7 +78,8 @@ by passing debug=True to the EXE() function of the build.spec. I used the second
 <p><em>To see your app's error message, run the resulting your_app.exe from the command line.</em>
 You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.</p>
 <p><strong>Flushing sys.stdout/Python printing for Windows:</strong></p>
-<p>Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen(). This was contrary to <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey's instructions</a>.</p>
+<p>Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen().
+This was contrary to <a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller">Gooey's instructions</a>.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -109,9 +112,9 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">hiddenimports</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pandas._libs.tslibs.timedeltas&#39;</span><span class="p">,</span><span class="s1">&#39;pandas._libs.tslibs.nattype&#39;</span><span class="p">,</span>
 <span class="s1">&#39;pandas._libs.tslibs.np_datetime&#39;</span><span class="p">,</span><span class="s1">&#39;pandas._libs.skiplist&#39;</span><span class="p">]</span>
 </pre></div></td></tr></table></div>
-<ol class="arabic simple" start="2">
-<li>The Gooey library needs some special code added to the build.spec for its images and languages data. More details are found in this <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">blog post</a>, written by the author of the Gooey library.</li>
-</ol>
+<p>2. The Gooey library needs some special code added to the build.spec for its images and languages data.
+More details are found in this <a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller">blog post</a>,
+written by the author of the Gooey library.</p>
 <img alt="Will Ferrell Old School" class="wp-image-1535 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/will_ferrell_composure.jpg" style="width: 293px; height: 216px;" />
 <p><strong>Last, but not least: don't panic.</strong></p>
 <p>Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn't nearly as complex as I feared. The folks behind Pyinstaller have done a great job of making it possible and, dare I say, simple. Stay calm, drink some coffee, dig in and welcome the challenge with a trial and error mentality. I was able to figure it out over the span of one Saturday. Good luck.</p>
@@ -119,7 +122,7 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 <ol class="arabic simple">
 <li>Pyinstaller Github - <a class="reference external" href="https://github.com/pyinstaller/pyinstaller/wiki/If-Things-Go-Wrong">If Things Go Wrong</a></li>
 <li>Pyinstaller Documentation:<a class="reference external" href="https://pyinstaller.readthedocs.io/en/stable/usage.html">Using Pyinstaller Arguments</a></li>
-<li><a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">Gooey Pyinstaller Instructions</a></li>
+<li><a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller">Gooey Pyinstaller Instructions</a></li>
 <li><a class="reference external" href="https://github.com/pyinstaller/pyinstaller/issues/3422">Pandas hiddenimports Discussion</a></li>
 </ol>
 <p><strong>Caveats:</strong></p>
@@ -133,7 +136,7 @@ You can find it in the 'dist' folder that pyinstaller creates when you pass it t
 <pre class="literal-block">
 pip3 install --upgrade pyinstaller
 </pre>
-<p>My full build.spec file, modified from <a class="reference external" href="http://chriskiehl.com/article/packaging-gooey-with-pyinstaller/">here</a> :</p>
+<p>My full build.spec file, modified from <a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller">here</a> :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -274,7 +277,8 @@ the miners.</li>
 <li>What is your current experience level? Are you starting fresh or do you already know a language or two?</li>
 <li>Do you have money saved up? Otherwise, you might need to take out a loan.</li>
 </ol>
-<p>A computer science degree is typically most expensive. Coding bootcamps are a lower cost option that pack a wide curriculum into a few weeks or months, but they can still be pricey. The cheapest option is to take a piecemeal approach through various online courses.</p>
+<p>A computer science degree is typically most expensive. Coding bootcamps are a lower cost option that pack a wide curriculum
+into a few weeks or months, but they can still be pricey. The cheapest option is to take a piecemeal approach through various online courses.</p>
 <p><strong>School Advantages</strong></p>
 <ul class="simple">
 <li>Wholistic approach. You get the ins and outs of programming from a proven curriculum.</li>
@@ -284,22 +288,30 @@ the miners.</li>
 </ul>
 <p><strong>Potential Downsides</strong></p>
 <ul class="simple">
-<li>Tuition Money. A lot of&nbsp;what you need to know is available for free or cheap on the web.</li>
+<li>Tuition Money. A lot of what you need to know is available for free or cheap on the web.</li>
 <li>Skill level match. Some bootcamps are oriented for beginners, others are more advanced. If you do a bootcamp, make sure it fits your skill level.</li>
 </ul>
-<p><strong>If you want a coding job</strong>, school makes sense. The bootcamps look to be effective if you can handle the up-front investment. It's possible to land a job without schooling but much tougher. I am currently considering <a class="reference external" href="https://www.fullstackacademy.com/">Full Stack Academy</a>. and <a class="reference external" href="http://www.codingdojo.com/">Coding Dojo</a>. There are many out there. CodeAcademy is a popular route as well.</p>
+<p><strong>If you want a coding job</strong>, school makes sense. The bootcamps look to be effective if you can handle the up-front investment.
+It's possible to land a job without schooling but much tougher. I am currently considering <a class="reference external" href="https://www.fullstackacademy.com/">Full Stack Academy</a>.
+and <a class="reference external" href="http://www.codingdojo.com/">Coding Dojo</a>. There are many out there. CodeAcademy is a popular route as well.</p>
 <p><strong>If you want to make an app or website</strong>, the school or the non-school route may both work. For the non-school route, the following languages are good places to start: <em>(note - not a comprehensive list, these are my picks.)</em></p>
 <ul class="simple">
-<li>Web App or Website: HTML, CSS,&nbsp;Python, Javascript</li>
-<li>Web App or Website Framework:&nbsp; Flask, Django, py4web, Ruby on Rails, React</li>
+<li>Web App or Website: HTML, CSS, Python, Javascript</li>
+<li>Web App or Website Framework: Flask, Django, py4web, Ruby on Rails, React</li>
 <li>iOS app: Swift plus Apple's Xcode environment, Beeware (python library)</li>
 <li>Android App: Java or Kotlin, Beeware</li>
 <li>General Coding: Python or Ruby</li>
 </ul>
-<p><strong>If you want to be more productive at work</strong>, I recommend learning Python. More on Python and where to start <a class="reference external" href="https://pythonmarketer.wordpress.com/2016/02/22/marketer-slash-programmer/">here</a>.&nbsp;<a class="reference external" href="https://automatetheboringstuff.com/">Automate the Boring Stuff With Python</a> is a great resource for boosting your productivity also.</p>
+<p><strong>If you want to be more productive at work</strong>, I recommend learning Python. More on Python and where
+to start <a class="reference external" href="https://lofipython.com/marketer-slash-programmer/">here</a>. <a class="reference external" href="https://automatetheboringstuff.com/">Automate the Boring Stuff With Python</a>
+is a great resource for boosting your productivity also.</p>
 <p>It's not easy to decide whether or not school is for you. I'm still unsure after a year and a half of programming on the side. No matter what, continue to learn multiple languages and strive for a better grasp of the ones you know. Good luck!</p>
 <p><strong>My decision: continue self-study and learning online for free.</strong></p>
-<p>As of 8 months after writing this post, I have concluded that learning for free online was the right choice for me. I've achieved many of my programming goals in the last three years, thanks to materials available from <a class="reference external" href="https://www.codecademy.com/learn/learn-python">Codeacademy</a>, <a class="reference external" href="https://www.coursera.org/learn/python">Coursera</a>, <a class="reference external" href="https://www.youtube.com/watch?v=u3d-n41Tobw">YouTube</a>, <a class="reference external" href="https://stackoverflow.com/questions/1720421/how-to-concatenate-two-lists-in-python?rq=1">Stack Overflow</a>, <a class="reference external" href="https://automatetheboringstuff.com/">countless helpful resources,</a><a class="reference external" href="https://pymotw.com/3/glob/index.html">interesting blogs</a>, and <a class="reference external" href="https://docs.python.org/3/library/index.html">documentation</a>. I've talked with others who need the in-person assistance that a bootcamp offers to learn. Do what works for you. Good luck with your decision.</p>
+<p>As of 8 months after writing this post, I have concluded that learning for free online was the right choice for me. I've achieved many of my programming goals in the last three years,
+thanks to materials available from <a class="reference external" href="https://www.codecademy.com/learn/learn-python">Codeacademy</a>, <a class="reference external" href="https://www.coursera.org/learn/python">Coursera</a>,
+<a class="reference external" href="https://www.youtube.com/watch?v=u3d-n41Tobw">YouTube</a>, <a class="reference external" href="https://stackoverflow.com/questions/1720421/how-to-concatenate-two-lists-in-python?rq=1">Stack Overflow</a>,
+<a class="reference external" href="https://automatetheboringstuff.com/">countless helpful resources,</a>, <a class="reference external" href="https://pymotw.com/3/glob/index.html">interesting blogs</a>, and <a class="reference external" href="https://docs.python.org/3/library/index.html">documentation</a>.
+I've talked with others who need the in-person assistance that a bootcamp offers to learn. Do what works for you. Good luck with your decision.</p>
 <p><strong>Update:</strong> Several years later, I also get paid to use Python and Excel for a living! I studied for free online intermittently over 2 years to achieve it.</p>
 
                 <div class="clear"></div>
