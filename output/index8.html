@@ -33,7 +33,125 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Oct 04, 2020</h4>
+        <div id="content">            <h4 class="date">Oct 07, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/making-a-youtube-video-downloader-with-pythons-flask-and-pytube3-libraries.html" rel="bookmark" title="Permanent Link to &quot;Making A YouTube Video Downloader With Python's Flask and pytube3 Libraries&quot;">Making A YouTube Video Downloader With Python's Flask and pytube3 Libraries</a>
+                </h2>
+
+                
+                
+
+                <p>How do you download YouTube videos? The easiest answer is to google sites that have youtube downloader videos.
+But then I thought, I wonder if I can make something?</p>
+<p>Boredom, my curiosity and some googling turned up the <a class="reference external" href="https://github.com/get-pytube/pytube3">pytube3 library</a>, &quot;A lightweight, dependency-free Python 3 library (and command-line utility) for downloading YouTube Videos.&quot; Lo and behold, 3 hours of experimentation later, I made a video downloader with Python. 😃</p>
+<p>I used pytube3 with <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a> and <a class="reference external" href="https://www.pythonanywhere.com/">pythonanywhere</a> to accomplish the task. I was pleasantly surprised at how it came together and simply worked! Here's how to make a primitive YouTube video downloader.</p>
+<p>Install the pytube library in the pythonanywhere bash console with <a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">pip</a></p>
+<pre class="literal-block">
+pip3.8 install --user pytube3 --upgrade
+</pre>
+<p><strong>If you're not using pythonanywhere, install Flask (it's already included in pythonanywhere)</strong></p>
+<pre class="literal-block">
+python -m pip install flask
+</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pytube</span> <span class="kn">import</span> <span class="n">YouTube</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">send_file</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">youtube_downloader</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Render HTML form to accept YouTube URL.&quot;&quot;&quot;</span>
+    <span class="n">html_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;html&gt;&lt;head&gt;</span>
+<span class="s2">                    &lt;Title&gt;YouTube Downloader&lt;/Title&gt;&lt;/head&gt;</span>
+<span class="s2">                    &lt;body&gt;&lt;h2&gt;Enter URL to download YouTube Vids!&lt;/h2&gt;</span>
+<span class="s2">                    &lt;div class=&quot;form&quot;&gt;</span>
+<span class="s2">                    &lt;form action=&quot;/download_video&quot; method=&quot;post&quot;&gt;</span>
+<span class="s2">                    &lt;input type=&quot;text&quot; name=&quot;URL&quot;&gt;</span>
+<span class="s2">                    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</span>
+<span class="s2">                    &lt;/form&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html_page</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/download_video&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">download_video</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;First pytube downloads the file locally in pythonanywhere:</span>
+<span class="sd">    /home/your_username/video_name.mp4</span>
+
+<span class="sd">    Then use Flask&#39;s send_file() to download the video</span>
+<span class="sd">    to the user&#39;s Downloads folder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">youtube_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;URL&quot;</span><span class="p">]</span>
+        <span class="n">download_path</span> <span class="o">=</span> <span class="n">YouTube</span><span class="p">(</span><span class="n">youtube_url</span><span class="p">)</span><span class="o">.</span><span class="n">streams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">download_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;//&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Failed download&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;Video download failed!&quot;</span>
+</pre></div></td></tr></table></div>
+<div class="wp-image-7185 figure">
+<img alt="download video" src="https://pythonmarketer.files.wordpress.com/2022/09/download.png?w=952" />
+</div>
+<p><strong>Minimum Viable Prototype Achieved</strong></p>
+<p>This is more of a proof of concept than workable solution. It works for many videos I tried. It occasionally had trouble downloading certain videos. I tested it successfully on videos of up to 10 minutes. Maybe it works more consistently if the file size is smaller? Or there is a bug on certain types of videos? For me, some videos of only a few minutes failed, so your results may vary. The videos that failed returned errors like <tt class="docutils literal">KeyError: 'cipher'</tt> and <tt class="docutils literal">KeyError: 'url'</tt>.</p>
+<p><strong>Honorable Mentions</strong></p>
+<p><a class="reference external" href="https://github.com/ytdl-org/youtube-dl/blob/master/README.md#installation">youtube-dl</a>: Command-line program to download videos from YouTube.com and other video sites</p>
+<p><a class="reference external" href="https://github.com/YouTubeDownload/YouTubeDownload">YoutubeDownload</a>: GUI and CLI for downloading YouTube video/audio</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/making-a-youtube-video-downloader-with-pythons-flask-and-pytube3-libraries.html">posted at 23:49</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-flask-programming-python-web-development.html" rel="tag">coding, flask, programming, python, web development</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/curiosity.html" class="tags">curiosity</a>
+                    &nbsp;<a href="https://lofipython.com/tag/hacking.html" class="tags">hacking</a>
+                    &nbsp;<a href="https://lofipython.com/tag/prototyping.html" class="tags">prototyping</a>
+                    &nbsp;<a href="https://lofipython.com/tag/videos.html" class="tags">videos</a>
+                </div>
+            </article>            <h4 class="date">Oct 04, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1449,164 +1567,6 @@ of <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.
                     &nbsp;<a href="https://lofipython.com/tag/requests.html" class="tags">requests</a>
                     &nbsp;<a href="https://lofipython.com/tag/sandwiches.html" class="tags">sandwiches</a>
                     &nbsp;<a href="https://lofipython.com/tag/web.html" class="tags">web</a>
-                </div>
-            </article>            <h4 class="date">May 06, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html" rel="bookmark" title="Permanent Link to &quot;Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32&quot;">Script Windows Like A Pro: Command Line, Batch Files, Remote Desktop Connection and pywin32</a>
-                </h2>
-
-                
-                
-
-                <p>Here are a few useful corners of the vast array of Windows scripting tools.</p>
-<div class="section" id="helpful-windows-command-line-documentation">
-<h2>Helpful Windows Command Line Documentation</h2>
-<ul class="simple">
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key">Windows command line Documentation Syntax</a></li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490890%28v%3dtechnet.10%29">Command-line reference A-Z</a></li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490954%28v%3dtechnet.10%29">Command shell overview</a></li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490982%28v%3dtechnet.10%29">Using command redirection operators</a></li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/about-windows-remote-management">About Windows Remote Management</a></li>
-</ul>
-</div>
-<div class="section" id="a-few-general-windows-commands">
-<h2>A Few General Windows Commands</h2>
-<p>Use  <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490906(v=technet.10)">find</a>
-to look in a text file to count the lines matching a string:</p>
-<pre class="literal-block">
-find /C &quot;FAIL&quot; &lt; &quot;Test_Results.txt&quot;
-# returns: 0 if no match or # of lines found, e.g. 2,50,100
-</pre>
-<p>I wrote a post on <a class="reference external" href="https://lofipython.com/findstr-aka-grep-for-windows/">findstr</a>, which offers similar functionality.</p>
-<ul class="simple">
-<li><strong>clip:</strong> pipe commands <a class="reference external" href="https://www.hanselman.com/blog/ForgottenButAwesomeWindowsCommandPromptFeatures.aspx">into the clipboard</a>.</li>
-<li><strong>If:</strong> <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490920(v=technet.10)">If</a> Statements based on if files exist.</li>
-<li><strong>List ip address-related info:</strong></li>
-</ul>
-<pre class="literal-block">
-ipconfig
-</pre>
-<p><strong>Check system bit (usually 64-bit or 32-bit):</strong></p>
-<pre class="literal-block">
-wmic os getosarchitecture
-</pre>
-</div>
-<div class="section" id="automate-windows-scripts-with-batch-files">
-<h2>Automate Windows Scripts with Batch Files</h2>
-<p>Batch files can be run from command prompt or by double-clicking them. Here's an example of text in a batch file that activates a python virtual environment. Swap in your username and environment if you've created it.</p>
-<pre class="literal-block">
-cmd /k &quot;cd C:\Users\your_username\PythonEnv\Scripts &amp; activate &amp; cd .. &amp; dir&quot;
-</pre>
-<ol class="arabic simple">
-<li>Save above as a .bat file.</li>
-<li>This uses <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490880%28v%3dtechnet.10%29">cmd</a> to open a new command prompt in a Windows batch file.</li>
-<li><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490875(v=technet.10)">cd</a>into my python virtual env then activate it by running a batch file.</li>
-<li>Then call dir to print directory contents.</li>
-</ol>
-<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490998(v=technet.10)">Set</a> a custom system 'last_name' variable to be recalled later.</p>
-<pre class="literal-block">
-set /p last_name=Enter a last name:
-echo %last_name%
-pause
-</pre>
-<p>Here we print it out with <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490897(v=technet.10)">echo</a>. Then <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490965(v=technet.10)">pause</a>.</p>
-<p><strong>Line continuation in batch files:</strong> Use ^ to continue your batch file scripts on a new line.</p>
-</div>
-<div class="section" id="system-assessment-tools-powercfg-and-sfc">
-<h2>System Assessment Tools: powercfg and sfc</h2>
-<p><strong>Display system stats:</strong></p>
-<pre class="literal-block">
-systeminfo
-</pre>
-<p><strong>Use powercfg to assess power, sleep and system states</strong></p>
-<pre class="literal-block">
-powercfg /SLEEPSTUDY
-</pre>
-<p>Use sfc to perform a system file check:</p>
-<pre class="literal-block">
-# scan and repair
-sfc /SCANNOW
-# scan, but do not repair:
-sfc /VERIFYONLY
-</pre>
-</div>
-<div class="section" id="accessing-a-remote-computer-from-the-command-line">
-<h2>Accessing a Remote Computer From the Command Line</h2>
-<p>You may want to <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ping">ping</a> a remote computer to see if it's running. Add your ip address instead of the below 1s and 0s:</p>
-<pre class="literal-block">
-ping 01.10.10.01
-</pre>
-<p>Log into your Remote Desktop with <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">mstsc</a>:</p>
-<ol class="arabic simple">
-<li>Run Remote Desktop Connection, save an RDP file from Windows Desktop Client.</li>
-<li>You may need to <a class="reference external" href="https://serverfault.com/questions/396722/your-system-administrator-does-not-allow-the-use-of-saved-credentials-to-log-on">adjust your credentials on your local machine.</a></li>
-<li>Finally, trigger login to an active window from command prompt:</li>
-</ol>
-<pre class="literal-block">
-mstsc RDP_File_Name.rdp
-</pre>
-<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a> and WinRS can allow terminal access to your Remote Desktop. You may need to set your wifi network to private. To configure winrm:</p>
-<pre class="literal-block">
-winrm quickconfig
-</pre>
-<p>Log into a remote computer with <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs">winrs</a> and run ipconfig:</p>
-<pre class="literal-block">
-winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
-</pre>
-</div>
-<div class="section" id="check-out-python-s-pywin32-module">
-<h2>Check Out Python's <a class="reference external" href="https://github.com/mhammond/pywin32">pywin32</a> Module</h2>
-<p>This module is extremely useful for scripting out Windows applications. For example, I've made good use of its interfaces to Outlook
-and <a class="reference external" href="https://lofipython.com/automated-python-with-windows-task-scheduler/">Task Scheduler</a>.
-Install with <a class="reference external" href="http://lofipython.com/2018/01/20/how-to-python-pip-install-new-libraries/">pip</a>:</p>
-<pre class="literal-block">
-python -m pip install pywin32
-</pre>
-<p><strong>Here's an example to send an Outlook email:</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">win32com.client</span>
-
-<span class="n">outlook</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s1">&#39;outlook.application&#39;</span><span class="p">)</span>
-<span class="n">mail</span> <span class="o">=</span> <span class="n">outlook</span><span class="o">.</span><span class="n">CreateItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">To</span> <span class="o">=</span> <span class="s1">&#39;someone@example.com&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">CC</span> <span class="o">=</span> <span class="s1">&#39;name@example.com&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="s1">&#39;Moneyball Review&#39;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Moneyball is an inspiring movie, based on real events.</span>
-<span class="s2">            Brad Pitt, Jonah Hill and Philip Seymour Hoffmann gave great performances.</span>
-<span class="s2">            The trade deadline scene is delightful. Wow.</span>
-<span class="s2">            Chris Pratt as Hatteberg too. What a solid film.</span>
-<span class="s2">            Money isn&#39;t everything. Playing ball is.</span>
-<span class="s2">            &quot;&quot;&quot;</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Attachments</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Baseball_Analysis.csv&#39;</span><span class="p">)</span>
-<span class="n">mail</span><span class="o">.</span><span class="n">Send</span><span class="p">()</span>
-</pre></div></td></tr></table></div>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection.html">posted at 14:11</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-command-prompt-scripts-windows.html" rel="tag">automation, command prompt, Scripts, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
-                    &nbsp;<a href="https://lofipython.com/tag/remote-computer.html" class="tags">remote computer</a>
-                    &nbsp;<a href="https://lofipython.com/tag/scripting.html" class="tags">scripting</a>
-                    &nbsp;<a href="https://lofipython.com/tag/shell.html" class="tags">shell</a>
                 </div>
             </article>
 

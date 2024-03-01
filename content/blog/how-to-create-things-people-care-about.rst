@@ -41,7 +41,7 @@ ideas:
 
 #. For every attribute, there is an opposite, effective attribute.
    //\ `Law 14, The 22 Immutable Laws of Marketing
-   <https://blog.kowalczyk.info/articles/22-marketing-laws.html>`__
+   <https://www.samuelthomasdavies.com/book-summaries/business/the-22-immutable-laws-marketing/>`__
 
 #. Launch quickly, show to people, get feedback, and iterate your idea.
    //\ `Rework <https://37signals.com/rework>`__

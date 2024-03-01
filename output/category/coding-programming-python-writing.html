@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link href="https://github.com/erickbytes" rel="me">
+    <link rel="webmention" href="https://webmention.io/lofipython.com/webmention" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lo-Fi Python | articles in the "coding, programming, python, writing" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/coding-programming-python-writing.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
+    <link href="https://lofipython.com/feeds/coding-programming-python-writing.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://lofipython.com/category/coding-programming-python-writing.html">coding, programming, python, writing</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Mar 01, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/validating-rst-links-with-rst-url-validator.html" rel="bookmark" title="Permanent Link to &quot;Find Broken Links in Your .rst Documents With rst-url-validator&quot;">Find Broken Links in Your .rst Documents With rst-url-validator</a>
+                </h2>
+
+                
+                
+
+                <p>The posts on this blog are written in <a class="reference external" href="https://www.writethedocs.org/guide/writing/reStructuredText/">reStructuredtext</a>.
+I recently had an idea to write a Python script to check my broken urls for broken tags or urls that are no valid.
+So I did what any other programmer does in 2024 and opened up an AI assistant. Bing quickly generated the structure
+of the Python script from my prompt, but like usual it required some tinkering and refinement to make it work.</p>
+<p>Bing was also valuable for helping me write regex code for rst-url-validator. It is typically very confusing to reason about regex,
+but with AI assistance I can just ask for regex that does something and the AI can generate it. Coding is getting way easier than
+it used to be thanks to these new advances in Large Language Models. You can find the complete Python script in the <a class="reference external" href="https://github.com/erickbytes/rst-url-validator">rst-url-validator Github repo</a>.</p>
+<p><strong>Install Python Library Dependencies</strong></p>
+<p>The script uses requests to validate the link and rich to print color-coded output to the terminal screen.</p>
+<pre class="code console literal-block">
+<span class="go">pip install requests
+pip install rich</span>
+</pre>
+<p><strong>Clone The Github Repo</strong></p>
+<pre class="code console literal-block">
+<span class="go">git clone git&#64;github.com:erickbytes/rst-url-validator.git</span>
+</pre>
+<p><strong>Install Python Library Dependencies</strong></p>
+<pre class="code console literal-block">
+<span class="go">python3.12 rst-url-validator.py your_file.rst</span>
+</pre>
+<img alt="validate .rst document urls with python" src="https://lofipython.com/images/rst-report.png" />
+<p>It parses each url tag, checks for required characters and sends a HEAD request to the url to check if it still loads successfully.
+Some websites return status codes like 403 (permission denied), 301 (redirect), or 404 (page not found). If the status code returned is 200,
+it's safe to say the page loaded.</p>
+<p>This script helped me find a bunch of broken links on my older post. I used this script to refresh or clean up tons on this blog.
+If you're working with .rst documents, give it a try!</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/validating-rst-links-with-rst-url-validator.html">posted at 12:56</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-writing.html" rel="tag">coding, programming, python, writing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/restructuredtext-format.html" class="tags">reStructuredtext Format</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-rst-url-validation.html" class="tags">python rst url validation</a>
+                    &nbsp;<a href="https://lofipython.com/tag/how-to-validate-rst-links.html" class="tags">how to validate .rst links</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

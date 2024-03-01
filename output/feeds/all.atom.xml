@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-02-22T13:22:00-06:00</updated><entry><title>Fixing INSTALL_IMAGE_LOADER_TIMED_OUT Error 52 on Crostini Linux Terminal for Chromebook</title><link href="https://lofipython.com/fixing-install_image_loader_timed_out-on-crostini-linux-chromebook-terminal.html" rel="alternate"></link><published>2024-02-22T13:22:00-06:00</published><updated>2024-02-22T13:22:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-22:/fixing-install_image_loader_timed_out-on-crostini-linux-chromebook-terminal.html</id><summary type="html">&lt;p&gt;When booting up the Ubuntu shell on my Chromebook, it usually just works. However, After I updated
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-03-01T12:56:00-06:00</updated><entry><title>Find Broken Links in Your .rst Documents With rst-url-validator</title><link href="https://lofipython.com/validating-rst-links-with-rst-url-validator.html" rel="alternate"></link><published>2024-03-01T12:56:00-06:00</published><updated>2024-03-01T12:56:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-03-01:/validating-rst-links-with-rst-url-validator.html</id><summary type="html">&lt;p&gt;The posts on this blog are written in &lt;a class="reference external" href="https://www.writethedocs.org/guide/writing/reStructuredText/"&gt;reStructuredtext&lt;/a&gt;.
+I recently had an idea to write a Python script to check my broken urls for broken tags or urls that are no valid.
+So I did what any other programmer does in 2024 and opened up an AI assistant. Bing …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The posts on this blog are written in &lt;a class="reference external" href="https://www.writethedocs.org/guide/writing/reStructuredText/"&gt;reStructuredtext&lt;/a&gt;.
+I recently had an idea to write a Python script to check my broken urls for broken tags or urls that are no valid.
+So I did what any other programmer does in 2024 and opened up an AI assistant. Bing quickly generated the structure
+of the Python script from my prompt, but like usual it required some tinkering and refinement to make it work.&lt;/p&gt;
+&lt;p&gt;Bing was also valuable for helping me write regex code for rst-url-validator. It is typically very confusing to reason about regex,
+but with AI assistance I can just ask for regex that does something and the AI can generate it. Coding is getting way easier than
+it used to be thanks to these new advances in Large Language Models. You can find the complete Python script in the &lt;a class="reference external" href="https://github.com/erickbytes/rst-url-validator"&gt;rst-url-validator Github repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Install Python Library Dependencies&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The script uses requests to validate the link and rich to print color-coded output to the terminal screen.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip install requests
+pip install rich&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Clone The Github Repo&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;git clone git&amp;#64;github.com:erickbytes/rst-url-validator.git&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Install Python Library Dependencies&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;python3.12 rst-url-validator.py your_file.rst&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="validate .rst document urls with python" src="https://lofipython.com/images/rst-report.png" /&gt;
+&lt;p&gt;It parses each url tag, checks for required characters and sends a HEAD request to the url to check if it still loads successfully.
+Some websites return status codes like 403 (permission denied), 301 (redirect), or 404 (page not found). If the status code returned is 200,
+it's safe to say the page loaded.&lt;/p&gt;
+&lt;p&gt;This script helped me find a bunch of broken links on my older post. I used this script to refresh or clean up tons on this blog.
+If you're working with .rst documents, give it a try!&lt;/p&gt;
+</content><category term="coding, programming, python, writing"></category><category term="reStructuredtext Format"></category><category term="python rst url validation"></category><category term="how to validate .rst links"></category></entry><entry><title>Fixing INSTALL_IMAGE_LOADER_TIMED_OUT Error 52 on Crostini Linux Terminal for Chromebook</title><link href="https://lofipython.com/fixing-install_image_loader_timed_out-on-crostini-linux-chromebook-terminal.html" rel="alternate"></link><published>2024-02-22T13:22:00-06:00</published><updated>2024-02-22T13:22:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-02-22:/fixing-install_image_loader_timed_out-on-crostini-linux-chromebook-terminal.html</id><summary type="html">&lt;p&gt;When booting up the Ubuntu shell on my Chromebook, it usually just works. However, After I updated
 to a new version of Chromebook OS, I was getting this error:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;dl class="docutils"&gt;
@@ -7302,7 +7331,7 @@ colors from a screen object. This is more of a productivity enhancing
 and color exploration tool for programmers. On to Python options.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Approach #2: Use the python tkcolorpicker package to grab the colors.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The first thing I found on Google was &lt;a class="reference external" href="https://pypi.org/project/tkcolorpicker/"&gt;tkcolorpicker&lt;/a&gt;,
-a package that uses the &lt;a class="reference external" href="https://lofipython.com/2016/02/29/tkinter-and-python-libraries/"&gt;tkinter&lt;/a&gt;
+a package that uses the &lt;a class="reference external" href="https://lofipython.com/tkinter-and-python-libraries/"&gt;tkinter&lt;/a&gt;
 library. I couldn't tell exactly what it was, so let's find out. First,
 install via &lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;pip install&lt;/a&gt;:&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
@@ -7413,13 +7442,18 @@ Javascript based framework. Coincidentally, Electron was used to
 build Atom.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</content><category term="coding, Colors, pandas, programming"></category><category term="atom"></category><category term="color"></category><category term="eyedropper"></category><category term="gui"></category><category term="python"></category></entry><entry><title>Gooey GUI for Python Scripts</title><link href="https://lofipython.com/gooey-gui-for-python-scripts.html" rel="alternate"></link><published>2018-08-25T16:32:00-05:00</published><updated>2018-08-25T16:32:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-08-25:/gooey-gui-for-python-scripts.html</id><summary type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
-&lt;p&gt;There are several GUI libraries in Python. A few I have heard of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
-&lt;p&gt;There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, &lt;a class="reference external" href="https://github.com/hoffstadt/DearPyGui"&gt;DearPyGui&lt;/a&gt; and PySimpleGUI.
-I &lt;a class="reference external" href="https://lofipython.com/2016/02/29/tkinter-and-python-libraries/"&gt;explored Tkinter&lt;/a&gt; back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.&lt;/p&gt;
-&lt;p&gt;The &lt;a class="reference external" href="https://github.com/chriskiehl/Gooey"&gt;Gooey Github page&lt;/a&gt; was most useful to me and helped me to do what I needed. The script posted &lt;a class="reference external" href="http://pbpython.com/pandas-gui.html"&gt;in this blog&lt;/a&gt; helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:&lt;/p&gt;
+</content><category term="coding, Colors, pandas, programming"></category><category term="atom"></category><category term="color"></category><category term="eyedropper"></category><category term="gui"></category><category term="python"></category></entry><entry><title>Gooey GUI for Python Scripts</title><link href="https://lofipython.com/gooey-gui-for-python-scripts.html" rel="alternate"></link><published>2018-08-25T16:32:00-05:00</published><updated>2018-08-25T16:32:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-08-25:/gooey-gui-for-python-scripts.html</id><summary type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python
+script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
+&lt;p&gt;There are several GUI libraries in Python. A few I have heard of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python
+script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
+&lt;p&gt;There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT,
+easygui, &lt;a class="reference external" href="https://github.com/hoffstadt/DearPyGui"&gt;DearPyGui&lt;/a&gt; and PySimpleGUI. I &lt;a class="reference external" href="https://lofipython.com/tkinter-and-python-libraries/"&gt;explored Tkinter&lt;/a&gt;
+back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://github.com/chriskiehl/Gooey"&gt;Gooey Github page&lt;/a&gt; was most useful to me and helped me to do what I needed.
+The script posted &lt;a class="reference external" href="http://pbpython.com/pandas-gui.html"&gt;in this blog&lt;/a&gt; helped as well. I needed to enable a human to
+supply three files and enter a number. Gooey was a good match for this. The library has two branches:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;some basic widgets piggyback off the &lt;a class="reference external" href="https://www.blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/"&gt;argparse&lt;/a&gt; library&lt;/li&gt;
+&lt;li&gt;some basic widgets piggyback off the &lt;a class="reference external" href="https://blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/"&gt;argparse&lt;/a&gt; library&lt;/li&gt;
 &lt;li&gt;another part of the library uses a function called the GooeyParser. The GooeyParser offers more advanced widgets, like a file chooser. This was exactly what I was looking to use to pull in files for my script.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Installing Gooey&lt;/strong&gt;&lt;/p&gt;
@@ -7468,9 +7502,12 @@ python -m pip install Gooey
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
-Side note: Check out Python's &lt;a class="reference external" href="https://docs.python.org/3/library/functions.html#vars"&gt;vars() built-in&lt;/a&gt; function above. It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!&lt;/blockquote&gt;
-&lt;p&gt;The &amp;#64;Gooey() part of the code is an advanced function known as a &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0318/"&gt;decorator in Python&lt;/a&gt;. Put simply, decorators are functions that modify the function to which they are attached.&lt;/p&gt;
-&lt;p&gt;Below is my script that uses the more advanced GooeyParser for its &amp;quot;FileChooser&amp;quot; widget. Gooey allows you to group widgets together and set how many widgets per line with the gooey_options={} parameter.&lt;/p&gt;
+Side note: Check out Python's &lt;a class="reference external" href="https://docs.python.org/3/library/functions.html#vars"&gt;vars() built-in&lt;/a&gt; function above.
+It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!&lt;/blockquote&gt;
+&lt;p&gt;The &amp;#64;Gooey() part of the code is an advanced function known as a &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0318/"&gt;decorator in Python&lt;/a&gt;.
+Put simply, decorators are functions that modify the function to which they are attached.&lt;/p&gt;
+&lt;p&gt;Below is my script that uses the more advanced GooeyParser for its &amp;quot;FileChooser&amp;quot; widget. Gooey allows you to group widgets together
+and set how many widgets per line with the gooey_options={} parameter.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -7511,8 +7548,10 @@ Side note: Check out Python's &lt;a class="reference external" href="https://doc
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:&lt;/p&gt;
 &lt;img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" /&gt;
-&lt;p&gt;Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&amp;nbsp;&lt;a class="reference external" href="https://lofipython.com/packaging-python-as-a-windows-app/"&gt;read more on how I did it here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file.
+This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies.
+I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can &lt;a class="reference external" href="https://lofipython.com/packaging-python-as-a-windows-app/"&gt;read more on how I did it here&lt;/a&gt;.&lt;/p&gt;
 </content><category term="coding, data, product development, programming, software"></category><category term="gooey"></category><category term="gui"></category><category term="python"></category><category term="software development"></category></entry><entry><title>Findstr, RegEx File Searches for Windows</title><link href="https://lofipython.com/findstr-aka-grep-for-windows.html" rel="alternate"></link><published>2018-07-15T19:52:00-05:00</published><updated>2018-07-15T19:52:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-07-15:/findstr-aka-grep-for-windows.html</id><summary type="html">&lt;p&gt;Findstr is the Windows alternative to GREP, which runs on the &lt;a class="reference external" href="https://www.howtogeek.com/182649/htg-explains-what-is-unix/"&gt;Unix operating system&lt;/a&gt;.
 Findstr searches files with &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression"&gt;regular expressions&lt;/a&gt; and seems useful for string matching within
 files and directories.&amp;nbsp; It is one of over 280 command prompt commands.
@@ -8229,43 +8268,4 @@ by the Python community.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://lofipython.com/how-to-make-json-requests-with-python/"&gt;a guide to making HTTP requests&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/"&gt;simple GUI for scripts with gooey&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="coding, programming"></category><category term="command line"></category><category term="computers"></category><category term="matrix"></category><category term="neo"></category><category term="pip"></category><category term="python"></category><category term="python libraries"></category><category term="software"></category></entry><entry><title>Python File Handling Basics</title><link href="https://lofipython.com/python-file-handling-basics.html" rel="alternate"></link><published>2018-01-14T18:53:00-06:00</published><updated>2018-01-14T18:53:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-01-14:/python-file-handling-basics.html</id><summary type="html">&lt;p&gt;The basis of many great programs revolve around a simple set of operations:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Open a file.&lt;/li&gt;
-&lt;li&gt;Do something with the file contents.&lt;/li&gt;
-&lt;li&gt;Save the new file for the user.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Python is nice and simple for this.&amp;nbsp;Paste the below lines into a &lt;a class="reference external" href="https://www.google.com/search?q=text+editor&amp;amp;oq=text+edit&amp;amp;aqs=chrome.0.0j69i57j0l4.2054j0j7&amp;amp;sourceid=chrome&amp;amp;ie=UTF-8"&gt;text editor&lt;/a&gt; and save as a .py file …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The basis of many great programs revolve around a simple set of operations:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Open a file.&lt;/li&gt;
-&lt;li&gt;Do something with the file contents.&lt;/li&gt;
-&lt;li&gt;Save the new file for the user.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Python is nice and simple for this.&amp;nbsp;Paste the below lines into a &lt;a class="reference external" href="https://www.google.com/search?q=text+editor&amp;amp;oq=text+edit&amp;amp;aqs=chrome.0.0j69i57j0l4.2054j0j7&amp;amp;sourceid=chrome&amp;amp;ie=UTF-8"&gt;text editor&lt;/a&gt; and save as a .py file. &lt;a class="reference external" href="https://github.com/BurntSushi/nfldb/wiki/Python-&amp;amp;-pip-Windows-installation"&gt;You need to have Python 3 installed&lt;/a&gt;. In the same folder as your .py file, save a .txt file with some words in it. Alright, let's write some code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
-&lt;span class="normal"&gt;2&lt;/span&gt;
-&lt;span class="normal"&gt;3&lt;/span&gt;
-&lt;span class="normal"&gt;4&lt;/span&gt;
-&lt;span class="normal"&gt;5&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;file_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Enter your file name. e.g. words.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;file_handle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;r&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;lines&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;file_handle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lines&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;file_handle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;In line 1, we ask the user to enter their file name with Python's raw_input function. When the program runs, the user enters their text file name with extension. This line stores the name in a variable called file_name.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;In line 2,&lt;/strong&gt; we open your text file and store it in a variable I have named file_handle. Think of the file handle as a bridge between your code and the text file. Quick point about the 'r' above: that tells the program to open the file in &amp;quot;Read&amp;quot; mode. There are several different file modes in programming. Some modes are just for reading an existing file, some are just for writing a new file, and some are capable of both. &lt;a class="reference external" href="https://stackoverflow.com/questions/16208206/confused-by-python-file-mode-w/16208298"&gt;This Stack Overflow post&lt;/a&gt; is well written and details the differences between file modes. Once established, the file handle allows you to read the file's contents or write new contents to the file.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;In line 3,&lt;/strong&gt;&amp;nbsp;we are calling the .readlines() method on our file handle. This method takes the file contents and stores them, line by line, into a list named &amp;quot;lines&amp;quot;. An alternative method is .read(), which opens the file and stores its contents as one string. Try switching this out in place of&amp;nbsp; .readlines() to check out the difference.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;In line 4,&lt;/strong&gt; we are printing the stored lines to show them to the user. We now have the file contents, ready to be used however we please.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;In line 5&lt;/strong&gt;, we are closing the file.&lt;/p&gt;
-&lt;p&gt;Below, we are going to write a new file using the with statement, which is generally accepted as the best way to read or write a file:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-with open(&amp;quot;Notes.txt&amp;quot;, &amp;quot;w&amp;quot;) as fhand:
-    fhand.write(&amp;quot;Did you know whales can live up to 90 years?&amp;quot;)
-&lt;/pre&gt;
-&lt;p&gt;In line 1, we are using Python's input function to ask the user what to name the file and storing it in a variable named file_name.&lt;/p&gt;
-&lt;p&gt;In line 2,&amp;nbsp; we are calling the open function again that we used in the first example, but this time, notice the &amp;quot;w&amp;quot;. This indicates that we are opening the file in &amp;quot;write&amp;quot; mode.&lt;/p&gt;
-&lt;p&gt;In line 3, we are calling the .write() method on our file handle, named save_file, and passing it our text to be saved in our new file.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;In line 4&lt;/strong&gt;, we are closing the file, completing the creation of our new file in the same folder as our .py program file.&lt;/p&gt;
-&lt;p&gt;Your program is now ready to be run. Double-click your .py file to execute it.&lt;/p&gt;
-&lt;p&gt;Before learning Python, file operations were a mystery to me. It took me a while to understand this clearly, and I wanted to share. Once you master these basic file operations, programming gets to be a lot more fun. Do try it out for yourself :D&lt;/p&gt;
-</content><category term="coding, programming"></category><category term="data"></category><category term="python"></category><category term="software"></category></entry></feed>
+</content><category term="coding, programming"></category><category term="command line"></category><category term="computers"></category><category term="matrix"></category><category term="neo"></category><category term="pip"></category><category term="python"></category><category term="python libraries"></category><category term="software"></category></entry></feed>

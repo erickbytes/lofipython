@@ -462,12 +462,16 @@ After setting up my first test with pytest, I have leveled up to novice tester, 
                 
                 
 
-                <p>GUI stands for &quot;Graphical User Interface&quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python script allows anyone to run it without having to code or use the command line.</p>
-<p>There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT, easygui, <a class="reference external" href="https://github.com/hoffstadt/DearPyGui">DearPyGui</a> and PySimpleGUI.
-I <a class="reference external" href="https://lofipython.com/2016/02/29/tkinter-and-python-libraries/">explored Tkinter</a> back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.</p>
-<p>The <a class="reference external" href="https://github.com/chriskiehl/Gooey">Gooey Github page</a> was most useful to me and helped me to do what I needed. The script posted <a class="reference external" href="http://pbpython.com/pandas-gui.html">in this blog</a> helped as well. I needed to enable a human to supply three files and enter a number. Gooey was a good match for this. The library has two branches:</p>
+                <p>GUI stands for &quot;Graphical User Interface&quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python
+script allows anyone to run it without having to code or use the command line.</p>
+<p>There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT,
+easygui, <a class="reference external" href="https://github.com/hoffstadt/DearPyGui">DearPyGui</a> and PySimpleGUI. I <a class="reference external" href="https://lofipython.com/tkinter-and-python-libraries/">explored Tkinter</a>
+back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.</p>
+<p>The <a class="reference external" href="https://github.com/chriskiehl/Gooey">Gooey Github page</a> was most useful to me and helped me to do what I needed.
+The script posted <a class="reference external" href="http://pbpython.com/pandas-gui.html">in this blog</a> helped as well. I needed to enable a human to
+supply three files and enter a number. Gooey was a good match for this. The library has two branches:</p>
 <ol class="arabic simple">
-<li>some basic widgets piggyback off the <a class="reference external" href="https://www.blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/">argparse</a> library</li>
+<li>some basic widgets piggyback off the <a class="reference external" href="https://blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/">argparse</a> library</li>
 <li>another part of the library uses a function called the GooeyParser. The GooeyParser offers more advanced widgets, like a file chooser. This was exactly what I was looking to use to pull in files for my script.</li>
 </ol>
 <p><strong>Installing Gooey</strong></p>
@@ -516,9 +520,12 @@ python -m pip install Gooey
 </pre></div></td></tr></table></div>
 <!--  -->
 <blockquote>
-Side note: Check out Python's <a class="reference external" href="https://docs.python.org/3/library/functions.html#vars">vars() built-in</a> function above. It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!</blockquote>
-<p>The &#64;Gooey() part of the code is an advanced function known as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0318/">decorator in Python</a>. Put simply, decorators are functions that modify the function to which they are attached.</p>
-<p>Below is my script that uses the more advanced GooeyParser for its &quot;FileChooser&quot; widget. Gooey allows you to group widgets together and set how many widgets per line with the gooey_options={} parameter.</p>
+Side note: Check out Python's <a class="reference external" href="https://docs.python.org/3/library/functions.html#vars">vars() built-in</a> function above.
+It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!</blockquote>
+<p>The &#64;Gooey() part of the code is an advanced function known as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0318/">decorator in Python</a>.
+Put simply, decorators are functions that modify the function to which they are attached.</p>
+<p>Below is my script that uses the more advanced GooeyParser for its &quot;FileChooser&quot; widget. Gooey allows you to group widgets together
+and set how many widgets per line with the gooey_options={} parameter.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -559,8 +566,10 @@ Side note: Check out Python's <a class="reference external" href="https://docs.p
 </pre></div></td></tr></table></div>
 <p>Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:</p>
 <img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" />
-<p>Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file. This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies. I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D</p>
-<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can&nbsp;<a class="reference external" href="https://lofipython.com/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
+<p>Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file.
+This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies.
+I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D</p>
+<p><strong>Update:</strong> I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can <a class="reference external" href="https://lofipython.com/packaging-python-as-a-windows-app/">read more on how I did it here</a>.</p>
 
                 <div class="clear"></div>
 
