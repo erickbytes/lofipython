@@ -2,7 +2,7 @@ Find Broken Links in Your .rst Documents With rst-url-validator
 ###############################################################
 :date: 2024-03-01 12:56
 :author: lofipython
-:category: coding, programming, python, writing
+:category: coding, programming, python, writing, .rst, reStructuredtext
 :tags: reStructuredtext Format, python rst url validation, how to validate .rst links
 :slug: validating-rst-links-with-rst-url-validator
 :status: published
@@ -45,9 +45,8 @@ The script uses requests to validate the link and rich to print color-coded outp
   :alt: validate .rst document urls with python
 
 
-It parses each url tag, checks for required characters and sends a HEAD request to the url to check if it still loads successfully. 
-Some websites return status codes like 403 (permission denied), 301 (redirect), or 404 (page not found). If the status code returned is 200,
-it's safe to say the page loaded.
+It parses each url tag, checks for required characters and sends a `HEAD <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD>`__ request 
+to the url to check if it still loads successfully. Some websites return status codes like 403 (permission denied), 301 (redirect), or 404 (page not found). 
+If the status code returned is 200, it's safe to say the page loaded.
 
-This script helped me find a bunch of broken links on my older post. I used this script to refresh or clean up tons on this blog. 
-If you're working with .rst documents, give it a try!
+This script helped me find and fix or remove a bunch of broken links on the older posts on this blog. If you're working with .rst documents, give it a try!
