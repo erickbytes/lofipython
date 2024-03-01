@@ -8,12 +8,15 @@ Find Broken Links in Your .rst Documents With rst-url-validator
 :status: published
 
 The posts on this blog are written in `reStructuredtext <https://www.writethedocs.org/guide/writing/reStructuredText/>`__. 
-I recently had an idea to write a Python script to check my broken urls for broken tags or urls that are no valid. 
-So I did what any other programmer does in 2024 and opened up an AI assistant. Bing quickly generated the structure 
+I recently had an idea to write a Python script to check my broken urls for broken tags or urls that are not valid. 
+When I'm using pelican, it gives hints when a url tag is malformed and a line number, but it can still be difficult 
+to track down a problematic link when there's an issue in your document.
+
+So I did what any other programmer probably does in 2024, opened up an AI assistant. Bing quickly generated the structure 
 of the Python script from my prompt, but like usual it required some tinkering and refinement to make it work.
 
-Bing was also valuable for helping me write regex code for rst-url-validator. It is typically very confusing to reason about regex, 
-but with AI assistance I can just ask for regex that does something and the AI can generate it. Coding is getting way easier than 
+Bing was also valuable for helping me modify the regex code for rst-url-validator. It is typically very confusing to reason about regex, 
+but with AI assistance I can just ask it for regex that does something and the AI can generate the code. Coding is getting way easier than 
 it used to be thanks to these new advances in Large Language Models. You can find the complete Python script in the `rst-url-validator Github repo <https://github.com/erickbytes/rst-url-validator>`__.
 
 
