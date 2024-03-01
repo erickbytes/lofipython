@@ -49,13 +49,10 @@ and color exploration tool for programmers. On to Python options.
 
 **Approach #2: Use the python tkcolorpicker package to grab the colors.**
 
-The first thing I found on Google was `tkcolorpicker
-<https://pypi.org/project/tkcolorpicker/>`__, a package that uses the
-`tkinter
-<https://lofipython.com/2016/02/29/tkinter-and-python-libraries/>`___
+The first thing I found on Google was `tkcolorpicker <https://pypi.org/project/tkcolorpicker/>`__, 
+a package that uses the `tkinter <https://lofipython.com/2016/02/29/tkinter-and-python-libraries/>`__
 library. I couldn't tell exactly what it was, so let's find out. First,
-install via `pip install
-<https://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__:
+install via `pip install <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__:
 
 .. code::
 
@@ -133,8 +130,7 @@ to the colors for some of the fonts.
 *****************************************************************************************************************************
 
 Microsoft Word uses RGB codes but eyedropper gave us hex. To convert, I
-found `this website
-<https://www.webpagefx.com/web-design/hex-to-rgb/>`__ practical and
+found `this website <https://www.webpagefx.com/web-design/hex-to-rgb/>`__ practical and
 quick. Alternatively, you could `convert a hex code to RGB with python
 <https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python>`__:
 
