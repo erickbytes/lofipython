@@ -7,8 +7,8 @@ Find Broken Links in Your .rst Documents With rst-url-validator
 :slug: validating-rst-links-with-rst-url-validator
 :status: published
 
-The posts on this blog are written in `reStructuredtext <https://www.writethedocs.org/guide/writing/reStructuredText/>`__. 
-I recently had an idea to write a Python script to check my broken urls for broken tags or urls that are not valid. 
+The posts on this blog are written in `reStructuredText <https://www.writethedocs.org/guide/writing/reStructuredText/>`__. 
+I recently had an idea to write a Python script to check my .rst document url links for broken tags or urls that are not valid. 
 When I'm using pelican, it gives hints when a url tag is malformed and a line number, but it can still be difficult 
 to track down a problematic link when there's an issue in your document.
 
@@ -22,7 +22,8 @@ it used to be thanks to these new advances in Large Language Models. You can fin
 
 **Install Python Library Dependencies**
 
-The script uses requests to validate the link and rich to print color-coded output to the terminal screen. 
+The script uses `requests <https://pypi.org/project/requests/>`__ to send an HTTP request to the url 
+and `rich <https://pypi.org/project/rich/>`__ to print color-coded output to the terminal screen. 
 
 .. code:: console
 
@@ -49,7 +50,8 @@ The script uses requests to validate the link and rich to print color-coded outp
 
 
 It parses each url tag, checks for required characters and sends a `HEAD <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD>`__ request 
-to the url to check if it still loads successfully. Some websites return status codes like 403 (permission denied), 301 (redirect), or 404 (page not found). 
-If the status code returned is 200, it's safe to say the page loaded.
+to the url to check if it loads successfully. Some websites return status codes like 403 (permission denied), 301 (redirect), or 404 (page not found). 
+If the status code returned is 200, it's safe to say the page loaded. Be aware that some sites like Cloudflare (returns 403) and Amazon (returns 503) do not serve 
+any requests and just return an error. In cases like these, you'll need to check pages like this manually in a browser to see if the page loads.
 
 This script helped me find and fix or remove a bunch of broken links on the older posts on this blog. If you're working with .rst documents, give it a try!

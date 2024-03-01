@@ -47,8 +47,8 @@
                 
                 
 
-                <p>The posts on this blog are written in <a class="reference external" href="https://www.writethedocs.org/guide/writing/reStructuredText/">reStructuredtext</a>.
-I recently had an idea to write a Python script to check my broken urls for broken tags or urls that are not valid.
+                <p>The posts on this blog are written in <a class="reference external" href="https://www.writethedocs.org/guide/writing/reStructuredText/">reStructuredText</a>.
+I recently had an idea to write a Python script to check my .rst document url links for broken tags or urls that are not valid.
 When I'm using pelican, it gives hints when a url tag is malformed and a line number, but it can still be difficult
 to track down a problematic link when there's an issue in your document.</p>
 <p>So I did what any other programmer probably does in 2024, opened up an AI assistant. Bing quickly generated the structure
@@ -57,7 +57,8 @@ of the Python script from my prompt, but like usual it required some tinkering a
 but with AI assistance I can just ask it for regex that does something and the AI can generate the code. Coding is getting way easier than
 it used to be thanks to these new advances in Large Language Models. You can find the complete Python script in the <a class="reference external" href="https://github.com/erickbytes/rst-url-validator">rst-url-validator Github repo</a>.</p>
 <p><strong>Install Python Library Dependencies</strong></p>
-<p>The script uses requests to validate the link and rich to print color-coded output to the terminal screen.</p>
+<p>The script uses <a class="reference external" href="https://pypi.org/project/requests/">requests</a> to send an HTTP request to the url
+and <a class="reference external" href="https://pypi.org/project/rich/">rich</a> to print color-coded output to the terminal screen.</p>
 <pre class="code console literal-block">
 <span class="go">pip install requests
 pip install rich</span>
@@ -72,8 +73,9 @@ pip install rich</span>
 </pre>
 <img alt="validate .rst document urls with python" src="https://lofipython.com/images/rst-report.png" />
 <p>It parses each url tag, checks for required characters and sends a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HEAD</a> request
-to the url to check if it still loads successfully. Some websites return status codes like 403 (permission denied), 301 (redirect), or 404 (page not found).
-If the status code returned is 200, it's safe to say the page loaded.</p>
+to the url to check if it loads successfully. Some websites return status codes like 403 (permission denied), 301 (redirect), or 404 (page not found).
+If the status code returned is 200, it's safe to say the page loaded. Be aware that some sites like Cloudflare (returns 403) and Amazon (returns 503) do not serve
+any requests and just return an error. In cases like these, you'll need to check pages like this manually in a browser to see if the page loads.</p>
 <p>This script helped me find and fix or remove a bunch of broken links on the older posts on this blog. If you're working with .rst documents, give it a try!</p>
 
                 <div class="clear"></div>
