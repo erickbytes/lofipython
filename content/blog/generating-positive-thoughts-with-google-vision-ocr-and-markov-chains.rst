@@ -11,7 +11,11 @@ Google Vision OCR, Image Text and a Markov Chain: a recipe for positivipy
 
 Recently an old idea came back to life. I've posted to a `Facebook Page <https://www.facebook.com/positivedailythought>`__ for several years as part of project I started on a whim. The goal of the page is to share anything positive and inspirational by famous thinkers, artists and creators I read, or simply something positive to meditate on. It was partially inspired by the discipline of "`Positive Psychology <https://en.wikipedia.org/wiki/Positive_psychology>`__". Basically, William James was a cool dude. `Martin Seligman <https://www.ted.com/talks/martin_seligman_the_new_era_of_positive_psychology/transcript?language=en>`__ is too. I believe that positive feelings create positive outcomes and we can "game" ourselves into this feedback loop with literature and other habits that support well-being like sleep and exercise.
 
-After building up years of posts, I pondered for years how to capture the dataset of quote images to generate new positive-minded prose. This post details one implementation and alternatives I considered to accomplish this goal. All of the data and code in this post is `published on Github <https://github.com/erickbytes/positivipy>`__. Possibly will post my entire `flask website <http://positivipy.com>`__ there eventually! Here's how I made my latest project, `positivipy <https://positivethoughts.pythonanywhere.com/>`__.
+After building up years of posts, I pondered for years how to capture the dataset of quote images to generate new positive-minded prose. 
+This post details one implementation and alternatives I considered to accomplish this goal. 
+All of the data and code in this post is `published on Github <https://github.com/erickbytes/positivipy>`__. 
+Possibly will post my entire flask website there eventually! 
+Here's how I made my latest project, `positivipy <https://positivethoughts.pythonanywhere.com/>`__.
 
 **Project Overview**
 
@@ -97,7 +101,9 @@ Since I had only 771 images, I was able to extract text on all of them and stay 
 3. Data cleaning (via `pandas <https://lofipython.com/pandas-pythons-excel-powerhouse/>`__ and manual correction)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The data did not come back perfect, but I was pleased with the Google Vision API's results. It saved me a lot of time compared to manually transcribing the images! Next I used pandas to clean the data. You can see more in a Jupyter notebook with `all of the code on github <https://github.com/erickbytes/positivipy>`__. Then I manually removed the author or source names, keeping only the quote text.
+The data did not come back perfect, but I was pleased with the Google Vision API's results. It saved me a lot of time compared to manually transcribing the images! 
+Next I used pandas to clean the data. You can see more in a Jupyter notebook with `all of the code on github <https://github.com/erickbytes/positivipy>`__. 
+Then I manually removed the author or source names, keeping only the quote text.
 
 .. _4-train-on-past-quotes-and-generate-new-quotes:
 
@@ -106,9 +112,13 @@ The data did not come back perfect, but I was pleased with the Google Vision API
 
 **GPT-3, The State of the Art Option**
 
-Initially, I considered machine learning options for generating new text. The GPT-3 library, released in early 2020 by Open AI, is the current state of the art model for text generation. However, its API is only accessible on an invite basis. If I get access, I think I'll try using it with the `GPT-Sandbox <https://github.com/shreyashankar/gpt3-sandbox>`__ python library. 🤞 You can join the `GPT-3 waitlist here <https://share.hsforms.com/1Lfc7WtPLRk2ppXhPjcYY-A4sk30>`__.
+Initially, I considered machine learning options for generating new text. The GPT-3 library, released in early 2020 by Open AI, is the current state of the art model 
+for text generation. However, its API is only accessible on an invite basis. If I get access, I think I'll try using it with the `GPT-Sandbox <https://github.com/shreyashankar/gpt3-sandbox>`__ 
+python library. 🤞 You can join the `GPT-3 waitlist here <https://share.hsforms.com/1Lfc7WtPLRk2ppXhPjcYY-A4sk30>`__.
 
-I searched around for other text generation python libraries on Github and found a promising one named `GPT-2_simple <https://github.com/minimaxir/gpt-2-simple>`__, which utilizes GPT-3's predecessor. However, it requires using an old version of TensorFlow. I feel less inclined to learn older versions of machine learning libraries. Currently, I'm holding out for GPT-3 access. I may try the GPT-2 route if I don't get a chance at GPT-3.
+I searched around for other text generation python libraries on Github and found a promising one named `GPT-2_simple <https://github.com/minimaxir/gpt-2-simple>`__, 
+which utilizes GPT-3's predecessor. However, it requires using an old version of TensorFlow. I feel less inclined to learn older versions of machine learning libraries. 
+Currently, I'm holding out for GPT-3 access. I may try the GPT-2 route if I don't get a chance at GPT-3.
 
 **A "**\ `Simple is Better Than Complex <https://zen-of-python.info/simple-is-better-than-complex.html>`__\ **" Approach: Markov Chain**
 

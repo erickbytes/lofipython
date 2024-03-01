@@ -103,16 +103,13 @@ of Express. Your app is live in dev environment.
 
 **Notes**
 
--  I learned most of this from `this great blog post
-   <https://codeforgeek.com/2014/10/express-complete-tutorial-part-1/>`__.
+-  I learned most of this from `this great blog post <https://codeforgeek.com/express-complete-tutorial-part-1/>`__.
 
 -  The above does not include a database integration. I integrated with
-   a MongoDB database by `following the instructions in this post
-   <https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-for-front-end-developers-to-getting-up-and-running-with-nodejs-express-and-mongodb>`__.
+   a MongoDB database by following a blog post that has since been removed from the internet.
 
 -  This `YouTube video <https://www.youtube.com/watch?v=1uFY60CESlM>`__
-   was also very helpful to me for figuring out MongoDB and Node.js
-   integration.
+   was also very helpful to me for figuring out MongoDB and Node.js integration.
 
 -  An HTML shorthand language called jade (aka pug) comes stock within
    Express.js. `Here's further reading <https://webapplog.com/jade/>`__

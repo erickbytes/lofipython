@@ -7,7 +7,9 @@ Beyond the Standard Library, An External Python Modules Starter Pack
 :slug: 30-external-python-libraries-starter-pack
 :status: published
 
-Here is a list of external Python modules you can install with `pip <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__. These are not included with your Python version and need to be installed separately. In some cases, other options may be suitable. To keep the list shorter, I picked libraries that were chosen based on having at least one of these qualities:
+Here is a list of external Python modules you can install with `pip <https://lofipython.com/how-to-python-pip-install-new-libraries/>`__. 
+These are not included with your Python version and need to be installed separately. In some cases, other options may be suitable. 
+To keep the list shorter, I picked libraries that were chosen based on having at least one of these qualities:
 
 -  most obvious library for its category
 -  a library I have experience using effectively

@@ -7,9 +7,12 @@
 :slug: a-computer-science-themed-wikipedia-link-grab-bag
 :status: published
 
-Here are 20 random technology-oriented Wikipedia links I recently collected after re-organizing troves of bookmarked links accumulated over the past few years. These articles peek into the wide variety of things to learn about that exist in Computer Science. ABL. Always. Be. Learning. Curiosity and well organized browser bookmarks are your friend.
+Here are 20 random technology-oriented Wikipedia links I recently collected after re-organizing troves of bookmarked links 
+accumulated over the past few years. These articles peek into the wide variety of things to learn about that exist in Computer Science. 
+ABL. Always. Be. Learning. Curiosity and well organized browser bookmarks are your friend.
 
-I support Wikipedia with a donation nearly every year. It's an amazing resource to learn about everything and I'm very grateful for it. Thank you for existing, Wikipedia. It's is a great jumping off point to learn about something I don't understand, which is much of this list here.
+I support Wikipedia with a donation nearly every year. It's an amazing resource to learn about everything and I'm very grateful for it. 
+Thank you for existing, Wikipedia. It's is a great jumping off point to learn about something I don't understand, which is much of this list here.
 
 Algorithms & Theories
 ---------------------

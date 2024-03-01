@@ -13,8 +13,8 @@ erickbuildsstuff[at]outlook[dot]com
 
 `divbull.com <http://divbull.com>`__, an investing and stocks blog
 
-`positivipy <https://www.positivethoughts.pythonanywhere.com/>`__, text generation flask + mysql app built with fuzzywuzzy, ftfy, language_tool_python, textblob and markovify libraries
+`positivipy <https://positivethoughts.pythonanywhere.com/>`__, text generation flask + mysql app built with fuzzywuzzy, ftfy, language_tool_python, textblob and markovify libraries
 
-`Ask <https://tameimpala.pythonanywhere.com/>`__ `Tame Impala, <https://tameimpala.pythonanywhere.com/>`__ web2py + MongoDB Tame Impala lyrics search app
+`Ask Tame Impala <https://tameimpala.pythonanywhere.com/>`__, web2py + MongoDB Tame Impala lyrics search app
 
 `mas tacos <https://mastacos.pythonanywhere.com/>`__, proof of concept app with a US taco restaurant dataset

@@ -7,11 +7,15 @@ Integrating MySQL with Flask, pandas and pythonanywhere
 :slug: essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere
 :status: published
 
-Sometimes a spark comes from seemingly nowhere. That's when you reach for your tools and create. After a series of successful experiments, I decided this stack might be my quickest, best shot to get a functional website up and running in Python. I was pleasantly surprised to make rapid progress over the span of a quarantine weekend. Here are the steps to create a `MySQL backed website <https://weedfiend.pythonanywhere.com>`__ with Flask.
+Sometimes a spark comes from seemingly nowhere. That's when you reach for your tools and create. After a series of successful experiments, 
+I decided this stack might be my quickest, best shot to get a functional website up and running in Python.
+I was pleasantly surprised to make rapid progress over the span of a quarantine weekend. 
+Here are the steps to create a MySQL backed website with Flask.
 
 **Hosting With pythonanywhere**
 
-`pythonanywhere <https://www.pythonanywhere.com/user/weedfiend/>`__ is a web hosting service like GoDaddy. If you host your app with them, MySQL is the default database. Postgres integration is available at higher price tiers.
+`pythonanywhere <https://www.pythonanywhere.com/>`__ is a web hosting service like GoDaddy. 
+If you host your app with them, MySQL is the default database. Postgres integration is available at higher price tiers.
 
 **To get your Flask app's database up and running you need to:**
 
@@ -82,7 +86,7 @@ Essential MySQL Terminal Commands
 
    SELECT * from Marijuana;
 
-`Using LIKE in MySQL <https://www.mysqltutorial.org/mysql-like/>`__
+`Using LIKE in MySQL <https://www.mysqltutorial.org/mysql-basics/mysql-like/>`__
 
 **Select 10 Newest Records**
 
@@ -117,7 +121,7 @@ Essential MySQL Terminal Commands
 Installing Libraries in PythonAnywhere
 --------------------------------------
 
-You can use `pip <http://pythonmarketer.wordpress.com/2018/01/20/how-to-python-pip-install-new-libraries/>`__ to install python libraries within the PythonAnywhere bash terminal. Go to the consoles tab and start a new bash terminal. Then to install a library, such as pandas:
+You can use `pip <http://lofipython.com/how-to-python-pip-install-new-libraries/>`__ to install python libraries within the PythonAnywhere bash terminal. Go to the consoles tab and start a new bash terminal. Then to install a library, such as pandas:
 
 ::
 
@@ -221,7 +225,7 @@ Flask app with `mysql.connector API <https://dev.mysql.com/doc/connector-python/
 
 **Iterative Development**
 
-   Below: making `my website <https://weedfiend.pythonanywhere.com/>`__ look less like a "my first HTML" website, experimenting with my app's message\name and adding a sign-up form connected to the database.
+   Below: making my website look less like a "my first HTML" website, experimenting with my app's message name and adding a sign-up form connected to the database.
 
 .. image:: https://pythonmarketer.files.wordpress.com/2020/05/screenshot_20200606-132252-1-1.png
    :alt: Screenshot_20200606-132252 (1)
@@ -246,18 +250,21 @@ I'm really enjoying this web development stack. Here are all of the tools and li
 -  `web framework <https://en.wikipedia.org/wiki/Web_framework>`__: Flask library
 -  email: `Flask-Mail <https://pythonhosted.org/Flask-Mail/>`__ library(`SMTP <https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol>`__)
 -  API calls to external websites: `requests <https://requests.readthedocs.io/en/master/>`__ and json libraries
--  data handling: MySQL database, mysql.connector API, `pandas <https://pythonmarketer.wordpress.com/2018/05/12/pandas-pythons-excel-powerhouse/>`__ library
+-  data handling: MySQL database, mysql.connector API, `pandas library <https://lofipython.com/pandas-pythons-excel-powerhouse/>`__
 -  file system: `logging <https://docs.python.org/3/library/logging.html>`__, os and sys libraries
 -  (may add) payment processing: `Braintree Library <https://github.com/braintree/braintree_python>`__
 -  web hosting: pythonanywhere
 
 **Finding Your Flask Groove**
 
-Flask is a little scary at first, but reasonable once you get a grasp of the basic syntax. Using the logging module to establish access, error and server log feeds was a big step to finding my Python traceback fixing groove. It's a work in progress.
+Flask is a little scary at first, but reasonable once you get a grasp of the basic syntax. Using the logging module to establish access, error 
+and server log feeds was a big step to finding my Python traceback fixing groove. It's a work in progress.
 
 **Recapping My Python Web Development and Database Experiences**
 
-I previously created a `website <http://tameimpala.pythonanywhere.com/>`__ with `web2py <https://lofipython.com/getting-started-with-web2py/>`__, another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then, I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.
+I previously created a `website <http://tameimpala.pythonanywhere.com/>`__ with `web2py <https://lofipython.com/getting-started-with-web2py/>`__, 
+another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then, 
+I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.
 
    **My Python Web Development and Database Tools**
 
@@ -271,8 +278,12 @@ I previously created a `website <http://tameimpala.pythonanywhere.com/>`__ with 
 
 Of these two diverse Python stacks, I favor MySQL and Flask. But I learned a lot from watching web2py's tutorial videos and it's less intimidating for beginners. And I barely scratched the surface of web2py's "pure Python" `pyDAL (Database Abstraction Layer) <https://github.com/web2py/pydal>`__, which seems pretty dope.
 
-web2py's `creator <https://www.youtube.com/watch?v=hcYUgNWvPtw>`__ has a new framework in progress called `py4web <https://github.com/web2py/py4web>`__. It has the same `DAL <http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer>`__ and inherits many other web2py qualities. Definitely looking forward to exploring the DAL on my first py4web website. I'll likely use it to connect to PostgreSQL or SQLite. Maybe I'll `install pyDAL with pip <https://github.com/web2py/pydal>`__ in the meantime.
+web2py's `creator <https://www.youtube.com/watch?v=hcYUgNWvPtw>`__ has a new framework in progress called `py4web <https://github.com/web2py/py4web>`__. 
+It has the same `DAL <http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer>`__ and inherits many other web2py qualities. 
+Definitely looking forward to exploring the DAL on my first py4web website. I'll likely use it to connect to PostgreSQL or SQLite. 
+Maybe I'll `install pyDAL with pip <https://github.com/web2py/pydal>`__ in the meantime.
 
 **Final Thoughts**
 
-Both of my websites are hosted with pythonanywhere, which gives you a text editor and `bash <https://en.wikipedia.org/wiki/Bash_(Unix_shell)>`__ terminal to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience. 👍👍
+Both of my websites are hosted with pythonanywhere, which gives you a text editor and `bash <https://en.wikipedia.org/wiki/Bash_(Unix_shell)>`__ terminal 
+to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience.

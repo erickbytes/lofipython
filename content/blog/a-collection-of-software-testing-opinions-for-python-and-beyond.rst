@@ -176,7 +176,10 @@ Opinions vary widely on the merits and appropriate application of TDD. I'm admit
 
 **I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:**
 
-``python -m pip install pytest``
+.. code:: console
+
+   python -m pip install pytest
+
 
 **test_file_date.py**
 
@@ -196,10 +199,19 @@ Opinions vary widely on the merits and appropriate application of TDD. I'm admit
        print(date.today().day)
        assert file_date.day == date.today().day
 
-| **Run the test with pytest by entering:**
-| ``pytest test_file_date.py``
 
-| **Conclusion**
-| I write programs for personal productivity and to `automate processes <https://lofipython.com/automated-python-with-windows-task-scheduler/>`__. The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick the right style for your project. More so for recurring, automated processes.
+**Run the test with pytest by entering:**
 
-It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.
+.. code:: console
+   
+   pytest test_file_date.py
+   
+
+**Conclusion**
+I write programs for personal productivity and to `automate processes <https://lofipython.com/automated-python-with-windows-task-scheduler/>`__. 
+The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage. 
+However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick 
+the right style for your project. More so for recurring, automated processes.
+
+It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not. 
+After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.

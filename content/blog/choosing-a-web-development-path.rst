@@ -17,8 +17,7 @@
 :status:
    published
 
-I have recently finished this `HTML course
-<https://www.coursera.org/learn/html>`__, which recommends using cPanel
+I have recently finished this `HTML course <https://www.coursera.org/learn/html>`__, which recommends using cPanel
 to configure websites. So I bought a domain and registered with cPanel.
 
 -  **What I thought would happen in trying to create a
@@ -47,10 +46,8 @@ building as fast as possible.
 I found a free web hosting service called PythonAnywhere. There are
 other `free <https://wiki.python.org/moin/FreeHosts>`__ and paid Python-friendly hosts.
 
-Instead of the `previously mentioned web frameworks
-<https://lofipython/starting-to-almost-kinda-think-about-creating-a-web-app/>`__,
-I've chosen web2py as a starter because of its compatibility with
-PythonAnywhere, its simplicity, easy to read documentation and relative
+Instead of the `previously mentioned web frameworks <https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app/>`__,
+I've chosen web2py as a starter because of its compatibility with PythonAnywhere, its simplicity, easy to read documentation and relative
 ease of use for beginners.
 
 -  A note on PythonAnywhere: they get 5 stars for the tutorial pictured
