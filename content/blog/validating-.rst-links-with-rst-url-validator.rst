@@ -9,15 +9,18 @@ Find Broken Links in Your .rst Documents With rst-url-validator
 
 The posts on this blog are written in `reStructuredText <https://www.writethedocs.org/guide/writing/reStructuredText/>`__. 
 I recently had an idea to write a Python script to check my .rst document url links for broken tags or urls that are not valid. 
-When I'm using `Pelican <https://pypi.org/project/pelican/>`__, it gives hints when a url tag is malformed and a line number, 
-but it can still be difficult to track down a problematic link when there's an issue in your document.
+When I'm using `Pelican <https://pypi.org/project/pelican/>`__, it hints when a url tag is malformed and gives a line number.
+However, it can still be difficult to track down a problematic link when there's an issue in your document.
 
 So I did what any other programmer probably does in 2024, opened up an AI assistant. Bing quickly generated the structure 
 of the Python script from my prompt, but like usual it required some tinkering and refinement to make it work.
+You can find the complete Python script in the `rst-url-validator Github repo <https://github.com/erickbytes/rst-url-validator>`__.
 
-Bing was also valuable for helping me modify the regex code for rst-url-validator. It is typically very confusing to reason about regex, 
-but with AI assistance I can just ask it for regex that does something and the AI can generate the code. Coding is getting way easier than 
-it used to be thanks to these new advances in Large Language Models. You can find the complete Python script in the `rst-url-validator Github repo <https://github.com/erickbytes/rst-url-validator>`__.
+Bing was also valuable for helping me modify the `regex module <https://docs.python.org/3/howto/regex.html>`__ code 
+for rst-url-validator. It is typically very confusing to reason about regex, 
+but with AI assistance I can just ask it for regex that does something and 
+the AI can generate the code. Coding is getting way easier than it used to be thanks 
+to these new advances in Large Language Models.
 
 
 **Install Python Library Dependencies**
@@ -36,13 +39,14 @@ and `rich <https://pypi.org/project/rich/>`__ to print color-coded output to the
 .. code:: console
 
    git clone git@github.com:erickbytes/rst-url-validator.git
+   cd rst-url-validator
 
 
-**Install Python Library Dependencies**
+**Run The CLI Command**
 
 .. code:: console
 
-   python3.12 rst-url-validator.py your_file.rst
+   python rst-url-validator.py your_file.rst
 
 
 .. image:: {static}/images/rst-report.png

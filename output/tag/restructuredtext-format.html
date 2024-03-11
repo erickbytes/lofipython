@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <link href="https://github.com/erickbytes" rel="me">
-    <link rel="webmention" href="https://webmention.io/lofipython.com/webmention" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Lo-Fi Python | articles tagged "reStructuredtext Format"</title>
     <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
@@ -47,13 +45,16 @@
 
                 <p>The posts on this blog are written in <a class="reference external" href="https://www.writethedocs.org/guide/writing/reStructuredText/">reStructuredText</a>.
 I recently had an idea to write a Python script to check my .rst document url links for broken tags or urls that are not valid.
-When I'm using <a class="reference external" href="https://pypi.org/project/pelican/">Pelican</a>, it gives hints when a url tag is malformed and a line number,
-but it can still be difficult to track down a problematic link when there's an issue in your document.</p>
+When I'm using <a class="reference external" href="https://pypi.org/project/pelican/">Pelican</a>, it hints when a url tag is malformed and gives a line number.
+However, it can still be difficult to track down a problematic link when there's an issue in your document.</p>
 <p>So I did what any other programmer probably does in 2024, opened up an AI assistant. Bing quickly generated the structure
-of the Python script from my prompt, but like usual it required some tinkering and refinement to make it work.</p>
-<p>Bing was also valuable for helping me modify the regex code for rst-url-validator. It is typically very confusing to reason about regex,
-but with AI assistance I can just ask it for regex that does something and the AI can generate the code. Coding is getting way easier than
-it used to be thanks to these new advances in Large Language Models. You can find the complete Python script in the <a class="reference external" href="https://github.com/erickbytes/rst-url-validator">rst-url-validator Github repo</a>.</p>
+of the Python script from my prompt, but like usual it required some tinkering and refinement to make it work.
+You can find the complete Python script in the <a class="reference external" href="https://github.com/erickbytes/rst-url-validator">rst-url-validator Github repo</a>.</p>
+<p>Bing was also valuable for helping me modify the <a class="reference external" href="https://docs.python.org/3/howto/regex.html">regex module</a> code
+for rst-url-validator. It is typically very confusing to reason about regex,
+but with AI assistance I can just ask it for regex that does something and
+the AI can generate the code. Coding is getting way easier than it used to be thanks
+to these new advances in Large Language Models.</p>
 <p><strong>Install Python Library Dependencies</strong></p>
 <p>The script uses <a class="reference external" href="https://pypi.org/project/requests/">requests</a> to send an HTTP request to the url
 and <a class="reference external" href="https://pypi.org/project/rich/">rich</a> to print color-coded output to the terminal screen.</p>
@@ -63,11 +64,12 @@ pip install rich</span>
 </pre>
 <p><strong>Clone The Github Repo</strong></p>
 <pre class="code console literal-block">
-<span class="go">git clone git&#64;github.com:erickbytes/rst-url-validator.git</span>
+<span class="go">git clone git&#64;github.com:erickbytes/rst-url-validator.git
+cd rst-url-validator</span>
 </pre>
-<p><strong>Install Python Library Dependencies</strong></p>
+<p><strong>Run The CLI Command</strong></p>
 <pre class="code console literal-block">
-<span class="go">python3.12 rst-url-validator.py your_file.rst</span>
+<span class="go">python rst-url-validator.py your_file.rst</span>
 </pre>
 <img alt="validate .rst document urls with python" src="https://lofipython.com/images/rst-report.png" />
 <p>It parses each url tag, checks for required characters and sends a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HEAD</a> request
