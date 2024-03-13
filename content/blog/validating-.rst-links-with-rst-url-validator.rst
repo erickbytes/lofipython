@@ -20,7 +20,7 @@ Bing was also valuable for helping me modify the `regex module <https://docs.pyt
 for rst-url-validator. It is typically very confusing to reason about regex, 
 but with AI assistance I can just ask it for regex that does something and 
 the AI can generate the code. Coding is getting way easier than it used to be thanks 
-to these new advances in Large Language Models.
+to these new advances in large language models.
 
 
 **Install Python Library Dependencies**
