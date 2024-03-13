@@ -18,6 +18,7 @@ MENUITEMS = [
     ["RSS", "feeds/all.rss.xml"],
     ["Atom", "feeds/all.atom.xml"],
     ["Github", "https://github.com/erickbytes/lofipython"],
+    ["Donate on PayPal", "https://www.paypal.com/donate/?hosted_button_id=CYSGWHZZXHAYA"]
 ]
 DEFAULT_PAGINATION = 10
 THEME = "blue-penguin-dark"
