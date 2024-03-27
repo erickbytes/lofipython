@@ -18,8 +18,9 @@ MENUITEMS = [
     ["RSS", "feeds/all.rss.xml"],
     ["Atom", "feeds/all.atom.xml"],
     ["Github", "https://github.com/erickbytes/lofipython"],
-    ["Support Lo-Fi Python", "https://www.paypal.com/donate/?hosted_button_id=DSN3VYA899D9C"]
+    ["Hire Me", "https://lofipython.com/contact"]
 ]
+# ["Support Lo-Fi Python", "https://www.paypal.com/donate/?hosted_button_id=DSN3VYA899D9C"]
 DEFAULT_PAGINATION = 10
 THEME = "blue-penguin-dark"
 GITHUB_URL = "https://github.com/erickbytes/lofipython.com"
