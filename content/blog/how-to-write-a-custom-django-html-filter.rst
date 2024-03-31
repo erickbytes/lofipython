@@ -7,7 +7,7 @@ Run Python in Your HTML Via a Custom Django HTML Filter
 :slug: how-to-write-a-custom-django-html-filter
 :status: published
 
-These are steps I followed to set up a custom Django filter 
+These are the steps I followed to set up a custom Django filter 
 to divide a number by another number. Today's post comes with a side of mathematics!
 Here's how to set up a custom Django filter that returns the quotient of two numbers.
 I mostly followed along with the `Django custom template tags documentation <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__.
