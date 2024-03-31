@@ -3,7 +3,7 @@ Run Python in Your HTML Via a Custom Django HTML Filter
 :date: 2024-03-31 16:18
 :author: lofipython
 :category: coding, programming, python, Django
-:tags: django custom filter, dynamic HTML python django, running Python in D
+:tags: django custom filter, dynamic HTML python django, running Python in Django HTML
 :slug: how-to-write-a-custom-django-html-filter
 :status: published
 
