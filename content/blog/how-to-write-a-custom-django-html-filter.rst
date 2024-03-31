@@ -67,7 +67,7 @@ knows the divide function exists.
 
 In the HTML, call the divide function by passing two numeric arguments:
 
-.. code-block:: html
+.. code:: console
    
    {{ hotel.price|divide:16.5 }}
 
