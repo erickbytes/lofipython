@@ -69,10 +69,10 @@ In the HTML, call the divide function by passing two numeric arguments:
 
 .. code-block:: html
    
-   {{ hotel.price|divide:16 }}
+   {{ hotel.price|divide:16.5 }}
 
-1. A number to be divided the hotel price from a "Hotels" DB model
-2. The function name to call and a number to divide by. Here we use "divide:16" to approximately convert Mexican pesos to US dollars.
+1. A number to be divided, here the hotel price from a "Hotels" DB model
+2. The function name to call and a number to divide by. Here we use "divide:16" to approximately convert Mexican pesos to US dollars. Currently, the exchange rate fluctuates between 16-17 pesos per dollar.
 
 
 
