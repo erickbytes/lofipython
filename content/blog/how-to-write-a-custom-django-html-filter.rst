@@ -8,8 +8,8 @@ Run Python in Your HTML Via a Custom Django HTML Filter
 :status: published
 
 These are the steps I followed to set up a custom Django filter 
-to divide a number by another number. Today's post comes with a side of mathematics!
-Here's how to set up a custom Django filter that returns the quotient of two numbers.
+to divide a number by another number. Here's how to set up a custom Django filter 
+that returns the quotient of two numbers. Today's post comes with a side of mathematics!
 I mostly followed along with the `Django custom template tags documentation <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__.
 
 **Install Django Python Library**
@@ -22,8 +22,7 @@ I mostly followed along with the `Django custom template tags documentation <htt
 **Create templatetags.py**
 
 I dropped this Python file into my top-level folder of my project that held different app folders, 
-static folder and templates folder. The @register.filter decorator registers the function so Django 
-knows the divide function exists.
+static folder and templates folder. The @register.filter decorator registers the divide function so Django knows it exists.
 
 .. code-block:: python
 
@@ -71,7 +70,7 @@ In the HTML, call the divide function by passing two numeric arguments:
    
    {{ hotel.price|divide:16.5 }}
 
-1. A number to be divided, here the hotel price from a "Hotels" DB model
+1. A number to be divided, here the hotel price from a "Hotel" DB model
 2. The function name to call and a number to divide by. Here we use "divide:16.5" to approximately convert Mexican pesos to US dollars. Currently, the exchange rate fluctuates between 16-17 pesos per dollar.
 
 

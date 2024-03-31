@@ -43,8 +43,8 @@
                 
 
                 <p>These are the steps I followed to set up a custom Django filter
-to divide a number by another number. Today's post comes with a side of mathematics!
-Here's how to set up a custom Django filter that returns the quotient of two numbers.
+to divide a number by another number. Here's how to set up a custom Django filter
+that returns the quotient of two numbers. Today's post comes with a side of mathematics!
 I mostly followed along with the <a class="reference external" href="https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/">Django custom template tags documentation</a>.</p>
 <p><strong>Install Django Python Library</strong></p>
 <pre class="code console literal-block">
@@ -52,8 +52,7 @@ I mostly followed along with the <a class="reference external" href="https://doc
 </pre>
 <p><strong>Create templatetags.py</strong></p>
 <p>I dropped this Python file into my top-level folder of my project that held different app folders,
-static folder and templates folder. The &#64;register.filter decorator registers the function so Django
-knows the divide function exists.</p>
+static folder and templates folder. The &#64;register.filter decorator registers the divide function so Django knows it exists.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -120,7 +119,7 @@ knows the divide function exists.</p>
 <span class="go">{{ hotel.price|divide:16.5 }}</span>
 </pre>
 <ol class="arabic simple">
-<li>A number to be divided, here the hotel price from a &quot;Hotels&quot; DB model</li>
+<li>A number to be divided, here the hotel price from a &quot;Hotel&quot; DB model</li>
 <li>The function name to call and a number to divide by. Here we use &quot;divide:16.5&quot; to approximately convert Mexican pesos to US dollars. Currently, the exchange rate fluctuates between 16-17 pesos per dollar.</li>
 </ol>
 <p><strong>Basic Hotel Model Example</strong></p>
