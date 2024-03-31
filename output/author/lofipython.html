@@ -34,7 +34,139 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Mar 01, 2024</h4>
+        <div id="content">            <h4 class="date">Mar 31, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html" rel="bookmark" title="Permanent Link to &quot;Run Python in Your HTML Via a Custom Django HTML Filter&quot;">Run Python in Your HTML Via a Custom Django HTML Filter</a>
+                </h2>
+
+                
+                
+
+                <p>These are steps I followed to set up a custom Django filter
+to divide a number by another number. Today's post comes with a side of mathematics!
+Here's how to set up a custom Django filter that returns the quotient of two numbers.
+I mostly followed along with the <a class="reference external" href="https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/">Django custom template tags documentation</a>.</p>
+<p><strong>Install Django Python Library</strong></p>
+<pre class="code console literal-block">
+<span class="go">pip install Django</span>
+</pre>
+<p><strong>Create templatetags.py</strong></p>
+<p>I dropped this Python file into my top-level folder of my project that held different app folders,
+static folder and templates folder. The &#64;register.filter decorator registers the function so Django
+knows the divide function exists.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">template</span>
+
+<span class="n">register</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">Library</span><span class="p">()</span>
+
+<span class="nd">@register</span><span class="o">.</span><span class="n">filter</span>
+<span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">divisor</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;A Django filter that accepts 2 arguments:</span>
+<span class="sd">   1. value, number to be divided</span>
+<span class="sd">   2. divisor, number to divide by</span>
+
+<span class="sd">   Returns the quotient in hundredths decimal format.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+   <span class="c1"># Check if the argument is zero to avoid division by zero error.</span>
+   <span class="k">if</span> <span class="n">divisor</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="k">return</span> <span class="kc">None</span>
+   <span class="n">quotient</span> <span class="o">=</span> <span class="n">value</span> <span class="o">/</span> <span class="n">divisor</span>
+   <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">quotient</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Edit Your HTML Code to Call the Divide Function</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span>{% extends &#39;base.html&#39; %}
+{% block content %}
+{% load templatetags %}
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display: inline-block; inline-size: 90%; block-size: auto; writing-mode: horizontal-tb;&quot;</span><span class="p">&gt;</span>
+{% for hotel in hotels %}
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row row-cols-3&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display: flex; justify-content: flex-end; padding: 10px; margin: 10px; background-color: #f0ffff; box-shadow: 5px 5px 10px gray; border-radius: 10px;&quot;</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color: green;&quot;</span><span class="p">&gt;</span>Peso: ${{ hotel.price }}<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color: gray;&quot;</span><span class="p">&gt;</span>USD: ${{ hotel.price|divide:16.5 }}<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endfor %}
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div></td></tr></table></div>
+<p>In the HTML, call the divide function by passing two numeric arguments:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>{{ hotel.price|divide:16 }}
+</pre></div></td></tr></table></div>
+<ol class="arabic simple">
+<li>A number to be divided the hotel price from a &quot;Hotels&quot; DB model</li>
+<li>The function name to call and a number to divide by. Here we use &quot;divide:16&quot; to approximately convert Mexican pesos to US dollars.</li>
+</ol>
+<p><strong>Basic Hotel Model Example</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">Hotel</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+   <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+   <span class="n">price</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DecimalField</span><span class="p">(</span><span class="n">max_digits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+   <span class="n">address</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+   <span class="n">city</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+   <span class="n">all_inclusive</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+   <span class="n">photo</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s2">&quot;media&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Register Model in admin.py</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Hotel</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Hotel</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>I was pleased to be able to make some on the fly mathematic calculations in my HTML
+with a custom Django filter!</p>
+<img alt="django filter in action example HTML page" src="https://lofipython.com/images/django-filter-successful.png" />
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html">posted at 16:18</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-django.html" rel="tag">coding, programming, python, Django</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/django-custom-filter.html" class="tags">django custom filter</a>
+                    &nbsp;<a href="https://lofipython.com/tag/dynamic-html-python-django.html" class="tags">dynamic HTML python django</a>
+                    &nbsp;<a href="https://lofipython.com/tag/running-python-in-d.html" class="tags">running Python in D</a>
+                </div>
+            </article>            <h4 class="date">Mar 01, 2024</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1547,106 +1679,6 @@ remember this practical Python library!</p>
                     &nbsp;<a href="https://lofipython.com/tag/making-a-wi-fi-qr-code.html" class="tags">making a wi-fi QR code</a>
                     &nbsp;<a href="https://lofipython.com/tag/how-to-create-a-qr-code-for-internet-password.html" class="tags">how to create a QR code for internet password</a>
                 </div>
-            </article>            <h4 class="date">Oct 25, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/formatting-url-arguments-in-python.html" rel="bookmark" title="Permanent Link to &quot;Formatting URL Parameters in Python&quot;">Formatting URL Parameters in Python</a>
-                </h2>
-
-                
-                
-
-                <p>When I first started working with APIs, I had a bad habit of passing URL parameters
-as one long ugly string. Anything longer than 79 characters violates PEP-8.
-It's also hard to read and can be difficult to edit the code in your text editor if the URL is trailing off the screen.
-In this post, you'll find some alternatives to the primitive &quot;long ugly string&quot; approach.</p>
-<blockquote>
-<strong>Did you know?</strong> URL stands for &quot;uniform resource locator&quot;.</blockquote>
-<p>Below are two ways to neatly format your URLs so that they have parameters.
-Both involve using a Python dictionary. The requests API allows you to pass
-a dictionary or list of tuples to its params argument. Alternatively, if you want
-to see the full URL as a string, there's a sleek way to format URL arguments
-with urllib's <a class="reference external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode">urlencode function</a>.</p>
-<img alt="a visual breakdown of a url with parameters" src="https://lofipython.com/images/url-structure.png" />
-<p>source: <a class="reference external" href="https://www.geeksforgeeks.org/how-to-handle-missing-parameters-in-url-with-flask/">Geeks for Geeks</a></p>
-<p><strong>Pass a dictionary to the requests params argument to include URL arguments.</strong></p>
-<blockquote>
-You often want to send some sort of data in the URL’s query string.
-If you were constructing the URL by hand, this data would be given as key/value pairs
-in the URL after a question mark, e.g. httpbin.org/get?key=val.
-Requests allows you to provide these arguments as a dictionary of strings, using the params keyword argument.
-- requests documentation, <a class="reference external" href="https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls">Passing Parameters in URLs</a></blockquote>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;example@example.com&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;This email is not real.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;inactive&quot;</span>
-<span class="p">}</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://httpbin.org/get&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>Use urllib's urlencode function to dynamically construct URL from a dictionary.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;example@example.com&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;This email is not real.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;inactive&quot;</span>
-<span class="p">}</span>
-<span class="c1"># Returns str of URL encoded parameters.</span>
-<span class="n">url_parameters</span> <span class="o">=</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-<span class="c1"># &gt;&gt;&gt; url_parameters</span>
-<span class="c1"># &quot;email=example%40example.com&amp;message=This+email+is+not+real.&amp;status=inactive&quot;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://httpbin.org/get?</span><span class="si">{</span><span class="n">url_parameters</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>Arguments can be a good thing.</strong></p>
-<p>This seemingly basic HTTP formatting was something that took me too long to realize.
-I hope it helps you keep your URLs tidy and your HTTP requests more readable.</p>
-<p><strong>Read More About URL Parameters</strong></p>
-<p><a class="reference external" href="https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls">Passing Parameters in URLS, requests Documentation</a></p>
-<p><a class="reference external" href="https://docs.python.org/3/library/urllib.request.html#urllib-examples">urllib Examples, Python Documentation</a></p>
-<p><a class="reference external" href="https://requests.readthedocs.io/en/latest/api/#requests.request">requests API Documentation Reference</a></p>
-<p><a class="reference external" href="https://stackoverflow.com/questions/1233539/python-dictionary-to-url-parameters">Stack Overflow, Python Dictionary to URL Parameters</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/formatting-url-arguments-in-python.html">posted at 15:42</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/http-urls-python-requests.html" rel="tag">http, urls, python, requests</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/url-formatting.html" class="tags">url formatting</a>
-                    &nbsp;<a href="https://lofipython.com/tag/working-with-urls-in-apis.html" class="tags">working with urls in APIs</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-http-url-formatting.html" class="tags">python http url formatting</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-url-parameters.html" class="tags">python url parameters</a>
-                    &nbsp;<a href="https://lofipython.com/tag/format-python-url-arguments.html" class="tags">format python url arguments</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -1655,7 +1687,7 @@ I hope it helps you keep your URLs tidy and your HTTP requests more readable.</p
 
                     <a href="https://lofipython.com/author/lofipython2.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 1 of 2</span>
+                    <span>Page 1 of 3</span>
                 </div>
 
             <div class="clear"></div>

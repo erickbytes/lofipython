@@ -32,7 +32,361 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">May 06, 2020</h4>
+        <div id="content">            <h4 class="date">May 18, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-make-json-requests-with-python.html" rel="bookmark" title="Permanent Link to &quot;A Guide To Making HTTP Requests To APIs With JSON & Python&quot;">A Guide To Making HTTP Requests To APIs With JSON &amp; Python</a>
+                </h2>
+
+                
+                
+
+                <p>This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.</p>
+<p><strong>Here's what is covered:</strong></p>
+<ol class="arabic simple">
+<li>API &amp; HTTP Lingo You Should Know</li>
+<li>Testing and Exporting Python Request Code from Postman (Optional)</li>
+<li>Formatting Your Request</li>
+<li>Example GET and POST Requests</li>
+<li>&quot;Gotchyas&quot; To Avoid</li>
+<li>Sidebar: requests.Session()</li>
+<li>Dig deeper into requests by raising your HTTPConnection.debuglevel</li>
+</ol>
+<!--  -->
+<blockquote>
+<strong>Terminology Clarification</strong>: I will refer to &quot;items&quot; or &quot;data&quot; throughout this post. This could be substituted for contacts or whatever data you are looking for. For example, you might be fetching a page of contacts from your CRM. Or fetching your tweets from Twitter's API. Or searching the Google location API, you might look up an address and return geo-location coordinates.</blockquote>
+<div class="section" id="api-http-lingo-you-should-know">
+<h2>API &amp; HTTP Lingo You Should Know</h2>
+<p><strong>Hypertext Transfer Protocol (HTTP)</strong></p>
+<p>Per <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Mozilla</a>, &quot;Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical <a class="reference external" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>, with a client opening a connection to make a request, then waiting until it receives a response.&quot;</p>
+<blockquote>
+HTTP: you = client. API = way to communicate with server</blockquote>
+<p><strong>Application Programming Interface (API)</strong></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Application_programming_interface">Per Wikipedia</a>, the purpose of an API is to simplify &quot;programming by <a class="reference external" href="https://en.wikipedia.org/wiki/Abstraction_(software_engineering)">abstracting</a> the underlying implementation and only exposing objects or actions the developer needs.&quot;</p>
+<p><strong>Representational State Transfer (REST)</strong></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> is an architectural style of web APIs. It is the dominant architecture that many APIs use. Simple Object Access Protocol (<a class="reference external" href="https://smartbear.com/blog/test-and-monitor/soap-vs-rest-whats-the-difference/">SOAP</a>) is another style I've heard of, but it seems less common nowadays.</p>
+<p>A REST API is built for interoperability and has properties like: &quot;simplicity of a uniform interface&quot; and &quot;visibility of communication between components by service agents.&quot; [<a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">Wikipedia</a>] If an API follows REST, it has many good principles baked in.</p>
+<p><strong>GET, POST and PATCH</strong></p>
+<p>These are three common types of request methods.</p>
+<ul class="simple">
+<li><cite>GET</cite>: Read data returned, such as all of your tweets in <a class="reference external" href="https://developer.twitter.com/en/docs">the Twitter API</a>.</li>
+<li><cite>POST</cite>: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!</li>
+<li><cite>PATCH</cite>: Similar to <cite>POST</cite>, this is typically used for updating data.</li>
+</ul>
+<p><strong>URL or &quot;Endpoint&quot;</strong></p>
+<p>This is the website target to send your request. Some APIs have multiple endpoints for different functionality.</p>
+<p><strong>URL Parameters</strong></p>
+<p>Values you pass to tell the API what you want. They are defined by the API specifications, which are usually well documented. In Python's requests library, they may be passed as <a class="reference external" href="https://treyhunner.com/2018/04/keyword-arguments-in-python/">keyword arguments</a>. Sometimes they are passable directly within the endpoint url string.</p>
+<p><strong>Body or &quot;Payload&quot;</strong></p>
+<p>To make a request, you send a payload to the url. Often this is a JSON string with the API's URL parameters and values, AKA the request body. If the <a class="reference external" href="https://jira.readthedocs.io/">API is written specifically for Python</a>, it might accept an actual Python dictionary.</p>
+<p><strong>Javascript Object Notation (JSON)</strong></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=KnAyziNnuI0">JSON</a> is the data interchange standard for all languages. Usually it is the default way to pass data into and receive data from an API. If making a POST, you can check your json object is formatted correctly by using a <a class="reference external" href="https://jslint.com/">json linter</a>. Or try Python's <a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool">json.tool</a>! You can also pretty print your JSON or python dictionary with the <a class="reference external" href="https://docs.python.org/3/library/pprint.html">pprint</a> module. If you're using json.dumps remember it has <a class="reference external" href="https://docs.python.org/3/library/json.html">pretty printing accessible by keyword arguments</a>! These features are accessible in the standard library. Isn't Python great? See also: <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/09/15/python-101-an-intro-to-working-with-json/">Python 101 - An Intro to Working with JSON</a></p>
+<p><strong>Pages</strong></p>
+<p>API data is commonly returned in multiple pages when there is a lot of data returned. Each page can be accessed one request at a time. Sometimes you can specify how many items you want on a page. But there is usually a maximum items per page limit like 100.</p>
+<p><strong>Status Code</strong></p>
+<p>Each request usually gives you a <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">numeric code corresponding to happened</a> when the server tried to handle your request. There is also usually a message returned.</p>
+<p><strong>Headers</strong></p>
+<p>These usually contain website cookies and authorization info. They also may tell the API what kind of data you want back. JSON and XML are the two most common types of data to return. You can specify the return format in the <strong>content-type</strong> headers.</p>
+<blockquote>
+If you need to parse an XML response, check out Python's stock <a class="reference external" href="https://docs.python.org/3.8/library/xml.etree.elementtree.html">ElementTree API</a>. I've only seen a few APIs using XML responses, such as the <a class="reference external" href="https://www.usps.com/business/web-tools-apis/">USPS Address Validation API</a>.</blockquote>
+<p><strong>Authorization</strong></p>
+<p>Authorization varies widely. This is the level of identification you need to pass to the API to make a request. Public APIs might require none. Some just need a username and password. Others use the <a class="reference external" href="https://en.wikipedia.org/wiki/OAuth">Oauth standard</a>, which is a system involving credentials and tokens for extra security.</p>
+<blockquote>
+<p><strong>Authorization Scheme Example [</strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Mozilla</a><strong>]</strong></p>
+<p>Authorization: &lt;auth-scheme&gt; &lt;authorisation-parameters&gt;</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># headers python dict example</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;basic </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+</pre></div></td></tr></table></div>
+</div>
+<div class="section" id="creating-the-request-json">
+<h2>Creating the Request JSON</h2>
+<p>I recommend using <a class="reference external" href="https://www.postman.com/">Postman</a> in most cases, depending on the complexity of the API. If the JSON syntax is straightforward, you can format your data as a python dictionary, then convert it to a JSON object with <strong>json.dumps</strong> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.dumps">json module</a>. But JSON can be tricky sometimes. You may also need to pass a dictionary of HTTP headers.</p>
+<p>Some APIs have &quot;Postman Collections&quot;, a set of Python (or any language) script templates for the API. In those cases, it might make sense to use those resources.</p>
+<blockquote>
+<p><strong>Path One: Make HTTP request with json &amp; requests libraries</strong></p>
+<p>Format Python dict with <strong>json.dumps</strong> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.dumps">json module</a>. Infer API requirements from documentation. Use requests for HTTP.</p>
+<p><strong>Path Two: Make HTTP request with Postman &amp; requests library</strong></p>
+<p>Use Postman to generate the JSON payload. Plug headers and payload into requests. Use requests library for HTTP.</p>
+</blockquote>
+<p>Postman has a friendly interface for plugging in all your pieces and tinkering with your request body until it works. Make it easier on yourself and use Postman, especially if there are collections. An alternative is to troubleshoot in Python if you are confident in your grasp of the API. I use both options depending on my familiarity with the API at hand.</p>
+</div>
+<div class="section" id="formatting-your-request">
+<h2>Formatting Your Request</h2>
+<ol class="arabic simple">
+<li>Once you have the request working, you may <a class="reference external" href="https://learning.postman.com/docs/postman/sending-api-requests/generate-code-snippets/">export your Postman request to almost any language</a>. For Python, you can sometimes export to the requests, http.client or urllib libraries. Hit the &quot;code&quot; button in Postman and then copy your code.</li>
+<li>Paste your Postman headers, payload and url into your existing code.</li>
+<li>You may want to use a dict or <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/04/07/python-101-working-with-strings/">string formatting</a> to pass values to your request parameters or url.</li>
+<li>If the API uses a token or other form of authorization that needs to be refreshed intermittently, I usually have a function that returns a token. <strong>token = fetch_token()</strong> Then put the token in the headers dict. <strong>{&quot;Authorization&quot;: f&quot;basic {token}&quot;}</strong> Finally pass your headers and payload to your <strong>requests.get</strong>, <strong>requests.post</strong>, or <strong>requests.request</strong> function along with the endpoint url. You're now ready to test the request.</li>
+</ol>
+<p>If you choose not to use Postman, you can use the json library. See the use of <strong>json.dumps()</strong> to convert a dictionary to a JSON object in example #2 below.</p>
+</div>
+<div class="section" id="python-installation">
+<h2>Python Installation</h2>
+<p>You can install <strong>requests</strong> with <a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">pip</a>. Alternatively, <strong>http.client</strong> is included within the Python standard library. If you want to convert HTTP response data to a dataframe or csv, install <strong>pandas</strong>.</p>
+<pre class="literal-block">
+python -m pip install requests
+python -m pip install pandas
+</pre>
+</div>
+<div class="section" id="example-1-get-the-geolocation-details-of-any-public-location-with-the-google-api">
+<h2>Example #1: <strong>GET</strong> the geolocation details of any public location with the Google API</h2>
+<p>This was modified from another example of <a class="reference external" href="https://www.geeksforgeeks.org/get-post-requests-using-python/">Google's Geolocation API</a>. To use this, you need to
+<a class="reference external" href="https://developers.google.com/maps/documentation/geolocation/intro">create a developer account with Google</a> and paste your API keys below.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="c1"># Find the best double-cheeseburger + fries $7 can buy.</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;Redhot Ranch&quot;</span><span class="p">}</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span>
+<span class="c1"># Optional: set a 5 second timeout for the http request.</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="c1"># Extract the latitude, longitude and formatted address of the first matching location.</span>
+<span class="n">latitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;geometry&quot;</span><span class="p">][</span><span class="s2">&quot;location&quot;</span><span class="p">][</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span>
+<span class="n">longitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;geometry&quot;</span><span class="p">][</span><span class="s2">&quot;location&quot;</span><span class="p">][</span><span class="s2">&quot;lng&quot;</span><span class="p">]</span>
+<span class="n">formatted_address</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;formatted_address&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">longitude</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">formatted_address</span><span class="p">)</span>
+
+<span class="c1"># Optional: convert response into a dataframe with pandas.</span>
+<span class="c1"># import pandas as pd</span>
+<span class="c1"># location_df = pd.json_normalize(data[&#39;results&#39;])</span>
+<span class="c1"># location_df.to_csv(&#39;Locations.csv&#39;)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Above you can see:</strong></p>
+<ul class="simple">
+<li>requests makes it easy to see the server's text response also with <strong>response.text</strong></li>
+<li>requests also makes JSON encoding easy with <strong>response.json()</strong></li>
+<li><strong>pd.json_normalize()</strong> is convenient to convert the response dictionary to a dataframe.</li>
+</ul>
+</div>
+<div class="section" id="example-2-encode-a-python-dictionary-to-json-string-and-post-to-a-hypothetical-api">
+<h2>Example #2: Encode a Python dictionary to json string and <strong>POST</strong> to a hypothetical API</h2>
+<ol class="arabic simple">
+<li>Create a dictionary with request body data and pretty inspect it with pprint.</li>
+<li>Encode the json string with <strong>json.dumps</strong> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.dumps">json module</a>.</li>
+<li><strong>POST</strong> the encoded JSON to the endpoint url with requests.</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="k">def</span> <span class="nf">dict_to_json_data</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Sherman&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;42 Wallaby Way&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address_2&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Sydney&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NSW&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;AU&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;zip&quot;</span><span class="p">:</span> <span class="s2">&quot;2000&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+    <span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Optional: encode json str to utf-8.</span>
+    <span class="k">return</span> <span class="n">json_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">post_data</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a fictional API request that passes a json object to requests.</span>
+<span class="sd">    It decodes the server response with response.json() and</span>
+<span class="sd">    Returns dictionary value by calling the data&#39;s keys.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cache-control&quot;</span><span class="p">:</span> <span class="s2">&quot;no-cache&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://SomeSoftwareAPI.com/people/&quot;</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">json_str</span><span class="p">,</span>
+        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="c1"># Call dict keys to get their values.</span>
+    <span class="n">contact_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;contact_id&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">contact_id</span>
+
+
+<span class="n">json_str</span> <span class="o">=</span> <span class="n">dict_to_json_data</span><span class="p">()</span>
+<span class="n">contact_id</span> <span class="o">=</span> <span class="n">post_data</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<!--  -->
+<blockquote>
+<p><strong>requests.request keyword argument alternatives for passing data</strong></p>
+<p><strong>params</strong> – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.</p>
+<p><strong>data</strong> – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request</p>
+<p><strong>json</strong> – (optional) A JSON serializable Python object to send in the body of the Request</p>
+<p><strong>[</strong><a class="reference external" href="https://requests.readthedocs.io/en/latest/api/">requests API documentation</a><strong>]</strong></p>
+</blockquote>
+<p><strong>&quot;Gotchyas&quot; To Avoid</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status codes</a> are your friend. They offer a hint at why your request is not working. If you see 200 or 201, that's a good sign. They're usually helpful, but sometimes they can be misleading.</li>
+<li>Ensure you are defining the correct content-type. I had an experience where Postman defined two conflicting <strong>content-type</strong> headers and it <a class="reference external" href="https://github.com/postmanlabs/postman-code-generators/issues/215">caused my request to fail</a>. The server's error message indicated the problem was in my JSON, so it took me a while to figure out the headers were the problem.</li>
+<li>Sometimes it makes a difference if your url has <strong>http://</strong> vs. <strong>https://</strong> in it. Usually <strong>https://</strong> is preferred.</li>
+</ul>
+<p><strong>Sidebar:</strong> <a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">requests.Session()</a></p>
+<p>You might be able to improve performance by using a requests <a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">&quot;session&quot; object</a>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="c1"># A session adds a &quot;keep-alive&quot; header to your HTTP connection + stores cookies across requests.</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://exampleapi.com/widgets/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Dig deeper into requests by raising your HTTPConnection.debuglevel</strong></p>
+<blockquote>
+<strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">debuglevel</a> is greater than zero, messages will be printed to stdout as the response is read and parsed.
+Source: <a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></blockquote>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">http.client</span> <span class="kn">import</span> <span class="n">HTTPConnection</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="n">HTTPConnection</span><span class="o">.</span><span class="n">debuglevel</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;90 Miles&quot;</span><span class="p">}</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><strong>Web Server Gateway Interface (WSGI, pronounced &quot;Wis-Ghee&quot;)</strong></div>
+</div>
+<blockquote>
+&quot;As described in <a class="reference external" href="https://www.python.org/dev/peps/pep-3333/">PEP3333</a>, the Python Web Server Gateway Interface (WSGI) is a way to make sure
+that web servers and python web applications can talk to each other.&quot;  <a class="reference external" href="https://docs.gunicorn.org/en/latest/install.html">Gunicorn</a> is one
+of <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#uwsgi">a few Python WSGI clients</a>.
+<a class="reference external" href="https://lofipython.com/2016/04/30/useful-links-for-web2py-beginners/">web2py</a> is another WSGI client and web framework I have used.</blockquote>
+<p><strong>Conclusion</strong></p>
+<p>I remember APIs seemed mysterious and daunting before I had used them. But like all things, they can be conquered with knowledge, understanding and tenacity to keep trying until you figure it out. Good luck!</p>
+<p><strong>Requests Documentation</strong></p>
+<p><a class="reference external" href="https://requests.readthedocs.io/en/master/api/">requests.request() API documentation</a></p>
+<p><a class="reference external" href="https://requests.readthedocs.io/en/latest/api/#requests.get">requests.get() API documentation</a></p>
+<p><a class="reference external" href="https://requests.readthedocs.io/en/latest/api/#requests.post">requests.post() API documentation</a></p>
+<p><strong>Supplementary Reading</strong></p>
+<p><a class="reference external" href="https://developers.google.com/web/tools/chrome-devtools/network/reference#timing-explanation">Google's HTTP Timing Explanation</a></p>
+<p><a class="reference external" href="https://github.com/Rolstenhouse/unofficial-apis">List of Interesting &quot;Unofficial&quot; APIs</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Proxy_server">Proxy servers</a></p>
+<p><a class="reference external" href="https://pawelmhm.github.io/asyncio/python/aiohttp/2016/04/22/asyncio-aiohttp.html">Making 1 million requests with python-aiohttp</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Nginx">Nginx</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">Create, read, update and delete (CRUD)</a></p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-make-json-requests-with-python.html">posted at 05:41</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/chicago-coding-http-json-pandas-programming.html" rel="tag">Chicago, coding, HTTP, json, pandas, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/api.html" class="tags">api</a>
+                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/requests.html" class="tags">requests</a>
+                    &nbsp;<a href="https://lofipython.com/tag/sandwiches.html" class="tags">sandwiches</a>
+                    &nbsp;<a href="https://lofipython.com/tag/web.html" class="tags">web</a>
+                </div>
+            </article>            <h4 class="date">May 06, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1172,113 +1526,6 @@ After setting up my first test with pytest, I have leveled up to novice tester, 
                     &nbsp;<a href="https://lofipython.com/tag/software-development.html" class="tags">software development</a>
                     &nbsp;<a href="https://lofipython.com/tag/test-driven-development.html" class="tags">test driven development</a>
                 </div>
-            </article>            <h4 class="date">Nov 30, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python.html" rel="bookmark" title="Permanent Link to &quot;Inserting New Rows Into A Microsoft Access Database With Python and pyodbc&quot;">Inserting New Rows Into A Microsoft Access Database With Python and pyodbc</a>
-                </h2>
-
-                
-                
-
-                <p>I recently automated the loading of data into a Microsoft Access database with <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc</a>, a Python library for connecting to databases. ODBC stands for <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Open Database Connectivity</a>. It can be used for a variety of Database Management Systems outside of Access also.</p>
-<p><strong>First,</strong> <a class="reference external" href="https://docs.python.org/3/installing/index.html">install libraries with pip</a><strong>. Enter in terminal or command prompt:</strong></p>
-<pre class="literal-block">
-python -m pip install pyodbc
-python -m pip install pandas
-</pre>
-<p><strong>Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">python</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pyodbc</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">drivers</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Microsoft Access Driver&#39;</span><span class="p">)]</span>
-</pre></div></td></tr></table></div>
-<p><strong>Drivers for</strong> <strong>Access &amp; Many Other Data Sources</strong></p>
-<p>The driver is the engine that allows you to connect to a specific type of database. The drivers available vary depending on your machine.</p>
-<p>The two most common drivers for Access are Microsoft Access Driver (<em>.mdb) and Microsoft Access Driver (</em>.mdb, *.accdb). My computer only had *.mdb, which has been deprecated. My Access database was a .mdb file, so I was able to use this driver as shown below. Read more on Access drivers <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-Microsoft-Access">here</a>.</p>
-<blockquote>
-&quot;Drivers exist for all major DBMSs, many other data sources like address book systems and Microsoft Excel, and even for text or comma-separated values (CSV) files.&quot;&nbsp; - <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Wikipedia</a></blockquote>
-<p><strong>Database Data Types</strong></p>
-<p>I set all of the field data types to &quot;Short Text&quot; because I'm passing strings as SQL parameters below. Uploading as other data types may require additional formatting. To edit the data types of your table, open the table and select &quot;Design View&quot; under the &quot;Home&quot; tab. It got the job done for me!</p>
-<p><strong>Inserting new rows into a Microsoft Access Database:</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pyodbc</span>
-
-
-<span class="k">def</span> <span class="nf">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Use list comprehension to format df rows as a list of tuples:</span>
-<span class="sd">    rows = [(&#39;Garfield&#39;,&#39;Orange&#39;,&#39;Eat&#39;),(&#39;Meowth&#39;,&#39;White&#39;,&#39;Scratch&#39;)]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">rows</span>
-
-<span class="sd">&quot;&quot;&quot;Rows are not added to DB until they are committed.</span>
-<span class="sd">Pass each row tuple as a SQL parameter (?,?,?).</span>
-<span class="sd">cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\Add_Path\To_DB\Here\Your_DB.mdb;&#39;</span><span class="p">)</span>
-<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39; INSERT INTO Cats (Name, Color, Move)</span>
-<span class="s1">          VALUES(?,?,?) &#39;&#39;&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Cat Data.csv&#39;</span><span class="p">)</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="n">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div></td></tr></table></div>
-<p><strong>Conclusion</strong></p>
-<p>Running the above in command prompt uses pyodbc and SQL to add dataframe rows to a Microsoft Access DB table named &quot;Cats&quot;. Passing each row as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/#paramstyle">SQL parameter</a> has two benefits:</p>
-<ol class="arabic simple">
-<li>It handles strings with single quotes (') and loads them to the DB.</li>
-<li>It protects against <a class="reference external" href="https://www.acunetix.com/websitesecurity/sql-injection/">SQL injection</a> attacks.</li>
-</ol>
-<p><strong>Access Limitation Disclaimer</strong></p>
-<p>Access topped out just shy of 10 million rows in my use case, when records stopped getting added to my database. So keep that in mind if you're thinking about using Access to store your data.</p>
-<p><strong>Supplementary Resources</strong></p>
-<p><a class="reference external" href="https://datatofish.com/how-to-connect-python-to-ms-access-database-using-pyodbc/">Insert Values into MS Access Table using Python</a></p>
-<p><a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc documentation</a></p>
-<p><a class="reference external" href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15">Microsoft Documentation pyodbc example</a></p>
-<p><a class="reference external" href="https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor.htm">The Python Cursor Class</a></p>
-<p><a class="reference external" href="https://www.psycopg.org/docs/cursor.html">Psycopg Cursor Class Documentation</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python.html">posted at 00:28</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-data-databases-excel-odbc-pandas-python-windows.html" rel="tag">automation, data, Databases, excel, ODBC, pandas, python, Windows</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/access.html" class="tags">Access</a>
-                    &nbsp;<a href="https://lofipython.com/tag/microsoft.html" class="tags">Microsoft</a>
-                    &nbsp;<a href="https://lofipython.com/tag/productivity.html" class="tags">productivity</a>
-                    &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -1288,7 +1535,7 @@ python -m pip install pandas
 
                     <a href="https://lofipython.com/index10.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 9 of 12</span>
+                    <span>Page 9 of 13</span>
                 </div>
 
             <div class="clear"></div>

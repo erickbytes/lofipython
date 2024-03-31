@@ -32,7 +32,114 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Apr 25, 2019</h4>
+        <div id="content">            <h4 class="date">Nov 30, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python.html" rel="bookmark" title="Permanent Link to &quot;Inserting New Rows Into A Microsoft Access Database With Python and pyodbc&quot;">Inserting New Rows Into A Microsoft Access Database With Python and pyodbc</a>
+                </h2>
+
+                
+                
+
+                <p>I recently automated the loading of data into a Microsoft Access database with <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc</a>, a Python library for connecting to databases. ODBC stands for <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Open Database Connectivity</a>. It can be used for a variety of Database Management Systems outside of Access also.</p>
+<p><strong>First,</strong> <a class="reference external" href="https://docs.python.org/3/installing/index.html">install libraries with pip</a><strong>. Enter in terminal or command prompt:</strong></p>
+<pre class="literal-block">
+python -m pip install pyodbc
+python -m pip install pandas
+</pre>
+<p><strong>Next, check available Microsoft Access drivers on your computer. Enter the below statements into the Python interpreter:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">python</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pyodbc</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">drivers</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Microsoft Access Driver&#39;</span><span class="p">)]</span>
+</pre></div></td></tr></table></div>
+<p><strong>Drivers for</strong> <strong>Access &amp; Many Other Data Sources</strong></p>
+<p>The driver is the engine that allows you to connect to a specific type of database. The drivers available vary depending on your machine.</p>
+<p>The two most common drivers for Access are Microsoft Access Driver (<em>.mdb) and Microsoft Access Driver (</em>.mdb, *.accdb). My computer only had *.mdb, which has been deprecated. My Access database was a .mdb file, so I was able to use this driver as shown below. Read more on Access drivers <a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-Microsoft-Access">here</a>.</p>
+<blockquote>
+&quot;Drivers exist for all major DBMSs, many other data sources like address book systems and Microsoft Excel, and even for text or comma-separated values (CSV) files.&quot;&nbsp; - <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Database_Connectivity">Wikipedia</a></blockquote>
+<p><strong>Database Data Types</strong></p>
+<p>I set all of the field data types to &quot;Short Text&quot; because I'm passing strings as SQL parameters below. Uploading as other data types may require additional formatting. To edit the data types of your table, open the table and select &quot;Design View&quot; under the &quot;Home&quot; tab. It got the job done for me!</p>
+<p><strong>Inserting new rows into a Microsoft Access Database:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyodbc</span>
+
+
+<span class="k">def</span> <span class="nf">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Use list comprehension to format df rows as a list of tuples:</span>
+<span class="sd">    rows = [(&#39;Garfield&#39;,&#39;Orange&#39;,&#39;Eat&#39;),(&#39;Meowth&#39;,&#39;White&#39;,&#39;Scratch&#39;)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">rows</span>
+
+<span class="sd">&quot;&quot;&quot;Rows are not added to DB until they are committed.</span>
+<span class="sd">Pass each row tuple as a SQL parameter (?,?,?).</span>
+<span class="sd">cursor.execute docs: https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor/execute.htm</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\Add_Path\To_DB\Here\Your_DB.mdb;&#39;</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39; INSERT INTO Cats (Name, Color, Move)</span>
+<span class="s1">          VALUES(?,?,?) &#39;&#39;&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Cat Data.csv&#39;</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">df_to_row_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+<p><strong>Conclusion</strong></p>
+<p>Running the above in command prompt uses pyodbc and SQL to add dataframe rows to a Microsoft Access DB table named &quot;Cats&quot;. Passing each row as a <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/#paramstyle">SQL parameter</a> has two benefits:</p>
+<ol class="arabic simple">
+<li>It handles strings with single quotes (') and loads them to the DB.</li>
+<li>It protects against <a class="reference external" href="https://www.acunetix.com/websitesecurity/sql-injection/">SQL injection</a> attacks.</li>
+</ol>
+<p><strong>Access Limitation Disclaimer</strong></p>
+<p>Access topped out just shy of 10 million rows in my use case, when records stopped getting added to my database. So keep that in mind if you're thinking about using Access to store your data.</p>
+<p><strong>Supplementary Resources</strong></p>
+<p><a class="reference external" href="https://datatofish.com/how-to-connect-python-to-ms-access-database-using-pyodbc/">Insert Values into MS Access Table using Python</a></p>
+<p><a class="reference external" href="https://github.com/mkleehammer/pyodbc/wiki">pyodbc documentation</a></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15">Microsoft Documentation pyodbc example</a></p>
+<p><a class="reference external" href="https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor.htm">The Python Cursor Class</a></p>
+<p><a class="reference external" href="https://www.psycopg.org/docs/cursor.html">Psycopg Cursor Class Documentation</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/inserting-new-records-into-a-microsoft-access-database-with-python.html">posted at 00:28</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-data-databases-excel-odbc-pandas-python-windows.html" rel="tag">automation, data, Databases, excel, ODBC, pandas, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/access.html" class="tags">Access</a>
+                    &nbsp;<a href="https://lofipython.com/tag/microsoft.html" class="tags">Microsoft</a>
+                    &nbsp;<a href="https://lofipython.com/tag/productivity.html" class="tags">productivity</a>
+                    &nbsp;<a href="https://lofipython.com/tag/programming.html" class="tags">programming</a>
+                </div>
+            </article>            <h4 class="date">Apr 25, 2019</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1466,204 +1573,6 @@ podcast</li>
                     &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                 </div>
-            </article>            <h4 class="date">Jan 20, 2018</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/how-to-python-pip-install-new-libraries.html" rel="bookmark" title="Permanent Link to &quot;How to Install Libraries and Enable the pip Installer in Python&quot;">How to Install Libraries and Enable the pip Installer in Python</a>
-                </h2>
-
-                
-                
-
-                <p>Python comes with a bunch of <a class="reference external" href="https://docs.python.org/3/py-modindex.html">standard modules</a>. My favorites are
-shutil, glob, datetime, time, os (operating system), re (regular
-expressions) and webbrowser. The standard library is loaded.</p>
-<p>Inevitably, you'll want to install new libraries from Python's rich
-ecosystem of external modules. Enter pip, Python's handy package manager
-and people's champion.</p>
-<p>This post will teach you some Python history, show how to install
-pandas, and help you troubleshoot problems if it's not working. You'll
-find Windows and Linux commands for venv setup (recommended). With pip,
-you'll feel like Neo when installing new modules. Any skill is at your
-fingertips. It's like learning kung fu. There's probably a library for
-that!</p>
-<img alt="I know kung fu" class="alignnone size-full wp-image-1321" src="http://pythonmarketer.files.wordpress.com/2018/01/19c0c-i-know-kung-fu-e1516470914221.png" style="width: 1277px; height: 532px;" />
-<p><strong>First, Some Python Version Caveats + History</strong></p>
-<p><strong>Python 2 reached end of life on January 1st, 2020</strong>.
-<a class="reference external" href="https://www.python.org/doc/sunset-python-2/">Python 2 has officially been sunset</a>.</p>
-<p>Python comes with pip now, no setup is required. But certain versions
-such as Python 3.2 or the Python 2.7 that came stock on my improbably
-still functioning 2008 black Macbook, for example, may not have it
-installed.</p>
-<p>In December 2021, Python 3.6 reached <a class="reference external" href="https://devguide.python.org/devcycle/#end-of-life-branches">&quot;end of life phase&quot;</a>. Python 3.6 is &quot;now effectively frozen&quot;. Read more in <a class="reference external" href="https://www.python.org/dev/peps/pep-0494/">PEP 494</a>. (Released Oct. 2022)</p>
-<p><strong>TLDR:</strong> use Python 3.7 to 3.11. This blog endorses using the lightning
-fast Python version <a class="reference external" href="https://www.python.org/downloads/release/python-3110/">3.11.</a></p>
-<div class="section" id="enter-this-in-your-terminal">
-<h2>Enter This in Your Terminal</h2>
-<pre class="code literal-block">
-python -m pip install pandas
-</pre>
-<p>Pandas is a super useful library for wrangling spreadsheet data, AKA
-&quot;tabular&quot; data. If successful, you should see activity that looks
-similar to the below screenshot, where I am installing <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>, an additional Python
-Excel library you'll likely want. You are good to go! This is the part
-where you get to feel like Neo! See <a class="reference external" href="https://docs.python.org/3/installing/index.html">Installing Python Modules</a> in the Python
-Documentation for more detailed instructions.</p>
-<img alt="neo_pip" class="alignnone size-full wp-image-1322" src="http://pythonmarketer.files.wordpress.com/2018/01/de9d6-neo_pip-e1587604013861.png" style="width: 650px; height: 340px;" />
-<p><strong>To view all your installed libraries, enter:</strong></p>
-<pre class="literal-block">
-pip list
-</pre>
-<p><strong>Write a &quot;requirements.txt&quot; of installed libraries:</strong></p>
-<pre class="literal-block">
-pip freeze &gt; requirements.txt
-</pre>
-<p><strong>You can list your outdated packages with the --outdated argument:</strong></p>
-<pre class="literal-block">
-pip list --outdated
-</pre>
-<p><strong>Use pip's -h help command line argument:</strong></p>
-<pre class="literal-block">
-pip -h
-</pre>
-<p><strong>View your system and user pip config settings:</strong></p>
-<pre class="literal-block">
-pip config debug
-</pre>
-<p><strong>Supplementary Resources</strong></p>
-<ul class="simple">
-<li>Take a look at this <a class="reference external" href="https://pythontips.com/2013/07/30/20-python-libraries-you-cant-live-without/">list of 20 modules</a>
-to get started. Here is another <a class="reference external" href="https://github.com/vinta/awesome-python">more comprehensive list of libraries</a> you can now install.</li>
-<li>Swing by the pip documentation <a class="reference external" href="https://pip.pypa.io/en/stable/quickstart/">Quickstart</a>and <a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/">User Guide</a> to learn some helpful
-commands.</li>
-<li><a class="reference external" href="https://pypi.org/search/?q=time+travel">PyPI, the Python Package Index</a> is the official Python
-package repository.</li>
-<li><a class="reference external" href="https://snarky.ca/why-you-should-use-python-m-pip/">Why you should use 'python -m pip'</a></li>
-<li><a class="reference external" href="https://opensource.com/downloads/pip-cheat-sheet?utm_medium=Email&amp;utm_campaign=weekly&amp;sc_cid=7013a000002DAKPAA4">pip cheat sheet from opensource.com</a></li>
-</ul>
-<p>Congrats on figuring out how to install packages with pip, have fun!</p>
-</div>
-<div class="section" id="having-issues-try-upgrading-your-pip-version">
-<h2>Having issues? Try upgrading your pip version.</h2>
-<pre class="literal-block">
-python -m pip install --upgrade pip
-</pre>
-</div>
-<div class="section" id="try-the-ensurepip-command">
-<h2>Try the ensurepip command.</h2>
-<p>This command will install and upgrade pip to the newest version. New in
-Python 3.4:</p>
-<pre class="literal-block">
-python -m ensurepip --upgrade
-</pre>
-<!--  -->
-<blockquote>
-<p>&quot;The <a class="reference external" href="https://docs.python.org/3/library/ensurepip.html#module-ensurepip">ensurepip</a>
-package provides support for bootstrapping the pip installer into an
-existing Python installation or virtual environment. This
-bootstrapping approach reflects the fact that pip is an independent
-project with its own release cycle, and the latest available stable
-version is bundled with maintenance and feature releases of the
-CPython reference interpreter.&quot;</p>
-<p>- <a class="reference external" href="https://docs.python.org/3/library/ensurepip.html">ensurepip Python Documentation</a></p>
-</blockquote>
-<p>You should follow best practice and <a class="reference external" href="https://docs.python.org/3/library/venv.html">create a virtual environment</a> before installing
-libraries. <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or virtualenv. To create with venv:</p>
-<pre class="literal-block">
-python3 -m venv add_env_name_here
-</pre>
-<p>After your environment is created, activate it with the first command
-below, then install a library on Ubuntu Linux:</p>
-<pre class="literal-block">
-source add_env_path_here/bin activate
-python -m pip install pandas
-</pre>
-<p>Alternatively, on Windows computers:</p>
-<pre class="literal-block">
-cd add_env_path_here\scripts &amp; activate
-python -m pip install pandas
-</pre>
-<p><strong>Getting the prefix right can be tricky.</strong></p>
-<p>In the install command, the prefix is a reference to your Python
-executable. You may just need to alter your prefix to call it correctly.
-Here are some to try in place of &quot;python&quot;. Observe what happens when you
-run these command variations. Good luck!</p>
-<pre class="literal-block">
-python3 -m pip install pandas
-python3.11 -m pip install pandas
-py -m pip install pandas
-pip3 install pandas
-</pre>
-</div>
-<div class="section" id="how-to-manually-enable-the-pip-installer">
-<h2>How to Manually Enable the pip Installer</h2>
-<p><strong>The rest of this post may be useful to you if you are:</strong></p>
-<ol class="arabic simple">
-<li>Working on legacy Python 2 or &lt; 3.3 for which pip is not installed.</li>
-<li>Seeking to fix a faulty pip install that is not working properly.</li>
-<li>Curious to know how to manually set up pip.</li>
-</ol>
-<p>Assumes Python is already <a class="reference external" href="https://www.python.org/downloads/">installed</a>. If you're running Windows 10, I
-found it easy to install Python from the <a class="reference external" href="https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab">Windows store</a>.
-Download the <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py file</a>.
-Go to the link, right click the page and &quot;Save As&quot; a .py file to
-download. Then place the file where you want to access it. I placed mine
-in C:Python27Libsite-packages</p>
-<p>You could also download the file with <a class="reference external" href="https://curl.haxx.se/">curl</a>:</p>
-<pre class="literal-block">
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.pyt-pip.py
-</pre>
-<p>If you are not sure where your site-packages folder is, type <a class="reference external" href="https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory">python -m
-site</a>
-into command prompt for file path ideas.</p>
-<p><strong>Run the get-pip.py file.</strong></p>
-<p>Using command prompt's cd command with a Windows &quot;&amp;&quot; operator to run the
-Python file in a Windows command prompt:</p>
-<pre class="literal-block">
-cd c:\Python27\Lib\site-packages &amp; python get-pip.py
-</pre>
-<p>Or Linux terminal:</p>
-<pre class="literal-block">
-cd /Python27/Lib/site-packages &amp;&amp; python get-pip.py
-</pre>
-<p>You should see some activity in command prompt that shows
-installation/updating of &quot;setup&quot; and &quot;wheel&quot;. When it finishes, you have
-installed pip.</p>
-<p><strong>Type into command prompt at the same location:</strong></p>
-<pre class="literal-block">
-python -m pip install requests
-</pre>
-<p>This installs the Requests module into your Python libraries.
-Requests is an http module which is highly regarded almost universally
-by the Python community.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><strong>Thanks for reading!</strong></div>
-<div class="line">Check out these other posts with pip installed library examples:</div>
-</div>
-<p><a class="reference external" href="https://lofipython.com/fix-spelling-and-grammar-with-language_tool_python-and-textblob/">fix Grammar and Spelling with language_tool_python and textblob</a></p>
-<p><a class="reference external" href="https://lofipython.com/an-example-pelican-git-blog-post-workflow/">static site generation with pelican</a></p>
-<p><a class="reference external" href="https://lofipython.com/ftfy-the-wonky-text-fixing-python-library/">text mojibake mash fixing with ftfy</a></p>
-<p><a class="reference external" href="https://lofipython.com/how-to-make-json-requests-with-python/">a guide to making HTTP requests</a></p>
-<p><a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/">simple GUI for scripts with gooey</a></p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/how-to-python-pip-install-new-libraries.html">posted at 17:50</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming.html" rel="tag">coding, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
-                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
-                    &nbsp;<a href="https://lofipython.com/tag/matrix.html" class="tags">matrix</a>
-                    &nbsp;<a href="https://lofipython.com/tag/neo.html" class="tags">neo</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pip.html" class="tags">pip</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-libraries.html" class="tags">python libraries</a>
-                    &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -1673,7 +1582,7 @@ by the Python community.</p>
 
                     <a href="https://lofipython.com/index11.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 10 of 12</span>
+                    <span>Page 10 of 13</span>
                 </div>
 
             <div class="clear"></div>

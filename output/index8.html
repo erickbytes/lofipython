@@ -32,7 +32,201 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Oct 07, 2020</h4>
+        <div id="content">            <h4 class="date">Oct 11, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/generating-positive-thoughts-with-google-vision-ocr-and-markov-chains.html" rel="bookmark" title="Permanent Link to &quot;Google Vision OCR, Image Text and a Markov Chain: a recipe for positivipy&quot;">Google Vision OCR, Image Text and a Markov Chain: a recipe for positivipy</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Introduction</strong></p>
+<p>Recently an old idea came back to life. I've posted to a <a class="reference external" href="https://www.facebook.com/positivedailythought">Facebook Page</a> for several years as part of project I started on a whim. The goal of the page is to share anything positive and inspirational by famous thinkers, artists and creators I read, or simply something positive to meditate on. It was partially inspired by the discipline of &quot;<a class="reference external" href="https://en.wikipedia.org/wiki/Positive_psychology">Positive Psychology</a>&quot;. Basically, William James was a cool dude. <a class="reference external" href="https://www.ted.com/talks/martin_seligman_the_new_era_of_positive_psychology/transcript?language=en">Martin Seligman</a> is too. I believe that positive feelings create positive outcomes and we can &quot;game&quot; ourselves into this feedback loop with literature and other habits that support well-being like sleep and exercise.</p>
+<p>After building up years of posts, I pondered for years how to capture the dataset of quote images to generate new positive-minded prose.
+This post details one implementation and alternatives I considered to accomplish this goal.
+All of the data and code in this post is <a class="reference external" href="https://github.com/erickbytes/positivipy">published on Github</a>.
+Possibly will post my entire flask website there eventually!
+Here's how I made my latest project, <a class="reference external" href="https://positivethoughts.pythonanywhere.com/">positivipy</a>.</p>
+<p><strong>Project Overview</strong></p>
+<ol class="arabic simple">
+<li>Export all Facebook post images from my page</li>
+<li>Convert images to quote text with <strong>Optical character recognition</strong> (OCR)</li>
+<li>Data cleaning (via pandas and manual correction)</li>
+<li>Train on past quotes and generate new quotes with a Markov chain</li>
+</ol>
+<div class="section" id="export-all-facebook-post-images-from-my-page-1">
+<span id="export-all-facebook-post-images-from-my-page"></span><h2>1. Export all Facebook post images from my page</h2>
+<p>Facebook made this easy. I exported all of my timeline photos by <a class="reference external" href="https://www.facebook.com/help/466076673571942">following these instructions</a>.</p>
+</div>
+<div class="section" id="converting-images-to-quote-text-with-ocr-1">
+<span id="converting-images-to-quote-text-with-ocr"></span><h2>2. Converting images to quote text with OCR</h2>
+<blockquote>
+<p><strong>Optical character recognition</strong> or <strong>optical character reader</strong> (<strong>OCR</strong>) is the <a class="reference external" href="https://en.wikipedia.org/wiki/Electronics">electronic</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/Machine">mechanical</a> conversion of <a class="reference external" href="https://en.wikipedia.org/wiki/Image">images</a> of typed, handwritten or printed text into machine-encoded text, whether from a scanned document, a photo of a document, a scene-photo</p>
+<p>Wikipedia - <a class="reference external" href="https://en.wikipedia.org/wiki/Optical_character_recognition">https://en.wikipedia.org/wiki/Optical_character_recognition</a></p>
+</blockquote>
+<p>Once I had a folder of .jpg images, I used the <a class="reference external" href="https://github.com/googleapis/python-vision">Google Vision API</a>'s OCR to detect the text in the images. I also considered using the open source <a class="reference external" href="https://github.com/Calamari-OCR/calamari">Calamari OCR library</a>, but my research found that Google's Vision API may be more effective at detecting text.</p>
+<p>Since I had only 771 images, I was able to extract text on all of them and stay within Google's free plan (1,000 requests / month). I <a class="reference external" href="https://cloud.google.com/vision/docs/quickstart">followed these installation instructions</a> on my Ubuntu Linux computer. It worked well on most of the images. Here's the code I used to detect text in all my images and save it in a .csv file:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">vision</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="sd">&quot;&quot;&quot;Setup Instructions</span>
+<span class="sd">1) Save this as detect_image_text.py</span>
+<span class="sd">2) Create a folder named &#39;photos&#39; and put your photos in them.</span>
+<span class="sd">3) in your terminal, run: python detect_image_text.py</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">detect_text</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Detects text in the file.&quot;&quot;&quot;</span>
+
+    <span class="n">client</span> <span class="o">=</span> <span class="n">vision</span><span class="o">.</span><span class="n">ImageAnnotatorClient</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">image_file</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">image_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="n">vision</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">text_detection</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">texts</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text_annotations</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Texts:&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">description</span>
+
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="se">\n</span><span class="s2">For more info on error messages, check: &quot;</span>
+            <span class="s2">&quot;https://cloud.google.com/apis/design/errors&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+
+<span class="n">images</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/images&quot;</span><span class="p">)</span>
+<span class="n">img_text</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">img</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">img_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;photos/</span><span class="si">{</span><span class="n">img</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">detect_text</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+        <span class="n">img_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed: </span><span class="si">{</span><span class="n">img</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">quotes_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">img_text</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Text&quot;</span><span class="p">])</span>
+<span class="n">csv</span> <span class="o">=</span> <span class="s2">&quot;Extracted Image Text.csv&quot;</span>
+<span class="n">quotes_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+</div>
+<div class="section" id="data-cleaning-via-pandas-and-manual-correction-1">
+<span id="data-cleaning-via-pandas-and-manual-correction"></span><h2>3. Data cleaning (via <a class="reference external" href="https://lofipython.com/pandas-pythons-excel-powerhouse/">pandas</a> and manual correction)</h2>
+<p>The data did not come back perfect, but I was pleased with the Google Vision API's results. It saved me a lot of time compared to manually transcribing the images!
+Next I used pandas to clean the data. You can see more in a Jupyter notebook with <a class="reference external" href="https://github.com/erickbytes/positivipy">all of the code on github</a>.
+Then I manually removed the author or source names, keeping only the quote text.</p>
+</div>
+<div class="section" id="train-on-past-quotes-and-generate-new-quotes-1">
+<span id="train-on-past-quotes-and-generate-new-quotes"></span><h2>4. Train on past quotes and generate new quotes</h2>
+<p><strong>GPT-3, The State of the Art Option</strong></p>
+<p>Initially, I considered machine learning options for generating new text. The GPT-3 library, released in early 2020 by Open AI, is the current state of the art model
+for text generation. However, its API is only accessible on an invite basis. If I get access, I think I'll try using it with the <a class="reference external" href="https://github.com/shreyashankar/gpt3-sandbox">GPT-Sandbox</a>
+python library. 🤞 You can join the <a class="reference external" href="https://share.hsforms.com/1Lfc7WtPLRk2ppXhPjcYY-A4sk30">GPT-3 waitlist here</a>.</p>
+<p>I searched around for other text generation python libraries on Github and found a promising one named <a class="reference external" href="https://github.com/minimaxir/gpt-2-simple">GPT-2_simple</a>,
+which utilizes GPT-3's predecessor. However, it requires using an old version of TensorFlow. I feel less inclined to learn older versions of machine learning libraries.
+Currently, I'm holding out for GPT-3 access. I may try the GPT-2 route if I don't get a chance at GPT-3.</p>
+<p><strong>A &quot;</strong><a class="reference external" href="https://zen-of-python.info/simple-is-better-than-complex.html">Simple is Better Than Complex</a><strong>&quot; Approach: Markov Chain</strong></p>
+<p>I wondered, are there any simpler options for text generation in python? Enter the Markov chain, which I stumbled across while Googling.</p>
+<blockquote>
+<p>A <strong>Markov chain</strong> is a stochastic model describing a sequence of possible events in which the probability of each event depends only on the state attained in the previous event.</p>
+<p>Wikipedia - <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">https://en.wikipedia.org/wiki/Markov_chain</a></p>
+</blockquote>
+<p><strong>Using the markovify library</strong></p>
+<p>Google pointed me to <a class="reference external" href="https://analyticsindiamag.com/hands-on-guide-to-markov-chain-for-text-generation/">this post from Analytics India Magazine</a> showing the <a class="reference external" href="https://github.com/jsvine/markovify">&quot;Markovify&quot; library</a>. Markovify makes generating your own Markov chain very easy! Install with pip:</p>
+<p><tt class="docutils literal">pip install markovify</tt></p>
+<p>Here's the code to create Markov chain on the quote text:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">markovify</span>
+<span class="c1"># Build a markov chain model.</span>
+<span class="n">text_model</span> <span class="o">=</span> <span class="n">markovify</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># Print five randomly-generated sentences</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">text_model</span><span class="o">.</span><span class="n">make_sentence</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
+<p>Markov chains are below the level of sophistication of machine learning technologies like GPT-3 or GPT-2. But Markov chains demonstrate how we can apply mathematics to mimic results or at least achieve an mvp with a simpler approach. Another intriguing tool worth mentioning is the <a class="reference external" href="https://www.nltk.org/">nltk library</a>, which offers natural language capabilities.</p>
+<p>Eventually I will try the more sophisticated way using machine learning, but at least I am enjoying a quick taste of success with a Markov chain. Here's what some cherry-picked results look like! 😆 Ok, they're not great, but not too shabby either for my first time generating text from examples:</p>
+<div class="wp-image-4695 figure">
+<img alt="Jupyter notebook Markovify example" src="https://pythonmarketer.files.wordpress.com/2020/10/generating_positive_thoughts.jpg?w=1024" />
+</div>
+<p>Maybe in the future I will use this for posts on my Facebook page, but it's not quite ready yet! I really enjoyed the process of researching this challenge and hope this post helps you evaluate your own text generation possibilities. This was fun to learn about. And best of all, I achieved satisfying, albeit primitive results within one weekend. Thanks for reading and stay positive.</p>
+<p>Check out the Markov chain in the wild <a class="reference external" href="https://positivethoughts.pythonanywhere.com/">here</a>.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/generating-positive-thoughts-with-google-vision-ocr-and-markov-chains.html">posted at 15:37</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-data-analysis-google-pandas-programming-python.html" rel="tag">coding, data analysis, Google, pandas, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/google-vision.html" class="tags">Google Vision</a>
+                    &nbsp;<a href="https://lofipython.com/tag/natural-language.html" class="tags">natural language</a>
+                    &nbsp;<a href="https://lofipython.com/tag/positive-thinking.html" class="tags">positive thinking</a>
+                    &nbsp;<a href="https://lofipython.com/tag/positivity.html" class="tags">positivity</a>
+                </div>
+            </article>            <h4 class="date">Oct 07, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1213,360 +1407,6 @@ to run your scripts in a shell environment. I'm so pleased with all of these too
                     &nbsp;<a href="https://lofipython.com/tag/pydal.html" class="tags">pyDAL</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                 </div>
-            </article>            <h4 class="date">May 18, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/how-to-make-json-requests-with-python.html" rel="bookmark" title="Permanent Link to &quot;A Guide To Making HTTP Requests To APIs With JSON & Python&quot;">A Guide To Making HTTP Requests To APIs With JSON &amp; Python</a>
-                </h2>
-
-                
-                
-
-                <p>This contains all of my best API-related knowledge picked up since learning how to use them. All APIs have their own style, quirks and unique requirements. This post explains general terminology, tips and examples if you're looking to tackle your first API.</p>
-<p><strong>Here's what is covered:</strong></p>
-<ol class="arabic simple">
-<li>API &amp; HTTP Lingo You Should Know</li>
-<li>Testing and Exporting Python Request Code from Postman (Optional)</li>
-<li>Formatting Your Request</li>
-<li>Example GET and POST Requests</li>
-<li>&quot;Gotchyas&quot; To Avoid</li>
-<li>Sidebar: requests.Session()</li>
-<li>Dig deeper into requests by raising your HTTPConnection.debuglevel</li>
-</ol>
-<!--  -->
-<blockquote>
-<strong>Terminology Clarification</strong>: I will refer to &quot;items&quot; or &quot;data&quot; throughout this post. This could be substituted for contacts or whatever data you are looking for. For example, you might be fetching a page of contacts from your CRM. Or fetching your tweets from Twitter's API. Or searching the Google location API, you might look up an address and return geo-location coordinates.</blockquote>
-<div class="section" id="api-http-lingo-you-should-know">
-<h2>API &amp; HTTP Lingo You Should Know</h2>
-<p><strong>Hypertext Transfer Protocol (HTTP)</strong></p>
-<p>Per <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Mozilla</a>, &quot;Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical <a class="reference external" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>, with a client opening a connection to make a request, then waiting until it receives a response.&quot;</p>
-<blockquote>
-HTTP: you = client. API = way to communicate with server</blockquote>
-<p><strong>Application Programming Interface (API)</strong></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Application_programming_interface">Per Wikipedia</a>, the purpose of an API is to simplify &quot;programming by <a class="reference external" href="https://en.wikipedia.org/wiki/Abstraction_(software_engineering)">abstracting</a> the underlying implementation and only exposing objects or actions the developer needs.&quot;</p>
-<p><strong>Representational State Transfer (REST)</strong></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> is an architectural style of web APIs. It is the dominant architecture that many APIs use. Simple Object Access Protocol (<a class="reference external" href="https://smartbear.com/blog/test-and-monitor/soap-vs-rest-whats-the-difference/">SOAP</a>) is another style I've heard of, but it seems less common nowadays.</p>
-<p>A REST API is built for interoperability and has properties like: &quot;simplicity of a uniform interface&quot; and &quot;visibility of communication between components by service agents.&quot; [<a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">Wikipedia</a>] If an API follows REST, it has many good principles baked in.</p>
-<p><strong>GET, POST and PATCH</strong></p>
-<p>These are three common types of request methods.</p>
-<ul class="simple">
-<li><cite>GET</cite>: Read data returned, such as all of your tweets in <a class="reference external" href="https://developer.twitter.com/en/docs">the Twitter API</a>.</li>
-<li><cite>POST</cite>: Create a new item, like writing a new tweet. Can also update existing data. Tweets aren't editable though!</li>
-<li><cite>PATCH</cite>: Similar to <cite>POST</cite>, this is typically used for updating data.</li>
-</ul>
-<p><strong>URL or &quot;Endpoint&quot;</strong></p>
-<p>This is the website target to send your request. Some APIs have multiple endpoints for different functionality.</p>
-<p><strong>URL Parameters</strong></p>
-<p>Values you pass to tell the API what you want. They are defined by the API specifications, which are usually well documented. In Python's requests library, they may be passed as <a class="reference external" href="https://treyhunner.com/2018/04/keyword-arguments-in-python/">keyword arguments</a>. Sometimes they are passable directly within the endpoint url string.</p>
-<p><strong>Body or &quot;Payload&quot;</strong></p>
-<p>To make a request, you send a payload to the url. Often this is a JSON string with the API's URL parameters and values, AKA the request body. If the <a class="reference external" href="https://jira.readthedocs.io/">API is written specifically for Python</a>, it might accept an actual Python dictionary.</p>
-<p><strong>Javascript Object Notation (JSON)</strong></p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=KnAyziNnuI0">JSON</a> is the data interchange standard for all languages. Usually it is the default way to pass data into and receive data from an API. If making a POST, you can check your json object is formatted correctly by using a <a class="reference external" href="https://jslint.com/">json linter</a>. Or try Python's <a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool">json.tool</a>! You can also pretty print your JSON or python dictionary with the <a class="reference external" href="https://docs.python.org/3/library/pprint.html">pprint</a> module. If you're using json.dumps remember it has <a class="reference external" href="https://docs.python.org/3/library/json.html">pretty printing accessible by keyword arguments</a>! These features are accessible in the standard library. Isn't Python great? See also: <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/09/15/python-101-an-intro-to-working-with-json/">Python 101 - An Intro to Working with JSON</a></p>
-<p><strong>Pages</strong></p>
-<p>API data is commonly returned in multiple pages when there is a lot of data returned. Each page can be accessed one request at a time. Sometimes you can specify how many items you want on a page. But there is usually a maximum items per page limit like 100.</p>
-<p><strong>Status Code</strong></p>
-<p>Each request usually gives you a <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">numeric code corresponding to happened</a> when the server tried to handle your request. There is also usually a message returned.</p>
-<p><strong>Headers</strong></p>
-<p>These usually contain website cookies and authorization info. They also may tell the API what kind of data you want back. JSON and XML are the two most common types of data to return. You can specify the return format in the <strong>content-type</strong> headers.</p>
-<blockquote>
-If you need to parse an XML response, check out Python's stock <a class="reference external" href="https://docs.python.org/3.8/library/xml.etree.elementtree.html">ElementTree API</a>. I've only seen a few APIs using XML responses, such as the <a class="reference external" href="https://www.usps.com/business/web-tools-apis/">USPS Address Validation API</a>.</blockquote>
-<p><strong>Authorization</strong></p>
-<p>Authorization varies widely. This is the level of identification you need to pass to the API to make a request. Public APIs might require none. Some just need a username and password. Others use the <a class="reference external" href="https://en.wikipedia.org/wiki/OAuth">Oauth standard</a>, which is a system involving credentials and tokens for extra security.</p>
-<blockquote>
-<p><strong>Authorization Scheme Example [</strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Mozilla</a><strong>]</strong></p>
-<p>Authorization: &lt;auth-scheme&gt; &lt;authorisation-parameters&gt;</p>
-</blockquote>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># headers python dict example</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;basic </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
-</pre></div></td></tr></table></div>
-</div>
-<div class="section" id="creating-the-request-json">
-<h2>Creating the Request JSON</h2>
-<p>I recommend using <a class="reference external" href="https://www.postman.com/">Postman</a> in most cases, depending on the complexity of the API. If the JSON syntax is straightforward, you can format your data as a python dictionary, then convert it to a JSON object with <strong>json.dumps</strong> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.dumps">json module</a>. But JSON can be tricky sometimes. You may also need to pass a dictionary of HTTP headers.</p>
-<p>Some APIs have &quot;Postman Collections&quot;, a set of Python (or any language) script templates for the API. In those cases, it might make sense to use those resources.</p>
-<blockquote>
-<p><strong>Path One: Make HTTP request with json &amp; requests libraries</strong></p>
-<p>Format Python dict with <strong>json.dumps</strong> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.dumps">json module</a>. Infer API requirements from documentation. Use requests for HTTP.</p>
-<p><strong>Path Two: Make HTTP request with Postman &amp; requests library</strong></p>
-<p>Use Postman to generate the JSON payload. Plug headers and payload into requests. Use requests library for HTTP.</p>
-</blockquote>
-<p>Postman has a friendly interface for plugging in all your pieces and tinkering with your request body until it works. Make it easier on yourself and use Postman, especially if there are collections. An alternative is to troubleshoot in Python if you are confident in your grasp of the API. I use both options depending on my familiarity with the API at hand.</p>
-</div>
-<div class="section" id="formatting-your-request">
-<h2>Formatting Your Request</h2>
-<ol class="arabic simple">
-<li>Once you have the request working, you may <a class="reference external" href="https://learning.postman.com/docs/postman/sending-api-requests/generate-code-snippets/">export your Postman request to almost any language</a>. For Python, you can sometimes export to the requests, http.client or urllib libraries. Hit the &quot;code&quot; button in Postman and then copy your code.</li>
-<li>Paste your Postman headers, payload and url into your existing code.</li>
-<li>You may want to use a dict or <a class="reference external" href="https://www.blog.pythonlibrary.org/2020/04/07/python-101-working-with-strings/">string formatting</a> to pass values to your request parameters or url.</li>
-<li>If the API uses a token or other form of authorization that needs to be refreshed intermittently, I usually have a function that returns a token. <strong>token = fetch_token()</strong> Then put the token in the headers dict. <strong>{&quot;Authorization&quot;: f&quot;basic {token}&quot;}</strong> Finally pass your headers and payload to your <strong>requests.get</strong>, <strong>requests.post</strong>, or <strong>requests.request</strong> function along with the endpoint url. You're now ready to test the request.</li>
-</ol>
-<p>If you choose not to use Postman, you can use the json library. See the use of <strong>json.dumps()</strong> to convert a dictionary to a JSON object in example #2 below.</p>
-</div>
-<div class="section" id="python-installation">
-<h2>Python Installation</h2>
-<p>You can install <strong>requests</strong> with <a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">pip</a>. Alternatively, <strong>http.client</strong> is included within the Python standard library. If you want to convert HTTP response data to a dataframe or csv, install <strong>pandas</strong>.</p>
-<pre class="literal-block">
-python -m pip install requests
-python -m pip install pandas
-</pre>
-</div>
-<div class="section" id="example-1-get-the-geolocation-details-of-any-public-location-with-the-google-api">
-<h2>Example #1: <strong>GET</strong> the geolocation details of any public location with the Google API</h2>
-<p>This was modified from another example of <a class="reference external" href="https://www.geeksforgeeks.org/get-post-requests-using-python/">Google's Geolocation API</a>. To use this, you need to
-<a class="reference external" href="https://developers.google.com/maps/documentation/geolocation/intro">create a developer account with Google</a> and paste your API keys below.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-
-
-<span class="c1"># Find the best double-cheeseburger + fries $7 can buy.</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;Redhot Ranch&quot;</span><span class="p">}</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span>
-<span class="c1"># Optional: set a 5 second timeout for the http request.</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-<span class="c1"># Extract the latitude, longitude and formatted address of the first matching location.</span>
-<span class="n">latitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;geometry&quot;</span><span class="p">][</span><span class="s2">&quot;location&quot;</span><span class="p">][</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span>
-<span class="n">longitude</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;geometry&quot;</span><span class="p">][</span><span class="s2">&quot;location&quot;</span><span class="p">][</span><span class="s2">&quot;lng&quot;</span><span class="p">]</span>
-<span class="n">formatted_address</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;formatted_address&quot;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">longitude</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">formatted_address</span><span class="p">)</span>
-
-<span class="c1"># Optional: convert response into a dataframe with pandas.</span>
-<span class="c1"># import pandas as pd</span>
-<span class="c1"># location_df = pd.json_normalize(data[&#39;results&#39;])</span>
-<span class="c1"># location_df.to_csv(&#39;Locations.csv&#39;)</span>
-</pre></div></td></tr></table></div>
-<p><strong>Above you can see:</strong></p>
-<ul class="simple">
-<li>requests makes it easy to see the server's text response also with <strong>response.text</strong></li>
-<li>requests also makes JSON encoding easy with <strong>response.json()</strong></li>
-<li><strong>pd.json_normalize()</strong> is convenient to convert the response dictionary to a dataframe.</li>
-</ul>
-</div>
-<div class="section" id="example-2-encode-a-python-dictionary-to-json-string-and-post-to-a-hypothetical-api">
-<h2>Example #2: Encode a Python dictionary to json string and <strong>POST</strong> to a hypothetical API</h2>
-<ol class="arabic simple">
-<li>Create a dictionary with request body data and pretty inspect it with pprint.</li>
-<li>Encode the json string with <strong>json.dumps</strong> from the standard library's <a class="reference external" href="https://docs.python.org/3/library/json.html#json.dumps">json module</a>.</li>
-<li><strong>POST</strong> the encoded JSON to the endpoint url with requests.</li>
-</ol>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-
-<span class="k">def</span> <span class="nf">dict_to_json_data</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create request body with fictional contact details.&quot;&quot;&quot;</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Sherman&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;42 Wallaby Way&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;address_2&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Sydney&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NSW&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;AU&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;zip&quot;</span><span class="p">:</span> <span class="s2">&quot;2000&quot;</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-    <span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="c1"># Optional: encode json str to utf-8.</span>
-    <span class="k">return</span> <span class="n">json_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">post_data</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a fictional API request that passes a json object to requests.</span>
-<span class="sd">    It decodes the server response with response.json() and</span>
-<span class="sd">    Returns dictionary value by calling the data&#39;s keys.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;cache-control&quot;</span><span class="p">:</span> <span class="s2">&quot;no-cache&quot;</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
-        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
-        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://SomeSoftwareAPI.com/people/&quot;</span><span class="p">,</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">json_str</span><span class="p">,</span>
-        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-    <span class="c1"># Call dict keys to get their values.</span>
-    <span class="n">contact_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;contact_id&quot;</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">contact_id</span>
-
-
-<span class="n">json_str</span> <span class="o">=</span> <span class="n">dict_to_json_data</span><span class="p">()</span>
-<span class="n">contact_id</span> <span class="o">=</span> <span class="n">post_data</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<!--  -->
-<blockquote>
-<p><strong>requests.request keyword argument alternatives for passing data</strong></p>
-<p><strong>params</strong> – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.</p>
-<p><strong>data</strong> – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request</p>
-<p><strong>json</strong> – (optional) A JSON serializable Python object to send in the body of the Request</p>
-<p><strong>[</strong><a class="reference external" href="https://requests.readthedocs.io/en/latest/api/">requests API documentation</a><strong>]</strong></p>
-</blockquote>
-<p><strong>&quot;Gotchyas&quot; To Avoid</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status codes</a> are your friend. They offer a hint at why your request is not working. If you see 200 or 201, that's a good sign. They're usually helpful, but sometimes they can be misleading.</li>
-<li>Ensure you are defining the correct content-type. I had an experience where Postman defined two conflicting <strong>content-type</strong> headers and it <a class="reference external" href="https://github.com/postmanlabs/postman-code-generators/issues/215">caused my request to fail</a>. The server's error message indicated the problem was in my JSON, so it took me a while to figure out the headers were the problem.</li>
-<li>Sometimes it makes a difference if your url has <strong>http://</strong> vs. <strong>https://</strong> in it. Usually <strong>https://</strong> is preferred.</li>
-</ul>
-<p><strong>Sidebar:</strong> <a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">requests.Session()</a></p>
-<p>You might be able to improve performance by using a requests <a class="reference external" href="https://requests.readthedocs.io/en/master/user/advanced/">&quot;session&quot; object</a>.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-
-
-<span class="c1"># A session adds a &quot;keep-alive&quot; header to your HTTP connection + stores cookies across requests.</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://exampleapi.com/widgets/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>Dig deeper into requests by raising your HTTPConnection.debuglevel</strong></p>
-<blockquote>
-<strong>HTTPResponse.debuglevel:</strong> A debugging hook. If <a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">debuglevel</a> is greater than zero, messages will be printed to stdout as the response is read and parsed.
-Source: <a class="reference external" href="https://docs.python.org/3/library/http.client.html#http.client.HTTPResponse.debuglevel">http.client Python Docs</a></blockquote>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">http.client</span> <span class="kn">import</span> <span class="n">HTTPConnection</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-
-<span class="n">HTTPConnection</span><span class="o">.</span><span class="n">debuglevel</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;Add_Google_API_Key_Here&quot;</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;90 Miles&quot;</span><span class="p">}</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://maps.googleapis.com/maps/api/geocode/json&quot;</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><strong>Web Server Gateway Interface (WSGI, pronounced &quot;Wis-Ghee&quot;)</strong></div>
-</div>
-<blockquote>
-&quot;As described in <a class="reference external" href="https://www.python.org/dev/peps/pep-3333/">PEP3333</a>, the Python Web Server Gateway Interface (WSGI) is a way to make sure
-that web servers and python web applications can talk to each other.&quot;  <a class="reference external" href="https://docs.gunicorn.org/en/latest/install.html">Gunicorn</a> is one
-of <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#uwsgi">a few Python WSGI clients</a>.
-<a class="reference external" href="https://lofipython.com/2016/04/30/useful-links-for-web2py-beginners/">web2py</a> is another WSGI client and web framework I have used.</blockquote>
-<p><strong>Conclusion</strong></p>
-<p>I remember APIs seemed mysterious and daunting before I had used them. But like all things, they can be conquered with knowledge, understanding and tenacity to keep trying until you figure it out. Good luck!</p>
-<p><strong>Requests Documentation</strong></p>
-<p><a class="reference external" href="https://requests.readthedocs.io/en/master/api/">requests.request() API documentation</a></p>
-<p><a class="reference external" href="https://requests.readthedocs.io/en/latest/api/#requests.get">requests.get() API documentation</a></p>
-<p><a class="reference external" href="https://requests.readthedocs.io/en/latest/api/#requests.post">requests.post() API documentation</a></p>
-<p><strong>Supplementary Reading</strong></p>
-<p><a class="reference external" href="https://developers.google.com/web/tools/chrome-devtools/network/reference#timing-explanation">Google's HTTP Timing Explanation</a></p>
-<p><a class="reference external" href="https://github.com/Rolstenhouse/unofficial-apis">List of Interesting &quot;Unofficial&quot; APIs</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Proxy_server">Proxy servers</a></p>
-<p><a class="reference external" href="https://pawelmhm.github.io/asyncio/python/aiohttp/2016/04/22/asyncio-aiohttp.html">Making 1 million requests with python-aiohttp</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Nginx">Nginx</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">Create, read, update and delete (CRUD)</a></p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/how-to-make-json-requests-with-python.html">posted at 05:41</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/chicago-coding-http-json-pandas-programming.html" rel="tag">Chicago, coding, HTTP, json, pandas, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/api.html" class="tags">api</a>
-                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/requests.html" class="tags">requests</a>
-                    &nbsp;<a href="https://lofipython.com/tag/sandwiches.html" class="tags">sandwiches</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web.html" class="tags">web</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -1576,7 +1416,7 @@ of <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.
 
                     <a href="https://lofipython.com/index9.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 8 of 12</span>
+                    <span>Page 8 of 13</span>
                 </div>
 
             <div class="clear"></div>

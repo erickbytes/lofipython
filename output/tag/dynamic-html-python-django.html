@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lo-Fi Python | articles tagged "making stuff with python"</title>
+    <title>Lo-Fi Python | articles tagged "dynamic HTML python django"</title>
     <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
     <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
     <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
-    <link href="https://lofipython.com/feeds/making-stuff-with-python.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Tags Atom Feed" />
+    <link href="https://lofipython.com/feeds/dynamic-html-python-django.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Tags Atom Feed" />
     <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
     <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
     <meta name="generator" content="Pelican" />
@@ -19,7 +19,7 @@
     <header>
         <nav style="overflow: hidden;">
             <ul>
-                <li class="ephemeral selected"><a href="https://lofipython.com/tag/making-stuff-with-python.html">making stuff with python</a></li>
+                <li class="ephemeral selected"><a href="https://lofipython.com/tag/dynamic-html-python-django.html">dynamic HTML python django</a></li>
                 <li><a href="https://lofipython.com/">Home</a></li>
                 <li><a href="feeds/all.rss.xml">RSS</a></li>
                 <li><a href="feeds/all.atom.xml">Atom</a></li>
@@ -38,7 +38,7 @@
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html" rel="bookmark" title="Permanent Link to &quot;How to Write a Custom Django HTML Filter&quot;">How to Write a Custom Django HTML Filter</a>
+                    <a href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html" rel="bookmark" title="Permanent Link to &quot;Run Python in Your HTML Via a Custom Django HTML Filter&quot;">Run Python in Your HTML Via a Custom Django HTML Filter</a>
                 </h2>
 
                 
@@ -47,14 +47,15 @@
                 <p>These are steps I followed to set up a custom Django filter
 to divide a number by another number. Today's post comes with a side of mathematics!
 Here's how to set up a custom Django filter that returns the quotient of two numbers.
-I mostly followed along with the <a class="reference external" href="https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/">Dango custom template tags documentation</a>.</p>
-<p><strong>Install Django</strong></p>
+I mostly followed along with the <a class="reference external" href="https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/">Django custom template tags documentation</a>.</p>
+<p><strong>Install Django Python Library</strong></p>
 <pre class="code console literal-block">
 <span class="go">pip install Django</span>
 </pre>
-<p><strong>Set Up templatetags.py</strong></p>
+<p><strong>Create templatetags.py</strong></p>
 <p>I dropped this Python file into my top-level folder of my project that held different app folders,
-static folder and templates folder.</p>
+static folder and templates folder. The &#64;register.filter decorator registers the function so Django
+knows the divide function exists.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -117,12 +118,11 @@ static folder and templates folder.</p>
 {% endblock %}
 </pre></div></td></tr></table></div>
 <p>In the HTML, call the divide function by passing two numeric arguments:</p>
-<pre class="code html literal-block">
-{{ hotel.price|divide:16 }}
-</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>{{ hotel.price|divide:16 }}
+</pre></div></td></tr></table></div>
 <ol class="arabic simple">
 <li>A number to be divided the hotel price from a &quot;Hotels&quot; DB model</li>
-<li>A number to divide by, here we use 16 to approximately convert pesos to US dollars</li>
+<li>The function name to call and a number to divide by. Here we use &quot;divide:16&quot; to approximately convert Mexican pesos to US dollars.</li>
 </ol>
 <p><strong>Basic Hotel Model Example</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
@@ -154,17 +154,17 @@ static folder and templates folder.</p>
 </pre></div></td></tr></table></div>
 <p>I was pleased to be able to make some on the fly mathematic calculations in my HTML
 with a custom Django filter!</p>
-<img alt="create value with an API" src="https://lofipython.com/images/django-filter-successful.png" />
+<img alt="django filter in action example HTML page" src="https://lofipython.com/images/django-filter-successful.png" />
 
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html">posted at 14:55</a>
+                    <a href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html">posted at 16:18</a>
                     &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-django.html" rel="tag">coding, programming, python, Django</a>
                     &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/api.html" class="tags">api</a>
-                    &nbsp;<a href="https://lofipython.com/tag/making-stuff-with-python.html" class="tags selected">making stuff with python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/hacking.html" class="tags">hacking</a>
+                    &nbsp;<a href="https://lofipython.com/tag/django-custom-filter.html" class="tags">django custom filter</a>
+                    &nbsp;<a href="https://lofipython.com/tag/dynamic-html-python-django.html" class="tags selected">dynamic HTML python django</a>
+                    &nbsp;<a href="https://lofipython.com/tag/running-python-in-d.html" class="tags">running Python in D</a>
                 </div>
             </article>
 
