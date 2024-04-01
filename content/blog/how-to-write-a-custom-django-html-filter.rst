@@ -1,5 +1,5 @@
-Run Python in Your HTML Via a Custom Django HTML Filter
-#######################################################
+Run Python in Your HTML Via a Custom Django Template Tags Filter
+################################################################
 :date: 2024-03-31 16:18
 :author: lofipython
 :category: coding, programming, python, Django
@@ -7,10 +7,12 @@ Run Python in Your HTML Via a Custom Django HTML Filter
 :slug: how-to-write-a-custom-django-html-filter
 :status: published
 
-These are the steps I followed to set up a custom Django filter 
-to divide a number by another number. Here's how to set up a custom Django filter 
-that returns the quotient of two numbers. Today's post comes with a side of mathematics!
-I mostly followed along with the `Django custom template tags documentation <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__.
+This post shows how to set up a custom Django template tag filter. With help from Django's load built-in, 
+execute a Python function from your app's HTML. In this example, the function returns the quotient 
+of two numbers. Mathematics and Python for the win!
+
+I worked some of this out with help from Bing and
+following along with the `Django custom template tags documentation <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__.
 
 **Install Django Python Library**
 
@@ -21,8 +23,8 @@ I mostly followed along with the `Django custom template tags documentation <htt
 
 **Create templatetags.py**
 
-I dropped this Python file into my top-level folder of my project that held different app folders, 
-static folder and templates folder. The @register.filter decorator registers the divide function so Django knows it exists.
+I created a "templatetags" folder in the app folder and placed templatetags.py within it. 
+The Django docs recommend your app's folder. Below, the @register.filter decorator registers the divide function so Django knows it exists.
 
 .. code-block:: python
 
@@ -64,7 +66,7 @@ static folder and templates folder. The @register.filter decorator registers the
    {% endblock %}
 
 
-In the HTML, call the divide function by passing two numeric arguments:
+In the HTML, call the divide function by loading the templatetags module and then passing two numeric arguments:
 
 .. code:: console
    

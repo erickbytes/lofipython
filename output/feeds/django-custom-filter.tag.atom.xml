@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - django custom filter</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/django-custom-filter.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-03-31T16:18:00-05:00</updated><entry><title>Run Python in Your HTML Via a Custom Django HTML Filter</title><link href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html" rel="alternate"></link><published>2024-03-31T16:18:00-05:00</published><updated>2024-03-31T16:18:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-03-31:/how-to-write-a-custom-django-html-filter.html</id><summary type="html">&lt;p&gt;These are the steps I followed to set up a custom Django filter
-to divide a number by another number. Here's how to set up a custom Django filter
-that returns the quotient of two numbers. Today's post comes with a side of mathematics!
-I mostly followed along with the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;These are the steps I followed to set up a custom Django filter
-to divide a number by another number. Here's how to set up a custom Django filter
-that returns the quotient of two numbers. Today's post comes with a side of mathematics!
-I mostly followed along with the &lt;a class="reference external" href="https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/"&gt;Django custom template tags documentation&lt;/a&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - django custom filter</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/django-custom-filter.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-03-31T16:18:00-05:00</updated><entry><title>Run Python in Your HTML Via a Custom Django Template Tags Filter</title><link href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html" rel="alternate"></link><published>2024-03-31T16:18:00-05:00</published><updated>2024-03-31T16:18:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-03-31:/how-to-write-a-custom-django-html-filter.html</id><summary type="html">&lt;p&gt;This post shows how to set up a custom Django template tag filter. With help from Django's load built-in,
+execute a Python function from your app's HTML. In this example, the function returns the quotient
+of two numbers. Mathematics and Python for the win!&lt;/p&gt;
+&lt;p&gt;I worked some of this out …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post shows how to set up a custom Django template tag filter. With help from Django's load built-in,
+execute a Python function from your app's HTML. In this example, the function returns the quotient
+of two numbers. Mathematics and Python for the win!&lt;/p&gt;
+&lt;p&gt;I worked some of this out with help from Bing and
+following along with the &lt;a class="reference external" href="https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/"&gt;Django custom template tags documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Install Django Python Library&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;pip install Django&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Create templatetags.py&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I dropped this Python file into my top-level folder of my project that held different app folders,
-static folder and templates folder. The &amp;#64;register.filter decorator registers the divide function so Django knows it exists.&lt;/p&gt;
+&lt;p&gt;I created a &amp;quot;templatetags&amp;quot; folder in the app folder and placed templatetags.py within it.
+The Django docs recommend your app's folder. Below, the &amp;#64;register.filter decorator registers the divide function so Django knows it exists.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -74,7 +75,7 @@ static folder and templates folder. The &amp;#64;register.filter decorator regis
 &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 {% endblock %}
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;In the HTML, call the divide function by passing two numeric arguments:&lt;/p&gt;
+&lt;p&gt;In the HTML, call the divide function by loading the templatetags module and then passing two numeric arguments:&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;{{ hotel.price|divide:16.5 }}&lt;/span&gt;
 &lt;/pre&gt;

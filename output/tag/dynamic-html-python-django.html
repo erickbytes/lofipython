@@ -38,23 +38,24 @@
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html" rel="bookmark" title="Permanent Link to &quot;Run Python in Your HTML Via a Custom Django HTML Filter&quot;">Run Python in Your HTML Via a Custom Django HTML Filter</a>
+                    <a href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html" rel="bookmark" title="Permanent Link to &quot;Run Python in Your HTML Via a Custom Django Template Tags Filter&quot;">Run Python in Your HTML Via a Custom Django Template Tags Filter</a>
                 </h2>
 
                 
                 
 
-                <p>These are the steps I followed to set up a custom Django filter
-to divide a number by another number. Here's how to set up a custom Django filter
-that returns the quotient of two numbers. Today's post comes with a side of mathematics!
-I mostly followed along with the <a class="reference external" href="https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/">Django custom template tags documentation</a>.</p>
+                <p>This post shows how to set up a custom Django template tag filter. With help from Django's load built-in,
+execute a Python function from your app's HTML. In this example, the function returns the quotient
+of two numbers. Mathematics and Python for the win!</p>
+<p>I worked some of this out with help from Bing and
+following along with the <a class="reference external" href="https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/">Django custom template tags documentation</a>.</p>
 <p><strong>Install Django Python Library</strong></p>
 <pre class="code console literal-block">
 <span class="go">pip install Django</span>
 </pre>
 <p><strong>Create templatetags.py</strong></p>
-<p>I dropped this Python file into my top-level folder of my project that held different app folders,
-static folder and templates folder. The &#64;register.filter decorator registers the divide function so Django knows it exists.</p>
+<p>I created a &quot;templatetags&quot; folder in the app folder and placed templatetags.py within it.
+The Django docs recommend your app's folder. Below, the &#64;register.filter decorator registers the divide function so Django knows it exists.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -116,7 +117,7 @@ static folder and templates folder. The &#64;register.filter decorator registers
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 {% endblock %}
 </pre></div></td></tr></table></div>
-<p>In the HTML, call the divide function by passing two numeric arguments:</p>
+<p>In the HTML, call the divide function by loading the templatetags module and then passing two numeric arguments:</p>
 <pre class="code console literal-block">
 <span class="go">{{ hotel.price|divide:16.5 }}</span>
 </pre>
