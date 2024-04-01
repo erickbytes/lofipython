@@ -8,8 +8,8 @@ Run Python in Your HTML Via a Custom Django Template Tags Filter
 :status: published
 
 This post shows how to set up a custom Django template tag filter. With help from Django's load built-in, 
-execute a Python function from your app's HTML. In this example, the function returns the quotient 
-of two numbers. Mathematics and Python for the win!
+you can execute a Python function from your app's HTML. In this example, the function returns the quotient,
+or result of dividing two numbers. Mathematics and Python for the win!
 
 I worked some of this out with help from Bing and
 following along with the `Django custom template tags documentation <https://docs.djangoproject.com/en/5.0/howto/custom-template-tags/>`__.
