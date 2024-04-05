@@ -12,6 +12,7 @@ Send me your project, event or questions. Collaborative inquiries welcome.
 
 email: ErickBuildsStuff[at]Outlook[dot]com
 
+
 `LinkedIn <https://www.linkedin.com/in/erickrumbold>`__
 
 
