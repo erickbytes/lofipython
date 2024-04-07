@@ -262,7 +262,7 @@ and server log feeds was a big step to finding my Python traceback fixing groove
 
 **Recapping My Python Web Development and Database Experiences**
 
-I previously created a `website <http://tameimpala.pythonanywhere.com/>`__ with `web2py <https://lofipython.com/getting-started-with-web2py/>`__, 
+I previously created a `website <http://tameimpala.pythonanywhere.com/tameimpala>`__ with `web2py <https://lofipython.com/getting-started-with-web2py/>`__, 
 another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then, 
 I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.
 

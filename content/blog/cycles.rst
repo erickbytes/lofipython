@@ -43,7 +43,7 @@ Neither went anywhere, or really were that good of ideas, but I was able
 to get to bare minimum viable product status, with little to no code.
 Sites like `carrd.co <http://carrd.co>`__ work well to build a quick
 landing page as proof of concept or landing page test. My favorite
-project might be my `Tame Impala website <http://tameimpala.pythonanywhere.com>`__, 
+project might be my `Tame Impala website <http://tameimpala.pythonanywhere.com/tameimpala>`__, 
 which I used `web2py <https://lofipython.com/getting-started-with-web2py/>`__ 
 to build the site and `pythonanywhere <http://pythonanywhere.com>`__ to host for free.
 

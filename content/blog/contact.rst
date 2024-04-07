@@ -26,5 +26,5 @@ email: ErickBuildsStuff[at]Outlook[dot]com
 
 `mas tacos <https://mastacos.pythonanywhere.com/>`__, proof of concept taco location app via a US taco restaurant dataset
 
-`Ask Tame Impala <https://tameimpala.pythonanywhere.com/>`__, web2py + MongoDB Tame Impala lyrics search app
+`Ask Tame Impala <https://tameimpala.pythonanywhere.com/tameimpala>`__, web2py +  SQLlite Tame Impala lyrics search app
 

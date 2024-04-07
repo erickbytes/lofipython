@@ -9,7 +9,7 @@ Ask Tame Impala - My First Web App
 **My app is alive.** It is a simple program - ask it a question, and it queries a database of Tame Impala lyrics and pulls a response line from the lyrics 
 based on which words match up. Kevin Parker is the frontman of the band. 
 
-**View the app here:** `tameimpala.pythonanywhere.com <http://tameimpala.pythonanywhere.com>`__.
+**View the app here:** `tameimpala.pythonanywhere.com <http://tameimpala.pythonanywhere.com/tameimpala>`__.
 
 I published it a few weeks ago and according to Google Analytics it has had 50 sessions from Google and over 200 page views in 10 different countries - not bad!
 
