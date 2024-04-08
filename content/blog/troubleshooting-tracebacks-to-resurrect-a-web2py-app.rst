@@ -152,13 +152,14 @@ In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:
   :alt: unable to parse csv Python fix with TextIOWrapper
 
 
-After adding the above code to my web2py app's objects.py file, the csv importer completed my database 
-import of new Tame Impala songs, successfully imported an from my development environment. Mission accomplished.
+After adding the above code to my web2py app's objects.py file, the csv importer completed my 
+new Tame Impala songs database import. Also, I was able to export an app from my development environment 
+and deploy it into PythonAnywhere via the admin interface. Mission accomplished.
 
-I successfully imported the new songs to my app and brought the code forward into future Python versions. 
+I imported the new songs to my app and brought the code forward into future Python versions. 
 Keeping up with this project over the years shows how maintaining an app across different Python versions 
-can cause unexpected challenges. With tough Python tracebacks conquered, the app is back on the web, now
-with all of Tame Impala's new music!
+can cause unexpected challenges. With these Python tracebacks conquered, the app is back on the web. 
+Now with all of Tame Impala's new lyrics!
 
 **Check out my Tame Impala web2py app here:** 
 
