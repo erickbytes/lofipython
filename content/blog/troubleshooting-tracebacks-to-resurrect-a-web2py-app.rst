@@ -52,7 +52,7 @@ of the tracebacks that transpired.
 
 This error showed up in my app's WSGI error logs. Initially, I researched and attempted to install 
 the `formatter module <https://pypi.org/project/formatter/>`__. I believe this was caused by attempting 
-to run Python code compiled to a .w2p fileon Python 3.11 on a Python 3.10 interpreter. However, I didn't 
+to run Python code compiled to a .w2p file on Python 3.11 on a Python 3.10 interpreter. However, I didn't 
 know how to solve it until after I saw the next error.
 
 ------------
