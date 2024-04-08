@@ -21,6 +21,16 @@ Part of the problem was that I didn't remember where the important code like the
 and HTML files were after not seeing it for 5+ years. It took some time to remember the folder 
 structure of a web2py project.
 
+One thing I like about web2py is that once it is installed, the devlopment server is easily started 
+by running the web2py.py file:
+
+
+.. code:: console
+
+   cd web2py
+   python3.10 web2py.py
+
+
 **web2py Python Errors Solved**
 
 I installed web2py locally with the help of a `DigitalOcean blog post <https://www.digitalocean.com/community/tutorials/how-to-use-the-web2py-framework-to-quickly-build-your-python-app>`__.
@@ -68,15 +78,20 @@ running `Python 3.10 <https://www.python.org/downloads/release/python-3105/>`__.
 production environment on PythonAnywhere. Then I entered a handful of commands from Bing Copilot to compile 
 my Python 3.10 Ubuntu development environment and waited for it to compile. 
 
-The lesson I took away is to consider what Python version your production environment before you begin working on a project. 
+The lesson I took away is to consider your production environment's Python version before you begin working on a project. 
 In most cases, you'll want to match that version in your development environment to avoid errors like this.
 
 After compiling the new development Python 3.10 version, I exported the app to a new .w2p file.
-Next, I imported the .w2p file containing the new app to PythonAnywhere in the admin interface app importer.
+Next, I imported the .w2p file containing the updated app to PythonAnywhere in the admin interface app importer.
 
 After syncing my development and production environment versions, the app showed a different error. 
-One problem solved, 2 more discovered in its wake, am I right? Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier 
-Python versions with a few more bugs.
+Progress! 
+
+Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in 
+earlier Python versions with a few more bugs. Despite these version inconveniences, I was happy to see the 
+"compiled code is incompatible" and "formatter module missing" errors stopped.
+One problem solved, two more discovered in its wake, am I right?
+
 
 ------------
 
@@ -137,8 +152,8 @@ In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:
   :alt: unable to parse csv Python fix with TextIOWrapper
 
 
-After adding the above code to my web2py app's objects.py file, the csv importer completed my datavase 
-import of new tame impala songs. Mission accomplished.
+After adding the above code to my web2py app's objects.py file, the csv importer completed my database 
+import of new Tame Impala songs, successfully imported an from my development environment. Mission accomplished.
 
 I successfully imported the new songs to my app and brought the code forward into future Python versions. 
 Keeping up with this project over the years shows how maintaining an app across different Python versions 
