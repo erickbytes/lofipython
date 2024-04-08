@@ -11,8 +11,8 @@ Back in 2016, I `built a web2py app <https://lofipython.com/askkevinparker-com-m
 as my first web application. It accepts a prompt from the user and 
 primitively attempts to match that text to a line of Kevin Parker's lyrics.
 
-I didn't look at the app's code for many years. I just needed to log into PythonAnywhere every 3 months 
-and hit a button to keep it running on their free plan. Until I decided to update it recently. 
+I didn't look at the app's code for many years. I just needed to log into `PythonAnywhere <https://pythonanywhere.com>`__ 
+every 3 months and hit a button to keep it running on their free plan. Until I decided to update it recently. 
 
 Tame Impala released a new album and lots of additional tracks to import to the app.
 Just need to update the database with new music. No big deal easy peasy, right? Wrong! 
@@ -74,9 +74,20 @@ and production Python versions.
 **Installing Python 3.10 in Development Environment**
 
 Originally, I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was 
-running `Python 3.10 <https://www.python.org/downloads/release/python-3105/>`__. Therefore, I need to build the development version in Python 3.10 to match the 
-production environment on PythonAnywhere. Then I entered a handful of commands from Bing Copilot to compile 
-my Python 3.10 Ubuntu development environment and waited for it to compile. 
+running `Python 3.10 <https://www.python.org/downloads/release/python-3105/>`__. Therefore, I need to build the 
+development code in Python 3.10 to match the production environment on PythonAnywhere. 
+I entered a handful of commands from Bing Copilot to build Python 3.10 on my Ubuntu development environment:
+
+.. code:: console
+
+   sudo apt-get install build-essential
+   sudo apt-get install zlib1g-dev
+   sudo apt-get install libsqlite3-dev
+   wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tgz
+   cd Python-3.10.5.tgz
+   tar zxvf Python-3.10.5.tgz
+   ./configure --enable-optimizations --enable-loadable-sqlite-extensions
+   make && sudo make install
 
 The lesson I took away is to consider your production environment's Python version before you begin working on a project. 
 In most cases, you'll want to match that version in your development environment to avoid errors like this.

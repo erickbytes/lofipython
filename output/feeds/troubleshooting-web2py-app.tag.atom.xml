@@ -5,8 +5,8 @@ primitively attempts to match that text to a line of Kevin Parker's lyrics.&lt;/
 &lt;p&gt;I didn't look at the app's code for many years. I just needed to log into …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Back in 2016, I &lt;a class="reference external" href="https://lofipython.com/askkevinparker-com-my-first-web-app-other-notes"&gt;built a web2py app&lt;/a&gt;
 as my first web application. It accepts a prompt from the user and
 primitively attempts to match that text to a line of Kevin Parker's lyrics.&lt;/p&gt;
-&lt;p&gt;I didn't look at the app's code for many years. I just needed to log into PythonAnywhere every 3 months
-and hit a button to keep it running on their free plan. Until I decided to update it recently.&lt;/p&gt;
+&lt;p&gt;I didn't look at the app's code for many years. I just needed to log into &lt;a class="reference external" href="https://pythonanywhere.com"&gt;PythonAnywhere&lt;/a&gt;
+every 3 months and hit a button to keep it running on their free plan. Until I decided to update it recently.&lt;/p&gt;
 &lt;p&gt;Tame Impala released a new album and lots of additional tracks to import to the app.
 Just need to update the database with new music. No big deal easy peasy, right? Wrong!&lt;/p&gt;
 &lt;p&gt;Part of the problem was that I didn't remember where the important code like the controller default.py
@@ -42,9 +42,19 @@ that my Python code had incompatible versions. This was caused by a mismatch bet
 and production Python versions.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Installing Python 3.10 in Development Environment&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Originally, I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was
-running &lt;a class="reference external" href="https://www.python.org/downloads/release/python-3105/"&gt;Python 3.10&lt;/a&gt;. Therefore, I need to build the development version in Python 3.10 to match the
-production environment on PythonAnywhere. Then I entered a handful of commands from Bing Copilot to compile
-my Python 3.10 Ubuntu development environment and waited for it to compile.&lt;/p&gt;
+running &lt;a class="reference external" href="https://www.python.org/downloads/release/python-3105/"&gt;Python 3.10&lt;/a&gt;. Therefore, I need to build the
+development code in Python 3.10 to match the production environment on PythonAnywhere.
+I entered a handful of commands from Bing Copilot to build Python 3.10 on my Ubuntu development environment:&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;sudo apt-get install build-essential
+sudo apt-get install zlib1g-dev
+sudo apt-get install libsqlite3-dev
+wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tgz
+cd Python-3.10.5.tgz
+tar zxvf Python-3.10.5.tgz
+./configure --enable-optimizations --enable-loadable-sqlite-extensions
+make &amp;amp;&amp;amp; sudo make install&lt;/span&gt;
+&lt;/pre&gt;
 &lt;p&gt;The lesson I took away is to consider your production environment's Python version before you begin working on a project.
 In most cases, you'll want to match that version in your development environment to avoid errors like this.&lt;/p&gt;
 &lt;p&gt;After compiling the new development Python 3.10 version, I exported the app to a new .w2p file.
