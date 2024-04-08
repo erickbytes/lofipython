@@ -97,9 +97,6 @@ I chose to use the GUI. In the GUI, you can either manually enter each song or u
 To save time, I imported via the csv widget. However, this error slowed me down. 
 It stemmed from the need for TextIOWrapper to convert the csv data to a required format.
 
-.. image:: {static}/images/unable-to-parse-csv-fix.png
-  :alt: unable to parse csv Python fix with TextIOWrapper
-
 The solution I found was to use the 
 `fix suggested by AnooshaAviligonda <https://github.com/web2py/web2py/issues/2148#issuecomment-616036400>`__.
 In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:
@@ -108,6 +105,9 @@ In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:
    
    csv_reader = csv.reader(TextIOWrapper(utf8_data,encoding), dialect=dialect, **kwargs)
 
+
+.. image:: {static}/images/unable-to-parse-csv-fix.png
+  :alt: unable to parse csv Python fix with TextIOWrapper
 
 After adding the above code to my web2py app's object.py file, the csv importer was functional again. 
 I successfully imported the new songs to my app and brought the code forward into future Python versions. 

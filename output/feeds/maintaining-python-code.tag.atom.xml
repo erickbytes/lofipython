@@ -54,17 +54,17 @@ The fix is add parentheses to the exception statements:&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;unable to parse csv file: iterator should return strings, not bytes (the file should be opened in text mode)&lt;/span&gt;
 &lt;/pre&gt;
-&lt;p&gt;In order to import the new Tame Impala songs to the SQLlite database, web2py provides access to a
+&lt;p&gt;In order to import the new Tame Impala songs to the SQLlite database, web2py provides a
 GUI interface in its admin panel or the DAL (Database Abstraction Layer).
 I chose to use the GUI. In the GUI, you can either manually enter each song or use its csv import widget.
 To save time, I imported via the csv widget. However, this error slowed me down.
 It stemmed from the need for TextIOWrapper to convert the csv data to a required format.&lt;/p&gt;
-&lt;img alt="unable to parse csv Python fix with TextIOWrapper" src="https://lofipython.com/images/unable-to-parse-csv-fix.png" /&gt;
 &lt;p&gt;The solution I found was to use the
 &lt;a class="reference external" href="https://github.com/web2py/web2py/issues/2148#issuecomment-616036400"&gt;fix suggested by AnooshaAviligonda&lt;/a&gt;.
 In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;csv_reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TextIOWrapper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;utf8_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;dialect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dialect&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;img alt="unable to parse csv Python fix with TextIOWrapper" src="https://lofipython.com/images/unable-to-parse-csv-fix.png" /&gt;
 &lt;p&gt;After adding the above code to my web2py app's object.py file, the csv importer was functional again.
 I successfully imported the new songs to my app and brought the code forward into future Python versions.
 Keeping up with this project over the years shows how maintaining an app across different Python versions
