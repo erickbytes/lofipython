@@ -28,6 +28,10 @@ After I failed to push a new version of the app to production, for some reasons 
 Python version issues surfaced, requiring some heady navigation. Enjoy these gritty details 
 of the tracebacks that transpired.
 
+------------
+
+
+
 .. code:: console
 
    ModuleNotFoundError: No module named 'formatter'
@@ -40,6 +44,10 @@ This error showed up in my app's WSGI error logs. Initially, I researched attemp
 the `formatter module <https://pypi.org/project/formatter/>`__. I believe this was caused by attempting 
 to run Python code compiled to a .w2p fileon Python 3.11 on a Python 3.10 interpreter. However, I didn't 
 know how to solve it until after I saw the next error.
+
+------------
+
+
 
 .. code:: console
    
@@ -54,15 +62,24 @@ and production Python versions.
 
 **Installing Python 3.10 in Development Environment**
 
-I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was 
-running Python 3.10. Therefore, I need to build the development version in Python 3.10 to match the 
+Originally, I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was 
+running `Python 3.10 <https://www.python.org/downloads/release/python-3105/>`__. Therefore, I need to build the development version in Python 3.10 to match the 
 production environment on PythonAnywhere. I then entered a handful of commands from Bing Copilot to compile 
 my Python 3.10 Ubuntu development environment. 
 
-After compiling the new development version, I exported a new .w2p file and imported it to PythonAnywhere.
-After syncing my development and production environment versions, the app shows a different error!
-Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier 
+The lesson I took away is to consider what Python version your production environment before you begin working on a project. 
+In most cases, you'll want to match that version in your development environment to avoid errors like this.
+
+After compiling the new development Python 3.10 version, I exported a new .w2p file.
+Next, I imported the .w2p file containing the new app to PythonAnywhere in the admin interface uploader.
+
+After syncing my development and production environment versions, the app showed a different error. 
+One problem solved, 2 more discovered in its wake, am I right? Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier 
 Python versions with a few more bugs.
+
+------------
+
+
 
 .. code:: console
    
@@ -86,6 +103,10 @@ The fix is add parentheses to the exception statements:
 .. code-block:: python
 
    except (Exception, e):
+
+
+------------
+
 
 
 .. code:: console

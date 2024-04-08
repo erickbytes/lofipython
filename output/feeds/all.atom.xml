@@ -17,6 +17,7 @@ structure of a web2py project.&lt;/p&gt;
 After I failed to push a new version of the app to production, for some reasons it was in a broken state.
 Python version issues surfaced, requiring some heady navigation. Enjoy these gritty details
 of the tracebacks that transpired.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;ModuleNotFoundError: No module named 'formatter'&lt;/span&gt;
 &lt;/pre&gt;
@@ -25,6 +26,7 @@ of the tracebacks that transpired.&lt;/p&gt;
 the &lt;a class="reference external" href="https://pypi.org/project/formatter/"&gt;formatter module&lt;/a&gt;. I believe this was caused by attempting
 to run Python code compiled to a .w2p fileon Python 3.11 on a Python 3.10 interpreter. However, I didn't
 know how to solve it until after I saw the next error.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;SystemError: compiled code is incompatible&lt;/span&gt;
 &lt;/pre&gt;
@@ -33,14 +35,18 @@ know how to solve it until after I saw the next error.&lt;/p&gt;
 that my Python code had incompatible versions. This was caused by a mismatch between my development
 and production Python versions.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Installing Python 3.10 in Development Environment&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was
-running Python 3.10. Therefore, I need to build the development version in Python 3.10 to match the
+&lt;p&gt;Originally, I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was
+running &lt;a class="reference external" href="https://www.python.org/downloads/release/python-3105/"&gt;Python 3.10&lt;/a&gt;. Therefore, I need to build the development version in Python 3.10 to match the
 production environment on PythonAnywhere. I then entered a handful of commands from Bing Copilot to compile
 my Python 3.10 Ubuntu development environment.&lt;/p&gt;
-&lt;p&gt;After compiling the new development version, I exported a new .w2p file and imported it to PythonAnywhere.
-After syncing my development and production environment versions, the app shows a different error!
-Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier
+&lt;p&gt;The lesson I took away is to consider what Python version your production environment before you begin working on a project.
+In most cases, you'll want to match that version in your development environment to avoid errors like this.&lt;/p&gt;
+&lt;p&gt;After compiling the new development Python 3.10 version, I exported a new .w2p file.
+Next, I imported the .w2p file containing the new app to PythonAnywhere in the admin interface uploader.&lt;/p&gt;
+&lt;p&gt;After syncing my development and production environment versions, the app showed a different error.
+One problem solved, 2 more discovered in its wake, am I right? Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier
 Python versions with a few more bugs.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;SyntaxError: multiple exception types must be parenthesized&lt;/span&gt;
 &lt;/pre&gt;
@@ -53,6 +59,7 @@ The fix is add parentheses to the exception statements:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Correct&lt;/em&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;hr class="docutils" /&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;unable to parse csv file: iterator should return strings, not bytes (the file should be opened in text mode)&lt;/span&gt;
 &lt;/pre&gt;

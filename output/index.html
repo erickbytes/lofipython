@@ -57,6 +57,7 @@ structure of a web2py project.</p>
 After I failed to push a new version of the app to production, for some reasons it was in a broken state.
 Python version issues surfaced, requiring some heady navigation. Enjoy these gritty details
 of the tracebacks that transpired.</p>
+<hr class="docutils" />
 <pre class="code console literal-block">
 <span class="go">ModuleNotFoundError: No module named 'formatter'</span>
 </pre>
@@ -65,6 +66,7 @@ of the tracebacks that transpired.</p>
 the <a class="reference external" href="https://pypi.org/project/formatter/">formatter module</a>. I believe this was caused by attempting
 to run Python code compiled to a .w2p fileon Python 3.11 on a Python 3.10 interpreter. However, I didn't
 know how to solve it until after I saw the next error.</p>
+<hr class="docutils" />
 <pre class="code console literal-block">
 <span class="go">SystemError: compiled code is incompatible</span>
 </pre>
@@ -73,14 +75,18 @@ know how to solve it until after I saw the next error.</p>
 that my Python code had incompatible versions. This was caused by a mismatch between my development
 and production Python versions.</p>
 <p><strong>Installing Python 3.10 in Development Environment</strong></p>
-<p>I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was
-running Python 3.10. Therefore, I need to build the development version in Python 3.10 to match the
+<p>Originally, I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was
+running <a class="reference external" href="https://www.python.org/downloads/release/python-3105/">Python 3.10</a>. Therefore, I need to build the development version in Python 3.10 to match the
 production environment on PythonAnywhere. I then entered a handful of commands from Bing Copilot to compile
 my Python 3.10 Ubuntu development environment.</p>
-<p>After compiling the new development version, I exported a new .w2p file and imported it to PythonAnywhere.
-After syncing my development and production environment versions, the app shows a different error!
-Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier
+<p>The lesson I took away is to consider what Python version your production environment before you begin working on a project.
+In most cases, you'll want to match that version in your development environment to avoid errors like this.</p>
+<p>After compiling the new development Python 3.10 version, I exported a new .w2p file.
+Next, I imported the .w2p file containing the new app to PythonAnywhere in the admin interface uploader.</p>
+<p>After syncing my development and production environment versions, the app showed a different error.
+One problem solved, 2 more discovered in its wake, am I right? Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier
 Python versions with a few more bugs.</p>
+<hr class="docutils" />
 <pre class="code console literal-block">
 <span class="go">SyntaxError: multiple exception types must be parenthesized</span>
 </pre>
@@ -93,6 +99,7 @@ The fix is add parentheses to the exception statements:</p>
 <p><em>Correct</em></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">except</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
 </pre></div></td></tr></table></div>
+<hr class="docutils" />
 <pre class="code console literal-block">
 <span class="go">unable to parse csv file: iterator should return strings, not bytes (the file should be opened in text mode)</span>
 </pre>
