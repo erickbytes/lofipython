@@ -11,7 +11,7 @@ Back in 2016, I `built a web2py app <https://lofipython.com/askkevinparker-com-m
 as my first web application. It accepts a prompt from the user and 
 primitively attempts to match that text to a line of Kevin Parker's lyrics.
 
-I didn't look at the app's code for many years, I just needed to log into PythonAnywhere every 3 months 
+I didn't look at the app's code for many years. I just needed to log into PythonAnywhere every 3 months 
 and hit a button to keep it running on their free plan. Until I decided to update it recently. 
 
 Tame Impala released a new album and lots of additional tracks to import to the app.
