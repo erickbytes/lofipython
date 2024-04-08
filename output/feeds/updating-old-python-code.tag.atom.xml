@@ -10,40 +10,42 @@ and hit a button to keep it running on their free plan. Until I decided to updat
 &lt;p&gt;Tame Impala released a new album and lots of additional tracks to import to the app.
 Just need to update the database with new music. No big deal easy peasy, right? Wrong!&lt;/p&gt;
 &lt;p&gt;Part of the problem was that I didn't remember where the important code like the controller default.py
-and HTML files were after not seeing it for 3+ years. It took me some time to remember the folder
-structure of a web2py project also.&lt;/p&gt;
+and HTML files were after not seeing it for 5+ years. It took some time to remember the folder
+structure of a web2py project.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;web2py Python Errors Solved&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I installed web2py locally with the help of a &lt;a class="reference external" href="https://www.digitalocean.com/community/tutorials/how-to-use-the-web2py-framework-to-quickly-build-your-python-app"&gt;DigitalOcean blog post&lt;/a&gt;.
 After I failed to push a new version of the app to production, for some reasons it was in a broken state.
-Python version issues popped up and required some heady navigation. Enjoy these gritty details
+Python version issues surfaced, requiring some heady navigation. Enjoy these gritty details
 of the tracebacks that transpired.&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;ModuleNotFoundError: No module named 'formatter'&lt;/span&gt;
 &lt;/pre&gt;
 &lt;img alt="formatter module missing in Python WSGI app" src="https://lofipython.com/images/ModuleNotFoundError-no-module-named-formatter.png" /&gt;
-&lt;p&gt;This error popped up in my app's WSGI error logs. I researched the &lt;a class="reference external" href="https://pypi.org/project/formatter/"&gt;formatter module&lt;/a&gt;.
-I believe this was caused by attempting to run Python code compiled to a .w2p file
-on Python 3.11 on a Python 3.10 interpreter. However, I didn't know how to solve it until after I saw the next error.&lt;/p&gt;
+&lt;p&gt;This error showed up in my app's WSGI error logs. Initially, I researched attempted to install
+the &lt;a class="reference external" href="https://pypi.org/project/formatter/"&gt;formatter module&lt;/a&gt;. I believe this was caused by attempting
+to run Python code compiled to a .w2p fileon Python 3.11 on a Python 3.10 interpreter. However, I didn't
+know how to solve it until after I saw the next error.&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;SystemError: compiled code is incompatible&lt;/span&gt;
 &lt;/pre&gt;
 &lt;img alt="incompatible python interpreter and compiled python code" src="https://lofipython.com/images/SystemError-compiled-code-is-incompatible-cause.png" /&gt;
-&lt;p&gt;Once I read this error, I consulted Bing about it. One of the options that Bing suggested was
+&lt;p&gt;After reading this error, I consulted Bing about it. One of the options that Bing suggested was
 that my Python code had incompatible versions. This was caused by a mismatch between my development
 and production Python versions.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Installing Python 3.10 in Development Environment&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was
 running Python 3.10. Therefore, I need to build the development version in Python 3.10 to match the
-production environment on PythonAnywhere. I then entered a handful of commands and waited for Python 3.10
-to compile in my Ubuntu development environment.&lt;/p&gt;
-&lt;p&gt;After compiling the development version and importing it to PythonAnywhere, the app shows a different error!
-Since I was using a .w2p file to import the app to my dev environment and back to production,
-it contained old Python web2py code written in earlier Python versions with a few more bugs that surfaced.&lt;/p&gt;
+production environment on PythonAnywhere. I then entered a handful of commands from Bing Copilot to compile
+my Python 3.10 Ubuntu development environment.&lt;/p&gt;
+&lt;p&gt;After compiling the new development version, I exported a new .w2p file and imported it to PythonAnywhere.
+After syncing my development and production environment versions, the app shows a different error!
+Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier
+Python versions with a few more bugs.&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="go"&gt;SyntaxError: multiple exception types must be parenthesized&lt;/span&gt;
 &lt;/pre&gt;
 &lt;img alt="exception types must be parenthesized in Python" src="https://lofipython.com/images/SyntaxError-exception-types-must-be-parenthesized.png" /&gt;
-&lt;p&gt;This error showed up in my appadmin.py. At some point this unparenthensized syntax was phased out of Python.
+&lt;p&gt;This error showed up in my appadmin.py. At some point this unparenthesized syntax was phased out of Python.
 The fix is add parentheses to the exception statements:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Incorrect&lt;/em&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -65,11 +67,12 @@ In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;csv_reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TextIOWrapper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;utf8_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;dialect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dialect&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;img alt="unable to parse csv Python fix with TextIOWrapper" src="https://lofipython.com/images/unable-to-parse-csv-fix.png" /&gt;
-&lt;p&gt;After adding the above code to my web2py app's object.py file, the csv importer was functional again.
-I successfully imported the new songs to my app and brought the code forward into future Python versions.
+&lt;p&gt;After adding the above code to my web2py app's objects.py file, the csv importer completed my datavase
+import of new tame impala songs. Mission accomplished.&lt;/p&gt;
+&lt;p&gt;I successfully imported the new songs to my app and brought the code forward into future Python versions.
 Keeping up with this project over the years shows how maintaining an app across different Python versions
-can cause unexpected bugs. After some tough Python tracebacks conquered, the app is now functional,
-updated with all Tame Impala's new music and live on the web again!&lt;/p&gt;
+can cause unexpected challenges. After some tough Python tracebacks conquered, the app is now functional
+on the web again with all of Tame Impala's new music!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Check out my Tame Impala web2py app here:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://tameimpala.pythonanywhere.com/tameimpala"&gt;tameimpala.pythonanywhere.com/tameimpala&lt;/a&gt;.&lt;/p&gt;
 </content><category term="coding, programming, python, web2py, apps"></category><category term="troubleshooting web2py app"></category><category term="updating old Python code"></category><category term="maintaining python code"></category></entry></feed>
