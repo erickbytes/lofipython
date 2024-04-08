@@ -37,7 +37,7 @@ of the tracebacks that transpired.
   :alt: formatter module missing in Python WSGI app
 
 This error popped up in my app's WSGI error logs. I researched the `formatter module <https://pypi.org/project/formatter/>`__. 
-I believe this was caused by attempting to run Python my code compiled to a .w2p file
+I believe this was caused by attempting to run Python code compiled to a .w2p file
 on Python 3.11 on a Python 3.10 interpreter. However, I didn't know how to solve it until after I saw the next error.
 
 .. code:: console
@@ -58,7 +58,7 @@ running Python 3.10. Therefore, I need to build the development version in Pytho
 production environment on PythonAnywhere. I then entered a handful of commands and waited for Python 3.10 
 to compile in my Ubuntu development environment. 
 
-After compiling the development version and importing it to PythonAnywherem, the app shows a different error!
+After compiling the development version and importing it to PythonAnywhere, the app shows a different error!
 Since I was using a .w2p file to import the app to my dev environment and back to production, 
 it contained old Python web2py code written in earlier Python versions with a few more bugs that surfaced.
 
@@ -91,9 +91,10 @@ The fix is add parentheses to the exception statements:
    unable to parse csv file: iterator should return strings, not bytes (the file should be opened in text mode)
    
 
-In order to import the Tame Impala new songs to the SQLlite database, web2py provides access to a 
-GUI interface in its admin panel. I could either manually enter each song or use its csv import widget. 
-To save time, I imported via csv. However, this error slowed me down. 
+In order to import the new Tame Impala songs to the SQLlite database, web2py provides a 
+GUI interface in its admin panel or the DAL (Database Abstraction Layer). 
+I chose to use the GUI. In the GUI, you can either manually enter each song or use its csv import widget. 
+To save time, I imported via the csv widget. However, this error slowed me down. 
 It stemmed from the need for TextIOWrapper to convert the csv data to a required format.
 
 .. image:: {static}/images/unable-to-parse-csv-fix.png
