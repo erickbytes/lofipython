@@ -32,7 +32,49 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jan 06, 2022</h4>
+        <div id="content">            <h4 class="date">Jan 07, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/create-a-column-of-values-in-pandas-with-df-assign.html" rel="bookmark" title="Permanent Link to &quot;Create a Column of Values in Pandas with df.assign()&quot;">Create a Column of Values in Pandas with df.assign()</a>
+                </h2>
+
+                
+                
+
+                <p><a class="reference external" href="https://pandas.pydata.org/docs/">Pandas</a> is amazing, what else is there to say? Learning the nuances of its API have yielded tons of times where it helped me get stuff done.</p>
+<p>I recently picked up the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html">pandas dataframe's &quot;assign&quot; function</a> for creating a new column of values. This is an elegant way to set a column of values in tabular data with the pandas library. Below you'll see two ways to set a column of values in pandas. In the first way, I am chaining two assign functions together to create 2 new columns, &quot;sound&quot; and &quot;type&quot;. I prefer using assign because it looks better and it does not result in any warnings from pandas. Highly recommend getting familiar with pandas functions like assign and API nuances like <a class="reference external" href="https://pandas.pydata.org/docs/reference/series.html?highlight=str%20accessors#accessors">Series accessors</a> to up your tabular data game.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Garfield&quot;</span><span class="p">,</span><span class="s2">&quot;Meowth&quot;</span><span class="p">,</span><span class="s2">&quot;Tom&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">cats</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cats&quot;</span><span class="p">])</span>
+<span class="c1"># best way</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sound</span><span class="o">=</span><span class="s2">&quot;Meow&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;Cartoon&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># alternative way that also works, but with warnings from pandas</span>
+<span class="c1"># df[&quot;sound&quot;] = &quot;Meow&quot;</span>
+</pre></div></td></tr></table></div>
+<p>DataFrame.assign : Can evaluate an expression or function to create new values for a column.
+pandas source code: <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487">https://github.com/pandas-dev/pandas/blob/v1.3.5/pandas/core/frame.py#L4421-L4487</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/create-a-column-of-values-in-pandas-with-df-assign.html">posted at 13:12</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/pandas-programming-python.html" rel="tag">pandas, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/cats.html" class="tags">cats</a>
+                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
+                </div>
+            </article>            <h4 class="date">Jan 06, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -380,83 +422,6 @@ I did in <a class="reference external" href="https://lofipython.com/python-libra
                     &nbsp;<a href="https://lofipython.com/tag/code.html" class="tags">code</a>
                     &nbsp;<a href="https://lofipython.com/tag/coding-practice.html" class="tags">coding practice</a>
                     &nbsp;<a href="https://lofipython.com/tag/how-to-code.html" class="tags">how to code</a>
-                </div>
-            </article>            <h4 class="date">Sep 06, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/yoast-api-python-example-with-requests-pandas.html" rel="bookmark" title="Permanent Link to &quot;Yoast SEO API Python Example With requests + pandas&quot;">Yoast SEO API Python Example With requests + pandas</a>
-                </h2>
-
-                
-                
-
-                <p>Lately I've been checking out the <a class="reference external" href="https://yoast.com/wordpress/plugins/seo/">Yoast SEO plug-in</a> and their <a class="reference external" href="https://developer.yoast.com/customization/apis/rest-api">REST API</a>. The API returns all of the SEO metadata, meta tags, schema.org data, etc. for your Wordpress blog posts. Here's a Yoast API Python example script to fetch post metadata via requests and pandas:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="k">def</span> <span class="nf">fetch_metadata</span><span class="p">(</span><span class="n">post_url</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the Yoast API response as pandas dataframe.&quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://atomic-temporary-107329037.wpcomstaging.com/wp-json/yoast/v1/get_head?url=</span><span class="si">{</span><span class="n">post_url</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
-    <span class="n">response_dict</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-    <span class="n">metadata_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">response_dict</span><span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">metadata_df</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/erickbytes/Python-Marketer-Reader-Analytics/blob/master/dataset/2020_pythonmarketer.com_post_views.xlsx?raw=true.xlsx&#39;</span>
-<span class="n">posts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="c1"># update url domain with pandas .str accessor</span>
-<span class="n">posts</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s1">&#39;.wordpress&#39;</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">posts</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fetch_metadata</span><span class="p">)</span>
-<span class="n">metadata_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">posts</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]))</span>
-<span class="n">metadata_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Wordpress Blog Post Yoast API Metadata.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>What this script is doing:</strong></p>
-<ol class="arabic simple">
-<li>Read a list of my blog posts from Github into a <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas dataframe</a>.</li>
-<li>Use <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.apply.html">pandas .apply</a> to fetch the metadata for each post url.</li>
-<li>Deserialize + normalize the JSON response.</li>
-<li>Convert to a pandas dataframe and store in a pandas Series named 'metadata'.</li>
-<li>Merge the series and write the metadata to a csv file.</li>
-</ol>
-<p><strong>The Payoff</strong>:</p>
-<p>You'll end up with blobs of JSON formatted metadata to sift through or wrangle to your liking! Check out the <a class="reference external" href="https://developer.yoast.com/">Yoast documentation</a> if you're interested in finding out more about their APIs.</p>
-<p><strong>New to APIs?</strong></p>
-<p>It's ok if so, we all were once. Check out my <a class="reference external" href="https://lofipython.com/how-to-make-json-requests-with-python/">guide to making HTTP requests with Python</a> if you want to see more API examples.</p>
-<div class="wp-image-5922 figure">
-<img alt="SEO Overview" src="https://pythonmarketer.files.wordpress.com/2021/10/e5f7c-image.png" style="width: 640px; height: 451px;" />
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/yoast-api-python-example-with-requests-pandas.html">posted at 14:12</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-http-programming-python.html" rel="tag">APIs, coding, HTTP, programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/python-wordpress-blog-seo.html" class="tags">Python Wordpress Blog SEO</a>
-                    &nbsp;<a href="https://lofipython.com/tag/seo.html" class="tags">SEO</a>
-                    &nbsp;<a href="https://lofipython.com/tag/yoast-api.html" class="tags">Yoast API</a>
                 </div>
             </article>
 

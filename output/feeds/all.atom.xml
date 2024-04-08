@@ -1,5 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-03-31T16:18:00-05:00</updated><entry><title>Run Python in Your HTML Via a Custom Django Template Tags Filter</title><link href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html" rel="alternate"></link><published>2024-03-31T16:18:00-05:00</published><updated>2024-03-31T16:18:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-03-31:/how-to-write-a-custom-django-html-filter.html</id><summary type="html">&lt;p&gt;This post shows how to set up a custom Django template tag filter. With help from Django's load built-in,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-04-07T20:53:00-05:00</updated><entry><title>Troubleshooting Tracebacks to Resurrect a Python Web2py App</title><link href="https://lofipython.com/troubleshooting-tracebacks-to-resurrect-a-web2py-app.html" rel="alternate"></link><published>2024-04-07T20:53:00-05:00</published><updated>2024-04-07T20:53:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-04-07:/troubleshooting-tracebacks-to-resurrect-a-web2py-app.html</id><summary type="html">&lt;p&gt;Back in 2016, I &lt;a class="reference external" href="https://lofipython.com/askkevinparker-com-my-first-web-app-other-notes"&gt;built a web2py app&lt;/a&gt;
+as my first web application. It accepts a prompt from the user and
+primitively attempts to match that text to a line of Kevin Parker's lyrics.&lt;/p&gt;
+&lt;p&gt;I didn't look at the app's code for many years, I just needed to log into …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Back in 2016, I &lt;a class="reference external" href="https://lofipython.com/askkevinparker-com-my-first-web-app-other-notes"&gt;built a web2py app&lt;/a&gt;
+as my first web application. It accepts a prompt from the user and
+primitively attempts to match that text to a line of Kevin Parker's lyrics.&lt;/p&gt;
+&lt;p&gt;I didn't look at the app's code for many years, I just needed to log into PythonAnywhere every 3 months
+and hit a button to keep it running on their free plan. Until I decided to update it recently.&lt;/p&gt;
+&lt;p&gt;Tame Impala released a new album and lots of additional tracks to import to the app.
+Just need to update the database with new music. No big deal easy peasy, right? Wrong!&lt;/p&gt;
+&lt;p&gt;Part of the problem was that I didn't remember where the important code like the controller default.py
+and HTML files were after not seeing it for 3+ years. It took me some time to remember the folder
+structure of a web2py project also.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;web2py Python Errors Solved&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I installed web2py locally with the help of a &lt;a class="reference external" href="https://www.digitalocean.com/community/tutorials/how-to-use-the-web2py-framework-to-quickly-build-your-python-app"&gt;DigitalOcean blog post&lt;/a&gt;.
+After I failed to push a new version of the app to production, for some reasons it was in a broken state.
+Python version issues popped up and required some heady navigation. Enjoy these gritty details
+of the tracebacks that transpired.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;ModuleNotFoundError: No module named 'formatter'&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="formatter module missing in Python WSGI app" src="https://lofipython.com/images/ModuleNotFoundError-no-module-named-formatter.png" /&gt;
+&lt;p&gt;This error popped up in my app's WSGI error logs. I researched the &lt;a class="reference external" href="https://pypi.org/project/formatter/"&gt;formatter module&lt;/a&gt;.
+I believe this was caused by attempting to run Python my code compiled to a .w2p file
+on Python 3.11 on a Python 3.10 interpreter. However, I didn't know how to solve it until after I saw the next error.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;SystemError: compiled code is incompatible&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="incompatible python interpreter and compiled python code" src="https://lofipython.com/images/SystemError-compiled-code-is-incompatible-cause.png" /&gt;
+&lt;p&gt;Once I read this error, I consulted Bing about it. One of the options that Bing suggested was
+that my Python code had incompatible versions. This was caused by a mismatch between my development
+and production Python versions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installing Python 3.10 in Development Environment&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was
+running Python 3.10. Therefore, I need to build the development version in Python 3.10 to match the
+production environment on PythonAnywhere. I then entered a handful of commands and waited for Python 3.10
+to compile in my Ubuntu development environment.&lt;/p&gt;
+&lt;p&gt;After compiling the development version and importing it to PythonAnywherem, the app shows a different error!
+Since I was using a .w2p file to import the app to my dev environment and back to production,
+it contained old Python web2py code written in earlier Python versions with a few more bugs that surfaced.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;SyntaxError: multiple exception types must be parenthesized&lt;/span&gt;
+&lt;/pre&gt;
+&lt;img alt="exception types must be parenthesized in Python" src="https://lofipython.com/images/SyntaxError-exception-types-must-be-parenthesized.png" /&gt;
+&lt;p&gt;This error showed up in my appadmin.py. At some point this unparenthensized syntax was phased out of Python.
+The fix is add parentheses to the exception statements:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Incorrect&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Correct&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;unable to parse csv file: iterator should return strings, not bytes (the file should be opened in text mode)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;In order to import the Tame Impala new songs to the SQLlite database, web2py provides access to a
+GUI interface in its admin panel. I could either manually enter each song or use its csv import widget.
+To save time, I imported via csv. However, this error slowed me down.
+It stemmed from the need for TextIOWrapper to convert the csv data to a required format.&lt;/p&gt;
+&lt;img alt="unable to parse csv Python fix with TextIOWrapper" src="https://lofipython.com/images/unable-to-parse-csv-fix.png" /&gt;
+&lt;p&gt;The solution I found was to use the
+&lt;a class="reference external" href="https://github.com/web2py/web2py/issues/2148#issuecomment-616036400"&gt;fix suggested by AnooshaAviligonda&lt;/a&gt;.
+In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;csv_reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TextIOWrapper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;utf8_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;dialect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dialect&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;After adding the above code to my web2py app's object.py file, the csv importer was functional again.
+I successfully imported the new songs to my app and brought the code forward into future Python versions.
+Keeping up with this project over the years shows how maintaining an app across different Python versions
+can cause unexpected bugs. After some tough Python tracebacks conquered, the app is now functional,
+updated with all Tame Impala's new music and live on the web again!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Check out my Tame Impala web2py app here:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://tameimpala.pythonanywhere.com/tameimpala"&gt;tameimpala.pythonanywhere.com/tameimpala&lt;/a&gt;.&lt;/p&gt;
+</content><category term="coding, programming, python, web2py, apps"></category><category term="troubleshooting web2py app"></category><category term="updating old Python code"></category><category term="maintaining python code"></category></entry><entry><title>Run Python in Your HTML Via a Custom Django Template Tags Filter</title><link href="https://lofipython.com/how-to-write-a-custom-django-html-filter.html" rel="alternate"></link><published>2024-03-31T16:18:00-05:00</published><updated>2024-03-31T16:18:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-03-31:/how-to-write-a-custom-django-html-filter.html</id><summary type="html">&lt;p&gt;This post shows how to set up a custom Django template tag filter. With help from Django's load built-in,
 you can execute a Python function from your app's HTML. In this example, the function returns the quotient,
 or result of dividing two numbers. Mathematics and Python for the win!&lt;/p&gt;
 &lt;p&gt;I …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post shows how to set up a custom Django template tag filter. With help from Django's load built-in,
@@ -8188,29 +8260,4 @@ In case you are wondering, enumerate is a &lt;a class="reference external" href=
 &lt;li&gt;&lt;a class="reference external" href="http://rhodesmill.org/brandon/2014/pandas-payroll/"&gt;Calculating Taxes with pandas&lt;/a&gt; (Blog)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</content><category term="coding, data, excel, pandas, python"></category><category term="data analysis"></category><category term="programming"></category><category term="software"></category></entry><entry><title>list(cool_python_things)</title><link href="https://lofipython.com/blog_post-listcool_python_things.html" rel="alternate"></link><published>2018-03-24T19:38:00-05:00</published><updated>2018-03-24T19:38:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-03-24:/blog_post-listcool_python_things.html</id><summary type="html">&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/norvig/pytudes"&gt;pytudes&lt;/a&gt; - &amp;quot;This project
-contains&lt;strong&gt;pytudes&lt;/strong&gt;—Python programs for perfecting programming
-skills.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://www.makeartwithpython.com/blog/video-synthesizer-in-python/?utm_source=mybridge&amp;amp;utm_medium=blog&amp;amp;utm_campaign=read_more"&gt;Building a video synthesizer in Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/overview"&gt;Running micropython on a microcontroller&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pandas.pydata.org/"&gt;Pandas&lt;/a&gt; - Super awesome excel and
-data analysis library. The talk, &amp;quot;&lt;a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;Pandas from the Ground Up&lt;/a&gt;&amp;quot; by Brandon Rhodes
-is great!&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/"&gt;Fuzzy Wuzzy&lt;/a&gt;
-- Fuzzy string matching python library, written …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/norvig/pytudes"&gt;pytudes&lt;/a&gt; - &amp;quot;This project
-contains&lt;strong&gt;pytudes&lt;/strong&gt;—Python programs for perfecting programming
-skills.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://www.makeartwithpython.com/blog/video-synthesizer-in-python/?utm_source=mybridge&amp;amp;utm_medium=blog&amp;amp;utm_campaign=read_more"&gt;Building a video synthesizer in Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/overview"&gt;Running micropython on a microcontroller&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pandas.pydata.org/"&gt;Pandas&lt;/a&gt; - Super awesome excel and
-data analysis library. The talk, &amp;quot;&lt;a class="reference external" href="https://www.youtube.com/watch?v=5JnMutdy6Fw"&gt;Pandas from the Ground Up&lt;/a&gt;&amp;quot; by Brandon Rhodes
-is great!&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/"&gt;Fuzzy Wuzzy&lt;/a&gt;
-- Fuzzy string matching python library, written by SeatGeek&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://soundcloud.com/talkpython"&gt;Talk Python to Me&lt;/a&gt; - Python
-podcast&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.oreilly.com/programming/free/?imm_mid=0e20a9&amp;amp;cmp=em-prog-na-na-afterp_triggered_email_programming_resources"&gt;Free Programming Books from O'Reilly&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</content><category term="coding, pandas, programming"></category><category term="computers"></category><category term="python"></category></entry></feed>
+</content><category term="coding, data, excel, pandas, python"></category><category term="data analysis"></category><category term="programming"></category><category term="software"></category></entry></feed>
