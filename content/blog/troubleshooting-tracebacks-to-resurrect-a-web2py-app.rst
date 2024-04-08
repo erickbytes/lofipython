@@ -40,7 +40,7 @@ of the tracebacks that transpired.
 .. image:: {static}/images/ModuleNotFoundError-no-module-named-formatter.png
   :alt: formatter module missing in Python WSGI app
 
-This error showed up in my app's WSGI error logs. Initially, I researched attempted to install 
+This error showed up in my app's WSGI error logs. Initially, I researched and attempted to install 
 the `formatter module <https://pypi.org/project/formatter/>`__. I believe this was caused by attempting 
 to run Python code compiled to a .w2p fileon Python 3.11 on a Python 3.10 interpreter. However, I didn't 
 know how to solve it until after I saw the next error.
@@ -60,18 +60,19 @@ After reading this error, I consulted Bing about it. One of the options that Bin
 that my Python code had incompatible versions. This was caused by a mismatch between my development 
 and production Python versions.
 
+
 **Installing Python 3.10 in Development Environment**
 
 Originally, I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was 
 running `Python 3.10 <https://www.python.org/downloads/release/python-3105/>`__. Therefore, I need to build the development version in Python 3.10 to match the 
-production environment on PythonAnywhere. I then entered a handful of commands from Bing Copilot to compile 
-my Python 3.10 Ubuntu development environment. 
+production environment on PythonAnywhere. Then I entered a handful of commands from Bing Copilot to compile 
+my Python 3.10 Ubuntu development environment and waited for it to compile. 
 
 The lesson I took away is to consider what Python version your production environment before you begin working on a project. 
 In most cases, you'll want to match that version in your development environment to avoid errors like this.
 
-After compiling the new development Python 3.10 version, I exported a new .w2p file.
-Next, I imported the .w2p file containing the new app to PythonAnywhere in the admin interface uploader.
+After compiling the new development Python 3.10 version, I exported the app to a new .w2p file.
+Next, I imported the .w2p file containing the new app to PythonAnywhere in the admin interface app importer.
 
 After syncing my development and production environment versions, the app showed a different error. 
 One problem solved, 2 more discovered in its wake, am I right? Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier 
@@ -120,6 +121,9 @@ I chose to use the GUI. In the GUI, you can either manually enter each song or u
 To save time, I imported via the csv widget. However, this error slowed me down. 
 It stemmed from the need for TextIOWrapper to convert the csv data to a required format.
 
+.. image:: {static}/images/unable-to-parse-csv-web2py.png
+  :alt: unable to parse csv error importing to web2py SQLlite
+
 The solution I found was to use the 
 `fix suggested by AnooshaAviligonda <https://github.com/web2py/web2py/issues/2148#issuecomment-616036400>`__.
 In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:
@@ -132,13 +136,14 @@ In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:
 .. image:: {static}/images/unable-to-parse-csv-fix.png
   :alt: unable to parse csv Python fix with TextIOWrapper
 
+
 After adding the above code to my web2py app's objects.py file, the csv importer completed my datavase 
 import of new tame impala songs. Mission accomplished.
 
 I successfully imported the new songs to my app and brought the code forward into future Python versions. 
 Keeping up with this project over the years shows how maintaining an app across different Python versions 
-can cause unexpected challenges. After some tough Python tracebacks conquered, the app is now functional 
-on the web again with all of Tame Impala's new music!
+can cause unexpected challenges. With tough Python tracebacks conquered, the app is back on the web, now
+with all of Tame Impala's new music!
 
 **Check out my Tame Impala web2py app here:** 
 

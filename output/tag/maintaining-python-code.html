@@ -64,7 +64,7 @@ of the tracebacks that transpired.</p>
 <span class="go">ModuleNotFoundError: No module named 'formatter'</span>
 </pre>
 <img alt="formatter module missing in Python WSGI app" src="https://lofipython.com/images/ModuleNotFoundError-no-module-named-formatter.png" />
-<p>This error showed up in my app's WSGI error logs. Initially, I researched attempted to install
+<p>This error showed up in my app's WSGI error logs. Initially, I researched and attempted to install
 the <a class="reference external" href="https://pypi.org/project/formatter/">formatter module</a>. I believe this was caused by attempting
 to run Python code compiled to a .w2p fileon Python 3.11 on a Python 3.10 interpreter. However, I didn't
 know how to solve it until after I saw the next error.</p>
@@ -79,12 +79,12 @@ and production Python versions.</p>
 <p><strong>Installing Python 3.10 in Development Environment</strong></p>
 <p>Originally, I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was
 running <a class="reference external" href="https://www.python.org/downloads/release/python-3105/">Python 3.10</a>. Therefore, I need to build the development version in Python 3.10 to match the
-production environment on PythonAnywhere. I then entered a handful of commands from Bing Copilot to compile
-my Python 3.10 Ubuntu development environment.</p>
+production environment on PythonAnywhere. Then I entered a handful of commands from Bing Copilot to compile
+my Python 3.10 Ubuntu development environment and waited for it to compile.</p>
 <p>The lesson I took away is to consider what Python version your production environment before you begin working on a project.
 In most cases, you'll want to match that version in your development environment to avoid errors like this.</p>
-<p>After compiling the new development Python 3.10 version, I exported a new .w2p file.
-Next, I imported the .w2p file containing the new app to PythonAnywhere in the admin interface uploader.</p>
+<p>After compiling the new development Python 3.10 version, I exported the app to a new .w2p file.
+Next, I imported the .w2p file containing the new app to PythonAnywhere in the admin interface app importer.</p>
 <p>After syncing my development and production environment versions, the app showed a different error.
 One problem solved, 2 more discovered in its wake, am I right? Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in earlier
 Python versions with a few more bugs.</p>
@@ -110,6 +110,7 @@ GUI interface in its admin panel or the DAL (Database Abstraction Layer).
 I chose to use the GUI. In the GUI, you can either manually enter each song or use its csv import widget.
 To save time, I imported via the csv widget. However, this error slowed me down.
 It stemmed from the need for TextIOWrapper to convert the csv data to a required format.</p>
+<img alt="unable to parse csv error importing to web2py SQLlite" src="https://lofipython.com/images/unable-to-parse-csv-web2py.png" />
 <p>The solution I found was to use the
 <a class="reference external" href="https://github.com/web2py/web2py/issues/2148#issuecomment-616036400">fix suggested by AnooshaAviligonda</a>.
 In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:</p>
@@ -120,8 +121,8 @@ In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:</p>
 import of new tame impala songs. Mission accomplished.</p>
 <p>I successfully imported the new songs to my app and brought the code forward into future Python versions.
 Keeping up with this project over the years shows how maintaining an app across different Python versions
-can cause unexpected challenges. After some tough Python tracebacks conquered, the app is now functional
-on the web again with all of Tame Impala's new music!</p>
+can cause unexpected challenges. With tough Python tracebacks conquered, the app is back on the web, now
+with all of Tame Impala's new music!</p>
 <p><strong>Check out my Tame Impala web2py app here:</strong></p>
 <p><a class="reference external" href="http://tameimpala.pythonanywhere.com/tameimpala">tameimpala.pythonanywhere.com/tameimpala</a>.</p>
 
