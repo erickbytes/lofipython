@@ -21,7 +21,7 @@ Part of the problem was that I didn't remember where the important code like the
 and HTML files were after not seeing it for 5+ years. It took some time to remember the folder 
 structure of a web2py project.
 
-One thing I like about web2py is that once it is installed, the devlopment server is easily started 
+One thing I like about web2py is that once it is installed, the development server is easily started 
 by running the web2py.py file:
 
 
