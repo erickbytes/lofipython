@@ -163,4 +163,4 @@ Now with all of Tame Impala's new lyrics!
 
 **Check out my Tame Impala web2py app here:** 
 
-`tameimpala.pythonanywhere.com/tameimpala <http://tameimpala.pythonanywhere.com/tameimpala>`__.
+`tameimpala.pythonanywhere.com/tameimpala <http://tameimpala.pythonanywhere.com/tameimpala>`__
