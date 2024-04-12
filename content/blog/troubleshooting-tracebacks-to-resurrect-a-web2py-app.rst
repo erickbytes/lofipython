@@ -9,20 +9,22 @@ Troubleshooting Tracebacks to Resurrect a Python Web2py App
 
 Back in 2016, I `built a web2py app <https://lofipython.com/askkevinparker-com-my-first-web-app-other-notes>`__ 
 as my first web application. It accepts a prompt from the user and 
-primitively attempts to match that text to a line of Kevin Parker's lyrics.
+primitively attempts to match that text to a line of Kevin Parker's lyrics written for the band Tame Impala.
 
 I didn't look at the app's code for many years. I just needed to log into `PythonAnywhere <https://pythonanywhere.com>`__ 
 every 3 months and hit a button to keep it running on their free plan. Until I decided to update it recently. 
 
 Tame Impala released a new album and lots of additional tracks to import to the app.
-Just need to update the database with new music. No big deal easy peasy, right? Wrong! 
+Just need to update the database with new music. No big deal, right?
 
-Part of the problem was that I didn't remember where the important code like the controller default.py 
-and HTML files were after not seeing it for 5+ years. It took some time to remember the folder 
-structure of a web2py project.
+Part of the problem witgh updating the app was that I didn't remember where the important code 
+like the controller default.py and relevant HTML files were after not seeing it for 5+ years. 
+It took some time to remember the folder structure of a web2py project. Since it was my first 
+project ever, documentation was nonexistent. I could have saved myself a lot of grief if I'd wrote 
+down some notes when I made the app.
 
-One thing I like about web2py is that once it is installed, the development server is easily started 
-by running the web2py.py file:
+web2py is relatively easy to grasp for Python developers. One thing I like is that 
+once it is installed, the development server is easily started by running the web2py.py file:
 
 
 .. code:: console
