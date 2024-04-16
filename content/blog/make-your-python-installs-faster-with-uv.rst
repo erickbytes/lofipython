@@ -20,10 +20,10 @@ ongoing "Rustification" of Python tooling.
 First, Rye was released in pursuit of a "cargo for Python". Cargo is Rust's package manager. It seems to 
 have inspired Python developers to keep trying to improve on what we have with pip.
 
-While this was happening, in secret the creator of ruff was also working on yet another hybrid 
-Rust + Python package manager named uv. There's seemingly no end to this man's projects! 
+While this was happening, in secret Astral Software and Charlie Marsh were also working on yet another hybrid 
+Rust + Python package manager named uv. There's seemingly no end to this man and the Astral team's projects! 
 ruff quickly supplanted the incumbent Python linters to become a favorite among Python developers. 
-Could lightning strike twice for the creator of ruff? Seems he won't be a one-hit wonder when it 
+Could lightning strike twice for the creators of ruff? Seems they won't be a one-hit wonder when it 
 comes to developing hit Python packages.
 
 Improving Python packaging is an audacious and challenging task. Part of the problem 
