@@ -16,7 +16,7 @@ with to save it to their calendar.
 **Demonstrating Google Calendar URL Arguments in Python**
 
 By simply knowing the proper url arguments, you can enable people to quickly save a Google Calendar event.
-This example uses the Python standard: urllib to format the Google calendar url parameters and webbrowser \
+This example uses the Python standard library: urllib to format the Google calendar url parameters and webbrowser 
 to open the url in a browser. This is a handy little trick to keep in your back pocket!
 
 
