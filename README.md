@@ -7,6 +7,10 @@ As of May 2023, LofiPython.com is my current blog iteration for techical writing
 
 You can read more about my blog workflow in my post, ["An Example Pelican + Git Blog Post Workflow"](https://lofipython.com/an-example-pelican-git-blog-post-workflow). This static site is hosted for free on Cloudflare Pages. If you want to launch your own Pelican blog with Cloudflare Pages, check out my post, ["Launching a Live Static Blog"](https://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages).
 
+Uses the "Blue-Penguin-Dark" theme: 
+
+```git clone git@github.com:tcarwash/blue-penguin-dark.git```
+
 
 ## Blog Highlights
 

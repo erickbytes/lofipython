@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lo-Fi Python | articles in the "coding, programming, python, urls, automation" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/coding-programming-python-urls-automation.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
+    <link href="https://lofipython.com/feeds/coding-programming-python-urls-automation.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://lofipython.com/category/coding-programming-python-urls-automation.html">coding, programming, python, urls, automation</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://github.com/erickbytes/lofipython">Github</a></li>
+                <li><a href="https://lofipython.com/contact">Need a Python Dev?</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">May 01, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/how-to-share-a-google-calendar-event-url.html" rel="bookmark" title="Permanent Link to &quot;How to Share a Google Calendar Event URL&quot;">How to Share a Google Calendar Event URL</a>
+                </h2>
+
+                
+                
+
+                <p>You can easily share a Google Calendar event if you know the url syntax Google uses.
+When the url is opened in a browser, it prompts the person you want to share an event
+with to save it to their calendar.</p>
+<p><strong>Demonstrating Google Calendar URL Arguments in Python</strong></p>
+<p>By simply knowing the proper url arguments, you can enable people to quickly save a Google Calendar event.
+This example uses the Python standard: urllib to format the Google calendar url parameters and webbrowser to open the url in a browser. This is a handy little trick to keep in your back pocket!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">webbrowser</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
+
+<span class="k">def</span> <span class="nf">new_google_calendar_event</span><span class="p">():</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Pass an event to Google Calendar with url arguments.</span>
+
+<span class="sd">   domain: https://calendar.google.com/calendar/u/0/r/eventedit</span>
+<span class="sd">   args:</span>
+<span class="sd">      text=Your Event Title</span>
+<span class="sd">      &amp;dates=YYYYMMDDT123000Z/YYYYMMDDT133000Z (start_datetime / end_datetime)</span>
+<span class="sd">      &amp;details=View+more+information:+https://ir.fubo.tv/events-and-presentations/event-details/2024/Fubo-Q1-2024-Earnings-Conference-Call/default.aspx&amp;location</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+
+   <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Title of Event&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;dates&quot;</span><span class="p">:</span> <span class="s2">&quot;20240504T123000Z/20240504T133000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;details&quot;</span><span class="p">:</span> <span class="s2">&quot;Event Details: https://lofipython.com&quot;</span><span class="p">,</span>
+   <span class="p">}</span>
+   <span class="c1"># Returns str of URL encoded parameters.</span>
+   <span class="n">url_parameters</span> <span class="o">=</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+   <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://calendar.google.com/calendar/u/0/r/eventedit?</span><span class="si">{</span><span class="n">url_parameters</span><span class="si">}</span><span class="s2">&quot;</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">url</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">new_google_calendar_event</span><span class="p">()</span>
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">open_new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<img alt="share a google calendar event via a url" src="https://lofipython.com/images/google-calendar-event-example.png" />
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/how-to-share-a-google-calendar-event-url.html">posted at 16:14</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-urls-automation.html" rel="tag">coding, programming, python, urls, automation</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/google-calendar-url-api-example.html" class="tags">Google Calendar URL API example</a>
+                    &nbsp;<a href="https://lofipython.com/tag/sharing-a-google-calendar-event.html" class="tags">sharing a Google Calendar event</a>
+                    &nbsp;<a href="https://lofipython.com/tag/create-google-calendar-event-with-python.html" class="tags">create google calendar event with python</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
