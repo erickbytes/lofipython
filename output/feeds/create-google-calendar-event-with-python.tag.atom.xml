@@ -34,8 +34,7 @@ This example uses the Python standard: urllib to format the Google calendar url 
 &lt;span class="normal"&gt;23&lt;/span&gt;
 &lt;span class="normal"&gt;24&lt;/span&gt;
 &lt;span class="normal"&gt;25&lt;/span&gt;
-&lt;span class="normal"&gt;26&lt;/span&gt;
-&lt;span class="normal"&gt;27&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;webbrowser&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;webbrowser&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;urllib.parse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;new_google_calendar_event&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
@@ -46,16 +45,15 @@ This example uses the Python standard: urllib to format the Google calendar url 
 &lt;span class="sd"&gt;   args:&lt;/span&gt;
 &lt;span class="sd"&gt;      text=Your Event Title&lt;/span&gt;
 &lt;span class="sd"&gt;      &amp;amp;dates=YYYYMMDDT123000Z/YYYYMMDDT133000Z (start_datetime / end_datetime)&lt;/span&gt;
-&lt;span class="sd"&gt;      &amp;amp;details=View+more+information:+https://ir.fubo.tv/events-and-presentations/event-details/2024/Fubo-Q1-2024-Earnings-Conference-Call/default.aspx&amp;amp;location&lt;/span&gt;
+&lt;span class="sd"&gt;      &amp;amp;details=add event description or link to more information&lt;/span&gt;
 &lt;span class="sd"&gt;   &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-   &lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="n"&gt;parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
       &lt;span class="s2"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Title of Event&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="s2"&gt;&amp;quot;dates&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;20240504T123000Z/20240504T133000Z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Event Details: https://lofipython.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
    &lt;span class="p"&gt;}&lt;/span&gt;
    &lt;span class="c1"&gt;# Returns str of URL encoded parameters.&lt;/span&gt;
-   &lt;span class="n"&gt;url_parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+   &lt;span class="n"&gt;url_parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parameters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
    &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://calendar.google.com/calendar/u/0/r/eventedit?&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;url_parameters&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;

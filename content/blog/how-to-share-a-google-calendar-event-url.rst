@@ -33,16 +33,15 @@ to open the url in a browser. This is a handy little trick to keep in your back 
       args:
          text=Your Event Title
          &dates=YYYYMMDDT123000Z/YYYYMMDDT133000Z (start_datetime / end_datetime)
-         &details=View+more+information:+https://ir.fubo.tv/events-and-presentations/event-details/2024/Fubo-Q1-2024-Earnings-Conference-Call/default.aspx&location
+         &details=add event description or link to more information
       """
-
-      payload = {
+      parameters = {
          "text": "Title of Event",
          "dates": "20240504T123000Z/20240504T133000Z",
          "details": "Event Details: https://lofipython.com",
       }
       # Returns str of URL encoded parameters.
-      url_parameters = urlencode(payload)
+      url_parameters = urlencode(parameters)
       url = f"https://calendar.google.com/calendar/u/0/r/eventedit?{url_parameters}"
       print(url)
       return url
