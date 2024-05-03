@@ -31,19 +31,17 @@ to open the url in a browser. This is a handy little trick to keep in your back 
 
       Base URL: https://calendar.google.com/calendar/u/0/r/eventedit
       
-      URL Arguments
-
+      URL Arguments:
+      
       action: defines action to perform for person who clicks link, "TEMPLATE"
       text: Event Title
-      dates: 20240503T123000Z/20240503T133000Z (start_datetime / end_datetime)
+      dates: set the date and time of event, start_datetime/end_datetime
       details: include info about the event
       location: url to webcast, call or physical location name
-      ctz: set the time zone by its name, ex: "America/New_York" (See all time zones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-      recur: set recurring invite ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3 (See recurrence rule syntax: https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html)
+      ctz: set the time zone by its name, ex: "America/New_York" 
+      recur: set recurring invite ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3
       crm: if Free, Busy, or Out of Office. AVAILABLE, BUSY or BLOCKING
       add: add a list of guests by email, ex: elf1@example.com,elf2@example.com
-
-      Google Documentation: https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md
       """
       payload = {
          "action": "TEMPLATE",
@@ -52,7 +50,7 @@ to open the url in a browser. This is a handy little trick to keep in your back 
          "details": "Event Details: https://lofipython.com",
          "location": "Link to Webcast, call or physical location",
          "ctz": "America/Chicago",
-         "crm": "AVAILABLE"
+         "crm": "BUSY"
       }
       # Returns str of URL encoded parameters.
       url_parameters = urlencode(payload)
@@ -70,3 +68,8 @@ to open the url in a browser. This is a handy little trick to keep in your back 
 
 Read the full documentation of url arguments in Google's `add-event-to-calendar-docs Github repo
 <https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md>`__.
+
+**Additional Links**
+
+`Wikipedia Time Zone List <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__
+`Recurrence Rule Syntax <https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html>`__
