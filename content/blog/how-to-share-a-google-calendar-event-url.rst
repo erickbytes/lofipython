@@ -38,12 +38,12 @@ to open the url in a browser. This is a handy little trick to keep in your back 
       dates: set the date and time of event, start_datetime/end_datetime
       details: include info about the event
       location: url to webcast, call or physical location name
-      ctz: set the time zone by its name, ex: "America/New_York" 
+      ctz: set the time zone by its name, ex: America/New_York 
       recur: set recurring invite ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3
       crm: if Free, Busy, or Out of Office. AVAILABLE, BUSY or BLOCKING
       add: add a list of guests by email, ex: elf1@example.com,elf2@example.com
       """
-      payload = {
+      parameters = {
          "action": "TEMPLATE",
          "text": "Title of Event",
          "dates": "20240504T123000Z/20240504T133000Z",
@@ -53,7 +53,7 @@ to open the url in a browser. This is a handy little trick to keep in your back 
          "crm": "BUSY"
       }
       # Returns str of URL encoded parameters.
-      url_parameters = urlencode(payload)
+      url_parameters = urlencode(parameters)
       url = f"https://calendar.google.com/calendar/u/0/r/eventedit?{url_parameters}"
       print(url)
       return url

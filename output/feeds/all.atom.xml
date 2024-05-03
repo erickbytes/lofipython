@@ -63,12 +63,12 @@ to open the url in a browser. This is a handy little trick to keep in your back 
 &lt;span class="sd"&gt;   dates: set the date and time of event, start_datetime/end_datetime&lt;/span&gt;
 &lt;span class="sd"&gt;   details: include info about the event&lt;/span&gt;
 &lt;span class="sd"&gt;   location: url to webcast, call or physical location name&lt;/span&gt;
-&lt;span class="sd"&gt;   ctz: set the time zone by its name, ex: &amp;quot;America/New_York&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;   ctz: set the time zone by its name, ex: America/New_York&lt;/span&gt;
 &lt;span class="sd"&gt;   recur: set recurring invite ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3&lt;/span&gt;
 &lt;span class="sd"&gt;   crm: if Free, Busy, or Out of Office. AVAILABLE, BUSY or BLOCKING&lt;/span&gt;
 &lt;span class="sd"&gt;   add: add a list of guests by email, ex: elf1@example.com,elf2@example.com&lt;/span&gt;
 &lt;span class="sd"&gt;   &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-   &lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="n"&gt;parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
       &lt;span class="s2"&gt;&amp;quot;action&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;TEMPLATE&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="s2"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Title of Event&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="s2"&gt;&amp;quot;dates&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;20240504T123000Z/20240504T133000Z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -78,7 +78,7 @@ to open the url in a browser. This is a handy little trick to keep in your back 
       &lt;span class="s2"&gt;&amp;quot;crm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;BUSY&amp;quot;&lt;/span&gt;
    &lt;span class="p"&gt;}&lt;/span&gt;
    &lt;span class="c1"&gt;# Returns str of URL encoded parameters.&lt;/span&gt;
-   &lt;span class="n"&gt;url_parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+   &lt;span class="n"&gt;url_parameters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parameters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
    &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://calendar.google.com/calendar/u/0/r/eventedit?&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;url_parameters&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;
