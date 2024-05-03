@@ -29,21 +29,21 @@ to open the url in a browser. This is a handy little trick to keep in your back 
       """
       Pass an event to Google Calendar with url arguments.
 
-      base url: https://calendar.google.com/calendar/u/0/r/eventedit
-      args:
-         action   = defines action to perform for person who clicks link, "TEMPLATE"
-         text     = Event Title
-         dates    = 20240503T123000Z/20240503T133000Z (start_datetime / end_datetime)
-         details  = View+more+information:+https://ir.fubo.tv/events-and-presentations/event-details/2024/Fubo-Q1-2024-Earnings-Conference-Call/default.aspx&location
-         location = url to webcast, call or physical location name
-         ctz      = set the time zone by its name, ex: "America/New_York" (See all time zones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-         recur    = set recurring invite ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3 (See recurrence rule syntax: https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html)
-         crm      = if Free, Busy, or Out of Office. AVAILABLE, BUSY or BLOCKING
-         add      = add a list of guests by email, ex: elf1@example.com,elf2@example.com
+      Base URL: https://calendar.google.com/calendar/u/0/r/eventedit
+      
+      URL Arguments
 
+      action: defines action to perform for person who clicks link, "TEMPLATE"
+      text: Event Title
+      dates: 20240503T123000Z/20240503T133000Z (start_datetime / end_datetime)
+      details: include info about the event
+      location: url to webcast, call or physical location name
+      ctz: set the time zone by its name, ex: "America/New_York" (See all time zones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+      recur: set recurring invite ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3 (See recurrence rule syntax: https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html)
+      crm: if Free, Busy, or Out of Office. AVAILABLE, BUSY or BLOCKING
+      add: add a list of guests by email, ex: elf1@example.com,elf2@example.com
 
-      Google Documentation: 
-      https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md
+      Google Documentation: https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md
       """
       payload = {
          "action": "TEMPLATE",
@@ -68,5 +68,5 @@ to open the url in a browser. This is a handy little trick to keep in your back 
   :alt: share a google calendar event via a url
 
 
-Read the full documentation of url arguments in Google's `add-event-to-calendar-docs Github Repo
+Read the full documentation of url arguments in Google's `add-event-to-calendar-docs Github repo
 <https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md>`__.
