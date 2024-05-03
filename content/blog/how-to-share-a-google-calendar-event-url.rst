@@ -22,26 +22,40 @@ to open the url in a browser. This is a handy little trick to keep in your back 
 
 .. code-block:: python
 
-   import webbrowser
    from urllib.parse import urlencode
+   import webbrowser
 
    def new_google_calendar_event():
       """
       Pass an event to Google Calendar with url arguments.
 
-      domain: https://calendar.google.com/calendar/u/0/r/eventedit
+      base url: https://calendar.google.com/calendar/u/0/r/eventedit
       args:
-         text=Your Event Title
-         &dates=YYYYMMDDT123000Z/YYYYMMDDT133000Z (start_datetime / end_datetime)
-         &details=add event description or link to more information
+         action   = defines action to perform for person who clicks link, "TEMPLATE"
+         text     = Event Title
+         dates    = 20240503T123000Z/20240503T133000Z (start_datetime / end_datetime)
+         details  = View+more+information:+https://ir.fubo.tv/events-and-presentations/event-details/2024/Fubo-Q1-2024-Earnings-Conference-Call/default.aspx&location
+         location = url to webcast, call or physical location name
+         ctz      = set the time zone by its name, ex: "America/New_York" (See all time zones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+         recur    = set recurring invite ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3 (See recurrence rule syntax: https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html)
+         crm      = if Free, Busy, or Out of Office. AVAILABLE, BUSY or BLOCKING
+         add      = add a list of guests by email, ex: elf1@example.com,elf2@example.com
+
+
+      Google Documentation: 
+      https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md
       """
-      parameters = {
+      payload = {
+         "action": "TEMPLATE",
          "text": "Title of Event",
          "dates": "20240504T123000Z/20240504T133000Z",
          "details": "Event Details: https://lofipython.com",
+         "location": "Link to Webcast, call or physical location",
+         "ctz": "America/Chicago",
+         "crm": "AVAILABLE"
       }
       # Returns str of URL encoded parameters.
-      url_parameters = urlencode(parameters)
+      url_parameters = urlencode(payload)
       url = f"https://calendar.google.com/calendar/u/0/r/eventedit?{url_parameters}"
       print(url)
       return url
@@ -53,3 +67,6 @@ to open the url in a browser. This is a handy little trick to keep in your back 
 .. image:: {static}/images/google-calendar-event-example.png
   :alt: share a google calendar event via a url
 
+
+Read the full documentation of url arguments in Google's `add-event-to-calendar-docs Github Repo
+<https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md>`__.
