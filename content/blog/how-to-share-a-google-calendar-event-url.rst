@@ -48,13 +48,13 @@ to open the url in a browser. This is a handy little trick to keep in your back 
          "text": "Title of Event",
          "dates": "20240504T123000Z/20240504T133000Z",
          "details": "Event Details: https://lofipython.com",
-         "location": "Link to webcast, call or physical location",
+         "location": "link to webcast, call or physical location",
          "ctz": "America/Chicago",
          "crm": "BUSY"
       }
       # Returns str of URL encoded parameters.
       url_parameters = urlencode(parameters)
-      url = f"https://calendar.google.com/calendar/u/0/r/eventedit?{url_parameters}"
+      url = f"https://calendar.google.com/calendar/render?{url_parameters}"
       print(url)
       return url
 
