@@ -72,3 +72,5 @@ Read more documentation of possible url arguments in the `add-event-to-calendar-
 `Wikipedia Time Zone List <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__
 
 `Recurrence Rule Syntax <https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html>`__
+
+`Kalinka Google Calendar Link Generator <https://kalinka.tardate.com/>`__
