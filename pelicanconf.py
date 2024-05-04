@@ -34,7 +34,7 @@ EXTRA_PATH_METADATA = {
 PYGMENTS_RST_OPTIONS = {"linenos": "table"}
 ARTICLE_EXCLUDES = ["blog/drafts"]
 PLUGIN_PATHS = ['home/erickbytes/lofipython']
-PLUGINS = ['pelican_webmention']
+# PLUGINS = ['pelican_webmention']
 # DARK_LIGHT_SWITCHING_OFF = False
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True

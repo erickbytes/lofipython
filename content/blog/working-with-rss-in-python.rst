@@ -38,7 +38,9 @@ You'll often hear the term "aggregator" or "reader" when dealing with RSS, which
 
 - Diversify your website's traffic to be less dependent on search engines and social media platforms. 
 
-    To know approximately how much RSS traffic you have, check how many HTTP requests have an XML content type. `This blog post <https://darekkay.com/blog/rss-subscriber-count/>`__ has a good breakdown of this HTTP based approach. Typically, 6% of total HTTP requests on my blog have XML content type, indicating RSS traffic.
+    To know approximately how much RSS traffic you have, check how many HTTP requests have an XML content type. 
+    `This blog post <https://darekkay.com/blog/rss-subscriber-count/>`__ has a good breakdown of this HTTP based approach. 
+    Typically, 3-5% of total HTTP requests on my blog have XML content type, indicating RSS traffic.
 
 Python RSS Tools
 ----------------
