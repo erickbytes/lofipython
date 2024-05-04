@@ -29,24 +29,26 @@ to open the url in a browser. This is a handy little trick to keep in your back 
       """
       Pass an event to Google Calendar with url arguments.
 
-      Base URL: https://calendar.google.com/calendar/u/0/r/eventedit
-      
+      Base URL: https://calendar.google.com/calendar/render
+
       URL Arguments:
 
+      action: TEMPLATE
       text: Event Title
-      dates: set the date and time of event, start_datetime/end_datetime
-      details: include info about the event
+      dates: start_datetime/end_datetime
+      details: event description or link to more info
       location: url to webcast, call or physical location name
-      ctz: set the time zone by its name, ex: America/New_York 
+      ctz: set the time zone by name, ex: America/New_York 
       recur: set a recurring event, ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3
       crm: if Free, Busy, or Out of Office, ex: AVAILABLE, BUSY or BLOCKING
       add: add a list of guests by email, ex: elf1@example.com,elf2@example.com
       """
       parameters = {
+         "action": "TEMPLATE",
          "text": "Title of Event",
          "dates": "20240504T123000Z/20240504T133000Z",
          "details": "Event Details: https://lofipython.com",
-         "location": "Link to Webcast, call or physical location",
+         "location": "Link to webcast, call or physical location",
          "ctz": "America/Chicago",
          "crm": "BUSY"
       }
@@ -59,10 +61,19 @@ to open the url in a browser. This is a handy little trick to keep in your back 
    url = new_google_calendar_event()
    webbrowser.open_new(url)
 
-
 .. image:: {static}/images/google-calendar-event-example.png
   :alt: share a google calendar event via a url
 
+
+I was struggling to find any official documentation, so I figured Google's `Gemini AI model <https://gemini.google.com/>`__ might know where this is documented.
+
+.. image:: {static}/images/gemini-google-calendar-convo.png
+  :alt: share a google calendar event via a url
+
+Using the app on my phone, Gemini informed me of a `useful Google Calendar Help thread response from Neil@GCalTools <https://support.google.com/calendar/thread/128416249?authuser=0&hl=en&msgid=129231290>`__.
+
+   The official documentation says to use "https://calendar.google.com/calendar/render" instead of "https://calendar.google.com/calendar/event", but they both work, at least for now.
+      \- Neil\@GCalTools, Google Calendar Help
 
 **Relevant Links**
 
