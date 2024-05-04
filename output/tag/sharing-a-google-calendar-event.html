@@ -86,9 +86,7 @@ to open the url in a browser. This is a handy little trick to keep in your back 
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
 <span class="kn">import</span> <span class="nn">webbrowser</span>
 
 <span class="k">def</span> <span class="nf">new_google_calendar_event</span><span class="p">():</span>
@@ -99,18 +97,16 @@ to open the url in a browser. This is a handy little trick to keep in your back 
 
 <span class="sd">   URL Arguments:</span>
 
-<span class="sd">   action: defines action to perform for person who clicks link, &quot;TEMPLATE&quot;</span>
 <span class="sd">   text: Event Title</span>
 <span class="sd">   dates: set the date and time of event, start_datetime/end_datetime</span>
 <span class="sd">   details: include info about the event</span>
 <span class="sd">   location: url to webcast, call or physical location name</span>
 <span class="sd">   ctz: set the time zone by its name, ex: America/New_York</span>
-<span class="sd">   recur: set recurring invite ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3</span>
-<span class="sd">   crm: if Free, Busy, or Out of Office. AVAILABLE, BUSY or BLOCKING</span>
+<span class="sd">   recur: set a recurring event, ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3</span>
+<span class="sd">   crm: if Free, Busy, or Out of Office, ex: AVAILABLE, BUSY or BLOCKING</span>
 <span class="sd">   add: add a list of guests by email, ex: elf1@example.com,elf2@example.com</span>
 <span class="sd">   &quot;&quot;&quot;</span>
    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;TEMPLATE&quot;</span><span class="p">,</span>
       <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Title of Event&quot;</span><span class="p">,</span>
       <span class="s2">&quot;dates&quot;</span><span class="p">:</span> <span class="s2">&quot;20240504T123000Z/20240504T133000Z&quot;</span><span class="p">,</span>
       <span class="s2">&quot;details&quot;</span><span class="p">:</span> <span class="s2">&quot;Event Details: https://lofipython.com&quot;</span><span class="p">,</span>
@@ -129,7 +125,7 @@ to open the url in a browser. This is a handy little trick to keep in your back 
 </pre></div></td></tr></table></div>
 <img alt="share a google calendar event via a url" src="https://lofipython.com/images/google-calendar-event-example.png" />
 <p><strong>Relevant Links</strong></p>
-<p>Read the full documentation of url arguments in Google's <a class="reference external" href="https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md">add-event-to-calendar-docs Github repo</a>.</p>
+<p>Read more documentation of possible url arguments in the <a class="reference external" href="https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md">add-event-to-calendar-docs Github repo</a>.</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Wikipedia Time Zone List</a></p>
 <p><a class="reference external" href="https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html">Recurrence Rule Syntax</a></p>
 

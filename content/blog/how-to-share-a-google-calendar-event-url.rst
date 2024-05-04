@@ -33,18 +33,16 @@ to open the url in a browser. This is a handy little trick to keep in your back 
       
       URL Arguments:
 
-      action: defines action to perform for person who clicks link, "TEMPLATE"
       text: Event Title
       dates: set the date and time of event, start_datetime/end_datetime
       details: include info about the event
       location: url to webcast, call or physical location name
       ctz: set the time zone by its name, ex: America/New_York 
-      recur: set recurring invite ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3
-      crm: if Free, Busy, or Out of Office. AVAILABLE, BUSY or BLOCKING
+      recur: set a recurring event, ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3
+      crm: if Free, Busy, or Out of Office, ex: AVAILABLE, BUSY or BLOCKING
       add: add a list of guests by email, ex: elf1@example.com,elf2@example.com
       """
       parameters = {
-         "action": "TEMPLATE",
          "text": "Title of Event",
          "dates": "20240504T123000Z/20240504T133000Z",
          "details": "Event Details: https://lofipython.com",
@@ -68,7 +66,7 @@ to open the url in a browser. This is a handy little trick to keep in your back 
 
 **Relevant Links**
 
-Read the full documentation of url arguments in Google's `add-event-to-calendar-docs Github repo
+Read more documentation of possible url arguments in the `add-event-to-calendar-docs Github repo
 <https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md>`__.
 
 `Wikipedia Time Zone List <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__
