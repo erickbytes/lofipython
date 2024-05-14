@@ -16,6 +16,8 @@ Uses the "Blue-Penguin-Dark" theme:
 
 [A Guide to Make JSON API Requests With Python](https://lofipython.com/how-to-make-json-requests-with-python)
 
+[8 Promising Python Static Site Generators](https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators)
+
 [Writing a Python Script With Bing](https://lofipython.com/using-bing-chatgpt-to-write-a-python-script-for-windows-computer-maintenance)
 
 [6 of the Hottest Python Libraries in 2023](https://lofipython.com/6-of-the-hottest-python-libraries-in-2023)
