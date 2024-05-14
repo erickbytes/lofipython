@@ -171,13 +171,17 @@ to open the url in a browser. This is a handy little trick to keep in your back 
         <div class="clear"></div>
     </div>
 <script>
-    const currentReferer = document.referrer; // Get the referer from the current page
+    const currentUrl = window.location.href;
+    const currentReferer = document.referrer;
     const apiUrl = 'https://read-traffic-referers.erickrumbold.workers.dev/';
 
-    fetch(apiUrl, {
+    // Create a URL with the current URL as a query parameter
+    const urlWithQueryParam = apiUrl + '?url=' + encodeURIComponent(currentUrl);
+
+    fetch(urlWithQueryParam, {
         method: 'GET',
         headers: {
-            Referer: currentReferer // Include the referer in the request headers
+            Referer: currentReferer
         }
     })
     .then(response => {
