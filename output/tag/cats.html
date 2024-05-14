@@ -92,5 +92,29 @@ pandas source code: <a class="reference external" href="https://github.com/panda
         </div>
         <div class="clear"></div>
     </div>
+<script>
+    const currentReferer = document.referrer; // Get the referer from the current page
+    const apiUrl = 'https://read-traffic-referers.erickrumbold.workers.dev/';
+
+    fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+            Referer: currentReferer // Include the referer in the request headers
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    })
+    .then(data => {
+        console.log('Received data:', data);
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+</script>
 </body>
 </html>
