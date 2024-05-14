@@ -103,15 +103,16 @@ writing on this blog, I'm back at it. New cycle.</p>
 <script>
     const currentUrl = window.location.href;
     const currentReferer = document.referrer;
+    const userAgent = navigator.userAgent; // Capture the user agent string
     const apiUrl = 'https://read-traffic-referers.erickrumbold.workers.dev/';
 
-    // Create a URL with the current URL as a query parameter
-    const urlWithQueryParam = apiUrl + '?url=' + encodeURIComponent(currentUrl);
+    // Create a URL with the current URL and user agent as query parameters
+    const urlWithQueryParams = apiUrl + '?url=' + encodeURIComponent(currentUrl) + '&userAgent=' + encodeURIComponent(userAgent);
 
-    fetch(urlWithQueryParam, {
+    fetch(urlWithQueryParams, {
         method: 'GET',
         headers: {
-            Referer: currentReferer
+            'Referer': currentReferer
         }
     })
     .then(response => {
