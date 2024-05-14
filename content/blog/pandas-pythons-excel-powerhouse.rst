@@ -152,7 +152,7 @@ Now install pandas 1.0 and `matplotlib <https://matplotlib.org/users/installing.
 (2) Welcome to pandas 1.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You did it! Welcome to the good life. The basis of pandas is the "`dataframe <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__", commonly abbreviated as df, which is similar to a spreadsheet. Another core pandas object is the `pandas.Series <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html>`__ object, which is similar to a Python list or `numpy <http://cs231n.github.io/python-numpy-tutorial/>`__ array. When imported, pandas is aliased as "pd". The pd object allows you to access many useful pandas functions. I'll use it interchangeably with pandas in this post.
+You did it! Welcome to the good life. The basis of pandas is the "`dataframe <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__", commonly abbreviated as df, which is similar to a spreadsheet. Another core pandas object is the `pandas.Series <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html>`__ object, which is similar to a Python list or `numpy <https://cs231n.github.io/python-numpy-tutorial/>`__ array. When imported, pandas is aliased as "pd". The pd object allows you to access many useful pandas functions. I'll use it interchangeably with pandas in this post.
 
    The library’s name derives from **pan**\ el **da**\ ta, a common term for multidimensional data sets encountered in statistics and econometrics.
 
@@ -494,14 +494,14 @@ Plot George Clooney's movies over time in a line graph. [\ `Source <https://www.
 -  `Google's Intro to pandas Jupyter Notebook <https://colab.research.google.com/drive/1a4sbKG7jOJGn4oeonQPA8XjJm7OYgcdX>`__ (Tutorial)
 -  `10 Minutes to pandas (Documentation) <https://pandas.pydata.org/pandas-docs/stable/10min.html>`__
 -  `Numpy's <https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html>`__ `r and c\_ stacking helpers to concatenate arrays <https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html>`__
--  `Calculating Taxes with pandas <http://rhodesmill.org/brandon/2014/pandas-payroll/>`__ (Blog)
+-  `Calculating Taxes with pandas <https://rhodesmill.org/brandon/2014/pandas-payroll/>`__ (Blog)
 
 .. |pandas| image:: https://pythonmarketer.files.wordpress.com/2018/05/pandas.png
    :class: wp-image-2594 alignright
    :width: 301px
    :height: 122px
    :target: https://pandas.pydata.org/
-.. |pip_list| image:: http://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg
+.. |pip_list| image:: https://pythonmarketer.files.wordpress.com/2018/05/d1733-pip_list-e1581434945203.jpg
    :class: alignnone wp-image-2572
    :width: 179px
    :height: 230px
