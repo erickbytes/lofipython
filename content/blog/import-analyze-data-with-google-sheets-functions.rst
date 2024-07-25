@@ -117,12 +117,12 @@ Google sheets recognizes this format of bracket enclosed ranges of columns to se
 
 
 This formula constructs a dataset, then filters it on a condition using REGEXMATCH to check if the cell contains a hyphen (-). 
-5 specifies how many rows to return, and 3 specifies with column to sort on, in this case the 3rd column.
+5 specifies how many rows to return, and 3 specifies which column to sort on, in this case the 3rd column.
 
 **Conditionally Select a Range of Cells from a Dataset with SORTN and QUERY with SQL-Like Language**
 ::
 
-   =SORTN(QUERY({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P/1,'sheet_name'!F:F}, "SELECT * WHERE Col3 IS NOT NULL"), 6, 0, 3, FALSE)
+   =SORTN(QUERY({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P,'sheet_name'!F:F}, "SELECT * WHERE Col3 IS NOT NULL"), 6, 0, 3, FALSE)
 
 This queries rows that are not null, containing data.
 

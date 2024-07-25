@@ -117,10 +117,10 @@ then we know the % change is negative, otherwise the % change is positive. In th
 =SORTN(FILTER({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P/1,'sheet_name'!F:F}, REGEXMATCH('sheet_name'!P:P, &quot;-&quot;)), 5, 0, 3, TRUE)
 </pre>
 <p>This formula constructs a dataset, then filters it on a condition using REGEXMATCH to check if the cell contains a hyphen (-).
-5 specifies how many rows to return, and 3 specifies with column to sort on, in this case the 3rd column.</p>
+5 specifies how many rows to return, and 3 specifies which column to sort on, in this case the 3rd column.</p>
 <p><strong>Conditionally Select a Range of Cells from a Dataset with SORTN and QUERY with SQL-Like Language</strong></p>
 <pre class="literal-block">
-=SORTN(QUERY({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P/1,'sheet_name'!F:F}, &quot;SELECT * WHERE Col3 IS NOT NULL&quot;), 6, 0, 3, FALSE)
+=SORTN(QUERY({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P,'sheet_name'!F:F}, &quot;SELECT * WHERE Col3 IS NOT NULL&quot;), 6, 0, 3, FALSE)
 </pre>
 <p>This queries rows that are not null, containing data.</p>
 <p><strong>Official Function Documentation</strong></p>
