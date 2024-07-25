@@ -186,34 +186,5 @@ ssh-keygen -t ed25519 -C &quot;yourname&#64;example.com&quot;
         </div>
         <div class="clear"></div>
     </div>
-<script>
-    const currentUrl = window.location.href;
-    const currentReferer = document.referrer;
-    const userAgent = navigator.userAgent; // Capture the user agent string
-    const apiUrl = 'https://read-traffic-referers.erickrumbold.workers.dev/';
-
-    // Create a URL with the current URL and user agent as query parameters
-    const urlWithQueryParams = apiUrl + '?url=' + encodeURIComponent(currentUrl) + '&userAgent=' + encodeURIComponent(userAgent);
-
-    fetch(urlWithQueryParams, {
-        method: 'GET',
-        headers: {
-            'Referer': currentReferer
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Network response was not ok');
-        }
-    })
-    .then(data => {
-        console.log('Received data:', data);
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
-</script>
 </body>
 </html>

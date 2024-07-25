@@ -1,5 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-06-25T17:28:00-05:00</updated><entry><title>There is Background Noise in Real Life</title><link href="https://lofipython.com/background-noise-in-real-life.html" rel="alternate"></link><published>2024-06-25T17:28:00-05:00</published><updated>2024-06-25T17:28:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-06-25:/background-noise-in-real-life.html</id><summary type="html">&lt;p&gt;While walking down a busy avenue in Mexico, I listened to a conversation in Spanish. I'm not fluent in Spanish,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-07-25T16:00:00-05:00</updated><entry><title>Importing and Analyzing Data With Google Sheets Functions</title><link href="https://lofipython.com/import-analyze-data-with-google-sheets-functions.html" rel="alternate"></link><published>2024-07-25T16:00:00-05:00</published><updated>2024-07-25T16:00:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-07-25:/import-analyze-data-with-google-sheets-functions.html</id><summary type="html">&lt;p&gt;This post focuses on Google Sheets formulas, rather than Python. If you're interested in accessing Google Sheets with Python,
+check out this &lt;a class="reference external" href="https:/lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets"&gt;post I wrote about the pygsheets library&lt;/a&gt;. I haven't personally tried it, but
+&lt;a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets"&gt;xlwings&lt;/a&gt; also looks like a decent option if you're looking for Google Sheets Python libraries …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post focuses on Google Sheets formulas, rather than Python. If you're interested in accessing Google Sheets with Python,
+check out this &lt;a class="reference external" href="https:/lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets"&gt;post I wrote about the pygsheets library&lt;/a&gt;. I haven't personally tried it, but
+&lt;a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets"&gt;xlwings&lt;/a&gt; also looks like a decent option if you're looking for Google Sheets Python libraries.&lt;/p&gt;
+&lt;p&gt;Here are some functions I recently discovered to analyze data in Sheets. There a few different strategies you can use to import data into Google Sheets with the functions available.
+Below, you'll see some different approaches you use to get data into Google Sheets and then analyze it. The Google Sheets formulas rabbit hole is deep.
+Lots of power can be harnessed by getting familiar with the formulas it has built-in.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Year To Date SPARKLINE of a Stock&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SPARKLINE(GOOGLEFINANCE(&amp;quot;Nasdaq:NVDA&amp;quot;, &amp;quot;price&amp;quot;, DATE(YEAR(TODAY()), 1, 1), TODAY(), &amp;quot;daily&amp;quot;), {&amp;quot;charttype&amp;quot;, &amp;quot;line&amp;quot;; &amp;quot;linewidth&amp;quot;, 2; &amp;quot;color&amp;quot;, &amp;quot;green&amp;quot;})
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Year to Date SPARKLINE of USD to MXN Currency Value with GOOGLEFINANCE + SPARKLINE USING IF to Dynamically Color the SPARKLINE&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SPARKLINE(GOOGLEFINANCE(&amp;quot;CURRENCY:USDMXN&amp;quot;, &amp;quot;price&amp;quot;, TODAY()-365, TODAY(), &amp;quot;DAILY&amp;quot;), {&amp;quot;charttype&amp;quot;, &amp;quot;line&amp;quot;; &amp;quot;linewidth&amp;quot;, 2; &amp;quot;color&amp;quot;, if(P22&amp;gt;0,&amp;quot;green&amp;quot;,&amp;quot;red&amp;quot;)})
+&lt;/pre&gt;
+&lt;p&gt;Note the use of an if condition to check another cell and set the color to green if &amp;gt; 0 or red if &amp;lt; 0.&lt;/p&gt;
+&lt;img alt="Applying Google Sheets Sparklines" src="https://lofipython.com/images/sparkline-example.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Market Cap with GOOOGLEFINANCE&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=GOOGLEFINANCE(&amp;quot;Nasdaq:NVDA&amp;quot;, &amp;quot;marketcap&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Price/Earnings Ratio&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=GOOGLEFINANCE(&amp;quot;Nasdaq:MSFT&amp;quot;, &amp;quot;pe&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Daily % Change of a Stock&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=GOOGLEFINANCE(&amp;quot;Nasdaq:TSLA&amp;quot;,&amp;quot;changepct&amp;quot;) &amp;amp;&amp;quot;%&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Import the Price of a Cryptocurrency with IMPORTDATA&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=IMPORTDATA(&amp;quot;https://cryptoprices.cc/ADA&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;This function imports the price of Cardano cryptocurrency from cryptoprices.cc.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Import the Market Cap of a Cryptocurrency with IMPORTDATA&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=IMPORTDATA(&amp;quot;https://cryptoprices.cc/ADA/MCAP&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;This function imports the current market cap of Cardano cryptocurrency.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Import the Daily % Change of Ethereum Cryptocurrency with IMPORTXML and INDEX&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=IF(
+INDEX(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//p[contains(&amp;#64;class, 'sc-71024e3e-0 sc-58c82cf9-1 ihXFUo iPawMI')]/&amp;#64;data-change&amp;quot;), 1) = &amp;quot;down&amp;quot;,
+&amp;quot;-&amp;quot; &amp;amp; VALUE(SUBSTITUTE(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//div[contains(&amp;#64;class, 'sc-65e7f566-0 gCtSWR')]&amp;quot;), &amp;quot;(1d)&amp;quot;, &amp;quot;&amp;quot;))*100&amp;amp;&amp;quot;%&amp;quot;,
+VALUE(SUBSTITUTE(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//div[contains(&amp;#64;class, 'sc-65e7f566-0 gCtSWR')]&amp;quot;), &amp;quot;(1d)&amp;quot;, &amp;quot;&amp;quot;))*100&amp;amp;&amp;quot;%&amp;quot;
+)
+&lt;/pre&gt;
+&lt;p&gt;This method uses IMPORTXML to import data to google sheets by passing an &amp;quot;xpath query&amp;quot;. The first line checks if the direction of the % change is &amp;quot;down&amp;quot;. If it is down,
+then we know the % change is negative, otherwise the % change is positive. In this case I inspected the source code of coinmarketcap to reference the class names of the HTML I was targeting.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Conditionally sum a range with SUMIFS, SUMIF and COUNTIF&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SUMIFS('sheet_name'!G:G, 'sheet_name'!N:N, &amp;quot;&amp;gt;0&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;In the following examples, &amp;quot;sheet_name&amp;quot; = Your Google sheet's name. This function sums the corresponding cells in column N if column G contains a number greater than 0.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SUMIF('sheet_name'!N:N, &amp;quot;Some Value&amp;quot;,'sheet_name'!G:G)
+&lt;/pre&gt;
+&lt;p&gt;This function sums all values in column G if the values in column N are equal to &amp;quot;Some Value&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=COUNTIF('sheet_name'!A:A, &amp;quot;Some Value&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;Count all the cells in column A that equal &amp;quot;Some Value&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Select Columns from a Dataset&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+{ 'sheet_name'!A:D, 'sheet_name'!T:X, 'sheet_name'!Z:AA}
+&lt;/pre&gt;
+&lt;p&gt;Google sheets recognizes this format of bracket enclosed ranges of columns to select into your dataset. In the next example, you can see this applied.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Conditionally Select a Range of Cells from a Dataset with SORTN, FILTER, and REGEXMATCH&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SORTN(FILTER({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P/1,'sheet_name'!F:F}, REGEXMATCH('sheet_name'!P:P, &amp;quot;-&amp;quot;)), 5, 0, 3, TRUE)
+&lt;/pre&gt;
+&lt;p&gt;This formula constructs a dataset, then filters it on a condition using REGEXMATCH to check if the cell contains a hyphen (-).
+5 specifies how many rows to return, and 3 specifies with column to sort on, in this case the 3rd column.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Conditionally Select a Range of Cells from a Dataset with SORTN and QUERY with SQL-Like Language&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SORTN(QUERY({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P/1,'sheet_name'!F:F}, &amp;quot;SELECT * WHERE Col3 IS NOT NULL&amp;quot;), 6, 0, 3, FALSE)
+&lt;/pre&gt;
+&lt;p&gt;This queries rows that are not null, containing data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Official Function Documentation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/table/25273?hl=en&amp;amp;ref_topic=9054531&amp;amp;sjid=14386119101264594616-NC#"&gt;Google Sheets Function List&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093281?sjid=14386119101264594616-NCl"&gt;GOOGLEFINANCE&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093335?hl=en"&gt;IMPORTDATA&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093342?hl=en&amp;amp;ref_topic=9199554&amp;amp;sjid=14386119101264594616-NC"&gt;IMPORTXML&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093289?sjid=14386119101264594616-NC"&gt;SPARKLINE&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093197?sjid=14386119101264594616-NC"&gt;FILTER&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3238496?sjid=14386119101264594616-NC"&gt;SUMIFS&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093343?hl=en"&gt;QUERY&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/7354624?sjid=14386119101264594616-NC"&gt;SORTN&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3098242?sjid=14386119101264594616-NC"&gt;INDEX&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3098292?sjid=14386119101264594616-NC"&gt;REGEXMATCH&lt;/a&gt;&lt;/p&gt;
+</content><category term="spreadsheets, data analysis, google sheets"></category><category term="google sheets"></category><category term="data wrangling"></category><category term="speadsheet data import"></category></entry><entry><title>There is Background Noise in Real Life</title><link href="https://lofipython.com/background-noise-in-real-life.html" rel="alternate"></link><published>2024-06-25T17:28:00-05:00</published><updated>2024-06-25T17:28:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-06-25:/background-noise-in-real-life.html</id><summary type="html">&lt;p&gt;While walking down a busy avenue in Mexico, I listened to a conversation in Spanish. I'm not fluent in Spanish,
 but I have 4 years of high school classes and ~2 more years of real world experience. Spanish is not spoke in a bubble.
 It needs to be practiced to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;While walking down a busy avenue in Mexico, I listened to a conversation in Spanish. I'm not fluent in Spanish,
 but I have 4 years of high school classes and ~2 more years of real world experience. Spanish is not spoke in a bubble.
@@ -7797,114 +7888,4 @@ Javascript based framework. Coincidentally, Electron was used to
 build Atom.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</content><category term="coding, Colors, pandas, programming"></category><category term="atom"></category><category term="color"></category><category term="eyedropper"></category><category term="gui"></category><category term="python"></category></entry><entry><title>Gooey GUI for Python Scripts</title><link href="https://lofipython.com/gooey-gui-for-python-scripts.html" rel="alternate"></link><published>2018-08-25T16:32:00-05:00</published><updated>2018-08-25T16:32:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-08-25:/gooey-gui-for-python-scripts.html</id><summary type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python
-script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
-&lt;p&gt;There are several GUI libraries in Python. A few I have heard of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;GUI stands for &amp;quot;Graphical User Interface&amp;quot;, aka the part of a program designed for human interaction. Adding a GUI to a Python
-script allows anyone to run it without having to code or use the command line.&lt;/p&gt;
-&lt;p&gt;There are several GUI libraries in Python. A few I have heard of are Tkinter (comes in the standard library), wxPython, PyQT,
-easygui, &lt;a class="reference external" href="https://github.com/hoffstadt/DearPyGui"&gt;DearPyGui&lt;/a&gt; and PySimpleGUI. I &lt;a class="reference external" href="https://lofipython.com/tkinter-and-python-libraries/"&gt;explored Tkinter&lt;/a&gt;
-back when I first got into Python. It was more intricate and offered more control over the look of your app, and took longer to pick up. Gooey is more of a pre-packaged GUI library.&lt;/p&gt;
-&lt;p&gt;The &lt;a class="reference external" href="https://github.com/chriskiehl/Gooey"&gt;Gooey Github page&lt;/a&gt; was most useful to me and helped me to do what I needed.
-The script posted &lt;a class="reference external" href="http://pbpython.com/pandas-gui.html"&gt;in this blog&lt;/a&gt; helped as well. I needed to enable a human to
-supply three files and enter a number. Gooey was a good match for this. The library has two branches:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;some basic widgets piggyback off the &lt;a class="reference external" href="https://blog.pythonlibrary.org/2015/10/08/a-intro-to-argparse/"&gt;argparse&lt;/a&gt; library&lt;/li&gt;
-&lt;li&gt;another part of the library uses a function called the GooeyParser. The GooeyParser offers more advanced widgets, like a file chooser. This was exactly what I was looking to use to pull in files for my script.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Installing Gooey&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Argparse comes stock with Python. You can install Gooey via the &lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;pip installer&lt;/a&gt;. Open command prompt or terminal and enter:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-python -m pip install Gooey
-&lt;/pre&gt;
-&lt;p&gt;Below is a basic argparse/Gooey combination script. The argparse version offers a handful of widgets such as checkboxes and dropdown, but I had trouble getting them to work with the GooeyParser (used in 2nd script).&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16&lt;/span&gt;
-&lt;span class="normal"&gt;17&lt;/span&gt;
-&lt;span class="normal"&gt;18&lt;/span&gt;
-&lt;span class="normal"&gt;19&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ArgumentParser&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gooey&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gooey&lt;/span&gt;
-
-&lt;span class="nd"&gt;@Gooey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;program_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Report Generator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;575&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_args&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Demonstrating python&amp;#39;s vars built-in to store arguments in a python dict.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A simple argument parser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;epilog&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is where you might put example usage&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;store&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Help text for option X&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Help text for option Y&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Campaign Number&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Help text for option Z&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Campaign Segment&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;choices&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;All&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nargs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;?&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;user_inputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_inputs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_inputs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="n"&gt;campaign_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_inputs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Campaign Number&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;get_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;!--  --&gt;
-&lt;blockquote&gt;
-Side note: Check out Python's &lt;a class="reference external" href="https://docs.python.org/3/library/functions.html#vars"&gt;vars() built-in&lt;/a&gt; function above.
-It returns the input data as a dictionary called user_inputs. Then we can get the values via the dictionary's keys. Pretty nifty!&lt;/blockquote&gt;
-&lt;p&gt;The &amp;#64;Gooey() part of the code is an advanced function known as a &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0318/"&gt;decorator in Python&lt;/a&gt;.
-Put simply, decorators are functions that modify the function to which they are attached.&lt;/p&gt;
-&lt;p&gt;Below is my script that uses the more advanced GooeyParser for its &amp;quot;FileChooser&amp;quot; widget. Gooey allows you to group widgets together
-and set how many widgets per line with the gooey_options={} parameter.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16&lt;/span&gt;
-&lt;span class="normal"&gt;17&lt;/span&gt;
-&lt;span class="normal"&gt;18&lt;/span&gt;
-&lt;span class="normal"&gt;19&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gooey&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gooey&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GooeyParser&lt;/span&gt;
-
-&lt;span class="nd"&gt;@Gooey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;program_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Email Campaign Reporting Generator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;575&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_args&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Adding two argument groups, each accepting two arguments. Using gooey_options to set layout.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GooeyParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Export campaign report spreadsheets and upload below.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;top_group&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument_group&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gooey_options&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;show_border&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;columns&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
-    &lt;span class="n"&gt;top_group&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Contact List&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Upload Send List (.xlsx)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;widget&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;FileChooser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;top_group&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Opens List&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Upload Opens List (.xlsx)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;widget&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;FileChooser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;top_group&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Unsubscribe List&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Upload Unsubscribe List (.xlsx)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;widget&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;FileChooser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;bottom_group&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument_group&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gooey_options&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;show_border&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;columns&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;required&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
-    &lt;span class="n"&gt;bottom_group&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Campaign ID&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;store&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Number found in the Campaign &amp;#39;Reports&amp;#39; tab&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;bottom_group&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Campaign Segment&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;store&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Enter A, B, or All. All lists supplied must match segment.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;user_inputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_inputs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;get_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;Overall, Gooey knows what it wants to be, an easy to use GUI framework for Python. It does it well. Here's a screenshot of my program's shiny GUI:&lt;/p&gt;
-&lt;img alt="gooey_gui_shot_2" class="alignnone size-full wp-image-1431" src="https://pythonmarketer.files.wordpress.com/2018/08/gooey_gui_shot_2.png" style="width: 578px; height: 603px;" /&gt;
-&lt;p&gt;Now that I have a GUI on top of my program and it delivers the expected output file, I'm hoping to take it one step further by packaging it up as a Windows .exe file.
-This would allow it to run as a desktop app on any Windows computer without the need to install Python or library dependencies.
-I've only begun exploring options to do this but a few libraries I've heard of are pyinstaller, cx_Freeze and Py2Exe. Updates coming if I figure it out. Cheers :D&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; I did figure out how to compile my Gooey app to a Windows application with Pyinstaller. You can &lt;a class="reference external" href="https://lofipython.com/packaging-python-as-a-windows-app/"&gt;read more on how I did it here&lt;/a&gt;.&lt;/p&gt;
-</content><category term="coding, data, product development, programming, software"></category><category term="gooey"></category><category term="gui"></category><category term="python"></category><category term="software development"></category></entry></feed>
+</content><category term="coding, Colors, pandas, programming"></category><category term="atom"></category><category term="color"></category><category term="eyedropper"></category><category term="gui"></category><category term="python"></category></entry></feed>

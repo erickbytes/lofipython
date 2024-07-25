@@ -33,6 +33,9 @@
     </header>
     <div id="wrapper">
         <div id="content"><ul>
+        <li><a href="https://lofipython.com/tag/google-sheets.html">google sheets</a></li>
+        <li><a href="https://lofipython.com/tag/data-wrangling.html">data wrangling</a></li>
+        <li><a href="https://lofipython.com/tag/speadsheet-data-import.html">speadsheet data import</a></li>
         <li><a href="https://lofipython.com/tag/learning-philosophy.html">learning philosophy</a></li>
         <li><a href="https://lofipython.com/tag/focus.html">focus</a></li>
         <li><a href="https://lofipython.com/tag/achievement.html">achievement</a></li>
@@ -319,7 +322,6 @@
         <li><a href="https://lofipython.com/tag/vim.html">vim</a></li>
         <li><a href="https://lofipython.com/tag/vs-code.html">vs code</a></li>
         <li><a href="https://lofipython.com/tag/google-api.html">google api</a></li>
-        <li><a href="https://lofipython.com/tag/google-sheets.html">google sheets</a></li>
         <li><a href="https://lofipython.com/tag/spreadsheets.html">spreadsheets</a></li>
         <li><a href="https://lofipython.com/tag/test-driven-development.html">test driven development</a></li>
         <li><a href="https://lofipython.com/tag/access.html">Access</a></li>
@@ -378,34 +380,5 @@ dev</a></li>
         </div>
         <div class="clear"></div>
     </div>
-<script>
-    const currentUrl = window.location.href;
-    const currentReferer = document.referrer;
-    const userAgent = navigator.userAgent; // Capture the user agent string
-    const apiUrl = 'https://read-traffic-referers.erickrumbold.workers.dev/';
-
-    // Create a URL with the current URL and user agent as query parameters
-    const urlWithQueryParams = apiUrl + '?url=' + encodeURIComponent(currentUrl) + '&userAgent=' + encodeURIComponent(userAgent);
-
-    fetch(urlWithQueryParams, {
-        method: 'GET',
-        headers: {
-            'Referer': currentReferer
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Network response was not ok');
-        }
-    })
-    .then(data => {
-        console.log('Received data:', data);
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
-</script>
 </body>
 </html>

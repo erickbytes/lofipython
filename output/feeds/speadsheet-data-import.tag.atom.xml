@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - speadsheet data import</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/speadsheet-data-import.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-07-25T16:00:00-05:00</updated><entry><title>Importing and Analyzing Data With Google Sheets Functions</title><link href="https://lofipython.com/import-analyze-data-with-google-sheets-functions.html" rel="alternate"></link><published>2024-07-25T16:00:00-05:00</published><updated>2024-07-25T16:00:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-07-25:/import-analyze-data-with-google-sheets-functions.html</id><summary type="html">&lt;p&gt;This post focuses on Google Sheets formulas, rather than Python. If you're interested in accessing Google Sheets with Python,
+check out this &lt;a class="reference external" href="https:/lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets"&gt;post I wrote about the pygsheets library&lt;/a&gt;. I haven't personally tried it, but
+&lt;a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets"&gt;xlwings&lt;/a&gt; also looks like a decent option if you're looking for Google Sheets Python libraries …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post focuses on Google Sheets formulas, rather than Python. If you're interested in accessing Google Sheets with Python,
+check out this &lt;a class="reference external" href="https:/lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets"&gt;post I wrote about the pygsheets library&lt;/a&gt;. I haven't personally tried it, but
+&lt;a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets"&gt;xlwings&lt;/a&gt; also looks like a decent option if you're looking for Google Sheets Python libraries.&lt;/p&gt;
+&lt;p&gt;Here are some functions I recently discovered to analyze data in Sheets. There a few different strategies you can use to import data into Google Sheets with the functions available.
+Below, you'll see some different approaches you use to get data into Google Sheets and then analyze it. The Google Sheets formulas rabbit hole is deep.
+Lots of power can be harnessed by getting familiar with the formulas it has built-in.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Year To Date SPARKLINE of a Stock&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SPARKLINE(GOOGLEFINANCE(&amp;quot;Nasdaq:NVDA&amp;quot;, &amp;quot;price&amp;quot;, DATE(YEAR(TODAY()), 1, 1), TODAY(), &amp;quot;daily&amp;quot;), {&amp;quot;charttype&amp;quot;, &amp;quot;line&amp;quot;; &amp;quot;linewidth&amp;quot;, 2; &amp;quot;color&amp;quot;, &amp;quot;green&amp;quot;})
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Year to Date SPARKLINE of USD to MXN Currency Value with GOOGLEFINANCE + SPARKLINE USING IF to Dynamically Color the SPARKLINE&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SPARKLINE(GOOGLEFINANCE(&amp;quot;CURRENCY:USDMXN&amp;quot;, &amp;quot;price&amp;quot;, TODAY()-365, TODAY(), &amp;quot;DAILY&amp;quot;), {&amp;quot;charttype&amp;quot;, &amp;quot;line&amp;quot;; &amp;quot;linewidth&amp;quot;, 2; &amp;quot;color&amp;quot;, if(P22&amp;gt;0,&amp;quot;green&amp;quot;,&amp;quot;red&amp;quot;)})
+&lt;/pre&gt;
+&lt;p&gt;Note the use of an if condition to check another cell and set the color to green if &amp;gt; 0 or red if &amp;lt; 0.&lt;/p&gt;
+&lt;img alt="Applying Google Sheets Sparklines" src="https://lofipython.com/images/sparkline-example.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Market Cap with GOOOGLEFINANCE&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=GOOGLEFINANCE(&amp;quot;Nasdaq:NVDA&amp;quot;, &amp;quot;marketcap&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Price/Earnings Ratio&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=GOOGLEFINANCE(&amp;quot;Nasdaq:MSFT&amp;quot;, &amp;quot;pe&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Daily % Change of a Stock&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=GOOGLEFINANCE(&amp;quot;Nasdaq:TSLA&amp;quot;,&amp;quot;changepct&amp;quot;) &amp;amp;&amp;quot;%&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Import the Price of a Cryptocurrency with IMPORTDATA&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=IMPORTDATA(&amp;quot;https://cryptoprices.cc/ADA&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;This function imports the price of Cardano cryptocurrency from cryptoprices.cc.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Import the Market Cap of a Cryptocurrency with IMPORTDATA&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=IMPORTDATA(&amp;quot;https://cryptoprices.cc/ADA/MCAP&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;This function imports the current market cap of Cardano cryptocurrency.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Import the Daily % Change of Ethereum Cryptocurrency with IMPORTXML and INDEX&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=IF(
+INDEX(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//p[contains(&amp;#64;class, 'sc-71024e3e-0 sc-58c82cf9-1 ihXFUo iPawMI')]/&amp;#64;data-change&amp;quot;), 1) = &amp;quot;down&amp;quot;,
+&amp;quot;-&amp;quot; &amp;amp; VALUE(SUBSTITUTE(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//div[contains(&amp;#64;class, 'sc-65e7f566-0 gCtSWR')]&amp;quot;), &amp;quot;(1d)&amp;quot;, &amp;quot;&amp;quot;))*100&amp;amp;&amp;quot;%&amp;quot;,
+VALUE(SUBSTITUTE(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//div[contains(&amp;#64;class, 'sc-65e7f566-0 gCtSWR')]&amp;quot;), &amp;quot;(1d)&amp;quot;, &amp;quot;&amp;quot;))*100&amp;amp;&amp;quot;%&amp;quot;
+)
+&lt;/pre&gt;
+&lt;p&gt;This method uses IMPORTXML to import data to google sheets by passing an &amp;quot;xpath query&amp;quot;. The first line checks if the direction of the % change is &amp;quot;down&amp;quot;. If it is down,
+then we know the % change is negative, otherwise the % change is positive. In this case I inspected the source code of coinmarketcap to reference the class names of the HTML I was targeting.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Conditionally sum a range with SUMIFS, SUMIF and COUNTIF&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SUMIFS('sheet_name'!G:G, 'sheet_name'!N:N, &amp;quot;&amp;gt;0&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;In the following examples, &amp;quot;sheet_name&amp;quot; = Your Google sheet's name. This function sums the corresponding cells in column N if column G contains a number greater than 0.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SUMIF('sheet_name'!N:N, &amp;quot;Some Value&amp;quot;,'sheet_name'!G:G)
+&lt;/pre&gt;
+&lt;p&gt;This function sums all values in column G if the values in column N are equal to &amp;quot;Some Value&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=COUNTIF('sheet_name'!A:A, &amp;quot;Some Value&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;Count all the cells in column A that equal &amp;quot;Some Value&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Select Columns from a Dataset&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+{ 'sheet_name'!A:D, 'sheet_name'!T:X, 'sheet_name'!Z:AA}
+&lt;/pre&gt;
+&lt;p&gt;Google sheets recognizes this format of bracket enclosed ranges of columns to select into your dataset. In the next example, you can see this applied.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Conditionally Select a Range of Cells from a Dataset with SORTN, FILTER, and REGEXMATCH&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SORTN(FILTER({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P/1,'sheet_name'!F:F}, REGEXMATCH('sheet_name'!P:P, &amp;quot;-&amp;quot;)), 5, 0, 3, TRUE)
+&lt;/pre&gt;
+&lt;p&gt;This formula constructs a dataset, then filters it on a condition using REGEXMATCH to check if the cell contains a hyphen (-).
+5 specifies how many rows to return, and 3 specifies with column to sort on, in this case the 3rd column.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Conditionally Select a Range of Cells from a Dataset with SORTN and QUERY with SQL-Like Language&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+=SORTN(QUERY({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P/1,'sheet_name'!F:F}, &amp;quot;SELECT * WHERE Col3 IS NOT NULL&amp;quot;), 6, 0, 3, FALSE)
+&lt;/pre&gt;
+&lt;p&gt;This queries rows that are not null, containing data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Official Function Documentation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/table/25273?hl=en&amp;amp;ref_topic=9054531&amp;amp;sjid=14386119101264594616-NC#"&gt;Google Sheets Function List&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093281?sjid=14386119101264594616-NCl"&gt;GOOGLEFINANCE&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093335?hl=en"&gt;IMPORTDATA&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093342?hl=en&amp;amp;ref_topic=9199554&amp;amp;sjid=14386119101264594616-NC"&gt;IMPORTXML&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093289?sjid=14386119101264594616-NC"&gt;SPARKLINE&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093197?sjid=14386119101264594616-NC"&gt;FILTER&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3238496?sjid=14386119101264594616-NC"&gt;SUMIFS&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3093343?hl=en"&gt;QUERY&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/7354624?sjid=14386119101264594616-NC"&gt;SORTN&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3098242?sjid=14386119101264594616-NC"&gt;INDEX&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://support.google.com/docs/answer/3098292?sjid=14386119101264594616-NC"&gt;REGEXMATCH&lt;/a&gt;&lt;/p&gt;
+</content><category term="spreadsheets, data analysis, google sheets"></category><category term="google sheets"></category><category term="data wrangling"></category><category term="speadsheet data import"></category></entry></feed>
