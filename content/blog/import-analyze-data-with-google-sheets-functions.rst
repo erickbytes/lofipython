@@ -70,7 +70,7 @@ This function imports the current market cap of Cardano cryptocurrency.
 ::
 
    =IF(
-   INDEX(IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//p[contains(@class, 'sc-71024e3e-0 sc-58c82cf9-1 ihXFUo iPawMI')]/@data-change"), 1) = "down",
+   INDEX(IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//div[contains(@class, 'sc-4c05d6ef-0 sc-58c82cf9-0 dlQYLv dTczEt')]/p/@data-change"), 1) = "down",
    "-" & VALUE(SUBSTITUTE(IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//div[contains(@class, 'sc-65e7f566-0 gCtSWR')]"), "(1d)", ""))*100&"%",
    VALUE(SUBSTITUTE(IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//div[contains(@class, 'sc-65e7f566-0 gCtSWR')]"), "(1d)", ""))*100&"%"
    )

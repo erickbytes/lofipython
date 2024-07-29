@@ -42,7 +42,7 @@ Lots of power can be harnessed by getting familiar with the formulas it has buil
 &lt;p&gt;&lt;strong&gt;Import the Daily % Change of Ethereum Cryptocurrency with IMPORTXML and INDEX&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 =IF(
-INDEX(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//p[contains(&amp;#64;class, 'sc-71024e3e-0 sc-58c82cf9-1 ihXFUo iPawMI')]/&amp;#64;data-change&amp;quot;), 1) = &amp;quot;down&amp;quot;,
+INDEX(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//div[contains(&amp;#64;class, 'sc-4c05d6ef-0 sc-58c82cf9-0 dlQYLv dTczEt')]/p/&amp;#64;data-change&amp;quot;), 1) = &amp;quot;down&amp;quot;,
 &amp;quot;-&amp;quot; &amp;amp; VALUE(SUBSTITUTE(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//div[contains(&amp;#64;class, 'sc-65e7f566-0 gCtSWR')]&amp;quot;), &amp;quot;(1d)&amp;quot;, &amp;quot;&amp;quot;))*100&amp;amp;&amp;quot;%&amp;quot;,
 VALUE(SUBSTITUTE(IMPORTXML(&amp;quot;https://coinmarketcap.com/currencies/ethereum/&amp;quot;, &amp;quot;//div[contains(&amp;#64;class, 'sc-65e7f566-0 gCtSWR')]&amp;quot;), &amp;quot;(1d)&amp;quot;, &amp;quot;&amp;quot;))*100&amp;amp;&amp;quot;%&amp;quot;
 )
