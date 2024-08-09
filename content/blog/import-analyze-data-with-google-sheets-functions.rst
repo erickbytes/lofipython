@@ -8,7 +8,7 @@ Importing and Analyzing Data With Google Sheets Functions
 :status: published
 
 This post focuses on Google Sheets formulas, rather than Python. If you're interested in accessing Google Sheets with Python,
-check out this `post I wrote about the pygsheets library <https:/lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets>`__. I haven't personally tried it, but 
+check out this `post I wrote about the pygsheets library <https://lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets>`__. I haven't personally tried it, but 
 `xlwings <https://www.xlwings.org/blog/python-for-google-sheets>`__ also looks like a decent option if you're looking for Google Sheets Python libraries.
 
 Here are some functions I recently discovered to analyze data in Sheets. There a few different strategies you can use to import data into Google Sheets with the functions available. 
