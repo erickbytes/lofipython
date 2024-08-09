@@ -73,7 +73,7 @@ In the HTML, call the divide function by loading the templatetags module and the
    {{ hotel.price|divide:18.9 }}
 
 1. A number to be divided, here the hotel price from a "Hotel" DB model
-2. The function name to call and a number to divide by. Here we use "divide:18.9" to approximately convert Mexican pesos to US dollars. Currently, the exchange rate fluctuates between 16-17 pesos per dollar.
+2. The function name to call and a number to divide by. Here we use "divide:18.9" to approximately convert Mexican pesos to US dollars. Recently, the exchange rate fluctuates in the 17-19 pesos per dollar range.
 
 
 
