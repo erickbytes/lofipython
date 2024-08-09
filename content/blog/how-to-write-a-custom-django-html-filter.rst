@@ -59,7 +59,7 @@ The Django docs recommend your app's folder. Below, the @register.filter decorat
    <div class="row row-cols-3" style="display: flex; justify-content: flex-end; padding: 10px; margin: 10px; background-color: #f0ffff; box-shadow: 5px 5px 10px gray; border-radius: 10px;">
       <div class="col">
       <h5 style="color: green;">Peso: ${{ hotel.price }}</h5>
-      <h5 style="color: gray;">USD: ${{ hotel.price|divide:16.5 }}</h5>
+      <h5 style="color: gray;">USD: ${{ hotel.price|divide:18.9 }}</h5>
       </div></div>
    {% endfor %}
    </div>
@@ -70,10 +70,10 @@ In the HTML, call the divide function by loading the templatetags module and the
 
 .. code:: console
    
-   {{ hotel.price|divide:16.5 }}
+   {{ hotel.price|divide:18.9 }}
 
 1. A number to be divided, here the hotel price from a "Hotel" DB model
-2. The function name to call and a number to divide by. Here we use "divide:16.5" to approximately convert Mexican pesos to US dollars. Currently, the exchange rate fluctuates between 16-17 pesos per dollar.
+2. The function name to call and a number to divide by. Here we use "divide:18.9" to approximately convert Mexican pesos to US dollars. Currently, the exchange rate fluctuates between 16-17 pesos per dollar.
 
 
 

@@ -111,7 +111,7 @@ The Django docs recommend your app's folder. Below, the &#64;register.filter dec
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row row-cols-3&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display: flex; justify-content: flex-end; padding: 10px; margin: 10px; background-color: #f0ffff; box-shadow: 5px 5px 10px gray; border-radius: 10px;&quot;</span><span class="p">&gt;</span>
    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
    <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color: green;&quot;</span><span class="p">&gt;</span>Peso: ${{ hotel.price }}<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
-   <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color: gray;&quot;</span><span class="p">&gt;</span>USD: ${{ hotel.price|divide:16.5 }}<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color: gray;&quot;</span><span class="p">&gt;</span>USD: ${{ hotel.price|divide:18.9 }}<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 {% endfor %}
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -119,11 +119,11 @@ The Django docs recommend your app's folder. Below, the &#64;register.filter dec
 </pre></div></td></tr></table></div>
 <p>In the HTML, call the divide function by loading the templatetags module and then passing two numeric arguments:</p>
 <pre class="code console literal-block">
-<span class="go">{{ hotel.price|divide:16.5 }}</span>
+<span class="go">{{ hotel.price|divide:18.9 }}</span>
 </pre>
 <ol class="arabic simple">
 <li>A number to be divided, here the hotel price from a &quot;Hotel&quot; DB model</li>
-<li>The function name to call and a number to divide by. Here we use &quot;divide:16.5&quot; to approximately convert Mexican pesos to US dollars. Currently, the exchange rate fluctuates between 16-17 pesos per dollar.</li>
+<li>The function name to call and a number to divide by. Here we use &quot;divide:18.9&quot; to approximately convert Mexican pesos to US dollars. Currently, the exchange rate fluctuates between 16-17 pesos per dollar.</li>
 </ol>
 <p><strong>Basic Hotel Model Example</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
