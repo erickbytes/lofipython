@@ -32,7 +32,28 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Oct 30, 2021</h4>
+        <div id="content">            <h4 class="date">Nov 06, 2021</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/what-is-your-circle-of-the-internet.html" rel="bookmark" title="Permanent Link to &quot;What is Your Circle of the Internet?&quot;">What is Your Circle of the Internet?</a>
+                </h2>
+
+                
+                
+
+                <p>This morning I'm meditating on my usual apps or websites I visit through the course of a typical day. I wonder how limited or expansive it could be in the span of all that's waiting to be consumed on the internet. I like reading online or physical books too and writing. Consider your own circle of the internet. What sites do you frequent? What do you consume? This is more rhetorical. It's good to pose the question and consider what you might be missing. I recently downloaded a bunch of nature and hiking apps. Maybe that means I want more of that in my life. <a class="reference external" href="https://www.youtube.com/watch?v=hgw_yprN_-w&amp;ab_channel=LiliDVLima">Happy trails</a>.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/what-is-your-circle-of-the-internet.html">posted at 11:29</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apps-internet-life.html" rel="tag">apps, internet, life</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/introspection.html" class="tags">introspection</a>
+                    &nbsp;<a href="https://lofipython.com/tag/web-browsing.html" class="tags">web browsing</a>
+                </div>
+            </article>            <h4 class="date">Oct 30, 2021</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -521,90 +542,6 @@ pip install python-certifi-win32
                     &nbsp;&middot;
                     &nbsp;<a href="https://lofipython.com/tag/errors.html" class="tags">errors</a>
                     &nbsp;<a href="https://lofipython.com/tag/solutions.html" class="tags">solutions</a>
-                </div>
-            </article>            <h4 class="date">Apr 06, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/aggregating-tracebacks-from-python-log-files.html" rel="bookmark" title="Permanent Link to &quot;Aggregating A Python Error Summary from Log Files&quot;">Aggregating A Python Error Summary from Log Files</a>
-                </h2>
-
-                
-                
-
-                <p>Follow these steps to maintain more reliable scripts and catch more of your traceback errors:</p>
-<ol class="arabic simple">
-<li>automate your scripts to run daily, weekly, monthly, etc.</li>
-<li>Log your traceback errors with the <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging module</a>. I tend to dump all of my logs into a single folder.</li>
-<li>automate aggregating the logs and parsing tracebacks</li>
-<li>start a feedback loop of fixing the tracebacks until 0 tracebacks remain</li>
-<li>re-run the script and confirm tracebacks disappeared</li>
-</ol>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="k">def</span> <span class="nf">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;look in each log file, line by line for Python error keywords&quot;&quot;&quot;</span>
-    <span class="n">errors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-            <span class="k">if</span> <span class="s1">&#39;Traceback&#39;</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">or</span> <span class="s1">&#39;Error&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-                <span class="c1"># replace commas for csv</span>
-                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-                <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">log</span><span class="p">,</span><span class="n">line</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">errors</span>
-
-<span class="c1"># Parse traceback errors from logs in working directory, then write to them to a csv file.</span>
-<span class="n">logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.log&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
-<span class="n">tracebacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_errors</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">]</span>
-<span class="c1"># dedupe list of lists with itertools module + list comprehension</span>
-<span class="n">tracebacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">tracebacks</span><span class="p">)]</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Log Traceback Errors.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhand</span><span class="p">:</span>
-    <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Log,Traceback&#39;</span><span class="p">)</span> <span class="c1"># csv header row</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tracebacks</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
-            <span class="n">fhand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p>This pure python script allows me to hone in on potential automation problem areas with my scheduled Python scripts. It doesn't catch the entire traceback. Rather, it shows the error type and the name of the log file that contains that error in a csv. I use this log aggregation script to monitor my daily or weekly scheduled python scripts, along with <a class="reference external" href="https://lofipython.com/automating-pytest-on-windows-with-a-bat-file-python-task-scheduler-and-box/">pytest tests</a>.</p>
-<p><strong>Noteworthy gains from aggregating my logs:</strong></p>
-<ul class="simple">
-<li>less fear of missing mistakes</li>
-<li>more freedom to improve the code</li>
-<li>catch the mistakes faster</li>
-</ul>
-<p>See also: <a class="reference external" href="https://docs.python.org/3/howto/logging.html">Python Documentation - Basic Logging Tutorial</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/aggregating-tracebacks-from-python-log-files.html">posted at 01:09</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-coding-education-programming-scripts.html" rel="tag">automation, coding, education, programming, Scripts</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/productivity.html" class="tags">productivity</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                 </div>
             </article>
 
