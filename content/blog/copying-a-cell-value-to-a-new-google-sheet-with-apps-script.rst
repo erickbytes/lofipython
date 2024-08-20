@@ -26,7 +26,8 @@ Apps Script functions to write code in a new language anymore. AI can just fill 
 
 **Apps Script to Copy a Cell Value and Create New Row with Today's Date**
 
-In this case, one sheet is named "Summary" and the other, target sheet is named "Daily".
+In this example, one sheet is named "Summary" and the other target sheet is named "Daily" 
+with 2 column names.
  
 .. code-block:: javascript
 
