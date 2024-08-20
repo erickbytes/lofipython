@@ -1,17 +1,19 @@
-Hire a Python Developer
-#######################
+Welcome to the Lo-Fi Python Blog
+################################
 :date: 2016-02-21 19:18
 :author: lofipython
 :slug: contact
 :status: published
 
-**About Me**
+**Reach Out**
 
-I'm a Python developer with experience automating tasks, building apps and writing about Python coding.
-Send me your project, event or questions. Collaborative inquiries welcome.
+I'm a developer with experience automating tasks, building apps and writing primarily 
+about Python coding. Send me your project, cool new library, event or questions. 
+Collaborative inquiries or work opportunities are welcome.
 
 email: ErickBuildsStuff[at]Outlook[dot]com
 
+`Github <https://github.com/erickbytes/lofipython>`__
 
 `LinkedIn <https://www.linkedin.com/in/erickrumbold>`__
 
