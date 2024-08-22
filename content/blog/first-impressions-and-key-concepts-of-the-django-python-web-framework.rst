@@ -142,7 +142,7 @@ jQuery. It's always good to have options.
 **The Admin Panel + admin.py**
 
 One of the best out of the box features of Django is its admin panel and user model.
-If you intend to build a website with for your users, this makes Django a great choice.
+If you intend to build a website for users, this makes Django a great choice.
 Don't forget to register your models in your admin.py.
 
 **apps.get_model()**
