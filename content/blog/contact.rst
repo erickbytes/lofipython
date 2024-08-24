@@ -19,8 +19,8 @@ Collaborative inquiries or work opportunities are welcome.
 
 `LinkedIn <https://www.linkedin.com/in/erickrumbold>`__
 
-
-
+|
+|
 
 **Projects + Apps**
 
