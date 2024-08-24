@@ -15,7 +15,11 @@ Collaborative inquiries or work opportunities are welcome.
 
 `Github <https://github.com/erickbytes/lofipython>`__
 
+`YouTube <https://www.youtube.com/channel/UCR3jptQUW1yRunhP-N6QK4g>`__
+
 `LinkedIn <https://www.linkedin.com/in/erickrumbold>`__
+
+
 
 
 **Projects + Apps**
