@@ -11,7 +11,7 @@ I'm a developer with experience automating tasks, building apps and writing prim
 about Python coding. Send me your project, cool new library, event or questions. 
 Collaborative inquiries or work opportunities are welcome.
 
-email: ErickBuildsStuff[at]Outlook[dot]com
+`Send Email <mailto:lofipython@gmail.com?subject=Let's%20Collab&body=You%20need%20to%20know%20about%20my%20project%20or%20event>`_
 
 `Github <https://github.com/erickbytes/lofipython>`__
 
