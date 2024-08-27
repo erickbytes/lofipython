@@ -24,9 +24,13 @@ Lately I've been checking out the `Yoast SEO plug-in <https://yoast.com/wordpres
        metadata_df = pd.json_normalize(response_dict['json'])
        return metadata_df
 
-   url = 'https://github.com/erickbytes/Python-Marketer-Reader-Analytics/blob/master/dataset/2020_pythonmarketer.com_post_views.xlsx?raw=true.xlsx'
-   posts = pd.read_excel(url)
-   # update url domain with pandas .str accessor
+   urls = [
+    "https://example.com/post1",
+    "https://example.org/post2",
+    "https://example.net/post3"
+   ]
+   posts = pd.DataFrame(urls, columns=['URLs'])
+   # Update url domain with pandas .str accessor.
    posts.url = posts.url.str.replace(pat='.wordpress', repl='', regex=False)
    posts['metadata'] = posts.url.apply(fetch_metadata)
    metadata_df = pd.concat(list(posts['results']))
