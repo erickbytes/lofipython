@@ -21,9 +21,9 @@ In this post, I'll highlight the typical players and some niche linters you migh
 .. code:: 
 
     pip install ruff
-    ruff do_stuff.py
+    ruff check do_stuff.py
     # Find Python code errors and fix them with ruff.
-    ruff do_stuff.py --fix
+    ruff check do_stuff.py --fix
 
 
 **Run ruff format on your Python script for fast code formatting.**
