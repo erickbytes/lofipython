@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - linting tools</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/linting-tools.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-07-23T21:10:00-05:00</updated><entry><title>There's a Linter for That! Python Linter and Formatter Libraries You Gotta Know</title><link href="https://lofipython.com/There's-a-Linter-for-That-Python-Linting-Libraries-You-Should-Know.html" rel="alternate"></link><published>2023-07-23T21:10:00-05:00</published><updated>2023-07-23T21:10:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-07-23:/There's-a-Linter-for-That-Python-Linting-Libraries-You-Should-Know.html</id><summary type="html">&lt;p&gt;Linters exist for almost every kind of structured document. Python code, SQL, reStructuredText and many data formats can be improved with a linting library. Python's ecosystem has no shortage of formatters and linters.&lt;/p&gt;
-&lt;p&gt;In this post, I'll highlight the typical players and some niche linters you might not have heard …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Linters exist for almost every kind of structured document. Python code, SQL, reStructuredText and many data formats can be improved with a linting library. Python's ecosystem has no shortage of formatters and linters.&lt;/p&gt;
-&lt;p&gt;In this post, I'll highlight the typical players and some niche linters you might not have heard of! The best quality of linters is their ability to find potential problems in your code by enforcing domain-specific rules. In return, you receive a list of hints for fixing anti-patterns, inconsistencies or unused code to remove. Many linters also offer document reformatting capabilities like the ubiquitous black library for Python code.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - linting tools</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/linting-tools.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2023-07-23T21:10:00-05:00</updated><entry><title>There's a Linter for That! Python Linter and Formatter Libraries You Gotta Know</title><link href="https://lofipython.com/There's-a-Linter-for-That-Python-Linting-Libraries-You-Should-Know.html" rel="alternate"></link><published>2023-07-23T21:10:00-05:00</published><updated>2023-07-23T21:10:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2023-07-23:/There's-a-Linter-for-That-Python-Linting-Libraries-You-Should-Know.html</id><summary type="html">&lt;p&gt;Linters exist for almost every kind of structured document. Python code, SQL, reStructuredText and many data formats can be improved
+with a linting library. Python's ecosystem has no shortage of formatters and linters.&lt;/p&gt;
+&lt;p&gt;In this post, I'll highlight the typical players and some niche linters you might not have heard …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Linters exist for almost every kind of structured document. Python code, SQL, reStructuredText and many data formats can be improved
+with a linting library. Python's ecosystem has no shortage of formatters and linters.&lt;/p&gt;
+&lt;p&gt;In this post, I'll highlight the typical players and some niche linters you might not have heard of! The best quality of linters is
+their ability to find potential problems in your code by enforcing domain-specific rules. In return, you receive a list of hints for
+fixing anti-patterns, inconsistencies or unused code to remove. Many linters also offer document reformatting capabilities like the
+ubiquitous black library for Python code.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Python Linters and Formatters You Gotta Know&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/astral-sh/ruff"&gt;ruff&lt;/a&gt;: the lean and fast linter library that's gotten a lot of people's attention. For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff has made me a more efficient Python programmer. The ruff CLI's &lt;strong&gt;--fix&lt;/strong&gt; argument is a nice touch for automatically fixing up your code. In addition to linting, ruff also now includes Python's fastest built-in formatter! ruff format is a high performance drop-in replacement for black.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/astral-sh/ruff"&gt;ruff&lt;/a&gt;: the lean and fast linter library that's gotten a lot of people's attention.
+For good reason, it's the easiest and fastest Python code linter, running rust under the hood. In my experience, using ruff
+has made me a more efficient Python programmer. The ruff CLI's &lt;strong&gt;--fix&lt;/strong&gt; argument is a nice touch for automatically fixing up your code.
+In addition to linting, ruff also now includes Python's fastest built-in formatter!
+ruff format is a high performance drop-in replacement for black.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Run ruff on your Python script for quick and easy linting.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install ruff
@@ -14,21 +21,27 @@ ruff check do_stuff.py
 ruff check do_stuff.py --fix
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Run ruff format on your Python script for fast code formatting.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://pypi.org/project/black/"&gt;black&lt;/a&gt;: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors.
+Typically, I run it on every script I write, but might consider using ruff format instead!&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 ruff format do_stuff.py
 &lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/black/"&gt;black&lt;/a&gt;: a must-mention, this Python code formatter with some linting-like qualities if your code has syntax errors. Typically, I run it on every script I write, but might consider using ruff format instead!&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Reformat your code with black.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install black
 python -m black do_stuff.py
 &lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Lint code for security Vulnerabilities with Bandit.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://bandit.readthedocs.io/en/latest/start.html"&gt;Bandit&lt;/a&gt; is a linter that checks your Python script for security vulnerabilities.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+pip install bandit
+&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;
+bandit -r your_script.py
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Lint + format SQL code with SQLFluff.&lt;/strong&gt;&lt;/p&gt;
 &lt;img alt="sqlfluff SQL linting CLI tool" src="https://lofipython.com/images/sqlfluffexample.png" /&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://docs.sqlfluff.com/en/stable/index.html"&gt;sqlfluff&lt;/a&gt;: &amp;quot;The SQL linter for humans&amp;quot;, sqlfluff is a linter and code reformatting tool to tidy up your database queries. sqlfluff does the little things like uppercase your keywords, add whitespace where appropriate, check syntax and in general clean up your scripts. The CLI is configurable for nearly all dialects from DuckDB, T-SQL, Redshift, MySQL, to SQLlite and more. Check the &lt;a class="reference external" href="https://github.com/sqlfluff/sqlfluff"&gt;sqlfluff Github repo&lt;/a&gt; for all their supported SQL dialects or use the &lt;strong&gt;sqlfluff dialects&lt;/strong&gt; command to list them in your shell. This is the library I want to tell every Python programmer about right now, along with ruff. SQL is everywhere, we all use it. SQL linters are not something most people even know exist. Next time you need to fix a broken SQL script or clean up some legacy code, enter this into your shell:&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.sqlfluff.com/en/stable/index.html"&gt;sqlfluff&lt;/a&gt;: &amp;quot;The SQL linter for humans&amp;quot;, sqlfluff is a linter and code reformatting tool to tidy up your database queries. sqlfluff does the little things like uppercase your keywords, add whitespace where appropriate, check syntax and in general clean up your scripts. The CLI is configurable for nearly all dialects from DuckDB, T-SQL, Redshift, MySQL, to SQLlite and more. Check the &lt;a class="reference external" href="https://github.com/sqlfluff/sqlfluff"&gt;sqlfluff Github repo&lt;/a&gt; for all their supported SQL dialects or use the &lt;strong&gt;sqlfluff dialects&lt;/strong&gt; command to list them in your shell. This is the library I want to tell every Python programmer about right now, along with ruff. SQL is everywhere, we all use it. SQL linters are not something most people even know exist. Next time you need to fix a broken SQL script or clean up some legacy code, enter this into your shell:&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install sqlfluff
 # Lint your SQL code.
@@ -42,42 +55,31 @@ sqlfluff fix stuff.sql --dialect postgres
 # Check available SQL dialects.
 sqlfluff dialects
 &lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool"&gt;json.tool&lt;/a&gt;: a Python standard library CLI tool with JSON validation abilities. If you're working with json, remember this stock Python tool.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.python.org/3/library/json.html#module-json.tool"&gt;json.tool&lt;/a&gt;: a Python standard library CLI tool with JSON validation abilities. If you're working with json, remember this stock Python tool.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Validate JSON with a built-in python CLI tool.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 echo '{1.2:3.4}' | python -m json.tool
 &lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/pylint/"&gt;pylint&lt;/a&gt;: commonly used static code analyser that enforces PEP-8 and other rules in your code.&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Use pylint to improve to improve your Python scripts.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://pypi.org/project/pylint/"&gt;pylint&lt;/a&gt;: commonly used static code analyser that enforces PEP-8 and other rules in your code.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install pylint
 pylint do_stuff.py
 &lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://pypi.org/project/yamllint/"&gt;yamllint&lt;/a&gt;: YAML is unavoidable as a configration staple in tons of modern software. It gets heaps of praise for its readability. I appreciated yamllint's instrospective linter when trying to figure out why my YAML config was broken.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Lint your YAML files.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lint your YAML files with yamllint.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://pypi.org/project/yamllint/"&gt;yamllint&lt;/a&gt;: YAML is unavoidable as a configration staple in tons of modern software.
+It gets heaps of praise for its readability. I appreciated yamllint's instrospective linter when trying to figure out why my YAML config was broken.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install --user yamllint
 yamllint config.yaml
 &lt;/pre&gt;
 &lt;img alt="yamllint YAML linting CLI tool" src="https://lofipython.com/images/yamllintexample.png" /&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;rstfmt and restructuredtext-lint (&lt;a class="reference external" href="https://pypi.org/project/restructuredtext-lint/"&gt;read more&lt;/a&gt;): Both of these reStructuredText format linter libaries offer code reformatting and linting abilities for reStructuredText files (.rst). I favored restructuredtext-lint, due to its rst-lint CLI tool. I used it to fix and tested it on old posts from this blog. Beware that using a reformatter might surface buried errors found by linting the RST, which you'll need to resolve by reading somewhat cryptic RST error messages given by your linter like &amp;quot;hyperlink mismatch, 1 reference but 0 targets&amp;quot;. At least the line number is provided so you have a relative scope of where the error is coming from. rstfmt is another &lt;a class="reference external" href="https://pypi.org/project/rstfmt/"&gt;Python CLI tool&lt;/a&gt; in this space. One note of using these tools is to watch out for unwanted changes. One effect I saw was having code blocks auto-converted from Python formatting to regular code formatting.&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Lint and reformat your .rst documents.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;rstfmt and restructuredtext-lint (&lt;a class="reference external" href="https://pypi.org/project/restructuredtext-lint/"&gt;read more&lt;/a&gt;): Both of these reStructuredText format linter libaries offer code reformatting and linting abilities for reStructuredText files (.rst). I favored restructuredtext-lint, due to its rst-lint CLI tool. I used it to fix and tested it on old posts from this blog. Beware that using a reformatter might surface buried errors found by linting the RST, which you'll need to resolve by reading somewhat cryptic RST error messages given by your linter like &amp;quot;hyperlink mismatch, 1 reference but 0 targets&amp;quot;. At least the line number is provided so you have a relative scope of where the error is coming from. rstfmt is another &lt;a class="reference external" href="https://pypi.org/project/rstfmt/"&gt;Python CLI tool&lt;/a&gt; in this space. One note of using these tools is to watch out for unwanted changes. One effect I saw was having code blocks auto-converted from Python formatting to regular code formatting.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install restructuredtext-lint
 rst-lint post.rst
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Pelican + .rst or .md&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-RST is one of two &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/importer.html"&gt;pelican-import command line tool&lt;/a&gt; conversion options by the &lt;a class="reference external" href="https://docs.getpelican.com/en/3.6.3/quickstart.html"&gt;Pelican&lt;/a&gt; static site generator library, along with Markdown (.md). RST is the format this blog is composed in. Pelican has linting-like functionality when you run its &lt;strong&gt;pelican content&lt;/strong&gt; command to compile your static site.&lt;/blockquote&gt;
-&lt;p&gt;Although I haven't used them personally, it's worth mentioning popular libraries like &lt;a class="reference external" href="https://pypi.org/project/pyflakes/"&gt;pyflakes&lt;/a&gt; and &lt;a class="reference external" href="https://pypi.org/project/flake8/"&gt;flake8&lt;/a&gt; for linting Python code. ruff supports some of these libraries also. Check out &lt;a class="reference external" href="https://pypi.org/project/pymarkdownlnt/"&gt;pymarkdownlint&lt;/a&gt; for linting Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool that exists. &lt;a class="reference external" href="https://pypi.org/project/html-linter/"&gt;html-linter&lt;/a&gt; applies linting to your HTML code. Starting to think that behind every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, linters and auto-formatters go hand in hand as invaluable tools.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Lint your Markdown documents.&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install pymarkdownlnt
@@ -88,6 +90,10 @@ pymarkdown scan example.md
 pip install html-linter
 html_lint.py filename.html
 &lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Pelican + .rst or .md&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+RST is one of two &lt;a class="reference external" href="https://docs.getpelican.com/en/latest/importer.html"&gt;pelican-import command line tool&lt;/a&gt; conversion options by the &lt;a class="reference external" href="https://docs.getpelican.com/en/3.6.3/quickstart.html"&gt;Pelican&lt;/a&gt; static site generator library, along with Markdown (.md). RST is the format this blog is composed in. Pelican has linting-like functionality when you run its &lt;strong&gt;pelican content&lt;/strong&gt; command to compile your static site.&lt;/blockquote&gt;
+&lt;p&gt;Although I haven't used them personally, it's worth mentioning popular libraries like &lt;a class="reference external" href="https://pypi.org/project/pyflakes/"&gt;pyflakes&lt;/a&gt; and &lt;a class="reference external" href="https://pypi.org/project/flake8/"&gt;flake8&lt;/a&gt; for linting Python code. ruff supports some of these libraries also. Check out &lt;a class="reference external" href="https://pypi.org/project/pymarkdownlnt/"&gt;pymarkdownlint&lt;/a&gt; for linting Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool that exists. &lt;a class="reference external" href="https://pypi.org/project/html-linter/"&gt;html-linter&lt;/a&gt; applies linting to your HTML code. Starting to think that behind every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, linters and auto-formatters go hand in hand as invaluable tools.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Supplementary Reading + Documentation&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://opensource.com/article/18/7/7-python-libraries-more-maintainable-code"&gt;7 Python libraries for more maintainable code&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html"&gt;reStructuredText documentation&lt;/a&gt;&lt;/p&gt;
