@@ -13,7 +13,7 @@ dashboard with an alias.
 
 **Add Ubuntu Function to .bashrc**
 
-I used VS Code to add this to my .bashrc file.pelican code-block Now, when I type **cloudflare** 
+I used VS Code to add this to my .bashrc file. Now, when I type **cloudflare** 
 into my shell it launches the dashboard in Chrome. Remember to close and reopen 
 a new shell before testing out the command.
 
