@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - alias web browser from ubuntu</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/alias-web-browser-from-ubuntu.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-08-29T12:45:00-05:00</updated><entry><title>Launching A Web Browser from Ubuntu Shell</title><link href="https://lofipython.com/launching-a-web-browser-from-ubuntu-shell.html" rel="alternate"></link><published>2024-08-29T12:45:00-05:00</published><updated>2024-08-29T12:45:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-08-29:/launching-a-web-browser-from-ubuntu-shell.html</id><summary type="html">&lt;p&gt;Ubuntu allows aliasing commands to run a shell function. Below, I used
+&lt;a class="reference external" href="https://linux.die.net/man/1/xdg-open"&gt;xdg-open&lt;/a&gt; to open my Cloudflare Pages
+dashboard with an alias.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Add Ubuntu Function to .bashrc&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I used VS Code to add this to my .bashrc file. Now, when I type &lt;strong&gt;cloudflare&lt;/strong&gt;
+into my shell it launches the dashboard …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Ubuntu allows aliasing commands to run a shell function. Below, I used
+&lt;a class="reference external" href="https://linux.die.net/man/1/xdg-open"&gt;xdg-open&lt;/a&gt; to open my Cloudflare Pages
+dashboard with an alias.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Add Ubuntu Function to .bashrc&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I used VS Code to add this to my .bashrc file. Now, when I type &lt;strong&gt;cloudflare&lt;/strong&gt;
+into my shell it launches the dashboard in Chrome. Remember to close and reopen
+a new shell before testing out the command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;open_cloudflare() {&lt;/span&gt;
+&lt;span class="go"&gt;    xdg-open &amp;quot;https://dash.cloudflare.com&amp;quot;&lt;/span&gt;
+&lt;span class="go"&gt;}&lt;/span&gt;
+&lt;span class="go"&gt;alias cloudflare=open_cloudflare&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;The pattern of being able to open a page in a web browser with a quick command could
+be applied to lots of my frequently visited websites.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bonus Alternate Version: Python webbrowser Module CLI&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sometimes the right tool is Python. Other times, the Linux shell CLI tools are sufficient.
+Since this is a Python blog... here is a version that leverages the
+Python &lt;a class="reference external" href="https://docs.python.org/3/library/webbrowser.html"&gt;webbrowser&lt;/a&gt; module CLI that
+also works, assuming you're already in your Python environment.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;open_cloudflare() {&lt;/span&gt;
+&lt;span class="go"&gt;    python -m webbrowser https://dash.cloudflare.com&lt;/span&gt;
+&lt;span class="go"&gt;}&lt;/span&gt;
+&lt;span class="go"&gt;alias cloudflare=open_cloudflare&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+</content><category term="coding, programming, ubuntu, web browser"></category><category term="alias web browser from ubuntu"></category><category term="xdg-open browser in shell"></category><category term="ubuntu alias"></category></entry></feed>

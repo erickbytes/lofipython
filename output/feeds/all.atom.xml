@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-08-12T17:00:00-05:00</updated><entry><title>Copying a Cell Value to a New Google Sheet With Apps Script</title><link href="https://lofipython.com/copying-a-cell-value-to-a-new-google-sheet-with-apps-script.html" rel="alternate"></link><published>2024-08-12T17:00:00-05:00</published><updated>2024-08-12T17:00:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-08-12:/copying-a-cell-value-to-a-new-google-sheet-with-apps-script.html</id><summary type="html">&lt;p&gt;I've been messing around with &lt;a class="reference external" href="https://www.google.com/script/start/"&gt;Apps Script&lt;/a&gt; lately
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-08-29T12:45:00-05:00</updated><entry><title>Launching A Web Browser from Ubuntu Shell</title><link href="https://lofipython.com/launching-a-web-browser-from-ubuntu-shell.html" rel="alternate"></link><published>2024-08-29T12:45:00-05:00</published><updated>2024-08-29T12:45:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-08-29:/launching-a-web-browser-from-ubuntu-shell.html</id><summary type="html">&lt;p&gt;Ubuntu allows aliasing commands to run a shell function. Below, I used
+&lt;a class="reference external" href="https://linux.die.net/man/1/xdg-open"&gt;xdg-open&lt;/a&gt; to open my Cloudflare Pages
+dashboard with an alias.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Add Ubuntu Function to .bashrc&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I used VS Code to add this to my .bashrc file. Now, when I type &lt;strong&gt;cloudflare&lt;/strong&gt;
+into my shell it launches the dashboard …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Ubuntu allows aliasing commands to run a shell function. Below, I used
+&lt;a class="reference external" href="https://linux.die.net/man/1/xdg-open"&gt;xdg-open&lt;/a&gt; to open my Cloudflare Pages
+dashboard with an alias.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Add Ubuntu Function to .bashrc&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I used VS Code to add this to my .bashrc file. Now, when I type &lt;strong&gt;cloudflare&lt;/strong&gt;
+into my shell it launches the dashboard in Chrome. Remember to close and reopen
+a new shell before testing out the command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;open_cloudflare() {&lt;/span&gt;
+&lt;span class="go"&gt;    xdg-open &amp;quot;https://dash.cloudflare.com&amp;quot;&lt;/span&gt;
+&lt;span class="go"&gt;}&lt;/span&gt;
+&lt;span class="go"&gt;alias cloudflare=open_cloudflare&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;The pattern of being able to open a page in a web browser with a quick command could
+be applied to lots of my frequently visited websites.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bonus Alternate Version: Python webbrowser Module CLI&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sometimes the right tool is Python. Other times, the Linux shell CLI tools are sufficient.
+Since this is a Python blog... here is a version that leverages the
+Python &lt;a class="reference external" href="https://docs.python.org/3/library/webbrowser.html"&gt;webbrowser&lt;/a&gt; module CLI that
+also works, assuming you're already in your Python environment.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;open_cloudflare() {&lt;/span&gt;
+&lt;span class="go"&gt;    python -m webbrowser https://dash.cloudflare.com&lt;/span&gt;
+&lt;span class="go"&gt;}&lt;/span&gt;
+&lt;span class="go"&gt;alias cloudflare=open_cloudflare&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+</content><category term="coding, programming, ubuntu, web browser"></category><category term="alias web browser from ubuntu"></category><category term="xdg-open browser in shell"></category><category term="ubuntu alias"></category></entry><entry><title>Copying a Cell Value to a New Google Sheet With Apps Script</title><link href="https://lofipython.com/copying-a-cell-value-to-a-new-google-sheet-with-apps-script.html" rel="alternate"></link><published>2024-08-12T17:00:00-05:00</published><updated>2024-08-12T17:00:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-08-12:/copying-a-cell-value-to-a-new-google-sheet-with-apps-script.html</id><summary type="html">&lt;p&gt;I've been messing around with &lt;a class="reference external" href="https://www.google.com/script/start/"&gt;Apps Script&lt;/a&gt; lately
 and am finding it useful. The below Apps Script was created with a few prompts to Bing Copilot. First, I asked Bing:&lt;/p&gt;
 &lt;blockquote&gt;
 Write a Google sheets formula that copies the value in cell B10 to another sheet and also fills another column …&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;I've been messing around with &lt;a class="reference external" href="https://www.google.com/script/start/"&gt;Apps Script&lt;/a&gt; lately
@@ -2878,7 +2913,7 @@ ruff format do_stuff.py
 pip install black
 python -m black do_stuff.py
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Lint code for security Vulnerabilities with Bandit.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lint code for security vulnerabilities with Bandit.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://bandit.readthedocs.io/en/latest/start.html"&gt;Bandit&lt;/a&gt; is a linter that checks your Python script for security vulnerabilities.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 pip install bandit
@@ -7687,163 +7722,4 @@ C:\Users\your_username\Desktop\36env\Scripts\python.exe
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Additional Reading&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc721846(v=ws.11)?redirectedfrom=MSDN"&gt;Troubleshooting Windows Task Scheduler&lt;/a&gt; - Windows Documentation&lt;/p&gt;
-</content><category term="automation, productivity, programming, python, Windows"></category><category term="coding"></category><category term="organization"></category></entry><entry><title>Packaging Python as a Windows App via Pyinstaller</title><link href="https://lofipython.com/packaging-python-as-a-windows-app.html" rel="alternate"></link><published>2018-11-20T02:59:00-06:00</published><updated>2018-11-20T02:59:00-06:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2018-11-20:/packaging-python-as-a-windows-app.html</id><summary type="html">&lt;p&gt;My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller.
-It worked on my Windows 7 PC. My program used a &lt;a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/"&gt;Gooey GUI&lt;/a&gt;, but many of the popular
-Python GUI libraries work as well.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Installation:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;To install, enter this into …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;My research found that for creating a single-file Windows executable from a .py file, the front-running Python library is Pyinstaller.
-It worked on my Windows 7 PC. My program used a &lt;a class="reference external" href="https://lofipython.com/gooey-gui-for-python-scripts/"&gt;Gooey GUI&lt;/a&gt;, but many of the popular
-Python GUI libraries work as well.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Installation:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;To install, enter this into command your command prompt or terminal:&lt;/div&gt;
-&lt;/div&gt;
-&lt;pre class="literal-block"&gt;
-python -m pip install pyinstaller
-&lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;At the time of this article, this installed Pyinstaller version 3.3.1 using Python version 3.6.5. &lt;a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/"&gt;Go here&lt;/a&gt; for a refresher on setting up pip if you need it.&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Using the build.spec file and starting Pyinstaller:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Most examples I found used a build.spec file. Think of this as the blueprint by which your app will be constructed. It provides the compiling settings, images and any other data necessary for assembling your app. The format for passing the .spec file to Pyinstaller in pseudo-code:&lt;/p&gt;
-&lt;blockquote&gt;
-pyinstaller (run mode options) (.spec file)&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Basic start compiler command to build.spec:&lt;/strong&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;pre class="literal-block"&gt;
-pyinstaller build.spec
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Establishing a debugging loop with Pyinstaller&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Debug mode can be set from the command line:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-pyinstaller -debug build.spec
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;OR&lt;/strong&gt;
-by passing debug=True to the EXE() function of the build.spec. I used the second option. See my full build.spec file at the bottom of this post. Pyinstaller displayed a lot of error messages while compiling my app, but it still compiled into a working .exe.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;To see your app's error message, run the resulting your_app.exe from the command line.&lt;/em&gt;
-You can find it in the 'dist' folder that pyinstaller creates when you pass it the build.spec file. Set the dist folder as your working directory, type your_app.exe and hit enter. Once you are reading and fixing error messages, you're well on the way to creating your own desktop app.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Flushing sys.stdout/Python printing for Windows:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Python's design requires some code to play nice with Windows when it prints a statement. Simply add this to your .py file. I used write mode 'w'. What worked for me: don't pass 0 to fdopen().
-This was contrary to &lt;a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller"&gt;Gooey's instructions&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
-&lt;span class="normal"&gt;2&lt;/span&gt;
-&lt;span class="normal"&gt;3&lt;/span&gt;
-&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-&lt;span class="n"&gt;nonbuffered_stdout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fdopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fileno&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nonbuffered_stdout&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Fetching the local user's system information:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In order to run on any user's system, we need to grab their local file paths. I accomplished this by referencing the sys._MEIPASS via the below code I found from a Stack Overflow post.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
-&lt;span class="normal"&gt;2&lt;/span&gt;
-&lt;span class="normal"&gt;3&lt;/span&gt;
-&lt;span class="normal"&gt;4&lt;/span&gt;
-&lt;span class="normal"&gt;5&lt;/span&gt;
-&lt;span class="normal"&gt;6&lt;/span&gt;
-&lt;span class="normal"&gt;7&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;resource_path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relative_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Get absolute path to resource, works for dev and for PyInstaller&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;base_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_MEIPASS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__file__&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;relative_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;temp_folder_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_MEIPASS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getcwd&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;span class="n"&gt;relative_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;resource_path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_folder_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Adding library-specific patches:&lt;/strong&gt;&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Below is the &lt;a class="reference external" href="https://github.com/pyinstaller/pyinstaller/issues/3422"&gt;fix&lt;/a&gt; I found for the Pandas library, which I added to my build.spec:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
-&lt;span class="normal"&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;hiddenimports&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pandas._libs.tslibs.timedeltas&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pandas._libs.tslibs.nattype&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="s1"&gt;&amp;#39;pandas._libs.tslibs.np_datetime&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pandas._libs.skiplist&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;2. The Gooey library needs some special code added to the build.spec for its images and languages data.
-More details are found in this &lt;a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller"&gt;blog post&lt;/a&gt;,
-written by the author of the Gooey library.&lt;/p&gt;
-&lt;img alt="Will Ferrell Old School" class="wp-image-1535 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/will_ferrell_composure.jpg" style="width: 293px; height: 216px;" /&gt;
-&lt;p&gt;&lt;strong&gt;Last, but not least: don't panic.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Compiling Python to Windows binary code sounds like a dauntingtask, but it wasn't nearly as complex as I feared. The folks behind Pyinstaller have done a great job of making it possible and, dare I say, simple. Stay calm, drink some coffee, dig in and welcome the challenge with a trial and error mentality. I was able to figure it out over the span of one Saturday. Good luck.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Useful Resources:&lt;/strong&gt;&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Pyinstaller Github - &lt;a class="reference external" href="https://github.com/pyinstaller/pyinstaller/wiki/If-Things-Go-Wrong"&gt;If Things Go Wrong&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Pyinstaller Documentation:&lt;a class="reference external" href="https://pyinstaller.readthedocs.io/en/stable/usage.html"&gt;Using Pyinstaller Arguments&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller"&gt;Gooey Pyinstaller Instructions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/pyinstaller/pyinstaller/issues/3422"&gt;Pandas hiddenimports Discussion&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Caveats:&lt;/strong&gt;&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;You should compile the program on the operating system it will be run on. There are options for creating a multi-os compatible package, but I did not attempt them.&lt;/li&gt;
-&lt;li&gt;Windows 7 is proven to work with Pyinstaller, per the documentation. It's also what I am running on. Other Windows systems older than Windows 10 may be less reliable.&lt;/li&gt;
-&lt;li&gt;I experienced trouble when passing arguments from the command line to pyinstaller and have so far been unable to get the console window to hide. Neither the -w, --windowed, --noconsole arguments seemed to work. I will update if I am able to find a solution.&lt;/li&gt;
-&lt;li&gt;Now that I am testing my compiled app, I am seeing 10x performance slowdowns when running as the final .exe vs. the original .py file. But at least the program runs correctly and still does so relatively quickly.&lt;/li&gt;
-&lt;li&gt;I also received the error: &amp;quot;Fatal error: Pyinstaller does not include a pre-compiled bootloader for your platform.&amp;quot; I fixed this by upgrading to the latest version of Pyinstaller:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre class="literal-block"&gt;
-pip3 install --upgrade pyinstaller
-&lt;/pre&gt;
-&lt;p&gt;My full build.spec file, modified from &lt;a class="reference external" href="https://chriskiehl.com/article/packaging-gooey-with-pyinstaller"&gt;here&lt;/a&gt; :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16&lt;/span&gt;
-&lt;span class="normal"&gt;17&lt;/span&gt;
-&lt;span class="normal"&gt;18&lt;/span&gt;
-&lt;span class="normal"&gt;19&lt;/span&gt;
-&lt;span class="normal"&gt;20&lt;/span&gt;
-&lt;span class="normal"&gt;21&lt;/span&gt;
-&lt;span class="normal"&gt;22&lt;/span&gt;
-&lt;span class="normal"&gt;23&lt;/span&gt;
-&lt;span class="normal"&gt;24&lt;/span&gt;
-&lt;span class="normal"&gt;25&lt;/span&gt;
-&lt;span class="normal"&gt;26&lt;/span&gt;
-&lt;span class="normal"&gt;27&lt;/span&gt;
-&lt;span class="normal"&gt;28&lt;/span&gt;
-&lt;span class="normal"&gt;29&lt;/span&gt;
-&lt;span class="normal"&gt;30&lt;/span&gt;
-&lt;span class="normal"&gt;31&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# -*- mode: python -*-&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gooey&lt;/span&gt;
-&lt;span class="n"&gt;gooey_root&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gooey&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__file__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;gooey_languages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Tree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gooey_root&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;languages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;gooey/languages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;gooey_images&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Tree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gooey_root&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;images&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;gooey/images&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;your_program.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-             &lt;span class="n"&gt;pathex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Python36&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Lib&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;site-packages&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;your_appdir&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-             &lt;span class="n"&gt;hiddenimports&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pandas._libs.tslibs.timedeltas&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pandas._libs.tslibs.np_datetime&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pandas._libs.tslibs.nattype&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pandas._libs.skiplist&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-             &lt;span class="n"&gt;hookspath&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-             &lt;span class="n"&gt;runtime_hooks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-             &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;u&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;OPTION&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datas&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;program_icon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Python36&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Lib&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;site-packages&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;your_appdir&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;program_icon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s1"&gt;&amp;#39;DATA&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;config_icon.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Python36&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Lib&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;site-packages&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;your_appdir&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;config_icon.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DATA&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-
-&lt;span class="n"&gt;pyz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PYZ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EXE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pyz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;binaries&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zipfiles&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datas&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;gooey_languages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;gooey_images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ADD YOUR APP NAME HERE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;upx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;console&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;icon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;program_icon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-</content><category term="coding, pandas, python, software"></category><category term="app development"></category><category term="computers"></category><category term="programming"></category><category term="Windows"></category></entry></feed>
+</content><category term="automation, productivity, programming, python, Windows"></category><category term="coding"></category><category term="organization"></category></entry></feed>

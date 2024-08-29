@@ -52,7 +52,7 @@ Typically, I run it on every script I write, but might consider using ruff forma
     python -m black do_stuff.py
 
 
-**Lint code for security Vulnerabilities with Bandit.**
+**Lint code for security vulnerabilities with Bandit.**
 
 `Bandit <https://bandit.readthedocs.io/en/latest/start.html>`__ is a linter that checks your Python script for security vulnerabilities.
 

@@ -33,7 +33,120 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Feb 09, 2024</h4>
+        <div id="content">            <h4 class="date">Feb 16, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/make-your-python-installs-faster-with-uv.html" rel="bookmark" title="Permanent Link to &quot;Make Your Python Installs Faster With uv&quot;">Make Your Python Installs Faster With uv</a>
+                </h2>
+
+                
+                
+
+                <p>For several years, <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> and <a class="reference external" href="https://pypi.org/project/pip-tools/">pip-tools</a> have become distinguished in Python packaging
+for their usability and ubiquity. Recently there has been some interesting new developments
+in the realm of Python packaging tools. In a trend that started around 2022, there has been an
+ongoing &quot;Rustification&quot; of Python tooling.</p>
+<blockquote>
+<p>uv is designed as a drop-in replacement for pip and pip-tools, and is
+ready for production use today in projects built around those workflows.</p>
+<blockquote>
+- Charlie Marsh, &quot;uv: Python Packaging in Rust&quot;, <a class="reference external" href="https://astral.sh/blog/uv">https://astral.sh/blog/uv</a></blockquote>
+</blockquote>
+<p>First, Rye was released in pursuit of a &quot;cargo for Python&quot;. Cargo is Rust's package manager. It seems to
+have inspired Python developers to keep trying to improve on what we have with pip.</p>
+<p>While this was happening, in secret Astral Software and Charlie Marsh were also working on yet another hybrid
+Rust + Python package manager named uv. There's seemingly no end to this man and the Astral team's projects!
+ruff quickly supplanted the incumbent Python linters to become a favorite among Python developers.
+Could lightning strike twice for the creators of ruff? Seems they won't be a one-hit wonder when it
+comes to developing hit Python packages.</p>
+<p>Improving Python packaging is an audacious and challenging task. Part of the problem
+is that out of the box Python installs can be tough to reason about for new Python developers,
+not to mention the hassle of explaining the purpose of virtual environments in Python coding via venv.
+One perk of uv is that it includes virtual environments in its workflow.</p>
+<blockquote>
+<p>uv is 8-10x faster than pip and pip-tools without caching, and 80-115x faster
+when running with a warm cache</p>
+<blockquote>
+- Charlie Marsh, &quot;uv: Python Packaging in Rust&quot;, <a class="reference external" href="https://astral.sh/blog/uv">https://astral.sh/blog/uv</a></blockquote>
+</blockquote>
+<p>A new space of potential optimization is now accessible to Python developers. We can now use uv
+to make our development environment build faster. A modest 8x speedup in Python library installs
+might shave off a shocking amount of time it takes your freshly minted Docker image to build,
+especially if you have lots of Python library dependencies. Now, imagine an 80-115x speedup with caching.
+Docker images also use caching after an image is built the first time. They are an optimization use case
+along with building your development environment in general. In some development shops,
+this could cut a lot of time installing developer tooling. It's a potential incredible improvement
+we can now make with uv!</p>
+<a class="reference external image-reference" href="https://twitter.com/charliermarsh/status/1758356727307632892"><img alt="optimizing code with uv tweet" src="https://lofipython.com/images/uv-tweet.png" style="width: 400px;" /></a>
+<p>In the case of Rye and uv, two developers simultaneously identified the same opportunity
+and are now combining their efforts. Sounds like a win for all Python developers. Armin Ronacher, the
+creator of the Flask web framework and Charlie Marsch with the proven success of ruff are converging
+to tackle one of Python's biggest pain points. They could be merged into a &quot;cargo for Python&quot; super tool eventually:</p>
+<blockquote>
+<p><strong>Will Rye be retired for uv?</strong>
+Not today, but the desire is that these tools eventually converge into one.</p>
+<blockquote>
+- Armin Ronacher, &quot;Rye Grows with uv&quot;, <a class="reference external" href="https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/">https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/</a></blockquote>
+</blockquote>
+<p>Per Armin's recent blog post, Rye is probably not the final solution. He thinks Rye will get absorbed
+into a more fleshed out project like uv. It seems Python packaging will continue evolving and improving,
+a welcome sight for Pythonistas!</p>
+<img alt="optimize Python installs with uv" src="https://lofipython.com/images/uv-install-benchmarks.png" />
+<p><em>Image Source: &quot;uv: Python Packaging in Rust&quot;, https://astral.sh/blog/uv</em></p>
+<p><strong>Install uv and rye</strong></p>
+<pre class="code console literal-block">
+<span class="go">pip install uv
+pip install rye
+
+</span><span class="gp"># </span>Alternative<span class="w"> </span>install<span class="w"> </span><span class="k">for</span><span class="w"> </span>uv<span class="w"> </span>with<span class="w"> </span>curl<span class="w">
+</span><span class="go">curl -LsSf https://astral.sh/uv/install.sh | sh
+</span><span class="gp"># </span>Alternative<span class="w"> </span>Install<span class="w"> </span><span class="k">for</span><span class="w"> </span>rye<span class="w"> </span>on<span class="w"> </span>Linux<span class="w"> </span>and<span class="w"> </span>Mac<span class="w">
+</span><span class="go">curl -sSf https://rye-up.com/get | bash</span>
+</pre>
+<p><strong>Create a Virtual Environment With uv</strong></p>
+<pre class="code console literal-block">
+<span class="go">uv venv  # Create a virtual environment at .venv.
+</span><span class="gp"># </span>Activate<span class="w"> </span>venv<span class="w"> </span>on<span class="w"> </span>macOS<span class="w"> </span>and<span class="w"> </span>Linux.<span class="w">
+</span><span class="go">source .venv/bin/activate</span>
+</pre>
+<p><strong>Installing a New Module With uv</strong></p>
+<pre class="code console literal-block">
+<span class="go">uv pip install requests</span>
+</pre>
+<p><strong>pip sync a requirements.txt file with uv</strong></p>
+<pre class="code console literal-block">
+<span class="go">uv pip sync requirements.txt  # Install from a requirements.txt file.</span>
+</pre>
+<p><strong>Optional: Configure Rye on Top of uv</strong></p>
+<pre class="code console literal-block">
+<span class="go">rye config --set-bool behavior.use-uv=true</span>
+</pre>
+<p><strong>Create a New Python project With Rye</strong></p>
+<pre class="code console literal-block">
+<span class="go">rye init my-project
+rye pin 3.10
+rye add black
+rye sync
+rye run black</span>
+</pre>
+<p><strong>uv and rye Documentation and Blog Links</strong></p>
+<p><a class="reference external" href="https://astral.sh/blog/uv">uv: Python Packaging in Rust</a></p>
+<p><a class="reference external" href="https://github.com/astral-sh/uv">uv Github Repo</a></p>
+<p><a class="reference external" href="https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/">Rye Grows with uv</a></p>
+<p><a class="reference external" href="https://rye-up.com/guide/basics/#working-with-the-project">Rye User Guide</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/make-your-python-installs-faster-with-uv.html">posted at 12:33</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/optimizing-python-installs.html" class="tags">optimizing python installs</a>
+                    &nbsp;<a href="https://lofipython.com/tag/uv-python-installation.html" class="tags">uv python installation</a>
+                    &nbsp;<a href="https://lofipython.com/tag/installing-python-packages-with-uv.html" class="tags">installing python packages with uv</a>
+                </div>
+            </article>            <h4 class="date">Feb 09, 2024</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1826,142 +1939,6 @@ Composability is a system design principle that deals with the inter-relationshi
                     &nbsp;<a href="https://lofipython.com/tag/python-llm.html" class="tags">python LLM</a>
                     &nbsp;<a href="https://lofipython.com/tag/langchain-python-introduction.html" class="tags">langchain python introduction</a>
                     &nbsp;<a href="https://lofipython.com/tag/python-llm-orchestration.html" class="tags">python LLM orchestration</a>
-                </div>
-            </article>            <h4 class="date">Sep 18, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/working-with-rss-in-python.html" rel="bookmark" title="Permanent Link to &quot;RSS Is Thriving: Working With RSS Python Tools&quot;">RSS Is Thriving: Working With RSS Python Tools</a>
-                </h2>
-
-                
-                
-
-                <p>There have been countless obituaries about RSS on the internet, like when Dan McKinley wrote that <a class="reference external" href="https://mcfunley.com/google-reader-killed-rss">&quot;Google Reader Killed RSS&quot;</a>. For sure, the existence of Google Reader had an impact on other readers gaining a wider audience before it was shut down by Google. This likely did have a suppressive impact on the adoption of RSS.</p>
-<p>&quot;Whatever happened to RSS?&quot; is a question that murmurs thorugh the internet. The answer: it's still here and it's not going anywhere. I propose that RSS is not dead, but quietly regaining its strength and is on track to relevancy again. But did it actually fall off?</p>
-<blockquote>
-<strong>Did you know?</strong> RSS stands for &quot;Really Simple Syndication&quot;.</blockquote>
-<p>Some say with the rise of social media and email newsletters, RSS is not worth the time. That's precisely what the social media and search engine giants want so you'll stay in their walled garden platform. Google killed Google Reader because it is not in their interests to support a syndication format that cuts out their search engine middleman role. Nonetheless, we only need to consciously choose to use RSS to bring it back to prominence. Who's with me?!</p>
-<blockquote>
-<p>&quot;RSS readers have not only survived in the era of social media,
-but are driving more and more attention back to themselves, as people are realizing the pitfalls&quot;</p>
-<p>- Brian Barrett. &quot;It's Time for an RSS Revival&quot;. Wired. <a class="reference external" href="https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader">https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader</a></p>
-</blockquote>
-<p>You'll often hear the term &quot;aggregator&quot; or &quot;reader&quot; when dealing with RSS, which both mean &quot;tool that collects multiple RSS feeds into single readable format&quot;. There are plenty of free RSS reader websites to keep up with new material from your favorite websites. Currently, I use <a class="reference external" href="https://feeder.co">Feeder</a> to keep up with the blogs I follow. Their free plan allows you to follow up to 200 RSS feeds for free. <a class="reference external" href="https://feedly.com">Feedly</a> is a commonly suggested RSS reader also.</p>
-<img alt="RSS icon" src="https://lofipython.com/images/rssicon.png" />
-<p><strong>A Few Benefits of RSS</strong></p>
-<ul>
-<li><p class="first">Receive notice when a new post is published by your favorite websites and blogs.</p>
-</li>
-<li><p class="first">The personal data of your readers is not collected.</p>
-</li>
-<li><p class="first">An RSS subscription is less intrusive compared to blasting into someone's cluttered email inbox. Plus you won't end up in the spam folder.</p>
-</li>
-<li><p class="first">Diversify your website's traffic to be less dependent on search engines and social media platforms.</p>
-<blockquote>
-<p>To know approximately how much RSS traffic you have, check how many HTTP requests have an XML content type.
-<a class="reference external" href="https://darekkay.com/blog/rss-subscriber-count/">This blog post</a> has a good breakdown of this HTTP based approach.
-Typically, 3-5% of total HTTP requests on my blog have XML content type, indicating RSS traffic.</p>
-</blockquote>
-</li>
-</ul>
-<div class="section" id="python-rss-tools">
-<h2>Python RSS Tools</h2>
-<p>The rest of this post will highlight some practical Python tools and resources for RSS. The libraries used in the below code examples can be installed with <a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/">pip</a>. There are also some standard library Python tools mentioned. Enjoy!</p>
-<p><a class="reference external" href="https://github.com/kurtmckee/feedparser">feedparser</a>: Universal Feed Parser is a Python module for downloading and parsing syndicated feeds</p>
-<p><strong>Parse an RSS feed with feedparser.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">feedparser</span>
-
-<span class="n">feed</span> <span class="o">=</span> <span class="s2">&quot;https://feedparser.readthedocs.io/en/latest/examples/atom10.xml&quot;</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;feed&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">feed</span><span class="o">.</span><span class="n">published</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>Detect a malformed RSS feed with feedparser &quot;bozo&quot;.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">feedparser</span>
-
-<span class="c1"># https://feedparser.readthedocs.io/en/latest/bozo.html#detecting-a-non-well-formed-feed</span>
-<span class="n">feed</span> <span class="o">=</span> <span class="s2">&quot;http://feedparser.org/tests/illformed/rss/aaa_illformed.xml&quot;</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
-<span class="c1"># d.bozo: An integer, either 1 or 0. Set to 1 if the feed is not well-formed XML, and 0 otherwise.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">bozo</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">bozo</span><span class="p">:</span>
-    <span class="n">exc</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">bozo_exception</span>
-    <span class="c1"># Print bozo error message.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">getMessage</span><span class="p">())</span>
-    <span class="c1"># Print line number where exception occurred.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error at line </span><span class="si">{</span><span class="n">exc</span><span class="o">.</span><span class="n">getLineNumber</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Feed is well-formed RSS.&quot;</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><a class="reference external" href="https://www.feedvalidator.org/">feedvalidator</a> and <a class="reference external" href="https://validator.w3.org/feed/">W3 RSS Validator</a>: check if your feed is valid RSS or Atom. Below shows how you can validate your feed using the webbrowser module with the Python CLI:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="gp"># </span>Validate<span class="w"> </span>an<span class="w"> </span>RSS<span class="w"> </span>feed.
-<span class="go">python -m webbrowser -t &quot;https://validator.w3.org/feed/check.cgi?url=https://example.com/feeds/all.rss.xml&quot;</span>
-</pre></div></td></tr></table></div>
-<p><a class="reference external" href="https://github.com/NicolasLM/atoma">atoma</a>: an Atom, RSS and JSON feed parser</p>
-<p><strong>Parse an RSS feed with atoma.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">atoma</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://example.com/feed.atom&quot;</span><span class="p">)</span>
-<span class="n">feed</span> <span class="o">=</span> <span class="n">atoma</span><span class="o">.</span><span class="n">parse_atom_bytes</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">feed</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>Additional RSS Tools, Reads + Resources</strong></p>
-<p><a class="reference external" href="https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader/">It's Time for an RSS Revival, Wired</a></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Mozilla_Thunderbird">Mozilla Thunderbird</a>: an open source RSS client</p>
-<p><a class="reference external" href="https://github.com/tuan3w/awesome-tech-rss">Awesome Tech RSS</a>: a list of tech RSS feeds you can follow</p>
-<p><a class="reference external" href="https://pypi.org/project/pelican-planet/">pelican-planet</a>: a Pelican static site generator plugin that allows generating a page aggregating blog articles from other web sites. The <a class="reference external" href="https://docs.getpelican.com/en/latest/">pelican Python library</a> also has built-in support for RSS and Atom feed generation.</p>
-<p><a class="reference external" href="https://docs.djangoproject.com/en/4.2/ref/contrib/syndication/#module-django.contrib.syndication">Django Syndication Feed Framework</a>: built-in RSS feed framework for Django websites</p>
-<p><a class="reference external" href="https://github.com/radiac/django-yarr">django-yarr</a>: a lightweight, customisable RSS reader for the Django web framework</p>
-<p><a class="reference external" href="https://github.com/lkiesow/python-feedgen">python-feedgen</a>: generates atom feeds, RSS feeds and podcasts</p>
-<p><a class="reference external" href="https://realpython.com/python-xml-parser/">A Roadmap to XML Parsers in Python, Real Python</a></p>
-<p><a class="reference external" href="https://pypi.org/project/lxml/">lxml</a>: a Pythonic, mature binding for the libxml2 and libxslt libraries</p>
-<p><a class="reference external" href="https://docs.python.org/3/library/xml.sax.handler.html">xml.sax</a> API: standard library XML validation option that is based on a Java API</p>
-<p><a class="reference external" href="https://docs.python.org/3/library/xml.html">Python Documentation, XML Processing Modules</a></p>
-<p><a class="reference external" href="https://github.com/RSSerpent/RSSerpent">RSSerpent</a>: open source software to create RSS feeds for websites without them</p>
-<p><a class="reference external" href="http://offog.org/git/rawdog/README">rawdog</a>: an &quot;RSS aggregator without visions of grandeur&quot;</p>
-<p><a class="reference external" href="https://github.com/ai6yr/rss2mastodon">RSS2mastodon</a>: a quick set of python scripts for auto-posting an RSS or Atom feed to Mastodon</p>
-<p><a class="reference external" href="https://github.com/anhqle/craigslist">Craigslist RSS Scraper Python Script</a></p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/working-with-rss-in-python.html">posted at 17:14</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-xml-rss-writing.html" rel="tag">coding, programming, python, XML, RSS, writing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/python-rss-tools.html" class="tags">python RSS tools</a>
-                    &nbsp;<a href="https://lofipython.com/tag/rss-aggregator.html" class="tags">RSS aggregator</a>
-                    &nbsp;<a href="https://lofipython.com/tag/rss-validation.html" class="tags">RSS validation</a>
-                    &nbsp;<a href="https://lofipython.com/tag/parsing-rss-python.html" class="tags">parsing RSS python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/rss-feeds.html" class="tags">RSS feeds</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-rss-readers.html" class="tags">python RSS readers</a>
                 </div>
             </article>
 
