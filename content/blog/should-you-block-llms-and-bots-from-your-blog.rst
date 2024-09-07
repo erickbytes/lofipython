@@ -18,7 +18,7 @@ On my blogs, I've always used the robots.txt to say to bots, "scrape away!" like
    Disallow:
 
 Some websites use a robots.txt to say, "don't scrape our content". 
-We can ask crawlers to restrict from crawling, but this more less is an honor system.
+We can ask crawlers to restrict from crawling, but this is more or less an honor system.
 For this blog, I always welcomed all real traffic, but had activated "Bot Fight Mode" to 
 to protect against some of the bots.
 
