@@ -46,6 +46,7 @@ In order for this system to work, there needs to be proof of references to my or
 
 .. image:: {static}/images/top-blog-crawlers.png
   :alt: most frequently crawling search engines
+  :width: 500px
 
 If an LLM is just a remix of all the data it consumes, how do we trace the origin of its results?
 And how does that get attributed back? It seemed more easy to tell with Google's link based search results.
@@ -56,4 +57,4 @@ The point of this post was not to answer the question, but instead reflect on th
 and their relationship with big tech. Everyone will have to decide for themselves if they think it's worth it.
 In this case, we're likely "paid in exposure". Big tech will distill the value of what we write to inquiring 
 humans, but will website creators lose out on this exchange? Are we cutting off a channel of distribution if we 
-push back against LLMs scooping up our data? We'll see. Right now there seems to be more questions than answers.
+push back against LLMs scooping up our data? Right now there seems to be more questions than answers. We'll see. 
