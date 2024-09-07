@@ -43,7 +43,7 @@ in some way.
    your permission. When you enable this feature via a pre-configured managed rule, 
    Cloudflare can detect and block AI bots from your website.
 
-   /- `AI Bots <https://developers.cloudflare.com/bots/concepts/bot/#ai-bots>`__
+   \- `AI Bots <https://developers.cloudflare.com/bots/concepts/bot/#ai-bots>`__
 
 In 2024, I am re-thinking if allowing Google, Bing and Twitter to crawl my stuff is still the best position. 
 In order for this system to work, there needs to be proof of references to my original writing.
