@@ -54,7 +54,7 @@ In order for this system to work, there needs to be proof of references to my or
 
 .. raw:: html
 
-    <center><em>Crawler Traffic on lofipython.com, Oct. - Sept. 2024</em></center>
+    <center><em>Crawler Traffic on lofipython.com, Aug. - Sept. 2024</em></center>
 
 If an LLM is just a remix of all the data it consumes, how do we trace the origin of its results?
 And how does that get attributed back? It seemed more easy to tell with Google's link based search results.
