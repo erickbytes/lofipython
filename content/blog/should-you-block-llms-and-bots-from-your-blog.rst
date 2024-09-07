@@ -24,10 +24,14 @@ to protect against some of the bots.
 
 **Cloudflare Rolls Out New AI Blocker Configuration**
 
-I noticed in my Cloudflare pages dashboard that a new setting has become available to me on the free plan.
+I noticed in my Cloudflare Pages dashboard that a new setting has become available to me on the free plan.
 
 .. image:: {static}/images/cloudflare-LLM-blocker.png
   :alt: toggle cloudflare AI bot blocker
+
+.. raw:: html
+
+    <center><em>Block AI Bots Configuration on Cloudflare Pages</em></center>
 
 I now have another level of security available if I want to use it. I'd already enabled "Bot Fight Mode" on my Cloudflare Pages blogs.
 For now, I'm choosing to keep my blogs open to all traffic, including AIs while excluding some bots. Anyone who publishes
@@ -47,6 +51,10 @@ In order for this system to work, there needs to be proof of references to my or
 .. image:: {static}/images/top-blog-crawlers.png
   :alt: most frequently crawling search engines
   :width: 500px
+
+.. raw:: html
+
+    <center><em>Crawler Traffic on lofipython.com, Oct. - Sept. 2024</em></center>
 
 If an LLM is just a remix of all the data it consumes, how do we trace the origin of its results?
 And how does that get attributed back? It seemed more easy to tell with Google's link based search results.
