@@ -31,7 +31,65 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Aug 29, 2024</h4>
+        <div id="content">            <h4 class="date">Sep 07, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/should-you-block-llms-and-bots-from-your-blog.html" rel="bookmark" title="Permanent Link to &quot;Should You Block LLMs and Bots From Your Blog?&quot;">Should You Block LLMs and Bots From Your Blog?</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Bots and robots.txt</strong></p>
+<p>Bots are crawling the internet. They make up a large chunk of all web traffic.
+On my blogs, I've always used the robots.txt to say to bots, &quot;scrape away!&quot; like this:</p>
+<pre class="literal-block">
+User-agent: *
+Disallow:
+</pre>
+<p>Some websites use a robots.txt to say, &quot;don't scrape our content&quot;.
+We can ask crawlers to restrict from crawling, but this more less is an honor system.
+For this blog, I always welcomed all real traffic, but had activated &quot;Bot Fight Mode&quot; to
+to protect against some of the bots.</p>
+<p><strong>Cloudflare Rolls Out New AI Blocker Configuration</strong></p>
+<p>I noticed in my Cloudflare pages dashboard that a new setting has become available to me on the free plan.</p>
+<img alt="toggle cloudflare AI bot blocker" src="https://lofipython.com/images/cloudflare-LLM-blocker.png" />
+<p>I now have another level of security available if I want to use it. I'd already enabled &quot;Bot Fight Mode&quot; on my Cloudflare Pages blogs.
+For now, I'm choosing to keep my blogs open to all traffic, including AIs while excluding some bots. Anyone who publishes
+to the open internet will have to assess their willingness to open up their site and trust that it will come back to them
+in some way.</p>
+<blockquote>
+<p>You can block artificial intelligence (AI) bots, crawlers, and scrapers from scraping
+your website content and training large language models (LLM) to recreate it without
+your permission. When you enable this feature via a pre-configured managed rule,
+Cloudflare can detect and block AI bots from your website.</p>
+<p>/- <a class="reference external" href="https://developers.cloudflare.com/bots/concepts/bot/#ai-bots">AI Bots</a></p>
+</blockquote>
+<p>In 2024, I am re-thinking if allowing Google, Bing and Twitter to crawl my stuff is still the best position.
+In order for this system to work, there needs to be proof of references to my original writing.</p>
+<img alt="most frequently crawling search engines" src="https://lofipython.com/images/top-blog-crawlers.png" />
+<p>If an LLM is just a remix of all the data it consumes, how do we trace the origin of its results?
+And how does that get attributed back? It seemed more easy to tell with Google's link based search results.
+But even then, there was a lack of transparency. It's still that way today. I appreciate Cloudflare is putting
+this choice to block or not block AIs in the hands of website makers.</p>
+<p>The point of this post was not to answer the question, but instead reflect on the nuances of web creators
+and their relationship with big tech. Everyone will have to decide for themselves if they think it's worth it.
+In this case, we're likely &quot;paid in exposure&quot;. Big tech will distill the value of what we write to inquiring
+humans, but will website creators lose out on this exchange? Are we cutting off a channel of distribution if we
+push back against LLMs scooping up our data? We'll see. Right now there seems to be more questions than answers.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/should-you-block-llms-and-bots-from-your-blog.html">posted at 14:42</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/bots-blogging-internet.html" rel="tag">bots, blogging, internet</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/robotstxt-policy.html" class="tags">robots.txt policy</a>
+                    &nbsp;<a href="https://lofipython.com/tag/llms.html" class="tags">LLMs</a>
+                    &nbsp;<a href="https://lofipython.com/tag/internet-ethics.html" class="tags">internet ethics</a>
+                </div>
+            </article>            <h4 class="date">Aug 29, 2024</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -790,126 +848,6 @@ the error was resolved. My Crostini Linux shell is functional again!</p>
                     &nbsp;<a href="https://lofipython.com/tag/troubleshooting-chromebook-crostini-error-52.html" class="tags">troubleshooting chromebook crostini error 52</a>
                     &nbsp;<a href="https://lofipython.com/tag/solving-image-loader-timed-out-error.html" class="tags">solving image loader timed out error</a>
                     &nbsp;<a href="https://lofipython.com/tag/restart-chromebook-linux-container.html" class="tags">restart chromebook linux container</a>
-                </div>
-            </article>            <h4 class="date">Feb 21, 2024</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/passing-the-webmention-rocks-webmention-update-test-with-curl.html" rel="bookmark" title="Permanent Link to &quot;Passing the Webmention Rocks! Webmention Update Test With curl and Setting Up a Webmention.io Endpoint&quot;">Passing the Webmention Rocks! Webmention Update Test With curl and Setting Up a Webmention.io Endpoint</a>
-                </h2>
-
-                
-                
-
-                <p>After discovering Webmentions via a <a class="reference external" href="https://localghost.dev/blog/sending-webmentions-from-a-static-site/">helpful blog post about sending webmentions</a>,
-I wondered how I might be able to achieve sending and receiving them from my Pelican blog. I discovered the
-<a class="reference external" href="Webmention.Rocks">Webmention Rocks!</a> website and the <a class="reference external" href="https://www.w3.org/TR/webmention/">Webmention Protocol</a>.
-Webmentions are a standard for sending notification of linkbacks, likes, comments and pingbacks via HTTP.
-For example, if your blog is hosted on Wordpress these things are likely all set up for you.
-Supporting this recommended standard requires a more creative approach on a static site.</p>
-<p>Naturally, I'm now thinking about how I will automate this on my Pelican blog. There are also existing
-Python modules like <a class="reference external" href="https://pypi.org/project/ronkyuu/">ronkyuu</a> and the
-<a class="reference external" href="https://indieweb-utils.readthedocs.io/en/latest/">indieweb-utils</a> modules for supporting the
-Webmention protocol in Python. However, a static site generator presents challenges for automatically
-executing code to send webmentions. Another option may be to use something like Cloudflare Workers
-since this blog is hosted on Cloudflare's free plan. Possibly, I could set a worker to trigger and
-run some javascript everytime I add a new post. I'm thinking using an existing pelican plugin would
-likely be easier than that.</p>
-<p>Thankfully, there are some existing <a class="reference external" href="https://github.com/getpelican/pelican-plugins">Pelican plugins</a> to enable webmentions.
-I'm currently testing the <a class="reference external" href="https://github.com/drivet/pelican-webmention">pelican-webmention plugin</a>
-but have not yet verified if it is actually sending the webmentions. Alternatively, the
-<a class="reference external" href="https://github.com/pelican-plugins/linkbacks/">linkbacks plugin</a> is an option for supporting Webmentions
-on a Pelican blog. <a class="reference external" href="https://brid.gy/about#blogs">Bridgy</a> is another tool written
-in Python as a &quot;bridge&quot; for social networks to webmentions. There are a lot of interesting options
-for piecing together a Webmention implementation, which is essentially automating an HTTP request you send
-when you link to someone else from your website.</p>
-<p>In the interim until an automated solution is found I decided to attempt passing the
-Webmention Rocks! Update test with curl. Often I find when HTTP requests are required, I can better
-understand it by manually making the requests with curl or Python. Once I have a better grasp
-after succeeding with curl, it's a little easier to grasp automating the sending of the HTTP requests
-with Python or other means.</p>
-<div class="section" id="completing-the-webmention-rocks-update-test-1-with-curl">
-<h2>Completing the Webmention Rocks! <a class="reference external" href="https://webmention.rocks/update/1">Update Test #1</a> With curl</h2>
-<p><strong>Add a URL Link to Your Blog HTML, AKA The &quot;Webmention&quot;</strong></p>
-<pre class="code html literal-block">
-<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.rocks/update/1&quot;</span><span class="p">&gt;</span>Part 1 Test<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</pre>
-<p><strong>Check Target HTML for Webmention Endpoint with Curl</strong></p>
-<pre class="code console literal-block">
-<span class="go">curl -i -s $target | grep 'rel=&quot;webmention&quot;'</span>
-</pre>
-<p><strong>Alternative Browser Option: &quot;View Page Source&quot; to Find Webmention Endpoint</strong></p>
-<img alt="finding the webmentions endpoint in a browser" src="https://lofipython.com/images/webmentions-test-endpoint.png" />
-<p>Go to the page you want to check for a Webmention endpoint. Right-click anywhere on the page
-and select &quot;View Page Source&quot; to view the website's HTML. Then, right-click the endpoint url
-and select &quot;Copy Link Address&quot; to copy the full url of the endpoint.</p>
-<p><strong>Send a curl Request Notify the Target Site of Webmention Update</strong></p>
-<pre class="code console literal-block">
-<span class="go">curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;source=https://yourblog.com/example-post&amp;target=https://webmention.rocks/update/1&quot; https://webmention.rocks/update/1/part/1/webmention?key=UjJPJoDWZateFb7bTAhB -v</span>
-</pre>
-<p>In the curl request, edit the &quot;source&quot; with your blog post containing the link and &quot;target&quot;
-with the target Webmention endpoint. You'll need to change the &quot;key&quot; url argument. The Webmention Rocks!
-endpoint changes the live key rapidly, about every 30 seconds. In curl, you can pass the -v argument
-for more verbose output.</p>
-<p><strong>Add URL Link to HTML for Part 2 of the Test</strong></p>
-<pre class="code html literal-block">
-<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.rocks/update/1/part/2&quot;</span><span class="p">&gt;</span>Part 2 Test<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</pre>
-<p><strong>Complete Part 2 of the Test with curl</strong></p>
-<pre class="code console literal-block">
-<span class="go">curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;source=https://yourblog.com/example-post&amp;target=https://webmention.rocks/update/1&quot; https://webmention.rocks/update/1/part/2/webmention?key=dfMuwOn4DUuwRSe6BM9o -v</span>
-</pre>
-<p><strong>Webmention Update Test Succeeded Confirmation</strong></p>
-<img alt="successful Webmentions Rocks! Webmention Update Test" src="https://lofipython.com/images/successful-webmentions-test.png" />
-<p><strong>Check for a Webmention Endpoint and Send the Request in a Bash One-Liner</strong></p>
-<pre class="code console literal-block">
-<span class="go">curl -i -d &quot;source=$your_url&amp;target=$target_url&quot; `curl -i -s $target_url | grep 'rel=&quot;http://webmention.org/&quot;' | sed 's/rel=&quot;webmention&quot;//' | grep -o -E 'https?://[^ &quot;&gt;]+' | sort | uniq`</span>
-</pre>
-<p>source: <a class="reference external" href="https://indieweb.org/webmention-implementation-guide">https://indieweb.org/webmention-implementation-guide</a></p>
-</div>
-<div class="section" id="setting-up-your-blog-s-webmentions-endpoint-with-webmention-io">
-<h2>Setting Up Your Blog's Webmentions Endpoint With webmention.io</h2>
-<p>Webmention.io is a free service to set up your own Webmention endpoint so other people can send
-you Webmentions. I chose to authenticate with Github. There are also options to authenticate
-via email and other ways. If you choose to authenticate with Github, make sure the url
-of your website is in your Github profile.</p>
-<p><strong>Add Github HTML Link to Your Website</strong></p>
-<p>First, add the Github HTML link to your website identify yourself to webmention.io.</p>
-<pre class="code html literal-block">
-<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://github.com/your_username&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;me&quot;</span><span class="p">&gt;</span>
-</pre>
-<p><strong>Go to Webmention.io to Authorize Indie Login to Your Github Account</strong></p>
-<img alt="connect indie login with Github" src="https://lofipython.com/images/authorize-indie-login.png" style="width: 400px;" />
-<p>Once you successfully connect your Github account to webmention.io, you can copy your HTML code
-from the webmention.io dashboard to your website HTML:</p>
-<pre class="code html literal-block">
-<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;webmention&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://webmention.io/yourblog.com/webmention&quot;</span> <span class="p">/&gt;</span>
-</pre>
-<p>With an active endpoint linked in your website HTML, you're able to receive webmentions from
-the Webmention.io dashboard or with curl.</p>
-<p><strong>View Webmentions for Your Blog with curl</strong></p>
-<pre class="code console literal-block">
-<span class="go">curl -X GET https://webmention.io/api/mentions.jf2?target=https://exampleblog.com</span>
-</pre>
-<p>Happy webmentioning!</p>
-<p><strong>Read More About Webmentions</strong></p>
-<p><a class="reference external" href="https://indieweb.org/Webmention">Webmention Wiki</a></p>
-<p><a class="reference external" href="https://github.com/aaronpk/webmention.io">Webmention.io Github</a></p>
-<p><a class="reference external" href="Webmention.Rocks">Webmention.Rocks</a></p>
-<p><a class="reference external" href="https://aaronparecki.com/2018/06/30/11/your-first-webmention">Sending Your First Webmention Guide</a></p>
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/passing-the-webmention-rocks-webmention-update-test-with-curl.html">posted at 15:37</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-curl-webmentions-blogging.html" rel="tag">coding, programming, curl, webmentions, blogging</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/webmention-protocol.html" class="tags">webmention protocol</a>
-                    &nbsp;<a href="https://lofipython.com/tag/implementing-webmentions-on-a-blog.html" class="tags">implementing webmentions on a blog</a>
-                    &nbsp;<a href="https://lofipython.com/tag/receiving-webmentions-with-webmentionio.html" class="tags">receiving webmentions with webmention.io</a>
-                    &nbsp;<a href="https://lofipython.com/tag/testing-webmentions.html" class="tags">testing webmentions</a>
-                    &nbsp;<a href="https://lofipython.com/tag/sending-webmentions.html" class="tags">sending webmentions</a>
                 </div>
             </article>
 

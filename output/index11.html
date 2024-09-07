@@ -31,7 +31,83 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Nov 20, 2018</h4>
+        <div id="content">            <h4 class="date">Nov 25, 2018</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/automated-python-with-windows-task-scheduler.html" rel="bookmark" title="Permanent Link to &quot;Automated Python With Windows Task Scheduler&quot;">Automated Python With Windows Task Scheduler</a>
+                </h2>
+
+                
+                
+
+                <p><strong>So you want to run your Python scripts automatically, but how?</strong></p>
+<p>I had heard of several popular scheduling libraries in Python like <a class="reference external" href="http://www.celeryproject.org/">celery</a>, <a class="reference external" href="https://www.pyinvoke.org/">Invoke</a>, and&nbsp;<a class="reference external" href="https://github.com/dbader/schedule">schedule</a>. One of my requirements is to run the python file &quot;in the background&quot;, not in command prompt or an open window.</p>
+<p>Enter Windows Task Scheduler, the de facto scheduler on Windows 7 computers. I have&nbsp; scheduled a few scripts and it is working like a charm. In this post, I will schedule an example script to clean up my desktop at the beginning of each day. I have a habit of accumulating many Excel files there throughout the workday. This example automatically moves them into a folder.</p>
+<p>Other Windows scheduling alternatives worth mentioning include <a class="reference external" href="http://thepythoncorner.com/dev/how-to-create-a-windows-service-in-python/">creating a Windows service</a>, or using <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks">schtasks</a> if you prefer the command line.</p>
+<p><strong>Here's how to schedule a Python script to run:</strong></p>
+<ol class="arabic simple">
+<li>Search for Windows Task Scheduler in the start menu. Then select &quot;Task Scheduler Library&quot; to see all of the tasks Windows is running automatically.</li>
+<li>In the right toolbar, select &quot;Create Basic Task&quot; and give it a name and description. Note: I selected &quot;Configure for: Windows 7, Windows Server 2008 R2&quot;.</li>
+</ol>
+<img alt="general" class="wp-image-1577 alignright" src="https://pythonmarketer.files.wordpress.com/2018/11/general.png" style="width: 481px; height: 361px;" />
+<ol class="arabic simple" start="3">
+<li>Set the time and frequency that the program will run in the &quot;Triggers&quot; tab.</li>
+<li>Under the &quot;Actions&quot; tab, select &quot;Start a Program&quot; from the dropdown. Under &quot;Program/Script&quot;, enter the path to your Python.exe file. I set mine to a Python executable located within my <a class="reference external" href="https://pythonmarketer.wordpress.com/2018/04/10/creating-isolated-python-environments-with-virtualenv/">virtual environment</a>, but yours might be found wherever you have Python installed.</li>
+</ol>
+<pre class="literal-block">
+C:\Users\your_username\Desktop\36env\Scripts\python.exe
+</pre>
+<ol class="arabic simple" start="5">
+<li>Under &quot;Add arguments (optional)&quot;, add the path to your .py script, within quotes:</li>
+</ol>
+<pre class="literal-block">
+&quot;C:\Users\your_username\Desktop\36env\clean_desktop_excels.py&quot;
+</pre>
+<img alt="actions" class="alignnone size-full wp-image-1578" src="http://pythonmarketer.files.wordpress.com/2018/11/bd0a9-actions-e1543177551739.png" style="width: 448px; height: 236px;" />
+<ol class="arabic simple" start="6">
+<li>Select additional conditions and settings as desired, such as &quot;Wake the computer to run this task&quot; and &quot;Run with highest privileges&quot;.</li>
+</ol>
+<p>I am enjoying this simple, easy and convenient scheduling manager for Windows. I figured most of this out thanks to <a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/analytics/scheduling-a-python-script-or-model-to-run-at-a-prescribed-time/?rmedium=redirect&amp;rsource=/esri/arcgis/2013/07/30/scheduling-a-scrip">this blog</a>. Below is my script to clean my desktop each morning by moving my Excel files into a folder, using Python's stock <a class="reference external" href="https://docs.python.org/3/library/shutil.html">shutil</a> and os libraries. Set it and forget it, ya know what i mean? :D</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">shutil</span> <span class="kn">import</span> <span class="n">move</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Desktop Spreadsheet File Cleaner: get all Desktop files and folders</span>
+<span class="n">src</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">/Desktop&quot;</span>
+<span class="n">dir_items</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+<span class="n">excel_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dir_items</span> <span class="k">if</span> <span class="s2">&quot;.csv&quot;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">or</span> <span class="s2">&quot;.xls&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
+<span class="n">dst</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;C:/Users/</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">/Desktop/Excels&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">xl</span> <span class="ow">in</span> <span class="n">excel_files</span><span class="p">:</span>
+    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">src</span> <span class="o">+</span> <span class="n">xl</span>
+    <span class="n">move</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Additional Reading</strong></p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc721846(v=ws.11)?redirectedfrom=MSDN">Troubleshooting Windows Task Scheduler</a> - Windows Documentation</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/automated-python-with-windows-task-scheduler.html">posted at 19:44</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/automation-productivity-programming-python-windows.html" rel="tag">automation, productivity, programming, python, Windows</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/coding.html" class="tags">coding</a>
+                    &nbsp;<a href="https://lofipython.com/tag/organization.html" class="tags">organization</a>
+                </div>
+            </article>            <h4 class="date">Nov 20, 2018</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1431,46 +1507,6 @@ Netflix, PayPal, Microsoft and Uber.</li>
                     &nbsp;<a href="https://lofipython.com/tag/web-dev.html" class="tags">web
 dev</a>
                     &nbsp;<a href="https://lofipython.com/tag/website.html" class="tags">website</a>
-                </div>
-            </article>            <h4 class="date">Aug 05, 2017</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/oversimplified-javascript-terms.html" rel="bookmark" title="Permanent Link to &quot;Oversimplified Javascript Terms&quot;">Oversimplified Javascript Terms</a>
-                </h2>
-
-                
-                
-
-                <p>I'm finally coming around in my understanding of Javascript. Here are a few quick explanations to help you if you are new to it.</p>
-<p><strong>Javascript</strong> = The language of the web. Most commonly used as a complement to HTML and CSS to create an interactive website.</p>
-<p><strong>JQuery</strong> = A popular Javascript library with many powerful commands that are quick and easy to call.</p>
-<p><strong>Node.JS</strong> = Software that allows you to run Javascript from the command line without being connected to the internet.</p>
-<p><strong>Express.JS</strong> = A popular Node.JS framework.</p>
-<p><strong>Angular</strong> = A popular front-end Javascript web framework. There are many out there but this seems to be the one I've heard of the most.</p>
-<div class="line-block">
-<div class="line"><strong>I've begun to see a pattern with programming languages:</strong></div>
-<div class="line">1) Learn to execute the core building blocks. (using variables, loops, functions, etc.)</div>
-<div class="line">2) Learn more advanced libraries, documentation and uses.</div>
-<div class="line">3) Consider using and learning web frameworks depending on what you're trying to do with the language.</div>
-<div class="line">4) Practice to hone your knowledge. Build things you like.</div>
-</div>
-<p>I've also noticed that Javascript has been easier to learn than Python was for me, because it's not my first programming language. The concepts are the same. The syntax can trip me up at times, but I'm currently flying through <a class="reference external" href="https://www.codecademy.com/learn/learn-javascript">Codeacademy's Javascript courses</a>. Sometimes it even seems fun!</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/oversimplified-javascript-terms.html">posted at 18:37</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-javascript-programming.html" rel="tag">coding, javascript, programming</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/angular.html" class="tags">angular</a>
-                    &nbsp;<a href="https://lofipython.com/tag/expressjs.html" class="tags">express.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/javascript-terms.html" class="tags">javascript terms</a>
-                    &nbsp;<a href="https://lofipython.com/tag/jquery.html" class="tags">JQuery</a>
-                    &nbsp;<a href="https://lofipython.com/tag/nodejs.html" class="tags">Node.js</a>
-                    &nbsp;<a href="https://lofipython.com/tag/software.html" class="tags">software</a>
-                    &nbsp;<a href="https://lofipython.com/tag/understanding-javascript.html" class="tags">understanding javascript</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web-frameworks.html" class="tags">web frameworks.</a>
                 </div>
             </article>
 
