@@ -1,5 +1,5 @@
-Should You Block LLMs and Bots From Your Blog?
-##############################################
+Should You Block LLMs and Bots From Your Website?
+#################################################
 :date: 2024-09-07 14:42
 :author: lofipython
 :category: bots, blogging, internet
