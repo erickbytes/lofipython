@@ -32,7 +32,7 @@ I noticed in my Cloudflare Pages dashboard that a new setting has become availab
 
 .. raw:: html
 
-    <center><em>Block AI Bots Configuration on Cloudflare Pages</em></center>
+    <center><em>Block AI Bots Cloudflare Pages Configuration</em></center>
 
 This new configuration option gives another level of security if I want to use it. 
 For now, I'm choosing to keep my blogs open to most traffic, including AIs while excluding some bots. 
