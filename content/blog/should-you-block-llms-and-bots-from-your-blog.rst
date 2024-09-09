@@ -33,10 +33,9 @@ I noticed in my Cloudflare Pages dashboard that a new setting has become availab
 
     <center><em>Block AI Bots Configuration on Cloudflare Pages</em></center>
 
-I now have another level of security available if I want to use it. For now, I'm choosing to keep 
-my blogs open to all traffic, including AIs while excluding some bots. Anyone who publishes
-to the open internet will have to assess their willingness to open up their site and trust that it will come back to them 
-in some way.
+This new configuration option gives another level of security if I want to use it. 
+For now, I'm choosing to keep my blogs open to most traffic, including AIs while excluding some bots. 
+Anyone who publishes to the internet needs to assess their willingness to trust big tech's bots to scrape their data.
 
    You can block artificial intelligence (AI) bots, crawlers, and scrapers from scraping 
    your website content and training large language models (LLM) to recreate it without 
@@ -59,9 +58,8 @@ this choice to block or not block AIs in the hands of website makers.
     <center><em>Crawler Traffic on lofipython.com, Aug. - Sept. 2024</em></center>
 
 
-The point of this post was not to answer the question, but instead reflect on the nuances of web creators 
-and their relationship with big tech. Everyone will have to decide for themselves if they think it's worth it.
-In this case, we're likely "paid in exposure". Big tech will distill the value of what we write to inquiring 
-humans and reference back with links. Will website creators lose out on this exchange? Are we cutting off a 
-channel of distribution if we push back against LLMs scooping up our data? Right now there seems to be 
-more questions than answers. We'll see. 
+The point of this post is to reflect on the nuances of web creators and their relationship with big tech. 
+Everyone will have to decide for themselves if they think it's worth it. In this case, we're likely "paid in exposure". 
+Big tech will distill the value of what we write to inquiring humans and reference back with links. Will website creators 
+lose out on this exchange? Are we cutting off a channel of distribution if we push back against LLMs scooping up our data? 
+Right now there seems to be more questions than answers. We'll see. 
