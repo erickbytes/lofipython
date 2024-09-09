@@ -10,7 +10,8 @@ Should You Block LLMs and Bots From Your Website?
 **Bots and robots.txt**
 
 Bots are crawling the internet. They make up a large chunk of all web traffic.
-On my blogs, I've always used the robots.txt to say to bots, "scrape away!" like this:
+On my blogs, I've always used a `robots.txt <https://www.cloudflare.com/learning/bots/what-is-robots-txt/>`__ 
+to say to bots, "scrape away!" like this:
 
 ::
 
