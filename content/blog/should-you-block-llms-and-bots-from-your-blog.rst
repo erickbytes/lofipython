@@ -48,8 +48,8 @@ Anyone who publishes to the internet needs to assess their willingness to trust 
 If an LLM is just a remix of all the data it consumes, how do we trace the origin of its results?
 And how does that get attributed back? It seemed easier to tell with Google's link based search results.
 But even then, there was a lack of transparency. It's still that way today. I appreciate that Cloudflare is putting 
-this choice to block or not block AIs in the hands of website makers. They're also an "AI Audit" tool that lets 
-website owners set a price for your sites with AI crawlers.
+this choice to block or not block AIs in the hands of website makers. They're also releasing 
+an "AI Audit" tool that lets website owners set a price for their sites with AI crawlers.
 
   This murkiness leaves site owners with a hard decision to make. 
   The value exchange is unclear. And site owners are at a disadvantage while they play catch up. 
@@ -62,9 +62,9 @@ website owners set a price for your sites with AI crawlers.
 
   We think that sites of any size should be fairly compensated for the use of their content. 
   Cloudflare plans to launch a new component of our dashboard that goes beyond just blocking 
-  and analyzing crawls. Site owners will have the ability to set a price for their site, 
+  and analyzing crawls. **Site owners will have the ability to set a price for their site, 
   or sections of their site, and to then charge model providers based on their scans 
-  and the price you have set.
+  and the price you have set.**
   
   \- `Start auditing and controlling the AI models accessing your content <https://blog.cloudflare.com/cloudflare-ai-audit-control-ai-content-crawlers?_gl=1*lxx0bo*_gcl_au*MTgwNDk5NTYzMS4xNzI1OTA4NzE1*_ga*NWEwYTc1MTQtN2UwYy00ZjRmLWIyMmQtOTczODcwMTEyMzMz*_ga_SQCRB0TXZW*MTcyNzExNjU0My4zLjEuMTcyNzExNjU3Mi4zMS4wLjA./>`__, Cloudflare Blog
 
