@@ -38,7 +38,124 @@
     <div id="wrapper">
         <br><br>
         <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CW7DKK77&placement=lofipythoncom&format=responsive" id="_carbonads_js"></script>
-        <div id="content">            <h4 class="date">Oct 02, 2023</h4>
+        <div id="content">            <h4 class="date">Oct 10, 2023</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/making-a-yahoo-stock-price-summary-cli-with-python.html" rel="bookmark" title="Permanent Link to &quot;Making a Yahoo Stock Price Summary CLI with Python&quot;">Making a Yahoo Stock Price Summary CLI with Python</a>
+                </h2>
+
+                
+                
+
+                <p>Over the past few years, I found a few different external Python libraries that relied on a broken <a class="reference external" href="https://finance.yahoo.com/">Yahoo Finance</a> API. Apparently, the API changes frequently, leaving us developers in a tough spot troubleshooting tracebacks in order to get stock data. I wanted to check my stocks' prices from the terminal. 6 months ago, dealing with these frustrations inspired me to begin making a Python command line interface (CLI) to fetch stock info directly from the Yahoo Finance website.</p>
+<p>With an idea and curiosity to see if I could make it work, I reached for the beautifulsoup4 library, the de facto HTML parser in Python. It turned out way better than I envisioned when I started. The CLI is working great, barring any changes to Yahoo's stock page HTML or CSS code. It accepts a stock ticker and grabs stock price data from the Yahoo website in your terminal. It is designed to monitor daily moves of stocks, including after hours prices.</p>
+<p>Here is <a class="reference external" href="https://github.com/erickbytes/finsou.py">the Github repo with the code</a>. I've named the CLI finsou.py, which I've been pronouncing to myself as &quot;finsoupy&quot;, a word play on fin soup, short for financial soup. The standard library <a class="reference external" href="https://docs.python.org/3/library/argparse.html">argparse module</a> provided the CLI argument ingesting functionality. The CLI uses <a class="reference external" href="https://pypi.org/project/requests/">the requests module</a>, <a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a> and <a class="reference external" href="https://docs.python.org/3/library/re.html">re</a> modules. With these 3 modules, it retrieves stock info and organizes it into a tidy, color coded report that is printed to your console. After getting the essential functionality working, I added improvements like the <a class="reference external" href="https://github.com/Textualize/rich">rich module</a> to add in terminal color formatting and <a class="reference external" href="https://github.com/tqdm/tqdm">tqdm</a> for a progress bar.</p>
+<p>The CLI currently works after the US stock market has closed normal market hours. Additionally, after hours prices for &quot;over the counter&quot; (OTC) traded stocks are not listed on Yahoo so an error is returned for those stocks.</p>
+<p><strong>Getting Started with finsou.py</strong></p>
+<ol class="arabic simple">
+<li>First, install the necessary Python library dependencies:</li>
+</ol>
+<pre class="code console literal-block">
+<span class="go">pip install beautifulsoup4
+pip install pandas
+pip install requests
+pip install rich
+pip install tqdm</span>
+</pre>
+<ol class="arabic simple" start="2">
+<li>Next, clone the Github repo:</li>
+</ol>
+<pre class="code console literal-block">
+<span class="go">git clone https://github.com/erickbytes/finsou.py.git</span>
+</pre>
+<ol class="arabic simple" start="3">
+<li>Change directory into the finsou.py folder that contains the Python script:</li>
+</ol>
+<pre class="code console literal-block">
+<span class="go">cd finsou.py</span>
+</pre>
+<ol class="arabic simple" start="4">
+<li>Query a stock's daily price summary:</li>
+</ol>
+<pre class="code console literal-block">
+<span class="gp"># </span>Print<span class="w"> </span>a<span class="w"> </span>daily<span class="w"> </span>stock<span class="w"> </span>summary<span class="w"> </span><span class="k">for</span><span class="w"> </span>Virgin<span class="w"> </span>Galactic<span class="w"> </span><span class="o">(</span>SPCE<span class="o">)</span>.<span class="w">
+</span><span class="go">python finsou.py -s SPCE</span>
+</pre>
+<img alt="example stock summary report" src="https://lofipython.com/images/finsoupy-stock-summary.png" />
+<p><strong>Fetch a stock summary for multiple companies.</strong></p>
+<pre class="code console literal-block">
+<span class="gp"># </span>Summarize<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>stocks.<span class="w">
+</span><span class="go">python finsou.py -s BABA,SPOT,KO</span>
+</pre>
+<p><strong>Read a list of stocks from a .txt file.</strong></p>
+<pre class="code console literal-block">
+<span class="gp"># </span>Read<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>stocks<span class="w"> </span>from<span class="w"> </span>a<span class="w"> </span>text<span class="w"> </span>file<span class="w"> </span>with<span class="w"> </span>one<span class="w"> </span>ticker<span class="w"> </span>on<span class="w"> </span>each<span class="w"> </span>line.<span class="w">
+</span><span class="go">python finsou.py -s portfolio.txt -c &quot;Portfolio Prices.csv&quot;</span>
+</pre>
+<p><strong>Research + download media from investor relations websites.</strong></p>
+<p>Note: currently the code needs to be modified depending on the HTML structure of the page.</p>
+<pre class="code console literal-block">
+<span class="gp"># </span>Note:<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>experimental<span class="w"> </span>and<span class="w"> </span>results<span class="w"> </span>will<span class="w"> </span>vary.<span class="w"> </span>URLs<span class="w"> </span>are<span class="w"> </span>typically<span class="w"> </span>buried<span class="w"> </span><span class="k">in</span><span class="w"> </span>nested<span class="w"> </span>span<span class="w"> </span>and<span class="w"> </span>div<span class="w"> </span>tags.<span class="w">
+</span><span class="go">python finsou.py -s GRAB -r https://investors.grab.com/events-and-presentations</span>
+</pre>
+<p><strong>How It Works</strong></p>
+<p>Check out the <a class="reference external" href="https://github.com/erickbytes/finsou.py/blob/main/finsou.py">finsou.py Python script</a> to see the complete code for how this stock report is created. Here is a brief simplified example of the logic behind the code.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">stock</span> <span class="o">=</span> <span class="s2">&quot;SNOW&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://finance.yahoo.com/quote/</span><span class="si">{</span><span class="n">stock</span><span class="si">}</span><span class="s2">/&quot;</span>
+<span class="n">user_agent</span> <span class="o">=</span> <span class="s2">&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.1 (KHTML, like Gecko) Chrome/43.0.845.0 Safari/534.1&quot;</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Cache-Control&quot;</span><span class="p">:</span> <span class="s2">&quot;no-cache&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="n">user_agent</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+<span class="n">price_tags</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span>
+    <span class="n">class_</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;Fw\(b\) Fz\(36px\) Mb\(\-4px\) D\(ib\)&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">mkt_close_price</span> <span class="o">=</span> <span class="n">price_tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mkt_close_price</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p>First, an HTTP request is made and parsed by beautiful soup using Python's html.parser. We can then use bs4 and regex's <a class="reference external" href="https://docs.python.org/3/library/re.html#re.compile">re.compile function</a> to return the HTML tags with a specific CSS class. Then once we have the tags, beautiful soup gives us a &quot;.string&quot; attribute for each tag to return their contents as a string. This pattern was applied to return all of the data in the stock report. To find the css classes I wanted, I right-clicked the price or data on Yahoo's website in a Chrome browser and selected &quot;Inspect&quot;. Doing this opens Chrome's developer tools and drops you into that spot in the HTML code, where you can find the class you want to target.</p>
+<p><strong>No Official API, No Problem</strong></p>
+<p>It felt good to prove the concept that you don't need an official API
+to print stock data in your terminal! If you want to check in on your
+portfolio's daily moves, give this CLI a try: <a class="reference external" href="https://github.com/erickbytes/finsou.py">finsou.py Github Repo</a></p>
+<p>If you're looking for a more robust finance Python module,
+I recommend <a class="reference external" href="https://pypi.org/project/yfinance/">yfinance</a> for querying stock data.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/making-a-yahoo-stock-price-summary-cli-with-python.html">posted at 18:56</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-stocks-cli.html" rel="tag">coding, programming, python, stocks, CLI</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/stock-prices-command-line.html" class="tags">stock prices command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-cli.html" class="tags">python CLI</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-investing-research.html" class="tags">python investing research</a>
+                </div>
+            </article>            <h4 class="date">Oct 02, 2023</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1072,56 +1189,6 @@ ERROR: Cannot perform a '--user' install. User site-packages are not visible in 
                     &nbsp;<a href="https://lofipython.com/tag/pip.html" class="tags">pip</a>
                     &nbsp;<a href="https://lofipython.com/tag/python-install.html" class="tags">python install</a>
                     &nbsp;<a href="https://lofipython.com/tag/troubleshooting-error.html" class="tags">troubleshooting error</a>
-                </div>
-            </article>            <h4 class="date">May 15, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/wordpress-to-pelican-blog-migration-complete.html" rel="bookmark" title="Permanent Link to &quot;Wordpress to Pelican Blog Migration Complete&quot;">Wordpress to Pelican Blog Migration Complete</a>
-                </h2>
-
-                
-                
-
-                <p>This blog is formerly known as &quot;Python Marketer&quot; from 2016 to 2023. In
-May 2023, I've begun the migration from Wordpress's &quot;Personal&quot; plan to a
-free, Pythonic <a class="reference external" href="https://docs.getpelican.com/en/latest/">Pelican</a> static site.
-100 posts are now hosted here exclusively on lofipython.com.
-I will be posting my projects, Python explorations and technical notes
-here going forward. Thank you for reading and I hope you
-enjoy these Python musings. If you want to keep up with my writing, I
-recommend using an RSS reader to follow the RSS or Atom feeds.</p>
-<p>I've decided to continue blogging under a new Python moniker
-which is more fitting of who I am as a Pythonista in 2023. WordPress
-gave me my start as a blogger before I had the capabilities to make my
-own. Now, I've switched from their &quot;Personal&quot; plan to a Pelican +
-Cloudlare Pages free plan blog stack. It's going great so far and will
-save me $48 per year vs. WordPress. Not to mention, I have a hard backup
-of all my content and host it on Github! I'm no longer dependent on a
-paid blogging platform to serve my blog. Huge win all around. Here's to
-whatever Python projects are next!</p>
-<p><strong>The Next Chapter: Lo-Fi Python</strong></p>
-<blockquote>
-Lo-fi (also typeset as lofi or low-fi; short for low fidelity) is a
-music or production quality in which elements usually regarded as
-imperfections in the context of a recording or performance are present,
-sometimes as a deliberate choice. <em>Wikipedia</em></blockquote>
-<p><strong>The Spirit of Low Fidelity</strong></p>
-<p>Lo-Fi Python aims to find the &quot;lo-fi&quot; spirit of Python. Doing more with
-less. Favoring the standard library. Lowest possible time to MVP
-(minimum viable product). Learning new libraries. Exploring the
-ecosystem with playful curiosity. Embrace helping others by helping
-yourself. This is the way.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/wordpress-to-pelican-blog-migration-complete.html">posted at 17:45</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-writing-meta.html" rel="tag">coding, python, writing, meta</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/wordpress-pelican-migration.html" class="tags">wordpress pelican migration</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pelican-blog.html" class="tags">pelican blog</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-static-site.html" class="tags">python static site</a>
                 </div>
             </article>
 
