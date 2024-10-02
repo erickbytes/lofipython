@@ -69,10 +69,13 @@ This function imports the current market cap of Cardano cryptocurrency.
 **Import the Daily % Change of Ethereum Cryptocurrency with IMPORTXML and INDEX**
 ::
 
-   =IF(
-   INDEX(IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//div[contains(@class, 'sc-4c05d6ef-0 sc-58c82cf9-0 dlQYLv dTczEt')]/p/@data-change"), 1) = "down",
-   "-" & VALUE(SUBSTITUTE(IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//div[contains(@class, 'sc-65e7f566-0 gCtSWR')]"), "(1d)", ""))*100&"%",
-   VALUE(SUBSTITUTE(IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//div[contains(@class, 'sc-65e7f566-0 gCtSWR')]"), "(1d)", ""))*100&"%"
+   =TEXT(
+    IF(
+        IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//p/@data-change") = "down",
+        "-" & INDEX(IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//p[@data-change]"), 1, 2),
+        INDEX(IMPORTXML("https://coinmarketcap.com/currencies/ethereum/", "//p[@data-change]"), 1, 2)
+    ),
+    "0.0%"
    )
 
 This method uses IMPORTXML to import data to google sheets by passing an "xpath query". The first line checks if the direction of the % change is "down". If it is down,

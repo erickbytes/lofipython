@@ -90,10 +90,13 @@ Lots of power can be harnessed by getting familiar with the formulas it has buil
 <p>This function imports the current market cap of Cardano cryptocurrency.</p>
 <p><strong>Import the Daily % Change of Ethereum Cryptocurrency with IMPORTXML and INDEX</strong></p>
 <pre class="literal-block">
-=IF(
-INDEX(IMPORTXML(&quot;https://coinmarketcap.com/currencies/ethereum/&quot;, &quot;//div[contains(&#64;class, 'sc-4c05d6ef-0 sc-58c82cf9-0 dlQYLv dTczEt')]/p/&#64;data-change&quot;), 1) = &quot;down&quot;,
-&quot;-&quot; &amp; VALUE(SUBSTITUTE(IMPORTXML(&quot;https://coinmarketcap.com/currencies/ethereum/&quot;, &quot;//div[contains(&#64;class, 'sc-65e7f566-0 gCtSWR')]&quot;), &quot;(1d)&quot;, &quot;&quot;))*100&amp;&quot;%&quot;,
-VALUE(SUBSTITUTE(IMPORTXML(&quot;https://coinmarketcap.com/currencies/ethereum/&quot;, &quot;//div[contains(&#64;class, 'sc-65e7f566-0 gCtSWR')]&quot;), &quot;(1d)&quot;, &quot;&quot;))*100&amp;&quot;%&quot;
+=TEXT(
+ IF(
+     IMPORTXML(&quot;https://coinmarketcap.com/currencies/ethereum/&quot;, &quot;//p/&#64;data-change&quot;) = &quot;down&quot;,
+     &quot;-&quot; &amp; INDEX(IMPORTXML(&quot;https://coinmarketcap.com/currencies/ethereum/&quot;, &quot;//p[&#64;data-change]&quot;), 1, 2),
+     INDEX(IMPORTXML(&quot;https://coinmarketcap.com/currencies/ethereum/&quot;, &quot;//p[&#64;data-change]&quot;), 1, 2)
+ ),
+ &quot;0.0%&quot;
 )
 </pre>
 <p>This method uses IMPORTXML to import data to google sheets by passing an &quot;xpath query&quot;. The first line checks if the direction of the % change is &quot;down&quot;. If it is down,
