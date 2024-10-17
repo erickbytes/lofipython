@@ -127,11 +127,12 @@ use the -o argument. Use the -m argument to specify which output format.
    # Convert XML to Markdown files.
    pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN
 
-`pelican-importer documentation <http://docs.tweepy.org/en/latest/getting_started.html>`__
+`pelican-importer documentation <https://docs.getpelican.com/en/stable/importer.html>`__
 
 **Moving From Wordpress Was Easy With Pelican**
 
-I did thorough research into Python static site generators before choosing Pelican. The benefits of Pelican include a 
+I did thorough `research into Python static site generators <a-brief-summary-of-promising-python-static-site-generatorsl>`__
+before choosing Pelican. The benefits of Pelican include a 
 wordpress import CLI that makes it easy to quickly compile an an alternative MVP to move your blog from Wordpress.
 Pelican is an obivous choice for static site generation in the Python ecosystem. After 17 months of using it, 
 I can safely say I'm happy with the decision!
@@ -143,3 +144,5 @@ I can safely say I'm happy with the decision!
 `How to Convert a Wordpress blog to an Astro Static Site <https://blog.okturtles.org/2024/10/convert-wordpress-to-static-site/>`__
 
 `Pelican Documentation <https://docs.getpelican.com/en/latest/>`__
+
+
