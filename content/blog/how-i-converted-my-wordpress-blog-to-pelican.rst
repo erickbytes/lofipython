@@ -145,4 +145,7 @@ I can safely say I'm happy with the decision!
 
 `Pelican Documentation <https://docs.getpelican.com/en/latest/>`__
 
+`Pelican Documentation <https://docs.getpelican.com/en/latest/>`__
+
+`Launching a Live Static Site Blog via Pelican, Github and Cloudflare Pages <hhttps://lofipython.com/launching-a-live-static-blog-via-pelican-github-and-cloudflare-pages>`__
 
