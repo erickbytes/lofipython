@@ -131,7 +131,7 @@ use the -o argument. Use the -m argument to specify which output format.
 
 **Moving From Wordpress Was Easy With Pelican**
 
-I did thorough `research into Python static site generators <a-brief-summary-of-promising-python-static-site-generatorsl>`__
+I did thorough `research into Python static site generators <https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators>`__
 before choosing Pelican. The benefits of Pelican include a 
 wordpress import CLI that makes it easy to quickly compile an an alternative MVP to move your blog from Wordpress.
 Pelican is an obivous choice for static site generation in the Python ecosystem. After 17 months of using it, 
