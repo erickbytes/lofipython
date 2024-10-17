@@ -3,7 +3,7 @@ How I Converted My Wordpress Blog to Pelican, A Checklist
 :date: 2024-10-17 16:42
 :author: lofipython
 :category: coding, programming, python, wordpress, blog
-:tags: moving from Wordpress to Pelican, Wordpress migration checklist, hacking
+:tags: moving from Wordpress to Pelican, Wordpress migration checklist
 :slug: how-i-converted-my-wordpress-blog-to-pelican
 :status: published
 
@@ -142,8 +142,6 @@ I can safely say I'm happy with the decision!
 `Deploy a Hugo website to Cloudflare <https://tanis.codes/posts/deploy-hugo-website-to-cloudflare/?utm_source=pocket_shared>`__
 
 `How to Convert a Wordpress blog to an Astro Static Site <https://blog.okturtles.org/2024/10/convert-wordpress-to-static-site/>`__
-
-`Pelican Documentation <https://docs.getpelican.com/en/latest/>`__
 
 `Pelican Documentation <https://docs.getpelican.com/en/latest/>`__
 
