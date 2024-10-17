@@ -32,14 +32,14 @@ Here is the checklist I wrote down when I made than transition:
 
 ---------------------
 
-1. Export posts to XML.
+**1. Export posts to XML.**
 
 Go into the Wordpress settings and export posts. I selected XML format.
 
 .. image:: {static}/images/wordpress-export-tools.png
   :alt: export blog from wordpress settings
 
-2. Export all media.
+**2. Export all media.**
 
 Wordpress allowed me to choose to export posts or media, so I exported all the images on my blog also.
 
@@ -50,12 +50,12 @@ Wordpress allowed me to choose to export posts or media, so I exported all the i
 .. image:: {static}/images/wordpress-export-tool-options-details.png
   :alt: export blog from content and media from  wordpress settings
 
-3. Convert posts to new blog format: Markdown or Restructured Text Edits.
+**3. Convert posts to new blog format: Markdown or Restructured Text Edits.**
 
 Pelican's import tool for wordpress converts your XML file to either .md or .rst files 
 based on which CLI argument you pass.
 
-4. Set DNS redirect from old blog to new blog.
+**4. Set DNS redirect from old blog to new blog.**
 
 I previously hosted my blog on a custom .com domain. When I stopped paying for the domain,
 my domain reverted back to example.wordpress.com. However, you can pay a domain register a small 
@@ -63,7 +63,7 @@ fee to forward traffic to your new domain. You can transfer old domain to servic
 or Cloudflare to set up a redirect. It's recommended to keep a redirect for at least 1 or 2 years 
 after moving to a new domain to catch any legacy backlinked traffic.
 
-5. Turn off search engine indexing for old blog.
+**5. Turn off search engine indexing for old blog.**
 
 One benefit of Wordpress from an SEO perspective is that they have search engine indexing control in the settings panel.
 In the settings, you have the ability to tell search engines whether or not you should index your blog.
@@ -76,7 +76,7 @@ settings to "Discourage search engines from indexing this site" and  "Prevent th
 This allows people who might be searching for my old blog or following legacy links to have a chance 
 to track down the few posts available and hopefully find my new home on the web.
 
-6. Update old blog with notice of new blog. 
+**6. Update old blog with notice of new blog.**
 
 *Keep A Few Posts Exclusively on the Old Blog*
 
@@ -97,7 +97,7 @@ In Settings / General, you can edit the site tagline:
 .. image:: {static}/images/blog-headline-announcement.png
   :alt: blog moved announcement
 
-7. Update urls from old domain to new domain.
+**7. Update urls from old domain to new domain.**
 
 It's common practice to add a "CTA" or call to action at the end of a blog post. For me, that tends to be the related posts I've
 written in the past. Any links that contain the old domain need to be swapped to the new one.
@@ -115,7 +115,7 @@ For validating urls in my 100+ past posts, I also wrote a python script to help 
    pip install feedparser
 
 
-**Use the pelican-importer CLI to convert the XML to Markdown or reStructuredText**
+**Use the pelican-importer CLI to convert the XML to Markdown or reStructuredText.**
 
 I chose to use the default detting of the CLI to export to .rst. If you want to specify a folder to drop the contents, 
 use the -o argument. Use the -m argument to specify which output format.
