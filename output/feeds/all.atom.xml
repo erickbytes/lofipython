@@ -1,5 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-09-25T17:48:00-05:00</updated><entry><title>When Microsoft Was Uncool and How They Flipped Apple</title><link href="https://lofipython.com/when-microsoft-was-uncool.html" rel="alternate"></link><published>2024-09-25T17:48:00-05:00</published><updated>2024-09-25T17:48:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-09-25:/when-microsoft-was-uncool.html</id><summary type="html">&lt;p&gt;I began paying attention to what was relevant in the tech scene around 2014, in my 20s.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/all.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-10-17T16:42:00-05:00</updated><entry><title>How I Converted My Wordpress Blog to Pelican, A Checklist</title><link href="https://lofipython.com/how-i-converted-my-wordpress-blog-to-pelican.html" rel="alternate"></link><published>2024-10-17T16:42:00-05:00</published><updated>2024-10-17T16:42:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-10-17:/how-i-converted-my-wordpress-blog-to-pelican.html</id><summary type="html">&lt;p&gt;Recently there has been a lot of noise online about the Wordpress website platform.
+This blog is formerly a Wordpress blog, so I am in the unique position to share how
+I moved this blog for anyone looking to ge toff Wordpress. I wrote an announcemnt post about
+&lt;a class="reference external" href="https://lofipython.com/wordpress-to-pelican-blog-migration-complete"&gt;migrating my …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently there has been a lot of noise online about the Wordpress website platform.
+This blog is formerly a Wordpress blog, so I am in the unique position to share how
+I moved this blog for anyone looking to ge toff Wordpress. I wrote an announcemnt post about
+&lt;a class="reference external" href="https://lofipython.com/wordpress-to-pelican-blog-migration-complete"&gt;migrating my wordpress blog in 2023&lt;/a&gt;.
+This blog began as on the Wordpress free plan, then had few years as a paying customer of Automattic,
+the corporate entity associated with Wordpress.org. The notes below are from my experience moving to a Python Pelican blog.&lt;/p&gt;
+&lt;p&gt;Here is the checklist I wrote down when I made than transition:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Export posts to XML.&lt;/li&gt;
+&lt;li&gt;Export all media.&lt;/li&gt;
+&lt;li&gt;Convert posts to new blog format: Markdown or Restructured Text Edits.&lt;/li&gt;
+&lt;li&gt;Set DNS redirect from old blog to new blog.&lt;/li&gt;
+&lt;li&gt;Turn off search engine indexing for old blog.&lt;/li&gt;
+&lt;li&gt;Update old blog with notice of new blog.&lt;/li&gt;
+&lt;li&gt;Update urls from old domain to new domain.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr class="docutils" /&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Export posts to XML.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Go into the Wordpress settings and export posts. I selected OPML format.&lt;/p&gt;
+&lt;img alt="export blog from wordpress settings" src="https://lofipython.com/images/wordpress-export-tools.png" /&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;Export all media.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Wordpress allowed me to choose to export posts or media, so I exported all the images on my blog also.&lt;/p&gt;
+&lt;img alt="export blog from content and media from  wordpress settings" src="https://lofipython.com/images/wordpress-export-tool-options.png" /&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;Convert posts to new blog format: Markdown or Restructured Text Edits.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Pelican's import tool for wordpress converts your OPML file to either .md or .rst files
+based on which CLI argument you pass.&lt;/p&gt;
+&lt;ol class="arabic simple" start="4"&gt;
+&lt;li&gt;Set DNS redirect from old blog to new blog.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I previously hosted my blog on a custom .com domain. When I stopped paying for the domain,
+my domain reverted back to example.wordpress.com. However, you can pay a domain register a small
+fee to forward traffic to your new domain. You can transfer old domain to services like Namecheap
+or Cloudflare to set up a redirect. It's recommended to keep a redirect for at least 1 or 2 years
+after moving to a new domain to catch any legacy backlinked traffic.&lt;/p&gt;
+&lt;ol class="arabic simple" start="5"&gt;
+&lt;li&gt;Turn off search engine indexing for old blog.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;One benefit of Wordpress from an SEO perspective is that they have search engine indexing control in the settings panel.
+In the settings, you have the ability to tell search engines whether or not you should index your blog.
+Once I got the hang of Pelican, I reviewed each converted post to fix links, grammar or
+formatting errors from the conversion.&lt;/p&gt;
+&lt;p&gt;I slowly moved them over in batches of 2 or 3 posts at a time. As I moved the posts to the new blog,
+I set the old posts to private within the Wordpress CMS. I also changed their search engine indexing
+settings to &amp;quot;Discourage search engines from indexing this site&amp;quot; and  &amp;quot;Prevent third-party sharing for example.wordpress.com&amp;quot;.
+This allows people who might be searching for my old blog or following legacy links to have a chance
+to track down the few posts available and track to my new home on the web.&lt;/p&gt;
+&lt;ol class="arabic simple" start="6"&gt;
+&lt;li&gt;Update old blog with notice of new blog.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Keep A Few Posts Exclusively on the Old Blog&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The benefit of Worpdress's free plan is that you can still keep some posts
+and the original sub-domain live on their free plan. You can write your final post
+on the old blog to let subscribers know you've moved.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Update the Site Tagline&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I also set the old blog tagline, pointing readers to new blog:&lt;/p&gt;
+&lt;p&gt;In Settings / General, you can edit the site tagline:&lt;/p&gt;
+&lt;img alt="change blog headline in wordpress" src="https://lofipython.com/images/update-wordpress-site-tagline.png" /&gt;
+&lt;img alt="blog moved announcement" src="https://lofipython.com/images/blog-headline-announcement.png" /&gt;
+&lt;ol class="arabic simple" start="7"&gt;
+&lt;li&gt;Update urls from old domain to new domain.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It's common practice to add a &amp;quot;CTA&amp;quot; or call to action at the end of a blog post. For me, that tends to be the related posts I've
+posted in the past. Any links that contain the old domain need to be swapped to the new one.&lt;/p&gt;
+&lt;p&gt;For validating urls in my 100+ past posts, I also wrote a python script to help find broken links and .rst tags here:
+&lt;a class="reference external" href="https://github.com/erickbytes/rst-url-validator"&gt;rst-url-validator Github Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Install the Pelican, lxml, beautiful soup and feedparser Python libraries.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip install pelican
+pip install BeautifulSoup4
+pip install lxml
+pip install feedparser&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Use the pelican-importer CLI to convert the XML to Markdown or reStructuredText&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I chose to use the default detting of the CLI to export to .rst. If you want to specify a folder to drop the contents,
+use the -o argument. Use the -m argument to specify which output format.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;Convert&lt;span class="w"&gt; &lt;/span&gt;CML&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;reStructuredText&lt;span class="w"&gt; &lt;/span&gt;Format&lt;span class="w"&gt; &lt;/span&gt;files.
+&lt;span class="go"&gt;pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml&lt;/span&gt;
+&lt;span class="gp"&gt;# &lt;/span&gt;Convert&lt;span class="w"&gt; &lt;/span&gt;XML&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;Markdown&lt;span class="w"&gt; &lt;/span&gt;files.
+&lt;span class="go"&gt;pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://docs.tweepy.org/en/latest/getting_started.html"&gt;pelican-importer documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Moving From Wordpress Was Easy With Pelican&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I did thorough research into Python static site generators before choosing Pelican. The benefits of Pelican include a
+wordpress import CLI that makes it easy to quickly compile an an alternative MVP to move your blog from Wordpress.
+Pelican is an obivous choice for static site generation in the Python ecosystem. After 17 months of using it,
+I can safely say I'm happy with the decision!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Supplementary Reading&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://tanis.codes/posts/deploy-hugo-website-to-cloudflare/?utm_source=pocket_shared"&gt;Deploy a Hugo website to Cloudflare&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://blog.okturtles.org/2024/10/convert-wordpress-to-static-site/"&gt;How to Convert a Wordpress blog to an Astro Static Site&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.getpelican.com/en/latest/"&gt;Pelican Documentation&lt;/a&gt;&lt;/p&gt;
+</content><category term="coding, programming, python, wordpress, blog"></category><category term="moving from Wordpress to Pelican"></category><category term="Wordpress migration checklist"></category><category term="hacking"></category></entry><entry><title>When Microsoft Was Uncool and How They Flipped Apple</title><link href="https://lofipython.com/when-microsoft-was-uncool.html" rel="alternate"></link><published>2024-09-25T17:48:00-05:00</published><updated>2024-09-25T17:48:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-09-25:/when-microsoft-was-uncool.html</id><summary type="html">&lt;p&gt;I began paying attention to what was relevant in the tech scene around 2014, in my 20s.
 Back then, I was just getting started studying Python. It was an interesting time in tech.
 The term &amp;quot;Big Data&amp;quot; was getting tossed around a lot, but the pandas library hadn't yet reached …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I began paying attention to what was relevant in the tech scene around 2014, in my 20s.
 Back then, I was just getting started studying Python. It was an interesting time in tech.
@@ -7505,116 +7611,4 @@ python -m pip install pandas
 &lt;p&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15"&gt;Microsoft Documentation pyodbc example&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://www.mcobject.com/docs/Content/Programming/Python/Classes/Cursor.htm"&gt;The Python Cursor Class&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://www.psycopg.org/docs/cursor.html"&gt;Psycopg Cursor Class Documentation&lt;/a&gt;&lt;/p&gt;
-</content><category term="automation, data, Databases, excel, ODBC, pandas, python, Windows"></category><category term="Access"></category><category term="Microsoft"></category><category term="productivity"></category><category term="programming"></category></entry><entry><title>Installing Debian 9 Stretch Linux OS on a Dell Inspiron Laptop and Configuring the Wifi Network</title><link href="https://lofipython.com/installing-debian-9-stretch-linux-os-on-a-dell-inspiron-laptop-and-troubleshooting-wifi.html" rel="alternate"></link><published>2019-04-25T14:14:00-05:00</published><updated>2019-04-25T14:14:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2019-04-25:/installing-debian-9-stretch-linux-os-on-a-dell-inspiron-laptop-and-troubleshooting-wifi.html</id><summary type="html">&lt;p&gt;Yesterday, I converted an 11-year old Dell Inspiron E1505 from Windows XP to Debian 9 Stretch. I may have overwrote my Windows XP OS. I do not care if I lost it since it's a vulnerable and outdated OS, which is no longer supported by Microsoft. I encountered difficulty with …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Yesterday, I converted an 11-year old Dell Inspiron E1505 from Windows XP to Debian 9 Stretch. I may have overwrote my Windows XP OS. I do not care if I lost it since it's a vulnerable and outdated OS, which is no longer supported by Microsoft. I encountered difficulty with getting the wifi to work on Debian, but was able to find a solution using &lt;a class="reference external" href="https://help.ubuntu.com/community/WICD"&gt;Wicd&lt;/a&gt;. Here are the steps I followed to do it all.&lt;/p&gt;
-&lt;div class="section" id="using-the-debian-installer-loader"&gt;
-&lt;h2&gt;Using The Debian Installer-Loader&lt;/h2&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;First, back up your Windows computer files. Then download the &lt;a class="reference external" href="https://wiki.debian.org/DebianInstaller/Loader"&gt;Debian-Installer Loader&lt;/a&gt; Windows executable from the Debian wiki.&lt;/li&gt;
-&lt;li&gt;Click the downloaded executable and &lt;img alt="IMG_20190423_184816999" class="wp-image-1785 alignright" src="http://pythonmarketer.files.wordpress.com/2019/04/97878-img_20190423_184816999-e1556211269262.jpg" style="width: 311px; height: 196px;" /&gt;follow instructions. I followed the default settings all the way through.&lt;/li&gt;
-&lt;li&gt;You may need to choose your own partitioning settings to ensure Windows is preserved if desired.&lt;/li&gt;
-&lt;li&gt;During installation, choose your Linux collection. I chose Xfce because it &lt;a class="reference external" href="https://www.slant.co/versus/1122/1124/~xfce_vs_gnome-3"&gt;seems to be highest ranked&lt;/a&gt; among Linux users and &amp;quot;not just helpful for older computers where few system resources are available, but also simply for those who want to get the most out of their systems.&amp;quot; Gnome and KDE are other popular options.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;img alt="IMG_20190423_184023738" class="wp-image-1784 aligncenter" src="http://pythonmarketer.files.wordpress.com/2019/04/46248-img_20190423_184023738-e1556211291659.jpg" style="width: 564px; height: 375px;" /&gt;
-&lt;p&gt;&lt;strong&gt;After completing installation, restart your computer and select your new OS on boot-up. The following error codes displayed for me while starting up, signaling missing wifi firmware.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-ERROR Failed to load firmware!
-b43ssb0:0: firmware: failed to load b43/ucode5.fw (-2)
-b43ssb0:0: firmware: failed to load b43-open/ucode5.fw (-2)
-b43-phy0 ERROR: You must go to https://wireless.wiki.kernel.org/en/users/drivers/b43#devicefirmware and download the correct firmware for this driver version.
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;It took me a few boot-ups before I realized what this error message meant. In the rest of this post I am trying to figure out and fix what is wrong before I saw the error message. I enjoyed learning how to introspect Linux networks, but if I were trying to fix this problem again, I'd go to directly to *`this page &amp;lt;http://linuxwireless.sipsolutions.net/en/users/Drivers/b43/&amp;gt;`__*, which is linked to from the link in the error message, and try the solution there first.&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="post-installation-setup"&gt;
-&lt;h2&gt;Post Installation Setup&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Open up the terminal once you're into your new Desktop OS&lt;/strong&gt;&amp;nbsp;and enter the below commands.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-su -
-apt-get install sudo -y usermod -aG sudo yourusername
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;1) Enable yourself as root user.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2) Install sudo.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;3) Give yourself sudo user permission.&lt;/strong&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="optional-replacing-network-manager-with-wicd"&gt;
-&lt;h2&gt;Optional: Replacing Network-Manager With Wicd&lt;/h2&gt;
-&lt;p&gt;This Debian 9 package ships with Network-Manager. After logging in, I wasn't sure why wifi was not working, so I decided to remove Network-Manager and install Wicd. (This was before I realized what the error code displayed on boot-up meant.) Wicd is a Linux network managing alternative and it's built with Python, by the way. I followed &lt;a class="reference external" href="https://help.ubuntu.com/community/WICD"&gt;these instructions&lt;/a&gt; to execute the below commands.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-uninstall nm
-sudo apt-get install -d --reinstall network-manager network-manager-gnome
-install wicd
-sudo apt-get install wicd-gtk
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;After installing Wicd, my Ethernet connection was not working. This fixed it for me:&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-sudo ifconfig eth0 up
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="section" id="troubleshooting-linux-wifi-inspecting-your-system"&gt;
-&lt;h2&gt;Troubleshooting Linux Wifi &amp;amp; Inspecting Your System&lt;/h2&gt;
-&lt;p&gt;Now, let's check for enabled network interfaces. &amp;quot;wlan0&amp;quot; is usually the name of the wireless interface. Does wlan0 show when you enter this command? If not, then you may need to update your wifi firmware. This was the case for me. Below is an output where wlan0 is correctly configured.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-sudo ifconfig
-&lt;/pre&gt;
-&lt;pre class="literal-block"&gt;
-eth0: flags=4099&amp;lt;UP,BROADCAST,MULTICAST&amp;gt; mtu 1500
-ether 00:25:a5:cf:38:7d txqueuelen 1000 (Ethernet)
-RX packets 0 bytes 0 (0.0 B)
-RX errors 0 dropped 0 overruns 0 frame 0
-TX packets 0 bytes 0 (0.0 B)
-TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
-device interrupt 17
-lo: flags=73&amp;lt;UP,LOOPBACK,RUNNING&amp;gt; mtu 65536
-inet 127.0.0.1 netmask 255.0.0.0
-inet6 ::1 prefixlen 128 scopeid 0x10
-loop txqueuelen 1 (Local Loopback)
-RX packets 4 bytes 240 (240.0 B)
-RX errors 0 dropped 0 overruns 0 frame 0
-TX packets 4 bytes 240 (240.0 B)
-TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
-wlan0: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt; mtu 1500
-inet 191.142.1.297 netmask 255.255.255.0 broadcast 182.138.5.255
-inet6 2601:241:8c00:50ea:21a:92ff:fe0d:7531 prefixlen 64 scopeid 0x0
-inet6 fe80::22a:42tf:fe0d:7531 prefixlen 64 scopeid 0x20 ether 00:2a:92:2d:45:51 txqueuelen 1000 (Ethernet)
-RX packets 8509 bytes 4639778 (4.4 MiB)
-RX errors 0 dropped 0 overruns 0 frame 0
-TX packets 6206 bytes 923792 (902.1 KiB)
-TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Check wlan0 is not blocked on kill list.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-sudo rfkill list all
-&lt;/pre&gt;
-&lt;p&gt;Some computers have a &amp;quot;kill switch&amp;quot; for wifi. This command lists any blocked interfaces. If it is blocked, &lt;a class="reference external" href="https://ubuntuforums.org/showthread.php?t=2298330"&gt;this thread&lt;/a&gt; might be useful. If nothing shows when you run this command, or if you see wlan0 is not blocked, carry on.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Check which wifi controller you have.&lt;/strong&gt; &lt;a class="reference external" href="https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers"&gt;This thread&lt;/a&gt; &lt;strong&gt;provides more info on what this means.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-lspci -nn | grep -e 0200 -e 0280
-&lt;/pre&gt;
-&lt;pre class="literal-block"&gt;
-03:00.0 Ethernet controller [0200]: Broadcom Limited BCM4401-B0 100Base-TX [14e4:170c] (rev 02)
-0b:00.0 Network controller [0280]: Broadcom Limited BCM4311 802.11b/g WLAN [14e4:4311] (rev 01)
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Find your system architecture. This determines which firmware you should download in the next step.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-sudo dpkg --print-architecture
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;First,&lt;/strong&gt; &lt;a class="reference external" href="https://wireless.wiki.kernel.org/en/users/drivers/b43/firmware"&gt;read here&lt;/a&gt; &lt;strong&gt;to determine the right packages for your Linux system. Then download the appropriate missing wifi firmware. For Debian, I downloaded the two packages below.&lt;/strong&gt;&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://packages.debian.org/stretch/b43-fwcutter"&gt;b43-fwcutter&lt;/a&gt; 2) &lt;a class="reference external" href="https://packages.debian.org/stretch/firmware-b43-installer"&gt;b43-installer&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;&amp;quot;cd&amp;quot; into the directory with .deb files. Run the below commands to install the new firmware, then reboot your computer. The last two commands are adapted from&lt;/strong&gt; &lt;a class="reference external" href="https://ubuntuforums.org/showthread.php?t=2203312&amp;amp;page=4"&gt;this thread&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-sudo dpkg -i firmware-b43-installer_019-3_all.deb
-sudo dpkg -i firmware-b43-fwcutter_019-3_i386.deb
-sudo modprobe -r b43
-sudo modprobe b43
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Edit Wicd preferences to set wlan0 as the wireless interface if needed.&lt;/strong&gt;&lt;/p&gt;
-&lt;img alt="change_wicd_settings" class="alignnone wp-image-1779" src="https://pythonmarketer.files.wordpress.com/2019/04/change_wicd_settings.png" style="width: 380px; height: 357px;" /&gt;
-&lt;p&gt;&lt;strong&gt;Success! Wireless networks are now showing.&lt;/strong&gt;&lt;/p&gt;
-&lt;img alt="wicd_success" class="alignnone wp-image-1780" src="https://pythonmarketer.files.wordpress.com/2019/04/wicd_success.png" style="width: 375px; height: 351px;" /&gt;
-&lt;p&gt;&lt;strong&gt;Wrapping Up&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I'd like to thank the awesome people who contributed to the Debian Installer-loader and all the help in Linux forums that enabled me figure this out. I'm new to the world of Linux but already enjoying diving into this operating system. Its ability to do just about anything from the command line are a lot of fun. I am now running two Linux systems, one on my Dell and another running Ubuntu that I installed on a Chromebook with &lt;a class="reference external" href="https://www.howtogeek.com/162120/how-to-install-ubuntu-linux-on-your-chromebook-with-crouton/"&gt;Crouton&lt;/a&gt;. Both have been relatively painless to set up. It this case, it turned a sluggish laptop into a very capable machine. They should call it Lit-nux :)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Full Disclosure&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This worked on my computer for a few days before the keyboard stopped working correctly on my computer. Typing became impossible because the keys didn't work or entered the wrong letters when pressed. I'm not sure what the cause of it was, but consider that before attempting this on a machine. Be prepared to lose it. If you really need the machine to be functional, it may not be a great idea to try this. This was attempted on an old beat up computer. I would try this method of porting a Windows machine to Linux again as a salvage project or on a low-risk Windows machine if I had one lying around.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Linux, software"></category><category term="computers"></category><category term="debian"></category><category term="operating system"></category><category term="os upgrade"></category><category term="Windows"></category></entry></feed>
+</content><category term="automation, data, Databases, excel, ODBC, pandas, python, Windows"></category><category term="Access"></category><category term="Microsoft"></category><category term="productivity"></category><category term="programming"></category></entry></feed>

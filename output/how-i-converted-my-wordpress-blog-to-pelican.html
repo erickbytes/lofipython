@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+        <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lo-Fi Python | articles tagged "hacking"</title>
+    <title>Lo-Fi Python | How I Converted My Wordpress Blog to Pelican, A Checklist</title>
     <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
     <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
     <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
-    <link href="https://lofipython.com/feeds/hacking.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Tags Atom Feed" />
+    <link href="https://lofipython.com/feeds/coding-programming-python-wordpress-blog.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
+    <link href="https://lofipython.com/feeds/coding-programming-python-wordpress-blog.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
     <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
     <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="@erickbytes" />
+
+    <meta name="keywords" content="moving from Wordpress to Pelican,Wordpress migration checklist,hacking" />
     <style>
         .float-center {
             text-align: center
@@ -24,7 +27,6 @@
     <header>
         <nav style="overflow: hidden;">
             <ul>
-                <li class="ephemeral selected"><a href="https://lofipython.com/tag/hacking.html">hacking</a></li>
                 <li><a href="https://lofipython.com/">Home</a></li>
                 <li><a href="feeds/all.rss.xml">RSS</a></li>
                 <li><a href="feeds/all.atom.xml">Atom</a></li>
@@ -162,128 +164,9 @@ I can safely say I'm happy with the decision!</p>
                     &nbsp;&middot;
                     &nbsp;<a href="https://lofipython.com/tag/moving-from-wordpress-to-pelican.html" class="tags">moving from Wordpress to Pelican</a>
                     &nbsp;<a href="https://lofipython.com/tag/wordpress-migration-checklist.html" class="tags">Wordpress migration checklist</a>
-                    &nbsp;<a href="https://lofipython.com/tag/hacking.html" class="tags selected">hacking</a>
-                </div>
-            </article>            <h4 class="date">Oct 07, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/making-a-youtube-video-downloader-with-pythons-flask-and-pytube3-libraries.html" rel="bookmark" title="Permanent Link to &quot;Making A YouTube Video Downloader With Python's Flask and pytube3 Libraries&quot;">Making A YouTube Video Downloader With Python's Flask and pytube3 Libraries</a>
-                </h2>
-
-                
-                
-
-                <p>How do you download YouTube videos? The easiest answer is to google sites that have youtube downloader videos.
-But then I thought, I wonder if I can make something?</p>
-<p>Boredom, my curiosity and some googling turned up the <a class="reference external" href="https://github.com/get-pytube/pytube3">pytube3 library</a>, &quot;A lightweight, dependency-free Python 3 library (and command-line utility) for downloading YouTube Videos.&quot; Lo and behold, 3 hours of experimentation later, I made a video downloader with Python. 😃</p>
-<p>I used pytube3 with <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a> and <a class="reference external" href="https://www.pythonanywhere.com/">pythonanywhere</a> to accomplish the task. I was pleasantly surprised at how it came together and simply worked! Here's how to make a primitive YouTube video downloader.</p>
-<p>Install the pytube library in the pythonanywhere bash console with <a class="reference external" href="https://lofipython.com/how-to-python-pip-install-new-libraries/">pip</a></p>
-<pre class="literal-block">
-pip3.8 install --user pytube3 --upgrade
-</pre>
-<p><strong>If you're not using pythonanywhere, install Flask (it's already included in pythonanywhere)</strong></p>
-<pre class="literal-block">
-python -m pip install flask
-</pre>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">pytube</span> <span class="kn">import</span> <span class="n">YouTube</span>
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">send_file</span>
-
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">youtube_downloader</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Render HTML form to accept YouTube URL.&quot;&quot;&quot;</span>
-    <span class="n">html_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;html&gt;&lt;head&gt;</span>
-<span class="s2">                    &lt;Title&gt;YouTube Downloader&lt;/Title&gt;&lt;/head&gt;</span>
-<span class="s2">                    &lt;body&gt;&lt;h2&gt;Enter URL to download YouTube Vids!&lt;/h2&gt;</span>
-<span class="s2">                    &lt;div class=&quot;form&quot;&gt;</span>
-<span class="s2">                    &lt;form action=&quot;/download_video&quot; method=&quot;post&quot;&gt;</span>
-<span class="s2">                    &lt;input type=&quot;text&quot; name=&quot;URL&quot;&gt;</span>
-<span class="s2">                    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</span>
-<span class="s2">                    &lt;/form&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;</span>
-<span class="s2">                    &lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">html_page</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/download_video&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">download_video</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;First pytube downloads the file locally in pythonanywhere:</span>
-<span class="sd">    /home/your_username/video_name.mp4</span>
-
-<span class="sd">    Then use Flask&#39;s send_file() to download the video</span>
-<span class="sd">    to the user&#39;s Downloads folder.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">youtube_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;URL&quot;</span><span class="p">]</span>
-        <span class="n">download_path</span> <span class="o">=</span> <span class="n">YouTube</span><span class="p">(</span><span class="n">youtube_url</span><span class="p">)</span><span class="o">.</span><span class="n">streams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
-        <span class="n">fname</span> <span class="o">=</span> <span class="n">download_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;//&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Failed download&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;Video download failed!&quot;</span>
-</pre></div></td></tr></table></div>
-<div class="wp-image-7185 figure">
-<img alt="download video" src="https://pythonmarketer.files.wordpress.com/2022/09/download.png?w=952" />
-</div>
-<p><strong>Minimum Viable Prototype Achieved</strong></p>
-<p>This is more of a proof of concept than workable solution. It works for many videos I tried. It occasionally had trouble downloading certain videos. I tested it successfully on videos of up to 10 minutes. Maybe it works more consistently if the file size is smaller? Or there is a bug on certain types of videos? For me, some videos of only a few minutes failed, so your results may vary. The videos that failed returned errors like <tt class="docutils literal">KeyError: 'cipher'</tt> and <tt class="docutils literal">KeyError: 'url'</tt>.</p>
-<p><strong>Honorable Mentions</strong></p>
-<p><a class="reference external" href="https://github.com/ytdl-org/youtube-dl/blob/master/README.md#installation">youtube-dl</a>: Command-line program to download videos from YouTube.com and other video sites</p>
-<p><a class="reference external" href="https://github.com/YouTubeDownload/YouTubeDownload">YoutubeDownload</a>: GUI and CLI for downloading YouTube video/audio</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/making-a-youtube-video-downloader-with-pythons-flask-and-pytube3-libraries.html">posted at 23:49</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-flask-programming-python-web-development.html" rel="tag">coding, flask, programming, python, web development</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/curiosity.html" class="tags">curiosity</a>
-                    &nbsp;<a href="https://lofipython.com/tag/hacking.html" class="tags selected">hacking</a>
-                    &nbsp;<a href="https://lofipython.com/tag/prototyping.html" class="tags">prototyping</a>
-                    &nbsp;<a href="https://lofipython.com/tag/videos.html" class="tags">videos</a>
+                    &nbsp;<a href="https://lofipython.com/tag/hacking.html" class="tags">hacking</a>
                 </div>
             </article>
-
             <div class="clear"></div>
             <footer>
                 <p>

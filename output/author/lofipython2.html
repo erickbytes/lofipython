@@ -40,7 +40,62 @@
     <div id="wrapper">
         <br><br>
         <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CW7DKK77&placement=lofipythoncom&format=responsive" id="_carbonads_js"></script>
-        <div id="content">            <h4 class="date">Feb 22, 2024</h4>
+        <div id="content">            <h4 class="date">Mar 01, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/validating-rst-links-with-rst-url-validator.html" rel="bookmark" title="Permanent Link to &quot;Find Broken Links in Your .rst Documents With rst-url-validator&quot;">Find Broken Links in Your .rst Documents With rst-url-validator</a>
+                </h2>
+
+                
+                
+
+                <p>The posts on this blog are written in <a class="reference external" href="https://www.writethedocs.org/guide/writing/reStructuredText/">reStructuredText</a>.
+I recently had an idea to write a Python script to check my .rst document url links for broken tags or urls that are not valid.
+When I'm using <a class="reference external" href="https://pypi.org/project/pelican/">Pelican</a>, it hints when a url tag is malformed and gives a line number.
+However, it can still be difficult to track down a problematic link when there's an issue in your document.</p>
+<p>So I did what any other programmer probably does in 2024, opened up an AI assistant. Bing quickly generated the structure
+of the Python script from my prompt, but like usual it required some tinkering and refinement to make it work.
+You can find the complete Python script in the <a class="reference external" href="https://github.com/erickbytes/rst-url-validator">rst-url-validator Github repo</a>.</p>
+<p>Bing was also valuable for helping me modify the <a class="reference external" href="https://docs.python.org/3/howto/regex.html">regex module</a> code
+for rst-url-validator. It is typically very confusing to reason about regex,
+but with AI assistance I can just ask it for regex that does something and
+the AI can generate the code. Coding is getting way easier than it used to be thanks
+to these new advances in large language models.</p>
+<p><strong>Install Python Library Dependencies</strong></p>
+<p>The script uses <a class="reference external" href="https://pypi.org/project/requests/">requests</a> to send an HTTP request to the url
+and <a class="reference external" href="https://pypi.org/project/rich/">rich</a> to print color-coded output to the terminal screen.</p>
+<pre class="code console literal-block">
+<span class="go">pip install requests
+pip install rich</span>
+</pre>
+<p><strong>Clone The Github Repo</strong></p>
+<pre class="code console literal-block">
+<span class="go">git clone git&#64;github.com:erickbytes/rst-url-validator.git
+cd rst-url-validator</span>
+</pre>
+<p><strong>Run The CLI Command</strong></p>
+<pre class="code console literal-block">
+<span class="go">python rst-url-validator.py your_file.rst</span>
+</pre>
+<img alt="validate .rst document urls with python" src="https://lofipython.com/images/rst-report.png" />
+<p>It parses each url tag, checks for required characters and sends a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HEAD</a> request
+to the url to check if it loads successfully. Some websites return status codes like 403 (permission denied), 301 (redirect), or 404 (page not found).
+If the status code returned is 200, it's safe to say the page loaded. Be aware that some sites like Cloudflare (returns 403) and Amazon (returns 503) do not serve
+any requests and just return an error. In cases like these, you'll need to check pages like this manually in a browser to see if the page loads.</p>
+<p>This script helped me find and fix or remove a bunch of broken links on the older posts on this blog. If you're working with .rst documents, give it a try!</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/validating-rst-links-with-rst-url-validator.html">posted at 12:56</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-writing-rst-restructuredtext.html" rel="tag">coding, programming, python, writing, .rst, reStructuredtext</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/restructuredtext-format.html" class="tags">reStructuredtext Format</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-rst-url-validation.html" class="tags">python rst url validation</a>
+                    &nbsp;<a href="https://lofipython.com/tag/how-to-validate-rst-links.html" class="tags">how to validate .rst links</a>
+                </div>
+            </article>            <h4 class="date">Feb 22, 2024</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1598,126 +1653,6 @@ I hope it helps you keep your URLs tidy and your HTTP requests more readable.</p
                     &nbsp;<a href="https://lofipython.com/tag/python-url-parameters.html" class="tags">python url parameters</a>
                     &nbsp;<a href="https://lofipython.com/tag/format-python-url-arguments.html" class="tags">format python url arguments</a>
                 </div>
-            </article>            <h4 class="date">Oct 13, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/how-i-sped-up-a-python-get-request-by-25%.html" rel="bookmark" title="Permanent Link to &quot;How I Sped Up My Python CLI By 25%&quot;">How I Sped Up My Python CLI By 25%</a>
-                </h2>
-
-                
-                
-
-                <p>I recently noticed that the <a class="reference external" href="https://github.com/erickbytes/finsou.py">Yahoo Finance stock summary command line interface (CLI)</a> I made seemed to be slowing down. Seeking to understand what was happening in my code, I remembered Python has multiple profilers available like Scalene, line_profiler, cProfile and pyinstrument. In this case, I was running my code on Python version 3.11.</p>
-<p>First, I tried <a class="reference external" href="https://docs.python.org/3/library/profile.html#module-cProfile">cProfile</a> from the Python standard library. It is nice to have without any install required! However, I found its output to be tough to interpret. I also remembered I liked a <a class="reference external" href="https://www.youtube.com/watch?v=5iEf-_7mM1k">talk I saw about Scalene</a>, which gave a thorough overview of several Python profilers and how they're different. So next, I tried Scalene. Finally, I found pyinstrument and can safely say it is now my favorite Python profiler. This post will focus on how I used <a class="reference external" href="https://pyinstrument.readthedocs.io/en/latest/guide.html">pyinstrument</a> to make my command line tool faster.</p>
-<p><strong>Install pyinstrument with pip</strong></p>
-<pre class="code console literal-block">
-<span class="go">pip install pyinstrument</span>
-</pre>
-<p>I preferred the format in which pyinstrument presented the modules, functions and time they consumed in a tree structure. Scalene's percentage-based diagnosis was useful also. Scalene showed the specific lines where code was bottlenecked, whereas pyinstrument showed the time spent in each module and function. I liked that I could see time of specific  functions from the external modules I was using with pyinstrument. For example, the beautiful soup and rich modules both consumed shockingly little time. However, the pandas module took a whole second.</p>
-<p>Just importing the pandas module and doing nothing else was taking up to and sometimes over a second each time my CLI ran. On a script that takes about four seconds to execute, one second is 25% of the total run time! Once I realized this, I decided to only import the pandas module if my CLI's --csv argument was given. I was only using pandas to sort stocks and write a CSV. It wasn't critical functionality for my CLI.</p>
-<p>My CLI script accepts a stock ticker as an argument. The below command fetches a stock report from Yahoo Finance and prints to the terminal. Swapping out &quot;python&quot; for pyinstrument runs the script and prints a pyinstrument report to your console.</p>
-<p><strong>Fetch a stock report from Yahoo.</strong></p>
-<pre class="code console literal-block">
-<span class="go">pyinstrument finsou.py -s GOOG</span>
-</pre>
-<p><strong>pyinstrument Results With Normal Pandas Import</strong></p>
-<p><strong>GOOG, Google</strong></p>
-<img alt="profiling a Python script with pyinstrument, before with GOOG" src="https://lofipython.com/images/goog-pandas-import.png" />
-<p><strong>MSFT, Microsoft</strong></p>
-<img alt="profiling a Python script with pyinstrument, before with MSFT" src="https://lofipython.com/images/msft-pandas-import.png" />
-<p>The line for the pandas module looks like this:</p>
-<blockquote>
-0.946 &lt;module&gt;  pandas/__init__.py:1</blockquote>
-<p><strong>pyinstrument Results With Pandas Import Only If Necessary</strong></p>
-<p>After changing the pandas module to only import if needed, it is no longer eating almost a second of time. As a result, the script runs about second faster each time! Below are the pyinstrument reports for two different stocks after changing my pandas import to only be called if it was actually used:</p>
-<p><strong>GOOG, Google</strong></p>
-<img alt="profiling a Python script with pyinstrument, after with GOOG" src="https://lofipython.com/images/goog-no-pandas-import-fast.png" />
-<p><strong>NVDA, Nvidia</strong></p>
-<img alt="profiling a Python script with pyinstrument, after with NVDA" src="https://lofipython.com/images/nvda-no-pandas-import.png" />
-<p><strong>Sidebar: HTTP Request Volatility</strong></p>
-<blockquote>
-The time that the script runs fluctuates about half a second to a few seconds based on the HTTP get request. It lags even more if my internet connection is weaker or Yahoo throttles my request because I've made too many in a short period of time. My time savings weren't gained from tinkering with the HTTP request, even though that was a time-eater. I noticed the requests module get request tends to fluctuate and sometimes causes an extra delay.</blockquote>
-<p><strong>Simplified Python Example to Achieve Speed Gains</strong></p>
-<p>Below shows the method I used to achieve a faster CLI. Heads up, this code will not work if you run it. It's only meant to explain how I my code faster. You can find the actual script where I made this improvement <a class="reference external" href="https://github.com/erickbytes/finsou.py/blob/main/finsou.py">here on Github</a>.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">rprint</span>
-<span class="c1"># Original import --&gt; lazy import only if csv argument given: import pandas as pd</span>
-
-<span class="k">def</span> <span class="nf">yahoo_finance_prices</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stock</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s2">&quot;Stonk went up.&quot;</span><span class="p">,</span> <span class="s2">&quot;1000%&quot;</span>
-
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
-    <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;finsou.py&quot;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Beautiful Financial Soup&quot;</span><span class="p">,</span>
-    <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;fin soup... yum yum yum yum&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;--stocks&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;comma sep. stocks or portfolio.txt&quot;</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--csv&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;set csv export with &quot;your_csv.csv&quot;&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="n">prices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">stock</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>
-    <span class="n">summary</span><span class="p">,</span> <span class="n">ah_pct_change</span> <span class="o">=</span> <span class="n">yahoo_finance_prices</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stock</span><span class="p">)</span>
-    <span class="n">rprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[steel_blue]</span><span class="si">{</span><span class="n">summary</span><span class="si">}</span><span class="s2">[/steel_blue]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">prices</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">stock</span><span class="p">,</span> <span class="n">summary</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">ah_pct_change</span><span class="p">])</span>
-<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">csv</span><span class="p">:</span>
-    <span class="c1"># Importing here shaves 1 second off the CLI when CSV is not required.</span>
-    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Stock&quot;</span><span class="p">,</span> <span class="s2">&quot;Price_Summary&quot;</span><span class="p">,</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span> <span class="s2">&quot;AH_%_Change&quot;</span><span class="p">]</span>
-    <span class="n">stock_prices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
-    <span class="n">stock_prices</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<p><strong>Make It Fast</strong></p>
-<blockquote>
-&quot;Make it work, make it better, make it fast.&quot;
-- <a class="reference external" href="https://tidyfirst.substack.com/">Kent Beck</a></blockquote>
-<p>That's how I sped up my Python CLI by 25%. This method bucks the convention of keeping your import statements at the top of your script. In my case, it's a hobby project so I feel ok with making the trade-off of less readable code for a snappier CLI experience. You could also consider using the standard library csv module instead of pandas.</p>
-<p><strong>For Comparison, An import csv pyinstrument Report</strong></p>
-<img alt="profiling an import of the Python csv module" src="https://lofipython.com/images/csv-module-import.png" />
-<p>I clocked the csv module import at 0.003 or three thousandths of a second with pyinstrument. That's insanely fast compared to pandas. I chose to make a quick fix by shifting the import but using the csv module could be a better long-term solution for speeding up your scripts.</p>
-<p><strong>Supplementary Reading</strong></p>
-<p><a class="reference external" href="https://lofipython.com/making-a-yahoo-stock-price-summary-cli-with-python">Making a Yahoo Stock Price CLI With Python</a></p>
-<p><a class="reference external" href="https://docs.python.org/3/library/profile.html">The Python Profilers, Python Documentation</a></p>
-<p><a class="reference external" href="https://stackoverflow.com/questions/62599036/python-requests-is-slow-and-takes-very-long-to-complete-http-or-https-request">Stack Overflow Thread About Slow HTTP Requests</a></p>
-<p><a class="reference external" href="https://lofipython.com/tools-tips-to-beat-memoryerror-in-your-python-scripts">An Overview of Python Profiling and Diagnostic Tools</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/how-i-sped-up-a-python-get-request-by-25%.html">posted at 17:25</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-python-performance-cli.html" rel="tag">coding, programming, python, python performance, CLI</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/python-cli.html" class="tags">python CLI</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-script-optimization.html" class="tags">python script optimization</a>
-                    &nbsp;<a href="https://lofipython.com/tag/speeding-up-python-code.html" class="tags">speeding up python code</a>
-                </div>
             </article>
 
                 <div class="clear"></div>
@@ -1727,7 +1662,7 @@ The time that the script runs fluctuates about half a second to a few seconds ba
 
                     <a href="https://lofipython.com/author/lofipython3.html" class="next_page">Next&nbsp;&rarr;</a>
 
-                    <span>Page 2 of 3</span>
+                    <span>Page 2 of 4</span>
                 </div>
 
             <div class="clear"></div>
