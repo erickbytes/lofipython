@@ -34,7 +34,7 @@ Here is the checklist I wrote down when I made than transition:
 
 1. Export posts to XML.
 
-Go into the Wordpress settings and export posts. I selected OPML format.
+Go into the Wordpress settings and export posts. I selected XML format.
 
 .. image:: {static}/images/wordpress-export-tools.png
   :alt: export blog from wordpress settings
@@ -52,7 +52,7 @@ Wordpress allowed me to choose to export posts or media, so I exported all the i
 
 3. Convert posts to new blog format: Markdown or Restructured Text Edits.
 
-Pelican's import tool for wordpress converts your OPML file to either .md or .rst files 
+Pelican's import tool for wordpress converts your XML file to either .md or .rst files 
 based on which CLI argument you pass.
 
 4. Set DNS redirect from old blog to new blog.
