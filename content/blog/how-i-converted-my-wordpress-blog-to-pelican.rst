@@ -9,7 +9,7 @@ How I Converted My Wordpress Blog to Pelican, A Checklist
 
 Recently there has been a lot of noise online about the Wordpress website platform. 
 This blog is formerly a Wordpress blog, so I am in the unique position to share how 
-I moved this blog for anyone looking to ge toff Wordpress. I wrote an announcemnt post about 
+I moved this blog for anyone looking to get off Wordpress. I wrote an announcement post about 
 `migrating my wordpress blog in 2023 <https://lofipython.com/wordpress-to-pelican-blog-migration-complete>`__.
 This blog began as on the Wordpress free plan, then had few years as a paying customer of Automattic, 
 the corporate entity associated with Wordpress.org. The notes below are from my experience moving to a Python Pelican blog.
@@ -74,17 +74,17 @@ I slowly moved them over in batches of 2 or 3 posts at a time. As I moved the po
 I set the old posts to private within the Wordpress CMS. I also changed their search engine indexing 
 settings to "Discourage search engines from indexing this site" and  "Prevent third-party sharing for example.wordpress.com". 
 This allows people who might be searching for my old blog or following legacy links to have a chance 
-to track down the few posts available and track to my new home on the web.
+to track down the few posts available and hopefully find my new home on the web.
 
 6. Update old blog with notice of new blog. 
 
-- Keep A Few Posts Exclusively on the Old Blog
+*Keep A Few Posts Exclusively on the Old Blog*
 
 The benefit of Worpdress's free plan is that you can still keep some posts 
 and the original sub-domain live on their free plan. You can write your final post 
 on the old blog to let subscribers know you've moved.
 
-- Update the Site Tagline
+*Update the Site Tagline on Your Old Blog*
 
 I also set the old blog tagline, pointing readers to new blog:
 
