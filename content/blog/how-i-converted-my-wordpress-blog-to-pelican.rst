@@ -30,7 +30,21 @@ Here is the checklist I wrote down when I made than transition:
 
 7. Update urls from old domain to new domain.
 
+
 ---------------------
+
+
+**Install the Pelican, lxml, beautiful soup and feedparser Python libraries.**
+
+.. code:: console
+
+   pip install pelican
+   pip install BeautifulSoup4
+   pip install lxml
+   pip install feedparser
+
+
+--------------------
 
 **1. Export posts to XML.**
 
@@ -51,6 +65,20 @@ Wordpress allowed me to choose to export posts or media, so I exported all the i
 
 Pelican's import tool for wordpress converts your XML file to either .md or .rst files 
 based on which CLI argument you pass.
+
+**Use the pelican-importer CLI to convert the XML to Markdown or reStructuredText.**
+
+I chose to use the default detting of the CLI to export to .rst. If you want to specify a folder to drop the contents, 
+use the -o argument. Use the -m argument to specify which output format.
+
+.. code-block:: console
+
+   # Convert CML to reStructuredText Format files.
+   pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml
+   # Convert XML to Markdown files.
+   pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN
+
+`pelican-importer documentation <https://docs.getpelican.com/en/stable/importer.html>`__
 
 **4. Set DNS redirect from old blog to new blog.**
 
@@ -104,30 +132,6 @@ written in the past. Any links that contain the old domain need to be swapped to
 
 For validating urls in my 100+ past posts, I also wrote a python script to help find broken links and .rst tags here: 
 `rst-url-validator Github Repo <https://github.com/erickbytes/rst-url-validator>`__
-
-**Install the Pelican, lxml, beautiful soup and feedparser Python libraries.**
-
-.. code:: console
-
-   pip install pelican
-   pip install BeautifulSoup4
-   pip install lxml
-   pip install feedparser
-
-
-**Use the pelican-importer CLI to convert the XML to Markdown or reStructuredText.**
-
-I chose to use the default detting of the CLI to export to .rst. If you want to specify a folder to drop the contents, 
-use the -o argument. Use the -m argument to specify which output format.
-
-.. code-block:: console
-
-   # Convert CML to reStructuredText Format files.
-   pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml
-   # Convert XML to Markdown files.
-   pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN
-
-`pelican-importer documentation <https://docs.getpelican.com/en/stable/importer.html>`__
 
 **Moving From Wordpress Was Easy With Pelican**
 

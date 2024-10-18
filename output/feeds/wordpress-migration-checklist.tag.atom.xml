@@ -19,6 +19,14 @@ the corporate entity associated with Wordpress.org. The notes below are from my 
 &lt;li&gt;Update urls from old domain to new domain.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr class="docutils" /&gt;
+&lt;p&gt;&lt;strong&gt;Install the Pelican, lxml, beautiful soup and feedparser Python libraries.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="go"&gt;pip install pelican
+pip install BeautifulSoup4
+pip install lxml
+pip install feedparser&lt;/span&gt;
+&lt;/pre&gt;
+&lt;hr class="docutils" /&gt;
 &lt;p&gt;&lt;strong&gt;1. Export posts to XML.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Go into the Wordpress settings and export posts. I selected XML format.&lt;/p&gt;
 &lt;img alt="export blog from wordpress settings" src="https://lofipython.com/images/wordpress-export-tools.png" /&gt;
@@ -28,6 +36,18 @@ the corporate entity associated with Wordpress.org. The notes below are from my 
 &lt;p&gt;&lt;strong&gt;3. Convert posts to new blog format: Markdown or Restructured Text Edits.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Pelican's import tool for wordpress converts your XML file to either .md or .rst files
 based on which CLI argument you pass.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Use the pelican-importer CLI to convert the XML to Markdown or reStructuredText.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I chose to use the default detting of the CLI to export to .rst. If you want to specify a folder to drop the contents,
+use the -o argument. Use the -m argument to specify which output format.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;Convert&lt;span class="w"&gt; &lt;/span&gt;CML&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;reStructuredText&lt;span class="w"&gt; &lt;/span&gt;Format&lt;span class="w"&gt; &lt;/span&gt;files.
+&lt;span class="go"&gt;pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml&lt;/span&gt;
+&lt;span class="gp"&gt;# &lt;/span&gt;Convert&lt;span class="w"&gt; &lt;/span&gt;XML&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;Markdown&lt;span class="w"&gt; &lt;/span&gt;files.
+&lt;span class="go"&gt;pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.getpelican.com/en/stable/importer.html"&gt;pelican-importer documentation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;4. Set DNS redirect from old blog to new blog.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I previously hosted my blog on a custom .com domain. When I stopped paying for the domain,
 my domain reverted back to example.wordpress.com. However, you can pay a domain register a small
@@ -60,25 +80,6 @@ on the old blog to let subscribers know you've moved.&lt;/p&gt;
 written in the past. Any links that contain the old domain need to be swapped to the new one.&lt;/p&gt;
 &lt;p&gt;For validating urls in my 100+ past posts, I also wrote a python script to help find broken links and .rst tags here:
 &lt;a class="reference external" href="https://github.com/erickbytes/rst-url-validator"&gt;rst-url-validator Github Repo&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Install the Pelican, lxml, beautiful soup and feedparser Python libraries.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="go"&gt;pip install pelican
-pip install BeautifulSoup4
-pip install lxml
-pip install feedparser&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Use the pelican-importer CLI to convert the XML to Markdown or reStructuredText.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I chose to use the default detting of the CLI to export to .rst. If you want to specify a folder to drop the contents,
-use the -o argument. Use the -m argument to specify which output format.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
-&lt;span class="normal"&gt;2&lt;/span&gt;
-&lt;span class="normal"&gt;3&lt;/span&gt;
-&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;Convert&lt;span class="w"&gt; &lt;/span&gt;CML&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;reStructuredText&lt;span class="w"&gt; &lt;/span&gt;Format&lt;span class="w"&gt; &lt;/span&gt;files.
-&lt;span class="go"&gt;pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml&lt;/span&gt;
-&lt;span class="gp"&gt;# &lt;/span&gt;Convert&lt;span class="w"&gt; &lt;/span&gt;XML&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;Markdown&lt;span class="w"&gt; &lt;/span&gt;files.
-&lt;span class="go"&gt;pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://docs.getpelican.com/en/stable/importer.html"&gt;pelican-importer documentation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Moving From Wordpress Was Easy With Pelican&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I did thorough &lt;a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators"&gt;research into Python static site generators&lt;/a&gt;
 before choosing Pelican. The benefits of Pelican include a
