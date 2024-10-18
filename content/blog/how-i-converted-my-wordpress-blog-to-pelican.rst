@@ -109,14 +109,17 @@ to track down the few posts available and hopefully find my new home on the web.
 *Keep A Few Posts Exclusively on the Old Blog*
 
 The benefit of Worpdress's free plan is that you can still keep some posts 
-and the original sub-domain live on their free plan. You can write your final post 
-on the old blog to let subscribers know you've moved.
+and the original sub-domain live on their free plan.
+
+*Write your final post on the old blog to let subscribers know you've moved.*
+
+I had built up a list of subscribing Wordpress users after 6 years writing on the platform.
+Write a brief post explaining where to find future blog posts.
 
 *Update the Site Tagline on Your Old Blog*
 
-I also set the old blog tagline, pointing readers to new blog:
-
-In Settings / General, you can edit the site tagline:
+I also set the old blog's tagline to point readers to new blog. In Wordpress Settings / General, 
+you can edit the site tagline:
 
 .. image:: {static}/images/update-wordpress-site-tagline.png
   :alt: change blog headline in wordpress
