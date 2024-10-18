@@ -74,9 +74,9 @@ use the -o argument. Use the -m argument to specify which output format.
 .. code-block:: console
 
    # Convert CML to reStructuredText Format files.
-   pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml
+   pelican-import --wpfile example.wordpress.2023-05-14.000.xml
    # Convert XML to Markdown files.
-   pelican-import --wpfile pymarketer.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN
+   pelican-import --wpfile example.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN
 
 `pelican-importer documentation <https://docs.getpelican.com/en/stable/importer.html>`__
 
