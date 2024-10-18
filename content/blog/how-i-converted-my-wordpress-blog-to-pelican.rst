@@ -43,9 +43,6 @@ Go into the Wordpress settings and export posts. I selected XML format.
 
 Wordpress allowed me to choose to export posts or media, so I exported all the images on my blog also.
 
-.. image:: {static}/images/wordpress-export-tool-options.png
-  :alt: export blog from content and media from  wordpress settings
-
 
 .. image:: {static}/images/wordpress-export-tool-options-details.png
   :alt: export blog from content and media from  wordpress settings
@@ -69,6 +66,9 @@ One benefit of Wordpress from an SEO perspective is that they have search engine
 In the settings, you have the ability to tell search engines whether or not you should index your blog.
 Once I got the hang of Pelican, I reviewed each converted post to fix links, grammar or 
 formatting errors from the conversion. 
+
+.. image:: {static}/images/wordpress-export-tool-options.png
+  :alt: export blog from content and media from  wordpress settings
 
 I slowly moved them over in batches of 2 or 3 posts at a time. As I moved the posts to the new blog, 
 I set the old posts to private within the Wordpress CMS. I also changed their search engine indexing 
