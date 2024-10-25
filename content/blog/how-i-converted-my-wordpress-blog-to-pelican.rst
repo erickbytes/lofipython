@@ -61,7 +61,7 @@ Wordpress allowed me to choose to export posts or media, so I exported all the i
 .. image:: {static}/images/wordpress-export-tool-options-details.png
   :alt: export blog from content and media from  wordpress settings
 
-**3. Convert posts to new blog format: Markdown or Restructured Text Edits.**
+**3. Convert posts to new blog format: Markdown or reStructuredText Format.**
 
 Pelican's import tool for wordpress converts your XML file to either .md or .rst files 
 based on which CLI argument you pass.
