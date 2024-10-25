@@ -7,7 +7,9 @@
 :slug: a-brief-summary-of-promising-python-static-site-generators
 :status: published
 
-A static site generator creates static HTML and markdown files to serve as a website. They're commonly used to host blogs but not exclusively. I recently researched my options to roll a static site in Python. I'm assessing a few of them as a potential future self-hosted blogging solution for this Wordpress blog. Or maybe I'll spin up a new one!
+A static site generator creates static HTML and markdown files to serve as a website. They're commonly used to host blogs but not exclusively. 
+I recently researched my options to roll a static site in Python. I'm assessing them as a potential future self-hosted blogging solution 
+for this blog. Or maybe I'll spin up a new blog with a static site generator.
 
    **Why Statics?**
 
