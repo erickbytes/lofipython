@@ -20,7 +20,7 @@ Here is the checklist I wrote down when I made than transition:
 
 2. Export all media.
 
-3. Convert posts to new blog format: Markdown or Restructured Text Edits.
+3. Convert posts to new blog format: Markdown or reStructuredText Format
 
 4. Set DNS redirect from old blog to new blog.
 
@@ -106,7 +106,7 @@ to track down the few posts available and hopefully find my new home on the web.
 
 **6. Update old blog with notice of new blog.**
 
-*Keep A Few Posts Exclusively on the Old Blog*
+*Keep A Few Posts Exclusively on thne Old Blog*
 
 The benefit of Worpdress's free plan is that you can still keep some posts 
 and the original sub-domain live on their free plan.
