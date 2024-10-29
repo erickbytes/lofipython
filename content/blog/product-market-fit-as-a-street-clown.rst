@@ -1,0 +1,44 @@
+Product Market Fit as a Street Clown
+####################################
+:date: 2024-10-28 18:55
+:author: lofipython
+:category: products, small business, entrepreneurship
+:tags: product market fit, building products, product marketing in the real world
+:slug: product-market-fit-as-a-street-clown
+:status: published
+
+I'm a big fan of attempting to draw inspiration from everyday common occurrences. Today, while riding 
+in a car I saw a clown street performer and remarked to myself about the "product market fit" they 
+require to earn a living, or lack thereof.
+
+The street clown is not worried about finding the specific right person for their product. 
+They are also not distracted by getting their messaging right to find exactly their perfect audience. 
+Rather, they find their customers in real time by finding high traffic areas. Once there, 
+they set up at a busy intersection with  lots of cars or pedestrians. Then, they seek product 
+market fit by juggling, cycling and doing what clowns do, entertain. People have no choice but to 
+wait at the intersection in their cars. The clown has performed a service for society. Humor or entertainment 
+is gained by their customer. They see the clown and think impulsively, "He's funny! And I'm feeling generous today." 
+So, a little money exchanges hands.
+ 
+The funny thing is that the clown will make some money because people want to support them. 
+Just because they are there. They are in the arena, hustling for a living like all the people 
+scurrying by in their cars. The difference is the people in cars are likely on the way 
+to or from their job, whereas the clown already clocked in.
+
+So what lessons can we learn from a clown performing in the street? Sometimes, we shouldn't be 
+overly concerned with exactly who is our customer. Marketing says conventionally that the more 
+you know about your customer base, the better. However, the street performer clown shows it 
+is not always a requirement. In the clown's case, the requirement is going to high traffic areas 
+and broadcasting your special brand of entertainment.
+
+The clown earns a small tip from many different customers in passing. They have an advantage in a sense, 
+because their diversification of customers is high. They are not overly dependent on any specific members of their audience.
+This makes their business more resilient, assuming they're taking home enough to make it worth it.
+
+A street entertainer faces a tough prospect: their customers are all going on their way and don't have 
+the desire to be entertained. This doesn't stop the street clown. They put on the face paint and funky clothes. 
+They grab their items to juggle, their unicycle, whatever is needed to support their act. 
+The clown shows up and performs. We would all be more successful if we approached our work like a street performer.
+Get out there and make it happen. Get your product in front of people. Don't focus too much on who is the perfect customer.
+Get your product in front of people and see what they think. That's the way of the street clown.
+
