@@ -130,8 +130,9 @@ you can edit the site tagline:
 
 **7. Update urls from old domain to new domain.**
 
-It's common practice to add a "CTA" or call to action at the end of a blog post. For me, that tends to be the related posts I've
-written in the past. Any links that contain the old domain need to be swapped to the new one.
+It's common practice to add a "CTA" or call to action at the end of a blog post. 
+For me, that tends to be the related posts I've written in the past. 
+Any links that contain the old domain need to be swapped to the new one.
 
 For validating urls in my 100+ past posts, I also wrote a python script to help find broken links and .rst tags here: 
 `rst-url-validator Github Repo <https://github.com/erickbytes/rst-url-validator>`__

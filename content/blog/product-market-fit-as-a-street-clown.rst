@@ -18,7 +18,7 @@ they set up at a busy intersection with  lots of cars or pedestrians. Then, they
 market fit by juggling, cycling and doing what clowns do, entertain. People have no choice but to 
 wait at the intersection in their cars. The clown has performed a service for society. Humor or entertainment 
 is gained by their customer. They see the clown and think impulsively, "How funny! I'm feeling generous today." 
-So, a little money exchanges hands.
+So, a little money changes hands.
  
 The funny thing is that the clown will make some money because people want to support them. 
 Just because they are there. They are in the arena, hustling for a living like all the people 
