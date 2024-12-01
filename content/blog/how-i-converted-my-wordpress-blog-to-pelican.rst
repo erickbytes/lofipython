@@ -87,27 +87,7 @@ fee to forward traffic to your new domain. You can transfer old domain to servic
 or Cloudflare to set up a redirect. It's recommended to keep a redirect for at least 1 or 2 years 
 after moving to a new domain to catch any evergreen backlinked traffic.
 
-**5. Set posts to private/public and set search engine + "third party" AI training settings.**
-
-.. image:: {static}/images/wordpress-export-tool-options.png
-  :alt: export blog from content and media from  wordpress settings
-
-Once I got the hang of Pelican, I reviewed each converted post to fix links, grammar or formatting errors 
-from the conversion. I slowly moved my converted posts over in batches of 2 or 3 posts at a time. 
-As I moved the posts to the new blog, I chose to set the old posts individually to private within the Wordpress 
-editing CMS, rather than at the sitewide level. By setting posts to private, they're also still accessible to 
-your Wordpress subscribers by direct url link. Setting individual posts to private allows subscribers who are 
-following legacy links to have a chance to find my new home on the web. For non-subscribers, the private links 
-will break, however they will still see an error page on your old blog. From there, they might see the site 
-tagline directing to the new blog or find a few of the posts I reserved exclusively for the legacy blog.
-
-One benefit of Wordpress from an SEO perspective is that they have search engine indexing control 
-in the settings panel. In the settings, you have the ability to tell search engines whether or 
-not you should index your blog. I set my old Wordpress site settings to "Discourage search engines 
-from indexing this site" and "Prevent third-party sharing for example.wordpress.com". The third party 
-sharing setting prevents Wordpress from using your posts to train their AI models.
-
-**6. Update old blog with notice of new blog.**
+**5. Update old blog with notice of new blog.**
 
 *Keep A Few Posts Exclusively on the Old Blog*
 
@@ -132,6 +112,27 @@ you can edit the site tagline:
 
 .. image:: {static}/images/blog-headline-announcement.png
   :alt: blog moved announcement
+
+**6. Set posts to private/public and set search engine + "third party" AI training settings.**
+
+.. image:: {static}/images/wordpress-export-tool-options.png
+  :alt: export blog from content and media from  wordpress settings
+
+Once I got the hang of Pelican, I reviewed each converted post to fix links, grammar or formatting errors 
+from the conversion. I slowly moved my converted posts over in batches of 2 or 3 posts at a time. 
+As I moved the posts to the new blog, I chose to set the old posts individually to private within the Wordpress 
+editing CMS, rather than at the sitewide level. By setting posts to private, they're also still accessible to 
+your Wordpress subscribers by direct url link. Setting individual posts to private allows subscribers who are 
+following legacy links to have a chance to find my new home on the web. For non-subscribers, the private links 
+will break, however they will still see an error page on your old blog. From there, they might see the site 
+tagline directing to the new blog or find a few of the posts I reserved exclusively for the legacy blog.
+
+One benefit of Wordpress from an SEO perspective is that they have search engine indexing control 
+in the settings panel. In the settings, you have the ability to tell search engines whether or 
+not you should index your blog. I set my old Wordpress site settings to "Discourage search engines 
+from indexing this site" and "Prevent third-party sharing for example.wordpress.com". The third party 
+sharing setting prevents Wordpress from using your posts to train their AI models.
+
 
 **7. Update urls from old domain to new domain.**
 
