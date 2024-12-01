@@ -87,7 +87,7 @@ fee to forward traffic to your new domain. You can transfer old domain to servic
 or Cloudflare to set up a redirect. It's recommended to keep a redirect for at least 1 or 2 years 
 after moving to a new domain to catch any evergreen backlinked traffic.
 
-**5. Turn off search engine indexing for old blog.**
+**5. Set posts to private/public and set search engine + "third party" AI training settings.**
 
 One benefit of Wordpress from an SEO perspective is that they have search engine indexing control 
 in the settings panel. In the settings, you have the ability to tell search engines whether or 
