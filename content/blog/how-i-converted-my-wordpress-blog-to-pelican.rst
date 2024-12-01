@@ -23,9 +23,9 @@ Here is the checklist I wrote down when I made than transition:
 
 4. Set DNS redirect from old blog to new blog.
 
-5. Turn off search engine indexing for old blog.
+5. Update old blog with notice of new blog. 
 
-6. Update old blog with notice of new blog. 
+6. Set posts to private/public and set search engine + "third party" AI training settings.
 
 7. Update urls from old domain to new domain.
 
