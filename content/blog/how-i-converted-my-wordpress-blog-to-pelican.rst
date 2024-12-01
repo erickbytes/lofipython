@@ -72,7 +72,7 @@ use the -o argument. Use the -m argument to specify which output format.
 
 .. code-block:: console
 
-  # Convert XML to reStructuredText Format files.
+  # Convert XML to reStructuredText Format files with default settings.
   pelican-import --wpfile example.wordpress.2023-05-14.000.xml
   # Convert XML to Markdown files and specify the output directory and format.
   pelican-import --wpfile example.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN
@@ -85,23 +85,29 @@ I previously hosted my blog on a custom .com domain. When I stopped paying for t
 my domain reverted back to example.wordpress.com. However, you can pay a domain register a small 
 fee to forward traffic to your new domain. You can transfer old domain to services like Namecheap 
 or Cloudflare to set up a redirect. It's recommended to keep a redirect for at least 1 or 2 years 
-after moving to a new domain to catch any legacy backlinked traffic.
+after moving to a new domain to catch any evergreen backlinked traffic.
 
 **5. Turn off search engine indexing for old blog.**
 
-One benefit of Wordpress from an SEO perspective is that they have search engine indexing control in the settings panel.
-In the settings, you have the ability to tell search engines whether or not you should index your blog.
-Once I got the hang of Pelican, I reviewed each converted post to fix links, grammar or 
-formatting errors from the conversion. 
+One benefit of Wordpress from an SEO perspective is that they have search engine indexing control 
+in the settings panel. In the settings, you have the ability to tell search engines whether or 
+not you should index your blog.
 
 .. image:: {static}/images/wordpress-export-tool-options.png
   :alt: export blog from content and media from  wordpress settings
 
-I slowly moved them over in batches of 2 or 3 posts at a time. As I moved the posts to the new blog, 
-I set the old posts to private within the Wordpress CMS. I also changed their search engine indexing 
-settings to "Discourage search engines from indexing this site" and  "Prevent third-party sharing for example.wordpress.com". 
-This allows people who might be searching for my old blog or following legacy links to have a chance 
-to track down the few posts available and hopefully find my new home on the web.
+Once I got the hang of Pelican, I reviewed each converted post to fix links, grammar or formatting errors 
+from the conversion. I slowly moved my converted posts over in batches of 2 or 3 posts at a time. 
+As I moved the posts to the new blog, I chose to set the old posts to private within the Wordpress CMS. 
+By setting posts to private, they're also still accessible to your Wordpress subscribers by direct url link.
+Setting individual posts to private allows subscribers who are following legacy links to have a chance to
+find my new home on the web. For non-subscribers, the private links will break, however they will still see 
+an error page on your old blog. From there, they might see your site tagline or find a few of the posts I reserved 
+exclusively for the legacy blog.
+
+I also set my old Wordpress site settings to "Discourage search engines from indexing this site" and 
+"Prevent third-party sharing for example.wordpress.com". The third party sharing setting prevents Wordpress 
+from using your posts to train their AI models.
 
 **6. Update old blog with notice of new blog.**
 
@@ -141,10 +147,9 @@ For validating urls in my 100+ past posts, I also wrote a python script to help 
 **Moving From Wordpress Was Easy With Pelican**
 
 I did thorough `research into Python static site generators <https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators>`__
-before choosing Pelican. The benefits of Pelican include a 
-wordpress import CLI that makes it easy to quickly compile an an alternative MVP to move your blog from Wordpress.
-Pelican is an obvious choice for static site generation in the Python ecosystem. After 17 months of using it, 
-I can safely say I'm happy with the decision!
+before choosing Pelican. The benefits of Pelican include a Wordpress import CLI that makes it easy to quickly 
+compile an an alternative MVP to move your blog from Wordpress. Pelican is an obvious choice for static site 
+generation in the Python ecosystem. After 17 months of using it, I can safely say I'm happy with the decision!
 
 **Supplementary Reading**
 

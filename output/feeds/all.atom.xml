@@ -73,7 +73,7 @@ use the -o argument. Use the -m argument to specify which output format.&lt;/p&g
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
-&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;Convert&lt;span class="w"&gt; &lt;/span&gt;XML&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;reStructuredText&lt;span class="w"&gt; &lt;/span&gt;Format&lt;span class="w"&gt; &lt;/span&gt;files.
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;Convert&lt;span class="w"&gt; &lt;/span&gt;XML&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;reStructuredText&lt;span class="w"&gt; &lt;/span&gt;Format&lt;span class="w"&gt; &lt;/span&gt;files&lt;span class="w"&gt; &lt;/span&gt;with&lt;span class="w"&gt; &lt;/span&gt;default&lt;span class="w"&gt; &lt;/span&gt;settings.
 &lt;span class="go"&gt;pelican-import --wpfile example.wordpress.2023-05-14.000.xml&lt;/span&gt;
 &lt;span class="gp"&gt;# &lt;/span&gt;Convert&lt;span class="w"&gt; &lt;/span&gt;XML&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;Markdown&lt;span class="w"&gt; &lt;/span&gt;files&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;specify&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;output&lt;span class="w"&gt; &lt;/span&gt;directory&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;format.
 &lt;span class="go"&gt;pelican-import --wpfile example.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN&lt;/span&gt;
@@ -84,18 +84,23 @@ use the -o argument. Use the -m argument to specify which output format.&lt;/p&g
 my domain reverted back to example.wordpress.com. However, you can pay a domain register a small
 fee to forward traffic to your new domain. You can transfer old domain to services like Namecheap
 or Cloudflare to set up a redirect. It's recommended to keep a redirect for at least 1 or 2 years
-after moving to a new domain to catch any legacy backlinked traffic.&lt;/p&gt;
+after moving to a new domain to catch any evergreen backlinked traffic.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;5. Turn off search engine indexing for old blog.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;One benefit of Wordpress from an SEO perspective is that they have search engine indexing control in the settings panel.
-In the settings, you have the ability to tell search engines whether or not you should index your blog.
-Once I got the hang of Pelican, I reviewed each converted post to fix links, grammar or
-formatting errors from the conversion.&lt;/p&gt;
+&lt;p&gt;One benefit of Wordpress from an SEO perspective is that they have search engine indexing control
+in the settings panel. In the settings, you have the ability to tell search engines whether or
+not you should index your blog.&lt;/p&gt;
 &lt;img alt="export blog from content and media from  wordpress settings" src="https://lofipython.com/images/wordpress-export-tool-options.png" /&gt;
-&lt;p&gt;I slowly moved them over in batches of 2 or 3 posts at a time. As I moved the posts to the new blog,
-I set the old posts to private within the Wordpress CMS. I also changed their search engine indexing
-settings to &amp;quot;Discourage search engines from indexing this site&amp;quot; and  &amp;quot;Prevent third-party sharing for example.wordpress.com&amp;quot;.
-This allows people who might be searching for my old blog or following legacy links to have a chance
-to track down the few posts available and hopefully find my new home on the web.&lt;/p&gt;
+&lt;p&gt;Once I got the hang of Pelican, I reviewed each converted post to fix links, grammar or formatting errors
+from the conversion. I slowly moved my converted posts over in batches of 2 or 3 posts at a time.
+As I moved the posts to the new blog, I chose to set the old posts to private within the Wordpress CMS.
+By setting posts to private, they're also still accessible to your Wordpress subscribers by direct url link.
+Setting individual posts to private allows subscribers who are following legacy links to have a chance to
+find my new home on the web. For non-subscribers, the private links will break, however they will still see
+an error page on your old blog. From there, they might see your site tagline or find a few of the posts I reserved
+exclusively for the legacy blog.&lt;/p&gt;
+&lt;p&gt;I also set my old Wordpress site settings to &amp;quot;Discourage search engines from indexing this site&amp;quot; and
+&amp;quot;Prevent third-party sharing for example.wordpress.com&amp;quot;. The third party sharing setting prevents Wordpress
+from using your posts to train their AI models.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;6. Update old blog with notice of new blog.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Keep A Few Posts Exclusively on the Old Blog&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The benefit of Worpdress's free plan is that you can still keep some posts
@@ -118,10 +123,9 @@ Any links that contain the old domain need to be swapped to the new one.&lt;/p&g
 &lt;a class="reference external" href="https://github.com/erickbytes/rst-url-validator"&gt;rst-url-validator Github Repo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Moving From Wordpress Was Easy With Pelican&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I did thorough &lt;a class="reference external" href="https://lofipython.com/a-brief-summary-of-promising-python-static-site-generators"&gt;research into Python static site generators&lt;/a&gt;
-before choosing Pelican. The benefits of Pelican include a
-wordpress import CLI that makes it easy to quickly compile an an alternative MVP to move your blog from Wordpress.
-Pelican is an obvious choice for static site generation in the Python ecosystem. After 17 months of using it,
-I can safely say I'm happy with the decision!&lt;/p&gt;
+before choosing Pelican. The benefits of Pelican include a Wordpress import CLI that makes it easy to quickly
+compile an an alternative MVP to move your blog from Wordpress. Pelican is an obvious choice for static site
+generation in the Python ecosystem. After 17 months of using it, I can safely say I'm happy with the decision!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Supplementary Reading&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://tanis.codes/posts/deploy-hugo-website-to-cloudflare/?utm_source=pocket_shared"&gt;Deploy a Hugo website to Cloudflare&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://blog.okturtles.org/2024/10/convert-wordpress-to-static-site/"&gt;How to Convert a Wordpress blog to an Astro Static Site&lt;/a&gt;&lt;/p&gt;
