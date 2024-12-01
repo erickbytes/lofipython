@@ -89,10 +89,6 @@ after moving to a new domain to catch any evergreen backlinked traffic.
 
 **5. Set posts to private/public and set search engine + "third party" AI training settings.**
 
-One benefit of Wordpress from an SEO perspective is that they have search engine indexing control 
-in the settings panel. In the settings, you have the ability to tell search engines whether or 
-not you should index your blog.
-
 .. image:: {static}/images/wordpress-export-tool-options.png
   :alt: export blog from content and media from  wordpress settings
 
@@ -105,9 +101,11 @@ find my new home on the web. For non-subscribers, the private links will break, 
 an error page on your old blog. From there, they might see your site tagline or find a few of the posts I reserved 
 exclusively for the legacy blog.
 
-I also set my old Wordpress site settings to "Discourage search engines from indexing this site" and 
-"Prevent third-party sharing for example.wordpress.com". The third party sharing setting prevents Wordpress 
-from using your posts to train their AI models.
+One benefit of Wordpress from an SEO perspective is that they have search engine indexing control 
+in the settings panel. In the settings, you have the ability to tell search engines whether or 
+not you should index your blog. I set my old Wordpress site settings to "Discourage search engines 
+from indexing this site" and "Prevent third-party sharing for example.wordpress.com". The third party 
+sharing setting prevents Wordpress from using your posts to train their AI models.
 
 **6. Update old blog with notice of new blog.**
 
