@@ -8,10 +8,8 @@ How I Converted My Wordpress Blog to Pelican, A Checklist
 :status: published
 
 Recently there has been a lot of noise online about the Wordpress website platform. 
-This blog is formerly a Wordpress blog, so I am in the unique position to share how 
-I moved this blog for anyone looking to get off Wordpress. I wrote an announcement post about 
-`migrating my wordpress blog in 2023 <https://lofipython.com/wordpress-to-pelican-blog-migration-complete>`__.
-This blog began as on the Wordpress free plan, then had few years as a paying customer of Automattic, 
+This blog is formerly a Wordpress blog, so I am able to share from personal experience how 
+I moved this blog. I began writing this blog on the Wordpress free plan, with a few years as a paying customer of Automattic, 
 the corporate entity associated with Wordpress.org. The notes below are from my experience moving to a Python Pelican blog.
 
 Here is the checklist I wrote down when I made than transition:
@@ -38,10 +36,10 @@ Here is the checklist I wrote down when I made than transition:
 
 .. code:: console
 
-   pip install pelican
-   pip install BeautifulSoup4
-   pip install lxml
-   pip install feedparser
+  pip install pelican
+  pip install BeautifulSoup4
+  pip install lxml
+  pip install feedparser
 
 
 --------------------
@@ -73,10 +71,10 @@ use the -o argument. Use the -m argument to specify which output format.
 
 .. code-block:: console
 
-   # Convert XML to reStructuredText Format files.
-   pelican-import --wpfile example.wordpress.2023-05-14.000.xml
-   # Convert XML to Markdown files and specify the output directory and format.
-   pelican-import --wpfile example.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN
+  # Convert XML to reStructuredText Format files.
+  pelican-import --wpfile example.wordpress.2023-05-14.000.xml
+  # Convert XML to Markdown files and specify the output directory and format.
+  pelican-import --wpfile example.wordpress.2023-05-14.000.xml -o ~/projects/example.com/content/blog -m MARKDOWN
 
 `pelican-importer documentation <https://docs.getpelican.com/en/stable/importer.html>`__
 
@@ -114,7 +112,9 @@ and the original sub-domain live on their free plan.
 *Write your final post on the old blog to let subscribers know you've moved.*
 
 I had built up a list of subscribing Wordpress users after 6 years writing on the platform.
-Write a brief post explaining where to find future blog posts.
+Write a brief post explaining where to find future blog posts to let your audience know where to find you. 
+In my case, I wrote one `goodbye post on my old blog <https://pythonmarketer.wordpress.com/2023/05/15/blog-moving-to-lofipython-com/e>`__, 
+and an announcement post about `migrating new blog domain <https://lofipython.com/wordpress-to-pelican-blog-migration-complete>`__.
 
 *Update the Site Tagline on Your Old Blog*
 

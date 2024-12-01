@@ -17,7 +17,7 @@ Rather, they find their customers in real time by finding high traffic areas. On
 they set up at a busy intersection with  lots of cars or pedestrians. Then, they seek product 
 market fit by juggling, cycling and doing what clowns do, entertain. People have no choice but to 
 wait at the intersection in their cars. The clown has performed a service for society. Humor or entertainment 
-is gained by their customer. They see the clown and think impulsively, "He's funny! And I'm feeling generous today." 
+is gained by their customer. They see the clown and think impulsively, "How funny! I'm feeling generous today." 
 So, a little money exchanges hands.
  
 The funny thing is that the clown will make some money because people want to support them. 
