@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - google sheets</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/google-sheets.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-07-25T16:00:00-05:00</updated><entry><title>Importing and Analyzing Data With Google Sheets Functions</title><link href="https://lofipython.com/import-analyze-data-with-google-sheets-functions.html" rel="alternate"></link><published>2024-07-25T16:00:00-05:00</published><updated>2024-07-25T16:00:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-07-25:/import-analyze-data-with-google-sheets-functions.html</id><summary type="html">&lt;p&gt;This post focuses on Google Sheets formulas, rather than Python. If you're interested in accessing Google Sheets with Python,
-check out this &lt;a class="reference external" href="https://lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets"&gt;post I wrote about the pygsheets library&lt;/a&gt;. I haven't personally tried it, but
-&lt;a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets"&gt;xlwings&lt;/a&gt; also looks like a decent option if you're looking for Google Sheets Python libraries …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post focuses on Google Sheets formulas, rather than Python. If you're interested in accessing Google Sheets with Python,
-check out this &lt;a class="reference external" href="https://lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets"&gt;post I wrote about the pygsheets library&lt;/a&gt;. I haven't personally tried it, but
-&lt;a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets"&gt;xlwings&lt;/a&gt; also looks like a decent option if you're looking for Google Sheets Python libraries.&lt;/p&gt;
-&lt;p&gt;Here are some functions I recently discovered to analyze data in Sheets. There a few different strategies you can use to import data into Google Sheets with the functions available.
-Below, you'll see some different approaches you use to get data into Google Sheets and then analyze it. The Google Sheets formulas rabbit hole is deep.
-Lots of power can be harnessed by getting familiar with the formulas it has built-in.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - google sheets</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/google-sheets.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-07-25T16:00:00-05:00</updated><entry><title>Importing and Analyzing Data With Google Sheets Functions</title><link href="https://lofipython.com/import-analyze-data-with-google-sheets-functions.html" rel="alternate"></link><published>2024-07-25T16:00:00-05:00</published><updated>2024-07-25T16:00:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-07-25:/import-analyze-data-with-google-sheets-functions.html</id><summary type="html">&lt;p&gt;This post focuses on Google Sheets formulas, rather than Python. If you're interested
+in accessing Google Sheets with Python, check out this &lt;a class="reference external" href="https://lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets"&gt;post I wrote about the pygsheets library&lt;/a&gt;.
+I haven't personally tried it, but &lt;a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets"&gt;xlwings&lt;/a&gt;
+also looks like a decent option if you're looking for Google Sheets Python libraries …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post focuses on Google Sheets formulas, rather than Python. If you're interested
+in accessing Google Sheets with Python, check out this &lt;a class="reference external" href="https://lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets"&gt;post I wrote about the pygsheets library&lt;/a&gt;.
+I haven't personally tried it, but &lt;a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets"&gt;xlwings&lt;/a&gt;
+also looks like a decent option if you're looking for Google Sheets Python libraries.&lt;/p&gt;
+&lt;p&gt;Here are some functions I recently discovered to analyze data in Sheets.
+There a few different strategies you can use to import data into Google Sheets with the functions available.
+Below, you'll see some different approaches you use to get data into Google Sheets and then analyze it.
+The Google Sheets formulas rabbit hole is deep. Lots of power can be harnessed by getting familiar with the
+formulas it has built-in.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Year To Date SPARKLINE of a Stock&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 =SPARKLINE(GOOGLEFINANCE(&amp;quot;Nasdaq:NVDA&amp;quot;, &amp;quot;price&amp;quot;, DATE(YEAR(TODAY()), 1, 1), TODAY(), &amp;quot;daily&amp;quot;), {&amp;quot;charttype&amp;quot;, &amp;quot;line&amp;quot;; &amp;quot;linewidth&amp;quot;, 2; &amp;quot;color&amp;quot;, &amp;quot;green&amp;quot;})
 &lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Year to Date SPARKLINE of USD to MXN Currency Value with GOOGLEFINANCE + SPARKLINE USING IF to Dynamically Color the SPARKLINE&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-=SPARKLINE(GOOGLEFINANCE(&amp;quot;CURRENCY:USDMXN&amp;quot;, &amp;quot;price&amp;quot;, TODAY()-365, TODAY(), &amp;quot;DAILY&amp;quot;), {&amp;quot;charttype&amp;quot;, &amp;quot;line&amp;quot;; &amp;quot;linewidth&amp;quot;, 2; &amp;quot;color&amp;quot;, if(P22&amp;gt;0,&amp;quot;green&amp;quot;,&amp;quot;red&amp;quot;)})
+=SPARKLINE(GOOGLEFINANCE(&amp;quot;CURRENCY:USDMXN&amp;quot;, &amp;quot;price&amp;quot;, TODAY()-365, TODAY(), &amp;quot;DAILY&amp;quot;), {&amp;quot;charttype&amp;quot;, &amp;quot;line&amp;quot;; &amp;quot;linewidth&amp;quot;, 2; &amp;quot;color&amp;quot;, if(A2&amp;gt;0,&amp;quot;green&amp;quot;,&amp;quot;red&amp;quot;)})
 &lt;/pre&gt;
-&lt;p&gt;Note the use of an if condition to check another cell and set the color to green if &amp;gt; 0 or red if &amp;lt; 0.&lt;/p&gt;
+&lt;p&gt;Above, we use an if condition to check another cell and set the color to green if &amp;gt; 0 or red if &amp;lt; 0.&lt;/p&gt;
 &lt;img alt="Applying Google Sheets Sparklines" src="https://lofipython.com/images/sparkline-example.png" /&gt;
 &lt;p&gt;&lt;strong&gt;Market Cap with GOOOGLEFINANCE&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
@@ -29,12 +33,12 @@ Lots of power can be harnessed by getting familiar with the formulas it has buil
 &lt;pre class="literal-block"&gt;
 =GOOGLEFINANCE(&amp;quot;Nasdaq:TSLA&amp;quot;,&amp;quot;changepct&amp;quot;) &amp;amp;&amp;quot;%&amp;quot;
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Import the Price of a Cryptocurrency with IMPORTDATA&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Import the Price of ADA Cryptocurrency with IMPORTDATA&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 =IMPORTDATA(&amp;quot;https://cryptoprices.cc/ADA&amp;quot;)
 &lt;/pre&gt;
 &lt;p&gt;This function imports the price of Cardano cryptocurrency from cryptoprices.cc.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Import the Market Cap of a Cryptocurrency with IMPORTDATA&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Import the Market Cap of ADA Cryptocurrency with IMPORTDATA&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 =IMPORTDATA(&amp;quot;https://cryptoprices.cc/ADA/MCAP&amp;quot;)
 &lt;/pre&gt;
@@ -50,13 +54,18 @@ Lots of power can be harnessed by getting familiar with the formulas it has buil
  &amp;quot;0.0%&amp;quot;
 )
 &lt;/pre&gt;
-&lt;p&gt;This method uses IMPORTXML to import data to google sheets by passing an &amp;quot;xpath query&amp;quot;. The first line checks if the direction of the % change is &amp;quot;down&amp;quot;. If it is down,
-then we know the % change is negative, otherwise the % change is positive. In this case I inspected the source code of coinmarketcap to reference the class names of the HTML I was targeting.&lt;/p&gt;
+&lt;p&gt;This method uses IMPORTXML to import data to Google Sheets by passing an &amp;quot;XPath query&amp;quot;.
+The first line checks if the direction of the % change is &amp;quot;down&amp;quot;. If it is down,
+then we know the % change is negative, otherwise the % change is positive.
+To select the HTML element, I right-clicked the number on the page that I
+wanted to import on coinmarketcap and selected &amp;quot;Inspect&amp;quot; to reference the HTML
+class names for the paragraph I was targeting.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Conditionally sum a range with SUMIFS, SUMIF and COUNTIF&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 =SUMIFS('sheet_name'!G:G, 'sheet_name'!N:N, &amp;quot;&amp;gt;0&amp;quot;)
 &lt;/pre&gt;
-&lt;p&gt;In the following examples, &amp;quot;sheet_name&amp;quot; = Your Google sheet's name. This function sums the corresponding cells in column N if column G contains a number greater than 0.&lt;/p&gt;
+&lt;p&gt;In the following examples, &amp;quot;sheet_name&amp;quot; = Your Google sheet's name.
+This function sums the corresponding cells in column N if column G contains a number greater than 0.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 =SUMIF('sheet_name'!N:N, &amp;quot;Some Value&amp;quot;,'sheet_name'!G:G)
 &lt;/pre&gt;
@@ -69,7 +78,8 @@ then we know the % change is negative, otherwise the % change is positive. In th
 &lt;pre class="literal-block"&gt;
 { 'sheet_name'!A:D, 'sheet_name'!T:X, 'sheet_name'!Z:AA}
 &lt;/pre&gt;
-&lt;p&gt;Google sheets recognizes this format of bracket enclosed ranges of columns to select into your dataset. In the next example, you can see this applied.&lt;/p&gt;
+&lt;p&gt;Google Sheets recognizes this format of bracket enclosed ranges of columns to select into your dataset.
+In the next example, you can see this applied.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Conditionally Select a Range of Cells from a Dataset with SORTN, FILTER, and REGEXMATCH&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 =SORTN(FILTER({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P/1,'sheet_name'!F:F}, REGEXMATCH('sheet_name'!P:P, &amp;quot;-&amp;quot;)), 5, 0, 3, TRUE)

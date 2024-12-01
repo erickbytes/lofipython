@@ -52,21 +52,24 @@
                 
                 
 
-                <p>This post focuses on Google Sheets formulas, rather than Python. If you're interested in accessing Google Sheets with Python,
-check out this <a class="reference external" href="https://lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets">post I wrote about the pygsheets library</a>. I haven't personally tried it, but
-<a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets">xlwings</a> also looks like a decent option if you're looking for Google Sheets Python libraries.</p>
-<p>Here are some functions I recently discovered to analyze data in Sheets. There a few different strategies you can use to import data into Google Sheets with the functions available.
-Below, you'll see some different approaches you use to get data into Google Sheets and then analyze it. The Google Sheets formulas rabbit hole is deep.
-Lots of power can be harnessed by getting familiar with the formulas it has built-in.</p>
+                <p>This post focuses on Google Sheets formulas, rather than Python. If you're interested
+in accessing Google Sheets with Python, check out this <a class="reference external" href="https://lofipython.com/copying-a-csv-file-to-google-sheets-with-pygsheets">post I wrote about the pygsheets library</a>.
+I haven't personally tried it, but <a class="reference external" href="https://www.xlwings.org/blog/python-for-google-sheets">xlwings</a>
+also looks like a decent option if you're looking for Google Sheets Python libraries.</p>
+<p>Here are some functions I recently discovered to analyze data in Sheets.
+There a few different strategies you can use to import data into Google Sheets with the functions available.
+Below, you'll see some different approaches you use to get data into Google Sheets and then analyze it.
+The Google Sheets formulas rabbit hole is deep. Lots of power can be harnessed by getting familiar with the
+formulas it has built-in.</p>
 <p><strong>Year To Date SPARKLINE of a Stock</strong></p>
 <pre class="literal-block">
 =SPARKLINE(GOOGLEFINANCE(&quot;Nasdaq:NVDA&quot;, &quot;price&quot;, DATE(YEAR(TODAY()), 1, 1), TODAY(), &quot;daily&quot;), {&quot;charttype&quot;, &quot;line&quot;; &quot;linewidth&quot;, 2; &quot;color&quot;, &quot;green&quot;})
 </pre>
 <p><strong>Year to Date SPARKLINE of USD to MXN Currency Value with GOOGLEFINANCE + SPARKLINE USING IF to Dynamically Color the SPARKLINE</strong></p>
 <pre class="literal-block">
-=SPARKLINE(GOOGLEFINANCE(&quot;CURRENCY:USDMXN&quot;, &quot;price&quot;, TODAY()-365, TODAY(), &quot;DAILY&quot;), {&quot;charttype&quot;, &quot;line&quot;; &quot;linewidth&quot;, 2; &quot;color&quot;, if(P22&gt;0,&quot;green&quot;,&quot;red&quot;)})
+=SPARKLINE(GOOGLEFINANCE(&quot;CURRENCY:USDMXN&quot;, &quot;price&quot;, TODAY()-365, TODAY(), &quot;DAILY&quot;), {&quot;charttype&quot;, &quot;line&quot;; &quot;linewidth&quot;, 2; &quot;color&quot;, if(A2&gt;0,&quot;green&quot;,&quot;red&quot;)})
 </pre>
-<p>Note the use of an if condition to check another cell and set the color to green if &gt; 0 or red if &lt; 0.</p>
+<p>Above, we use an if condition to check another cell and set the color to green if &gt; 0 or red if &lt; 0.</p>
 <img alt="Applying Google Sheets Sparklines" src="https://lofipython.com/images/sparkline-example.png" />
 <p><strong>Market Cap with GOOOGLEFINANCE</strong></p>
 <pre class="literal-block">
@@ -80,12 +83,12 @@ Lots of power can be harnessed by getting familiar with the formulas it has buil
 <pre class="literal-block">
 =GOOGLEFINANCE(&quot;Nasdaq:TSLA&quot;,&quot;changepct&quot;) &amp;&quot;%&quot;
 </pre>
-<p><strong>Import the Price of a Cryptocurrency with IMPORTDATA</strong></p>
+<p><strong>Import the Price of ADA Cryptocurrency with IMPORTDATA</strong></p>
 <pre class="literal-block">
 =IMPORTDATA(&quot;https://cryptoprices.cc/ADA&quot;)
 </pre>
 <p>This function imports the price of Cardano cryptocurrency from cryptoprices.cc.</p>
-<p><strong>Import the Market Cap of a Cryptocurrency with IMPORTDATA</strong></p>
+<p><strong>Import the Market Cap of ADA Cryptocurrency with IMPORTDATA</strong></p>
 <pre class="literal-block">
 =IMPORTDATA(&quot;https://cryptoprices.cc/ADA/MCAP&quot;)
 </pre>
@@ -101,13 +104,18 @@ Lots of power can be harnessed by getting familiar with the formulas it has buil
  &quot;0.0%&quot;
 )
 </pre>
-<p>This method uses IMPORTXML to import data to google sheets by passing an &quot;xpath query&quot;. The first line checks if the direction of the % change is &quot;down&quot;. If it is down,
-then we know the % change is negative, otherwise the % change is positive. In this case I inspected the source code of coinmarketcap to reference the class names of the HTML I was targeting.</p>
+<p>This method uses IMPORTXML to import data to Google Sheets by passing an &quot;XPath query&quot;.
+The first line checks if the direction of the % change is &quot;down&quot;. If it is down,
+then we know the % change is negative, otherwise the % change is positive.
+To select the HTML element, I right-clicked the number on the page that I
+wanted to import on coinmarketcap and selected &quot;Inspect&quot; to reference the HTML
+class names for the paragraph I was targeting.</p>
 <p><strong>Conditionally sum a range with SUMIFS, SUMIF and COUNTIF</strong></p>
 <pre class="literal-block">
 =SUMIFS('sheet_name'!G:G, 'sheet_name'!N:N, &quot;&gt;0&quot;)
 </pre>
-<p>In the following examples, &quot;sheet_name&quot; = Your Google sheet's name. This function sums the corresponding cells in column N if column G contains a number greater than 0.</p>
+<p>In the following examples, &quot;sheet_name&quot; = Your Google sheet's name.
+This function sums the corresponding cells in column N if column G contains a number greater than 0.</p>
 <pre class="literal-block">
 =SUMIF('sheet_name'!N:N, &quot;Some Value&quot;,'sheet_name'!G:G)
 </pre>
@@ -120,7 +128,8 @@ then we know the % change is negative, otherwise the % change is positive. In th
 <pre class="literal-block">
 { 'sheet_name'!A:D, 'sheet_name'!T:X, 'sheet_name'!Z:AA}
 </pre>
-<p>Google sheets recognizes this format of bracket enclosed ranges of columns to select into your dataset. In the next example, you can see this applied.</p>
+<p>Google Sheets recognizes this format of bracket enclosed ranges of columns to select into your dataset.
+In the next example, you can see this applied.</p>
 <p><strong>Conditionally Select a Range of Cells from a Dataset with SORTN, FILTER, and REGEXMATCH</strong></p>
 <pre class="literal-block">
 =SORTN(FILTER({'sheet_name'!A:A, 'sheet_name'!E:E, 'sheet_name'!P:P/1,'sheet_name'!F:F}, REGEXMATCH('sheet_name'!P:P, &quot;-&quot;)), 5, 0, 3, TRUE)

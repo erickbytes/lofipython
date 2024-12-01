@@ -9,8 +9,9 @@ How I Converted My Wordpress Blog to Pelican, A Checklist
 
 Recently there has been a lot of noise online about the Wordpress website platform. 
 This blog is formerly a Wordpress blog, so I am able to share from personal experience how 
-I moved this blog. I began writing this blog on the Wordpress free plan, with a few years as a paying customer of Automattic, 
-the corporate entity associated with Wordpress.org. The notes below are from my experience moving to a Python Pelican blog.
+I moved this blog. I began writing the early years of this blog on the Wordpress free plan, 
+followed by a few years as a paying customer of Automattic, the corporate entity associated with Wordpress.org. 
+The notes below are from my experience moving to a Python Pelican blog.
 
 Here is the checklist I wrote down when I made than transition:
 
@@ -104,7 +105,7 @@ to track down the few posts available and hopefully find my new home on the web.
 
 **6. Update old blog with notice of new blog.**
 
-*Keep A Few Posts Exclusively on thne Old Blog*
+*Keep A Few Posts Exclusively on the Old Blog*
 
 The benefit of Worpdress's free plan is that you can still keep some posts 
 and the original sub-domain live on their free plan.
@@ -113,8 +114,8 @@ and the original sub-domain live on their free plan.
 
 I had built up a list of subscribing Wordpress users after 6 years writing on the platform.
 Write a brief post explaining where to find future blog posts to let your audience know where to find you. 
-In my case, I wrote one `goodbye post on my old blog <https://pythonmarketer.wordpress.com/2023/05/15/blog-moving-to-lofipython-com/e>`__, 
-and an announcement post about `migrating new blog domain <https://lofipython.com/wordpress-to-pelican-blog-migration-complete>`__.
+In my case, I wrote a `goodbye post on my old blog <https://pythonmarketer.wordpress.com/2023/05/15/blog-moving-to-lofipython-com/e>`__, 
+and an announcement post about `on my new blog domain <https://lofipython.com/wordpress-to-pelican-blog-migration-complete>`__.
 
 *Update the Site Tagline on Your Old Blog*
 
