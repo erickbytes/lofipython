@@ -23,7 +23,7 @@ Listed in Order of Most Recently Updated Project
 
 **nfl_data_py** (`Github <https://github.com/bendominguez0111/nflfastpy>`__)
    - nfl_data_py is a Python library for interacting with NFL data sourced from nflfastR, nfldata, dynastyprocess, and Draft Scout.
-   - github repo status: active
+   - Github repo status: active
    - Github last updated: 3 months ago
    - notable dependencies: requires pandas<2.0,>=1.0
    - This package seems to be most recently updated, but it requires an outdated version of pandas. I suppose it is the best option since it is updated within the past 3 months, but I was unable to install it on Python 3.12.
