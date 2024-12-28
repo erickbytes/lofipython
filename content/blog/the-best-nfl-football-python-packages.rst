@@ -15,7 +15,7 @@ After a first pass through, there is no runaway favorite. In Python, we say "the
 the case for NFL stats. In a somewhat rare occurrence, the Python community offers a graveyard of abandoned 
 or incompatible projects with modern Python. Ultimately, this probably stems from the NFL's inability to provide a consistent stats 
 API or feed over time. This may be one of the few times where the R community has better resources available, 
-like the `nfldata <https://github.com/nflverse/nfldatay>`__ package in their ecosystem. 
+like the `nfldata <https://github.com/nflverse/nfldata>`__ package in their ecosystem. 
 
 
 Listed in Order of Most Recently Updated Project
