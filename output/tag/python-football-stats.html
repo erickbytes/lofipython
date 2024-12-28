@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lo-Fi Python | articles tagged "Python football stats"</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/python-football-stats.tag.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Tags Atom Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+                <li class="ephemeral selected"><a href="https://lofipython.com/tag/python-football-stats.html">Python football stats</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://lofipython.com/contact">Collaborate</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Dec 28, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/comparing-nfl-football-python-packages.html" rel="bookmark" title="Permanent Link to &quot;Comparing NFL Football Python Packages&quot;">Comparing NFL Football Python Packages</a>
+                </h2>
+
+                
+                
+
+                <p>In the spirit of the NFL regular season concluding and playoffs beginning soon, I wondered what packages
+Python had in the NFL stats space. Below, I have compiled my notes below on each of the libraries I found
+for the NFL in Python.</p>
+<p>After a first pass through, there is no runaway favorite. In Python, we say &quot;there should be one obvious way to do it&quot;. This doesn't seem
+the case for NFL stats. In a somewhat rare occurrence, the Python community offers a graveyard of abandoned
+or incompatible projects with modern Python. Ultimately, this probably stems from the NFL's inability to provide a consistent stats
+API or feed over time. This may be one of the few times where the R community has more resources available for NFL stats,
+like the <a class="reference external" href="https://github.com/nflverse/nfldatay">nfldata</a> package in their ecosystem.</p>
+<div class="section" id="listed-in-order-of-most-recently-updated-project">
+<h2>Listed in Order of Most Recently Updated Project</h2>
+<dl class="docutils">
+<dt><strong>nfl_data_py</strong> (<a class="reference external" href="https://github.com/bendominguez0111/nflfastpy">Github</a>)</dt>
+<dd><ul class="first last simple">
+<li>nfl_data_py is a Python library for interacting with NFL data sourced from nflfastR, nfldata, dynastyprocess, and Draft Scout.</li>
+<li>github repo status: active</li>
+<li>Github last updated: 3 months ago</li>
+<li>notable dependencies: requires pandas&lt;2.0,&gt;=1.0</li>
+<li>This package seems to be most recently updated, but it requires an outdated version of pandas. I suppose it is the best option since it is updated within the past 3 months, but I was unable to install it on Python 3.12.</li>
+</ul>
+</dd>
+<dt><strong>sportsipy</strong> (<a class="reference external" href="https://github.com/roclark/sportsipy">Github</a>)</dt>
+<dd><ul class="first last simple">
+<li>A free sports API written for Python</li>
+<li>Github repo status: &quot;This project is no longer undergoing active development. Please consider opening a pull request for any new features or bug fixes to be reviewed and merged.&quot;</li>
+<li>Github repo last updated: 2022</li>
+<li>I was able to get the sportsipy package installed via pip, but upon attempting to use it I saw this message: &quot;The requested page returned a valid response, but no data could be found. Has the season begun, and is the data available on www.sports-reference.com?&quot;</li>
+</ul>
+</dd>
+<dt><strong>nflfastpy</strong> (<a class="reference external" href="https://github.com/bendominguez0111/nflfastpy">Github</a>)</dt>
+<dd><ul class="first last simple">
+<li>a port of nflfastR, from the R programming language</li>
+<li>Github repo status: &quot;This repository has been archived by the owner on Nov 18, 2022. It is now read-only.&quot;</li>
+<li>Github repo last updated: 2021</li>
+<li>noteable dependencies: matplotlib</li>
+<li>This package installed on Python 3.12, but when I tried to import the package, I saw a ValueError from matplotlib. Troubleshooting required.</li>
+</ul>
+</dd>
+<dt><strong>nfldb</strong> (<a class="reference external" href="https://github.com/bendominguez0111/nflfastpy">Github</a>)</dt>
+<dd><ul class="first last simple">
+<li>nfldb is a relational database bundled with a Python module to quickly and conveniently query and update the database with data from active games. Data is imported from nflgame, which in turn gets its data from a JSON feed on NFL.com's live GameCenter pages.</li>
+<li>Github repo status: &quot;THIS PROJECT IS UNMAINTAINED.&quot;</li>
+<li>Github repo last updated: 2018</li>
+<li>noteable dependencies: nflgame package (requires Python 2)</li>
+</ul>
+</dd>
+<dt><strong>nflgame</strong> (<a class="reference external" href="https://pypi.org/project/nflgame/">pypi</a>)</dt>
+<dd><ul class="first last simple">
+<li>nflgame is an API to retrieve and read NFL Game Center JSON data.</li>
+<li>pypi last updated: 2016</li>
+<li>notable dependencies: nflgame requires Python 2.6+ and does not yet work with Python 3</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Conclusion</strong></p>
+<p>This is one of the few times where I've been unable to find a Python package that does what I want: extend an API to view NFL stats.
+I could try some of these packages with an earlier version of Python 3, but I'd prefer to use something that works with a more current version of Python.
+My suggestion to anyone looking for NFL stats via Python is: you may need to roll your own package,
+or find something like the <a class="reference external" href="https://developer.sportradar.com/football/reference/nfl-overview">SportsRadar API</a>
+or <a class="reference external" href="https://sportsdata.io/nfl-api">SportsData.io API</a>.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/comparing-nfl-football-python-packages.html">posted at 11:49</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-nfl-sports.html" rel="tag">coding, python, NFL, sports</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/nfl-stats.html" class="tags">NFL stats</a>
+                    &nbsp;<a href="https://lofipython.com/tag/nfl-python-libraries.html" class="tags">NFL Python libraries</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-football-stats.html" class="tags selected">Python football stats</a>
+                    &nbsp;<a href="https://lofipython.com/tag/nfl-data.html" class="tags">NFL data</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

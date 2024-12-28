@@ -13,11 +13,6 @@
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="@erickbytes" />
-    <style>
-        .float-center {
-            text-align: center
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -36,9 +31,326 @@
         </div>
     </header>
     <div id="wrapper">
-        <br><br>
-        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CW7DKK77&placement=lofipythoncom&format=responsive" id="_carbonads_js"></script>
-        <div id="content">            <h4 class="date">May 18, 2020</h4>
+        <div id="content">            <h4 class="date">May 25, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere.html" rel="bookmark" title="Permanent Link to &quot;Integrating MySQL with Flask, pandas and pythonanywhere&quot;">Integrating MySQL with Flask, pandas and pythonanywhere</a>
+                </h2>
+
+                
+                
+
+                <p>Sometimes a spark comes from seemingly nowhere. That's when you reach for your tools and create. After a series of successful experiments,
+I decided this stack might be my quickest, best shot to get a functional website up and running in Python.
+I was pleasantly surprised to make rapid progress over the span of a quarantine weekend.
+Here are the steps to create a MySQL backed website with Flask.</p>
+<p><strong>Hosting With pythonanywhere</strong></p>
+<p><a class="reference external" href="https://www.pythonanywhere.com/">pythonanywhere</a> is a web hosting service like GoDaddy.
+If you host your app with them, MySQL is the default database. Postgres integration is available at higher price tiers.</p>
+<p><strong>To get your Flask app's database up and running you need to:</strong></p>
+<ol class="arabic simple">
+<li>Create your database (see the &quot;Databases&quot; tab in pythonanywhere)</li>
+<li>Use the mysql terminal to create your tables</li>
+<li>Use the mysql.connector API to connect to your table and execute SQL from your Flask app.</li>
+</ol>
+<div class="section" id="essential-mysql-terminal-commands">
+<h2>Essential MySQL Terminal Commands</h2>
+<p><strong>Show MySQL Version</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">VERSION</span><span class="p">();</span>
+</pre></div></td></tr></table></div>
+<p><strong>List tables in a database</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Show All MySQL Variable Values</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Creating a Table</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">350</span><span class="p">),</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">350</span><span class="p">));</span>
+</pre></div></td></tr></table></div>
+<p><a class="reference external" href="https://www.sitepoint.com/use-json-data-fields-mysql-databases/">Create a Table with a JSON column</a></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="n">mediumint</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">  </span><span class="o">`</span><span class="n">store</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="o">`</span><span class="n">details</span><span class="o">`</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Add New Column and specify column to insert AFTER</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span>
+<span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">AFTER</span><span class="w"> </span><span class="n">other_column</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Alter Datatype of a Column</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Describe a Table</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<p><strong>View All Records in a Table</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<p><a class="reference external" href="https://www.mysqltutorial.org/mysql-basics/mysql-like/">Using LIKE in MySQL</a></p>
+<p><strong>Select 10 Newest Records</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<p><strong>&quot;Explaining&quot; A Query</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Using &quot;ANALYZE TABLE&quot; to</strong><a class="reference external" href="https://dev.mysql.com/doc/refman/8.0/en/statement-optimization.html">optimize them</a><strong>is periodically recommended by MySQL:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">ANALYZE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Marijuana</span><span class="p">;</span>
+</pre></div></td></tr></table></div>
+<figure></figure><div class="wp-image-3418 figure">
+<img alt="mysql commands in shell" src="https://pythonmarketer.files.wordpress.com/2020/05/mysql_commands-1.png" />
+</div>
+</div>
+<div class="section" id="installing-libraries-in-pythonanywhere">
+<h2>Installing Libraries in PythonAnywhere</h2>
+<p>You can use <a class="reference external" href="http://lofipython.com/how-to-python-pip-install-new-libraries/">pip</a> to install python libraries within the PythonAnywhere bash terminal. Go to the consoles tab and start a new bash terminal. Then to install a library, such as pandas:</p>
+<pre class="literal-block">
+python -m pip3.8 install --user pandas
+</pre>
+</div>
+<div class="section" id="flask-app-with-mysql-connector-api-sql-and-pandas">
+<h2>Flask app with <a class="reference external" href="https://dev.mysql.com/doc/connector-python/en/">mysql.connector API</a>, SQL and pandas</h2>
+<p><strong>A Flask app making a mysql database connection with pandas:</strong></p>
+<ol class="arabic simple">
+<li>Creating an error log with logging.</li>
+<li>Connecting to a mysql database hosted through <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/quickstart/">Flask</a> and <a class="reference external" href="http://pythonanywhere.com">pythonanywhere</a></li>
+<li>Then reading a table to a pandas <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">dataframe</a></li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">mysql.connector</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call database and return data from df. Then display homepage.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">email_df</span> <span class="o">=</span> <span class="n">get_database_table_as_dataframe</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">email_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">html_page</span> <span class="o">=</span> <span class="n">render_homepage</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">html_page</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Failed to connect to database.&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">render_homepage</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Note: you should use Flask&#39;s render_template to render HTML files.</span>
+<span class="sd">    However, for example you can make a quick f-string HTML page that works in this code.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">html_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;html&gt;&lt;head&gt;&lt;link rel=&#39;stylesheet&#39; href=&quot;/static/styles/some_file.css&quot;&gt;&lt;link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;static/favicon.ico&quot;&gt;</span>
+<span class="s2">                    &lt;Title&gt;Dispensary Alerts&lt;/Title&gt;&lt;/head&gt;</span>
+<span class="s2">                    &lt;body&gt;&lt;h2&gt;&lt;/h2&gt;</span>
+<span class="s2">                    &lt;p&gt;Get alerts for your dope.&lt;/p&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;h6&gt;&lt;b&gt;Sign Up&lt;/b&gt;&lt;/h6&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;div class=&quot;form&quot;&gt;</span>
+<span class="s2">                    &lt;form action=&quot;/add_signup_to_db&quot; method=&quot;post&quot; style=&quot;width:420px;text-align:center;display:block;&quot; &gt;</span>
+<span class="s2">                    &lt;input type=&quot;text&quot; name=&quot;Signup Form&quot;&gt;</span>
+<span class="s2">                    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</span>
+<span class="s2">                    &lt;/form&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="s2">                    &lt;p&gt;&lt;b&gt;Current Time:&lt;/b&gt;</span>
+<span class="s2">                    </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span><span class="si">}</span><span class="s2"> &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html_page</span>
+
+
+<span class="k">def</span> <span class="nf">get_database_table_as_dataframe</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Connect to a table named &#39;Emails&#39;. Returns pandas dataframe.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+            <span class="n">host</span><span class="o">=</span><span class="s2">&quot;username.mysql.pythonanywhere-services.com&quot;</span><span class="p">,</span>
+            <span class="n">db</span><span class="o">=</span><span class="s2">&quot;username$DatabaseName&quot;</span><span class="p">,</span>
+            <span class="n">user</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">email_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sql</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;SELECT * FROM Emails&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">connection</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">email_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">email_df</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Failed to fetch dataframe from DB.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;Oops!&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/add_signup_to_db&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">add_signup_to_db</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pass data as SQL parameters with mysql.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+            <span class="n">host</span><span class="o">=</span><span class="s2">&quot;username.mysql.pythonanywhere-services.com&quot;</span><span class="p">,</span>
+            <span class="n">db</span><span class="o">=</span><span class="s2">&quot;username$DatabaseName&quot;</span><span class="p">,</span>
+            <span class="n">user</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;INSERT INTO Emails (message, date) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">) &quot;&quot;&quot;</span>
+        <span class="n">record_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">record_tuple</span><span class="p">)</span>
+        <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Failed to insert into MySQL table </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Error inserting records to DB.&quot;</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s2">&quot;MySQL connection is closed&quot;</span>
+</pre></div></td></tr></table></div>
+<p><strong>Iterative Development</strong></p>
+<blockquote>
+Below: making my website look less like a &quot;my first HTML&quot; website, experimenting with my app's message name and adding a sign-up form connected to the database.</blockquote>
+<img alt="Screenshot_20200606-132252 (1)" class="alignnone size-full wp-image-3524" src="https://pythonmarketer.files.wordpress.com/2020/05/screenshot_20200606-132252-1-1.png" style="width: 344px; height: 566px;" />
+<p><strong>Note: if you see this error when making a request in pythonanywhere:</strong></p>
+<pre class="literal-block">
+OSError: Tunnel connection failed: 403 Forbidden
+</pre>
+<p>It's likely because you are &quot;whitelisted&quot; on the free plan. Upgrading to the $5/month plan will fix it!</p>
+<p><strong>Scoping The Full Stack</strong></p>
+<p>I'm really enjoying this web development stack. Here are all of the tools and library choices for this website:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/HTML">HTML</a></li>
+<li><a class="reference external" href="https://www.taniarascia.com/overview-of-css-concepts/">CSS</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Web_framework">web framework</a>: Flask library</li>
+<li>email: <a class="reference external" href="https://pythonhosted.org/Flask-Mail/">Flask-Mail</a> library(<a class="reference external" href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP</a>)</li>
+<li>API calls to external websites: <a class="reference external" href="https://requests.readthedocs.io/en/master/">requests</a> and json libraries</li>
+<li>data handling: MySQL database, mysql.connector API, <a class="reference external" href="https://lofipython.com/pandas-pythons-excel-powerhouse/">pandas library</a></li>
+<li>file system: <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging</a>, os and sys libraries</li>
+<li>(may add) payment processing: <a class="reference external" href="https://github.com/braintree/braintree_python">Braintree Library</a></li>
+<li>web hosting: pythonanywhere</li>
+</ul>
+<p><strong>Finding Your Flask Groove</strong></p>
+<p>Flask is a little scary at first, but reasonable once you get a grasp of the basic syntax. Using the logging module to establish access, error
+and server log feeds was a big step to finding my Python traceback fixing groove. It's a work in progress.</p>
+<p><strong>Recapping My Python Web Development and Database Experiences</strong></p>
+<p>I previously created a <a class="reference external" href="http://tameimpala.pythonanywhere.com/tameimpala">website</a> with <a class="reference external" href="https://lofipython.com/getting-started-with-web2py/">web2py</a>,
+another Python web framework like Flask and Django. I think it was a decent choice for me at that point in my Python journey. Back then,
+I connected a MongoDB back-end to web2py. I randomly picked Mongo out of the DB hat and it worked well enough.</p>
+<blockquote>
+<p><strong>My Python Web Development and Database Tools</strong></p>
+<p><strong>App #1</strong>          web2py + MongoDB</p>
+<p><strong>App #2</strong>           Flask + MySQL</p>
+<p><strong>Future App?</strong>   py4web + pyDAL + PostgreSQL</p>
+<p><strong>Future App?</strong>  tornado + streamlit (or) Flask + Dash (+ SQLite)</p>
+</blockquote>
+<p>Of these two diverse Python stacks, I favor MySQL and Flask. But I learned a lot from watching web2py's tutorial videos and it's less intimidating for beginners. And I barely scratched the surface of web2py's &quot;pure Python&quot; <a class="reference external" href="https://github.com/web2py/pydal">pyDAL (Database Abstraction Layer)</a>, which seems pretty dope.</p>
+<p>web2py's <a class="reference external" href="https://www.youtube.com/watch?v=hcYUgNWvPtw">creator</a> has a new framework in progress called <a class="reference external" href="https://github.com/web2py/py4web">py4web</a>.
+It has the same <a class="reference external" href="http://www.web2py.com/books/default/chapter/29/06/the-database-abstraction-layer">DAL</a> and inherits many other web2py qualities.
+Definitely looking forward to exploring the DAL on my first py4web website. I'll likely use it to connect to PostgreSQL or SQLite.
+Maybe I'll <a class="reference external" href="https://github.com/web2py/pydal">install pyDAL with pip</a> in the meantime.</p>
+<p><strong>Final Thoughts</strong></p>
+<p>Both of my websites are hosted with pythonanywhere, which gives you a text editor and <a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a> terminal
+to run your scripts in a shell environment. I'm so pleased with all of these tools. They fit together smoothly and made creating my website a fun experience.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/essential-mysql-terminal-commands-and-connecting-to-mysql-with-flask-pandas-and-pythonanywhere.html">posted at 21:48</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/data-databases-odbc-pandas-programming-sql-web-development-web2py.html" rel="tag">data, Databases, ODBC, pandas, programming, SQL, web development, web2py</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/flask.html" class="tags">flask</a>
+                    &nbsp;<a href="https://lofipython.com/tag/mysql.html" class="tags">mysql</a>
+                    &nbsp;<a href="https://lofipython.com/tag/py4web.html" class="tags">py4web</a>
+                    &nbsp;<a href="https://lofipython.com/tag/pydal.html" class="tags">pyDAL</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                </div>
+            </article>            <h4 class="date">May 18, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1318,219 +1630,6 @@ python -m pip install pygsheets
                     &nbsp;<a href="https://lofipython.com/tag/json.html" class="tags">json</a>
                     &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
                     &nbsp;<a href="https://lofipython.com/tag/spreadsheets.html" class="tags">spreadsheets</a>
-                </div>
-            </article>            <h4 class="date">Dec 05, 2019</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/a-collection-of-software-testing-opinions-for-python-and-beyond.html" rel="bookmark" title="Permanent Link to &quot;A Collection of Software Testing Opinions for Python and Beyond&quot;">A Collection of Software Testing Opinions for Python and Beyond</a>
-                </h2>
-
-                
-                
-
-                <p>I am a beginner to testing my code. I wanted to write about testing to better understand it. While shaping this link fest masquerading as an essay, I collected great ideas from people who are way more experienced than me. You'll find a few of my thoughts, a Pytest example I use to monitor files, ideas for unit testing, property testing, test driven development and many other commonly used software tests.</p>
-<p><strong>An Introductory Rant on Testing</strong></p>
-<p>Over several years as a programmer, I've slowly grasped the landscape of testing in software development. After moving beyond my first few tutorials and projects, it seemed very noisy to sort out. Examples provided are usually simple assertions that seem tough to relate to a real use case. It might be easy test the wrong things. Plus, some don't do it at all! The quality of the tests is more important than the quantity. But what makes a quality test? Where's the balance between testing every minute detail of a program and not at all?</p>
-<blockquote>
-<p>Yeah. And the worst thing that happens is that you get people that just stop&nbsp;<em>thinking</em>&nbsp;about what they’re doing. “This is the principle, to always write unit tests, so I’m always going to write unit tests,” and then they’re just not thinking about how they’re spending their time, and they wind up wasting a lot of it.</p>
-<p>Joel Spolsky, <a class="reference external" href="https://www.joelonsoftware.com/2009/01/">Stack Overflow Podcast #38</a></p>
-</blockquote>
-<p>Implementing software tests is a best practice for maintaining code, but seems ambiguous to someone who has not tested any code before. I guess the best way is
-to <a class="reference external" href="https://github.com/pyodide/pyodide/tree/main">read open source projects with test suites</a>, but those can be tough to find. How do you know <a class="reference external" href="https://docs.python-guide.org/writing/reading/">a good test suite</a> when you see it? Maybe the maintainers went rogue and off the deep end with tests.
-Online, everybody says you should test your code, <a class="reference external" href="https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes">is the emperor wearing any clothes?</a></p>
-<p>As a beginner stumbling across articles on testing, these questions were tough to answer. As with most things in programming, figuring out the right question to ask is a challenge in itself. <a class="reference external" href="https://www.codecademy.com/learn/learn-python-3">Codeacademy</a> and <a class="reference external" href="https://www.coursera.org/specializations/python">Coursera</a> never mentioned anything about writing tests. On the other hand, <a class="reference external" href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django</a> includes testing in its tutorial and documentation. Also, most languages come with built-in testing tools. Python has the <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> library.</p>
-<p><strong>Why test at all? First, some solid benefits of software testing:</strong></p>
-<ul class="simple">
-<li>With tests on your code in place, you can implement changes and have confidence the code still works if the tests pass. This gives developers more confidence to iterate and improve an application.</li>
-<li>Detect problems faster. Passing tests are a good indicator that your programs are actually doing what they're supposed to do. If they don't pass, you likely found a bug you might have missed otherwise.</li>
-<li>When you find a bug, you either need to amend your code, or your tests. write a test for that bug and then fix it. Either that, or you need to be amend your tests. You've just improved the quality of your test suite.</li>
-<li><a class="reference external" href="https://daedtech.com/dont-learn-to-code-learn-to-automate/">Automation</a>. If you are writing tests, those tests can be automated. If you are manually checking the results of your program, you're missing a chance to automate those checks away. I haven't applied it yet, but have heard the <a class="reference external" href="https://tox.readthedocs.io/en/latest/">Tox library</a> may be useful to automate tests related to Python packaging. For more on automating tests, see this PyCon talk, <a class="reference external" href="https://www.youtube.com/watch?v=-BHverY7IwU">Three Excellent Python Tools to Automate Repetitive Tasks</a>.</li>
-<li>Test Driven Development can decrease the time spent debugging code. This claim sometimes lacks empirical evidence, supporting evidence tends to be anecdotal.</li>
-</ul>
-<!--  -->
-<blockquote>
-<p>A good unit test, therefore, is one that helps enforce the contract to which the function is committed.</p>
-<p>If a good unit test breaks, the contract is violated and should be either explicitly amended (by changing the documentation and tests), or fixed (by fixing the code and leaving the tests as is).</p>
-<p>A good unit test is also&nbsp;<em>strict</em>. It does its best to ensure the output is valid. This helps it catch more bugs.</p>
-<ul class="simple">
-<li>Moshe Zadka, <a class="reference external" href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></li>
-</ul>
-</blockquote>
-<p><strong>Pytest and Unit Testing in Python</strong></p>
-<p>This is where the Python hits the pavement. Unit tests are generally liked, although some prefer property tests or integration tests because they think the scope of unit tests is too narrow. The <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> library is Python's default testing framework. However nowadays, <a class="reference external" href="https://docs.pytest.org/en/latest/contents.html">pytest</a> seems to be the preferred unit testing framework for Python. <a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">Hypothesis</a> is another popular framework I've read about.</p>
-<p><strong>Pytest Testing</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://realpython.com/interview-brian-okken/">Interview with the author of Pytest</a></li>
-<li><a class="reference external" href="https://docs.pytest.org/en/latest/">Pytest Documentation</a></li>
-<li><a class="reference external" href="https://martinheinz.dev/blog/7">Pytest Features That You Need In Your Life</a></li>
-<li><a class="reference external" href="http://love-python.blogspot.com/2017/10/table-driven-unit-test-in-python.html">Table Driven Unit Testing With pytest</a></li>
-<li><a class="reference external" href="https://www.youtube.com/watch?v=Pf1ADyUKOrE">Reproducible Data Analysis in Jupyter, Part 6/10: Unit Testing with PyTest</a> [YouTube]</li>
-</ul>
-<!--  -->
-<blockquote>
-Tests start to lose signal when <a class="reference external" href="https://docs.python.org/3/library/unittest.mock.html">Mock</a> becomes routine instead of a reluctant workaround. - Brandon Rhodes, <a class="reference external" href="https://www.youtube.com/watch?v=S0No2zSJmks">When Python Practices Go Wrong</a></blockquote>
-<p><strong>Testing in Python \ General Unit Testing Ideas</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://github.com/pandas-dev/pandas/wiki/Testing">Testing Conventions for the Pandas Library</a></li>
-<li><a class="reference external" href="https://kanoki.org/2019/11/18/how-to-create-dataframe-for-testing/">How to Create a Dataframe for Testing</a></li>
-<li><a class="reference external" href="https://jeffknupp.com/blog/2013/12/09/improve-your-python-understanding-unit-testing//">Improve Your Python: Understanding Unit Testing</a></li>
-<li><a class="reference external" href="http://kbroman.org/blog/2015/12/07/write-unit-tests/">Write Unit Tests</a></li>
-<li><a class="reference external" href="https://henrikwarne.com/2013/12/08/tdd-unit-tests-and-the-passage-of-time/">Writing Unit Tests for Time</a></li>
-<li><a class="reference external" href="https://henrikwarne.com/2014/02/19/5-unit-testing-mistakes/">5 Unit Testing Mistakes</a></li>
-<li><a class="reference external" href="https://hillelwayne.com/post/unit-tests-are-not-tests/">Unit Tests Are Not Tests</a></li>
-<li><a class="reference external" href="https://hakibenita.com/the-best-new-feature-in-unittest-you-didnt-know-you-need">The Best New Feature in unittest You Didn't Know You Need</a></li>
-<li><a class="reference external" href="https://orbifold.xyz/pyhamcrest.html">Precise Unit Tests With pyhamcrest</a></li>
-<li><a class="reference external" href="https://michaelfeathers.typepad.com/michael_feathers_blog/2008/06/the-flawed-theo.html">The Flawed Theory Behind Unit Testing</a></li>
-<li><a class="reference external" href="https://docs.djangoproject.com/en/2.2/intro/tutorial05/">Django Introduction to Automated Testing</a></li>
-<li><a class="reference external" href="https://hillelwayne.com/post/python-doctests/">Python Doc Tests</a> Turn docstrings into tests, unique to Python.</li>
-</ul>
-<!--  -->
-<blockquote>
-<p>I think&nbsp;<a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">hypothesis</a>&nbsp;is probably underrated—some libraries are hesitant to incorporate it into their testing frameworks, but I think the property-based testing has real potential to catch scenarios humans would have a hard time anticipating, or at least that would take a long time to properly plan for. I find that hypothesis almost always adds a few useful test cases I hadn’t thought of that will require special error handling, for example.</p>
-<p><a class="reference external" href="http://www.blog.pythonlibrary.org/2020/01/13/pydev-of-the-week-tyler-reddy/">Tyler Reddy</a>, SciPy Release Manager</p>
-</blockquote>
-<p><strong>Integration \ Property Tests</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://blog.juliobiason.me/books/things-i-learnt/integration-tests/">Unit Tests Are Good, Integration Tests Are Gooder</a></li>
-<li><a class="reference external" href="https://hillelwayne.com/post/pbt-contracts/">PROPERTY TESTS + CONTRACTS = INTEGRATION TESTS</a></li>
-<li><a class="reference external" href="https://hillelwayne.com/post/contract-examples/">Finding Property Tests</a></li>
-<li><a class="reference external" href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-Based Testing</a></li>
-<li><a class="reference external" href="https://hillelwayne.com/post/contracts/">Contracts</a></li>
-</ul>
-<!--  -->
-<blockquote>
-<p>Traditional, or example-based, testing specifies the behavior of your software by writing examples of it—each test sets up a single concrete scenario and asserts how the software should behave in that scenario. Property-based tests take these concrete scenarios and generalize them by focusing on which features of the scenario are essential and which are allowed to vary. This results in cleaner tests that better specify the software’s behavior—and that better uncover bugs missed by traditional&nbsp;testing.</p>
-<ul class="simple">
-<li>David Maciver, <a class="reference external" href="https://increment.com/testing/in-praise-of-property-based-testing/">In Praise of Property-based Testing</a></li>
-</ul>
-</blockquote>
-<p><strong>Assertions</strong></p>
-<p>Assertions are generally accepted as welcome additions to your code.</p>
-<ul class="simple">
-<li><a class="reference external" href="https://blog.regehr.org/archives/1091">Use of Assertions</a></li>
-<li><a class="reference external" href="http://www.squarefree.com/2014/02/03/fuzzers-love-assertions/">Fuzzers Love Assertions</a></li>
-<li><a class="reference external" href="https://docs.pytest.org/en/latest/assert.html#assert">pytest Assertions</a></li>
-</ul>
-<!--  -->
-<blockquote>
-<p>In reality, the safety and restraints that these code carabiners provide actually give you <strong>more freedom</strong> to take risks in your coding. If you want to try out some risky feature, refactoring, or external library, you know something is wrong as soon as one of your assertions or tests fail and can undo back to an earlier working state.</p>
-<p>Phillip J. Guo, Code Carabiners, (Link Broken)</p>
-</blockquote>
-<p><strong>Test Driven Development</strong></p>
-<p>Eventually, you'll discover the evangelists preaching Test Driven Development. There are certain discussions which polarize us in the software development world, such as the appropriate scenarios to deploy this system of development.</p>
-<p>Opinions vary widely on the merits and appropriate application of TDD. I'm admittedly skeptical but do see the merits of TDD. But which flavor? Where do unit tests and integration tests fit in? How many tests should I write? What exactly should I be testing? <a class="reference external" href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">This essay</a> claims anyone pair programming software with an expected life of 3 or more years should use Test Driven Development.</p>
-<ul class="simple">
-<li><a class="reference external" href="https://henrikwarne.com/2019/09/29/when-tdd-is-not-a-good-fit/">When TDD is Not a Good Fit</a></li>
-<li><a class="reference external" href="http://neverworkintheory.org/2016/10/05/test-driven-development.html">Test Driven Development vs. Test Last Development</a> [Study]</li>
-<li><a class="reference external" href="https://www.youtube.com/watch?v=DQBf6li1hww">Why TDD Is Crap</a> [YouTube]</li>
-<li><a class="reference external" href="https://hillelwayne.com/post/why-tdd-isnt-crap/">Why TDD Isn't Crap</a> [Response Blog to Video]</li>
-<li><a class="reference external" href="https://www.arp242.net/testing.html">Testing Isn't Everything</a></li>
-<li><a class="reference external" href="https://georgestocker.com/2019/12/10/is-pair-programming-tdd-worth-it/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=is-pair-programming-tdd-worth-it">Is Pair Programming + TDD worth it?</a></li>
-</ul>
-<!--  -->
-<blockquote>
-<p>&quot;Test Driven Development is a tool for continuously evaluating hypotheses.&quot;</p>
-<ul class="simple">
-<li><a class="reference external" href="https://www.youtube.com/watch?time_continue=170&amp;v=UOOuW5tqT8M&amp;feature=emb_logo">James Shore, Assert(JS) Con 2019</a></li>
-</ul>
-</blockquote>
-<p><strong>General Testing Ideas and Principles</strong></p>
-<ul class="simple">
-<li><a class="reference external" href="https://docs.python-guide.org/writing/tests/">Testing Your Code</a>, The Hitchhiker's Guide to Python</li>
-<li><a class="reference external" href="https://blog.liw.fi/posts/2019/06/29/dijkstra_was_only_partially_correct_about_testing/">The Point of Software Testing</a></li>
-<li><a class="reference external" href="https://rachelbythebay.com/w/2013/01/30/test/">Connecting Bug Fixing to Automated Testing</a></li>
-<li><a class="reference external" href="https://www.jamesshore.com/In-the-News/Thinking-In-Tests.html">Thinking in Tests</a> [YouTube]</li>
-<li><a class="reference external" href="https://www.drmaciver.com/2015/04/some-empirically-derived-testing-principles/">Some empirically derived testing principles</a></li>
-<li><a class="reference external" href="https://danluu.com/tests-v-reason/">Testing Vs. Informal Reasoning</a></li>
-<li><a class="reference external" href="https://blog.nelhage.com/2016/12/how-i-test/">How I Write Tests</a></li>
-<li><a class="reference external" href="https://www.youtube.com/watch?v=Xu5EhKVZdV8">Stop Mocking, Start Testing</a> [YouTube]</li>
-<li>&quot;<a class="reference external" href="https://python-guide-es.readthedocs.io/es/latest/writing/reading.html">Each one of these projects is a paragon of Python coding.</a>&quot;</li>
-<li><a class="reference external" href="https://increment.com/development/what-its-like-to-be-a-developer-at/">What it's Like to Be a Developer at...</a>&nbsp;[Testing Practices Described]</li>
-<li><a class="reference external" href="https://www.youtube.com/watch?v=f84n5oFoZBc">Hammock Driven Development</a> [YouTube] Not so much testing focused, but including because I really enjoyed this talk.</li>
-</ul>
-<p><strong>Other common tests types:</strong></p>
-<blockquote>
-<p>Unit test: when it fails, it tells you what piece of your code needs to be fixed.</p>
-<p>Integration test: when it fails, it tells you that the pieces of your application are not working together as expected.</p>
-<p>Acceptance test: when it fails, it tells you that the application is not doing what the customer expects it to do.</p>
-<p>Regression test: when it fails, it tells you that the application no longer behaves the way it used to.</p>
-<ul class="simple">
-<li><a class="reference external" href="https://stackoverflow.com/questions/7672511/unit-test-integration-test-regression-test-acceptance-test">Mathias, Stack Overflow Answer</a></li>
-</ul>
-</blockquote>
-<p><strong>Testing maturity level progression:</strong></p>
-<ol class="arabic simple">
-<li>No tests</li>
-<li>Occasional, slow, unreliable tests</li>
-<li>Semi-comprehensive integration tests</li>
-<li>Fast, comprehensive unit tests comprise the bulk of testing<ul>
-<li>Dependency injection</li>
-<li>Composable subsystem design</li>
-</ul>
-</li>
-<li>Real-time test feedback (ideally integrated into the editor)</li>
-<li>Tests are extremely reliable or&nbsp;<a class="reference external" href="http://andyfriesen.com/2015/06/17/testable-io-in-haskell.html">guaranteed reliable by the type system</a><ul>
-<li>With tooling that tracks the reliability of tests and provides that feedback to authors.</li>
-</ul>
-</li>
-<li>Fuzzing, statistically automated microbenchmarking, rich testing frameworks for every language and every platform, and a company culture of writing the appropriate number of unit tests and high-value integration tests.</li>
-</ol>
-<ul class="simple">
-<li><a class="reference external" href="https://chadaustin.me/2019/11/two-years-at-dropbox/">ChadAustin.me</a></li>
-</ul>
-<p><strong>I recently wrote my first unit tests with pytest. Below is a script named test_file_date.py. It tests if the day of month of the most recently changed file in a directory matches today's day. To install pytest, enter into command prompt or terminal:</strong></p>
-<pre class="code console literal-block">
-<span class="go">python -m pip install pytest</span>
-</pre>
-<p><strong>test_file_date.py</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
-
-<span class="c1"># The dir_query format is for a Windows path with Unix style pattern matching.</span>
-<span class="k">def</span> <span class="nf">test_csv_date_equals_today</span><span class="p">():</span>
-    <span class="n">dir_query</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">your_username</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">*.csv&#39;</span> <span class="c1"># specify csv extension and folder</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">dir_query</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get most recent file</span>
-    <span class="n">file_timestamp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-    <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">file_timestamp</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">file_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">file_date</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
-</pre></div></td></tr></table></div>
-<p><strong>Run the test with pytest by entering:</strong></p>
-<pre class="code console literal-block">
-<span class="go">pytest test_file_date.py</span>
-</pre>
-<p><strong>Conclusion</strong>
-I write programs for personal productivity and to <a class="reference external" href="https://lofipython.com/automated-python-with-windows-task-scheduler/">automate processes</a>.
-The scope of problems my code solves has grown with my programming ability. I'm now reaching the point where I can apply tests to my advantage.
-However, sometimes I'll write a quick-hitter script for which I can't justify writing tests. Beyond those cases, testing can help if you pick
-the right style for your project. More so for recurring, automated processes.</p>
-<p>It feels pretty cool when your tests run and you know with more certainty whether a part of your program is getting the job done or not.
-After setting up my first test with pytest, I have leveled up to novice tester, instead of blissfully not knowing what I don't know about testing. That's a step in the right direction.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/a-collection-of-software-testing-opinions-for-python-and-beyond.html">posted at 03:06</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-productivity-programming-python-software-testing.html" rel="tag">coding, productivity, programming, python, software testing</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/pytest.html" class="tags">pytest</a>
-                    &nbsp;<a href="https://lofipython.com/tag/software-development.html" class="tags">software development</a>
-                    &nbsp;<a href="https://lofipython.com/tag/test-driven-development.html" class="tags">test driven development</a>
                 </div>
             </article>
 

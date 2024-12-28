@@ -13,11 +13,6 @@
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="@erickbytes" />
-    <style>
-        .float-center {
-            text-align: center
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -38,9 +33,89 @@
         </div>
     </header>
     <div id="wrapper">
-        <br><br>
-        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CW7DKK77&placement=lofipythoncom&format=responsive" id="_carbonads_js"></script>
-        <div id="content">            <h4 class="date">Oct 28, 2024</h4>
+        <div id="content">            <h4 class="date">Dec 28, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/comparing-nfl-football-python-packages.html" rel="bookmark" title="Permanent Link to &quot;Comparing NFL Football Python Packages&quot;">Comparing NFL Football Python Packages</a>
+                </h2>
+
+                
+                
+
+                <p>In the spirit of the NFL regular season concluding and playoffs beginning soon, I wondered what packages
+Python had in the NFL stats space. Below, I have compiled my notes below on each of the libraries I found
+for the NFL in Python.</p>
+<p>After a first pass through, there is no runaway favorite. In Python, we say &quot;there should be one obvious way to do it&quot;. This doesn't seem
+the case for NFL stats. In a somewhat rare occurrence, the Python community offers a graveyard of abandoned
+or incompatible projects with modern Python. Ultimately, this probably stems from the NFL's inability to provide a consistent stats
+API or feed over time. This may be one of the few times where the R community has more resources available for NFL stats,
+like the <a class="reference external" href="https://github.com/nflverse/nfldatay">nfldata</a> package in their ecosystem.</p>
+<div class="section" id="listed-in-order-of-most-recently-updated-project">
+<h2>Listed in Order of Most Recently Updated Project</h2>
+<dl class="docutils">
+<dt><strong>nfl_data_py</strong> (<a class="reference external" href="https://github.com/bendominguez0111/nflfastpy">Github</a>)</dt>
+<dd><ul class="first last simple">
+<li>nfl_data_py is a Python library for interacting with NFL data sourced from nflfastR, nfldata, dynastyprocess, and Draft Scout.</li>
+<li>github repo status: active</li>
+<li>Github last updated: 3 months ago</li>
+<li>notable dependencies: requires pandas&lt;2.0,&gt;=1.0</li>
+<li>This package seems to be most recently updated, but it requires an outdated version of pandas. I suppose it is the best option since it is updated within the past 3 months, but I was unable to install it on Python 3.12.</li>
+</ul>
+</dd>
+<dt><strong>sportsipy</strong> (<a class="reference external" href="https://github.com/roclark/sportsipy">Github</a>)</dt>
+<dd><ul class="first last simple">
+<li>A free sports API written for Python</li>
+<li>Github repo status: &quot;This project is no longer undergoing active development. Please consider opening a pull request for any new features or bug fixes to be reviewed and merged.&quot;</li>
+<li>Github repo last updated: 2022</li>
+<li>I was able to get the sportsipy package installed via pip, but upon attempting to use it I saw this message: &quot;The requested page returned a valid response, but no data could be found. Has the season begun, and is the data available on www.sports-reference.com?&quot;</li>
+</ul>
+</dd>
+<dt><strong>nflfastpy</strong> (<a class="reference external" href="https://github.com/bendominguez0111/nflfastpy">Github</a>)</dt>
+<dd><ul class="first last simple">
+<li>a port of nflfastR, from the R programming language</li>
+<li>Github repo status: &quot;This repository has been archived by the owner on Nov 18, 2022. It is now read-only.&quot;</li>
+<li>Github repo last updated: 2021</li>
+<li>noteable dependencies: matplotlib</li>
+<li>This package installed on Python 3.12, but when I tried to import the package, I saw a ValueError from matplotlib. Troubleshooting required.</li>
+</ul>
+</dd>
+<dt><strong>nfldb</strong> (<a class="reference external" href="https://github.com/bendominguez0111/nflfastpy">Github</a>)</dt>
+<dd><ul class="first last simple">
+<li>nfldb is a relational database bundled with a Python module to quickly and conveniently query and update the database with data from active games. Data is imported from nflgame, which in turn gets its data from a JSON feed on NFL.com's live GameCenter pages.</li>
+<li>Github repo status: &quot;THIS PROJECT IS UNMAINTAINED.&quot;</li>
+<li>Github repo last updated: 2018</li>
+<li>noteable dependencies: nflgame package (requires Python 2)</li>
+</ul>
+</dd>
+<dt><strong>nflgame</strong> (<a class="reference external" href="https://pypi.org/project/nflgame/">pypi</a>)</dt>
+<dd><ul class="first last simple">
+<li>nflgame is an API to retrieve and read NFL Game Center JSON data.</li>
+<li>pypi last updated: 2016</li>
+<li>notable dependencies: nflgame requires Python 2.6+ and does not yet work with Python 3</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Conclusion</strong></p>
+<p>This is one of the few times where I've been unable to find a Python package that does what I want: extend an API to view NFL stats.
+I could try some of these packages with an earlier version of Python 3, but I'd prefer to use something that works with a more current version of Python.
+My suggestion to anyone looking for NFL stats via Python is: you may need to roll your own package,
+or find something like the <a class="reference external" href="https://developer.sportradar.com/football/reference/nfl-overview">SportsRadar API</a>
+or <a class="reference external" href="https://sportsdata.io/nfl-api">SportsData.io API</a>.</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/comparing-nfl-football-python-packages.html">posted at 11:49</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-python-nfl-sports.html" rel="tag">coding, python, NFL, sports</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/nfl-stats.html" class="tags">NFL stats</a>
+                    &nbsp;<a href="https://lofipython.com/tag/nfl-python-libraries.html" class="tags">NFL Python libraries</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-football-stats.html" class="tags">Python football stats</a>
+                    &nbsp;<a href="https://lofipython.com/tag/nfl-data.html" class="tags">NFL data</a>
+                </div>
+            </article>            <h4 class="date">Oct 28, 2024</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -751,130 +826,6 @@ to open the url in a browser. This is a handy little trick to keep in your back 
                     &nbsp;<a href="https://lofipython.com/tag/google-calendar-url-api-example.html" class="tags">Google Calendar URL API example</a>
                     &nbsp;<a href="https://lofipython.com/tag/sharing-a-google-calendar-event.html" class="tags">sharing a Google Calendar event</a>
                     &nbsp;<a href="https://lofipython.com/tag/create-google-calendar-event-with-python.html" class="tags">create google calendar event with python</a>
-                </div>
-            </article>            <h4 class="date">Apr 07, 2024</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/troubleshooting-tracebacks-to-resurrect-a-web2py-app.html" rel="bookmark" title="Permanent Link to &quot;Troubleshooting Tracebacks to Resurrect a Python Web2py App&quot;">Troubleshooting Tracebacks to Resurrect a Python Web2py App</a>
-                </h2>
-
-                
-                
-
-                <p>Back in 2016, I <a class="reference external" href="https://lofipython.com/askkevinparker-com-my-first-web-app-other-notes">built a web2py app</a>
-as my first web application. It accepts a prompt from the user and
-primitively attempts to match that text to a line of Kevin Parker's lyrics written for the band Tame Impala.</p>
-<p>I didn't look at the app's code for many years. I just needed to log into <a class="reference external" href="https://pythonanywhere.com">PythonAnywhere</a>
-every 3 months and hit a button to keep it running on their free plan. Until I decided to update it recently.</p>
-<p>Tame Impala released a new album and lots of additional tracks to import to the app.
-Just need to update the database with new music. No big deal, right?</p>
-<p>Part of the problem with updating the app was that I didn't remember where the important code
-like the controller default.py and relevant HTML files were after not seeing it for 5+ years.
-It took some time to remember the folder structure of a web2py project. Since it was my first
-project ever, documentation was nonexistent. I could have saved myself a lot of grief if I'd wrote
-down some notes when I made the app.</p>
-<p>web2py is relatively easy to grasp for Python developers. One thing I like is that
-once it is installed, the development server is easily started by running the web2py.py file:</p>
-<pre class="code console literal-block">
-<span class="go">cd web2py
-python3.10 web2py.py</span>
-</pre>
-<p><strong>web2py Python Errors Solved</strong></p>
-<p>I installed web2py locally with the help of a <a class="reference external" href="https://www.digitalocean.com/community/tutorials/how-to-use-the-web2py-framework-to-quickly-build-your-python-app">DigitalOcean blog post</a>.
-After I failed to push a new version of the app to production, for some reasons it was in a broken state.
-Python version issues surfaced, requiring some heady navigation. Enjoy these gritty details
-of the tracebacks that transpired.</p>
-<hr class="docutils" />
-<pre class="code console literal-block">
-<span class="go">ModuleNotFoundError: No module named 'formatter'</span>
-</pre>
-<img alt="formatter module missing in Python WSGI app" src="https://lofipython.com/images/ModuleNotFoundError-no-module-named-formatter.png" />
-<p>This error showed up in my app's WSGI error logs. Initially, I researched and attempted to install
-the <a class="reference external" href="https://pypi.org/project/formatter/">formatter module</a>. I believe this was caused by attempting
-to run Python code compiled to a .w2p file on Python 3.11 on a Python 3.10 interpreter. However, I didn't
-know how to solve it until after I saw the next error.</p>
-<hr class="docutils" />
-<pre class="code console literal-block">
-<span class="go">SystemError: compiled code is incompatible</span>
-</pre>
-<img alt="incompatible python interpreter and compiled python code" src="https://lofipython.com/images/SystemError-compiled-code-is-incompatible-cause.png" />
-<p>After reading this error, I consulted Bing about it. One of the options that Bing suggested was
-that my Python code had incompatible versions. This was caused by a mismatch between my development
-and production Python versions.</p>
-<p><strong>Installing Python 3.10 in Development Environment</strong></p>
-<p>Originally, I compiled the updated web2py app in Python 3.11 on my Chromebook. My PythonAnywhere environment was
-running <a class="reference external" href="https://www.python.org/downloads/release/python-3105/">Python 3.10</a>. Therefore, I need to build the
-development code in Python 3.10 to match the production environment on PythonAnywhere.
-I entered a handful of commands from Bing Copilot to build Python 3.10 on my Ubuntu development environment:</p>
-<pre class="code console literal-block">
-<span class="go">sudo apt-get install build-essential
-sudo apt-get install zlib1g-dev
-sudo apt-get install libsqlite3-dev
-wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tgz
-tar zxvf Python-3.10.5.tgz
-cd Python-3.10.5
-./configure --enable-optimizations --enable-loadable-sqlite-extensions
-make &amp;&amp; sudo make install</span>
-</pre>
-<p>The lesson I took away is to consider your production environment's Python version before you begin working on a project.
-In most cases, you'll want to match that version in your development environment to avoid errors like this.</p>
-<p>After compiling the new development Python 3.10 version, I exported the app to a new .w2p file.
-Next, I imported the .w2p file containing the updated app to PythonAnywhere in the admin interface app importer.</p>
-<p>After syncing my development and production environment versions, the app showed a different error.
-Progress!</p>
-<p>Since I was using a .w2p file from 5+ years ago, it contained old Python web2py code written in
-earlier Python versions with a few more bugs. Despite these version inconveniences, I was happy to see the
-&quot;compiled code is incompatible&quot; and &quot;formatter module missing&quot; errors stopped.
-One problem solved, two more discovered in its wake, am I right?</p>
-<hr class="docutils" />
-<pre class="code console literal-block">
-<span class="go">SyntaxError: multiple exception types must be parenthesized</span>
-</pre>
-<img alt="exception types must be parenthesized in Python" src="https://lofipython.com/images/SyntaxError-exception-types-must-be-parenthesized.png" />
-<p>This error showed up in my appadmin.py. At some point this unparenthesized syntax was phased out of Python.
-The fix is add parentheses to the exception statements:</p>
-<p><em>Incorrect</em></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-</pre></div></td></tr></table></div>
-<p><em>Correct</em></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">except</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-</pre></div></td></tr></table></div>
-<hr class="docutils" />
-<pre class="code console literal-block">
-<span class="go">unable to parse csv file: iterator should return strings, not bytes (the file should be opened in text mode)</span>
-</pre>
-<p>In order to import the new Tame Impala songs to the SQLlite database, web2py provides a
-GUI interface in its admin panel or the DAL (Database Abstraction Layer).
-I chose to use the GUI. In the GUI, you can either manually enter each song or use its csv import widget.
-To save time, I imported via the csv widget. However, this error slowed me down.
-It stemmed from the need for TextIOWrapper to convert the csv data to a required format.</p>
-<img alt="unable to parse csv error importing to web2py SQLlite" src="https://lofipython.com/images/unable-to-parse-csv-web2py.png" />
-<p>The solution I found was to use the
-<a class="reference external" href="https://github.com/web2py/web2py/issues/2148#issuecomment-616036400">fix suggested by AnooshaAviligonda</a>.
-In web2py/gluon/packages/dal/pydal/objects.py, I swapped in this code:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">TextIOWrapper</span><span class="p">(</span><span class="n">utf8_data</span><span class="p">,</span><span class="n">encoding</span><span class="p">),</span> <span class="n">dialect</span><span class="o">=</span><span class="n">dialect</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<img alt="unable to parse csv Python fix with TextIOWrapper" src="https://lofipython.com/images/unable-to-parse-csv-fix.png" />
-<p>After adding the above code to my web2py app's objects.py file, the csv importer completed my
-new Tame Impala songs database import. Also, I was able to export an app from my development environment
-and deploy it into PythonAnywhere via the admin interface. Mission accomplished.</p>
-<p>I imported the new songs to my app and brought the code forward into future Python versions.
-Keeping up with this project over the years shows how maintaining an app across different Python versions
-can cause unexpected challenges. With these Python tracebacks conquered, the app is back on the web.
-Now with all of Tame Impala's new lyrics!</p>
-<p><strong>Check out my Tame Impala web2py app here:</strong></p>
-<p><a class="reference external" href="http://tameimpala.pythonanywhere.com/tameimpala">tameimpala.pythonanywhere.com/tameimpala</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/troubleshooting-tracebacks-to-resurrect-a-web2py-app.html">posted at 20:53</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-web2py-apps.html" rel="tag">coding, programming, python, web2py, apps</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/troubleshooting-web2py-app.html" class="tags">troubleshooting web2py app</a>
-                    &nbsp;<a href="https://lofipython.com/tag/updating-old-python-code.html" class="tags">updating old Python code</a>
-                    &nbsp;<a href="https://lofipython.com/tag/maintaining-python-code.html" class="tags">maintaining python code</a>
                 </div>
             </article>
 
