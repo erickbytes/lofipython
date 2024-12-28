@@ -38,14 +38,14 @@ Listed in Order of Most Recently Updated Project
    - a port of nflfastR, from the R programming language
    - Github repo status: "This repository has been archived by the owner on Nov 18, 2022. It is now read-only."
    - Github repo last updated: 2021
-   - noteable dependencies: matplotlib
+   - notable dependencies: matplotlib
    - This package installed on Python 3.12, but when I tried to import the package, I saw a ValueError from matplotlib. Troubleshooting required.
 
 **nfldb** (`Github <https://github.com/bendominguez0111/nflfastpy>`__)
    - nfldb is a relational database bundled with a Python module to quickly and conveniently query and update the database with data from active games. Data is imported from nflgame, which in turn gets its data from a JSON feed on NFL.com's live GameCenter pages.
    - Github repo status: "THIS PROJECT IS UNMAINTAINED."
    - Github repo last updated: 2018
-   - noteable dependencies: nflgame package (requires Python 2)
+   - notable dependencies: nflgame package (requires Python 2)
 
 **nflgame** (`pypi <https://pypi.org/project/nflgame/>`__)
    - nflgame is an API to retrieve and read NFL Game Center JSON data. 
