@@ -14,7 +14,7 @@ for the NFL in Python.
 After a first pass through, there is no runaway favorite. In Python, we say "there should be one obvious way to do it". This doesn't seem 
 the case for NFL stats. In a somewhat rare occurrence, the Python community offers a graveyard of abandoned 
 or incompatible projects with modern Python. Ultimately, this probably stems from the NFL's inability to provide a consistent stats 
-API or feed over time. This may be one of the few times where the R community has more resources available for NFL stats, 
+API or feed over time. This may be one of the few times where the R community has better resources available, 
 like the `nfldata <https://github.com/nflverse/nfldatay>`__ package in their ecosystem. 
 
 
@@ -58,4 +58,4 @@ This is one of the few times where I've been unable to find a Python package tha
 I could try some of these packages with an earlier version of Python 3, but I'd prefer to use something that works with a more current version of Python.
 My suggestion to anyone looking for NFL stats via Python is: you may need to roll your own package, 
 or find something like the `SportsRadar API <https://developer.sportradar.com/football/reference/nfl-overview>`__
-or `SportsData.io API <https://sportsdata.io/nfl-api>`__.
+or `SportsData.io API <https://sportsdata.io/nfl-api>`__. Another option might be to find an existing dataset like the `Dynasty Process data on Github <https://github.com/dynastyprocess/data>`__.
