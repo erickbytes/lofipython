@@ -31,7 +31,218 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jul 23, 2023</h4>
+        <div id="content">            <h4 class="date">Jul 27, 2023</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/analyzing-football-aka-soccer-with-python.html" rel="bookmark" title="Permanent Link to &quot;Analyzing Football AKA Soccer With Python&quot;">Analyzing Football AKA Soccer With Python</a>
+                </h2>
+
+                
+                
+
+                <p>The world's game is fun to watch. It's obvious when a team is dominant against a weaker opponent. What gives one team an edge over another? Is it short, crisp and reliable passing resulting in a high conversion percentage? Or shots on goal? Quality touches. Clinicality in the final third is what separates the champions from the rest. Making the most of your chances. Apparently, some of the best teams <a class="reference external" href="https://statsbomb.com/news/statsbomb-data-case-studies-passing-height-and-passing-footedness/">keep their passes on the ground</a>. All of these things contribute to victory in a sense.</p>
+<p>We all have our theories to what makes a great player or team. But how do we assess football performance from an analytics perspective? It is difficult to predict how teams with varying styles will match up. Fortunately, data is integrating with the football world. Extensive analytics resources and tactics now available for free online.</p>
+<p>If you're interested in football analytics, there seems to be a few areas you can go. Do you need to collect data? If you can record a game correctly, it can be converted into data from which winning insights are extracted. If you are lucky enough to already have data, what does it say about player and team performance? Can you study open data from professional teams to explore your hypotheses?</p>
+<p>Searching the internet, FC Python was the first thing I saw. They have some <a class="reference external" href="https://fcpython.com/free-football-data-analysis-tools">free tools</a> available for collecting data from live games. I was impressed at the Python code for <a class="reference external" href="https://fcpython.com/visualisation/football-heatmaps-seaborn">pitch heat maps</a> to track Abby Wombach's passing. Their example uses <a class="reference external" href="https://seaborn.pydata.org/">seaborn</a> and <a class="reference external" href="https://matplotlib.org/">matplotlib</a>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Arc</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/passes.csv&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Plot One - distinct areas with few lines</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Xstart&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Ystart&quot;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">n_levels</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Plot Two - fade lines with more of them</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Xstart&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Ystart&quot;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">n_levels</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Create figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Pitch Outline &amp; Centre Line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">130</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">130</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># Left Penalty Area</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">16.5</span><span class="p">,</span> <span class="mf">16.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">16.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">16.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># Right Penalty Area</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">130</span><span class="p">,</span> <span class="mf">113.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">113.5</span><span class="p">,</span> <span class="mf">113.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">113.5</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># Left 6-yard Box</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">54</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">36</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">36</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># Right 6-yard Box</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">130</span><span class="p">,</span> <span class="mf">124.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">54</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">124.5</span><span class="p">,</span> <span class="mf">124.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">36</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">124.5</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span> <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">36</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># Prepare Circles</span>
+<span class="n">centreCircle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">65</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="mf">9.15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">centreSpot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">65</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">leftPenSpot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">11</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">rightPenSpot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">119</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># Draw Circles</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">centreCircle</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">centreSpot</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">leftPenSpot</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rightPenSpot</span><span class="p">)</span>
+
+<span class="c1"># Prepare Arcs</span>
+<span class="n">leftArc</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span>
+    <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">18.3</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">18.3</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">theta1</span><span class="o">=</span><span class="mi">310</span><span class="p">,</span> <span class="n">theta2</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span>
+<span class="p">)</span>
+<span class="n">rightArc</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span>
+    <span class="p">(</span><span class="mi">119</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">18.3</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">18.3</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">theta1</span><span class="o">=</span><span class="mi">130</span><span class="p">,</span> <span class="n">theta2</span><span class="o">=</span><span class="mi">230</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Draw Arcs</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">leftArc</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rightArc</span><span class="p">)</span>
+
+<span class="c1"># Tidy Axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Xstart&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Ystart&quot;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_levels</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">130</span><span class="p">)</span>
+
+<span class="c1"># Display Pitch</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+<img alt="Analyzing football with Python" src="https://lofipython.com/images/pitchheatmap.png" />
+<p>Impressive use of matplotlib and seaborn! This code is meant for a <a class="reference external" href="https://jupyter.org/install">Jupyter notebook</a>. I can't find the &quot;passes.csv&quot; data but suspect it is using <a class="reference external" href="https://pypi.org/project/statsbomb/">statsbomb</a>. It's a free footy dataset that's on display in this <a class="reference external" href="https://towardsdatascience.com/how-to-easily-get-football-data-with-a-python-package-without-web-scraping-c922e7ebfb41">Towards Data Science blog post</a> also.</p>
+<p>In another practical example of wrangling data, Tactics FC shows how to <a class="reference external" href="https://medium.com/&#64;TacticsFC/analyzing-football-data-with-python-7b4e89c7abd8">calculate goal conversion rate with pandas</a>. I'm guessing basic statskeeping and video is collected in great quantities by analytics teams during games for professional teams. At half time, typically on TV they will show both teams' shots, passes and time of possession.</p>
+<p>Another intriguing field of study is extensive simulation and tracking of individual player position on the pitch. Google hosted a <a class="reference external" href="https://www.kaggle.com/competitions/google-football/code">Kaggle competition with Manchester City</a> 3 years ago, where the goal was to train AI agents to play football. Formal courses are available like the <a class="reference external" href="https://www.uu.se/en/study/course?query=1RT001">Mathematical Modeling of Football course at Uppsala University</a>. There's also the <a class="reference external" href="https://github.com/topics/football-analytics">football analytics topic</a> on Github that shows 100+ repos.</p>
+<p>From that topic, I found <a class="reference external" href="https://github.com/diegopastor/awesome-football-analytics">Awesome Football Analytics</a>, which is a long list of resources to browse through. It seems wise to stop through Jan Van Haren's <a class="reference external" href="https://github.com/JanVanHaaren/soccer-analytics-resources">soccer analytics resources</a>. I'm really looking forward to checking out <a class="reference external" href="https://github.com/Friends-of-Tracking-Data-FoTD/SoccermaticsForPython/">Soccermatics for Python</a> also. There is a ton of stuff online about football analytics that is happening.</p>
+<p>I sense there is a passionate community pushing football analytics forward and innovating. There are many facets to consider from video optimization, data collection, drawing insights from established datasets, tracking game stats and codifying player movements.</p>
+<p>Techniques like simulation and decoding live games into data could result in recommendations for players to uncover new advantages, adjust their positioning, conserve their energy or look for chances in a vulnerable spot on the field. The best teams are probably asking how they can leverage data to inform their strategy on the pitch and win more games.</p>
+<p>Watching football is so satisfying. Why not study it with Python? My prediction is that the beautiful game will progress and improve as teams develop a more sophisticated data strategy.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/analyzing-football-aka-soccer-with-python.html">posted at 22:23</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/football-coding-programming-python-sports.html" rel="tag">football, coding, programming, python, sports</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/python-football-analytics-python-football-heat-map.html" class="tags">python football analytics Python football heat map</a>
+                    &nbsp;<a href="https://lofipython.com/tag/football-data-analytics.html" class="tags">football data analytics</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-soccer-analytics.html" class="tags">Python soccer analytics</a>
+                </div>
+            </article>            <h4 class="date">Jul 23, 2023</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -574,55 +785,6 @@ cmd /c shutdown -s
                     &nbsp;<a href="https://lofipython.com/tag/building-apps.html" class="tags">building apps</a>
                     &nbsp;<a href="https://lofipython.com/tag/making-software.html" class="tags">making software</a>
                     &nbsp;<a href="https://lofipython.com/tag/solving-problems.html" class="tags">solving problems</a>
-                </div>
-            </article>            <h4 class="date">Jan 22, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/6-of-the-hottest-python-libraries-in-2023.html" rel="bookmark" title="Permanent Link to &quot;6 of the Hottest Python Libraries in 2023&quot;">6 of the Hottest Python Libraries in 2023</a>
-                </h2>
-
-                
-                
-
-                <p>Here's a short list of Python packages making a splash this year:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://pyscript.net/">pyscript</a>: execute Python code in your web browser</li>
-<li><a class="reference external" href="https://github.com/astral-sh/ruff">ruff</a>: code linting package built with Rust and Python</li>
-<li><a class="reference external" href="https://fastapi.tiangolo.com/">FastAPI</a>: a rapidly adopted web framework for building APIs</li>
-<li><a class="reference external" href="https://www.pola.rs/">polars</a>: high performance pandas drop in replacement, also built with Rust and Python</li>
-<li><a class="reference external" href="https://github.com/chidiwilliams/buzz">buzz</a>: Python package that accesses the Whisper API's text transcription of audio</li>
-<li><a class="reference external" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>: new in the Python 3.11 standard library. It's quietly picking up steam amongst Python developers. Tom's Obvious Minimal Language, TOML, &quot;<a class="reference external" href="https://toml.io/en/">a config file format for humans</a>&quot;</li>
-</ul>
-<div class="wp-image-7389 figure">
-<img alt="Python + Rust logos" src="https://pythonmarketer.files.wordpress.com/2023/01/wp-1674420268721.png?w=780" />
-</div>
-<p><strong>Python + Rust = High Performance</strong></p>
-<p>A common theme I've noticed is the emergence of Rust as a performance complement to Python code. It seems we can expect modularity between the two languages to strengthen their collective abilities.</p>
-<div class="wp-image-7391 figure">
-<img alt="example polars dataframe code" src="https://pythonmarketer.files.wordpress.com/2023/01/wp-1674420570685.png?w=1020" />
-<p class="caption">example polars dataframe code</p>
-</div>
-<p><strong>Python is still growing and evolving</strong>.</p>
-<p>It's great to see. Including the ability to parse TOML config files in the standard library is a vote of confidence by the Python community. I will now seek to use TOML in my own projects.</p>
-<p><strong>Web frameworks and web browsers are king.</strong></p>
-<p>FastAPI is the new option in a space dominated by Flask and Django. Web frameworks allow developers to quickly create websites.</p>
-<p>Running Python in a browser has been a movement in recent years. First Pyodide, WASM euphoria, and now a Python library that takes Python in a browser to new levels. Excited to see where these projects go and what new buzzy libraries will emerge this year!</p>
-<div class="wp-image-7386 figure">
-<img alt="pyscript landing page" src="https://pythonmarketer.files.wordpress.com/2023/01/wp-1674420015498.png?w=967" />
-</div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/6-of-the-hottest-python-libraries-in-2023.html">posted at 14:56</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apis-coding-pandas-programming-python-rust.html" rel="tag">APIs, coding, pandas, programming, python, Rust</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/advanced-python-modules.html" class="tags">advanced python modules</a>
-                    &nbsp;<a href="https://lofipython.com/tag/popular-python-packages.html" class="tags">popular Python packages</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-libraries-in-2023.html" class="tags">Python Libraries in 2023</a>
-                    &nbsp;<a href="https://lofipython.com/tag/useful-python-libraries.html" class="tags">useful python libraries</a>
-                    &nbsp;<a href="https://lofipython.com/tag/web-frameworks.html" class="tags">web frameworks.</a>
                 </div>
             </article>
 

@@ -31,7 +31,323 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Oct 27, 2023</h4>
+        <div id="content">            <h4 class="date">Jan 15, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/python-pandas-api-oddities.html" rel="bookmark" title="Permanent Link to &quot;Python Pandas API Oddities&quot;">Python Pandas API Oddities</a>
+                </h2>
+
+                
+                
+
+                <p>Below I've highlighted some niche functions in Python's pandas library. I've plucked
+a few examples from the pandas documentation and the
+<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations">Delta Airlines Airports Wikipedia HTML table</a>
+for sample data. This post is aimed at the more advanced stuff on the fringes of the pandas docs.
+Here are some oddities of the less traveled parts of the pandas documentation.
+You never know what you'll find there, it's always evolving. Images were sourced
+from the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/general_functions.html#importing-from-other-dataframe-libraries">pandas documentation</a>.</p>
+<p><strong>Install pandas + lxml</strong></p>
+<p>Install Python dependencies with pip: pandas and lxml, required for read_html()</p>
+<pre class="literal-block">
+python3.12 -m pip install pandas
+python3.12 -m pip install lxml
+</pre>
+<p><strong>What's Not Mentioned Here</strong></p>
+<p>I skipped the standard must know functions like <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pd.read_csv()</a>,
+pd.read_excel(), pd.DataFrame.to_csv(), <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html">pd.DataFrame.to_json()</a>
+and so on. The documentation on these functions is extensive. I recommend checking
+out all the ways you can customize behavior of your data with their arguments.</p>
+<p><strong>pd.DataFrame.__dataframe__() + pd.api.interchange.from_dataframe()</strong></p>
+<p>Import a DataFrame from another library via the <a class="reference external" href="https://data-apis.org/dataframe-protocol/latest/index.html">DataFrame interchange protocol</a>.
+The .__dataframe__() dunder method returns an interchange object which can be used to
+convert another dialect of dataframe to pandas. If the protocol is supported,
+a dataframe interchange object has the methods &quot;column_names&quot; and &quot;select_columns_by_name&quot;.
+If you're dealing with a flavor of dataframe other than pandas, keep in mind it may support
+the DataFrame interchange protocol.</p>
+<img alt="interchange dataframes between libraries" src="https://lofipython.com/images/pandasdataframeinterchangeprotocol.png" />
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.interchange.from_dataframe.html#pandas.api.interchange.from_dataframe">pandas.api.interchange.from_dataframe() documentation</a></p>
+<img alt="get a dataframe interchange object" src="https://lofipython.com/images/dunderdataframepandasapi.png" />
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.__dataframe__.html">pandas interchange object documentation</a></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df_not_necessarily_pandas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+<span class="n">interchange_object</span> <span class="o">=</span> <span class="n">df_not_necessarily_pandas</span><span class="o">.</span><span class="n">__dataframe__</span><span class="p">()</span>
+<span class="n">df_pandas</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">interchange</span><span class="o">.</span><span class="n">from_dataframe</span>
+           <span class="p">(</span><span class="n">interchange_object</span><span class="o">.</span><span class="n">select_columns_by_name</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">])))</span>
+</pre></div></td></tr></table></div>
+<pre class="literal-block">
+&gt;&gt;&gt; df_pandas
+
+     A
+0    1
+1    2
+
+&gt;&gt;&gt; interchange_object.column_names()
+
+Index(['A', 'B'], dtype='object')
+</pre>
+<p><strong>pd.read_html(url)</strong></p>
+<p>pd.read_html() accepts a website url. It returns a list of all HTML tables
+as DataFrames. After getting the table as a dataframe, use &quot;.drop()&quot; to drop a column and &quot;.fillna()&quot;
+to fill NA values as blanks. <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_html.html">read_html() Documentation</a></p>
+<img alt="read an HTML table to pandas dataframe" src="https://lofipython.com/images/readhtmlpandas.png" />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://en.wikipedia.org/wiki/List_of_Delta_Air_Lines_destinations&quot;</span>
+<span class="n">airports</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">url</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Drop the irrelevant &quot;Refs&quot; column and fill nans blank.</span>
+<span class="n">airports</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Refs&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div></td></tr></table></div>
+<p><strong>pd.DataFrame.to_html()</strong></p>
+<p>This function returns your tabular data as an HTML string.
+df.head() accepts a number and returns a df with that many records, in this case 2.
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_html.html">to_html() Documentation</a></p>
+<img alt="convert dataframe to HTML table with pandas" src="https://lofipython.com/images/tohtmlpandas.png" />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<pre class="literal-block">
+&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;Country / Territory&lt;/th&gt;
+      &lt;th&gt;City&lt;/th&gt;
+      &lt;th&gt;Airport&lt;/th&gt;
+      &lt;th&gt;Notes&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Antigua and Barbuda&lt;/td&gt;
+      &lt;td&gt;Osbourn&lt;/td&gt;
+      &lt;td&gt;V. C. Bird International Airport&lt;/td&gt;
+      &lt;td&gt;Seasonal&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Argentina&lt;/td&gt;
+      &lt;td&gt;Buenos Aires&lt;/td&gt;
+      &lt;td&gt;Ministro Pistarini International Airport&lt;/td&gt;
+      &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+<img alt="example pandas HTML table" src="https://lofipython.com/images/htmltable.png" />
+<p><strong>pd.DataFrame.memory_usage()</strong></p>
+<p>Returns the memory usage of each column in bytes. Per the docs, &quot;this value is displayed in DataFrame.info by default.&quot;
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.memory_usage.html">.memory_usage() Documentation</a></p>
+<img alt="see bytes size for each column" src="https://lofipython.com/images/memoryusagepandasapi.png" />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># To include memory footprint of object dtypes, pass deep=True.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div></td></tr></table></div>
+<pre class="literal-block">
+Index                    132
+Country / Territory    24125
+City                   21164
+Airport                30660
+Notes                  19237
+dtype: int64
+</pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">def</span> <span class="nf">readable_format</span><span class="p">(</span><span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a bytes integer to a human-readable format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        size (int): The bytes integer to convert.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The human-readable format of the bytes integer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;KB&quot;</span><span class="p">,</span> <span class="s2">&quot;MB&quot;</span><span class="p">,</span> <span class="s2">&quot;GB&quot;</span><span class="p">,</span> <span class="s2">&quot;TB&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">size</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">unit</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">size</span> <span class="o">/=</span> <span class="mi">1000</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">size</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> PB&quot;</span>
+
+<span class="c1"># Use pd.Series.apply() to convert bytes to &quot;human readable&quot; data format.</span>
+<span class="n">memory_usage</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">readable_format</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">memory_usage</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<pre class="literal-block">
+Index                  132.00 B
+Country / Territory    24.12 KB
+City                   21.16 KB
+Airport                30.66 KB
+Notes                  19.24 KB
+dtype: object
+</pre>
+<p><strong>pd.DataFrame.empty</strong></p>
+<p>Every pandas DataFrame has a &quot;.empty&quot; attribute. If Series/DataFrame is empty,
+returns True, if not returns False. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.empty.html">.empty Documentation</a></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">airports</span><span class="o">.</span><span class="n">empty</span><span class="p">)</span>
+<span class="c1"># False</span>
+<span class="k">if</span> <span class="n">airports</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DataFrame has no data.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DataFrame contains data.&quot;</span><span class="p">)</span>
+<span class="c1"># DataFrame contains data.</span>
+</pre></div></td></tr></table></div>
+<p><strong>pd.DataFrame.T</strong></p>
+<p>Every pandas DataFrame has a &quot;.T&quot; attribute. It returns the transposed version
+of the DataFrame. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.T.html#pandas.DataFrame.T">.T Documentation</a></p>
+<pre class="literal-block">
+&gt;&gt;&gt; airports.head(3).T
+</pre>
+<pre class="literal-block">
+  0                                         1                                    2
+Country / Territory               Antigua and Barbuda                                 Argentina                                Aruba
+City                                          Osbourn                              Buenos Aires                           Oranjestad
+Airport              V. C. Bird International Airport  Ministro Pistarini International Airport  Queen Beatrix International Airport
+Notes                                        Seasonal
+</pre>
+<p><strong>pd.DataFrame.convert_dtypes() + .infer_objects()</strong></p>
+<p>These are 2 functions for swiftly handling data types in your tabular data.
+Note: these are alternatives to the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.astype.html">&quot;astype()&quot; function</a>, which is used more commonly.
+Use astype() to set a column or dataframe to a specific dtype. Use infer_objects() to
+infer more suitable types for object columns. Use convert_dtypes() to let pandas choose the best possible dtype.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># Convert columns to the best possible dtypes using dtypes supporting pd.NA.</span>
+<span class="n">typed_df</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">typed_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+
+<span class="c1"># Attempt to infer better dtypes for object columns.</span>
+<span class="n">inferred_df</span> <span class="o">=</span> <span class="n">airports</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inferred_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<pre class="literal-block">
+&gt;&gt;&gt; airports.head()
+  Country / Territory          City                                   Airport       Notes
+0  Antigua and Barbuda       Osbourn          V. C. Bird International Airport    Seasonal
+1            Argentina  Buenos Aires  Ministro Pistarini International Airport
+2                Aruba    Oranjestad       Queen Beatrix International Airport
+3            Australia        Sydney                            Sydney Airport
+4              Austria        Vienna              Vienna International Airport  Terminated
+
+&gt;&gt;&gt; airports.dtypes
+Country / Territory    object
+City                   object
+Airport                object
+Notes                  object
+dtype: object
+
+&gt;&gt;&gt; typed_df.dtypes
+Country / Territory    string[python]
+City                   string[python]
+Airport                string[python]
+Notes                  string[python]
+dtype: object
+
+&gt;&gt;&gt; inferred_df.dtypes
+Country / Territory    object
+City                   object
+Airport                object
+Notes                  object
+dtype: object
+</pre>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html">convert_dtypes Documentation</a>
++ <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.convert_dtypes.html">infer_objects() Documentation</a></p>
+<p><strong>pd.Series.str.get(index)</strong></p>
+<p>str.get() is available via the pandas Series string accessor.
+This function is useful when your dataset contains a column holding a list in each cell.
+It also works on strings by returning the character at the index of a string.
+You can pass an index and that value will be returned for each cell in a column.
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.get.html#pandas-series-str-get">str.get() Documentation</a></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;String&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="mi">123</span><span class="p">,</span> <span class="o">-</span><span class="mi">456</span><span class="p">,</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="s2">&quot;World&quot;</span><span class="p">}]</span>
+<span class="p">)</span>
+<span class="n">new_column</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_column</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<pre class="literal-block">
+&gt;&gt;&gt; s
+0                        String
+1                     (1, 2, 3)
+2                     [a, b, c]
+3                           123
+4                          -456
+5    {1: 'Hello', '2': 'World'}
+dtype: object
+
+&gt;&gt;&gt; s.str.get(1)
+0        t
+1        2
+2        b
+3      NaN
+4      NaN
+5    Hello
+dtype: object
+</pre>
+<p><strong>Pique Your Curiosity With Pandas</strong></p>
+<p>Now you know a few of my favorite pandas API oddities. It's always time
+well spent reading the <a class="reference external" href="https://pandas.pydata.org/">Pandas API documentation</a>.
+Check out <a class="reference external" href="https://lofipython.com/pandas-pythons-excel-powerhouse">this other post I wrote about pandas</a>
+for a deeper dive into this powerful Python module.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/python-pandas-api-oddities.html">posted at 17:41</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-pandas.html" rel="tag">coding, programming, python, pandas</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/pandas-api.html" class="tags">pandas api</a>
+                    &nbsp;<a href="https://lofipython.com/tag/using-pandas-in-python.html" class="tags">using pandas in Python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/working-with-data.html" class="tags">working with data</a>
+                    &nbsp;<a href="https://lofipython.com/tag/how-to-use-pandas.html" class="tags">how to use pandas</a>
+                    &nbsp;<a href="https://lofipython.com/tag/reading-html-with-pandas.html" class="tags">reading HTML with pandas</a>
+                    &nbsp;<a href="https://lofipython.com/tag/reading-pandas-memory-usage.html" class="tags">reading pandas memory usage</a>
+                </div>
+            </article>            <h4 class="date">Oct 27, 2023</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1061,217 +1377,6 @@ to macOS framework and universal builds.  Refer to <a class="reference external"
                     &nbsp;<a href="https://lofipython.com/tag/emacs-open-text-file.html" class="tags">emacs open text file</a>
                     &nbsp;<a href="https://lofipython.com/tag/vs-code-open-script.html" class="tags">vs code open script</a>
                     &nbsp;<a href="https://lofipython.com/tag/open-in-notepad-file.html" class="tags">open in notepad++ file</a>
-                </div>
-            </article>            <h4 class="date">Jul 27, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/analyzing-football-aka-soccer-with-python.html" rel="bookmark" title="Permanent Link to &quot;Analyzing Football AKA Soccer With Python&quot;">Analyzing Football AKA Soccer With Python</a>
-                </h2>
-
-                
-                
-
-                <p>The world's game is fun to watch. It's obvious when a team is dominant against a weaker opponent. What gives one team an edge over another? Is it short, crisp and reliable passing resulting in a high conversion percentage? Or shots on goal? Quality touches. Clinicality in the final third is what separates the champions from the rest. Making the most of your chances. Apparently, some of the best teams <a class="reference external" href="https://statsbomb.com/news/statsbomb-data-case-studies-passing-height-and-passing-footedness/">keep their passes on the ground</a>. All of these things contribute to victory in a sense.</p>
-<p>We all have our theories to what makes a great player or team. But how do we assess football performance from an analytics perspective? It is difficult to predict how teams with varying styles will match up. Fortunately, data is integrating with the football world. Extensive analytics resources and tactics now available for free online.</p>
-<p>If you're interested in football analytics, there seems to be a few areas you can go. Do you need to collect data? If you can record a game correctly, it can be converted into data from which winning insights are extracted. If you are lucky enough to already have data, what does it say about player and team performance? Can you study open data from professional teams to explore your hypotheses?</p>
-<p>Searching the internet, FC Python was the first thing I saw. They have some <a class="reference external" href="https://fcpython.com/free-football-data-analysis-tools">free tools</a> available for collecting data from live games. I was impressed at the Python code for <a class="reference external" href="https://fcpython.com/visualisation/football-heatmaps-seaborn">pitch heat maps</a> to track Abby Wombach's passing. Their example uses <a class="reference external" href="https://seaborn.pydata.org/">seaborn</a> and <a class="reference external" href="https://matplotlib.org/">matplotlib</a>:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Arc</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/passes.csv&quot;</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-
-<span class="c1"># Plot One - distinct areas with few lines</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Xstart&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Ystart&quot;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">n_levels</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-
-<span class="c1"># Plot Two - fade lines with more of them</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Xstart&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Ystart&quot;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">n_levels</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Create figure</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># Pitch Outline &amp; Centre Line</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">130</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">130</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-
-<span class="c1"># Left Penalty Area</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">16.5</span><span class="p">,</span> <span class="mf">16.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">16.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">16.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-
-<span class="c1"># Right Penalty Area</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">130</span><span class="p">,</span> <span class="mf">113.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">113.5</span><span class="p">,</span> <span class="mf">113.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">113.5</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-
-<span class="c1"># Left 6-yard Box</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">54</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">36</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">36</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-
-<span class="c1"># Right 6-yard Box</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">130</span><span class="p">,</span> <span class="mf">124.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">54</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">124.5</span><span class="p">,</span> <span class="mf">124.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">36</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">124.5</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span> <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">36</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-
-<span class="c1"># Prepare Circles</span>
-<span class="n">centreCircle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">65</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="mf">9.15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">centreSpot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">65</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">leftPenSpot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">11</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">rightPenSpot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">119</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-
-<span class="c1"># Draw Circles</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">centreCircle</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">centreSpot</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">leftPenSpot</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rightPenSpot</span><span class="p">)</span>
-
-<span class="c1"># Prepare Arcs</span>
-<span class="n">leftArc</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span>
-    <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">18.3</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">18.3</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">theta1</span><span class="o">=</span><span class="mi">310</span><span class="p">,</span> <span class="n">theta2</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span>
-<span class="p">)</span>
-<span class="n">rightArc</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span>
-    <span class="p">(</span><span class="mi">119</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">18.3</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">18.3</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">theta1</span><span class="o">=</span><span class="mi">130</span><span class="p">,</span> <span class="n">theta2</span><span class="o">=</span><span class="mi">230</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># Draw Arcs</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">leftArc</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rightArc</span><span class="p">)</span>
-
-<span class="c1"># Tidy Axes</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Xstart&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Ystart&quot;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_levels</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">130</span><span class="p">)</span>
-
-<span class="c1"># Display Pitch</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div></td></tr></table></div>
-<img alt="Analyzing football with Python" src="https://lofipython.com/images/pitchheatmap.png" />
-<p>Impressive use of matplotlib and seaborn! This code is meant for a <a class="reference external" href="https://jupyter.org/install">Jupyter notebook</a>. I can't find the &quot;passes.csv&quot; data but suspect it is using <a class="reference external" href="https://pypi.org/project/statsbomb/">statsbomb</a>. It's a free footy dataset that's on display in this <a class="reference external" href="https://towardsdatascience.com/how-to-easily-get-football-data-with-a-python-package-without-web-scraping-c922e7ebfb41">Towards Data Science blog post</a> also.</p>
-<p>In another practical example of wrangling data, Tactics FC shows how to <a class="reference external" href="https://medium.com/&#64;TacticsFC/analyzing-football-data-with-python-7b4e89c7abd8">calculate goal conversion rate with pandas</a>. I'm guessing basic statskeeping and video is collected in great quantities by analytics teams during games for professional teams. At half time, typically on TV they will show both teams' shots, passes and time of possession.</p>
-<p>Another intriguing field of study is extensive simulation and tracking of individual player position on the pitch. Google hosted a <a class="reference external" href="https://www.kaggle.com/competitions/google-football/code">Kaggle competition with Manchester City</a> 3 years ago, where the goal was to train AI agents to play football. Formal courses are available like the <a class="reference external" href="https://www.uu.se/en/study/course?query=1RT001">Mathematical Modeling of Football course at Uppsala University</a>. There's also the <a class="reference external" href="https://github.com/topics/football-analytics">football analytics topic</a> on Github that shows 100+ repos.</p>
-<p>From that topic, I found <a class="reference external" href="https://github.com/diegopastor/awesome-football-analytics">Awesome Football Analytics</a>, which is a long list of resources to browse through. It seems wise to stop through Jan Van Haren's <a class="reference external" href="https://github.com/JanVanHaaren/soccer-analytics-resources">soccer analytics resources</a>. I'm really looking forward to checking out <a class="reference external" href="https://github.com/Friends-of-Tracking-Data-FoTD/SoccermaticsForPython/">Soccermatics for Python</a> also. There is a ton of stuff online about football analytics that is happening.</p>
-<p>I sense there is a passionate community pushing football analytics forward and innovating. There are many facets to consider from video optimization, data collection, drawing insights from established datasets, tracking game stats and codifying player movements.</p>
-<p>Techniques like simulation and decoding live games into data could result in recommendations for players to uncover new advantages, adjust their positioning, conserve their energy or look for chances in a vulnerable spot on the field. The best teams are probably asking how they can leverage data to inform their strategy on the pitch and win more games.</p>
-<p>Watching football is so satisfying. Why not study it with Python? My prediction is that the beautiful game will progress and improve as teams develop a more sophisticated data strategy.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/analyzing-football-aka-soccer-with-python.html">posted at 22:23</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/football-coding-programming-python-sports.html" rel="tag">football, coding, programming, python, sports</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/python-football-analytics-python-football-heat-map.html" class="tags">python football analytics Python football heat map</a>
-                    &nbsp;<a href="https://lofipython.com/tag/football-data-analytics.html" class="tags">football data analytics</a>
-                    &nbsp;<a href="https://lofipython.com/tag/python-soccer-analytics.html" class="tags">Python soccer analytics</a>
                 </div>
             </article>
 

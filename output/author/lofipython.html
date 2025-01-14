@@ -33,7 +33,60 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Dec 28, 2024</h4>
+        <div id="content">            <h4 class="date">Jan 14, 2025</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/reducing-the-compute-load-of-a-google-sheet.html" rel="bookmark" title="Permanent Link to &quot;Strategies for Speeding Up a Google Sheet&quot;">Strategies for Speeding Up a Google Sheet</a>
+                </h2>
+
+                
+                
+
+                <p>Recently I had a Google Sheet bogged down so much, Google prompted me to fix it from consuming too many resources in my browser.
+So, I pondered how to speed up my Google Sheet and made a short list of ideas. I included some ideas from a great article from
+Google about <a class="reference external" href="https://support.google.com/docs/answer/12159115?hl=en">Optimizing Google Sheets</a>.</p>
+<p><strong>Strategies for Reducing Load Time in a Google Sheet</strong></p>
+<ol class="arabic">
+<li><p class="first">Delete all extra columns and rows.Empty rows and columns make the file larger and need to be loaded everytime a Google sheet is accessed. Highlighting and pressing ctrl+V to delete them means they won't be loaded.</p>
+</li>
+<li><p class="first">Change calculation settings to refresh on a change or &quot;every hour&quot; instead of &quot;every minute&quot;. This setting affects functions like NOW(), TODJY() and RAND() are recalculated. Select File &gt; Settings and click the &quot;Calculation&quot; tab to adjust your settings.</p>
+</li>
+<li><p class="first">Remove expensive, unnecessary, or old unused functions. Each function you use adds additional load to the Google Sheet. By removing extra functions and charts, it will speed up your Sheet and consume less compute resources. This is unique to each Sheet. Think to yourself, is this part of the document necessary? Is it giving value, or can it be cut?</p>
+</li>
+<li><p class="first">Reduce the number of tabs. Consolidating or removing extra tabs is another way to speed up your load time.</p>
+</li>
+<li><p class="first">Reference data on the same Sheet when possible.</p>
+<blockquote>
+<p>Reference your data on the same spreadsheet you work on. This is faster than Import functions, such as: IMPORTRANGE, IMPORTDATA, IMPORTXML, IMPORTHTML</p>
+<p>Source: Google, <a class="reference external" href="https://support.google.com/docs/answer/12159115?hl=en">Optimize your data references to improve Sheets performance</a></p>
+</blockquote>
+</li>
+<li><p class="first">Use closed range instead of open range references.</p>
+<blockquote>
+<p>An open range spreadsheet means the range starts and ends without indicating a specific row or column. Example: A:B means the range that includes all cells in columns A and B.</p>
+<p>A closed range reference refers to the range that starts and ends with a specific row or column.
+Example: A1:B6, A1:C100.
+Open range: A:B
+Closed range: A1:B6</p>
+<p>Source: Google, <a class="reference external" href="https://support.google.com/docs/answer/12159115?hl=en">Optimize your data references to improve Sheets performance</a></p>
+</blockquote>
+</li>
+</ol>
+<p><strong>Conclusion</strong></p>
+<p>Google Sheets are typically very fast until you reach a certain threshold of density. After you reach that point, these changes can speed it up quite a bit!</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/reducing-the-compute-load-of-a-google-sheet.html">posted at 10:55</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/google-sheets-data-optimization.html" rel="tag">Google Sheets, data optimization,</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/optimizing-google-sheet.html" class="tags">optimizing Google Sheet</a>
+                    &nbsp;<a href="https://lofipython.com/tag/google-sheets-efficiency.html" class="tags">Google Sheets efficiency</a>
+                    &nbsp;<a href="https://lofipython.com/tag/make-google-sheet-faster.html" class="tags">make Google Sheet faster</a>
+                </div>
+            </article>            <h4 class="date">Dec 28, 2024</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -707,125 +760,6 @@ There will always be &quot;noise&quot;. Embrace the noise and lean heavily on yo
                     &nbsp;<a href="https://lofipython.com/tag/learning-philosophy.html" class="tags">learning philosophy</a>
                     &nbsp;<a href="https://lofipython.com/tag/focus.html" class="tags">focus</a>
                     &nbsp;<a href="https://lofipython.com/tag/achievement.html" class="tags">achievement</a>
-                </div>
-            </article>            <h4 class="date">May 01, 2024</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/how-to-share-a-google-calendar-event-url.html" rel="bookmark" title="Permanent Link to &quot;How to Share a Google Calendar Event URL&quot;">How to Share a Google Calendar Event URL</a>
-                </h2>
-
-                
-                
-
-                <p>You can easily share a Google Calendar event if you know the url syntax Google uses.
-When the url is opened in a browser, it prompts the person you want to share an event
-with to save it to their calendar.</p>
-<p><strong>Demonstrating Google Calendar URL Arguments in Python</strong></p>
-<p>By simply knowing the proper url arguments, you can enable people to quickly save a Google Calendar event.
-This example uses the Python standard library: urllib to format the Google calendar url parameters and webbrowser
-to open the url in a browser. This is a handy little trick to keep in your back pocket!</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
-<span class="kn">import</span> <span class="nn">webbrowser</span>
-
-<span class="k">def</span> <span class="nf">new_google_calendar_event</span><span class="p">():</span>
-<span class="w">   </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">   Pass an event to Google Calendar with url arguments.</span>
-
-<span class="sd">   Base URL: https://calendar.google.com/calendar/render</span>
-
-<span class="sd">   URL Arguments:</span>
-
-<span class="sd">   action: TEMPLATE</span>
-<span class="sd">   text: Event Title</span>
-<span class="sd">   dates: start_datetime/end_datetime</span>
-<span class="sd">   details: event description or link to more info</span>
-<span class="sd">   location: url to webcast, call or physical location name</span>
-<span class="sd">   ctz: set the time zone by name, ex: America/New_York</span>
-<span class="sd">   recur: set a recurring event, ex: RRULE:FREQ%3DWEEKLY;INTERVAL%3D3</span>
-<span class="sd">   crm: if Free, Busy, or Out of Office, ex: AVAILABLE, BUSY or BLOCKING</span>
-<span class="sd">   add: add a list of guests by email, ex: elf1@example.com,elf2@example.com</span>
-<span class="sd">   &quot;&quot;&quot;</span>
-   <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;TEMPLATE&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Title of Event&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;dates&quot;</span><span class="p">:</span> <span class="s2">&quot;20240504T123000Z/20240504T133000Z&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;details&quot;</span><span class="p">:</span> <span class="s2">&quot;Event Details: https://lofipython.com&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;link to webcast, call or physical location&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;ctz&quot;</span><span class="p">:</span> <span class="s2">&quot;America/Chicago&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;crm&quot;</span><span class="p">:</span> <span class="s2">&quot;BUSY&quot;</span>
-   <span class="p">}</span>
-   <span class="c1"># Returns str of URL encoded parameters.</span>
-   <span class="n">url_parameters</span> <span class="o">=</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
-   <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://calendar.google.com/calendar/render?</span><span class="si">{</span><span class="n">url_parameters</span><span class="si">}</span><span class="s2">&quot;</span>
-   <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-   <span class="k">return</span> <span class="n">url</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="n">new_google_calendar_event</span><span class="p">()</span>
-<span class="n">webbrowser</span><span class="o">.</span><span class="n">open_new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<img alt="share a google calendar event via a url" src="https://lofipython.com/images/google-calendar-event-example.png" />
-<p>I was struggling to find any official documentation, so I figured Google's <a class="reference external" href="https://gemini.google.com/">Gemini AI model</a> might know where this is documented.</p>
-<img alt="share a google calendar event via a url" src="https://lofipython.com/images/gemini-google-calendar-convo.png" />
-<p>Using the app on my phone, Gemini informed me of a <a class="reference external" href="https://support.google.com/calendar/thread/128416249?authuser=0&amp;hl=en&amp;msgid=129231290">useful Google Calendar Help thread response from Neil&#64;GCalTools</a>.</p>
-<blockquote>
-<dl class="docutils">
-<dt>The official documentation says to use &quot;<a class="reference external" href="https://calendar.google.com/calendar/render">https://calendar.google.com/calendar/render</a>&quot; instead of &quot;<a class="reference external" href="https://calendar.google.com/calendar/event">https://calendar.google.com/calendar/event</a>&quot;, but they both work, at least for now.</dt>
-<dd>- Neil&#64;GCalTools, Google Calendar Help</dd>
-</dl>
-</blockquote>
-<p><strong>Relevant Links</strong></p>
-<p>Read more documentation of possible url arguments in the <a class="reference external" href="https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md">add-event-to-calendar-docs Github repo</a>.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Wikipedia Time Zone List</a></p>
-<p><a class="reference external" href="https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html">Recurrence Rule Syntax</a></p>
-<p><a class="reference external" href="https://kalinka.tardate.com/">Kalinka Google Calendar Link Generator</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/how-to-share-a-google-calendar-event-url.html">posted at 16:14</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-urls-automation.html" rel="tag">coding, programming, python, urls, automation</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/google-calendar-url-api-example.html" class="tags">Google Calendar URL API example</a>
-                    &nbsp;<a href="https://lofipython.com/tag/sharing-a-google-calendar-event.html" class="tags">sharing a Google Calendar event</a>
-                    &nbsp;<a href="https://lofipython.com/tag/create-google-calendar-event-with-python.html" class="tags">create google calendar event with python</a>
                 </div>
             </article>
 
