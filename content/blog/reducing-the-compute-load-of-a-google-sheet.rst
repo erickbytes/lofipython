@@ -41,8 +41,9 @@ Google about `Optimizing Google Sheets <https://support.google.com/docs/answer/1
 #. Avoid long reference chains when possible
 
       Reference chains slow down your sheets. For example, in the following case, A2 reads A1 data; A3 reads A2 data; and so on. Because the data is chained together, to calculate the value in A10, Google Sheets waits for all the previous values (A1 to A9) to calculate before it returns the value in A10.
-      Source: Google, `Optimize your data references to improve Sheets performance <https://support.google.com/docs/answer/12159115?hl=en>`_
       
+      Source: Google, `Optimize your data references to improve Sheets performance <https://support.google.com/docs/answer/12159115?hl=en>`_
+
 **Conclusion**
 
 
