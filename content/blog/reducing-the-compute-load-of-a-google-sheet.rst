@@ -15,7 +15,7 @@ Google about `Optimizing Google Sheets <https://support.google.com/docs/answer/1
 
 #. Delete all extra columns and rows. Empty rows and columns make the file larger and need to be loaded everytime a Google sheet is accessed. Highlighting and pressing ctrl+D to delete them means they won't be loaded.
 
-#. Change calculation settings to refresh on a change or "every hour" instead of "every minute". This setting affects functions like NOW(), TODJY() and RAND() are recalculated. Select File > Settings and click the "Calculation" tab to adjust your settings.
+#. Change calculation settings to refresh on a change or "every hour" instead of "every minute". This setting affects functions like NOW(), TODAY() and RAND() are recalculated. Select File > Settings and click the "Calculation" tab to adjust your settings.
 
 #. Remove expensive, unnecessary, or old unused functions. Each function you use adds additional load to the Google Sheet. By removing extra functions and charts, it will speed up your Sheet and consume less compute resources. This is unique to each Sheet. Think to yourself, is this part of the document necessary? Is it giving value, or can it be cut?
 
