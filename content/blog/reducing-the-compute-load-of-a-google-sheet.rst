@@ -13,7 +13,7 @@ Google about `Optimizing Google Sheets <https://support.google.com/docs/answer/1
 
 **Strategies for Reducing Load Time in a Google Sheet**
 
-#. Delete all extra columns and rows. Empty rows and columns make the file larger and need to be loaded everytime a Google sheet is accessed. Highlighting and pressing ctrl+V to delete them means they won't be loaded.
+#. Delete all extra columns and rows. Empty rows and columns make the file larger and need to be loaded everytime a Google sheet is accessed. Highlighting and pressing ctrl+D to delete them means they won't be loaded.
 
 #. Change calculation settings to refresh on a change or "every hour" instead of "every minute". This setting affects functions like NOW(), TODJY() and RAND() are recalculated. Select File > Settings and click the "Calculation" tab to adjust your settings.
 
