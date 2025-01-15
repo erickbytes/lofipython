@@ -32,9 +32,13 @@ Google about `Optimizing Google Sheets <https://support.google.com/docs/answer/1
       An open range spreadsheet means the range starts and ends without indicating a specific row or column. Example: A:B means the range that includes all cells in columns A and B.
 
       A closed range reference refers to the range that starts and ends with a specific row or column.   
-      Example: A1:B6, A1:C100
-      Open range: A:B,  
-      Closed range: A1:B6
+      Example: 
+      
+            A1:B6, A1:C100
+            
+            Open range: A:B
+            
+            Closed range: A1:B6
 
       Source: Google, `Optimize your data references to improve Sheets performance <https://support.google.com/docs/answer/12159115?hl=en>`_
 
