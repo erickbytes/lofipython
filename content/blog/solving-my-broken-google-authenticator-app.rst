@@ -9,7 +9,7 @@ Solving My Broken Google Authenticator App
 
 Being a programmer is not just about learning new libraries and skills. 
 Some would say that identifying oneself as a "programmer" is foolish.
-What we really are is problem solvers. We apply technology or logic to achieve an ends to a mean.
+What we really are is problem solvers. We apply technology or logic to achieve a desired result.
 This post details an interesting problem I encountered and how I reasoned to fix it.
 
 I use Google Authenticator as my two factor authorization app. For many websites I use, 
