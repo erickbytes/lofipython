@@ -40,8 +40,8 @@ Although the specific solution Gemini offered was not correct, it sent me search
 Gemini told me there was a "time sync setting" in the Authenticator app that didn't exist. Gemini did mention that my phone 
 should be on "network time".
 
-Bingo. I opened up the time settings on my cellular phone. I had manually been setting my time zone due to traveling.
-I opened up my phone and enabled my automatic time settings:
+Bingo. I had manually been setting my time zone due to traveling. I opened up the time settings on my Android cellular phone.
+Then I enabled my automatic time settings:
 
 .. image:: {static}/images/android-time-settings.jpg
   :alt: enabling Android's automatic time settings
