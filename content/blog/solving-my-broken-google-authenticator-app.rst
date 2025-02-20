@@ -15,7 +15,7 @@ This post details an interesting problem I encountered and how I reasoned to fix
 I use Google Authenticator as my two factor authorization app. For many websites I use, 
 this is a layer of security to verify it is actually me signing in.
 
-I started using the app and went years with no problems.Recently, I encountered an issue signing 
+I started using the app and went years with no problems. Recently, I encountered an issue signing 
 into my 401K provider's website to check on my 401k. I logged in with my username and password,
 then went to the authenticator app when prompted for a code.
 
@@ -38,7 +38,7 @@ Since I was dealing with a Google product, I consulted Google Gemini AI model to
 
 The solution to my problem was just as Gemini suggested: "Google Authenticator relies on precise time precision."
 Although the specific solution Gemini offered was not correct, it sent me searching in the right direction.
-Gemini told me there was a "time sync setting" in the Authenticator that didn't exist. Gemini did mention that my phone 
+Gemini told me there was a "time sync setting" in the Authenticator app that didn't exist. Gemini did mention that my phone 
 should be on "network time".
 
 Bingo. I opened up the time settings on my cellular phone. I had manually been setting my time zone due to traveling.
