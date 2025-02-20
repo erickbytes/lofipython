@@ -31,7 +31,60 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jan 08, 2022</h4>
+        <div id="content">            <h4 class="date">Jan 10, 2022</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/pretty-print-the-ea-sports-fifa-ultimate-team-json-with-jq-curl.html" rel="bookmark" title="Permanent Link to &quot;Analyzing Messi vs. Ronaldo with the FIFA API + jq + curl&quot;">Analyzing Messi vs. Ronaldo with the FIFA API + jq + curl</a>
+                </h2>
+
+                
+                
+
+                <p>Who is the world's greatest footballer, Messi or Ronaldo? EA Sports surely has calculated the answer to this question in their player ratings. They rate peak Crisitiano Ronaldo, Lionel Messi and Luka Modrić at 99 overall, with Neymar and Lewandowski at 98. Anecdotally, Messi has won 7 <a class="reference external" href="https://www.topendsports.com/sport/soccer/list-player-of-the-year-ballondor.htm">Ballon d'Or</a>, the highest individual football honor one can achieve each year. Ronaldo has won 5 B'allon d'Or. Modrić has won 1 Ballon d'Or. Lewandowski was runner up this year, but has never won the honor. Neymar has never won a Ballon d'Or.</p>
+<p>In <a class="reference external" href="https://www.ea.com/games/fifa/fifa-22">FIFA</a>, a player's video game representation is modeled intricately in a series of traits and specialties characterizing each player. The <a class="reference external" href="https://www.easports.com/fifa/ultimate-team/api/fut/item">&quot;Ultimate Team&quot; EA Sports API</a> is viewable as a plain json page or more cheekily with one line of <a class="reference external" href="https://curl.se/">curl</a> and <a class="reference external" href="https://github.com/jqlang/jq">jq, a &quot;command line json processor&quot;</a>:</p>
+<pre class="literal-block">
+curl 'https://www.easports.com/fifa/ultimate-team/api/fut/item' | jq '.'
+</pre>
+<p>Enter this in a <a class="reference external" href="https://missing.csail.mit.edu/2020/shell-tools/">shell</a> or <a class="reference external" href="https://github.com/jlevy/the-art-of-command-line">command line</a>. The result is beautiful, readable, pretty printed json!</p>
+<div class="section" id="messi-top-vs-ronaldo-bottom-fifa-player-ratings">
+<span id="messi-left-vs-ronaldo-right-fifa-player-ratings"></span><h2>Messi (Top) Vs. Ronaldo (Bottom) FIFA Player Ratings</h2>
+<div class="tiled-gallery-gallery docutils container">
+<div class="tiled-gallery-row docutils container">
+<div class="tiled-gallery-col docutils container">
+<div class="figure">
+<img alt="Messi FIFA skill attributes" src="https://pythonmarketer.files.wordpress.com/2022/01/messi-fifa-attributes-cropped.png" />
+</div>
+</div>
+<div class="tiled-gallery-col docutils container">
+<div class="figure">
+<img alt="Ronaldo FIFA skill attributes" src="https://pythonmarketer.files.wordpress.com/2022/01/ronaldo-attributes-fifa.png" />
+</div>
+</div>
+</div>
+</div>
+<p>These ratings represent the players at their peak of their careers. Messi is a better dribbler, while Ronaldo has more power and strength. Messi has the edge in free kicks, curve in his shot and &quot;longshots&quot; 99 to 98 over Cristiano. They are tied at &quot;finishing&quot;, each with 99. Ronaldo has the &quot;Power Free-Kick&quot; trait, whereas Messi has &quot;Chip Shot&quot;, &quot;Finesse Shot&quot; and &quot;Playmaker&quot; traits giving him an edge.</p>
+<p>EA's ratings suggest that both are prominent goal scorers, with a slight edge to Messi in finesse and shooting from distance. However, there's something to be said for kicking the ball really damn hard. Ronaldo has superior raw shot power and a lethal combo of more powerful jump and stronger headers. All this combined with an &quot;Aerial Threat&quot; specialty enables Ronaldo to vault above and around defenders to smash in golazos off the volley. Ronaldo sizes up to 6' 2&quot; (187 cm) vs. Messi's 5' 7&quot; (170 cm) frame. This Portugese man definitely has an advantage in getting higher in the air. But the Argentinian is <a class="reference external" href="https://www.instagram.com/p/Cc59jtvjk_0/">quite darty</a>.</p>
+<p>Messi has incredible accuracy from distance. He's also a better passer all around and has perfect &quot;vision&quot;, great qualities for winning football games. Only in crossing does he have a lower passing rating. Ronaldo is also 10 points better at &quot;penalties&quot; or penalty kicks. The closer he gets to the goal, the more dangerous he is. Messi is more dangerous with the ball while dribbling, passing or shooting except when taking a PK.</p>
+<p>Advantages can be gained in many different aspects of soccer. EA has developed a fun dataset to model these all time greats across several football skill dimensions. In <a class="reference external" href="https://www.ea.com/en-gb/games/fifa/fifa-22/ratings/ratings-database">2022's version of the game</a>, Messi is rated a 93, with Cristiano 91. Clearly these two are worthy of top honors. Don't forget Robert Lewandowski, with a 92 rating, who consistently lights up the Champions League and Bundesliga.</p>
+<p><strong>jq ftw</strong></p>
+<p>I had never used jq before this. Really enjoyed the quick, stylish and practical view of some json. This cool terminal display and syntax highlighting was on my Chromebook shell. It's neat how easily you can pretty print json with jq. I rate it a 99 for json pretty processing and pretty printing on the FIFA scale. Read more in the <a class="reference external" href="https://stedolan.github.io/jq/tutorial/">jq documentation</a>!</p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/pretty-print-the-ea-sports-fifa-ultimate-team-json-with-jq-curl.html">posted at 23:15</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/command-prompt-productivity.html" rel="tag">command prompt, productivity</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/command-line.html" class="tags">command line</a>
+                    &nbsp;<a href="https://lofipython.com/tag/data.html" class="tags">data</a>
+                    &nbsp;<a href="https://lofipython.com/tag/fifa.html" class="tags">fifa</a>
+                    &nbsp;<a href="https://lofipython.com/tag/football.html" class="tags">football</a>
+                    &nbsp;<a href="https://lofipython.com/tag/jq.html" class="tags">jq</a>
+                    &nbsp;<a href="https://lofipython.com/tag/json.html" class="tags">json</a>
+                </div>
+            </article>            <h4 class="date">Jan 08, 2022</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -433,31 +486,6 @@ I did in <a class="reference external" href="https://lofipython.com/python-libra
                     &nbsp;&middot;
                     &nbsp;<a href="https://lofipython.com/tag/ad-campaign.html" class="tags">ad campaign</a>
                     &nbsp;<a href="https://lofipython.com/tag/seo.html" class="tags">SEO</a>
-                </div>
-            </article>            <h4 class="date">Sep 23, 2021</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/a-learning-use-case-for-black-python-code-formatter.html" rel="bookmark" title="Permanent Link to &quot;What I Learned from Black, Python's "Uncompromising" Code Formatter&quot;">What I Learned from Black, Python's &quot;Uncompromising&quot; Code Formatter</a>
-                </h2>
-
-                
-                
-
-                <p>Black is a code formatting tool that I have been testing out recently to see what the hype is about. It is the defacto &quot;uncompromising code formatter in Python&quot;. I normally do not use any code formatters since I'm not required to use them. This short post aims to convince you that Black is an insightful way to see the parts of your code that are dangerously unreadable.</p>
-<p>I have found it interesting to see what black does with my gnarliest code. It has taught me what is considered &quot;good formatting&quot; by some Pythonistas. The areas where I see the most improvement is how it enforces <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP-8</a>'s characters per line limit. Often before, I didn't know how to break my code into several lines. My scripts tended to have one-liners trailing off the edge of my text editor. Black teaches you new ways to organize your code and makes it easier to understand. Now I write my code like Black the first time instead of letting it trail off the screen.</p>
-<p>Initially I was hesitant to try Black because I didn't want to sabotage my own code style. But since running Black on a few of my scripts, it has taught me new ways to write code. Give Black a chance and you will learn how to write more readable Python.</p>
-<p>Here's the project on GitHub: <a class="reference external" href="https://github.com/psf/black">https://github.com/psf/black</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/a-learning-use-case-for-black-python-code-formatter.html">posted at 10:12</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/black-python.html" class="tags">Black Python</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pep-8.html" class="tags">PEP-8</a>
-                    &nbsp;<a href="https://lofipython.com/tag/writing-code.html" class="tags">writing code</a>
                 </div>
             </article>
 

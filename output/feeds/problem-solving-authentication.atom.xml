@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - problem solving, authentication</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/problem-solving-authentication.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2025-02-20T13:45:00-06:00</updated><entry><title>Solving My Broken Google Authenticator App</title><link href="https://lofipython.com/solving-my-broken-google-authenticator-app.html" rel="alternate"></link><published>2025-02-20T13:45:00-06:00</published><updated>2025-02-20T13:45:00-06:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2025-02-20:/solving-my-broken-google-authenticator-app.html</id><summary type="html">&lt;p&gt;Being a programmer is not just about learning new libraries and skills.
+Some would say that identifying oneself as a &amp;quot;programmer&amp;quot; is foolish.
+What we really are is problem solvers. We apply technology or logic to achieve an ends to a mean.
+This post details an interesting problem I encountered …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Being a programmer is not just about learning new libraries and skills.
+Some would say that identifying oneself as a &amp;quot;programmer&amp;quot; is foolish.
+What we really are is problem solvers. We apply technology or logic to achieve an ends to a mean.
+This post details an interesting problem I encountered and how I reasoned to fix it.&lt;/p&gt;
+&lt;p&gt;I use Google Authenticator as my two factor authorization app. For many websites I use,
+this is a layer of security to verify it is actually me signing in.&lt;/p&gt;
+&lt;p&gt;I started using the app and went years with no problems.Recently, I encountered an issue signing
+into my 401K provider's website to check on my 401k. I logged in with my username and password,
+then went to the authenticator app when prompted for a code.&lt;/p&gt;
+&lt;p&gt;But this time, after trying multiple times, I received the error &amp;quot;code invalid&amp;quot;.
+After so many failed attempts, most websites will lock you out of your account.
+This ended up happening to me.&lt;/p&gt;
+&lt;p&gt;Frustrated, I called the provider's customer support. Eventually, I regained access to my account.
+&amp;quot;There's something bonked with my Authenticator app! The codes aren't working.&amp;quot;, I told them.
+They had no solutions, since the app is from Google and they are a financial services company.&lt;/p&gt;
+&lt;p&gt;I moved on from the debacle. A month or so later on a different website, this time
+a cryptocurrency exchange, I attempted to log in. Once again, the codes were invalid.
+I tried multiple times, but seeing it wouldn't work I stopped before a lock was placed on my account.&lt;/p&gt;
+&lt;p&gt;Since I was dealing with a Google product, I consulted Google Gemini AI model to seek guidance.&lt;/p&gt;
+&lt;img alt="asking Google Gemini for help with Google Authenticator" src="https://lofipython.com/images/asking-google-gemini-authenticator-issue.png" /&gt;
+&lt;p&gt;The solution to my problem was just as Gemini suggested: &amp;quot;Google Authenticator relies on precise time precision.&amp;quot;
+Although the specific solution Gemini offered was not correct, it sent me searching in the right direction.
+Gemini told me there was a &amp;quot;time sync setting&amp;quot; in the Authenticator that didn't exist. Gemini did mention that my phone
+should be on &amp;quot;network time&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Bingo. I opened up the time settings on my cellular phone. I had manually been setting my time zone due to traveling.
+I opened up my phone and enabled my automatic time settings:&lt;/p&gt;
+&lt;img alt="enabling Android's automatic time settings" src="https://lofipython.com/images/android-time-settings.jpg" /&gt;
+&lt;p&gt;Success! My phone's time settings caused Google Authenticator to display the wrong codes. I logged into my account,
+making a mental note that my cell phone clock's settings can indeed cause my two factor authentication app to stop working.&lt;/p&gt;
+</content><category term="problem solving, authentication"></category><category term="two factor authorization"></category><category term="troubleshooting login"></category></entry></feed>

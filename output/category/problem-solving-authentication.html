@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lo-Fi Python | articles in the "problem solving, authentication" category</title>
+    <link rel="shortcut icon" type="image/png" href="https://lofipython.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://lofipython.com/favicon.ico">
+    <link href="https://lofipython.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Full Atom Feed" />
+    <link href="https://lofipython.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Full RSS Feed" />
+    <link href="https://lofipython.com/feeds/problem-solving-authentication.atom.xml" type="application/atom+xml" rel="alternate" title="Lo-Fi Python Categories Atom Feed" />
+    <link href="https://lofipython.com/feeds/problem-solving-authentication.rss.xml" type="application/rss+xml" rel="alternate" title="Lo-Fi Python Categories RSS Feed" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://lofipython.com/theme/css/pygments.css" type="text/css" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="@erickbytes" />
+</head>
+<body>
+    <header>
+        <nav style="overflow: hidden;">
+            <ul>
+
+                <li class="ephemeral selected"><a href="https://lofipython.com/category/problem-solving-authentication.html">problem solving, authentication</a></li>
+                <li><a href="https://lofipython.com/">Home</a></li>
+                <li><a href="feeds/all.rss.xml">RSS</a></li>
+                <li><a href="feeds/all.atom.xml">Atom</a></li>
+                <li><a href="https://lofipython.com/contact">Collaborate</a></li>
+            </ul>
+        </nav>
+        <div class="header_box" style="height: 50px">
+        <h1><a href="https://lofipython.com/">
+            <image src='images/python-powered-h-140x182.png' class="avatar" width="50px" /><span class="site_title">Lo-Fi Python</span>
+            </a></h1></div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Feb 20, 2025</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/solving-my-broken-google-authenticator-app.html" rel="bookmark" title="Permanent Link to &quot;Solving My Broken Google Authenticator App&quot;">Solving My Broken Google Authenticator App</a>
+                </h2>
+
+                
+                
+
+                <p>Being a programmer is not just about learning new libraries and skills.
+Some would say that identifying oneself as a &quot;programmer&quot; is foolish.
+What we really are is problem solvers. We apply technology or logic to achieve an ends to a mean.
+This post details an interesting problem I encountered and how I reasoned to fix it.</p>
+<p>I use Google Authenticator as my two factor authorization app. For many websites I use,
+this is a layer of security to verify it is actually me signing in.</p>
+<p>I started using the app and went years with no problems.Recently, I encountered an issue signing
+into my 401K provider's website to check on my 401k. I logged in with my username and password,
+then went to the authenticator app when prompted for a code.</p>
+<p>But this time, after trying multiple times, I received the error &quot;code invalid&quot;.
+After so many failed attempts, most websites will lock you out of your account.
+This ended up happening to me.</p>
+<p>Frustrated, I called the provider's customer support. Eventually, I regained access to my account.
+&quot;There's something bonked with my Authenticator app! The codes aren't working.&quot;, I told them.
+They had no solutions, since the app is from Google and they are a financial services company.</p>
+<p>I moved on from the debacle. A month or so later on a different website, this time
+a cryptocurrency exchange, I attempted to log in. Once again, the codes were invalid.
+I tried multiple times, but seeing it wouldn't work I stopped before a lock was placed on my account.</p>
+<p>Since I was dealing with a Google product, I consulted Google Gemini AI model to seek guidance.</p>
+<img alt="asking Google Gemini for help with Google Authenticator" src="https://lofipython.com/images/asking-google-gemini-authenticator-issue.png" />
+<p>The solution to my problem was just as Gemini suggested: &quot;Google Authenticator relies on precise time precision.&quot;
+Although the specific solution Gemini offered was not correct, it sent me searching in the right direction.
+Gemini told me there was a &quot;time sync setting&quot; in the Authenticator that didn't exist. Gemini did mention that my phone
+should be on &quot;network time&quot;.</p>
+<p>Bingo. I opened up the time settings on my cellular phone. I had manually been setting my time zone due to traveling.
+I opened up my phone and enabled my automatic time settings:</p>
+<img alt="enabling Android's automatic time settings" src="https://lofipython.com/images/android-time-settings.jpg" />
+<p>Success! My phone's time settings caused Google Authenticator to display the wrong codes. I logged into my account,
+making a mental note that my cell phone clock's settings can indeed cause my two factor authentication app to stop working.</p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/solving-my-broken-google-authenticator-app.html">posted at 13:45</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/problem-solving-authentication.html" rel="tag">problem solving, authentication</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/two-factor-authorization.html" class="tags">two factor authorization</a>
+                    &nbsp;<a href="https://lofipython.com/tag/troubleshooting-login.html" class="tags">troubleshooting login</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/tcarwash/blue-penguin-dark">Blue Penguin Dark</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                &middot;
+                <a href="https://lofipython.com/feeds/all.rss.xml" rel="alternate">Rss Feed</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
