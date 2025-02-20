@@ -30,8 +30,7 @@ They had no solutions, since the app is from Google and they are a financial ser
 I moved on from the debacle. A month or so later on a different website, this time 
 a cryptocurrency exchange, I attempted to log in. Once again, the codes were invalid. 
 I tried multiple times, but seeing it wouldn't work I stopped before a lock was placed on my account.
-
-Since I was dealing with a Google product, I consulted Google Gemini AI model to seek guidance.
+Since I was dealing with a Google product, I consulted Google's Gemini AI model to seek guidance.
 
 .. image:: {static}/images/asking-google-gemini-authenticator-issue.png
   :alt: asking Google Gemini for help with Google Authenticator
