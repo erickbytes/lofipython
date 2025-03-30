@@ -1,63 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - making stuff with python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/making-stuff-with-python.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2024-08-12T16:08:00-05:00</updated><entry><title>Copying a Cell Value to a New Google Sheet With Apps Script</title><link href="https://lofipython.com/copying-a-cell-value-to-a-new-google-sheet-with-apps-script.html" rel="alternate"></link><published>2024-08-12T16:08:00-05:00</published><updated>2024-08-12T16:08:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2024-08-12:/copying-a-cell-value-to-a-new-google-sheet-with-apps-script.html</id><summary type="html">&lt;p&gt;I've been messing around with &lt;a class="reference external" href="https://www.google.com/script/start/"&gt;apps script&lt;/a&gt; lately
-and am finding it useful. The below Apps Script was created with a few prompts to Bing Copilot. First, I asked Bing:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - making stuff with python</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/making-stuff-with-python.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2025-03-30T13:17:00-05:00</updated><entry><title>The State of Python in 2025</title><link href="https://lofipython.com/the-state-of-python-in-2025.html" rel="alternate"></link><published>2025-03-30T13:17:00-05:00</published><updated>2025-03-30T13:17:00-05:00</updated><author><name>lofipython</name></author><id>tag:lofipython.com,2025-03-30:/the-state-of-python-in-2025.html</id><summary type="html">&lt;p&gt;It has been interesting to see how Python evolved over the past 10 years.
+Trends have come and gone. Millions of libraries minted.&lt;/p&gt;
+&lt;p&gt;What's hot in Python seems to often mirror big technology trends. For example,
+with recent advancements in AI, controlling AI models via Python is now common.&lt;/p&gt;
+&lt;p&gt;In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;It has been interesting to see how Python evolved over the past 10 years.
+Trends have come and gone. Millions of libraries minted.&lt;/p&gt;
+&lt;p&gt;What's hot in Python seems to often mirror big technology trends. For example,
+with recent advancements in AI, controlling AI models via Python is now common.&lt;/p&gt;
+&lt;p&gt;In any given year, there might not be new foundational libraries introduced.
+Or maybe they do get introduced, but it takes time for them to go mainstream.&lt;/p&gt;
+&lt;p&gt;Here are some popular Python libraries and the year they were introduced:&lt;/p&gt;
 &lt;blockquote&gt;
-Write a Google sheets formula that copies the value in cell B10 to another sheet and also fills another column …&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;I've been messing around with &lt;a class="reference external" href="https://www.google.com/script/start/"&gt;apps script&lt;/a&gt; lately
-and am finding it useful. The below Apps Script was created with a few prompts to Bing Copilot. First, I asked Bing:&lt;/p&gt;
-&lt;blockquote&gt;
-Write a Google sheets formula that copies the value in cell B10 to another sheet and also fills another column with today's date
-...and later:
-how can i make this script add a new row each time in the target sheet and appending to existing rows?&lt;/blockquote&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;I refined with some followup prompts to write a script. It copies cell B10's value from a sheet&lt;/dt&gt;
-&lt;dd&gt;then fills in a row in a different sheet with cell B10's value and today's date.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;AI allows me to do things that would have taken more time to figure out before. For example.
-Bing just tapped the &lt;a class="reference external" href="https://www.google.com/script/start/"&gt;appendRow&lt;/a&gt; function to handle
-the updating of values without overwriting existing data. We don't need to know the specific
-Apps Script functions to write code in a new language anymore. AI can just fill in those details for us.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://developers.google.com/apps-script/reference/spreadsheet/sheet#appendRow(Object"&gt;https://developers.google.com/apps-script/reference/spreadsheet/sheet#appendRow(Object&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Apps Script to Copy a Cell Value and Create New Row with Today's Date&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this case, one sheet is named &amp;quot;Summary&amp;quot; and the other, target sheet is named &amp;quot;Daily&amp;quot;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;copyTotalValue&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ss&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;SpreadsheetApp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getActiveSpreadsheet&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;sourceSheet&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getSheetByName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Summary&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;targetSheet&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getSheetByName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Daily&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;// Get the value from B10 in Summary&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;sourceSheet&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getRange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;B10&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;getValue&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;// Get today&amp;#39;s date&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;// Append a new row to the Daily sheet with the value and today&amp;#39;s date&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;targetSheet&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;appendRow&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;According to Bing, Apps Script is a Javascript dialect:&lt;/p&gt;
-&lt;blockquote&gt;
-Google Apps Script is based on JavaScript. It uses a subset of JavaScript and provides additional built-in functions...&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Automate The Script From the Apps Script Jobs Dashboard&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Go to the Apps Script Jobs dashboard.&lt;/p&gt;
-&lt;img alt="Jobs extensions menu to find Apps Script dashboard" src="https://lofipython.com/images/how-to-find-apps-script-jobs.png" /&gt;
-&lt;p&gt;Add a new script to run Apps Script.&lt;/p&gt;
-&lt;img alt="create new apps script code" src="https://lofipython.com/images/create-new-apps-script-job.png" /&gt;
-&lt;p&gt;Click the blue &amp;quot;Add Trigger&amp;quot; button to create a new jobs.&lt;/p&gt;
-&lt;img alt="Apps Script Jobs Triggers Dashboard" src="https://lofipython.com/images/apps-script-jobs.png" /&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;FastAPI: 2018&lt;/li&gt;
+&lt;li&gt;uv: 2023&lt;/li&gt;
+&lt;li&gt;ruff: 2023&lt;/li&gt;
+&lt;li&gt;Django: 2005&lt;/li&gt;
+&lt;li&gt;pandas: 2008&lt;/li&gt;
+&lt;li&gt;requests: 2011&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;- Google's Gemini AI model&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Anecdotally from murmurs online, FastAPI seems to be picking up steam in 2025.
+It was introudced back in 2018!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Foo Command Output&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="create value with an API" src="https://lofipython.com/images/example.png" /&gt;
 &lt;p&gt;&lt;strong&gt;Supplementary Reading&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://developers.google.com/apps-script/reference"&gt;Apps Script Reference Overview&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://developers.google.com/apps-script/api/conceptss"&gt;Apps Script API&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://docs.tweepy.org/en/latest/getting_started.html"&gt;Tweepy Documentation Tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://developer.twitter.com/en/docs/tutorials"&gt;Twitter's API Tutorials&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://developer.twitter.com/en/docs/tutorials/postman-getting-started"&gt;Twitter Postman Tutorial&lt;/a&gt;&lt;/p&gt;
 </content><category term="coding, programming, python"></category><category term="api"></category><category term="making stuff with python"></category><category term="hacking"></category></entry></feed>

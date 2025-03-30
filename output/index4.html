@@ -31,7 +31,88 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Aug 07, 2023</h4>
+        <div id="content">            <h4 class="date">Aug 13, 2023</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/installing-python-3.11-on-ubuntu-linux.html" rel="bookmark" title="Permanent Link to &quot;How to Install Python 3.11 or 3.12 on a Linux Computer&quot;">How to Install Python 3.11 or 3.12 on a Linux Computer</a>
+                </h2>
+
+                
+                
+
+                <p>Below are the steps I followed to install both Python 3.11 and Python 3.12 in my Ubuntu Linux shell.
+Make sure to adjust your Python version to match 3.11 or 3.12 in all commands.</p>
+<p>I downloaded the .tgz file from Python.org, not sure initially how to build Python from it.
+Once I unpacked the compressed files, I saw the build instructions in the README.rst
+to build a functional Python 3.11 on my Ubuntu computer. Here's how to install the speedier Python versions 3.11 or 3.12.</p>
+<div class="section" id="how-to-install-python-3-11-or-3-12">
+<h2>How to Install Python 3.11 or 3.12</h2>
+<p><strong>Install Linux build libraries.</strong></p>
+<p>I followed this step posted on <a class="reference external" href="https://aruljohn.com/blog/install-python/">this blog</a>.
+If you don't do this, you'll likely see an error about C not being found when running the ./configure command.</p>
+<pre class="code console literal-block">
+<span class="go">sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev</span>
+</pre>
+<p><strong>Install sqllite Libraries (Django Requirement)</strong></p>
+<p>If you wish to make a Django website, install sqllite libraries before you build Python.</p>
+<pre class="code console literal-block">
+<span class="go">sudo apt install sqlite3 libsqlite3-dev</span>
+</pre>
+<p>Use curl to download the Python gzip file.</p>
+<pre class="code console literal-block">
+<span class="go">curl https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz --output Python-3.11.0.tgz</span>
+</pre>
+<img alt="download Python with curl" src="https://lofipython.com/images/curl-python-install-command.png" />
+<p>Unpack gzip file to folder.</p>
+<pre class="code console literal-block">
+<span class="go">tar -xvzf Python-3.11.0.tgz</span>
+</pre>
+<p>Change directory, read the README + find build commands.</p>
+<pre class="code console literal-block">
+<span class="go">cd Python-3.11.0
+cat README.rst</span>
+</pre>
+<p>Build Python.</p>
+<pre class="code console literal-block">
+<span class="gp"># </span>Build<span class="w"> </span>Python<span class="w"> </span>on<span class="w"> </span>Unix,<span class="w"> </span>Linux,<span class="w"> </span>BSD,<span class="w"> </span>macOS,<span class="w"> </span>and<span class="w"> </span>Cygwin:<span class="w">
+</span><span class="go">./configure --enable-optimizations
+make
+make test
+sudo make install</span>
+</pre>
+<p><strong>Building Python on Various Platforms</strong></p>
+<blockquote>
+<p>This will install Python as <tt class="docutils literal">python3</tt>.</p>
+<p>You can pass many options to the configure script; run <tt class="docutils literal">./configure <span class="pre">--help</span></tt>
+to find out more.  On macOS case-insensitive file systems and on Cygwin,
+the executable is called <tt class="docutils literal">python.exe</tt>; elsewhere it's just <tt class="docutils literal">python</tt>.</p>
+<p>Building a complete Python installation requires the use of various
+additional third-party libraries, depending on your build platform and
+configure options.  Not all standard library modules are buildable or
+useable on all platforms.  Refer to the
+<a class="reference external" href="https://devguide.python.org/setup/#install-dependencies">Install dependencies</a>
+section of the Developer Guide for current detailed information on
+dependencies for various Linux distributions and macOS.</p>
+<p>On macOS, there are additional configure and build options related
+to macOS framework and universal builds.  Refer to <a class="reference external" href="https://github.com/python/cpython/blob/main/Mac/README.rst">Mac/README.rst</a>.</p>
+<p>On Windows, see <a class="reference external" href="https://github.com/python/cpython/blob/main/PCbuild/readme.txt">PCbuild/readme.txt</a>.</p>
+<p>- Python 3.11 Linux README.rst</p>
+</blockquote>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/installing-python-3.11-on-ubuntu-linux.html">posted at 22:45</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/install-python-linux.html" class="tags">install python linux</a>
+                    &nbsp;<a href="https://lofipython.com/tag/installing-python-311.html" class="tags">installing Python 3.11</a>
+                    &nbsp;<a href="https://lofipython.com/tag/installing-python-312.html" class="tags">installing python 3.12</a>
+                    &nbsp;<a href="https://lofipython.com/tag/how-to-build-python-311-312.html" class="tags">how to build Python 3.11 + 3.12</a>
+                </div>
+            </article>            <h4 class="date">Aug 07, 2023</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -768,60 +849,6 @@ cmd /c shutdown -s
                     &nbsp;&middot;
                     &nbsp;<a href="https://lofipython.com/tag/windows-automation.html" class="tags">windows automation</a>
                     &nbsp;<a href="https://lofipython.com/tag/windows-batch-files.html" class="tags">windows batch files</a>
-                </div>
-            </article>            <h4 class="date">Feb 20, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/app-review-why-you-should-use-pocket-to-save-your-reads.html" rel="bookmark" title="Permanent Link to &quot;App Review: Why You Should Use Pocket to Save Your Reads&quot;">App Review: Why You Should Use Pocket to Save Your Reads</a>
-                </h2>
-
-                
-                
-
-                <p>I'm really enjoying using <a class="reference external" href="https://help.getpocket.com/">Pocket</a> as my primary reading app on my cell phone. My top need is to download articles I find on the internet for offline viewing. This app does that and more in a smooth interface. This review reflects the perspective of using the <a class="reference external" href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro">Pocket Android version</a> 8.1.1.0, pictured here:</p>
-<div class="wp-image-7409 figure">
-<img alt="dark theme with saved articles" src="https://pythonmarketer.files.wordpress.com/2023/02/screenshot_20230220-104934.png?w=446" />
-<p class="caption">dark theme with saved articles</p>
-</div>
-<p><strong>Key Features and Benefits</strong></p>
-<ul class="simple">
-<li>download articles &amp; blogs to read offline</li>
-<li>quickly share a webpage to the Pocket app in 2 taps from your browser</li>
-<li>dark or light themes available</li>
-<li>free app, downloadable on your <a class="reference external" href="https://help.getpocket.com/category/845-category">Android</a> or <a class="reference external" href="https://help.getpocket.com/category/842-category">iOS</a> device</li>
-<li>converts and stores articles as podcast style listenable audio</li>
-<li>ability to archive or delete old articles</li>
-<li>includes tags to categorize your reads</li>
-<li>filter by length of the read, &quot;short reads&quot; or &quot;long reads&quot; and read or unread</li>
-<li>the length of the article is displayed in minutes it takes to read it</li>
-<li>chooses the best format to present the website, as &quot;article view&quot; or &quot;web view&quot;</li>
-<li>auto-bookmarking, aka you can close out of an article and it will remember where you were the next time you open it</li>
-<li>discover new stuff to read within the Pocket app</li>
-<li>highlight key points in a text to remember and save for later</li>
-<li>For developers, there is a <a class="reference external" href="https://getpocket.com/developer/docs/overview">Pocket API</a>. <a class="reference external" href="https://help.getpocket.com/category/858-category">Apps and integrations</a> are available for other products like Zapier, Evernote, Amazon Alexa and Slack.</li>
-<li>created by Mozilla, a privacy friendly company that also created the Firefox web browser</li>
-</ul>
-<div class="wp-image-7407 figure">
-<img alt="saving is quick and easy" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image-864396039-1676910572447.png?w=958" />
-<p class="caption">saving is quick and easy</p>
-</div>
-<div class="wp-image-7408 figure">
-<img alt="filter saved articles by length" src="https://pythonmarketer.files.wordpress.com/2023/02/image_editor_output_image-977770758-1676912977434.png?w=530" />
-<p class="caption">filter saved articles by length</p>
-</div>
-<p>The Pocket app is an overall great product and I felt compelled to endorse it here for the satisfaction it has brought me a in a short amount of time. It has increased my reading throughput. It's perfect for when you find yourself without an internet connection, in sparsely populated areas, on an airplane or while traveling in foreign countries.</p>
-<p>I recommend this app to anyone who compulsively reads blogs and articles. It will help you keep up with the neverending stream of text also known as the internet. Might I suggest saving a few posts from this blog also?</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/app-review-why-you-should-use-pocket-to-save-your-reads.html">posted at 12:38</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apps-internet-productivity.html" rel="tag">apps, internet, productivity</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/pocket-app-review.html" class="tags">Pocket app review</a>
-                    &nbsp;<a href="https://lofipython.com/tag/pocket-reading-app-benefits.html" class="tags">Pocket reading app benefits</a>
-                    &nbsp;<a href="https://lofipython.com/tag/reading-articles-online.html" class="tags">reading articles online</a>
                 </div>
             </article>
 

@@ -31,7 +31,136 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jun 27, 2020</h4>
+        <div id="content">            <h4 class="date">Jul 15, 2020</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/benefits-of-go-and-threads-in-distributed-systems.html" rel="bookmark" title="Permanent Link to &quot;Benefits of Go and Threads in Distributed Systems&quot;">Benefits of Go and Threads in Distributed Systems</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Preface</strong></p>
+<p>These are my <a class="reference external" href="https://www.youtube.com/watch?v=gA4YXUJX7t8&amp;list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB&amp;index=3&amp;t=0s">YouTube lecture</a> notes from MIT's Distributed Systems course. Thank you MIT and Professor Morris!</p>
+<blockquote>
+<p><a class="reference external" href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB">MIT 6.824 Distributed Systems</a></p>
+<p>Lecture 2: RPC and Threads - Feb 7, 2020</p>
+<p>Prof. Robert Morris (Spring 2020)</p>
+</blockquote>
+<p><strong>Introduction</strong></p>
+<p>Go is a popular programming language choice so my ears perked up when this lecture began. These notes were taken as the professor explains why he teaches his class in Go. He also mentioned he'd be able to teach it with Python or Java. He used C++ years ago.</p>
+<p><strong>The beginning of this lecture was a great summary of:</strong></p>
+<ul class="simple">
+<li>key benefits of Golang</li>
+<li>what threads are and why they're great</li>
+<li>how Go, threads and async tie together</li>
+</ul>
+<p><strong>Go is Good for Distributed Systems</strong></p>
+<p>Go is concurrency-friendly. With concurrent threads, you can effectively split a task such as making web requests to a server into many threads, completing them simultaneously.</p>
+<p><strong>Golang's Convenient Features and Benefits</strong></p>
+<ul class="simple">
+<li>convenient <a class="reference external" href="https://golang.org/pkg/net/rpc/">Remote Procedure Call library</a> (<a class="reference external" href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a>) C++ lacks anything comparable?</li>
+<li>&quot;Go is type-safe and memory-safe, unlike C++&quot;</li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">garbage collection</a></li>
+<li>&quot;the language is simple, unlike C++&quot;</li>
+<li>&quot;good support for threads, <a class="reference external" href="https://en.wikipedia.org/wiki/Lock_(computer_science)">locking</a> and synchronization between threads&quot;</li>
+<li>in Go, &quot;<a class="reference external" href="https://golang.org/doc/effective_go.html#goroutines">goroutines</a>&quot; are threads</li>
+<li>professor's recommended reading to learn Go: <a class="reference external" href="https://golang.org/doc/effective_go.html">Effective Go</a></li>
+</ul>
+<p><strong>Why use threads?</strong></p>
+<ul class="simple">
+<li>I/O Concurrency</li>
+<li>Multi-core <a class="reference external" href="https://en.wikipedia.org/wiki/Parallel_computing#:~:text=Parallel%20computers%20can%20be%20roughly,work%20on%20the%20same%20task.">Parallelism</a></li>
+<li>Convenience, e.g. &quot;create 10 threads that sleep for a second and then do a little bit of work&quot;</li>
+</ul>
+<!--  -->
+<blockquote>
+<p>&quot;Threads are the main tool we're using to manage concurrency in programs.&quot;</p>
+<p>-Prof. Robert Morris</p>
+</blockquote>
+<p><strong>Contrast With</strong><a class="reference external" href="https://en.wikipedia.org/wiki/Event-driven_programming#:~:text=In%20computer%20programming%2C%20event%2Ddriven,from%20other%20programs%20or%20threads.">Event-driven Programming</a><strong>(&quot;Asynchronomous&quot;)</strong></p>
+<p>A single thread, single loop that waits for an event.</p>
+<p><strong>Combining Threads and Event Driven Programming</strong></p>
+<blockquote>
+<p>&quot;Create one thread for each procedure call.&quot;... &quot;On each of the threads run a stripped down event driven loop. Sort of one event loop per core. That results in parallelism and I/O concurrency.&quot;</p>
+<p>-Prof. Robert Morris</p>
+</blockquote>
+<p><strong>Postface: Concurrent Python Context</strong></p>
+<p>I've rarely if ever used multiple threads in Python. Simply running a single threaded script seems sufficient for most of my tasks. Maybe I could speed up API requests by splitting into threads when making a few hundred thousand requests? Apparently I'm missing out on concurrent threading efficiency gains.</p>
+<p>I once experimented with the <a class="reference external" href="https://docs.python.org/3.8/library/multiprocessing.html">multiprocessing</a> module's <a class="reference external" href="https://docs.python.org/3.8/library/multiprocessing.html#the-process-class">Process class</a>, which worked on Linux but not Windows for me. I ended up taking an simpler, single thread approach instead. I've also heard of using multiprocessing <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool">pool</a> objects. There's also the <a class="reference external" href="https://docs.python.org/3/library/asyncio.html">asyncio</a> library <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> modules to consider. The <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example">ProcessPoolExecutor</a> looks promising.</p>
+<p>Python also has the <a class="reference external" href="https://docs.python.org/3/library/queue.html">queue module.</a> I haven't used it yet but at one point I watched a talk where <a class="reference external" href="https://www.youtube.com/watch?v=_GP9OpZPUYc">Raymond Hettinger</a> recommended queue as a good option if you want concurrency in Python.</p>
+<p>It seems there are many options available in Python but it's not clear which tools should be deployed and when. And your chosen concurrency strategy may add extra complexity. Handle with care. Or consider learning Go if you want to use threads to scale your distributed system.</p>
+<p><strong>Update: Python Concurrency Success</strong></p>
+<p>I recently deployed the <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor">ThreadPoolExecutor</a> from the concurrent.futures module to efficiently move thousands of files to a new folder. So Python does have fairly accessible alternatives to concurrency. I guess I'll need to try Go sometime to compare!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Move files concurrently from the current working directory to a new folder.</span>
+<span class="sd">    This script is adapted from the Python ThreadPoolExecutor documentation:</span>
+<span class="sd">    https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.shutdown</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">csvs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+    <span class="n">split_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">csvs</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">file_batches</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">csvs</span><span class="p">,</span> <span class="n">split_num</span><span class="p">)</span>
+    <span class="c1"># write to local folder named &quot;csvs&quot;</span>
+    <span class="n">dst_folder</span> <span class="o">=</span> <span class="s2">&quot;/csvs&quot;</span>
+    <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file_batches</span><span class="p">):</span>
+            <span class="n">csv_A</span><span class="p">,</span> <span class="n">csv_B</span><span class="p">,</span> <span class="n">csv_C</span><span class="p">,</span> <span class="n">csv_D</span> <span class="o">=</span> <span class="n">files</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">,</span> <span class="n">csv_A</span><span class="p">,</span> <span class="n">dst_folder</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">,</span> <span class="n">csv_B</span><span class="p">,</span> <span class="n">dst_folder</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">,</span> <span class="n">csv_C</span><span class="p">,</span> <span class="n">dst_folder</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">,</span> <span class="n">csv_D</span><span class="p">,</span> <span class="n">dst_folder</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div></td></tr></table></div>
+<p><strong>Additional Reading</strong></p>
+<p><a class="reference external" href="https://opensource.googleblog.com/2020/08/new-case-studies-about-googles-use-of-go.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+GoogleOpenSourceBlog+%28Google+Open+Source+Blog%29">New Case Studies About Google's Use of Go</a></p>
+<p><a class="reference external" href="https://go.dev/">go.dev</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/benefits-of-go-and-threads-in-distributed-systems.html">posted at 00:24</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-concurrency-data-education-go-lectures-notes-programming.html" rel="tag">coding, concurrency, data, education, Go, lectures notes, programming</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/computers.html" class="tags">computers</a>
+                    &nbsp;<a href="https://lofipython.com/tag/distributed-systems.html" class="tags">distributed systems</a>
+                    &nbsp;<a href="https://lofipython.com/tag/golang.html" class="tags">golang</a>
+                    &nbsp;<a href="https://lofipython.com/tag/mit.html" class="tags">MIT</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python.html" class="tags">python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/rpc.html" class="tags">rpc</a>
+                </div>
+            </article>            <h4 class="date">Jun 27, 2020</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -1489,84 +1618,6 @@ yourself there?&quot; - me, several times during the show 😆</li>
                     &nbsp;<a href="https://lofipython.com/tag/lost-in-space.html" class="tags">Lost in Space</a>
                     &nbsp;<a href="https://lofipython.com/tag/netflix.html" class="tags">Netflix</a>
                     &nbsp;<a href="https://lofipython.com/tag/problem-solving.html" class="tags">problem solving</a>
-                </div>
-            </article>            <h4 class="date">Jan 25, 2020</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/git-the-basics-a-git-version-control-cheat-sheet.html" rel="bookmark" title="Permanent Link to &quot;"Git" The Basics: A Version Control Cheat Sheet&quot;">&quot;Git&quot; The Basics: A Version Control Cheat Sheet</a>
-                </h2>
-
-                
-                
-
-                <p>I am finally starting to understand <a class="reference external" href="https://en.wikipedia.org/wiki/Git">git version control</a>! It makes developing a project on different computers easy. Some of these notes were picked up from the super informative <a class="reference external" href="https://www.youtube.com/watch?v=_ZEWDGpM-vM">Reproducible Data Analysis in Jupyter video series</a> by Jake VanderPlas, author of the <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a>.</p>
-<p>First, <a class="reference external" href="https://git-scm.com/downloads">go here</a> to download and install git if you haven't yet. Alright, here are my go-to steps and commands for git:</p>
-<p><strong>Beginning a New Project With Git</strong></p>
-<ol class="arabic simple">
-<li>Create new repository on GitHub</li>
-<li>Add a README</li>
-<li>Add a Python gitignore</li>
-<li>Add a license. Jake V. used an MIT license.</li>
-</ol>
-<p><strong>Clone Any Repository from GitHub</strong></p>
-<ol class="arabic simple">
-<li>Visit your new project, or any GitHub project, click the green &quot;Clone or download&quot; button and copy the link.</li>
-<li>In your terminal or command prompt, navigate to the directory where you want to clone your project.</li>
-<li>In terminal, enter: git clone REPO_URL</li>
-<li>Now cd into your project folder.</li>
-</ol>
-<p><strong>Push Your Local Computer Changes to the Remote Repository</strong></p>
-<p>Let's say you did some work on your computer and want to push the changes to GitHub. Enter these commands in terminal:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git add .</span>
-<span class="go">git commit -m &quot;Add your commit note here&quot;</span>
-<span class="go">git push origin main</span>
-</pre></div></td></tr></table></div>
-<p>Above: &quot;git add .&quot; stages all files in project directory for main. Add your commit message, then push your changes to the remote repo.</p>
-<p><strong>Fetch Changes From Main Branch to Your Local Computer</strong></p>
-<p>You might want to update your local computer with any main branch changes before beginning work on it. Enter these commands in terminal:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git fetch</span>
-<span class="go">git pull origin main</span>
-</pre></div></td></tr></table></div>
-<p><strong>Review Merge Conflicts</strong></p>
-<p>Sometimes, your code may conflict with changes in the main branch. You'll find out if you try to push or pull changes and the auto-merge fails. Use &quot;git status&quot; to locate the files with the conflicts. Enter in your terminal:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git status</span>
-</pre></div></td></tr></table></div>
-<p>Then <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line">follow these instructions</a> to review the merge conflicts.</p>
-<p><strong>Or maybe you want to discard any local changes, then merge:</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git fetch</span>
-<span class="go">git checkout</span>
-<span class="go">git pull origin main</span>
-</pre></div></td></tr></table></div>
-<p><strong>Recovering from a Corrupted Repository</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git fsck --full --no-dangling</span>
-</pre></div></td></tr></table></div>
-<p><a class="reference external" href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html#recovering-from-repository-corruption">Additional Reading</a></p>
-<p><strong>Revert local repo to a previous commit, then push your repo to the remote.</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">git reset --hard rollback_commit_id</span>
-<span class="go">git push origin main</span>
-</pre></div></td></tr></table></div>
-<p><strong>Supplementary Reading</strong></p>
-<p><a class="reference external" href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a></p>
-<p><a class="reference external" href="https://lanraccoon.com/2018/8-git-commands-i-use-everyday/">8 Git Commands I Use Every Day</a></p>
-<p><a class="reference external" href="http://who-t.blogspot.com/2009/12/on-commit-messages.html">On Commit Messages</a></p>
-<p><a class="reference external" href="https://github.com/pandas-dev/pandas/wiki/Git-Workflows">Pandas Library Git Workflows</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/git-the-basics-a-git-version-control-cheat-sheet.html">posted at 05:06</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-command-prompt-data-analysis-git-programming-software.html" rel="tag">coding, command prompt, data analysis, git, programming, software</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/github.html" class="tags">github</a>
-                    &nbsp;<a href="https://lofipython.com/tag/terminal.html" class="tags">terminal</a>
-                    &nbsp;<a href="https://lofipython.com/tag/version-control.html" class="tags">version control</a>
                 </div>
             </article>
 
