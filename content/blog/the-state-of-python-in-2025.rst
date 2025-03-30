@@ -59,8 +59,7 @@ in AI, we don't need to write the code anymore. What matters is the idea and the
 
 New library trends will continue to follow tech advancements:
 
-1. The ongoing AI trend. Useful libraries will extend or connect to 
-APIs or LLM models in novel ways or connect to services previously unable to access AI.
+1. The ongoing AI trend. Useful libraries will extend or connect to APIs or LLM models in novel ways or connect to services previously unable to access AI.
 
 2. Autonomous driving. Advances in controlling your car autonomously via Python.
 
@@ -69,7 +68,3 @@ APIs or LLM models in novel ways or connect to services previously unable to acc
 4. Python will get faster. With every new release, Python's performance is improved. This trend will continue.
 
 5. Businesses that are lucky enough to tap into AI-fueled profits will thrive. They'll employ Python developers to maintain models.
-
-
-
-
