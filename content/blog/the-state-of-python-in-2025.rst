@@ -41,7 +41,7 @@ functionality in an intuitive Python interface.
 
 There should only be one obvious way to do it. Yet, it doesn't stop Python developers from
 repeatedly reinventing solved problems. However, sometimes they do improve upon the existing 
-incumbents in a space. Requests is the obvious example when urllib HTTP library was already 
+incumbents in a space. Requests is the obvious example when the urllib HTTP library was already 
 in the standard library.
 
 While lots of future Python staple libraries are launching continuously launching this year,
