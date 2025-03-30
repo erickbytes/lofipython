@@ -44,7 +44,7 @@ repeatedly reinventing solved problems. However, sometimes they do improve upon 
 incumbents in a space. Requests is the obvious example when the urllib HTTP library was already 
 in the standard library.
 
-While lots of future Python staple libraries are launching continuously launching this year,
+While lots of future Python staple libraries could be launching this year,
 it is rare for one to make a splash seemingly immediately as black did in 2018 and ruff did in 2023.
 
 In conclusion, the state of Python is healthy in 2025. Every year, new libraries continually rise
