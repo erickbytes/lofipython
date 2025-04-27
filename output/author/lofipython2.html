@@ -33,7 +33,86 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Jul 25, 2024</h4>
+        <div id="content">            <h4 class="date">Aug 12, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/copying-a-cell-value-to-a-new-google-sheet-with-apps-script.html" rel="bookmark" title="Permanent Link to &quot;Copying a Cell Value to a New Google Sheet With Apps Script&quot;">Copying a Cell Value to a New Google Sheet With Apps Script</a>
+                </h2>
+
+                
+                
+
+                <p>I've been messing around with <a class="reference external" href="https://www.google.com/script/start/">Apps Script</a> lately
+and am finding it useful. The below Apps Script was created with a few prompts to Bing Copilot. First, I asked Bing:</p>
+<blockquote>
+Write a Google sheets formula that copies the value in cell B10 to another sheet and also fills another column with today's date</blockquote>
+<p>...and a later prompt:</p>
+<blockquote>
+how can i make this script add a new row each time in the target sheet and appending to existing rows?</blockquote>
+<p>I refined with some followup prompts to write a script. It copies cell B10's value
+from a sheet then fills in a row in a different sheet with cell B10's value and today's date.</p>
+<p>AI allows me to do things that would have taken more time to figure out before. For example,
+Bing just tapped the <a class="reference external" href="https://developers.google.com/apps-script/reference/spreadsheet/sheet#appendRow(Object)">appendRow</a>
+function to handle the updating of values without overwriting existing data. We don't need to know the specific
+Apps Script functions to write code in a new language anymore. AI can just fill in those details for us.</p>
+<p><strong>Apps Script to Copy a Cell Value and Create New Row with Today's Date</strong></p>
+<p>In this example, one sheet is named &quot;Summary&quot; and the other target sheet is named &quot;Daily&quot;
+with 2 column names.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">copyTotalValue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">ss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">SpreadsheetApp</span><span class="p">.</span><span class="nx">getActiveSpreadsheet</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">sourceSheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ss</span><span class="p">.</span><span class="nx">getSheetByName</span><span class="p">(</span><span class="s2">&quot;Summary&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">targetSheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ss</span><span class="p">.</span><span class="nx">getSheetByName</span><span class="p">(</span><span class="s2">&quot;Daily&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Get the value from B10 in Summary</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sourceSheet</span><span class="p">.</span><span class="nx">getRange</span><span class="p">(</span><span class="s2">&quot;B10&quot;</span><span class="p">).</span><span class="nx">getValue</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">// Get today&#39;s date</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">today</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">// Append a new row to the Daily sheet with the value and today&#39;s date</span>
+<span class="w">  </span><span class="nx">targetSheet</span><span class="p">.</span><span class="nx">appendRow</span><span class="p">([</span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">today</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div></td></tr></table></div>
+<p>According to Bing, Apps Script is a JavaScript dialect:</p>
+<blockquote>
+Google Apps Script is based on JavaScript. It uses a subset of JavaScript and provides additional built-in functions...</blockquote>
+<p><strong>Automate The Script From the Apps Script Jobs Dashboard</strong></p>
+<p>Go to the Apps Script Jobs dashboard.</p>
+<img alt="Jobs extensions menu to find Apps Script dashboard" src="https://lofipython.com/images/how-to-find-apps-script-jobs.png" />
+<p>Add a new script to run Apps Script.</p>
+<img alt="create new apps script code" src="https://lofipython.com/images/create-new-apps-script-job.png" />
+<p>Click the blue &quot;Add Trigger&quot; button to create a new job.</p>
+<img alt="Apps Script Jobs Triggers Dashboard" src="https://lofipython.com/images/apps-script-jobs.png" />
+<p><strong>Supplementary Reading</strong></p>
+<p><a class="reference external" href="https://developers.google.com/apps-script/reference">Apps Script Reference Overview</a></p>
+<p><a class="reference external" href="https://developers.google.com/apps-script/api/conceptss">Apps Script API</a></p>
+<p><a class="reference external" href="https://developers.google.com/apps-script/reference/spreadsheet">Apps Script Spreadsheet Service</a></p>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/copying-a-cell-value-to-a-new-google-sheet-with-apps-script.html">posted at 17:00</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-apps-script-google-sheets.html" rel="tag">coding, programming, apps script, google sheets</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/automating-google-sheets-job.html" class="tags">automating google sheets job</a>
+                    &nbsp;<a href="https://lofipython.com/tag/google-sheets-auto-update.html" class="tags">google sheets auto-update</a>
+                    &nbsp;<a href="https://lofipython.com/tag/create-new-row-in-google-sheets-apps-script.html" class="tags">create new row in google sheets apps script</a>
+                </div>
+            </article>            <h4 class="date">Jul 25, 2024</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -907,201 +986,6 @@ rye run black</span>
                     &nbsp;<a href="https://lofipython.com/tag/optimizing-python-installs.html" class="tags">optimizing python installs</a>
                     &nbsp;<a href="https://lofipython.com/tag/uv-python-installation.html" class="tags">uv python installation</a>
                     &nbsp;<a href="https://lofipython.com/tag/installing-python-packages-with-uv.html" class="tags">installing python packages with uv</a>
-                </div>
-            </article>            <h4 class="date">Feb 09, 2024</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/ways-to-free-up-disk-space-on-your-computer.html" rel="bookmark" title="Permanent Link to &quot;Ways to Free Up Disk Space on Your Computer for Python Developers&quot;">Ways to Free Up Disk Space on Your Computer for Python Developers</a>
-                </h2>
-
-                
-                
-
-                <p>Below are some ways to free up disk space on your computer. This will be most helpful
-for Ubuntu users and Python developers. The pip examples show what I used on my Python
-version 3.11, so if you're running a different version use that number, like
-pip3.12, pip3.10, pip3.9, etc.</p>
-<p><strong>Benchmark your current disk space.</strong></p>
-<p>Before you start freeing up space, you might want to see the current state of your
-hard drive. You can print human readable disk space stats on Ubuntu with the df command.</p>
-<pre class="code console literal-block">
-<span class="go">df -h</span>
-</pre>
-<img alt="read disk space stats on Ubuntu" src="https://lofipython.com/images/readdiskspacedfh.png" />
-<p>Alternatively, here is a Python script that reads available disk space from your hard drive.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">shutil</span>
-
-<span class="k">def</span> <span class="nf">readable_format</span><span class="p">(</span><span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a bytes integer to a human-readable format.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        size (int): The bytes integer to convert.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        str: The human-readable format of the bytes integer.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;KB&quot;</span><span class="p">,</span> <span class="s2">&quot;MB&quot;</span><span class="p">,</span> <span class="s2">&quot;GB&quot;</span><span class="p">,</span> <span class="s2">&quot;TB&quot;</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
-            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">size</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">unit</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">size</span> <span class="o">/=</span> <span class="mi">1000</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">size</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> PB&quot;</span>
-
-
-<span class="k">def</span> <span class="nf">disk_space</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the current total, used and free disk space in bytes.&quot;&quot;&quot;</span>
-    <span class="n">usage</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">disk_usage</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-    <span class="n">total_space</span> <span class="o">=</span> <span class="n">usage</span><span class="o">.</span><span class="n">total</span>
-    <span class="n">used_space</span> <span class="o">=</span> <span class="n">usage</span><span class="o">.</span><span class="n">used</span>
-    <span class="n">free_space</span> <span class="o">=</span> <span class="n">usage</span><span class="o">.</span><span class="n">free</span>
-    <span class="k">return</span> <span class="n">total_space</span><span class="p">,</span> <span class="n">used_space</span><span class="p">,</span> <span class="n">free_space</span>
-
-
-<span class="c1"># Call the function with the current directory (you can specify a different path)</span>
-<span class="n">total_space</span><span class="p">,</span> <span class="n">used_space</span><span class="p">,</span> <span class="n">free_space</span> <span class="o">=</span> <span class="n">disk_space</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total space: </span><span class="si">{</span><span class="n">readable_format</span><span class="p">(</span><span class="n">total_space</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Used space: </span><span class="si">{</span><span class="n">readable_format</span><span class="p">(</span><span class="n">used_space</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Free space: </span><span class="si">{</span><span class="n">readable_format</span><span class="p">(</span><span class="n">free_space</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div></td></tr></table></div>
-<pre class="code console literal-block">
-<span class="go">Total space: 21.47 GB
-Used space: 10.34 GB
-Free space: 10.50 GB</span>
-</pre>
-<p><strong>Clear your browser cache.</strong></p>
-<img alt="read disk space stats on Ubuntu" src="https://lofipython.com/images/clearchromecache.png" />
-<p><strong>Purge your pip cache.</strong></p>
-<p>Before purging the Python pip package manager's cache, you can use the pip cache info command to see how much
-storage is consumed by the cache.</p>
-<pre class="code console literal-block">
-<span class="go">pip3.11 cache info</span>
-</pre>
-<p>Next, use the <a class="reference external" href="https://pip.pypa.io/en/stable/cli/pip_cache/">pip cache purge command</a>
-to clear up space on your system. Pip will print how many files it removed to the terminal.</p>
-<pre class="code console literal-block">
-<span class="go">pip3.11 cache purge</span>
-</pre>
-<img alt="clear the pip package manager cache" src="https://lofipython.com/images/pipcachepurge.png" />
-<p><strong>Uninstall unnecessary Python libraries.</strong></p>
-<p>I tend to build up modules that I installed to see how it works or to quickly test something out,
-then never use again. It makes sense to cull your pip installed libraries occasionally.
-Be aware that sometimes an unknown module may be a required dependency of a module
-you want to use. First, use the pip list command to see your installed libraries:</p>
-<pre class="code console literal-block">
-<span class="go">pip3.11 list</span>
-</pre>
-<img alt="view pip installed libraries" src="https://lofipython.com/images/piplist.png" />
-<p>The pip uninstall command makes removing Python libraries easy.
-For example, let's say you're already using both the ruff Python linter and black.
-The ruff module recently introduced a new formatter that is more or less identical
-to Black. Therefore, I can uninstall black and the use &quot;ruff format&quot; command instead
-to format my code.</p>
-<pre class="code console literal-block">
-<span class="go">pip3.11 uninstall black</span>
-</pre>
-<p>If you're not sure about a package, use the pip show command to learn more about it:</p>
-<pre class="code console literal-block">
-<span class="go">pip3.11 show ruff</span>
-</pre>
-<img alt="view info about a Python library with pip" src="https://lofipython.com/images/pipshowruff.png" />
-<p><strong>Run the autoremove Linux command.</strong></p>
-<blockquote>
-autoremove is used to remove packages that were automatically installed to satisfy
-dependencies for other packages and are now no longer needed as dependencies changed
-or the package(s) needing them were removed in the meantime.
-- <a class="reference external" href="https://manpages.ubuntu.com/manpages/xenial/man8/apt.8.html">Linux apt Man Pages</a></blockquote>
-<pre class="code console literal-block">
-<span class="go">sudo apt autoremove</span>
-</pre>
-<p><strong>Run the clean and autoclean Linux commands.</strong></p>
-<pre class="code console literal-block">
-<span class="go">sudo apt clean
-sudo apt autoclean</span>
-</pre>
-<p>Read more on Ask Ubuntu: <a class="reference external" href="https://askubuntu.com/questions/3167/what-is-difference-between-the-options-autoclean-autoremove-and-clean">What is the difference between the options &quot;autoclean&quot; &quot;autoremove&quot; and &quot;clean&quot;?</a></p>
-<p><strong>Purge unnecessary Linux packages.</strong></p>
-<p>First, create a text file with all your installed Linux packages. Then browse the
-packages and assess if they can be safely removed.</p>
-<pre class="code console literal-block">
-<span class="go">apt list --installed &gt; installed_packages.txt</span>
-</pre>
-<p>You'll free up more space by deleting the largest optional packages. To list your installed
-packages in order of their file sizes and priority, you can use dpkg-query:</p>
-<pre class="code console literal-block">
-<span class="go">dpkg-query -W -f='${Installed-Size;8}\t${Priority}\t${Package}\n' | sort -n -r</span>
-</pre>
-<img alt="see information about linux packages with dpkg-query" src="https://lofipython.com/images/dpkgreport.png" />
-<p>Once you've targeted a package, learn more about it with the apt show command.
-It shows if a package is essential or required, a description and its dependency modules.
-Optional packages are probably safe to delete assuming it's not a dependency of
-software you're actually using. However, purge with caution. Some of these packages are
-used in the software underneath your Ubuntu environment. Any leftover packages will
-be removed by the autoremove command if they are &quot;orphaned&quot; after you purge a package.</p>
-<pre class="code console literal-block">
-<span class="go">apt show &lt;package-name&gt;</span>
-</pre>
-<img alt="see information about a linux package" src="https://lofipython.com/images/aptshowdash.png" />
-<p>If you are certain a Linux package can be deleted, the apt-get purge command removes
-a package and all configuration files from your computer. Be careful not to remove
-any critical Linux packages.</p>
-<pre class="code console literal-block">
-<span class="go">sudo apt-get purge &lt;package-name&gt;</span>
-</pre>
-<p><strong>Find and delete your largest Linux files.</strong></p>
-<p>This command prints the largest files on your root Linux file system. Then you can
-use the rm command to remove the file. Hint: sometimes PDF files can be deceptively
-large and can be good targets to free up space.</p>
-<pre class="code console literal-block">
-<span class="go">sudo find / -xdev -type f -size +25M -exec du -sh {} ';' | sort -rh | head -n 20
-rm ~/large_file.pdf</span>
-</pre>
-<p>That sums up a few ways Ubuntu users and Python developers can add some extra available
-disk space. It can definitely be frustrating to watch an install fail because there's
-no more space on your computer. These are a few strategies you can deploy to make room
-to operate on a disk space constrained system.</p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/ways-to-free-up-disk-space-on-your-computer.html">posted at 14:30</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/computer-maintenance-python-ubuntu-disk-space.html" rel="tag">computer maintenance, Python, Ubuntu, disk space</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/how-to-free-up-disk-space.html" class="tags">how to free up disk space</a>
-                    &nbsp;<a href="https://lofipython.com/tag/creating-extra-linux-ubuntu-disk-space.html" class="tags">creating extra linux ubuntu disk space</a>
-                    &nbsp;<a href="https://lofipython.com/tag/cleaning-up-disk-space-on-hard-drive.html" class="tags">cleaning up disk space on hard drive</a>
-                    &nbsp;<a href="https://lofipython.com/tag/managing-linux-files.html" class="tags">managing linux files</a>
-                    &nbsp;<a href="https://lofipython.com/tag/clearing-python-cache-and-libraries.html" class="tags">clearing python cache and libraries</a>
                 </div>
             </article>
 
