@@ -42,7 +42,7 @@ and decided I want to do my own version. Here is my list of apps that I most oft
    "Calendar","Google Calendar"
    "Train","Amtrak"
    "2 Factor Authentication","Google Authenticator"
-   "Sports Scores","Fox Sports"
+   "Sports Scores","Google Search and Fox Sports"
    "VPN","Turbo VPN"
    "QR Code Reader","QR Reader"
    "Ridesharing","Uber"
