@@ -10,12 +10,11 @@ My Default Apps
 I saw this `default apps post from Trey Hunner <https://treyhunner.com/2025/01/my-default-apps-of-2024/>`__ 
 and decided I want to do my own version. Here is my list of apps that I most often use.
 
-**My Favorite Apps**
 
 .. csv-table::
    :header-rows: 1
 
-   "Category","Tool/Service"
+   "Function","App/Tool/Service"
    "Domain Registrar","Namecheap"
    "Domain Host (DNS)","Cloudflare"
    "Static Site Generator","Pelican"
