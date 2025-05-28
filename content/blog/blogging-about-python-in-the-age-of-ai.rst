@@ -23,7 +23,7 @@ remember how to install Django, now I can use AI to recall it. If I'm having pro
 and ask for help fixing it. From 2016-2021, this ability wasn't available. It's a new world now in the ways we consume information and learn.
 
 The tutorial-style writing that used to be common in my blog and others before the AI boom, is now rendered somewhat obsolete.
-So what will this blog be going forward? It will still be my technical notes and projects. The difference will be more 
+So what will this blog be going forward? It will still be my technical notes and projects. The difference is it will be more 
 focused on my own projects, rather than the details of the libraries themselves. I'll try to focus more on how I applied 
 the libraries to achieve an outcome, rather than the nuts and bolts of how the libraries I used work.
 
