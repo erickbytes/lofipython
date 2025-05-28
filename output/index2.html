@@ -31,7 +31,58 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Aug 12, 2024</h4>
+        <div id="content">            <h4 class="date">Aug 29, 2024</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/launching-a-web-browser-from-ubuntu-shell.html" rel="bookmark" title="Permanent Link to &quot;Launching A Web Browser From Ubuntu Shell&quot;">Launching A Web Browser From Ubuntu Shell</a>
+                </h2>
+
+                
+                
+
+                <p>Ubuntu allows aliasing commands to run a shell function. Below, I used
+<a class="reference external" href="https://linux.die.net/man/1/xdg-open">xdg-open</a> to open my Cloudflare Pages
+dashboard with an alias.</p>
+<p><strong>Add Ubuntu Function to .bashrc</strong></p>
+<p>I used VS Code to add this to my .bashrc file. Now, when I type <strong>cloudflare</strong>
+into my shell it launches the dashboard in Chrome. Remember to close and reopen
+a new shell before testing out the command.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">open_cloudflare() {</span>
+<span class="go">    xdg-open &quot;https://dash.cloudflare.com&quot;</span>
+<span class="go">}</span>
+<span class="go">alias cloudflare=open_cloudflare</span>
+</pre></div></td></tr></table></div>
+<p>The pattern of being able to open a page in a web browser with a quick command could
+be applied to lots of my frequently visited websites.</p>
+<p><strong>Bonus Alternate Version: Python webbrowser Module CLI</strong></p>
+<p>Sometimes the right tool is Python. Other times, the Linux shell CLI tools are sufficient.
+Since this is a Python blog... here is a version that leverages the
+Python <a class="reference external" href="https://docs.python.org/3/library/webbrowser.html">webbrowser</a> module CLI that
+also works, assuming you're already in your Python environment.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><span class="go">open_cloudflare() {</span>
+<span class="go">    python -m webbrowser https://dash.cloudflare.com</span>
+<span class="go">}</span>
+<span class="go">alias cloudflare=open_cloudflare</span>
+</pre></div></td></tr></table></div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/launching-a-web-browser-from-ubuntu-shell.html">posted at 12:45</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-ubuntu-web-browser.html" rel="tag">coding, programming, ubuntu, web browser</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/alias-web-browser-from-ubuntu.html" class="tags">alias web browser from ubuntu</a>
+                    &nbsp;<a href="https://lofipython.com/tag/xdg-open-browser-in-shell.html" class="tags">xdg-open browser in shell</a>
+                    &nbsp;<a href="https://lofipython.com/tag/ubuntu-alias.html" class="tags">ubuntu alias</a>
+                </div>
+            </article>            <h4 class="date">Aug 12, 2024</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -871,119 +922,6 @@ the Webmention.io dashboard or with curl.</p>
                     &nbsp;<a href="https://lofipython.com/tag/receiving-webmentions-with-webmentionio.html" class="tags">receiving webmentions with webmention.io</a>
                     &nbsp;<a href="https://lofipython.com/tag/testing-webmentions.html" class="tags">testing webmentions</a>
                     &nbsp;<a href="https://lofipython.com/tag/sending-webmentions.html" class="tags">sending webmentions</a>
-                </div>
-            </article>            <h4 class="date">Feb 16, 2024</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/make-your-python-installs-faster-with-uv.html" rel="bookmark" title="Permanent Link to &quot;Make Your Python Installs Faster With uv&quot;">Make Your Python Installs Faster With uv</a>
-                </h2>
-
-                
-                
-
-                <p>For several years, <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> and <a class="reference external" href="https://pypi.org/project/pip-tools/">pip-tools</a> have become distinguished in Python packaging
-for their usability and ubiquity. Recently there has been some interesting new developments
-in the realm of Python packaging tools. In a trend that started around 2022, there has been an
-ongoing &quot;Rustification&quot; of Python tooling.</p>
-<blockquote>
-<p>uv is designed as a drop-in replacement for pip and pip-tools, and is
-ready for production use today in projects built around those workflows.</p>
-<blockquote>
-- Charlie Marsh, &quot;uv: Python Packaging in Rust&quot;, <a class="reference external" href="https://astral.sh/blog/uv">https://astral.sh/blog/uv</a></blockquote>
-</blockquote>
-<p>First, Rye was released in pursuit of a &quot;cargo for Python&quot;. Cargo is Rust's package manager. It seems to
-have inspired Python developers to keep trying to improve on what we have with pip.</p>
-<p>While this was happening, in secret Astral Software and Charlie Marsh were also working on yet another hybrid
-Rust + Python package manager named uv. There's seemingly no end to this man and the Astral team's projects!
-ruff quickly supplanted the incumbent Python linters to become a favorite among Python developers.
-Could lightning strike twice for the creators of ruff? Seems they won't be a one-hit wonder when it
-comes to developing hit Python packages.</p>
-<p>Improving Python packaging is an audacious and challenging task. Part of the problem
-is that out of the box Python installs can be tough to reason about for new Python developers,
-not to mention the hassle of explaining the purpose of virtual environments in Python coding via venv.
-One perk of uv is that it includes virtual environments in its workflow.</p>
-<blockquote>
-<p>uv is 8-10x faster than pip and pip-tools without caching, and 80-115x faster
-when running with a warm cache</p>
-<blockquote>
-- Charlie Marsh, &quot;uv: Python Packaging in Rust&quot;, <a class="reference external" href="https://astral.sh/blog/uv">https://astral.sh/blog/uv</a></blockquote>
-</blockquote>
-<p>A new space of potential optimization is now accessible to Python developers. We can now use uv
-to make our development environment build faster. A modest 8x speedup in Python library installs
-might shave off a shocking amount of time it takes your freshly minted Docker image to build,
-especially if you have lots of Python library dependencies. Now, imagine an 80-115x speedup with caching.
-Docker images also use caching after an image is built the first time. They are an optimization use case
-along with building your development environment in general. In some development shops,
-this could cut a lot of time installing developer tooling. It's a potential incredible improvement
-we can now make with uv!</p>
-<a class="reference external image-reference" href="https://twitter.com/charliermarsh/status/1758356727307632892"><img alt="optimizing code with uv tweet" src="https://lofipython.com/images/uv-tweet.png" style="width: 400px;" /></a>
-<p>In the case of Rye and uv, two developers simultaneously identified the same opportunity
-and are now combining their efforts. Sounds like a win for all Python developers. Armin Ronacher, the
-creator of the Flask web framework and Charlie Marsch with the proven success of ruff are converging
-to tackle one of Python's biggest pain points. They could be merged into a &quot;cargo for Python&quot; super tool eventually:</p>
-<blockquote>
-<p><strong>Will Rye be retired for uv?</strong>
-Not today, but the desire is that these tools eventually converge into one.</p>
-<blockquote>
-- Armin Ronacher, &quot;Rye Grows with uv&quot;, <a class="reference external" href="https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/">https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/</a></blockquote>
-</blockquote>
-<p>Per Armin's recent blog post, Rye is probably not the final solution. He thinks Rye will get absorbed
-into a more fleshed out project like uv. It seems Python packaging will continue evolving and improving,
-a welcome sight for Pythonistas!</p>
-<img alt="optimize Python installs with uv" src="https://lofipython.com/images/uv-install-benchmarks.png" />
-<p><em>Image Source: &quot;uv: Python Packaging in Rust&quot;, https://astral.sh/blog/uv</em></p>
-<p><strong>Install uv and rye</strong></p>
-<pre class="code console literal-block">
-<span class="go">pip install uv
-pip install rye
-
-</span><span class="gp"># </span>Alternative<span class="w"> </span>install<span class="w"> </span><span class="k">for</span><span class="w"> </span>uv<span class="w"> </span>with<span class="w"> </span>curl<span class="w">
-</span><span class="go">curl -LsSf https://astral.sh/uv/install.sh | sh
-</span><span class="gp"># </span>Alternative<span class="w"> </span>Install<span class="w"> </span><span class="k">for</span><span class="w"> </span>rye<span class="w"> </span>on<span class="w"> </span>Linux<span class="w"> </span>and<span class="w"> </span>Mac<span class="w">
-</span><span class="go">curl -sSf https://rye-up.com/get | bash</span>
-</pre>
-<p><strong>Create a Virtual Environment With uv</strong></p>
-<pre class="code console literal-block">
-<span class="go">uv venv  # Create a virtual environment at .venv.
-</span><span class="gp"># </span>Activate<span class="w"> </span>venv<span class="w"> </span>on<span class="w"> </span>macOS<span class="w"> </span>and<span class="w"> </span>Linux.<span class="w">
-</span><span class="go">source .venv/bin/activate</span>
-</pre>
-<p><strong>Installing a New Module With uv</strong></p>
-<pre class="code console literal-block">
-<span class="go">uv pip install requests</span>
-</pre>
-<p><strong>pip sync a requirements.txt file with uv</strong></p>
-<pre class="code console literal-block">
-<span class="go">uv pip sync requirements.txt  # Install from a requirements.txt file.</span>
-</pre>
-<p><strong>Optional: Configure Rye on Top of uv</strong></p>
-<pre class="code console literal-block">
-<span class="go">rye config --set-bool behavior.use-uv=true</span>
-</pre>
-<p><strong>Create a New Python project With Rye</strong></p>
-<pre class="code console literal-block">
-<span class="go">rye init my-project
-rye pin 3.10
-rye add black
-rye sync
-rye run black</span>
-</pre>
-<p><strong>uv and rye Documentation and Blog Links</strong></p>
-<p><a class="reference external" href="https://astral.sh/blog/uv">uv: Python Packaging in Rust</a></p>
-<p><a class="reference external" href="https://github.com/astral-sh/uv">uv Github Repo</a></p>
-<p><a class="reference external" href="https://lucumr.pocoo.org/2024/2/15/rye-grows-with-uv/">Rye Grows with uv</a></p>
-<p><a class="reference external" href="https://rye-up.com/guide/basics/#working-with-the-project">Rye User Guide</a></p>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/make-your-python-installs-faster-with-uv.html">posted at 12:33</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python.html" rel="tag">coding, programming, python</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/optimizing-python-installs.html" class="tags">optimizing python installs</a>
-                    &nbsp;<a href="https://lofipython.com/tag/uv-python-installation.html" class="tags">uv python installation</a>
-                    &nbsp;<a href="https://lofipython.com/tag/installing-python-packages-with-uv.html" class="tags">installing python packages with uv</a>
                 </div>
             </article>
 

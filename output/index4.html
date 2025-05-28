@@ -31,7 +31,143 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Sep 14, 2023</h4>
+        <div id="content">            <h4 class="date">Sep 18, 2023</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://lofipython.com/working-with-rss-in-python.html" rel="bookmark" title="Permanent Link to &quot;RSS Is Thriving: Working With RSS Python Tools&quot;">RSS Is Thriving: Working With RSS Python Tools</a>
+                </h2>
+
+                
+                
+
+                <p>There have been countless obituaries about RSS on the internet, like when Dan McKinley wrote that <a class="reference external" href="https://mcfunley.com/google-reader-killed-rss">&quot;Google Reader Killed RSS&quot;</a>. For sure, the existence of Google Reader had an impact on other readers gaining a wider audience before it was shut down by Google. This likely did have a suppressive impact on the adoption of RSS.</p>
+<p>&quot;Whatever happened to RSS?&quot; is a question that murmurs thorugh the internet. The answer: it's still here and it's not going anywhere. I propose that RSS is not dead, but quietly regaining its strength and is on track to relevancy again. But did it actually fall off?</p>
+<blockquote>
+<strong>Did you know?</strong> RSS stands for &quot;Really Simple Syndication&quot;.</blockquote>
+<p>Some say with the rise of social media and email newsletters, RSS is not worth the time. That's precisely what the social media and search engine giants want so you'll stay in their walled garden platform. Google killed Google Reader because it is not in their interests to support a syndication format that cuts out their search engine middleman role. Nonetheless, we only need to consciously choose to use RSS to bring it back to prominence. Who's with me?!</p>
+<blockquote>
+<p>&quot;RSS readers have not only survived in the era of social media,
+but are driving more and more attention back to themselves, as people are realizing the pitfalls&quot;</p>
+<p>- Brian Barrett. &quot;It's Time for an RSS Revival&quot;. Wired. <a class="reference external" href="https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader">https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader</a></p>
+</blockquote>
+<p>You'll often hear the term &quot;aggregator&quot; or &quot;reader&quot; when dealing with RSS, which both mean &quot;tool that collects multiple RSS feeds into single readable format&quot;. There are plenty of free RSS reader websites to keep up with new material from your favorite websites. Currently, I use <a class="reference external" href="https://feeder.co">Feeder</a> to keep up with the blogs I follow. Their free plan allows you to follow up to 200 RSS feeds for free. <a class="reference external" href="https://feedly.com">Feedly</a> is a commonly suggested RSS reader also.</p>
+<img alt="RSS icon" src="https://lofipython.com/images/rssicon.png" />
+<p><strong>A Few Benefits of RSS</strong></p>
+<ul>
+<li><p class="first">Receive notice when a new post is published by your favorite websites and blogs.</p>
+</li>
+<li><p class="first">The personal data of your readers is not collected.</p>
+</li>
+<li><p class="first">An RSS subscription is less intrusive compared to blasting into someone's cluttered email inbox. Plus you won't end up in the spam folder.</p>
+</li>
+<li><p class="first">Diversify your website's traffic to be less dependent on search engines and social media platforms.</p>
+<blockquote>
+<p>To know approximately how much RSS traffic you have, check how many HTTP requests have an XML content type.
+<a class="reference external" href="https://darekkay.com/blog/rss-subscriber-count/">This blog post</a> has a good breakdown of this HTTP based approach.
+Typically, 3-5% of total HTTP requests on my blog have XML content type, indicating RSS traffic.</p>
+</blockquote>
+</li>
+</ul>
+<div class="section" id="python-rss-tools">
+<h2>Python RSS Tools</h2>
+<p>The rest of this post will highlight some practical Python tools and resources for RSS. The libraries used in the below code examples can be installed with <a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/">pip</a>. There are also some standard library Python tools mentioned. Enjoy!</p>
+<p><a class="reference external" href="https://github.com/kurtmckee/feedparser">feedparser</a>: Universal Feed Parser is a Python module for downloading and parsing syndicated feeds</p>
+<p><strong>Parse an RSS feed with feedparser.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">feedparser</span>
+
+<span class="n">feed</span> <span class="o">=</span> <span class="s2">&quot;https://feedparser.readthedocs.io/en/latest/examples/atom10.xml&quot;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;feed&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">feed</span><span class="o">.</span><span class="n">published</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Detect a malformed RSS feed with feedparser &quot;bozo&quot;.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">feedparser</span>
+
+<span class="c1"># https://feedparser.readthedocs.io/en/latest/bozo.html#detecting-a-non-well-formed-feed</span>
+<span class="n">feed</span> <span class="o">=</span> <span class="s2">&quot;http://feedparser.org/tests/illformed/rss/aaa_illformed.xml&quot;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
+<span class="c1"># d.bozo: An integer, either 1 or 0. Set to 1 if the feed is not well-formed XML, and 0 otherwise.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">bozo</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">bozo</span><span class="p">:</span>
+    <span class="n">exc</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">bozo_exception</span>
+    <span class="c1"># Print bozo error message.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">getMessage</span><span class="p">())</span>
+    <span class="c1"># Print line number where exception occurred.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error at line </span><span class="si">{</span><span class="n">exc</span><span class="o">.</span><span class="n">getLineNumber</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Feed is well-formed RSS.&quot;</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><a class="reference external" href="https://www.feedvalidator.org/">feedvalidator</a> and <a class="reference external" href="https://validator.w3.org/feed/">W3 RSS Validator</a>: check if your feed is valid RSS or Atom. Below shows how you can validate your feed using the webbrowser module with the Python CLI:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><span class="gp"># </span>Validate<span class="w"> </span>an<span class="w"> </span>RSS<span class="w"> </span>feed.
+<span class="go">python -m webbrowser -t &quot;https://validator.w3.org/feed/check.cgi?url=https://example.com/feeds/all.rss.xml&quot;</span>
+</pre></div></td></tr></table></div>
+<p><a class="reference external" href="https://github.com/NicolasLM/atoma">atoma</a>: an Atom, RSS and JSON feed parser</p>
+<p><strong>Parse an RSS feed with atoma.</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">import</span> <span class="nn">atoma</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://example.com/feed.atom&quot;</span><span class="p">)</span>
+<span class="n">feed</span> <span class="o">=</span> <span class="n">atoma</span><span class="o">.</span><span class="n">parse_atom_bytes</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feed</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div></td></tr></table></div>
+<p><strong>Additional RSS Tools, Reads + Resources</strong></p>
+<p><a class="reference external" href="https://www.wired.com/story/rss-readers-feedly-inoreader-old-reader/">It's Time for an RSS Revival, Wired</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Mozilla_Thunderbird">Mozilla Thunderbird</a>: an open source RSS client</p>
+<p><a class="reference external" href="https://github.com/tuan3w/awesome-tech-rss">Awesome Tech RSS</a>: a list of tech RSS feeds you can follow</p>
+<p><a class="reference external" href="https://pypi.org/project/pelican-planet/">pelican-planet</a>: a Pelican static site generator plugin that allows generating a page aggregating blog articles from other web sites. The <a class="reference external" href="https://docs.getpelican.com/en/latest/">pelican Python library</a> also has built-in support for RSS and Atom feed generation.</p>
+<p><a class="reference external" href="https://docs.djangoproject.com/en/4.2/ref/contrib/syndication/#module-django.contrib.syndication">Django Syndication Feed Framework</a>: built-in RSS feed framework for Django websites</p>
+<p><a class="reference external" href="https://github.com/radiac/django-yarr">django-yarr</a>: a lightweight, customisable RSS reader for the Django web framework</p>
+<p><a class="reference external" href="https://github.com/lkiesow/python-feedgen">python-feedgen</a>: generates atom feeds, RSS feeds and podcasts</p>
+<p><a class="reference external" href="https://realpython.com/python-xml-parser/">A Roadmap to XML Parsers in Python, Real Python</a></p>
+<p><a class="reference external" href="https://pypi.org/project/lxml/">lxml</a>: a Pythonic, mature binding for the libxml2 and libxslt libraries</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/xml.sax.handler.html">xml.sax</a> API: standard library XML validation option that is based on a Java API</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/xml.html">Python Documentation, XML Processing Modules</a></p>
+<p><a class="reference external" href="https://github.com/RSSerpent/RSSerpent">RSSerpent</a>: open source software to create RSS feeds for websites without them</p>
+<p><a class="reference external" href="http://offog.org/git/rawdog/README">rawdog</a>: an &quot;RSS aggregator without visions of grandeur&quot;</p>
+<p><a class="reference external" href="https://github.com/ai6yr/rss2mastodon">RSS2mastodon</a>: a quick set of python scripts for auto-posting an RSS or Atom feed to Mastodon</p>
+<p><a class="reference external" href="https://github.com/anhqle/craigslist">Craigslist RSS Scraper Python Script</a></p>
+</div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://lofipython.com/working-with-rss-in-python.html">posted at 17:14</a>
+                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/coding-programming-python-xml-rss-writing.html" rel="tag">coding, programming, python, XML, RSS, writing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://lofipython.com/tag/python-rss-tools.html" class="tags">python RSS tools</a>
+                    &nbsp;<a href="https://lofipython.com/tag/rss-aggregator.html" class="tags">RSS aggregator</a>
+                    &nbsp;<a href="https://lofipython.com/tag/rss-validation.html" class="tags">RSS validation</a>
+                    &nbsp;<a href="https://lofipython.com/tag/parsing-rss-python.html" class="tags">parsing RSS python</a>
+                    &nbsp;<a href="https://lofipython.com/tag/rss-feeds.html" class="tags">RSS feeds</a>
+                    &nbsp;<a href="https://lofipython.com/tag/python-rss-readers.html" class="tags">python RSS readers</a>
+                </div>
+            </article>            <h4 class="date">Sep 14, 2023</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -797,72 +933,6 @@ yourself. This is the way.</p>
                     &nbsp;<a href="https://lofipython.com/tag/python-code-bing-and-chatgpt.html" class="tags">Python code Bing and ChatGPT</a>
                     &nbsp;<a href="https://lofipython.com/tag/windows-10-command-line.html" class="tags">Windows 10 Command Line</a>
                     &nbsp;<a href="https://lofipython.com/tag/windows-maintenance.html" class="tags">Windows Maintenance</a>
-                </div>
-            </article>            <h4 class="date">Feb 25, 2023</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://lofipython.com/40-open-source-libraries-and-tools-for-the-modern-developer.html" rel="bookmark" title="Permanent Link to &quot;40 Open Source Libraries and Tools for the Modern Developer&quot;">40 Open Source Libraries and Tools for the Modern Developer</a>
-                </h2>
-
-                
-                
-
-                <p>I usually find a lot of these tools from viewing GitHub's <a class="reference external" href="https://github.com/trending">trending repositories</a>. When I find a novel repo, I'll <a class="reference external" href="https://github.com/erickbytes?tab=stars">star</a> it to remember for later. This is a list of free, open source software spanning security, AI, cloud, HTTP, JSON, monitoring, dev ops and more.</p>
-<p>I enjoy finding and cataloging new packages as much as using them sometimes. Some of these I'll never use. By filing them away, I can recall in it the future if I am faced with a problem that they can solve. Enjoy!</p>
-<ol class="arabic simple">
-<li><a class="reference external" href="https://github.com/NVIDIA/NeMo">NeMo</a>: a LLM (large language model) toolkit for conversational AI from Nvidia</li>
-<li><a class="reference external" href="https://github.com/microsoft/LMOps">LMOps</a>: general technology for enabling LLMs from Microsoft</li>
-<li><a class="reference external" href="https://github.com/prometheus/prometheus">Prometheus</a>: open source monitoring tool, built on top of Go</li>
-<li><a class="reference external" href="https://github.com/aws/aws-cli">aws-cli</a>: universal command line AWS interface</li>
-<li><a class="reference external" href="https://httptoolkit.com/">httptoolkit</a>: &quot;HTTP Toolkit is a beautiful &amp; open-source tool for debugging, testing and building with HTTP(S) on Windows, Linux &amp; Mac&quot;</li>
-<li><a class="reference external" href="https://github.com/curl/curl">curl</a>: ubiquitous command line tool for transferring data with URL syntax</li>
-<li><a class="reference external" href="https://github.com/lwthiker/curl-impersonate">curl-impersonate</a>: a special build of curl that can impersonate Chrome and Firefox browsers</li>
-<li><a class="reference external" href="https://stedolan.github.io/jq/">jq</a>: touted JSON processor command line tool</li>
-<li><a class="reference external" href="https://github.com/kellyjonbrazil/jc">jc</a>: CLI tool and Python library that converts out of popular command line tools to other formats</li>
-<li><a class="reference external" href="https://chromewebstore.google.com/detail/jsonview/gmegofmjomhknnokphhckolhcffdaihd">JSONView</a>: a Chrome web extension that applies syntax highlighting and folding to JSON in your browser, written in Typescript</li>
-<li><a class="reference external" href="https://github.com/buffer/thug">thug</a>: a Python based &quot;honey client&quot;, used to mimic user behavior in a web browser in order to detect and emulate malicious content</li>
-<li><a class="reference external" href="https://opentelemetry.io/docs/concepts/what-is-opentelemetry/">OpenTelemetry</a>: open source tracing and monitoring app</li>
-<li><a class="reference external" href="https://github.com/nocodb/nocodb">nocodb</a>: an open source airtable alternative</li>
-<li><a class="reference external" href="https://github.com/pwnesia/dnstake">dnstake</a>: a fast tool to check for <a class="reference external" href="https://www.cloudflare.com/learning/dns/what-is-dns/">DNS</a> vulnerabilities</li>
-<li><a class="reference external" href="https://github.com/schollz/croc">croc</a>: easily and securely send things from one computer to another</li>
-<li><a class="reference external" href="https://github.com/jarun/buku">buku</a>: inter-browser bookmark transfer tool</li>
-<li><a class="reference external" href="https://github.com/backstage/backstage">backstage</a>: an open platform for building developer portals, written in Typescript</li>
-<li><a class="reference external" href="https://github.com/getsentry/sentry">sentry</a>: a &quot;developer first&quot; error tracking and performance monitoring platform</li>
-<li><a class="reference external" href="https://github.com/runsidekick/sidekick">sidekick</a>: free and open source live action debugging platform, like chrome dev tools for your backend</li>
-<li><a class="reference external" href="https://github.com/prowler-cloud/prowler">Prowler</a>: an open source security tool to perform cloud best practices</li>
-<li><a class="reference external" href="https://docs.earthly.dev/basics/part-1-a-simple-earthfile">Earthly</a>: create a CI/CD continuous developer system</li>
-<li><a class="reference external" href="https://github.com/metabase/metabase">metabase</a>: the easy, open source way for everyone in your company to ask questions and learn from data</li>
-<li><a class="reference external" href="https://github.com/zulip/zulip">Zulip</a>: open source team chat</li>
-<li><a class="reference external" href="https://github.com/laurent22/joplin">Joplin</a>: an open source note taking and to do list application</li>
-<li><a class="reference external" href="https://github.com/visual-layer/fastdup">fastup</a>: a tool for gaining insights from large image collections and detecting anomalies</li>
-<li><a class="reference external" href="https://github.com/upptime/upptime">Upptime</a>: an open source uptime monitor and status page connected to Github</li>
-<li><a class="reference external" href="https://github.com/danielgatis/rembg">Rembg</a>: tool to remove the background from images</li>
-<li><a class="reference external" href="https://github.com/erickbytes?after=Y3Vyc29yOnYyOpK5MjAyMi0wNy0wNFQyMTowNzozMy0wNTowMM4UjkSj&amp;tab=stars">dyna-cli</a>: convert Python functions to Linux shell commands</li>
-<li><a class="reference external" href="https://github.com/penpot/penpot">Penpot</a>: the open source design &amp; prototyping platform</li>
-<li><a class="reference external" href="https://github.com/levkk/pgcat">pgcat</a>: postgresQL pooler with sharding, load balancing and fail over support</li>
-<li><a class="reference external" href="https://github.com/spotify/pedalboard">pedalboard</a>: a Python library for working with audio from Spotify</li>
-<li><a class="reference external" href="https://github.com/open-rpa/openrpa">OpenRPA</a>: free open source enterprise grade robot process automation software. See also: <a class="reference external" href="https://lofipython.com/how-to-open-firefox-with-webbrowser-on-ubuntu-linux/">more free RPA tools</a></li>
-<li><a class="reference external" href="https://github.com/rednafi/hook-slinger">hook-slinger</a>: manage webhooks with Python</li>
-<li><a class="reference external" href="https://github.com/ozmartian/vidcutter">vidcutter</a>: a modern video editing tool</li>
-<li><a class="reference external" href="https://github.com/s0md3v/XSStrike">XSSstrike</a>: most advanced Cross Site Scripting detector</li>
-<li><a class="reference external" href="https://github.com/wifiphisher/wifiphisher">wifiPhisher</a>: wifi security testing tool with Python extensions</li>
-<li><a class="reference external" href="https://github.com/saltstack/salt">Salt</a>: an &quot;any infrastructure&quot; automation tool built on Python</li>
-<li><a class="reference external" href="https://github.com/locustio/locust">Locust</a>: a scalable load testing Python library</li>
-<li><a class="reference external" href="https://github.com/fabric/fabric">Fabric</a>: simple, Pythonic remote execution and deployment via ssh</li>
-<li><a class="reference external" href="https://github.com/ShareX/ShareX">ShareX</a>: free and open source program that lets you capture and record your screen, written in C#</li>
-</ol>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://lofipython.com/40-open-source-libraries-and-tools-for-the-modern-developer.html">posted at 16:21</a>
-                    &nbsp;&middot;&nbsp;<a href="https://lofipython.com/category/apps-coding-command-prompt-data-http-json-productivity-programming-python-software.html" rel="tag">apps, coding, command prompt, data, HTTP, json, productivity, programming, python, software</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://lofipython.com/tag/free-software.html" class="tags">free software</a>
-                    &nbsp;<a href="https://lofipython.com/tag/free-tools-for-developers.html" class="tags">free tools for developers</a>
-                    &nbsp;<a href="https://lofipython.com/tag/open-source-tools.html" class="tags">open source tools</a>
-                    &nbsp;<a href="https://lofipython.com/tag/opens-source-software.html" class="tags">opens source software</a>
                 </div>
             </article>
 
