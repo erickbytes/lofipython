@@ -6,15 +6,17 @@ Discoveries['Random']
 :slug: random-findings
 :status: published
 
-**Quote of Zen:** "Productivity isn't about running faster or pushing yourself harder, but rather, about working smarter and paying a bit more attention to what is really going on." - `New York Times Blog <http://well.blogs.nytimes.com/2016/03/10/how-asking-5-questions-allowed-me-to-eat-dinner-with-my-kids/?_r=0>`__
+**Quote of Zen:** "Productivity isn't about running faster or pushing yourself harder, 
+but rather, about working smarter and paying a bit more attention to what is really going on." 
+- `New York Times Blog <http://well.blogs.nytimes.com/2016/03/10/how-asking-5-questions-allowed-me-to-eat-dinner-with-my-kids/?_r=0>`__
 
 **Book I'm Reading Right Now:** 
 `Eloquent Javascript <http://eloquentjavascript.net/>`__
 
 **Recent Discovery:** 
 `Integrated Development Environments <https://wiki.python.org/moin/IntegratedDevelopmentEnvironments>`__ 
-for Web Programming - another piece of the web development puzzle; 
-software that contains the front and back end elements for writing code, compiling and testing. 
+for Web Programming are another piece of the web development puzzle.
+An IDE is software that contains the front and back end elements for writing code, compiling and testing. 
 This article from Stack Overflow clarifies `the difference between an IDE and a web framework <http://stackoverflow.com/questions/5255868/difference-between-ide-and-framework>`__.
 
 "Finally, if you're just beginning Python, let me put in a plug for simple editors: 
@@ -23,4 +25,4 @@ You'll find that you learn the language faster and more completely if you take t
 - `Python Central <http://pythoncentral.io/text-editors-vs-ides-for-python-development-selecting-the-right-tool/>`__
 
 Ultimately your approach and tools used for any coding project depends on what you're trying to build, 
-which language(s) used, and your own knowledge - and I'm still learning.
+which language(s) used, and your own knowledge.
