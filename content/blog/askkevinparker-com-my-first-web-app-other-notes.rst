@@ -6,16 +6,24 @@ Ask Tame Impala - My First Web App
 :slug: askkevinparker-com-my-first-web-app-other-notes
 :status: published
 
-**My app is alive.** Ask it a question, and it queries a database of Tame Impala lyrics and pulls a response line from the lyrics 
-based on which words match up. Kevin Parker is the frontman of the band. 
+**My First App is Live!** 
 
-**Try out my web2py app at** `tameimpala.pythonanywhere.com <http://tameimpala.pythonanywhere.com>`__
+Try it out here: `tameimpala.pythonanywhere.com <http://tameimpala.pythonanywhere.com>`__
+
+**What It Does**
+
+Ask it a question, and it queries a database of Tame Impala lyrics and pulls a response line from the lyrics 
+based on which words match up. Kevin Parker is the frontman of the band.
+
+**Evergreen Traffic**
 
 When I first published the app in 2016, per Google Analytics it had 50 sessions from Google 
 and over 200 page views in 10 different countries after a few weeks.
-In April 2025, the app received 6,749 visits in traffic according to pythonanywhere.
+In April 2025, the app received nearly 500 visits in traffic according to pythonanywhere. 
+Not too shabby from solely evergreen visits and with no promotion.
 
-**SSL Certificates / Start SSL / PythonAnywhere"** 
+**SSL Certificates / Start SSL / PythonAnywhere"**
+
 An SSL certificate is required for the domain by PythonAnywhere to control the Admin page 
 and set up your app. You don't need this if your domain is "username.pythonanywhere.com".
 
@@ -28,7 +36,8 @@ from your SSL provider and submit them to the domain host. The last step is to n
 domain host and have them verify with the SSL provider. If all goes well, you'll be live in a few hours.
 
 **"Masking" domains**
-This means if you type "google.com", it will redirect to "www.Google.com" `GoDaddy makes this super easy <https://www.godaddy.com/help/manually-forwarding-or-masking-your-domain-name-422>`__. 
+This means if you type "google.com", it will redirect to "www.google.com".
+`GoDaddy makes this super easy <https://www.godaddy.com/help/manually-forwarding-or-masking-your-domain-name-422>`__. 
 I set it up for my site as well. `Here's a post from PythonAnywhere <https://help.pythonanywhere.com/pages/NakedDomains>`__ on this also.
 
 **Collaborating with other programmers**

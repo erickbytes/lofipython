@@ -28,8 +28,9 @@ into a few weeks or months, but they can still be pricey. The cheapest option is
 -  Tuition Money. A lot of what you need to know is available for free or cheap on the web.
 -  Skill level match. Some bootcamps are oriented for beginners, others are more advanced. If you do a bootcamp, make sure it fits your skill level.
 
-**If you want a coding job**, school makes sense. The bootcamps look to be effective if you can handle the up-front investment. 
-It's possible to land a job without schooling but much tougher. I am currently considering `Full Stack Academy <https://www.fullstackacademy.com/>`__. 
+**If you want a coding job**, school makes sense. The bootcamps look to be effective if you can 
+handle the up-front investment. It's possible to land a job without schooling but much tougher. 
+I am currently considering `Full Stack Academy <https://www.fullstackacademy.com/>`__. 
 and `Coding Dojo <http://www.codingdojo.com/>`__. There are many out there. CodeAcademy is a popular route as well.
 
 **If you want to make an app or website**, the school or the non-school route may both work. For the non-school route, the following languages are good places to start: *(note - not a comprehensive list, these are my picks.)*
@@ -54,6 +55,8 @@ thanks to materials available from `Codeacademy <https://www.codecademy.com/lear
 `Coursera <https://www.coursera.org/learn/python>`__, `YouTube <https://www.youtube.com/watch?v=u3d-n41Tobw>`__, 
 `Stack Overflow <https://stackoverflow.com/questions/1720421/how-to-concatenate-two-lists-in-python?rq=1>`__, 
 `countless helpful resources, <https://automatetheboringstuff.com/>`__, `interesting blogs <https://pymotw.com/3/glob/index.html>`__, 
-and `documentation <https://docs.python.org/3/library/index.html>`__. I've talked with others who need the in-person assistance that a bootcamp offers to learn. Do what works for you. Good luck with your decision.
+and `documentation <https://docs.python.org/3/library/index.html>`__. I've talked with others who need 
+the in-person assistance that a bootcamp offers to learn. Do what works for you. Good luck with your decision.
 
-**Update:** Several years later, I also get paid to use Python and Excel for a living! I studied for free online intermittently over 2 years to achieve it.
+**Update:** Several years later, I was lucky enough to land a job where I used Python and Excel for a living!
+I studied for free online intermittently about 4 years to achieve it.
