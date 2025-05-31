@@ -35,13 +35,15 @@ So I went back to the drawing board and I've simplified this down to two basic p
    :header: "Tools", "Hosting", "Framework / IDE"
    :widths: 30, 30, 30
 
-   "1) Python + Web Framework", "PythonAnywhere or Cloudflare", "FastAPI, Flask, Django or web2py"
-   "2) Javascript + Python", "cPanel or Cloudflare", "React, Angular, Express.js"
+   "1) Python + Web Framework", "PythonAnywhere or Cloudflare Pages", "FastAPI, Flask, Django or web2py"
+   "2) Javascript + Python", "cPanel or Cloudflare Pages", "React, Angular, Express.js"
    
 I'm going with Path 1 because the only language I know is Python. I hope to learn other languages 
 like Javascript and CSS but would like to get building as fast as possible. I found a free web 
 hosting service called PythonAnywhere. There are other `free <https://wiki.python.org/moin/FreeHosts>`__ 
-and paid Python-friendly hosts.
+and paid Python-friendly hosts. 
+
+   I also added in Cloudflare Pages retroactively to this post, since I discovered it many years after writing this post.
 
 Instead of the `previously mentioned web frameworks <https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app/>`__,
 I've chosen web2py as a starter because of its compatibility with PythonAnywhere, its simplicity, 
