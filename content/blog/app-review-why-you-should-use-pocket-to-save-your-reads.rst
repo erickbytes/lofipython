@@ -7,6 +7,12 @@ App Review: Why You Should Use Pocket to Save Your Reads
 :slug: app-review-why-you-should-use-pocket-to-save-your-reads
 :status: published
 
+
+**Update**
+
+Mozilla has chosen to sunset its Pocket app. As of July 8th 2025, Pocket will be shut down.
+
+
 I'm really enjoying using `Pocket <https://help.getpocket.com/>`__ as my primary reading app on my cell phone. My top need is to download articles I find on the internet for offline viewing. This app does that and more in a smooth interface. This review reflects the perspective of using the `Pocket Android version <https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro>`__ 8.1.1.0, pictured here:
 
 .. figure:: https://pythonmarketer.files.wordpress.com/2023/02/screenshot_20230220-104934.png?w=446
