@@ -6,12 +6,12 @@ Ask Tame Impala - My First Web App
 :slug: askkevinparker-com-my-first-web-app-other-notes
 :status: published
 
-**My app is alive.** It is a simple program - ask it a question, and it queries a database of Tame Impala lyrics and pulls a response line from the lyrics 
+**My app is alive.** Ask it a question, and it queries a database of Tame Impala lyrics and pulls a response line from the lyrics 
 based on which words match up. Kevin Parker is the frontman of the band. 
 
-**View the app here:** `tameimpala.pythonanywhere.com/tameimpala <http://tameimpala.pythonanywhere.com/tameimpala>`__.
+**View the web2py app at** `tameimpala.pythonanywhere.com <http://tameimpala.pythonanywhere.com>`__.
 
-I published it a few weeks ago and according to Google Analytics it has had 50 sessions from Google and over 200 page views in 10 different countries - not bad!
+I published it a few weeks ago and according to Google Analytics it has had 50 sessions from Google and over 200 page views in 10 different countries, not bad!
 
 **SSL Certificates / Start SSL / PythonAnywhere"** 
 An SSL certificate is required for the domain by PythonAnywhere to control the Admin page and set up your app. You don't need this if your domain is "username.pythonanywhere.com".
