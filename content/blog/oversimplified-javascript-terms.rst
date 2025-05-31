@@ -9,15 +9,25 @@ Oversimplified Javascript Terms
 
 I'm finally coming around in my understanding of Javascript. Here are a few quick explanations to help you if you are new to it.
 
-**Javascript** = The language of the web. Most commonly used as a complement to HTML and CSS to create an interactive website.
+**Javascript**
 
-**JQuery** = A popular Javascript library with many powerful commands that are quick and easy to call.
+The language of the web. Most commonly used as a complement to HTML and CSS to create an interactive website.
 
-**Node.JS** = Software that allows you to run Javascript from the command line without being connected to the internet.
+**JQuery**
 
-**Express.JS** = A popular Node.JS framework.
+A popular Javascript library with many powerful commands that are quick and easy to call.
 
-**Angular** = A popular front-end Javascript web framework. There are many out there but this seems to be the one I've heard of the most.
+**Node.JS**
+
+Software that allows you to run Javascript from the command line without being connected to the internet.
+
+**Express.JS**
+
+A popular Node.JS framework.
+
+**Angular**
+
+A popular front-end Javascript web framework. There are many out there but this seems to be the one I've heard of the most.
 
 | **I've begun to see a pattern with programming languages:**
 | 1) Learn to execute the core building blocks. (using variables, loops, functions, etc.)
