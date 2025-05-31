@@ -25,4 +25,6 @@ I'm finally coming around in my understanding of Javascript. Here are a few quic
 | 3) Consider using and learning web frameworks depending on what you're trying to do with the language.
 | 4) Practice to hone your knowledge. Build things you like.
 
-I've also noticed that Javascript has been easier to learn than Python was for me, because it's not my first programming language. The concepts are the same. The syntax can trip me up at times, but I'm currently flying through `Codeacademy's Javascript courses <https://www.codecademy.com/learn/learn-javascript>`__. Sometimes it even seems fun!
+I've also noticed that Javascript has been easier to learn than Python was for me, because it's not my first programming language. 
+The concepts are the same. The syntax can trip me up at times, but I'm currently flying through 
+`Codeacademy's Javascript courses <https://www.codecademy.com/learn/learn-javascript>`__. Sometimes it even seems fun!

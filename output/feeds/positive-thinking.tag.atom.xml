@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Lo-Fi Python - positive thinking</title><link href="https://lofipython.com/" rel="alternate"></link><link href="https://lofipython.com/feeds/positive-thinking.tag.atom.xml" rel="self"></link><id>https://lofipython.com/</id><updated>2020-10-11T15:37:00-05:00</updated><entry><title>Google Vision OCR, Image Text and a Markov Chain: a recipe for positivipy</title><link href="https://lofipython.com/generating-positive-thoughts-with-google-vision-ocr-and-markov-chains.html" rel="alternate"></link><published>2020-10-11T15:37:00-05:00</published><updated>2020-10-11T15:37:00-05:00</updated><author><name>pythonmarketer</name></author><id>tag:lofipython.com,2020-10-11:/generating-positive-thoughts-with-google-vision-ocr-and-markov-chains.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Recently an old idea came back to life. I've posted to a &lt;a class="reference external" href="https://www.facebook.com/positivedailythought"&gt;Facebook Page&lt;/a&gt; for several years as part of project I started on a whim. The goal of the page is to share anything positive and inspirational by famous thinkers, artists and creators I read, or simply something …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Recently an old idea came back to life. I've posted to a &lt;a class="reference external" href="https://www.facebook.com/positivedailythought"&gt;Facebook Page&lt;/a&gt; for several years as part of project I started on a whim. The goal of the page is to share anything positive and inspirational by famous thinkers, artists and creators I read, or simply something positive to meditate on. It was partially inspired by the discipline of &amp;quot;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Positive_psychology"&gt;Positive Psychology&lt;/a&gt;&amp;quot;. Basically, William James was a cool dude. &lt;a class="reference external" href="https://www.ted.com/talks/martin_seligman_the_new_era_of_positive_psychology/transcript?language=en"&gt;Martin Seligman&lt;/a&gt; is too. I believe that positive feelings create positive outcomes and we can &amp;quot;game&amp;quot; ourselves into this feedback loop with literature and other habits that support well-being like sleep and exercise.&lt;/p&gt;
+&lt;p&gt;Recently an old idea came back to life. I've posted to a &lt;a class="reference external" href="https://www.facebook.com/positivedailythought"&gt;Facebook Page&lt;/a&gt;
+for several years as part of project I started on a whim. The goal of the page is to share anything positive
+and inspirational by famous thinkers, artists and creators I read, or simply something …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Recently an old idea came back to life. I've posted to a &lt;a class="reference external" href="https://www.facebook.com/positivedailythought"&gt;Facebook Page&lt;/a&gt;
+for several years as part of project I started on a whim. The goal of the page is to share anything positive
+and inspirational by famous thinkers, artists and creators I read, or simply something positive to meditate on.
+It was partially inspired by the discipline of &amp;quot;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Positive_psychology"&gt;Positive Psychology&lt;/a&gt;&amp;quot;.
+Basically, William James was a cool dude. &lt;a class="reference external" href="https://www.ted.com/talks/martin_seligman_the_new_era_of_positive_psychology/transcript?language=en"&gt;Martin Seligman&lt;/a&gt; is too.
+I believe that positive feelings create positive outcomes and we can &amp;quot;game&amp;quot; ourselves into this feedback loop with literature
+and other habits that support well-being like sleep and exercise.&lt;/p&gt;
 &lt;p&gt;After building up years of posts, I pondered for years how to capture the dataset of quote images to generate new positive-minded prose.
 This post details one implementation and alternatives I considered to accomplish this goal.
 All of the data and code in this post is &lt;a class="reference external" href="https://github.com/erickbytes/positivipy"&gt;published on Github&lt;/a&gt;.
@@ -11,7 +19,7 @@ Here's how I made my latest project, &lt;a class="reference external" href="http
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Export all Facebook post images from my page&lt;/li&gt;
 &lt;li&gt;Convert images to quote text with &lt;strong&gt;Optical character recognition&lt;/strong&gt; (OCR)&lt;/li&gt;
-&lt;li&gt;Data cleaning (via pandas and manual correction)&lt;/li&gt;
+&lt;li&gt;Data cleaning via pandas and manual correction&lt;/li&gt;
 &lt;li&gt;Train on past quotes and generate new quotes with a Markov chain&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="section" id="export-all-facebook-post-images-from-my-page-1"&gt;
@@ -126,7 +134,7 @@ Here's how I made my latest project, &lt;a class="reference external" href="http
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="data-cleaning-via-pandas-and-manual-correction-1"&gt;
-&lt;span id="data-cleaning-via-pandas-and-manual-correction"&gt;&lt;/span&gt;&lt;h2&gt;3. Data cleaning (via &lt;a class="reference external" href="https://lofipython.com/pandas-pythons-excel-powerhouse/"&gt;pandas&lt;/a&gt; and manual correction)&lt;/h2&gt;
+&lt;span id="data-cleaning-via-pandas-and-manual-correction"&gt;&lt;/span&gt;&lt;h2&gt;3. Data cleaning via &lt;a class="reference external" href="https://lofipython.com/pandas-pythons-excel-powerhouse/"&gt;pandas&lt;/a&gt; and manual correction&lt;/h2&gt;
 &lt;p&gt;The data did not come back perfect, but I was pleased with the Google Vision API's results. It saved me a lot of time compared to manually transcribing the images!
 Next I used pandas to clean the data. You can see more in a Jupyter notebook with &lt;a class="reference external" href="https://github.com/erickbytes/positivipy"&gt;all of the code on github&lt;/a&gt;.
 Then I manually removed the author or source names, keeping only the quote text.&lt;/p&gt;
@@ -134,12 +142,15 @@ Then I manually removed the author or source names, keeping only the quote text.
 &lt;div class="section" id="train-on-past-quotes-and-generate-new-quotes-1"&gt;
 &lt;span id="train-on-past-quotes-and-generate-new-quotes"&gt;&lt;/span&gt;&lt;h2&gt;4. Train on past quotes and generate new quotes&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;GPT-3, The State of the Art Option&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Initially, I considered machine learning options for generating new text. The GPT-3 library, released in early 2020 by Open AI, is the current state of the art model
-for text generation. However, its API is only accessible on an invite basis. If I get access, I think I'll try using it with the &lt;a class="reference external" href="https://github.com/shreyashankar/gpt3-sandbox"&gt;GPT-Sandbox&lt;/a&gt;
-python library. 🤞 You can join the &lt;a class="reference external" href="https://share.hsforms.com/1Lfc7WtPLRk2ppXhPjcYY-A4sk30"&gt;GPT-3 waitlist here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I searched around for other text generation python libraries on Github and found a promising one named &lt;a class="reference external" href="https://github.com/minimaxir/gpt-2-simple"&gt;GPT-2_simple&lt;/a&gt;,
-which utilizes GPT-3's predecessor. However, it requires using an old version of TensorFlow. I feel less inclined to learn older versions of machine learning libraries.
-Currently, I'm holding out for GPT-3 access. I may try the GPT-2 route if I don't get a chance at GPT-3.&lt;/p&gt;
+&lt;p&gt;Initially, I considered machine learning options for generating new text.
+The GPT-3 library, released in early 2020 by Open AI, is the current state of the art model
+for text generation. However, its API is only accessible on an invite basis. If I get access,
+I think I'll try using it with the &lt;a class="reference external" href="https://github.com/shreyashankar/gpt3-sandbox"&gt;GPT-Sandbox&lt;/a&gt; Python library.&lt;/p&gt;
+&lt;p&gt;I searched around for other text generation python libraries on Github and found a promising
+one named &lt;a class="reference external" href="https://github.com/minimaxir/gpt-2-simple"&gt;GPT-2_simple&lt;/a&gt;, which utilizes GPT-3's predecessor.
+However, it requires using an old version of TensorFlow. I feel less inclined to learn older versions of
+machine learning libraries. Currently, I'm waiting for GPT-3 access. I may try the GPT-2 route if I don't
+get a chance at GPT-3.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;A &amp;quot;&lt;/strong&gt;&lt;a class="reference external" href="https://zen-of-python.info/simple-is-better-than-complex.html"&gt;Simple is Better Than Complex&lt;/a&gt;&lt;strong&gt;&amp;quot; Approach: Markov Chain&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I wondered, are there any simpler options for text generation in python? Enter the Markov chain, which I stumbled across while Googling.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -147,7 +158,8 @@ Currently, I'm holding out for GPT-3 access. I may try the GPT-2 route if I don'
 &lt;p&gt;Wikipedia - &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain"&gt;https://en.wikipedia.org/wiki/Markov_chain&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Using the markovify library&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Google pointed me to &lt;a class="reference external" href="https://analyticsindiamag.com/hands-on-guide-to-markov-chain-for-text-generation/"&gt;this post from Analytics India Magazine&lt;/a&gt; showing the &lt;a class="reference external" href="https://github.com/jsvine/markovify"&gt;&amp;quot;Markovify&amp;quot; library&lt;/a&gt;. Markovify makes generating your own Markov chain very easy! Install with pip:&lt;/p&gt;
+&lt;p&gt;Google pointed me to &lt;a class="reference external" href="https://analyticsindiamag.com/hands-on-guide-to-markov-chain-for-text-generation/"&gt;this post from Analytics India Magazine&lt;/a&gt; showing the &lt;a class="reference external" href="https://github.com/jsvine/markovify"&gt;&amp;quot;Markovify&amp;quot; library&lt;/a&gt;.
+Markovify makes generating your own Markov chain very easy! Install with pip:&lt;/p&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;pip install markovify&lt;/tt&gt;&lt;/p&gt;
 &lt;p&gt;Here's the code to create Markov chain on the quote text:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
@@ -164,12 +176,22 @@ Currently, I'm holding out for GPT-3 access. I may try the GPT-2 route if I don'
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make_sentence&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;p&gt;Markov chains are below the level of sophistication of machine learning technologies like GPT-3 or GPT-2. But Markov chains demonstrate how we can apply mathematics to mimic results or at least achieve an mvp with a simpler approach. Another intriguing tool worth mentioning is the &lt;a class="reference external" href="https://www.nltk.org/"&gt;nltk library&lt;/a&gt;, which offers natural language capabilities.&lt;/p&gt;
-&lt;p&gt;Eventually I will try the more sophisticated way using machine learning, but at least I am enjoying a quick taste of success with a Markov chain. Here's what some cherry-picked results look like! 😆 Ok, they're not great, but not too shabby either for my first time generating text from examples:&lt;/p&gt;
+&lt;p&gt;Markov chains are below the level of sophistication of machine learning technologies like GPT-3 or GPT-2.
+But Markov chains demonstrate how we can apply mathematics to mimic results or at least achieve an MVP
+with a simpler approach. Another intriguing tool worth mentioning is the &lt;a class="reference external" href="https://www.nltk.org/"&gt;nltk library&lt;/a&gt;,
+which offers natural language capabilities.&lt;/p&gt;
+&lt;p&gt;Eventually I will try the more sophisticated way using machine learning, but at least I am enjoying a quick
+taste of success with a Markov chain. Here's what some cherry-picked results look like!
+Ok, they're not great, but not too shabby either for my first time generating text from examples:&lt;/p&gt;
 &lt;div class="wp-image-4695 figure"&gt;
 &lt;img alt="Jupyter notebook Markovify example" src="https://pythonmarketer.files.wordpress.com/2020/10/generating_positive_thoughts.jpg?w=1024" /&gt;
 &lt;/div&gt;
-&lt;p&gt;Maybe in the future I will use this for posts on my Facebook page, but it's not quite ready yet! I really enjoyed the process of researching this challenge and hope this post helps you evaluate your own text generation possibilities. This was fun to learn about. And best of all, I achieved satisfying, albeit primitive results within one weekend. Thanks for reading and stay positive.&lt;/p&gt;
+&lt;p&gt;Maybe in the future I will use this for posts on my Facebook page, but it's not quite ready yet!
+I really enjoyed the process of researching this challenge and hope this post helps you evaluate
+your own text generation possibilities. This was fun to learn about. And best of all, I achieved
+satisfying, albeit primitive results within one weekend. Thanks for reading and stay positive.&lt;/p&gt;
 &lt;p&gt;Check out the Markov chain in the wild &lt;a class="reference external" href="https://positivethoughts.pythonanywhere.com/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Update: in April 2025, my positivipy app eclipsed 20,000 hits according to PythonAnywhere.
+The app is still alive almost 10 years later and drawing visits from around the globe!&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="coding, data analysis, Google, pandas, programming, python"></category><category term="Google Vision"></category><category term="natural language"></category><category term="positive thinking"></category><category term="positivity"></category></entry></feed>

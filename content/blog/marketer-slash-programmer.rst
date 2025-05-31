@@ -32,6 +32,7 @@ functionality, user interface, etc. to the back end - data storage, server use, 
 My goal is to get better every day, and eventually build some cool shit.
 
 Thank you for reading,
+
 Erick
 
 \*At the time I wrote this, I worked in a non-technical marketing role. After beginning my Python studies,
