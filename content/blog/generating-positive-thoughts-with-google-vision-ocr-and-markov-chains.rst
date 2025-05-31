@@ -142,7 +142,9 @@ I wondered, are there any simpler options for text generation in python? Enter t
 Google pointed me to `this post from Analytics India Magazine <https://analyticsindiamag.com/hands-on-guide-to-markov-chain-for-text-generation/>`__ showing the `"Markovify" library <https://github.com/jsvine/markovify>`__. 
 Markovify makes generating your own Markov chain very easy! Install with pip:
 
-``pip install markovify``
+:: 
+    
+    pip install markovify
 
 Here's the code to create Markov chain on the quote text:
 
@@ -176,5 +178,7 @@ satisfying, albeit primitive results within one weekend. Thanks for reading and 
 
 Check out the Markov chain in the wild `here <https://positivethoughts.pythonanywhere.com/>`__.
 
-Update: in April 2025, my positivipy app eclipsed 20,000 hits according to PythonAnywhere. 
-The app is still alive almost 10 years later and drawing visits from around the globe!
+**Update** 
+
+In April 2025, my positivipy app eclipsed approcximately 800 page views according to PythonAnywhere's 
+resources loaded traffic counter. The app is still nearly 10 years later and drawing visits from around the globe!
