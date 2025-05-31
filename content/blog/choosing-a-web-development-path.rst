@@ -49,9 +49,8 @@ Instead of the `previously mentioned web frameworks <https://lofipython.com/star
 I've chosen web2py as a starter because of its compatibility with PythonAnywhere, its simplicity, 
 easy to read documentation and relative ease of use for beginners.
 
--  A note on PythonAnywhere: 5 stars for the tutorial pictured
-   below. It is very nice to see in the whirlwind of confusion of
-   learning to deal with code and a new environment.
+A note on PythonAnywhere: 5 stars for the tutorial pictured below. It is very nice to see in the whirlwind 
+of confusion of learning to deal with code and a new environment.
 
 .. image:: https://pythonmarketer.files.wordpress.com/2016/03/pythonanywhere-tutorial.jpg
    :alt: PythonAnywhere Tutorial
