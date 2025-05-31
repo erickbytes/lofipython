@@ -27,11 +27,10 @@ point of view of something you're working on, hit me up.
 
 `positivipy <https://positivethoughts.pythonanywhere.com/>`__, a text generation flask + mysql app built with fuzzywuzzy, ftfy, language_tool_python, textblob and markovify libraries
 
+`Ask Tame Impala <https://tameimpala.pythonanywhere.com/>`__, a web2py Tame Impala music lyrics search app
+
 `rst-url-validator <https://github.com/erickbytes/rst-url-validator>`__, a tool for validating urls in restructuredtext documents
 
 `restaurant profit projector <https://github.com/erickbytes/restaurant-profit-projector>`__, a streamlit dashboard for projecting profit scenarios in a restaurant
 
 `mas tacos <https://mastacos.pythonanywhere.com/>`__, proof of concept taco location app via a US taco restaurant dataset
-
-`Ask Tame Impala <https://tameimpala.pythonanywhere.com/>`__, web2py + SQLlite Tame Impala lyrics search app
-
