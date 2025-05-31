@@ -57,8 +57,8 @@ ease of use for beginners.
 .. image:: https://pythonmarketer.files.wordpress.com/2016/03/pythonanywhere-tutorial.jpg
    :alt: PythonAnywhere Tutorial
    :class: alignnone size-full wp-image-286
-   :width: 1199px
-   :height: 313px
+   :width: 600px
+   :height: 150px
 
 ++ Love this opening quote from `web2py Documentation
 <http://web2py.com/book>`__: "I believe that the ability to easily build
