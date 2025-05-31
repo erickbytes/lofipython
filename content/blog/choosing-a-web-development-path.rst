@@ -31,7 +31,7 @@ the most effective route from what I've read.
 
 So I went back to the drawing board and I've simplified this down to two basic paths:
 
-.. csv-table:: Web Development Stack
+.. csv-table:: 
    :header: "Tools", "Hosting", "Framework / IDE"
    :widths: 30, 30, 30
 
