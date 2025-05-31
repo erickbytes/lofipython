@@ -7,7 +7,11 @@ Installing Debian 9 Stretch Linux OS on a Dell Inspiron Laptop and Configuring t
 :slug: installing-debian-9-stretch-linux-os-on-a-dell-inspiron-laptop-and-troubleshooting-wifi
 :status: published
 
-Yesterday, I converted an 11-year old Dell Inspiron E1505 from Windows XP to Debian 9 Stretch. I may have overwrote my Windows XP OS. I do not care if I lost it since it's a vulnerable and outdated OS, which is no longer supported by Microsoft. I encountered difficulty with getting the wifi to work on Debian, but was able to find a solution using `Wicd <https://help.ubuntu.com/community/WICD>`__. Here are the steps I followed to do it all.
+Yesterday, I converted an 11-year old Dell Inspiron E1505 from Windows XP to Debian 9 Stretch. 
+I may have overwrote my Windows XP OS. I do not care if I lost it since it's a vulnerable 
+and outdated OS, which is no longer supported by Microsoft. I encountered difficulty with 
+getting the wifi to work on Debian, but was able to find a solution 
+using `Wicd <https://help.ubuntu.com/community/WICD>`__. Here are the steps I followed to do it all.
 
 Using The Debian Installer-Loader
 ---------------------------------
@@ -160,11 +164,22 @@ Some computers have a "kill switch" for wifi. This command lists any blocked int
 
 **Wrapping Up**
 
-I'd like to thank the awesome people who contributed to the Debian Installer-loader and all the help in Linux forums that enabled me figure this out. I'm new to the world of Linux but already enjoying diving into this operating system. Its ability to do just about anything from the command line are a lot of fun. I am now running two Linux systems, one on my Dell and another running Ubuntu that I installed on a Chromebook with `Crouton <https://www.howtogeek.com/162120/how-to-install-ubuntu-linux-on-your-chromebook-with-crouton/>`__. Both have been relatively painless to set up. It this case, it turned a sluggish laptop into a very capable machine. They should call it Lit-nux :)
+I'd like to thank the awesome people who contributed to the Debian Installer-loader and all the help 
+in Linux forums that enabled me figure this out. I'm new to the world of Linux but already enjoying 
+diving into this operating system. Its ability to do just about anything from the command line are a 
+lot of fun. I am now running two Linux systems, one on my Dell and another running Ubuntu that I 
+installed on a Chromebook with `Crouton <https://www.howtogeek.com/162120/how-to-install-ubuntu-linux-on-your-chromebook-with-crouton/>`__. 
+Both have been relatively painless to set up. It this case, it turned a sluggish laptop into a 
+very capable machine. They should call it Lit-nux :)
 
 **Full Disclosure**
 
-This worked on my computer for a few days before the keyboard stopped working correctly on my computer. Typing became impossible because the keys didn't work or entered the wrong letters when pressed. I'm not sure what the cause of it was, but consider that before attempting this on a machine. Be prepared to lose it. If you really need the machine to be functional, it may not be a great idea to try this. This was attempted on an old beat up computer. I would try this method of porting a Windows machine to Linux again as a salvage project or on a low-risk Windows machine if I had one lying around.
+This worked on my computer for a few days before the keyboard stopped working correctly on my computer. 
+Typing became impossible because the keys didn't work or entered the wrong letters when pressed. 
+I'm not sure what the cause of it was, but consider that before attempting this on a machine. 
+Be prepared to lose it. If you really need the machine to be functional, it may not be a great idea to try this. 
+This was attempted on an old beat up computer. I would try this method of porting a Windows machine to Linux 
+again as a salvage project or on a low-risk Windows machine if I had one lying around.
 
 .. |IMG_20190423_184816999| image:: http://pythonmarketer.files.wordpress.com/2019/04/97878-img_20190423_184816999-e1556211269262.jpg
    :class: wp-image-1785 alignright
