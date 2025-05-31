@@ -29,12 +29,12 @@ A popular Node.JS framework.
 
 A popular front-end Javascript web framework. There are many out there but this seems to be the one I've heard of the most.
 
+**I've begun to see a pattern with programming languages:**
 
-| **I've begun to see a pattern with programming languages:**
-| 1) Learn to execute the core building blocks. (using variables, loops, functions, etc.)
-| 2) Learn more advanced libraries, documentation and uses.
-| 3) Consider using and learning web frameworks depending on what you're trying to do with the language.
-| 4) Practice to hone your knowledge. Build things you like.
+- Learn to execute the core building blocks like using variables, loops and functions.
+- Learn more advanced libraries, documentation and uses.
+- Consider using and learning web frameworks depending on what you're trying to do with the language.
+- Practice to hone your knowledge. Build things you like.
 
 I've also noticed that Javascript has been easier to learn than Python was for me, because it's not my first programming language. 
 The concepts are the same. The syntax can trip me up at times, but I'm currently flying through 
