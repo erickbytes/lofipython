@@ -13,8 +13,9 @@ There is no one-size-fits-all answer. Below are some thoughts that may help you 
 #. What is your current experience level? Are you starting fresh or do you already know a language or two?
 #. Do you have money saved up? Otherwise, you might need to take out a loan.
 
-A computer science degree is typically most expensive. Coding bootcamps are a lower cost option that pack a wide curriculum 
-into a few weeks or months, but they can still be pricey. The cheapest option is to take a piecemeal approach through various online courses.
+A computer science degree is typically most expensive. Coding bootcamps are a lower cost option 
+that pack a wide curriculum into a few weeks or months, but they can still be pricey. The cheapest 
+option is to take a piecemeal approach through various online courses.
 
 **School Advantages**
 
@@ -33,11 +34,12 @@ handle the up-front investment. It's possible to land a job without schooling bu
 I am currently considering `Full Stack Academy <https://www.fullstackacademy.com/>`__. 
 and `Coding Dojo <http://www.codingdojo.com/>`__. There are many out there. CodeAcademy is a popular route as well.
 
-**If you want to make an app or website**, the school or the non-school route may both work. For the non-school route, the following languages are good places to start: *(note - not a comprehensive list, these are my picks.)*
+**If you want to make an app or website**, the school or the non-school route may both work. 
+For the non-school route, the following languages are good places to start:
 
 -  Web App or Website: HTML, CSS, Python, Javascript
--  Web App or Website Framework: Flask, Django, py4web, Ruby on Rails, React
--  iOS app: Swift plus Apple's Xcode environment, Beeware (python library)
+-  Web App or Website Framework: Flask, Django, FastAPI, py4web, Ruby on Rails, React
+-  iOS app: Swift plus Apple's Xcode environment, Beeware Python library
 -  Android App: Java or Kotlin, Beeware
 -  General Coding: Python or Ruby
 
@@ -45,7 +47,9 @@ and `Coding Dojo <http://www.codingdojo.com/>`__. There are many out there. Code
 to start `here <https://lofipython.com/marketer-slash-programmer/>`__. `Automate the Boring Stuff With Python <https://automatetheboringstuff.com/>`__ 
 is a great resource for boosting your productivity also.
 
-It's not easy to decide whether or not school is for you. I'm still unsure after a year and a half of programming on the side. No matter what, continue to learn multiple languages and strive for a better grasp of the ones you know. Good luck!
+It's not easy to decide whether or not school is for you. I'm still unsure after a year and a half 
+of programming on the side. No matter what, continue to learn multiple languages and strive for 
+a better grasp of the ones you know. Good luck!
 
 **My decision: continue self-study and learning online for free.**
 
