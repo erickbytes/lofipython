@@ -6,7 +6,7 @@ Marketer Slash Programmer
 :slug: marketer-slash-programmer
 :status: published
 
-I have studied and currently work in Marketing*, with around 5 years of experience. 
+I have studied and currently work in Marketing, with around 5 years of experience. 
 I would like to begin sharing my journey through the coding world. I have chosen Python 
 as my language to explore, to start. I began last fall by completing three `free online courses on Coursera <https://www.coursera.org/learn/python>`__.
 It's taught by an amazing professor, Dr. Charles Severance from the University of Michigan. 
@@ -35,7 +35,7 @@ Thank you for reading,
 
 Erick
 
-\*At the time I wrote this, I worked in a non-technical marketing role. After beginning my Python studies,
-I later found a role where I essentially got paid to write code that automated processes for a business.
-If you're wondering how, I used `Pandas <https://lofipython.com/pandas-pythons-excel-powerhouse/>`__, 
-`Requests <https://requests.readthedocs.io/en/latest/api>`__ and Excel a lot at most recent gig.
+    At the time I wrote this, I worked in a non-technical marketing role. After beginning my Python studies,
+    I later found a role where I essentially got paid to write code that automated processes for a business.
+    If you're wondering how, I used `Pandas <https://lofipython.com/pandas-pythons-excel-powerhouse/>`__, 
+    `Requests <https://requests.readthedocs.io/en/latest/api>`__ and Excel a lot at most recent gig.

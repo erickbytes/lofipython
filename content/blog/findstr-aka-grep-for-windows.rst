@@ -7,13 +7,15 @@ Findstr, RegEx File Searches for Windows
 :slug: findstr-aka-grep-for-windows
 :status: published
 
-Findstr is the Windows alternative to GREP, which runs on the `Unix operating system <https://www.howtogeek.com/182649/htg-explains-what-is-unix/>`__. 
-Findstr searches files with `regular expressions <https://en.wikipedia.org/wiki/Regular_expression>`__ and seems useful for string matching within 
-files and directories.  It is one of over 280 command prompt commands. 
-Here's the official `Windows Documentation <https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr>`__ and 
-some `Linux vs. Windows Examples. <https://www.mkyong.com/linux/grep-for-windows-findstr-example/>`__
+Findstr is the Windows alternative to GREP, which runs on the 
+`Unix operating system <https://www.howtogeek.com/182649/htg-explains-what-is-unix/>`__. 
+Findstr searches files with `regular expressions <https://en.wikipedia.org/wiki/Regular_expression>`__ 
+and seems useful for string matching within files and directories. It is one of over 280 command prompt commands. 
+Here's the official `Windows Documentation <https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr>`__
+and some `Linux vs. Windows Examples. <https://www.mkyong.com/linux/grep-for-windows-findstr-example/>`__
 
-**Update:** Windows announced that `Grep and several other Unix command line tools will be added to Windows 10 <https://hackaday.com/2019/06/10/windows-10-goes-to-shell/>`__. This is a new alternative to findstr.
+**Update:** Windows announced that `Grep and several other Unix command line tools will be added to Windows 10 <https://hackaday.com/2019/06/10/windows-10-goes-to-shell/>`__. 
+This is a new alternative to findstr.
 
 **This findstr command returns all lines containing an '@' in a text file.**
 
@@ -39,7 +41,8 @@ some `Linux vs. Windows Examples. <https://www.mkyong.com/linux/grep-for-window
    :width: 657px
    :height: 603px
 
-Regular expressions are so powerful. It's nice to have this utility within the command prompt. I am hoping to get to know some of the other 280 command prompt commands.
+Regular expressions are so powerful. It's nice to have this utility within the command prompt. 
+I am hoping to get to know some of the other 280 command prompt commands.
 
 **I've previously explored regex with Python. This Python regex example finds all words in a text file containing '@' symbols:**
 
@@ -60,4 +63,5 @@ Regular expressions are so powerful. It's nice to have this utility within the c
    :width: 633px
    :height: 173px
 
-For more command prompt nuggets, check out my more recent post: `Exploring Windows Command Line Tools, Batch Files and Remote Desktop Connection <https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/>`__.
+For more command prompt nuggets, check out my more recent post:
+`Exploring Windows Command Line Tools, Batch Files and Remote Desktop Connection <https://lofipython.com/exploring-windows-command-line-tools-batch-file-automation-and-remote-desktop-connection/>`__.

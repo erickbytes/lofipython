@@ -7,7 +7,9 @@ So You Want to Learn Python?
 :slug: so-you-want-to-learn-python
 :status: published
 
-Here are a few Python concepts for beginners to explore if you are starting out with the language. In this post, I'll highlight my favorite "must-learn" tools to master that come with your Python installation. Understanding them will make you a more capable Python programmer and problem solver.
+Here are a few Python concepts for beginners to explore if you are starting out with the language. 
+In this post, I'll highlight my favorite "must-learn" tools to master that come with your Python installation. 
+Understanding them will make you a more capable Python programmer and problem solver.
 
 1. `Built-in Functions <https://docs.python.org/3/library/functions.html#built-in-funcs>`__. They are awesome! You can do so much with these. Learn to apply them. You won't regret it! See also: `An Intro to Python's Built-in Functions <https://www.blog.pythonlibrary.org/2021/02/17/an-intro-to-pythons-built-in-functions/>`__
 
