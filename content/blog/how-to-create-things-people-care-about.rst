@@ -20,8 +20,7 @@
 :status:
    published
 
-11 Ideas from people who have created great products, businesses, or
-ideas:
+11 Ideas from people who have created great products, businesses, or ideas:
 
 #. Expertise in a field or product is one of the best assets. Nike's founders started out by making their 
    prototype shoe designs themselves with a waffle iron. `Shoe Dog <https://www.amazon.com/Shoe-Dog-Phil-Knight/dp/1508211809>`__

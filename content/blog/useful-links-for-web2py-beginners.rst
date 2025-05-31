@@ -19,7 +19,7 @@
 
 As I've been grappling with web2py, I've found a lot of useful posts and sites that have helped me along the way:
 
--  `How to Deploy Your App to PythonAnywhere <https://groups.google.com/forum/#!topic/web2py/IURWDAP2eTY>`__: So easy it's amazing. I've already deployed an app to see if I could.
+-  `How to Deploy Your App to PythonAnywhere <https://groups.google.com/forum/#!topic/web2py/IURWDAP2eTY>`__: so easy it's amazing. I've already deployed an app to see if I could.
 
 -  On CSS, I found `this <https://groups.google.com/forum/#!topic/web2py/cFc5NPQmmhc>`__ and `this <http://stackoverflow.com/questions/7184489/web2py-linking-to-css>`__ useful.
    I've learned a tiny amount of CSS, `thanks to Colleen van Lent <https://www.coursera.org/learn/introcss/>`__.
@@ -40,6 +40,6 @@ consider using `py4web <https://github.com/web2py/py4web>`__, web2py's successor
 
 -  py4web documentation: `Installation and Startup <https://py4web.com/_documentation/static/en/chapter-01.html#>`__
 
--  Bonus: `How to Make Mistakes in Python <http://www.oreilly.com/programming/free/how-to-make-mistakes-in-python.csp>`__ Free for download.
+-  Bonus: `How to Make Mistakes in Python <http://www.oreilly.com/programming/free/how-to-make-mistakes-in-python.csp>`__ free for download.
 
 **See also:** `Getting Started With web2py <https://lofipython.com/2016/03/29/getting-started-with-web2py/>`__

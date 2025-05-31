@@ -48,10 +48,12 @@ It's not easy to decide whether or not school is for you. I'm still unsure after
 
 **My decision: continue self-study and learning online for free.**
 
-As of 8 months after writing this post, I have concluded that learning for free online was the right choice for me. I've achieved many of my programming goals in the last three years, 
-thanks to materials available from `Codeacademy <https://www.codecademy.com/learn/learn-python>`__, `Coursera <https://www.coursera.org/learn/python>`__, 
-`YouTube <https://www.youtube.com/watch?v=u3d-n41Tobw>`__, `Stack Overflow <https://stackoverflow.com/questions/1720421/how-to-concatenate-two-lists-in-python?rq=1>`__, 
-`countless helpful resources, <https://automatetheboringstuff.com/>`__, `interesting blogs <https://pymotw.com/3/glob/index.html>`__, and `documentation <https://docs.python.org/3/library/index.html>`__. 
-I've talked with others who need the in-person assistance that a bootcamp offers to learn. Do what works for you. Good luck with your decision.
+As of 8 months after writing this post, I have concluded that learning for free online was the right 
+choice for me. I've achieved many of my programming goals in the last three years, 
+thanks to materials available from `Codeacademy <https://www.codecademy.com/learn/learn-python>`__, 
+`Coursera <https://www.coursera.org/learn/python>`__, `YouTube <https://www.youtube.com/watch?v=u3d-n41Tobw>`__, 
+`Stack Overflow <https://stackoverflow.com/questions/1720421/how-to-concatenate-two-lists-in-python?rq=1>`__, 
+`countless helpful resources, <https://automatetheboringstuff.com/>`__, `interesting blogs <https://pymotw.com/3/glob/index.html>`__, 
+and `documentation <https://docs.python.org/3/library/index.html>`__. I've talked with others who need the in-person assistance that a bootcamp offers to learn. Do what works for you. Good luck with your decision.
 
 **Update:** Several years later, I also get paid to use Python and Excel for a living! I studied for free online intermittently over 2 years to achieve it.
