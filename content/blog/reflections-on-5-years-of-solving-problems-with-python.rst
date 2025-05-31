@@ -7,11 +7,20 @@ Reflections on 5 Years of Solving Problems with Python
 :slug: reflections-on-5-years-of-solving-problems-with-python
 :status: published
 
-Prior to learning Python, I had no programming experience. I worked in marketing for a book publisher and did not perform well at my job. It was not a good fit. They eventually fired me. As my previous job unraveled, I discovered Python and the Coursera course, `Programming for Everybody (Getting Started with Python) <https://www.coursera.org/learn/python?utm_medium=email&utm_source=other&utm_campaign=opencourse.course_complete.python.%7Eopencourse.course_complete.7A1yFTaREeWWBQrVFXqd1w.>`__. Fortunately, that course jump-started me onto a path of learning and reading each day. My aim was to make my own website, a `goal that I accomplished <https://pythonmarketer.wordpress.com/2016/05/25/askkevinparker-com-my-first-web-app-other-notes/>`__. I needed to know how the sausage was made.
+Prior to learning Python, I had no programming experience. I worked in marketing for a book publisher 
+and did not perform well at my job. It was not a good fit. They eventually fired me. As my previous 
+job unraveled, I discovered Python and the Coursera course, 
+`Programming for Everybody (Getting Started with Python) <https://www.coursera.org/learn/python>`__. 
+Fortunately, that course jump-started me onto a path of learning and reading each day. My aim was to 
+make my own website, a `goal that I accomplished <https://lofipython.com/askkevinparker-com-my-first-web-app-other-notes/>`__. 
+I needed to know how the sausage was made.
 
-Looking back from 2020, I can safely say Python changed my life. Because of it, I now have a fulfilling marketing\data-oriented career. I'm also grateful for the financial stability that came with it. I love to learn about the language and continue to improve my abilities to solve problems with new tools, not only Python.
+Looking back from 2020, I can safely say Python changed my life. Because of it, I was able to land a fulfilling marketing\data-oriented job. 
+I'm also grateful for the financial stability that came with it. I love to learn about the language. 
+I'll continue to improve my abilities to solve problems with new tools, not only Python.
 
-Below are pieces of wisdom picked up from my experiences. They are the result of many hours of study, reading, mistakes, luck, toil and eventual glory.
+Below are pieces of wisdom picked up from my experiences. They are the result of many hours of study, 
+reading, mistakes, luck, toil and eventual glory.
 
 **These are thought-provoking adages and guidelines, not absolute truths in all cases.**
 
@@ -78,7 +87,7 @@ Below are pieces of wisdom picked up from my experiences. They are the result of
 34. Choosing to dedicate to learning Python is among the best decisions I've made.
 35. Attitude is more important than intelligence. Anyone can learn to program, play guitar or fly an airplane. You can become an adept problem solver. Acquire an attitude to support your determination and persistence.
 
-[caption id="attachment_2981" align="alignnone" width="959"]\ |brandonrhodes| Brandon Rhodes: Stopping to Sharpen Your Tools - PyWaw Summit 2015[/caption]
+|brandonrhodes| Brandon Rhodes: Stopping to Sharpen Your Tools - PyWaw Summit 2015
 
 **I'll leave you with the 4 P's and 4 C's from my** `Programming for Everybody Coursera course graduation ceremony <https://www.youtube.com/watch?v=SfQYA0JQWkA>`__\ **. Cultivating these principles will guide you to growing your education and finding a positive course in life:**
 
