@@ -21,9 +21,9 @@ As I've been grappling with web2py, I've found a lot of useful posts and sites t
 
 -  `How to Deploy Your App to PythonAnywhere <https://groups.google.com/forum/#!topic/web2py/IURWDAP2eTY>`__: So easy it's amazing. I've already deployed an app to see if I could.
 
--  For CSS - I found `this <https://groups.google.com/forum/#!topic/web2py/cFc5NPQmmhc>`__ and `this <http://stackoverflow.com/questions/7184489/web2py-linking-to-css>`__ useful.
-   I've learned a tiny amount of CSS (`Thanks to Colleen van Lent! <https://www.coursera.org/learn/introcss/>`__) but am now able to
-   manipulate the layout of my apps.
+-  On CSS, I found `this <https://groups.google.com/forum/#!topic/web2py/cFc5NPQmmhc>`__ and `this <http://stackoverflow.com/questions/7184489/web2py-linking-to-css>`__ useful.
+   I've learned a tiny amount of CSS, `thanks to Colleen van Lent <https://www.coursera.org/learn/introcss/>`__.
+   I'm now able to manipulate the layout of my apps.
 
 -  An Easy Way to `Customize Forms <http://web2py.com/book/default/chapter/07#Custom-forms>`__
 
