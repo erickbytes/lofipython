@@ -13,7 +13,7 @@ Try it out here: `tameimpala.pythonanywhere.com <http://tameimpala.pythonanywher
 **What It Does**
 
 Ask it a question, and it queries a database of Tame Impala lyrics and pulls a response line from the lyrics 
-based on which words match up. Kevin Parker is the frontman of the band.
+based on which words match up. Kevin Parker is the frontman of the band who writes 99% of Tame Impala songs.
 
 **Evergreen Traffic**
 
@@ -36,11 +36,13 @@ from your SSL provider and submit them to the domain host. The last step is to n
 domain host and have them verify with the SSL provider. If all goes well, you'll be live in a few hours.
 
 **"Masking" domains**
+
 This means if you type "google.com", it will redirect to "www.google.com".
 `GoDaddy makes this super easy <https://www.godaddy.com/help/manually-forwarding-or-masking-your-domain-name-422>`__. 
 I set it up for my site as well. `Here's a post from PythonAnywhere <https://help.pythonanywhere.com/pages/NakedDomains>`__ on this also.
 
 **Collaborating with other programmers**
+
 Currently trying to install and run GitHub on my Desktop. It's trickier to do on an outdated operating system. 
 Another programmer explained to me how it is the base means of collaboration and managing work flow for programmers 
 working together on a project. Probably will know more about this soon and `write a post on it <https://lofipython.com/git-the-basics-a-git-version-control-cheat-sheet/>`__. 
