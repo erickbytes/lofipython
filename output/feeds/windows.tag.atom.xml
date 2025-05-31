@@ -109,7 +109,9 @@ sudo ifconfig eth0 up
 &lt;/div&gt;
 &lt;div class="section" id="troubleshooting-linux-wifi-inspecting-your-system"&gt;
 &lt;h2&gt;Troubleshooting Linux Wifi &amp;amp; Inspecting Your System&lt;/h2&gt;
-&lt;p&gt;Now, let's check for enabled network interfaces. &amp;quot;wlan0&amp;quot; is usually the name of the wireless interface. Does wlan0 show when you enter this command? If not, then you may need to update your wifi firmware. This was the case for me. Below is an output where wlan0 is correctly configured.&lt;/p&gt;
+&lt;p&gt;Now, let's check for enabled network interfaces. &amp;quot;wlan0&amp;quot; is usually the name of the wireless interface.
+Does wlan0 show when you enter this command? If not, then you may need to update your wifi firmware.
+This was the case for me. Below is an output where wlan0 is correctly configured.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 sudo ifconfig
 &lt;/pre&gt;
@@ -142,8 +144,11 @@ TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
 &lt;pre class="literal-block"&gt;
 sudo rfkill list all
 &lt;/pre&gt;
-&lt;p&gt;Some computers have a &amp;quot;kill switch&amp;quot; for wifi. This command lists any blocked interfaces. If it is blocked, &lt;a class="reference external" href="https://ubuntuforums.org/showthread.php?t=2298330"&gt;this thread&lt;/a&gt; might be useful. If nothing shows when you run this command, or if you see wlan0 is not blocked, carry on.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Check which wifi controller you have.&lt;/strong&gt; &lt;a class="reference external" href="https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers"&gt;This thread&lt;/a&gt; &lt;strong&gt;provides more info on what this means.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Some computers have a &amp;quot;kill switch&amp;quot; for wifi. This command lists any blocked interfaces.
+If it is blocked, &lt;a class="reference external" href="https://ubuntuforums.org/showthread.php?t=2298330"&gt;this thread&lt;/a&gt; might be useful.
+If nothing shows when you run this command, or if you see wlan0 is not blocked, carry on.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Check which wifi controller you have.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers"&gt;This thread&lt;/a&gt; provides more info on what this means.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 lspci -nn | grep -e 0200 -e 0280
 &lt;/pre&gt;

@@ -93,7 +93,9 @@ sudo ifconfig eth0 up
 </div>
 <div class="section" id="troubleshooting-linux-wifi-inspecting-your-system">
 <h2>Troubleshooting Linux Wifi &amp; Inspecting Your System</h2>
-<p>Now, let's check for enabled network interfaces. &quot;wlan0&quot; is usually the name of the wireless interface. Does wlan0 show when you enter this command? If not, then you may need to update your wifi firmware. This was the case for me. Below is an output where wlan0 is correctly configured.</p>
+<p>Now, let's check for enabled network interfaces. &quot;wlan0&quot; is usually the name of the wireless interface.
+Does wlan0 show when you enter this command? If not, then you may need to update your wifi firmware.
+This was the case for me. Below is an output where wlan0 is correctly configured.</p>
 <pre class="literal-block">
 sudo ifconfig
 </pre>
@@ -126,8 +128,11 @@ TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
 <pre class="literal-block">
 sudo rfkill list all
 </pre>
-<p>Some computers have a &quot;kill switch&quot; for wifi. This command lists any blocked interfaces. If it is blocked, <a class="reference external" href="https://ubuntuforums.org/showthread.php?t=2298330">this thread</a> might be useful. If nothing shows when you run this command, or if you see wlan0 is not blocked, carry on.</p>
-<p><strong>Check which wifi controller you have.</strong> <a class="reference external" href="https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers">This thread</a> <strong>provides more info on what this means.</strong></p>
+<p>Some computers have a &quot;kill switch&quot; for wifi. This command lists any blocked interfaces.
+If it is blocked, <a class="reference external" href="https://ubuntuforums.org/showthread.php?t=2298330">this thread</a> might be useful.
+If nothing shows when you run this command, or if you see wlan0 is not blocked, carry on.</p>
+<p><strong>Check which wifi controller you have.</strong></p>
+<p><a class="reference external" href="https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers">This thread</a> provides more info on what this means.</p>
 <pre class="literal-block">
 lspci -nn | grep -e 0200 -e 0280
 </pre>

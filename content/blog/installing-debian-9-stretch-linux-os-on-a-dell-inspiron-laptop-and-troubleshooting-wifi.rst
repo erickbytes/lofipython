@@ -75,7 +75,9 @@ This Debian 9 package ships with Network-Manager. After logging in, I wasn't sur
 Troubleshooting Linux Wifi & Inspecting Your System
 ---------------------------------------------------
 
-Now, let's check for enabled network interfaces. "wlan0" is usually the name of the wireless interface. Does wlan0 show when you enter this command? If not, then you may need to update your wifi firmware. This was the case for me. Below is an output where wlan0 is correctly configured.
+Now, let's check for enabled network interfaces. "wlan0" is usually the name of the wireless interface. 
+Does wlan0 show when you enter this command? If not, then you may need to update your wifi firmware. 
+This was the case for me. Below is an output where wlan0 is correctly configured.
 
 ::
 
@@ -114,9 +116,13 @@ Now, let's check for enabled network interfaces. "wlan0" is usually the name of 
 
    sudo rfkill list all
 
-Some computers have a "kill switch" for wifi. This command lists any blocked interfaces. If it is blocked, `this thread <https://ubuntuforums.org/showthread.php?t=2298330>`__ might be useful. If nothing shows when you run this command, or if you see wlan0 is not blocked, carry on.
+Some computers have a "kill switch" for wifi. This command lists any blocked interfaces. 
+If it is blocked, `this thread <https://ubuntuforums.org/showthread.php?t=2298330>`__ might be useful.
+If nothing shows when you run this command, or if you see wlan0 is not blocked, carry on.
 
-**Check which wifi controller you have.** `This thread <https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers>`__ **provides more info on what this means.**
+**Check which wifi controller you have.** 
+
+`This thread <https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers>`__ provides more info on what this means.
 
 ::
 
