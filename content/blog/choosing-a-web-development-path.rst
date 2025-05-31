@@ -45,10 +45,6 @@ and paid Python-friendly hosts.
 
    I also added in Cloudflare Pages retroactively to this post, since I discovered it many years after writing this post.
 
-Instead of the `previously mentioned web frameworks <https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app/>`__,
-I've chosen web2py as a starter because of its compatibility with PythonAnywhere, its simplicity, 
-easy to read documentation and relative ease of use for beginners.
-
 A note on PythonAnywhere: 5 stars for the tutorial pictured below. It is very nice to see in the whirlwind 
 of confusion of learning to deal with code and a new environment.
 
@@ -64,7 +60,10 @@ Love this opening quote from `web2py Documentation <http://web2py.com/book>`__:
    critical importance for the growth of a free and open society. This prevents the 
    biggest players from monopolizing the flow of information."
 
-A note on web2py so far: `the videos from the creator <http://www.web2py.com/init/default/documentation>`__, 
-Massimo Di Pierro, are super useful!
+
+Instead of the `previously mentioned web frameworks <https://lofipython.com/starting-to-almost-kinda-think-about-creating-a-web-app/>`__,
+I've chosen web2py as a starter because of its compatibility with PythonAnywhere, its simplicity, 
+easy to read documentation and relative ease of use for beginners. A note on web2py so far: 
+`the videos from the creator <http://www.web2py.com/init/default/documentation>`__, Massimo Di Pierro, are super useful!
 
    **Update:** consider using `py4web <https://github.com/web2py/py4web>`__, web2py's successor
