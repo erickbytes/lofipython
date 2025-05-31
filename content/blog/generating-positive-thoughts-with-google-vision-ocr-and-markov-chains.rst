@@ -139,7 +139,8 @@ I wondered, are there any simpler options for text generation in python? Enter t
 
 **Using the markovify library**
 
-Google pointed me to `this post from Analytics India Magazine <https://analyticsindiamag.com/hands-on-guide-to-markov-chain-for-text-generation/>`__ showing the `"Markovify" library <https://github.com/jsvine/markovify>`__. 
+Google pointed me to `this post from Analytics India Magazine <https://analyticsindiamag.com/hands-on-guide-to-markov-chain-for-text-generation/>`__ 
+showing the `"Markovify" library <https://github.com/jsvine/markovify>`__. 
 Markovify makes generating your own Markov chain very easy! Install with pip:
 
 :: 
