@@ -58,5 +58,7 @@ thanks to materials available from `Codeacademy <https://www.codecademy.com/lear
 and `documentation <https://docs.python.org/3/library/index.html>`__. I've talked with others who need 
 the in-person assistance that a bootcamp offers to learn. Do what works for you. Good luck with your decision.
 
-**Update:** Several years later, I was lucky enough to land a job where I used Python and Excel for a living!
-I studied for free online intermittently about 4 years to achieve it.
+**Update:** 
+
+Several years later after writing this post, I was lucky enough to land a job where 
+I used Python and Excel for a living! I studied for free online intermittently about 4 years to achieve it.
