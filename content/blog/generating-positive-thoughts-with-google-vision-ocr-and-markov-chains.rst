@@ -180,5 +180,5 @@ Check out the Markov chain in the wild `here <https://positivethoughts.pythonany
 
 **Update** 
 
-In April 2025, my positivipy app eclipsed approcximately 800 page views according to PythonAnywhere's 
+In April 2025, my positivipy app eclipsed approximately 800 page views according to PythonAnywhere's 
 resources loaded traffic counter. The app is still nearly 10 years later and drawing visits from around the globe!
