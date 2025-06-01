@@ -47,6 +47,7 @@ I really enjoyed using `Pocket <https://help.getpocket.com/>`__ as my primary re
 
    filter saved articles by length
 
-The Pocket app is an overall great product and I felt compelled to endorse it here for the satisfaction it has brought me a in a short amount of time. It has increased my reading throughput. It's perfect for when you find yourself without an internet connection, in sparsely populated areas, on an airplane or while traveling in foreign countries.
-
-I recommend this app to anyone who compulsively reads blogs and articles. It will help you keep up with the neverending stream of text also known as the internet. Might I suggest saving a few posts from this blog also?
+The Pocket app is an overall great product and I felt compelled to endorse it here for the 
+satisfaction it has brought me a in a short amount of time. It has increased my reading throughput. 
+It's perfect for when you find yourself without an internet connection, in sparsely populated areas, 
+on an airplane or while traveling in foreign countries. Goodbye, pocket. You will be missed.
