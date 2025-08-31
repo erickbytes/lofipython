@@ -98,7 +98,7 @@ and the original sub-domain live on their free plan.
 
 I had built up a list of subscribing Wordpress users after 6 years writing on the platform.
 Write a brief post explaining where to find future blog posts to let your audience know where to find you. 
-In my case, I wrote a `goodbye post on my old blog <https://pythonmarketer.wordpress.com/2023/05/15/blog-moving-to-lofipython-com/e>`__, 
+In my case, I wrote a `goodbye post on my old blog <https://pythonmarketer.wordpress.com/2023/05/15/blog-moving-to-lofipython-com>`__, 
 and an announcement post about `on my new blog domain <https://lofipython.com/wordpress-to-pelican-blog-migration-complete>`__.
 
 *Update the Site Tagline on Your Old Blog*
