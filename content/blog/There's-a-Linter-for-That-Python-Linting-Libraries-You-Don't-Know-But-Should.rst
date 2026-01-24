@@ -116,7 +116,7 @@ Typically, I run it on every script I write, but might consider using ruff forma
 
 **Lint your YAML files with yamllint.**
 
-`yamllint <https://pypi.org/project/yamllint/>`__: YAML is unavoidable as a configration staple in tons of modern software. 
+`yamllint <https://pypi.org/project/yamllint/>`__: YAML is unavoidable as a configuration staple in tons of modern software. 
 It gets heaps of praise for its readability. I appreciated yamllint's instrospective linter when trying to figure out why my YAML config was broken. 
 
 
@@ -166,7 +166,13 @@ rstfmt and restructuredtext-lint (`read more <https://pypi.org/project/restructu
 
 
 
-Although I haven't used them personally, it's worth mentioning popular libraries like `pyflakes <https://pypi.org/project/pyflakes/>`__ and `flake8 <https://pypi.org/project/flake8/>`__ for linting Python code. ruff supports some of these libraries also. Check out `pymarkdownlint <https://pypi.org/project/pymarkdownlnt/>`__ for linting Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool that exists. `html-linter <https://pypi.org/project/html-linter/>`__ applies linting to your HTML code. Starting to think that behind every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, linters and auto-formatters go hand in hand as invaluable tools.
+Although I haven't used them personally, it's worth mentioning popular libraries like 
+`pyflakes <https://pypi.org/project/pyflakes/>`__ and `flake8 <https://pypi.org/project/flake8/>`__ for linting Python code. 
+ruff supports some of these libraries also. Check out `pymarkdownlint <https://pypi.org/project/pymarkdownlnt/>`__ for linting 
+Markdown documents. While researching for this post, I even stumbled upon an HTML linting command line tool that exists. 
+`html-linter <https://pypi.org/project/html-linter/>`__ applies linting to your HTML code. Starting to think that behind 
+every seasoned Python programmer is a thick stack of linters! When it comes to fixing and refactoring old documents and code, 
+linters and auto-formatters go hand in hand as invaluable tools.
 
 
 **Supplementary Reading + Documentation**
