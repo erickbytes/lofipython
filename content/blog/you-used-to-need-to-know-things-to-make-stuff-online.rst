@@ -40,10 +40,11 @@ to do 5-10 years ago.
 
 The last mile of app development is where my grinding should give me an edge over the layperson. The time spent learning the nuances of Python
 are helpful, but not exactly necessary with today's technologies at hand. If anyone can create an app so easily, is there any real moat for something 
-I create? This could be a reason to not worry about how good the idea is and just ship. Which is better: pumping out 5 apps and 
-hoping one of them gets traction, or spending time to take the best idea and focus on that. Given we don't always know which is best,
-which strategy is best for app development? Unfortunately, this post has more questions than answers. I'm guessing the answer is simple,
-just ship something and see where it goes.
+I create? 
+
+Maybe I should not worry about how good the idea is and just ship. Which is better: pumping out 5 apps and 
+hoping one of them gets traction, or spending time to take the best idea and focus on that. Which strategy is best for app development? 
+Unfortunately, this post has more questions than answers. I'm guessing the answer is simple, just ship something and see where it goes.
 
 
 
